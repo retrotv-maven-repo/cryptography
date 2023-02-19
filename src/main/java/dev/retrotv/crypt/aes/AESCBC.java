@@ -37,18 +37,18 @@ public abstract class AESCBC implements TwoWayEncryption {
     public byte[] decrypt(byte[] encryptedData, String key) {
         SecretKeySpec secretKey = new SecretKeySpec(key.getBytes(StandardCharsets.UTF_8), "AES");
         IvParameterSpec iv = new IvParameterSpec(key.substring(0, 16).getBytes(StandardCharsets.UTF_8));
-        byte[] decryptrdData = null;
+        byte[] decryptedData = null;
 
         try {
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
             cipher.init(Cipher.DECRYPT_MODE, secretKey, iv);
-            decryptrdData = cipher.doFinal(encryptedData);
+            decryptedData = cipher.doFinal(encryptedData);
         } catch (InvalidKeyException | NoSuchPaddingException | IllegalBlockSizeException |
                  BadPaddingException | InvalidAlgorithmParameterException e) {
             throw new RuntimeException(e);
         } catch (NoSuchAlgorithmException ignored) { }
 
-        return decryptrdData;
+        return decryptedData;
     }
 
     @Override
