@@ -5,8 +5,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.RepetitionInfo;
 
-import java.util.logging.Logger;
-
 public class MD5Test extends MDTest {
 
     @RepeatedTest(100)

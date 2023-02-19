@@ -1,7 +1,6 @@
 package dev.retrotv.crypt.sha;
 
 import dev.retrotv.crypt.OneWayEncryption;
-import dev.retrotv.crypt.random.SecurityStrength;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.RepetitionInfo;

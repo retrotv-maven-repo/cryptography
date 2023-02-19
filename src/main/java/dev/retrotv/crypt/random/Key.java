@@ -21,7 +21,7 @@ public class Key {
             case AES256:
                 len = 32;
                 break;
-        };
+        }
 
         return len;
     }

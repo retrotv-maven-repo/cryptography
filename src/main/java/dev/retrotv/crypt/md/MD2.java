@@ -4,7 +4,6 @@ import dev.retrotv.crypt.OneWayEncryption;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Base64;
 
 public class MD2 implements OneWayEncryption {
 
@@ -13,9 +12,8 @@ public class MD2 implements OneWayEncryption {
         try {
             MessageDigest md = MessageDigest.getInstance("MD2");
             md.update(data);
-            byte[] encryptedData = md.digest();
 
-            return encryptedData;
+            return md.digest();
         } catch (NoSuchAlgorithmException ignored) { }
 
         return null;
