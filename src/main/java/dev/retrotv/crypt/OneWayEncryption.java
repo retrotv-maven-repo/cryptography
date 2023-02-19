@@ -19,6 +19,14 @@ public interface OneWayEncryption {
         return encrypt(text.concat(salt));
     }
 
+    default boolean matches(String text, String encryptedText) {
+        return encryptedText.equals(encrypt(text));
+    }
+
+    default boolean matches(String text, String salt, String encryptedText) {
+        return matches(text.concat(salt), encryptedText);
+    }
+
     default String generateSalt(SecurityStrength securityStrength, int len) {
         return Salt.generate(securityStrength, len);
     }
