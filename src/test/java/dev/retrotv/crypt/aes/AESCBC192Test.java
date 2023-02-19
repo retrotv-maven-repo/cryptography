@@ -1,39 +1,17 @@
 package dev.retrotv.crypt.aes;
 
 import dev.retrotv.crypt.TwoWayEncryption;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.*;
 
-import java.util.logging.Logger;
+import static org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS;
 
-import static org.junit.jupiter.api.Assertions.*;
+@TestInstance(value = PER_CLASS)
+public class AESCBC192Test extends AESCBCTest {
 
-public class AESCBC192Test {
-    private static final Logger log = Logger.getGlobal();
-
-    @RepeatedTest(100)
     @DisplayName("AES-192 CBC 알고리즘 암복호화 테스트")
-    void AESCBC192EncryptDecryptTest() {
+    @RepeatedTest(value = 100, name = "{currentRepetition}/{totalRepetitions}")
+    void AESCBC192EncryptDecryptTest(RepetitionInfo repetitionInfo) {
         TwoWayEncryption twe = new AESCBC192();
-
-        String message = "The lazy dog jumps over the brown fox!";
-        String key = twe.generateKey();
-
-        log.info("생성 된 키: " + key);
-
-        String encryptedMessage = twe.encrypt(message, key);
-
-        log.info("원본 메시지: " + message);
-        log.info("암호화 된 메시지: " + encryptedMessage);
-
-        assertNotEquals(message, encryptedMessage);
-
-        String decryptedMessage = twe.decrypt(encryptedMessage, key);
-
-        log.info("원본 메시지: " + message);
-        log.info("암호화 된 메시지: " + encryptedMessage);
-        log.info("복호화 된 메시지: " + decryptedMessage);
-
-        assertEquals(message, decryptedMessage);
+        encryptDecryptTest(twe, repetitionInfo);
     }
 }
