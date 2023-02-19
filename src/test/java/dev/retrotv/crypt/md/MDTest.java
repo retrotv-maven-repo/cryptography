@@ -1,6 +1,7 @@
 package dev.retrotv.crypt.md;
 
 import dev.retrotv.common.Log;
+import dev.retrotv.crypt.Encode;
 import dev.retrotv.crypt.OneWayEncryption;
 import dev.retrotv.crypt.random.Salt;
 import dev.retrotv.crypt.random.SecurityStrength;
@@ -19,12 +20,12 @@ public class MDTest extends Log {
         log.info("암호화 알고리즘: " + owe.getClass().getSimpleName());
 
         String message = "The lazy dog jumps over the brown fox!";
-        String encryptedMessage = owe.encrypt(message);
+        String encryptedMessage = owe.encrypt(message, Encode.HEX);
 
         log.info("암호화 된 메시지: " + encryptedMessage);
         log.info("암호화 된 메시지 bit 길이: " + Base64.getDecoder().decode(encryptedMessage).length * 8);
 
-        assertTrue(owe.matches(message, encryptedMessage));
+        assertTrue(owe.matches(message, Encode.HEX, encryptedMessage));
         assertTrue(checkBitLength(owe.getClass().getSimpleName(), Base64.getDecoder().decode(encryptedMessage).length * 8));
 
         encryptedData.add(encryptedMessage);
@@ -43,12 +44,12 @@ public class MDTest extends Log {
 
         String message = "The lazy dog jumps over the brown fox!";
         String salt = Salt.generate(SecurityStrength.HIGH, 20);
-        String encryptedMessage = owe.encrypt(message, salt);
+        String encryptedMessage = owe.encrypt(message, salt, Encode.HEX);
 
         log.info("암호화 된 메시지: " + encryptedMessage);
         log.info("암호화 된 메시지 bit 길이: " + Base64.getDecoder().decode(encryptedMessage).length * 8);
 
-        assertTrue(owe.matches(message, salt, encryptedMessage));
+        assertTrue(owe.matches(message, salt, Encode.HEX, encryptedMessage));
         assertTrue(checkBitLength(owe.getClass().getSimpleName(), Base64.getDecoder().decode(encryptedMessage).length * 8));
 
         encryptedData.add(encryptedMessage);
