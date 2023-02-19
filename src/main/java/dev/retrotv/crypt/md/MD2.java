@@ -15,7 +15,7 @@ public class MD2 implements OneWayEncryption {
             md.update(data);
             byte[] encryptedData = md.digest();
 
-            return Base64.getEncoder().encode(encryptedData);
+            return encryptedData;
         } catch (NoSuchAlgorithmException ignored) { }
 
         return null;
