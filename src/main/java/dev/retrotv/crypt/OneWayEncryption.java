@@ -1,33 +1,34 @@
 package dev.retrotv.crypt;
 
-import dev.retrotv.crypt.random.Salt;
-import dev.retrotv.crypt.random.SecurityStrength;
-
+import javax.xml.bind.DatatypeConverter;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
 public interface OneWayEncryption {
 
-    default String encrypt(String text) {
+    default String encrypt(String text, Encode encode) {
         byte[] data = text.getBytes(StandardCharsets.UTF_8);
-        return new String(Base64.getEncoder().encode(encrypt(data)));
+
+        switch (encode) {
+            case HEX:
+                return DatatypeConverter.printHexBinary(data);
+            case BASE64:
+                return new String(Base64.getEncoder().encode(encrypt(data)));
+        }
+        return null;
     }
 
     byte[] encrypt(byte[] data);
 
-    default String encrypt(String text, String salt) {
-        return encrypt(text.concat(salt));
+    default String encrypt(String text, String salt, Encode encode) {
+        return encrypt(text.concat(salt), encode);
     }
 
-    default boolean matches(String text, String encryptedText) {
-        return encryptedText.equals(encrypt(text));
+    default boolean matches(String text, Encode encode, String encryptedText) {
+        return encryptedText.equals(encrypt(text, encode));
     }
 
-    default boolean matches(String text, String salt, String encryptedText) {
-        return matches(text.concat(salt), encryptedText);
-    }
-
-    default String generateSalt(SecurityStrength securityStrength, int len) {
-        return Salt.generate(securityStrength, len);
+    default boolean matches(String text, String salt, Encode encode, String encryptedText) {
+        return matches(text.concat(salt), encode, encryptedText);
     }
 }
