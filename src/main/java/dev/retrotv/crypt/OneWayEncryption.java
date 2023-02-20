@@ -7,13 +7,13 @@ import java.util.Base64;
 public interface OneWayEncryption {
 
     default String encrypt(String text, Encode encode) {
-        byte[] data = text.getBytes(StandardCharsets.UTF_8);
+        byte[] data = encrypt(text.getBytes(StandardCharsets.UTF_8));
 
         switch (encode) {
             case HEX:
-                return DatatypeConverter.printHexBinary(data);
+                return DatatypeConverter.printHexBinary(data).toLowerCase();
             case BASE64:
-                return new String(Base64.getEncoder().encode(encrypt(data)));
+                return new String(Base64.getEncoder().encode(encrypt(data))).toLowerCase();
         }
         return null;
     }
