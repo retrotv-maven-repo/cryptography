@@ -19,6 +19,7 @@ public class AESCBCTest extends Log {
         String key = twe.generateKey();
 
         log.info("생성 된 키: " + key);
+        log.info("키의 길이: " + key.getBytes().length * 8);
 
         String encryptedMessage = twe.encrypt(message, key);
 
