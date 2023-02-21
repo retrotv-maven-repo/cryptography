@@ -65,9 +65,8 @@ public class CRCTest extends Log {
     }
 
     boolean checkBitLength(String algorithm, int length) {
-        switch (algorithm) {
-            case "CRC32":
-                return length == 32;
+        if ("CRC32".equals(algorithm)) {
+            return length == 32;
         }
 
         return false;
