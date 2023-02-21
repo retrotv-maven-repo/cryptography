@@ -45,7 +45,9 @@ public class AESCBCTest extends Log {
             log.info("마지막 테스트");
             log.info("총 테스트 횟수: " + repetitionInfo.getCurrentRepetition());
             log.info("암호화 된 데이터 개수 : " + encryptedData.size());
-            if(repetitionInfo.getCurrentRepetition() != encryptedData.size()) { fail(); }
+            if(repetitionInfo.getTotalRepetitions() != encryptedData.size()) { fail(); }
+
+            encryptedData.clear();
         }
     }
 }

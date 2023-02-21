@@ -1,20 +1,15 @@
 package dev.retrotv.crypt.owe.sha;
 
+import dev.retrotv.crypt.Algorithm;
 import dev.retrotv.crypt.OneWayEncryption;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class SHA256 implements OneWayEncryption {
+public class SHA256 extends SHA implements OneWayEncryption {
 
     @Override
     public byte[] encrypt(byte[] data) {
-        try {
-            MessageDigest md = MessageDigest.getInstance("SHA-256");
-            md.update(data);
-            return md.digest();
-        } catch (NoSuchAlgorithmException ignored) { }
-
-        return null;
+        return encode(Algorithm.SHA256, data);
     }
 }
