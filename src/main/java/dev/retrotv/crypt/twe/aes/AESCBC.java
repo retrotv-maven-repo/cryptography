@@ -1,6 +1,7 @@
 package dev.retrotv.crypt.twe.aes;
 
 import dev.retrotv.crypt.TwoWayEncryption;
+import dev.retrotv.crypt.exception.CryptFailException;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -12,6 +13,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Optional;
 
 public abstract class AESCBC implements TwoWayEncryption {
     private static final String BAD_PADDING_EXCEPTION_MESSAGE =
@@ -38,6 +40,12 @@ public abstract class AESCBC implements TwoWayEncryption {
 
     @Override
     public byte[] encrypt(byte[] data, String key) {
+        Optional.ofNullable(data).orElseThrow(() ->
+                new CryptFailException("암호화 할 문자열 및 데이터는 null 일 수 없습니다."));
+
+        Optional.ofNullable(key).orElseThrow(() ->
+                new CryptFailException("암호화 시, 사용할 키가 존재하지 않습니다."));
+
         SecretKeySpec secretKey = new SecretKeySpec(key.getBytes(StandardCharsets.UTF_8), "AES");
         IvParameterSpec iv = new IvParameterSpec(key.substring(0, 16).getBytes(StandardCharsets.UTF_8));
         byte[] encryptedData = null;
@@ -63,6 +71,12 @@ public abstract class AESCBC implements TwoWayEncryption {
 
     @Override
     public byte[] decrypt(byte[] encryptedData, String key) {
+        Optional.ofNullable(encryptedData).orElseThrow(() ->
+                new CryptFailException("복호화 할 문자열 및 데이터는 null 일 수 없습니다."));
+
+        Optional.ofNullable(key).orElseThrow(() ->
+                new CryptFailException("복호화 시, 사용할 키가 존재하지 않습니다."));
+
         SecretKeySpec secretKey = new SecretKeySpec(key.getBytes(StandardCharsets.UTF_8), "AES");
         IvParameterSpec iv = new IvParameterSpec(key.substring(0, 16).getBytes(StandardCharsets.UTF_8));
         byte[] decryptedData = null;

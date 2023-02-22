@@ -8,7 +8,6 @@ import dev.retrotv.crypt.random.SecurityStrength;
 import org.junit.jupiter.api.RepetitionInfo;
 
 import javax.xml.bind.DatatypeConverter;
-import java.util.Base64;
 import java.util.HashSet;
 import java.util.Set;
 
