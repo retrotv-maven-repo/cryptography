@@ -125,7 +125,8 @@ public class RandomValue {
     /**
      * {@link SecurityStrength}, len 값을 바탕으로 랜덤 값을 생성하고 반환 합니다.
      *
-     * @param securityStrength 보안 강도 -> {@link SecurityStrength} 참조
+     * @exception RandomValueGenerateException 매개변수 {@link SecurityStrength} 값이 null이거나, 랜덤 값이 정상적으로 생성되지 않은 경우 발생
+     * @param securityStrength 보안 강도: {@link SecurityStrength} 참조
      * @param len 생성할 랜덤 값 길이
      * @return 생성된 랜덤 값
      */
@@ -175,6 +176,7 @@ public class RandomValue {
                 break;
         }
 
-        return Optional.ofNullable(randomValue).orElseThrow(() -> new RandomValueGenerateException("값이 정상적으로 생성되지 않았습니다."));
+        return Optional.ofNullable(randomValue)
+                       .orElseThrow(() -> new RandomValueGenerateException("값이 정상적으로 생성되지 않았습니다."));
     }
 }
