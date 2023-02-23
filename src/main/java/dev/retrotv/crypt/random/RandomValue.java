@@ -4,7 +4,14 @@ import dev.retrotv.crypt.exception.RandomValueGenerateException;
 
 import java.util.Optional;
 
+/**
+ * 랜덤한 값을 생성하기 위한 기능성 클래스 입니다.
+ *
+ * @author  yjj8353
+ * @since   1.8
+ */
 public class RandomValue {
+
     private static final char[] CAPITAL_LETTERS = {
         'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
         'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
@@ -115,8 +122,16 @@ public class RandomValue {
         return chars;
     }
 
-    public static String generate(SecurityStrength securityStrength, int length) {
-        Optional.ofNullable(securityStrength).orElseThrow(() -> new RandomValueGenerateException("securityStrength는 null 일 수 없습니다."));
+    /**
+     * {@link SecurityStrength}, len 값을 바탕으로 랜덤 값을 생성하고 반환 합니다.
+     *
+     * @param securityStrength 보안 강도 -> {@link SecurityStrength} 참조
+     * @param len 생성할 랜덤 값 길이
+     * @return 생성된 랜덤 값
+     */
+    public static String generate(SecurityStrength securityStrength, int len) {
+        Optional.ofNullable(securityStrength)
+                .orElseThrow(() -> new RandomValueGenerateException("securityStrength는 null 일 수 없습니다."));
         String randomValue = null;
 
         int range;
@@ -127,7 +142,7 @@ public class RandomValue {
                 range = SMALL_LETTERS_LENGTH + NUMBERS_LENGTH;
                 sb = new StringBuilder();
 
-                for(int i=0; i<length; i++) {
+                for(int i=0; i<len; i++) {
                     int random = (int) (Math.random() * range);
                     sb.append(LOW_STRENGTH_CHARS[random]);
                 }
@@ -139,7 +154,7 @@ public class RandomValue {
                 range = CAPITAL_LETTERS_LENGTH + SMALL_LETTERS_LENGTH + NUMBERS_LENGTH;
                 sb = new StringBuilder();
 
-                for(int i=0; i<length; i++) {
+                for(int i=0; i<len; i++) {
                     int random = (int) (Math.random() * range);
                     sb.append(MIDDLE_STRENGTH_CHARS[random]);
                 }
@@ -151,7 +166,7 @@ public class RandomValue {
                 range = CAPITAL_LETTERS_LENGTH + SMALL_LETTERS_LENGTH + NUMBERS_LENGTH + SPECIAL_CHARS_LENGTH;
                 sb = new StringBuilder();
 
-                for(int i=0; i<length; i++) {
+                for(int i=0; i<len; i++) {
                     int random = (int) (Math.random() * range);
                     sb.append(HIGH_STRENGTH_CHARS[random]);
                 }

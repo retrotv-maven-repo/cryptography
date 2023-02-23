@@ -7,6 +7,12 @@ import javax.xml.bind.DatatypeConverter;
 import java.nio.ByteBuffer;
 import java.util.Optional;
 
+/**
+ * CRC-32 알고리즘으로 암호화 하기 위한 {@link OneWayEncryption} 인터페이스의 구현체 입니다.
+ *
+ * @author  yjj8353
+ * @since   1.8
+ */
 public class CRC32 implements OneWayEncryption {
 
     @Override
@@ -21,6 +27,7 @@ public class CRC32 implements OneWayEncryption {
         buffer.putLong(crc32.getValue());
 
         // 앞에 0이 패딩되는 부분을 무시하고 뒤의 8자리만 잘라낸다
-        return DatatypeConverter.parseHexBinary(DatatypeConverter.printHexBinary(buffer.array()).substring(8));
+        return DatatypeConverter.parseHexBinary(
+                DatatypeConverter.printHexBinary(buffer.array()).substring(8));
     }
 }
