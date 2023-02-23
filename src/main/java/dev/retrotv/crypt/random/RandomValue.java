@@ -1,5 +1,7 @@
 package dev.retrotv.crypt.random;
 
+import dev.retrotv.crypt.exception.RandomValueGenerateException;
+
 import java.util.Optional;
 
 public class RandomValue {
@@ -114,7 +116,7 @@ public class RandomValue {
     }
 
     public static String generate(SecurityStrength securityStrength, int length) {
-        Optional.ofNullable(securityStrength).orElseThrow(() -> new NullPointerException("securityStrength는 null 일 수 없습니다."));
+        Optional.ofNullable(securityStrength).orElseThrow(() -> new RandomValueGenerateException("securityStrength는 null 일 수 없습니다."));
         String randomValue = null;
 
         int range;
@@ -158,6 +160,6 @@ public class RandomValue {
                 break;
         }
 
-        return Optional.ofNullable(randomValue).orElseThrow(() -> new RuntimeException("값이 정상적으로 생성되지 않았습니다."));
+        return Optional.ofNullable(randomValue).orElseThrow(() -> new RandomValueGenerateException("값이 정상적으로 생성되지 않았습니다."));
     }
 }

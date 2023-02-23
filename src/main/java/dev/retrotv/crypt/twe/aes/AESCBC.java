@@ -55,18 +55,19 @@ public abstract class AESCBC implements TwoWayEncryption {
             cipher.init(Cipher.ENCRYPT_MODE, secretKey, iv);
             encryptedData = cipher.doFinal(data);
         } catch (BadPaddingException e) {
-            throw new RuntimeException(BAD_PADDING_EXCEPTION_MESSAGE, e);
+            throw new CryptFailException(BAD_PADDING_EXCEPTION_MESSAGE, e);
         } catch (IllegalBlockSizeException e) {
-            throw new RuntimeException(ILLEGAL_BLOCK_SIZE_EXCEPTION_MESSAGE, e);
+            throw new CryptFailException(ILLEGAL_BLOCK_SIZE_EXCEPTION_MESSAGE, e);
         } catch (InvalidAlgorithmParameterException e) {
-            throw new RuntimeException(INVALID_ALGORITHM_PARAMETER_EXCEPTION_MESSAGE, e);
+            throw new CryptFailException(INVALID_ALGORITHM_PARAMETER_EXCEPTION_MESSAGE, e);
         } catch (InvalidKeyException e) {
-            throw new RuntimeException(INVALID_KEY_EXCEPTION_MESSAGE, e);
+            throw new CryptFailException(INVALID_KEY_EXCEPTION_MESSAGE, e);
         } catch (NoSuchPaddingException e) {
-            throw new RuntimeException(NO_SUCH_PADDING_EXCEPTION_MESSAGE, e);
+            throw new CryptFailException(NO_SUCH_PADDING_EXCEPTION_MESSAGE, e);
         } catch (NoSuchAlgorithmException ignored) { }
 
-        return encryptedData;
+        return Optional.ofNullable(encryptedData)
+                       .orElseThrow(() -> new CryptFailException("암호화가 정상적으로 진행되지 않았습니다."));
     }
 
     @Override
@@ -86,18 +87,19 @@ public abstract class AESCBC implements TwoWayEncryption {
             cipher.init(Cipher.DECRYPT_MODE, secretKey, iv);
             decryptedData = cipher.doFinal(encryptedData);
         } catch (BadPaddingException e) {
-            throw new RuntimeException(BAD_PADDING_EXCEPTION_MESSAGE, e);
+            throw new CryptFailException(BAD_PADDING_EXCEPTION_MESSAGE, e);
         } catch (IllegalBlockSizeException e) {
-            throw new RuntimeException(ILLEGAL_BLOCK_SIZE_EXCEPTION_MESSAGE, e);
+            throw new CryptFailException(ILLEGAL_BLOCK_SIZE_EXCEPTION_MESSAGE, e);
         } catch (InvalidAlgorithmParameterException e) {
-            throw new RuntimeException(INVALID_ALGORITHM_PARAMETER_EXCEPTION_MESSAGE, e);
+            throw new CryptFailException(INVALID_ALGORITHM_PARAMETER_EXCEPTION_MESSAGE, e);
         } catch (InvalidKeyException e) {
-            throw new RuntimeException(INVALID_KEY_EXCEPTION_MESSAGE, e);
+            throw new CryptFailException(INVALID_KEY_EXCEPTION_MESSAGE, e);
         } catch (NoSuchPaddingException e) {
-            throw new RuntimeException(NO_SUCH_PADDING_EXCEPTION_MESSAGE, e);
+            throw new CryptFailException(NO_SUCH_PADDING_EXCEPTION_MESSAGE, e);
         } catch (NoSuchAlgorithmException ignored) { }
 
-        return decryptedData;
+        return Optional.ofNullable(decryptedData)
+                       .orElseThrow(() -> new CryptFailException("암호화가 정상적으로 진행되지 않았습니다."));
     }
 
     @Override
