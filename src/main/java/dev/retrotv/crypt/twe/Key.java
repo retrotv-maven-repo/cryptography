@@ -4,8 +4,19 @@ import dev.retrotv.crypt.Algorithm;
 import dev.retrotv.crypt.random.RandomValue;
 import dev.retrotv.crypt.random.SecurityStrength;
 
+/**
+ * 양방향 암호화 시, 사용할 키 값을 자동으로 생성하기 위한 기능성 클래스 입니다.
+ *
+ * @author  yjj8353
+ * @since   1.8
+ */
 public class Key {
 
+    /**
+     *
+     * @param algorithm
+     * @return 생성된 키 값
+     */
     public static String generate(Algorithm algorithm) {
         int len = getKeyLength(algorithm);
         return RandomValue.generate(SecurityStrength.HIGH, len);
