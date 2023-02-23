@@ -1,5 +1,11 @@
 package dev.retrotv.crypt;
 
+/**
+ * 암호화 알고리즘을 표현하기 위한 열거형 클래스 입니다.
+ *
+ * @author  yjj8353
+ * @since   1.8
+ */
 public enum Algorithm {
       AES128("AES-128")
     , AES192("AES-192")

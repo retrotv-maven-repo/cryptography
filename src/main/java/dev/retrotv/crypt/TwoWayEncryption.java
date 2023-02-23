@@ -6,6 +6,12 @@ import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.Optional;
 
+/**
+ * 양방향 알고리즘 클래스 구현을 위한 인터페이스 입니다.
+ *
+ * @author  yjj8353
+ * @since   1.8
+ */
 public interface TwoWayEncryption {
 
     /**

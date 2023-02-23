@@ -15,6 +15,12 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Optional;
 
+/**
+ * AES/CBC 계열의 양방향 암호화 구현을 위한 상속용 클래스 입니다.
+ *
+ * @author  yjj8353
+ * @since   1.8
+ */
 public abstract class AESCBC implements TwoWayEncryption {
     private static final String BAD_PADDING_EXCEPTION_MESSAGE =
             "BadPaddingException: "

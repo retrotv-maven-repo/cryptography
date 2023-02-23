@@ -1,6 +1,5 @@
 package dev.retrotv.crypt.owe;
 
-import dev.retrotv.crypt.OneWayEncryption;
 import dev.retrotv.crypt.random.RandomValue;
 import dev.retrotv.crypt.random.SecurityStrength;
 

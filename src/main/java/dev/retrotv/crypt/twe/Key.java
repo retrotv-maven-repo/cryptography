@@ -14,7 +14,7 @@ public class Key {
 
     /**
      *
-     * @param algorithm
+     * @param algorithm 양방향 암호화 알고리즘 종류 -> {@link Algorithm} 참조
      * @return 생성된 키 값
      */
     public static String generate(Algorithm algorithm) {
