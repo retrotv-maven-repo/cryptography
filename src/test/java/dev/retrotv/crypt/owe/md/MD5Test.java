@@ -8,6 +8,8 @@ import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.RepetitionInfo;
 import org.junit.jupiter.api.Test;
 
+import javax.xml.bind.DatatypeConverter;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -23,6 +25,18 @@ public class MD5Test extends OWETest {
 
         log.info("예외 메시지: " + exception.getMessage());
         assertEquals("암호화 할 문자열 및 데이터는 null 일 수 없습니다.", exception.getMessage());
+    }
+
+    @Test
+    @DisplayName("동일 결과 체크")
+    void sameResult() throws Exception {
+        String message = "The lazy dog jumps over the brown fox!";
+
+        OneWayEncryption owe = new MD5();
+        String encryptMessage = owe.encrypt(message);
+        byte[] encryptData = owe.encrypt(message.getBytes("UTF-8"));
+
+        owe.matches(encryptMessage, DatatypeConverter.printHexBinary(encryptData).toLowerCase());
     }
 
     @RepeatedTest(100)

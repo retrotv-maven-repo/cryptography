@@ -4,6 +4,7 @@ import dev.retrotv.crypt.exception.CryptFailException;
 
 import javax.xml.bind.DatatypeConverter;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.Base64;
 import java.util.Optional;
 
@@ -88,6 +89,14 @@ public interface OneWayEncryption {
         return encrypt(text.concat(salt), encode);
     }
 
+    default byte[] encrypt(byte[] data, byte[] salt) {
+        byte[] dataWithSalt = new byte[data.length + salt.length];
+        System.arraycopy(data, 0, dataWithSalt, 0, data.length);
+        System.arraycopy(salt, 0, dataWithSalt, data.length, salt.length);
+
+        return encrypt(dataWithSalt);
+    }
+
     /**
      * 암호화 되지 않은 문자열을 암호화 하고, 기존에 암호화 된 문자열과 비교하열 일치 여부를 반환 합니다.
      * 이 때, 암호화 되지 않은 문자열은 {@link Encode}의 HEX 타입의 문자열로 인코딩 되고 비교합니다.
@@ -99,6 +108,10 @@ public interface OneWayEncryption {
      */
     default boolean matches(String text, String encryptedText) {
         return encryptedText.equals(encrypt(text));
+    }
+
+    default boolean matches(byte[] data, byte[] encryptedData) {
+        return Arrays.equals(encrypt(data), encryptedData);
     }
 
     /**
@@ -127,6 +140,14 @@ public interface OneWayEncryption {
      */
     default boolean matches(String text, String salt, String encryptedText) {
         return matches(text.concat(salt), encryptedText);
+    }
+
+    default boolean matches(byte[] data, byte[] salt, byte[] encryptedData) {
+        byte[] dataWithSalt = new byte[data.length + salt.length];
+        System.arraycopy(data, 0, dataWithSalt, 0, data.length);
+        System.arraycopy(salt, 0, dataWithSalt, data.length, salt.length);
+
+        return Arrays.equals(encrypt(dataWithSalt), encryptedData);
     }
 
     /**
