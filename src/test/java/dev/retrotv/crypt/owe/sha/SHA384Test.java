@@ -2,6 +2,7 @@ package dev.retrotv.crypt.owe.sha;
 
 import dev.retrotv.crypt.OneWayEncryption;
 import dev.retrotv.crypt.exception.CryptFailException;
+import dev.retrotv.crypt.owe.OWETest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.RepetitionInfo;
@@ -10,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class SHA384Test extends SHATest {
+public class SHA384Test extends OWETest {
 
     @Test
     @DisplayName("암호화 데이터 null 체크")
