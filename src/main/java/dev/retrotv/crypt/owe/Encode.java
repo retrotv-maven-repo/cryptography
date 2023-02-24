@@ -12,7 +12,7 @@ import java.security.NoSuchAlgorithmException;
  * @author  yjj8353
  * @since   1.8
  */
-public abstract class Encode {
+public class Encode {
 
     /**
      * 지정된 {@link Algorithm} 유형으로 데이터를 암호화 하고, 암호화 된 데이터를 반환 합니다.
