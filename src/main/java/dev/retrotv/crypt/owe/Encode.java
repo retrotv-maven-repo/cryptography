@@ -1,4 +1,4 @@
-package dev.retrotv.crypt.owe.md;
+package dev.retrotv.crypt.owe;
 
 import dev.retrotv.crypt.Algorithm;
 import dev.retrotv.crypt.exception.CryptFailException;
@@ -7,12 +7,12 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * MD 계열의 암호화 구현을 위한 상속용 클래스 입니다.
+ * {@link MessageDigest}를 사용하는 암호화 구현을 위한 상속용 클래스 입니다.
  *
  * @author  yjj8353
  * @since   1.8
  */
-public abstract class MD {
+public class Encode {
 
     /**
      * 지정된 {@link Algorithm} 유형으로 데이터를 암호화 하고, 암호화 된 데이터를 반환 합니다.

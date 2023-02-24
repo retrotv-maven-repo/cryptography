@@ -1,9 +1,8 @@
-package dev.retrotv.crypt.owe.sha;
+package dev.retrotv.crypt.owe;
 
 import dev.retrotv.common.Log;
 import dev.retrotv.crypt.Encode;
 import dev.retrotv.crypt.OneWayEncryption;
-import dev.retrotv.crypt.owe.Salt;
 import dev.retrotv.crypt.random.SecurityStrength;
 import org.junit.jupiter.api.RepetitionInfo;
 
@@ -11,21 +10,22 @@ import javax.xml.bind.DatatypeConverter;
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
-public class SHATest extends Log {
+public class OWETest extends Log {
     protected static final Set<String> encryptedData = new HashSet<>();
 
-    void encryptWithoutSaltTest(OneWayEncryption owe, RepetitionInfo repetitionInfo) {
+    protected void encryptWithoutSaltTest(OneWayEncryption owe, RepetitionInfo repetitionInfo) {
         log.info("암호화 알고리즘: " + owe.getClass().getSimpleName());
 
         String message = "The lazy dog jumps over the brown fox!";
-        String encryptedMessage = owe.encrypt(message, Encode.HEX);
+        String encryptedMessage = owe.encrypt(message, dev.retrotv.crypt.Encode.HEX);
 
         log.info("암호화 된 메시지: " + encryptedMessage);
         log.info("암호화 된 메시지 bit 길이: " + (DatatypeConverter.parseHexBinary(encryptedMessage).length * 8));
 
-        assertTrue(owe.matches(message, Encode.HEX, encryptedMessage));
+        assertTrue(owe.matches(message, dev.retrotv.crypt.Encode.HEX, encryptedMessage));
         assertTrue(checkBitLength(owe.getClass().getSimpleName(), (DatatypeConverter.parseHexBinary(encryptedMessage).length * 8)));
 
         encryptedData.add(encryptedMessage);
@@ -39,12 +39,12 @@ public class SHATest extends Log {
         }
     }
 
-    void encryptWithSaltTest(OneWayEncryption owe, RepetitionInfo repetitionInfo) {
+    protected void encryptWithSaltTest(OneWayEncryption owe, RepetitionInfo repetitionInfo) {
         log.info("암호화 알고리즘: " + owe.getClass().getSimpleName());
 
         String message = "The lazy dog jumps over the brown fox!";
         String salt = Salt.generate(SecurityStrength.HIGH, 20);
-        String encryptedMessage = owe.encrypt(message, salt, Encode.HEX);
+        String encryptedMessage = owe.encrypt(message, salt, dev.retrotv.crypt.Encode.HEX);
 
         log.info("암호화 된 메시지: " + encryptedMessage);
         log.info("암호화 된 메시지 bit 길이: " + (DatatypeConverter.parseHexBinary(encryptedMessage).length * 8));
@@ -65,6 +65,13 @@ public class SHATest extends Log {
 
     boolean checkBitLength(String algorithm, int length) {
         switch (algorithm) {
+            case "CRC32":
+                return length == 32;
+
+            case "MD2":
+            case "MD5":
+                return length == 128;
+
             case "SHA1":
                 return length == 160;
 
