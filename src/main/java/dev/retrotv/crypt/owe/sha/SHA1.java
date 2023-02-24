@@ -3,6 +3,7 @@ package dev.retrotv.crypt.owe.sha;
 import dev.retrotv.crypt.Algorithm;
 import dev.retrotv.crypt.OneWayEncryption;
 import dev.retrotv.crypt.exception.CryptFailException;
+import dev.retrotv.crypt.owe.Encode;
 
 import java.util.Optional;
 
@@ -12,7 +13,7 @@ import java.util.Optional;
  * @author  yjj8353
  * @since   1.8
  */
-public class SHA1 extends SHA implements OneWayEncryption {
+public class SHA1 extends Encode implements OneWayEncryption {
 
     @Override
     public byte[] encrypt(byte[] data) {

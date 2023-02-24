@@ -3,6 +3,7 @@ package dev.retrotv.crypt.owe.md;
 import dev.retrotv.crypt.Algorithm;
 import dev.retrotv.crypt.OneWayEncryption;
 import dev.retrotv.crypt.exception.CryptFailException;
+import dev.retrotv.crypt.owe.Encode;
 
 import java.util.Optional;
 
@@ -12,7 +13,7 @@ import java.util.Optional;
  * @author  yjj8353
  * @since   1.8
  */
-public class MD2 extends MD implements OneWayEncryption {
+public class MD2 extends Encode implements OneWayEncryption {
 
     @Override
     public byte[] encrypt(byte[] data) {
