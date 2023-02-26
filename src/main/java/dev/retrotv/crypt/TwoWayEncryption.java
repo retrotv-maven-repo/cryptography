@@ -42,7 +42,11 @@ public interface TwoWayEncryption {
      * @param key 암호화 시, 사용할 키
      * @return 암호화 된 데이터
      */
-    byte[] encrypt(byte[] data, String key);
+    default byte[] encrypt(byte[] data, String key) {
+        return encrypt(data, key.getBytes(StandardCharsets.UTF_8));
+    }
+
+    byte[] encrypt(byte[] data, byte[] key);
 
     /**
      * 암호화 된 문자열을 복호화 하고, 복호화 된 문자열을 반환 합니다.
@@ -72,7 +76,11 @@ public interface TwoWayEncryption {
      * @param key 복호화 시, 사용할 키
      * @return 복호화 된 데이터
      */
-    byte[] decrypt(byte[] encryptedData, String key);
+    default byte[] decrypt(byte[] encryptedData, String key) {
+        return decrypt(encryptedData, key.getBytes(StandardCharsets.UTF_8));
+    }
+
+    byte[] decrypt(byte[] encryptedData, byte[] key);
 
     /**
      * 암복호화 시, 사용할 키를 생성합니다.

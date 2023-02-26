@@ -9,7 +9,6 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
-import java.nio.charset.StandardCharsets;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -58,15 +57,18 @@ public abstract class AESCBC implements TwoWayEncryption {
      * @return 암호화 된 데이터
      */
     @Override
-    public byte[] encrypt(byte[] data, String key) {
+    public byte[] encrypt(byte[] data, byte[] key) {
         Optional.ofNullable(data).orElseThrow(() ->
                 new CryptFailException("암호화 할 문자열 및 데이터는 null 일 수 없습니다."));
 
         Optional.ofNullable(key).orElseThrow(() ->
                 new CryptFailException("암호화 시, 사용할 키가 존재하지 않습니다."));
 
-        SecretKeySpec secretKey = new SecretKeySpec(key.getBytes(StandardCharsets.UTF_8), "AES");
-        IvParameterSpec iv = new IvParameterSpec(key.substring(0, 16).getBytes(StandardCharsets.UTF_8));
+        byte[] cuttedKey = new byte[16];
+        System.arraycopy(key, 0, cuttedKey, 0, 16);
+
+        SecretKeySpec secretKey = new SecretKeySpec(key, "AES");
+        IvParameterSpec iv = new IvParameterSpec(cuttedKey);
         byte[] encryptedData = null;
 
         try {
@@ -103,15 +105,18 @@ public abstract class AESCBC implements TwoWayEncryption {
      * @return 복호화 된 데이터
      */
     @Override
-    public byte[] decrypt(byte[] encryptedData, String key) {
+    public byte[] decrypt(byte[] encryptedData, byte[] key) {
         Optional.ofNullable(encryptedData).orElseThrow(() ->
                 new CryptFailException("복호화 할 문자열 및 데이터는 null 일 수 없습니다."));
 
         Optional.ofNullable(key).orElseThrow(() ->
                 new CryptFailException("복호화 시, 사용할 키가 존재하지 않습니다."));
 
-        SecretKeySpec secretKey = new SecretKeySpec(key.getBytes(StandardCharsets.UTF_8), "AES");
-        IvParameterSpec iv = new IvParameterSpec(key.substring(0, 16).getBytes(StandardCharsets.UTF_8));
+        byte[] cuttedKey = new byte[16];
+        System.arraycopy(key, 0, cuttedKey, 0, 16);
+
+        SecretKeySpec secretKey = new SecretKeySpec(key, "AES");
+        IvParameterSpec iv = new IvParameterSpec(cuttedKey);
         byte[] decryptedData = null;
 
         try {
