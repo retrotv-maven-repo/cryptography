@@ -31,19 +31,9 @@ public interface TwoWayEncryption {
                 new CryptFailException("암호화 시, 사용할 키가 존재하지 않습니다."));
 
         byte[] data = text.getBytes(StandardCharsets.UTF_8);
-        return new String(Base64.getEncoder().encode(encrypt(data, key)));
-    }
+        byte[] keyData = key.getBytes(StandardCharsets.UTF_8);
 
-    /**
-     * 데이터를 암호화 하고, 암호화 된 데이터를 반환 합니다.
-     *
-     * @throws CryptFailException data 혹은 key가 null인 경우 발생
-     * @param data 암호화 할 데이터
-     * @param key 암호화 시, 사용할 키
-     * @return 암호화 된 데이터
-     */
-    default byte[] encrypt(byte[] data, String key) {
-        return encrypt(data, key.getBytes(StandardCharsets.UTF_8));
+        return new String(Base64.getEncoder().encode(encrypt(data, keyData)));
     }
 
     byte[] encrypt(byte[] data, byte[] key);
@@ -65,7 +55,9 @@ public interface TwoWayEncryption {
                 new CryptFailException("복호화 시, 사용할 키가 존재하지 않습니다."));
 
         byte[] data = Base64.getDecoder().decode(encryptedText.getBytes(StandardCharsets.UTF_8));
-        return new String(decrypt(data, key));
+        byte[] keyData = key.getBytes(StandardCharsets.UTF_8);
+
+        return new String(decrypt(data, keyData));
     }
 
     /**
@@ -76,10 +68,6 @@ public interface TwoWayEncryption {
      * @param key 복호화 시, 사용할 키
      * @return 복호화 된 데이터
      */
-    default byte[] decrypt(byte[] encryptedData, String key) {
-        return decrypt(encryptedData, key.getBytes(StandardCharsets.UTF_8));
-    }
-
     byte[] decrypt(byte[] encryptedData, byte[] key);
 
     /**

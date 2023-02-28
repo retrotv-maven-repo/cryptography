@@ -3,6 +3,7 @@ package dev.retrotv.crypt.owe.sha;
 import dev.retrotv.crypt.OneWayEncryption;
 import dev.retrotv.crypt.exception.CryptFailException;
 import dev.retrotv.crypt.owe.OWETest;
+import dev.retrotv.crypt.owe.md.MD5;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.RepetitionInfo;
@@ -15,14 +16,30 @@ public class SHA1Test extends OWETest {
 
     @Test
     @DisplayName("암호화 데이터 null 체크")
-    void nullCheck() {
-        Throwable exception = assertThrows(CryptFailException.class, () -> {
-            OneWayEncryption owe = new SHA1();
-            owe.encrypt((byte[]) null);
-        });
+    void dataNullCheck() {
+        OneWayEncryption owe = new SHA1();
+        parameterDataIsNullTest(owe);
+    }
 
-        log.info("예외 메시지: " + exception.getMessage());
-        assertEquals("암호화 할 문자열 및 데이터는 null 일 수 없습니다.", exception.getMessage());
+    @Test
+    @DisplayName("암호화 문자열 null 체크")
+    void textNullCheck() {
+        OneWayEncryption owe = new SHA1();
+        parameterTextIsNullTest(owe);
+    }
+
+    @Test
+    @DisplayName("byte[] 데이터형 테스트")
+    void byteEncryptMatchTest() {
+        OneWayEncryption owe = new SHA1();
+        parameterByteEncryptMatchTest(owe);
+    }
+
+    @Test
+    @DisplayName("base64 인코딩 테스트")
+    void base64EncodeTest() {
+        OneWayEncryption owe = new SHA1();
+        encryptedDataBase64EncodeTest(owe);
     }
 
     @RepeatedTest(100)
