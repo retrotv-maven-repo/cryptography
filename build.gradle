@@ -3,7 +3,7 @@ plugins {
 }
 
 group 'dev.retrotv'
-version '0.0.7-'
+version '0.0.7-alpha'
 
 // Windows PowerShell에서 Gradle 실행 시, 한글 깨짐 해결을 위한 코드
 tasks.withType(JavaCompile).configureEach {
