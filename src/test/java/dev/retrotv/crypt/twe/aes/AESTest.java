@@ -9,7 +9,7 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class AESCBCTest extends Log {
+public class AESTest extends Log {
     protected static final Set<String> encryptedData = new HashSet<>();
 
     void encryptDecryptTest(TwoWayEncryption twe, RepetitionInfo repetitionInfo) {
