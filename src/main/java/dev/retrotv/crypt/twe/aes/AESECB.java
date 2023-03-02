@@ -2,6 +2,7 @@ package dev.retrotv.crypt.twe.aes;
 
 import dev.retrotv.crypt.TwoWayEncryption;
 import dev.retrotv.crypt.exception.CryptFailException;
+import dev.retrotv.crypt.random.SecurityStrength;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -124,5 +125,5 @@ public abstract class AESECB implements TwoWayEncryption {
     }
 
     @Override
-    abstract public String generateKey();
+    abstract public String generateKey(SecurityStrength securityStrength);
 }

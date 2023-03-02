@@ -1,17 +1,19 @@
 package dev.retrotv.crypt.twe.aes;
 
 import dev.retrotv.crypt.Algorithm;
+import dev.retrotv.crypt.random.RandomValue;
+import dev.retrotv.crypt.random.SecurityStrength;
 import dev.retrotv.crypt.twe.Key;
 
 public class AESCBC192 extends AESCBC {
 
     @Override
-    public String generateKey() {
-        return Key.generate(Algorithm.AES192);
+    public String generateKey(SecurityStrength securityStrength) {
+        return Key.generate(securityStrength, Algorithm.AES192);
     }
 
     @Override
-    public String generateInitializationVector() {
-        return null;
+    public String generateInitializationVector(SecurityStrength securityStrength) {
+        return RandomValue.generate(securityStrength, 16);
     }
 }

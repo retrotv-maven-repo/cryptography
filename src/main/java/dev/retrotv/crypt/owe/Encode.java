@@ -31,6 +31,7 @@ public class Encode {
         Optional.ofNullable(data).orElseThrow(() ->
                 new CryptFailException("암호화 할 문자열 및 데이터는 null 일 수 없습니다."));
 
+        // CRC-32 알고리즘은 MessageDigest를 쓰지 않으므로 별도로 분리
         if (Algorithm.CRC32.equals(algorithm)) {
             return crc32Encode(data);
         }

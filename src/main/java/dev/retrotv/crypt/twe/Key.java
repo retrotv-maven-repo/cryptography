@@ -17,9 +17,9 @@ public class Key {
      * @param algorithm 양방향 암호화 알고리즘 종류: {@link Algorithm} 참조
      * @return 생성된 키 값
      */
-    public static String generate(Algorithm algorithm) {
+    public static String generate(SecurityStrength securityStrength, Algorithm algorithm) {
         int len = getKeyLength(algorithm);
-        return RandomValue.generate(SecurityStrength.HIGH, len);
+        return RandomValue.generate(securityStrength, len);
     }
 
     private static int getKeyLength(Algorithm algorithm) {

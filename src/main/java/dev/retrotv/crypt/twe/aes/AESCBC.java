@@ -2,6 +2,7 @@ package dev.retrotv.crypt.twe.aes;
 
 import dev.retrotv.crypt.TwoWayEncryption;
 import dev.retrotv.crypt.exception.CryptFailException;
+import dev.retrotv.crypt.random.SecurityStrength;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -166,8 +167,13 @@ public abstract class AESCBC implements TwoWayEncryption {
     }
 
     @Override
-    abstract public String generateKey();
+    abstract public String generateKey(SecurityStrength securityStrength);
 
-    // 이 메소드 구현해야 함
-    abstract public String generateInitializationVector();
+    /**
+     * AES/CBC 알고리즘에서 사용할 초기화 벡터 값을 생성합니다.
+     *
+     * @param securityStrength 보안 강도: {@link SecurityStrength} 참조
+     * @return 생성된 초기화 벡터
+     */
+    abstract public String generateInitializationVector(SecurityStrength securityStrength);
 }
