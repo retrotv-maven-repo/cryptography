@@ -4,6 +4,7 @@ import dev.retrotv.common.Log;
 import dev.retrotv.crypt.BaseEncode;
 import dev.retrotv.crypt.OneWayEncryption;
 import dev.retrotv.crypt.exception.CryptFailException;
+import dev.retrotv.crypt.random.RandomValue;
 import dev.retrotv.crypt.random.SecurityStrength;
 import org.junit.jupiter.api.RepetitionInfo;
 
@@ -38,7 +39,7 @@ public class OWETest extends Log {
 
         assertTrue(owe.matches(data, encryptedData));
 
-        byte[] salt = Salt.generate(SecurityStrength.HIGH, 20).getBytes(StandardCharsets.UTF_8);
+        byte[] salt = RandomValue.generate(SecurityStrength.HIGH, 20).getBytes(StandardCharsets.UTF_8);
         encryptedData = owe.encrypt(data, salt);
 
         assertTrue(owe.matches(data, salt, encryptedData));
@@ -78,7 +79,7 @@ public class OWETest extends Log {
         log.info("암호화 알고리즘: " + owe.getClass().getSimpleName());
 
         String message = "The lazy dog jumps over the brown fox!";
-        String salt = Salt.generate(SecurityStrength.HIGH, 20);
+        String salt = RandomValue.generate(SecurityStrength.HIGH, 20);
         String encryptedMessage = owe.encrypt(message, salt, BaseEncode.HEX);
 
         log.info("암호화 된 메시지: " + encryptedMessage);
