@@ -34,7 +34,7 @@ public enum SecurityStrength {
      *
      * @return explain 값
      */
-    public  String explain() {
+    public String explain() {
         return explain;
     }
 }

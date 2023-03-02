@@ -10,6 +10,8 @@ import org.junit.jupiter.api.Test;
 
 import javax.xml.bind.DatatypeConverter;
 
+import java.nio.charset.StandardCharsets;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -17,14 +19,30 @@ public class MD5Test extends OWETest {
 
     @Test
     @DisplayName("암호화 데이터 null 체크")
-    void nullCheck() {
-        Throwable exception = assertThrows(CryptFailException.class, () -> {
-            OneWayEncryption owe = new MD5();
-            owe.encrypt((byte[]) null);
-        });
+    void dataNullCheck() {
+        OneWayEncryption owe = new MD5();
+        parameterDataIsNullTest(owe);
+    }
 
-        log.info("예외 메시지: " + exception.getMessage());
-        assertEquals("암호화 할 문자열 및 데이터는 null 일 수 없습니다.", exception.getMessage());
+    @Test
+    @DisplayName("암호화 문자열 null 체크")
+    void textNullCheck() {
+        OneWayEncryption owe = new MD5();
+        parameterTextIsNullTest(owe);
+    }
+
+    @Test
+    @DisplayName("byte[] 데이터형 테스트")
+    void byteEncryptMatchTest() {
+        OneWayEncryption owe = new MD5();
+        parameterByteEncryptMatchTest(owe);
+    }
+
+    @Test
+    @DisplayName("base64 인코딩 테스트")
+    void base64EncodeTest() {
+        OneWayEncryption owe = new MD5();
+        encryptedDataBase64EncodeTest(owe);
     }
 
     @Test
@@ -34,7 +52,7 @@ public class MD5Test extends OWETest {
 
         OneWayEncryption owe = new MD5();
         String encryptMessage = owe.encrypt(message);
-        byte[] encryptData = owe.encrypt(message.getBytes("UTF-8"));
+        byte[] encryptData = owe.encrypt(message.getBytes(StandardCharsets.UTF_8));
 
         owe.matches(encryptMessage, DatatypeConverter.printHexBinary(encryptData).toLowerCase());
     }

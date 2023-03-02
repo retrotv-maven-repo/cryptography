@@ -10,6 +10,7 @@ public enum Algorithm {
       AES128("AES-128")
     , AES192("AES-192")
     , AES256("AES-256")
+    , CRC32("CRC-32")
     , MD2("MD2")
     , MD5("MD5")
     , SHA1("SHA-1")

@@ -1,52 +1,52 @@
 package dev.retrotv.crypt.owe.crc;
 
-import dev.retrotv.crypt.Encode;
 import dev.retrotv.crypt.OneWayEncryption;
-import dev.retrotv.crypt.exception.CryptFailException;
 import dev.retrotv.crypt.owe.OWETest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.RepetitionInfo;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 public class CRCTest32Test extends OWETest {
 
     @Test
     @DisplayName("암호화 데이터 null 체크")
-    void nullCheck() {
-        Throwable exception = assertThrows(CryptFailException.class, () -> {
-            OneWayEncryption owe = new CRC32();
-            owe.encrypt((byte[]) null);
-        });
-
-        log.info("예외 메시지: " + exception.getMessage());
-        assertEquals("암호화 할 문자열 및 데이터는 null 일 수 없습니다.", exception.getMessage());
+    void dataNullCheck() {
+        OneWayEncryption owe = new CRC32();
+        parameterDataIsNullTest(owe);
     }
 
     @Test
     @DisplayName("암호화 문자열 null 체크")
-    void nullCheck2() {
-        Throwable exception = assertThrows(CryptFailException.class, () -> {
-            OneWayEncryption owe = new CRC32();
-            owe.encrypt(null, Encode.HEX);
-        });
+    void textNullCheck() {
+        OneWayEncryption owe = new CRC32();
+        parameterTextIsNullTest(owe);
+    }
 
-        log.info("예외 메시지: " + exception.getMessage());
-        assertEquals("암호화 할 문자열 및 데이터는 null 일 수 없습니다.", exception.getMessage());
+    @Test
+    @DisplayName("byte[] 데이터형 테스트")
+    void byteEncryptMatchTest() {
+        OneWayEncryption owe = new CRC32();
+        parameterByteEncryptMatchTest(owe);
+    }
+
+    @Test
+    @DisplayName("base64 인코딩 테스트")
+    void base64EncodeTest() {
+        OneWayEncryption owe = new CRC32();
+        encryptedDataBase64EncodeTest(owe);
     }
 
     @RepeatedTest(100)
-    @DisplayName("MD2 알고리즘 암호화 테스트")
-    void md2EncryptTest(RepetitionInfo repetitionInfo) {
+    @DisplayName("CRC-32 알고리즘 암호화 테스트")
+    void crc32EncryptTest(RepetitionInfo repetitionInfo) {
         OneWayEncryption owe = new CRC32();
         encryptWithoutSaltTest(owe, repetitionInfo);
     }
 
     @RepeatedTest(100)
-    @DisplayName("MD2 알고리즘 + 소금치기 암호화 테스트")
-    void md2EncryptWithSaltTest(RepetitionInfo repetitionInfo) {
+    @DisplayName("CRC-32 알고리즘 + 소금치기 암호화 테스트")
+    void crc32EncryptWithSaltTest(RepetitionInfo repetitionInfo) {
         OneWayEncryption owe = new CRC32();
         encryptWithSaltTest(owe, repetitionInfo);
     }

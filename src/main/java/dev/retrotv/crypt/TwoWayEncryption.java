@@ -1,6 +1,7 @@
 package dev.retrotv.crypt;
 
 import dev.retrotv.crypt.exception.CryptFailException;
+import dev.retrotv.crypt.random.SecurityStrength;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
@@ -31,21 +32,20 @@ public interface TwoWayEncryption {
                 new CryptFailException("암호화 시, 사용할 키가 존재하지 않습니다."));
 
         byte[] data = text.getBytes(StandardCharsets.UTF_8);
-        return new String(Base64.getEncoder().encode(encrypt(data, key)));
+        byte[] keyData = key.getBytes(StandardCharsets.UTF_8);
+
+        return new String(Base64.getEncoder().encode(encrypt(data, keyData)));
     }
 
     /**
-     * 데이터를 암호화 하고, 암호화 된 데이터를 반환 합니다.
+     * 문자열을 암호화 하고, 암호화 된 문자열을 반환 합니다.
+     * 이 때, 암호화 된 데이터는 {@link Base64} 타입의 문자열로 인코딩 됩니다.
      *
-     * @throws CryptFailException data 혹은 key가 null인 경우 발생
+     * @throws CryptFailException text 혹은 key가 null인 경우 발생
      * @param data 암호화 할 데이터
      * @param key 암호화 시, 사용할 키
-     * @return 암호화 된 데이터
+     * @return 암호화 된 문자열
      */
-    default byte[] encrypt(byte[] data, String key) {
-        return encrypt(data, key.getBytes(StandardCharsets.UTF_8));
-    }
-
     byte[] encrypt(byte[] data, byte[] key);
 
     /**
@@ -65,7 +65,9 @@ public interface TwoWayEncryption {
                 new CryptFailException("복호화 시, 사용할 키가 존재하지 않습니다."));
 
         byte[] data = Base64.getDecoder().decode(encryptedText.getBytes(StandardCharsets.UTF_8));
-        return new String(decrypt(data, key));
+        byte[] keyData = key.getBytes(StandardCharsets.UTF_8);
+
+        return new String(decrypt(data, keyData));
     }
 
     /**
@@ -76,16 +78,13 @@ public interface TwoWayEncryption {
      * @param key 복호화 시, 사용할 키
      * @return 복호화 된 데이터
      */
-    default byte[] decrypt(byte[] encryptedData, String key) {
-        return decrypt(encryptedData, key.getBytes(StandardCharsets.UTF_8));
-    }
-
     byte[] decrypt(byte[] encryptedData, byte[] key);
 
     /**
      * 암복호화 시, 사용할 키를 생성합니다.
      *
+     * @param securityStrength 보안 강도: {@link SecurityStrength} 참조
      * @return 생성된 키
      */
-    String generateKey();
+    String generateKey(SecurityStrength securityStrength);
 }
