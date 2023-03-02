@@ -5,6 +5,11 @@ plugins {
 group 'dev.retrotv'
 version '0.0.7-alpha'
 
+// Github Action 버전 출력용
+tasks.register('printVersionName') {
+    println project.version
+}
+
 // Windows PowerShell에서 Gradle 실행 시, 한글 깨짐 해결을 위한 코드
 tasks.withType(JavaCompile).configureEach {
     options.encoding = "UTF-8"
