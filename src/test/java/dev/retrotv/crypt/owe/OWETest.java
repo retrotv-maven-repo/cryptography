@@ -34,14 +34,23 @@ public class OWETest extends Log {
 
     protected void parameterByteEncryptMatchTest(OneWayEncryption owe) {
         byte[] data = "The lazy dog jumps over the brown fox!".getBytes(StandardCharsets.UTF_8);
+        byte[] encryptedData = owe.encrypt(data);
+
+        assertTrue(owe.matches(data, encryptedData));
+
         byte[] salt = Salt.generate(SecurityStrength.HIGH, 20).getBytes(StandardCharsets.UTF_8);
-        byte[] encryptedData = owe.encrypt(data, salt);
+        encryptedData = owe.encrypt(data, salt);
 
         assertTrue(owe.matches(data, salt, encryptedData));
     }
 
     protected void encryptedDataBase64EncodeTest(OneWayEncryption owe) {
+        String message = "The lazy dog jumps over the brown fox!";
+        String encryptedMessage = owe.encrypt(message, BaseEncode.BASE64);
 
+        log.info("암호화 된 메시지: " + encryptedMessage);
+
+        assertTrue(owe.matches(message, BaseEncode.BASE64, encryptedMessage));
     }
 
     protected void encryptWithoutSaltTest(OneWayEncryption owe, RepetitionInfo repetitionInfo) {
