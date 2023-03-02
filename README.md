@@ -23,6 +23,9 @@ JDK 1.8 이상
 - SHA-512/256
 
 ### AES 계열
+- AES-128 (ECB PKCS5 Padding)
 - AES-128 (CBC PKCS5 Padding)
+- AES-192 (ECB PKCS5 Padding)
 - AES-192 (CBC PKCS5 Padding)
+- AES-256 (ECB PKCS5 Padding)
 - AES-256 (CBC PKCS5 Padding)
