@@ -8,6 +8,12 @@ import static org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS;
 @TestInstance(value = PER_CLASS)
 public class AESCBC256Test extends AESTest {
 
+    @Test
+    @DisplayName("AES/CBC IV 생성 테스트")
+    void IVGenerateTest() {
+        encryptedDataWithIVTest(new AESCBC256());
+    }
+
     @DisplayName("AES-256 CBC 알고리즘 암복호화 테스트")
     @RepeatedTest(value = 100, name = "{currentRepetition}/{totalRepetitions}")
     void AESCBC256EncryptDecryptTest(RepetitionInfo repetitionInfo) {

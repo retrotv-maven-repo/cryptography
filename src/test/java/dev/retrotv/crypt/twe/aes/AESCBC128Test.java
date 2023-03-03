@@ -1,12 +1,21 @@
 package dev.retrotv.crypt.twe.aes;
 
 import dev.retrotv.crypt.TwoWayEncryption;
+import dev.retrotv.crypt.random.SecurityStrength;
 import org.junit.jupiter.api.*;
+
+import javax.crypto.spec.IvParameterSpec;
 
 import static org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS;
 
 @TestInstance(value = PER_CLASS)
 public class AESCBC128Test extends AESTest {
+
+    @Test
+    @DisplayName("AES/CBC IV 생성 테스트")
+    void IVGenerateTest() {
+        encryptedDataWithIVTest(new AESCBC128());
+    }
 
     @DisplayName("AES-128 CBC 알고리즘 암복호화 테스트")
     @RepeatedTest(value = 100, name = "{currentRepetition}/{totalRepetitions}")

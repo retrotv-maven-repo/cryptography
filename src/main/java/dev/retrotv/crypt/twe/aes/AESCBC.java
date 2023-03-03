@@ -2,6 +2,7 @@ package dev.retrotv.crypt.twe.aes;
 
 import dev.retrotv.crypt.TwoWayEncryption;
 import dev.retrotv.crypt.exception.CryptFailException;
+import dev.retrotv.crypt.random.RandomValue;
 import dev.retrotv.crypt.random.SecurityStrength;
 
 import javax.crypto.BadPaddingException;
@@ -10,9 +11,11 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+import java.nio.charset.StandardCharsets;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 import java.util.Optional;
 
 /**
@@ -43,6 +46,32 @@ public abstract class AESCBC implements TwoWayEncryption {
     private static final String NO_SUCH_PADDING_EXCEPTION_MESSAGE =
             "NoSuchPaddingException: "
           + "지원되지 않거나, 부정확한 포맷으로 패딩된 데이터를 암복호화 시도하고 있습니다.";
+
+    /**
+     * 문자열을 암호화 하고, 암호화 된 문자열을 반환 합니다.
+     *
+     * @throws CryptFailException text 혹은 key, initialization vector가 null인 경우 발생
+     * @throws CryptFailException 복호화 시 사용한 키가, 암호화 할 때 사용한 키와 일치하지 않는 경우 발생
+     * @throws CryptFailException 암호화 되지 않은 데이터의 복호화를 시도중 이거나, 이미 다른 유형으로 인코딩 된 데이터의 암복호화를 시도할 경우 발생
+     * @throws CryptFailException %JAVA_HOME%\jre\lib\security\cacerts 파일이 존재하지 않거나 내부에 데이터가 존재하지 않는 경우 발생
+     * @throws CryptFailException 암호화 키 값이 각각 16/24/32 byte가 아니거나, 키 값이 16 byte를 초과하면서 무제한 강도 정책이 활성화 되지 않은 경우 발생
+     * @throws CryptFailException 지원되지 않거나, 부정확한 포맷으로 패딩된 데이터 암복호화를 시도하려고 할 때 발생
+     * @param text 암호화 할 문자열
+     * @param key 암호화 시, 사용할 키
+     * @return 암호화 된 문자열
+     */
+    public String encrypt(String text, String key, IvParameterSpec iv) {
+        Optional.ofNullable(text).orElseThrow(() ->
+                new CryptFailException("암호화 할 문자열 및 데이터는 null 일 수 없습니다."));
+
+        Optional.ofNullable(key).orElseThrow(() ->
+                new CryptFailException("암호화 시, 사용할 키가 존재하지 않습니다."));
+
+        byte[] data = text.getBytes(StandardCharsets.UTF_8);
+        byte[] keyData = key.getBytes(StandardCharsets.UTF_8);
+
+        return new String(Base64.getEncoder().encode(encrypt(data, keyData, iv)));
+    }
 
     @Override
     public byte[] encrypt(byte[] data, byte[] key) {
@@ -103,6 +132,32 @@ public abstract class AESCBC implements TwoWayEncryption {
 
         return Optional.ofNullable(encryptedData)
                 .orElseThrow(() -> new CryptFailException("암호화가 정상적으로 진행되지 않았습니다."));
+    }
+
+    /**
+     * 문자열을 암호화 하고, 암호화 된 문자열 반환 합니다.
+     *
+     * @throws CryptFailException encryptedText 혹은 key, initialization vector가 null인 경우 발생
+     * @throws CryptFailException 복호화 시 사용한 키가, 암호화 할 때 사용한 키와 일치하지 않는 경우 발생
+     * @throws CryptFailException 암호화 되지 않은 데이터의 복호화를 시도중 이거나, 이미 다른 유형으로 인코딩 된 데이터의 암복호화를 시도할 경우 발생
+     * @throws CryptFailException %JAVA_HOME%\jre\lib\security\cacerts 파일이 존재하지 않거나 내부에 데이터가 존재하지 않는 경우 발생
+     * @throws CryptFailException 암호화 키 값이 각각 16/24/32 byte가 아니거나, 키 값이 16 byte를 초과하면서 무제한 강도 정책이 활성화 되지 않은 경우 발생
+     * @throws CryptFailException 지원되지 않거나, 부정확한 포맷으로 패딩된 데이터 암복호화를 시도하려고 할 때 발생
+     * @param encryptedText 암호화 된 문자열
+     * @param key 복호화 시, 사용할 키
+     * @return 복호화 된 문자열
+     */
+    public String decrypt(String encryptedText, String key, IvParameterSpec iv) {
+        Optional.ofNullable(encryptedText).orElseThrow(() ->
+                new CryptFailException("암호화 할 문자열 및 데이터는 null 일 수 없습니다."));
+
+        Optional.ofNullable(key).orElseThrow(() ->
+                new CryptFailException("암호화 시, 사용할 키가 존재하지 않습니다."));
+
+        byte[] data = Base64.getDecoder().decode(encryptedText.getBytes(StandardCharsets.UTF_8));
+        byte[] keyData = key.getBytes(StandardCharsets.UTF_8);
+
+        return new String(decrypt(data, keyData, iv));
     }
 
     @Override
@@ -175,5 +230,8 @@ public abstract class AESCBC implements TwoWayEncryption {
      * @param securityStrength 보안 강도: {@link SecurityStrength} 참조
      * @return 생성된 초기화 벡터
      */
-    abstract public String generateInitializationVector(SecurityStrength securityStrength);
+    public IvParameterSpec generateInitializationVector(SecurityStrength securityStrength) {
+        String iv = RandomValue.generate(securityStrength, 16);
+        return new IvParameterSpec(iv.getBytes());
+    }
 }
