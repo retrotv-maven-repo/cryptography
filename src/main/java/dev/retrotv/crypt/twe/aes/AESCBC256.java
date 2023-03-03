@@ -9,9 +9,4 @@ public class AESCBC256 extends AESCBC {
     public String generateKey(SecurityStrength securityStrength) {
         return RandomValue.generate(securityStrength, 32);
     }
-
-    @Override
-    public String generateInitializationVector(SecurityStrength securityStrength) {
-        return RandomValue.generate(securityStrength, 16);
-    }
 }

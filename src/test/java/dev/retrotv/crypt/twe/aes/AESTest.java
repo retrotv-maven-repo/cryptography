@@ -5,6 +5,7 @@ import dev.retrotv.crypt.TwoWayEncryption;
 import dev.retrotv.crypt.random.SecurityStrength;
 import org.junit.jupiter.api.RepetitionInfo;
 
+import javax.crypto.spec.IvParameterSpec;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,6 +13,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class AESTest extends Log {
     protected static final Set<String> encryptedData = new HashSet<>();
+
+    void encryptedDataWithIVTest(AESCBC aescbc) {
+        String message = "The lazy dog jumps over the brown fox!";
+        String key = aescbc.generateKey(SecurityStrength.HIGH);
+        IvParameterSpec iv = aescbc.generateInitializationVector(SecurityStrength.HIGH);
+
+        String encryptedMessage = aescbc.encrypt(message, key, iv);
+        String decryptedMessage = aescbc.decrypt(encryptedMessage, key, iv);
+
+        assertEquals(message, decryptedMessage);
+    }
 
     void encryptDecryptTest(TwoWayEncryption twe, RepetitionInfo repetitionInfo) {
         log.info("암호화 알고리즘: " + twe.getClass().getSimpleName());
