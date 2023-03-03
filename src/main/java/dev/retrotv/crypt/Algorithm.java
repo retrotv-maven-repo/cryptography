@@ -20,6 +20,10 @@ public enum Algorithm {
     , SHA512("SHA-512")
     , SHA512224("SHA-512/224")
     , SHA512256("SHA-512/256")
+    , SHA3224("SHA3-224")
+    , SHA3256("SHA3-256")
+    , SHA3384("SHA3-384")
+    , SHA3512("SHA3-512")
     ;
 
     private final String label;
