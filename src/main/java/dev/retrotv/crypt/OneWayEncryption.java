@@ -25,6 +25,20 @@ public interface OneWayEncryption {
      */
     byte[] encrypt(byte[] data);
 
+    default String encrypt(byte[] data, BaseEncode baseEncode) {
+        Optional.ofNullable(data).orElseThrow(() ->
+                new CryptFailException("암호화 할 문자열 및 데이터는 null 일 수 없습니다."));
+
+        switch (baseEncode) {
+            case BASE64:
+                return new String(Base64.getEncoder().encode(encrypt(data))).toLowerCase();
+
+            case HEX:
+            default:
+                return DatatypeConverter.printHexBinary(data).toLowerCase();
+        }
+    }
+
     /**
      * 문자열 데이터를 암호화 하고, 암호화 된 문자열을 반환 합니다.
      * 이 때, 암호화 된 데이터는 {@link BaseEncode}의 HEX 타입의 문자열로 인코딩 됩니다.
