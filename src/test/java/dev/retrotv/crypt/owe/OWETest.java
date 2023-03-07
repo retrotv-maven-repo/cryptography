@@ -9,12 +9,10 @@ import dev.retrotv.crypt.random.SecurityStrength;
 import org.junit.jupiter.api.RepetitionInfo;
 
 import javax.xml.bind.DatatypeConverter;
-import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class OWETest extends Log {
     protected static final Set<String> encryptedData = new HashSet<>();

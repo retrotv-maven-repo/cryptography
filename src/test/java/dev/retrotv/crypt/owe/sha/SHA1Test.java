@@ -1,16 +1,11 @@
 package dev.retrotv.crypt.owe.sha;
 
 import dev.retrotv.crypt.OneWayEncryption;
-import dev.retrotv.crypt.exception.CryptFailException;
 import dev.retrotv.crypt.owe.OWETest;
-import dev.retrotv.crypt.owe.md.MD5;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.RepetitionInfo;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class SHA1Test extends OWETest {
 
