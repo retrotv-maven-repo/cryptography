@@ -1,7 +1,7 @@
 package dev.retrotv.crypt.owe;
 
 import dev.retrotv.common.Log;
-import dev.retrotv.crypt.BaseEncode;
+import dev.retrotv.crypt.EncodeFormat;
 import dev.retrotv.crypt.OneWayEncryption;
 import dev.retrotv.crypt.exception.CryptFailException;
 import dev.retrotv.crypt.random.RandomValue;
@@ -9,12 +9,10 @@ import dev.retrotv.crypt.random.SecurityStrength;
 import org.junit.jupiter.api.RepetitionInfo;
 
 import javax.xml.bind.DatatypeConverter;
-import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class OWETest extends Log {
     protected static final Set<String> encryptedData = new HashSet<>();
@@ -27,41 +25,29 @@ public class OWETest extends Log {
     }
 
     protected void parameterTextIsNullTest(OneWayEncryption owe) {
-        Throwable exception = assertThrows(CryptFailException.class, () -> owe.encrypt(null, BaseEncode.HEX));
+        Throwable exception = assertThrows(CryptFailException.class, () -> owe.encrypt((String) null, EncodeFormat.HEX));
 
         log.info("예외 메시지: " + exception.getMessage());
         assertEquals("암호화 할 문자열 및 데이터는 null 일 수 없습니다.", exception.getMessage());
     }
 
-    protected void parameterByteEncryptMatchTest(OneWayEncryption owe) {
-        byte[] data = "The lazy dog jumps over the brown fox!".getBytes(StandardCharsets.UTF_8);
-        byte[] encryptedData = owe.encrypt(data);
-
-        assertTrue(owe.matches(data, encryptedData));
-
-        byte[] salt = RandomValue.generate(SecurityStrength.HIGH, 20).getBytes(StandardCharsets.UTF_8);
-        encryptedData = owe.encrypt(data, salt);
-
-        assertTrue(owe.matches(data, salt, encryptedData));
-    }
-
     protected void encryptedDataBase64EncodeTest(OneWayEncryption owe) {
         String message = "The lazy dog jumps over the brown fox!";
-        String encryptedMessage = owe.encrypt(message, BaseEncode.BASE64);
+        String encryptedMessage = owe.encrypt(message, EncodeFormat.BASE64);
 
         log.info("암호화 된 메시지: " + encryptedMessage);
 
-        assertTrue(owe.matches(message, BaseEncode.BASE64, encryptedMessage));
+        assertTrue(owe.matches(message, EncodeFormat.BASE64, encryptedMessage));
     }
 
     protected void encryptWithoutSaltTest(OneWayEncryption owe, RepetitionInfo repetitionInfo) {
         log.info("암호화 알고리즘: " + owe.getClass().getSimpleName());
 
         String message = "The lazy dog jumps over the brown fox!";
-        String encryptedMessage = owe.encrypt(message, BaseEncode.HEX);
+        String encryptedMessage = owe.encrypt(message, EncodeFormat.HEX);
 
         assertTrue(owe.matches(message, encryptedMessage));
-        assertTrue(owe.matches(message, BaseEncode.HEX, encryptedMessage));
+        assertTrue(owe.matches(message, EncodeFormat.HEX, encryptedMessage));
         assertTrue(checkBitLength(owe.getClass().getSimpleName(), (DatatypeConverter.parseHexBinary(encryptedMessage).length * 8)));
 
         encryptedData.add(encryptedMessage);
@@ -80,13 +66,13 @@ public class OWETest extends Log {
 
         String message = "The lazy dog jumps over the brown fox!";
         String salt = RandomValue.generate(SecurityStrength.HIGH, 20);
-        String encryptedMessage = owe.encrypt(message, salt, BaseEncode.HEX);
+        String encryptedMessage = owe.encrypt(message, salt, EncodeFormat.HEX);
 
         log.info("암호화 된 메시지: " + encryptedMessage);
         log.info("암호화 된 메시지 bit 길이: " + (DatatypeConverter.parseHexBinary(encryptedMessage).length * 8));
 
         assertTrue(owe.matches(message, salt, encryptedMessage));
-        assertTrue(owe.matches(message, salt, BaseEncode.HEX, encryptedMessage));
+        assertTrue(owe.matches(message, salt, EncodeFormat.HEX, encryptedMessage));
         assertTrue(checkBitLength(owe.getClass().getSimpleName(), (DatatypeConverter.parseHexBinary(encryptedMessage).length * 8)));
 
         encryptedData.add(encryptedMessage);

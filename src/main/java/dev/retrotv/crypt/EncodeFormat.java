@@ -6,14 +6,14 @@ package dev.retrotv.crypt;
  * @author  yjj8353
  * @since   1.8
  */
-public enum BaseEncode {
+public enum EncodeFormat {
       HEX("Hex")
     , BASE64("Base64")
     ;
 
       private final String label;
 
-      BaseEncode(String label) {
+      EncodeFormat(String label) {
           this.label = label;
       }
 

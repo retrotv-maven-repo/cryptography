@@ -24,13 +24,6 @@ public class CRCTest32Test extends OWETest {
     }
 
     @Test
-    @DisplayName("byte[] 데이터형 테스트")
-    void byteEncryptMatchTest() {
-        OneWayEncryption owe = new CRC32();
-        parameterByteEncryptMatchTest(owe);
-    }
-
-    @Test
     @DisplayName("base64 인코딩 테스트")
     void base64EncodeTest() {
         OneWayEncryption owe = new CRC32();

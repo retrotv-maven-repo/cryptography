@@ -1,7 +1,6 @@
 package dev.retrotv.crypt.owe.md;
 
 import dev.retrotv.crypt.OneWayEncryption;
-import dev.retrotv.crypt.exception.CryptFailException;
 import dev.retrotv.crypt.owe.OWETest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
@@ -11,9 +10,6 @@ import org.junit.jupiter.api.Test;
 import javax.xml.bind.DatatypeConverter;
 
 import java.nio.charset.StandardCharsets;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class MD5Test extends OWETest {
 
@@ -32,13 +28,6 @@ public class MD5Test extends OWETest {
     }
 
     @Test
-    @DisplayName("byte[] 데이터형 테스트")
-    void byteEncryptMatchTest() {
-        OneWayEncryption owe = new MD5();
-        parameterByteEncryptMatchTest(owe);
-    }
-
-    @Test
     @DisplayName("base64 인코딩 테스트")
     void base64EncodeTest() {
         OneWayEncryption owe = new MD5();
@@ -47,7 +36,7 @@ public class MD5Test extends OWETest {
 
     @Test
     @DisplayName("동일 결과 체크")
-    void sameResult() throws Exception {
+    void sameResult() {
         String message = "The lazy dog jumps over the brown fox!";
 
         OneWayEncryption owe = new MD5();

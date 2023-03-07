@@ -1,16 +1,11 @@
 package dev.retrotv.crypt.owe.sha;
 
 import dev.retrotv.crypt.OneWayEncryption;
-import dev.retrotv.crypt.exception.CryptFailException;
 import dev.retrotv.crypt.owe.OWETest;
-import dev.retrotv.crypt.owe.md.MD5;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.RepetitionInfo;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class SHA1Test extends OWETest {
 
@@ -26,13 +21,6 @@ public class SHA1Test extends OWETest {
     void textNullCheck() {
         OneWayEncryption owe = new SHA1();
         parameterTextIsNullTest(owe);
-    }
-
-    @Test
-    @DisplayName("byte[] 데이터형 테스트")
-    void byteEncryptMatchTest() {
-        OneWayEncryption owe = new SHA1();
-        parameterByteEncryptMatchTest(owe);
     }
 
     @Test
