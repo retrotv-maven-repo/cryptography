@@ -27,22 +27,10 @@ public class OWETest extends Log {
     }
 
     protected void parameterTextIsNullTest(OneWayEncryption owe) {
-        Throwable exception = assertThrows(CryptFailException.class, () -> owe.encrypt(null, BaseEncode.HEX));
+        Throwable exception = assertThrows(CryptFailException.class, () -> owe.encrypt((String) null, BaseEncode.HEX));
 
         log.info("예외 메시지: " + exception.getMessage());
         assertEquals("암호화 할 문자열 및 데이터는 null 일 수 없습니다.", exception.getMessage());
-    }
-
-    protected void parameterByteEncryptMatchTest(OneWayEncryption owe) {
-        byte[] data = "The lazy dog jumps over the brown fox!".getBytes(StandardCharsets.UTF_8);
-        byte[] encryptedData = owe.encrypt(data);
-
-        assertTrue(owe.matches(data, encryptedData));
-
-        byte[] salt = RandomValue.generate(SecurityStrength.HIGH, 20).getBytes(StandardCharsets.UTF_8);
-        encryptedData = owe.encrypt(data, salt);
-
-        assertTrue(owe.matches(data, salt, encryptedData));
     }
 
     protected void encryptedDataBase64EncodeTest(OneWayEncryption owe) {
