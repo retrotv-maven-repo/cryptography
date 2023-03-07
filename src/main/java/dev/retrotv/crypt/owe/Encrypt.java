@@ -1,9 +1,11 @@
 package dev.retrotv.crypt.owe;
 
 import dev.retrotv.crypt.Algorithm;
+import dev.retrotv.crypt.Encode;
 import dev.retrotv.crypt.exception.CryptFailException;
+import org.apache.commons.codec.DecoderException;
+import org.apache.commons.codec.binary.Hex;
 
-import javax.xml.bind.DatatypeConverter;
 import java.nio.ByteBuffer;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -16,7 +18,7 @@ import java.util.zip.CRC32;
  * @author yjj8353
  * @since 1.8
  */
-public class Encode {
+public class Encrypt {
 
     /**
      * 지정된 {@link Algorithm} 유형으로 데이터를 암호화 하고, 암호화 된 데이터를 반환 합니다.
@@ -27,13 +29,13 @@ public class Encode {
      * @throws CryptFailException data가 null 일 경우 발생
      * @throws CryptFailException 암호화가 정상적으로 진행되지 않았을 경우 발생
      */
-    protected byte[] encode(Algorithm algorithm, byte[] data) {
+    protected byte[] encrypt(Algorithm algorithm, byte[] data) {
         Optional.ofNullable(data).orElseThrow(() ->
                 new CryptFailException("암호화 할 문자열 및 데이터는 null 일 수 없습니다."));
 
         // CRC-32 알고리즘은 MessageDigest를 쓰지 않으므로 별도로 분리
         if (Algorithm.CRC32.equals(algorithm)) {
-            return crc32Encode(data);
+            return crc32Encrypt(data);
         }
 
         try {
@@ -46,7 +48,7 @@ public class Encode {
         throw new CryptFailException("암호화가 정상적으로 진행되지 않았습니다.");
     }
 
-    private byte[] crc32Encode(byte[] data) {
+    private byte[] crc32Encrypt(byte[] data) {
         CRC32 crc32 = new CRC32();
         crc32.update(data);
 
@@ -54,7 +56,10 @@ public class Encode {
         buffer.putLong(crc32.getValue());
 
         // 앞에 0이 패딩되는 부분을 무시하고 뒤의 8자리만 잘라낸다
-        return DatatypeConverter.parseHexBinary(
-                DatatypeConverter.printHexBinary(buffer.array()).substring(8));
+        try {
+            return Encode.hexToBinary(Encode.binaryToHex(buffer.array()).substring(8));
+        } catch (DecoderException ignored) { }
+
+        throw new CryptFailException("암호화가 정상적으로 진행되지 않았습니다.");
     }
 }

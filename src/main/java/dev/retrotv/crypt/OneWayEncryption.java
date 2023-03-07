@@ -2,9 +2,7 @@ package dev.retrotv.crypt;
 
 import dev.retrotv.crypt.exception.CryptFailException;
 
-import javax.xml.bind.DatatypeConverter;
 import java.nio.charset.StandardCharsets;
-import java.util.Base64;
 import java.util.Optional;
 
 /**
@@ -26,67 +24,53 @@ public interface OneWayEncryption {
 
     /**
      * 문자열 데이터를 암호화 하고, 암호화 된 문자열을 반환 합니다.
-     * 이 때, 암호화 된 데이터는 지정한 {@link BaseEncode} 타입의 문자열로 인코딩 됩니다. (null일 경우 HEX 타입으로 강제 지정)
+     * 이 때, 암호화 된 데이터는 지정한 {@link EncodeFormat} 타입의 문자열로 인코딩 됩니다. (null일 경우 HEX 타입으로 강제 지정)
      *
      * @throws CryptFailException data가 null 일 경우 발생
      * @param data 암호화 할 문자열
-     * @param baseEncode byte[] 데이터를 문자열로 인코딩 할 때 사용할 {@link BaseEncode} 유형
+     * @param encodeFormat byte[] 데이터를 문자열로 인코딩 할 때 사용할 {@link EncodeFormat} 유형
      * @return 암호화 된 문자열
      */
-    default String encrypt(byte[] data, BaseEncode baseEncode) {
+    default String encrypt(byte[] data, EncodeFormat encodeFormat) {
         Optional.ofNullable(data).orElseThrow(() ->
                 new CryptFailException("암호화 할 문자열 및 데이터는 null 일 수 없습니다."));
 
-        switch (baseEncode) {
-            case BASE64:
-                return new String(Base64.getEncoder().encode(encrypt(data))).toLowerCase();
-
-            case HEX:
-            default:
-                return DatatypeConverter.printHexBinary(encrypt(data)).toLowerCase();
-        }
+        return Encode.binaryEncode(encodeFormat, encrypt(data));
     }
 
     /**
      * 문자열 데이터를 암호화 하고, 암호화 된 문자열을 반환 합니다.
-     * 이 때, 암호화 된 데이터는 {@link BaseEncode}의 HEX 타입의 문자열로 인코딩 됩니다.
+     * 이 때, 암호화 된 데이터는 {@link EncodeFormat}의 HEX 타입의 문자열로 인코딩 됩니다.
      *
      * @throws CryptFailException text가 null 일 경우 발생
      * @param text 암호화 할 문자열
      * @return 암호화 된 문자열
      */
     default String encrypt(String text) {
-        return encrypt(text, BaseEncode.HEX);
+        return encrypt(text, EncodeFormat.HEX);
     }
 
     /**
      * 문자열 데이터를 암호화 하고, 암호화 된 문자열을 반환 합니다.
-     * 이 때, 암호화 된 데이터는 지정한 {@link BaseEncode} 타입의 문자열로 인코딩 됩니다. (null일 경우 HEX 타입으로 강제 지정)
+     * 이 때, 암호화 된 데이터는 지정한 {@link EncodeFormat} 타입의 문자열로 인코딩 됩니다. (null일 경우 HEX 타입으로 강제 지정)
      *
      * @throws CryptFailException text가 null 일 경우 발생
      * @param text 암호화 할 문자열
-     * @param baseEncode byte[] 데이터를 문자열로 인코딩 할 때 사용할 {@link BaseEncode} 유형
+     * @param encodeFormat byte[] 데이터를 문자열로 인코딩 할 때 사용할 {@link EncodeFormat} 유형
      * @return 암호화 된 문자열
      */
-    default String encrypt(String text, BaseEncode baseEncode) {
+    default String encrypt(String text, EncodeFormat encodeFormat) {
         Optional.ofNullable(text).orElseThrow(() ->
                 new CryptFailException("암호화 할 문자열 및 데이터는 null 일 수 없습니다."));
 
         byte[] data = encrypt(text.getBytes(StandardCharsets.UTF_8));
 
-        switch (baseEncode) {
-            case BASE64:
-                return new String(Base64.getEncoder().encode(data)).toLowerCase();
-
-            case HEX:
-            default:
-                return DatatypeConverter.printHexBinary(data).toLowerCase();
-        }
+        return Encode.binaryEncode(encodeFormat, data);
     }
 
     /**
      * 추가 문자열이 첨가 된 문자열 데이터를 암호화 하고, 암호화 된 문자열을 반환 합니다.
-     * 이 때, 암호화 된 데이터는 {@link BaseEncode}의 HEX 타입의 문자열로 인코딩 됩니다.
+     * 이 때, 암호화 된 데이터는 {@link EncodeFormat}의 HEX 타입의 문자열로 인코딩 됩니다.
      *
      * @throws CryptFailException text가 null 일 경우 발생
      * @param text 암호화 할 문자열
@@ -99,21 +83,21 @@ public interface OneWayEncryption {
 
     /**
      * 추가 문자열이 첨가 된 문자열 데이터를 암호화 하고, 암호화 된 문자열을 반환 합니다.
-     * 이 때, 암호화 된 데이터는 지정한 {@link BaseEncode} 타입의 문자열로 인코딩 됩니다. (null일 경우 HEX 타입으로 강제 지정)
+     * 이 때, 암호화 된 데이터는 지정한 {@link EncodeFormat} 타입의 문자열로 인코딩 됩니다. (null일 경우 HEX 타입으로 강제 지정)
      *
      * @throws CryptFailException text가 null 일 경우 발생
      * @param text 암호화 할 문자열
      * @param salt 암호화 할 문자열에 첨가할 추가 문자열
-     * @param baseEncode byte[] 데이터를 문자열로 인코딩 할 때 사용할 {@link BaseEncode} 유형
+     * @param encodeFormat byte[] 데이터를 문자열로 인코딩 할 때 사용할 {@link EncodeFormat} 유형
      * @return 암호화 된 문자열
      */
-    default String encrypt(String text, String salt, BaseEncode baseEncode) {
-        return encrypt(text.concat(salt), baseEncode);
+    default String encrypt(String text, String salt, EncodeFormat encodeFormat) {
+        return encrypt(text.concat(salt), encodeFormat);
     }
 
     /**
      * 암호화 되지 않은 문자열을 암호화 하고, 기존에 암호화 된 문자열과 비교하열 일치 여부를 반환 합니다.
-     * 이 때, 암호화 되지 않은 문자열은 {@link BaseEncode}의 HEX 타입의 문자열로 인코딩 되고 비교합니다.
+     * 이 때, 암호화 되지 않은 문자열은 {@link EncodeFormat}의 HEX 타입의 문자열로 인코딩 되고 비교합니다.
      *
      * @throws CryptFailException text가 null 일 경우 발생
      * @param text 암호화 할 문자열
@@ -126,21 +110,21 @@ public interface OneWayEncryption {
 
     /**
      * 암호화 되지 않은 문자열을 암호화 하고, 기존에 암호화 된 문자열과 비교하열 일치 여부를 반환 합니다.
-     * 이 때, 암호화 되지 않은 문자열은 지정된 {@link BaseEncode} 타입의 문자열로 인코딩 된 뒤 비교합니다. (null일 경우 HEX 타입으로 강제 지정)
+     * 이 때, 암호화 되지 않은 문자열은 지정된 {@link EncodeFormat} 타입의 문자열로 인코딩 된 뒤 비교합니다. (null일 경우 HEX 타입으로 강제 지정)
      *
      * @throws CryptFailException text가 null 일 경우 발생
      * @param text 암호화 할 문자열
-     * @param baseEncode byte[] 데이터를 문자열로 인코딩 할 때 사용할 {@link BaseEncode} 유형
+     * @param encodeFormat byte[] 데이터를 문자열로 인코딩 할 때 사용할 {@link EncodeFormat} 유형
      * @param encryptedText 비교할 암호화 된 문자열
      * @return 일치 여부
      */
-    default boolean matches(String text, BaseEncode baseEncode, String encryptedText) {
-        return encrypt(text, baseEncode).equals(encryptedText);
+    default boolean matches(String text, EncodeFormat encodeFormat, String encryptedText) {
+        return encrypt(text, encodeFormat).equals(encryptedText);
     }
 
     /**
      * 추가 문자열을 첨가한 암호화 되지 않은 문자열을 암호화 하고, 기존에 암호화 된 문자열과 비교하여 일치 여부를 반환 합니다.
-     * 이 때, 암호화 되지 않은 문자열은 {@link BaseEncode}의 HEX 타입의 문자열로 인코딩 된 뒤 비교합니다.
+     * 이 때, 암호화 되지 않은 문자열은 {@link EncodeFormat}의 HEX 타입의 문자열로 인코딩 된 뒤 비교합니다.
      *
      * @throws CryptFailException text가 null 일 경우 발생
      * @param text 암호화 할 문자열
@@ -154,16 +138,16 @@ public interface OneWayEncryption {
 
     /**
      * 추가 문자열을 첨가한 암호화 되지 않은 문자열을 암호화 하고, 기존에 암호화 된 문자열과 비교하여 일치 여부를 반환 합니다.
-     * 이 때, 암호화 되지 않은 문자열은 지정된 {@link BaseEncode} 타입의 문자열로 인코딩 된 뒤 비교합니다. (null일 경우 HEX 타입으로 강제 지정)
+     * 이 때, 암호화 되지 않은 문자열은 지정된 {@link EncodeFormat} 타입의 문자열로 인코딩 된 뒤 비교합니다. (null일 경우 HEX 타입으로 강제 지정)
      *
      * @throws CryptFailException text가 null 일 경우 발생
      * @param text 암호화 할 문자열
      * @param salt 암호화 할 문자열에 첨가할 추가 문자열
-     * @param baseEncode byte[] 데이터를 문자열로 인코딩 할 때 사용할 {@link BaseEncode} 유형
+     * @param encodeFormat byte[] 데이터를 문자열로 인코딩 할 때 사용할 {@link EncodeFormat} 유형
      * @param encryptedText 비교할 암호화 된 문자열
      * @return 일치 여부
      */
-    default boolean matches(String text, String salt, BaseEncode baseEncode, String encryptedText) {
-        return matches(text.concat(salt), baseEncode, encryptedText);
+    default boolean matches(String text, String salt, EncodeFormat encodeFormat, String encryptedText) {
+        return matches(text.concat(salt), encodeFormat, encryptedText);
     }
 }
