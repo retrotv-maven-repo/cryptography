@@ -1,6 +1,6 @@
 package dev.retrotv.crypt.twe.aes;
 
-import dev.retrotv.crypt.TwoWayEncryption;
+import dev.retrotv.crypt.twe.TwoWayEncryption;
 import dev.retrotv.crypt.exception.CryptFailException;
 import dev.retrotv.crypt.random.SecurityStrength;
 

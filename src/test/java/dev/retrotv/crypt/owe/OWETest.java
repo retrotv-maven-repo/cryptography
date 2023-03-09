@@ -2,7 +2,6 @@ package dev.retrotv.crypt.owe;
 
 import dev.retrotv.common.Log;
 import dev.retrotv.crypt.EncodeFormat;
-import dev.retrotv.crypt.OneWayEncryption;
 import dev.retrotv.crypt.exception.CryptFailException;
 import dev.retrotv.crypt.random.RandomValue;
 import dev.retrotv.crypt.random.SecurityStrength;

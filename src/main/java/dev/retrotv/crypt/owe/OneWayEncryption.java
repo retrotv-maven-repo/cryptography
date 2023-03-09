@@ -1,5 +1,7 @@
-package dev.retrotv.crypt;
+package dev.retrotv.crypt.owe;
 
+import dev.retrotv.crypt.Encode;
+import dev.retrotv.crypt.EncodeFormat;
 import dev.retrotv.crypt.exception.CryptFailException;
 
 import java.nio.charset.StandardCharsets;

@@ -1,7 +1,7 @@
 package dev.retrotv.crypt.owe.md;
 
 import dev.retrotv.crypt.Algorithm;
-import dev.retrotv.crypt.OneWayEncryption;
+import dev.retrotv.crypt.owe.OneWayEncryption;
 import dev.retrotv.crypt.owe.Encrypt;
 
 /**
