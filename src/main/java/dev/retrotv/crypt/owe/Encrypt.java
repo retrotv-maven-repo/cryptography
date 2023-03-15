@@ -4,7 +4,6 @@ import dev.retrotv.crypt.Algorithm;
 import dev.retrotv.crypt.Encode;
 import dev.retrotv.crypt.exception.CryptFailException;
 import org.apache.commons.codec.DecoderException;
-import org.apache.commons.codec.binary.Hex;
 
 import java.nio.ByteBuffer;
 import java.security.MessageDigest;
