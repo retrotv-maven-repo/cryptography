@@ -27,14 +27,4 @@ public class SHA224 extends Encrypt implements Checksum, Password {
         String password = String.valueOf(rawPassword);
         return encode(password.getBytes(StandardCharsets.UTF_8));
     }
-
-    @Override
-    public boolean matches(CharSequence rawPassword, String encodedPassword) {
-        if (rawPassword == null || encodedPassword == null) {
-            throw new CryptFailException("비교할 password 혹은 encodedPassword 값이 null 입니다.");
-        }
-
-        String password = String.valueOf(rawPassword);
-        return encodedPassword.equals(encode(password));
-    }
 }

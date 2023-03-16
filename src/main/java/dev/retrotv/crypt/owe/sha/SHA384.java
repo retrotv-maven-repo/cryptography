@@ -21,9 +21,4 @@ public class SHA384 extends Encrypt implements Checksum, Password {
     public String encode(CharSequence rawPassword) {
         return null;
     }
-
-    @Override
-    public boolean matches(CharSequence rawPassword, String encodedPassword) {
-        return false;
-    }
 }

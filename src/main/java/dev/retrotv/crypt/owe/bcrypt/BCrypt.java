@@ -1,11 +1,13 @@
 package dev.retrotv.crypt.owe.bcrypt;
 
+import dev.retrotv.crypt.owe.Password;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-public class BCrypt {
+public class BCrypt implements Password {
 
-    public String encrypt(String text) {
+    @Override
+    public String encode(CharSequence rawPassword) {
         BCryptPasswordEncoder bcpe = new BCryptPasswordEncoder();
-        return bcpe.encode(text);
+        return bcpe.encode(rawPassword);
     }
 }
