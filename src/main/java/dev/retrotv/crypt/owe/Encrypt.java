@@ -1,15 +1,11 @@
 package dev.retrotv.crypt.owe;
 
 import dev.retrotv.crypt.Algorithm;
-import dev.retrotv.crypt.Encode;
 import dev.retrotv.crypt.exception.CryptFailException;
-import org.apache.commons.codec.DecoderException;
 
-import java.nio.ByteBuffer;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Optional;
-import java.util.zip.CRC32;
 
 /**
  * {@link MessageDigest}를 사용하는 암호화 구현을 위한 상속용 클래스 입니다.

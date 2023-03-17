@@ -9,7 +9,13 @@ public class SHA224Test extends OWETest {
 
     @Test
     @DisplayName("SHA224 File hash 테스트")
-    void crc32FileHashTest() throws Exception {
+    void fileHashTest() throws Exception {
         fileHash(Algorithm.SHA224);
+    }
+
+    @Test
+    @DisplayName("SHA224 File hash matches 테스트")
+    void fileHashMatchesTest() throws Exception {
+        fileHashMatchs(new SHA224(), Algorithm.SHA224);
     }
 }

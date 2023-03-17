@@ -97,6 +97,16 @@ public class OWETest extends Log {
                 return checksum.encode(fileData);
             }
 
+            case SHA512224: {
+                Checksum checksum = new SHA512224();
+                return checksum.encode(fileData);
+            }
+
+            case SHA512256: {
+                Checksum checksum = new SHA512256();
+                return checksum.encode(fileData);
+            }
+
             default: return null;
         }
     }
@@ -110,6 +120,8 @@ public class OWETest extends Log {
             case SHA256: return "77f0dff93e642bf30107409b3c2bf091e68abbcd72e4088644fa4af74bcb03ef";
             case SHA384: return "8f0cf4885b8d66738c11e060889a50559cb02a41c47680bbbe4dbf83bf80b9811ccf676c8129856d0448371117f4eff2";
             case SHA512: return "cc4b339254aa795cf37cf9bfbe03c517f4ccca68a957da247e4740bbcfa52eab11578655a6d6686d406f8d78cb208ec41ea236a2c8670ea21cc9f500302e9792";
+            case SHA512224: return "909e7bfd4460eb945558dc28e9e59cee80c7cba836cc2bd69dba1a45";
+            case SHA512256: return "3e86050d3a99a5ad768cdfd75acd100a7ff287d1927fb3c2bc528874f02e9a0d";
             default: return null;
         }
     }

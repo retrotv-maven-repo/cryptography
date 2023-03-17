@@ -9,7 +9,13 @@ public class SHA384Test extends OWETest {
 
     @Test
     @DisplayName("SHA384 File hash 테스트")
-    void crc32FileHashTest() throws Exception {
+    void fileHashTest() throws Exception {
         fileHash(Algorithm.SHA384);
+    }
+
+    @Test
+    @DisplayName("SHA384 File hash matches 테스트")
+    void fileHashMatchesTest() throws Exception {
+        fileHashMatchs(new SHA384(), Algorithm.SHA384);
     }
 }

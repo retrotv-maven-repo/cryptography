@@ -9,7 +9,13 @@ public class MD5Test extends OWETest {
 
     @Test
     @DisplayName("MD5 File hash 테스트")
-    void crc32FileHashTest() throws Exception {
+    void fileHashTest() throws Exception {
         fileHash(Algorithm.MD5);
+    }
+
+    @Test
+    @DisplayName("MD5 File hash matches 테스트")
+    void fileHashMatchesTest() throws Exception {
+        fileHashMatchs(new MD5(), Algorithm.MD5);
     }
 }

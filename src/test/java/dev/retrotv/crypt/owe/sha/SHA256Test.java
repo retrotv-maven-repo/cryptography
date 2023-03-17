@@ -9,7 +9,13 @@ public class SHA256Test extends OWETest {
 
     @Test
     @DisplayName("SHA256 File hash 테스트")
-    void crc32FileHashTest() throws Exception {
+    void fileHashTest() throws Exception {
         fileHash(Algorithm.SHA256);
+    }
+
+    @Test
+    @DisplayName("SHA256 File hash matches 테스트")
+    void fileHashMatchesTest() throws Exception {
+        fileHashMatchs(new SHA256(), Algorithm.SHA256);
     }
 }

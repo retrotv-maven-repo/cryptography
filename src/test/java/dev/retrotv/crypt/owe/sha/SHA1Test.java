@@ -9,7 +9,13 @@ public class SHA1Test extends OWETest {
 
     @Test
     @DisplayName("SHA1 File hash 테스트")
-    void crc32FileHashTest() throws Exception {
+    void fileHashTest() throws Exception {
         fileHash(Algorithm.SHA1);
+    }
+
+    @Test
+    @DisplayName("SHA1 File hash matches 테스트")
+    void fileHashMatchesTest() throws Exception {
+        fileHashMatchs(new SHA1(), Algorithm.SHA1);
     }
 }
