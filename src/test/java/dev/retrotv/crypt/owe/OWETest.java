@@ -1,19 +1,119 @@
 package dev.retrotv.crypt.owe;
 
 import dev.retrotv.common.Log;
-//import dev.retrotv.crypt.EncodeFormat;
-//import dev.retrotv.crypt.exception.CryptFailException;
-//import dev.retrotv.crypt.random.RandomValue;
-//import dev.retrotv.crypt.random.SecurityStrength;
-//import org.junit.jupiter.api.RepetitionInfo;
-//
-//import javax.xml.bind.DatatypeConverter;
-//import java.util.HashSet;
-//import java.util.Set;
-//
-//import static org.junit.jupiter.api.Assertions.*;
+import dev.retrotv.crypt.Algorithm;
+import dev.retrotv.crypt.owe.crc.CRC32;
+import dev.retrotv.crypt.owe.md.MD5;
+import dev.retrotv.crypt.owe.sha.*;
+
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.util.Objects;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class OWETest extends Log {
+    protected final URL resource = this.getClass().getClassLoader().getResource("Usb_connectors.JPG");
+    protected final URL resource2 = this.getClass().getClassLoader().getResource("Usb_connectors2.JPG");
+
+    protected void fileHash(Algorithm algorithm) throws IOException {
+        File file;
+        byte[] fileData;
+
+        try {
+            file = new File(Objects.requireNonNull(resource).toURI());
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+        try (DataInputStream dis = new DataInputStream(Files.newInputStream(file.toPath()))) {
+            fileData = new byte[(int) file.length()];
+            dis.readFully(fileData);
+        } catch (IOException e) {
+            throw new IOException("파일을 읽어들이는 과정에서 예상치 못한 오류가 발생했습니다.");
+        }
+
+        assertEquals(getHash(algorithm), hash(algorithm, fileData));
+    }
+
+    protected void fileHashMatchs(Checksum checksum, Algorithm algorithm) throws IOException {
+        File file;
+        byte[] fileData;
+
+        try {
+            file = new File(Objects.requireNonNull(resource).toURI());
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+        try (DataInputStream dis = new DataInputStream(Files.newInputStream(file.toPath()))) {
+            fileData = new byte[(int) file.length()];
+            dis.readFully(fileData);
+        } catch (IOException e) {
+            throw new IOException("파일을 읽어들이는 과정에서 예상치 못한 오류가 발생했습니다.");
+        }
+
+        assertTrue(checksum.matches(fileData, getHash(algorithm)));
+    }
+
+    private String hash(Algorithm algorithm, byte[] fileData) {
+        switch (algorithm) {
+            case CRC32: {
+                Checksum checksum = new CRC32();
+                return checksum.encode(fileData);
+            }
+
+            case MD5: {
+                Checksum checksum = new MD5();
+                return checksum.encode(fileData);
+            }
+
+            case SHA1:  {
+                Checksum checksum = new SHA1();
+                return checksum.encode(fileData);
+            }
+
+            case SHA224: {
+                Checksum checksum = new SHA224();
+                return checksum.encode(fileData);
+            }
+
+            case SHA256:  {
+                Checksum checksum = new SHA256();
+                return checksum.encode(fileData);
+            }
+
+            case SHA384: {
+                Checksum checksum = new SHA384();
+                return checksum.encode(fileData);
+            }
+
+            case SHA512: {
+                Checksum checksum = new SHA512();
+                return checksum.encode(fileData);
+            }
+
+            default: return null;
+        }
+    }
+
+    private String getHash(Algorithm algorithm) {
+        switch (algorithm) {
+            case CRC32: return "bbaa4ecc";
+            case MD5: return "50612b57c95b3a5168af0803183e11a6";
+            case SHA1: return "ebea6f522d1fca234bcf8fe67bcbe36b16c76a08";
+            case SHA224: return "b1958b147149aa43da0b660359be731c939175a40bf7595641daeb9f";
+            case SHA256: return "77f0dff93e642bf30107409b3c2bf091e68abbcd72e4088644fa4af74bcb03ef";
+            case SHA384: return "8f0cf4885b8d66738c11e060889a50559cb02a41c47680bbbe4dbf83bf80b9811ccf676c8129856d0448371117f4eff2";
+            case SHA512: return "cc4b339254aa795cf37cf9bfbe03c517f4ccca68a957da247e4740bbcfa52eab11578655a6d6686d406f8d78cb208ec41ea236a2c8670ea21cc9f500302e9792";
+            default: return null;
+        }
+    }
+
 //    protected static final Set<String> encryptedData = new HashSet<>();
 //
 //    protected void parameterDataIsNullTest(OneWayEncryption owe) {
