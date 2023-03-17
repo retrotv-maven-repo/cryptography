@@ -18,4 +18,10 @@ public class CRCTest32Test extends OWETest {
     void fileHashMatchesTest() throws Exception {
         fileHashMatchs(new CRC32(), Algorithm.CRC32);
     }
+
+    @Test
+    @DisplayName("CRC32 password encode 테스트")
+    void passwordEncrypt() {
+        passwordEncrypt(new CRC32());
+    }
 }

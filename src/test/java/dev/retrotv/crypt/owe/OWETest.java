@@ -17,15 +17,16 @@ import java.util.Objects;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class OWETest extends Log {
-    protected final URL resource = this.getClass().getClassLoader().getResource("Usb_connectors.JPG");
-    protected final URL resource2 = this.getClass().getClassLoader().getResource("Usb_connectors2.JPG");
+    protected final String PASSWORD = "The quick brown fox jumps over the lazy dog";
+    protected final URL RESOURCE = this.getClass().getClassLoader().getResource("Usb_connectors.JPG");
+    protected final URL RESOURCE2 = this.getClass().getClassLoader().getResource("Usb_connectors2.JPG");
 
     protected void fileHash(Algorithm algorithm) throws IOException {
         File file;
         byte[] fileData;
 
         try {
-            file = new File(Objects.requireNonNull(resource).toURI());
+            file = new File(Objects.requireNonNull(RESOURCE).toURI());
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
@@ -45,7 +46,7 @@ public class OWETest extends Log {
         byte[] fileData;
 
         try {
-            file = new File(Objects.requireNonNull(resource).toURI());
+            file = new File(Objects.requireNonNull(RESOURCE).toURI());
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
@@ -58,6 +59,13 @@ public class OWETest extends Log {
         }
 
         assertTrue(checksum.matches(fileData, getHash(algorithm)));
+    }
+
+    protected void passwordEncrypt(Password password) {
+        String encryptedPassword = password.encode(PASSWORD);
+
+        assertNotEquals(PASSWORD, encryptedPassword);
+        assertTrue(password.matches(PASSWORD, encryptedPassword));
     }
 
     private String hash(Algorithm algorithm, byte[] fileData) {
