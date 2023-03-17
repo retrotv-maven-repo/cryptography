@@ -3,8 +3,6 @@ package dev.retrotv.crypt.owe;
 import dev.retrotv.crypt.exception.CryptFailException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.nio.charset.StandardCharsets;
-
 public interface Password extends PasswordEncoder {
 
     @Override

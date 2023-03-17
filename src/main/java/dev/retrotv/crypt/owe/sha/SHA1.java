@@ -2,7 +2,6 @@ package dev.retrotv.crypt.owe.sha;
 
 import dev.retrotv.crypt.Algorithm;
 import dev.retrotv.crypt.Encode;
-import dev.retrotv.crypt.exception.CryptFailException;
 import dev.retrotv.crypt.owe.Checksum;
 import dev.retrotv.crypt.owe.Encrypt;
 import dev.retrotv.crypt.owe.Password;

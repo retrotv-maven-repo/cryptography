@@ -1,12 +1,10 @@
 package dev.retrotv.crypt.owe.crc;
 
-import dev.retrotv.crypt.Algorithm;
 import dev.retrotv.crypt.Encode;
-import dev.retrotv.crypt.exception.CryptFailException;
 import dev.retrotv.crypt.owe.Checksum;
-import dev.retrotv.crypt.owe.Encrypt;
 import dev.retrotv.crypt.owe.Password;
 
+import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 
 /**
@@ -15,11 +13,19 @@ import java.nio.charset.StandardCharsets;
  * @author  yjj8353
  * @since   1.8
  */
-public class CRC32 extends Encrypt implements Checksum, Password {
+public class CRC32 implements Checksum, Password {
 
     @Override
     public String encode(byte[] data) {
-        return Encode.binaryToHex(encrypt(Algorithm.CRC32, data));
+        java.util.zip.CRC32 crc32 = new java.util.zip.CRC32();
+        crc32.update(data);
+
+        ByteBuffer buffer = ByteBuffer.allocate(Long.BYTES);
+        buffer.putLong(crc32.getValue());
+
+        // 앞에 0이 패딩되는 부분을 무시하고 뒤의 8자리만 잘라낸다
+        return Encode.binaryToHex(buffer.array()).substring(8);
+
     }
 
     @Override
