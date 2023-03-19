@@ -64,6 +64,8 @@ public class OWETest extends Log {
     protected void passwordEncrypt(Password password) {
         String encryptedPassword = password.encode(PASSWORD);
 
+        log.info(encryptedPassword);
+
         assertNotEquals(PASSWORD, encryptedPassword);
         assertTrue(password.matches(PASSWORD, encryptedPassword));
     }

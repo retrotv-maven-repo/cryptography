@@ -1,6 +1,7 @@
 package dev.retrotv.crypt.owe;
 
 import dev.retrotv.crypt.Algorithm;
+import dev.retrotv.crypt.Encode;
 import dev.retrotv.crypt.exception.CryptFailException;
 
 import java.security.MessageDigest;
@@ -28,8 +29,15 @@ public class Encrypt {
         Optional.ofNullable(data).orElseThrow(() ->
                 new CryptFailException("암호화 할 문자열 및 데이터는 null 일 수 없습니다."));
 
+        MessageDigest md;
+
         try {
-            MessageDigest md = MessageDigest.getInstance(algorithm.label());
+            if (Algorithm.MD4.equals(algorithm)) {
+                md = sun.security.provider.MD4.getInstance();
+            } else {
+                md = MessageDigest.getInstance(algorithm.label());
+            }
+
             md.update(data);
 
             return md.digest();
