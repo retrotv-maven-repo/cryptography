@@ -20,6 +20,12 @@ public class SHA256Test extends OWETest {
     }
 
     @Test
+    @DisplayName("SHA256 File and File matches 테스트")
+    void fileMatchesTest() throws Exception {
+        fileMatchesTest(new SHA256());
+    }
+
+    @Test
     @DisplayName("SHA256 password encode 테스트")
     void passwordEncrypt() {
         passwordEncryptAndMatchesTest(new SHA256());

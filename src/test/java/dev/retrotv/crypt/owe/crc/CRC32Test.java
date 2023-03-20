@@ -20,6 +20,12 @@ public class CRC32Test extends OWETest {
     }
 
     @Test
+    @DisplayName("CRC32 File and File matches 테스트")
+    void fileMatchesTest() throws Exception {
+        fileMatchesTest(new CRC32());
+    }
+
+    @Test
     @DisplayName("CRC32 password encode 테스트")
     void passwordEncrypt() {
         passwordEncryptAndMatchesTest(new CRC32());
