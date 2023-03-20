@@ -7,7 +7,6 @@ import dev.retrotv.crypt.owe.Encrypt;
 import dev.retrotv.crypt.owe.Password;
 
 import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
 
 public class MD4 extends Encrypt implements Checksum, Password {
 

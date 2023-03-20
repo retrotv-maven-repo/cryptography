@@ -3,6 +3,8 @@ package dev.retrotv.crypt.owe;
 import dev.retrotv.common.Log;
 import dev.retrotv.crypt.Algorithm;
 import dev.retrotv.crypt.owe.crc.CRC32;
+import dev.retrotv.crypt.owe.md.MD2;
+import dev.retrotv.crypt.owe.md.MD4;
 import dev.retrotv.crypt.owe.md.MD5;
 import dev.retrotv.crypt.owe.sha.*;
 
@@ -21,7 +23,7 @@ public class OWETest extends Log {
     protected final URL RESOURCE = this.getClass().getClassLoader().getResource("Usb_connectors.JPG");
     protected final URL RESOURCE2 = this.getClass().getClassLoader().getResource("Usb_connectors2.JPG");
 
-    protected void fileHash(Algorithm algorithm) throws IOException {
+    protected void fileHashTest(Algorithm algorithm) throws IOException {
         File file;
         byte[] fileData;
 
@@ -41,7 +43,7 @@ public class OWETest extends Log {
         assertEquals(getHash(algorithm), hash(algorithm, fileData));
     }
 
-    protected void fileHashMatchs(Checksum checksum, Algorithm algorithm) throws IOException {
+    protected void fileHashMatchesTest(Checksum checksum, Algorithm algorithm) throws IOException {
         File file;
         byte[] fileData;
 
@@ -61,7 +63,7 @@ public class OWETest extends Log {
         assertTrue(checksum.matches(fileData, getHash(algorithm)));
     }
 
-    protected void passwordEncrypt(Password password) {
+    protected void passwordEncryptAndMatchesTest(Password password) {
         String encryptedPassword = password.encode(PASSWORD);
 
         log.info(encryptedPassword);
@@ -74,6 +76,16 @@ public class OWETest extends Log {
         switch (algorithm) {
             case CRC32: {
                 Checksum checksum = new CRC32();
+                return checksum.encode(fileData);
+            }
+
+            case MD2: {
+                Checksum checksum = new MD2();
+                return checksum.encode(fileData);
+            }
+
+            case MD4: {
+                Checksum checksum = new MD4();
                 return checksum.encode(fileData);
             }
 
@@ -124,6 +136,8 @@ public class OWETest extends Log {
     private String getHash(Algorithm algorithm) {
         switch (algorithm) {
             case CRC32: return "bbaa4ecc";
+            case MD2: return "a8d6069e4f60c5475f5f42cbf5f315e1";
+            case MD4: return "85348b43a4cdb92b8d8587545b54bf6c";
             case MD5: return "50612b57c95b3a5168af0803183e11a6";
             case SHA1: return "ebea6f522d1fca234bcf8fe67bcbe36b16c76a08";
             case SHA224: return "b1958b147149aa43da0b660359be731c939175a40bf7595641daeb9f";

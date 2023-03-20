@@ -10,18 +10,18 @@ public class SHA384Test extends OWETest {
     @Test
     @DisplayName("SHA384 File hash 테스트")
     void fileHashTest() throws Exception {
-        fileHash(Algorithm.SHA384);
+        fileHashTest(Algorithm.SHA384);
     }
 
     @Test
     @DisplayName("SHA384 File hash matches 테스트")
     void fileHashMatchesTest() throws Exception {
-        fileHashMatchs(new SHA384(), Algorithm.SHA384);
+        fileHashMatchesTest(new SHA384(), Algorithm.SHA384);
     }
 
     @Test
     @DisplayName("SHA384 password encode 테스트")
     void passwordEncrypt() {
-        passwordEncrypt(new SHA384());
+        passwordEncryptAndMatchesTest(new SHA384());
     }
 }

@@ -10,18 +10,18 @@ public class SHA1Test extends OWETest {
     @Test
     @DisplayName("SHA1 File hash 테스트")
     void fileHashTest() throws Exception {
-        fileHash(Algorithm.SHA1);
+        fileHashTest(Algorithm.SHA1);
     }
 
     @Test
     @DisplayName("SHA1 File hash matches 테스트")
     void fileHashMatchesTest() throws Exception {
-        fileHashMatchs(new SHA1(), Algorithm.SHA1);
+        fileHashMatchesTest(new SHA1(), Algorithm.SHA1);
     }
 
     @Test
     @DisplayName("SHA1 password encode 테스트")
     void passwordEncrypt() {
-        passwordEncrypt(new SHA1());
+        passwordEncryptAndMatchesTest(new SHA1());
     }
 }

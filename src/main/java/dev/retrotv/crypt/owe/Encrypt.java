@@ -1,7 +1,6 @@
 package dev.retrotv.crypt.owe;
 
 import dev.retrotv.crypt.Algorithm;
-import dev.retrotv.crypt.Encode;
 import dev.retrotv.crypt.exception.CryptFailException;
 
 import java.security.MessageDigest;

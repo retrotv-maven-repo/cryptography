@@ -10,18 +10,18 @@ public class SHA512256Test extends OWETest {
     @Test
     @DisplayName("SHA512256 File hash 테스트")
     void fileHashTest() throws Exception {
-        fileHash(Algorithm.SHA512256);
+        fileHashTest(Algorithm.SHA512256);
     }
 
     @Test
     @DisplayName("SHA512256 File hash matches 테스트")
     void fileHashMatchesTest() throws Exception {
-        fileHashMatchs(new SHA512256(), Algorithm.SHA512256);
+        fileHashMatchesTest(new SHA512256(), Algorithm.SHA512256);
     }
 
     @Test
     @DisplayName("SHA512256 password encode 테스트")
     void passwordEncrypt() {
-        passwordEncrypt(new SHA512256());
+        passwordEncryptAndMatchesTest(new SHA512256());
     }
 }
