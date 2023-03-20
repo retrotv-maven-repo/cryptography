@@ -3,14 +3,11 @@ package dev.retrotv.crypt.owe;
 import dev.retrotv.common.Log;
 import dev.retrotv.crypt.Algorithm;
 import dev.retrotv.crypt.owe.crc.CRC32;
-import dev.retrotv.crypt.owe.md.MD2;
-import dev.retrotv.crypt.owe.md.MD4;
-import dev.retrotv.crypt.owe.md.MD5;
+import dev.retrotv.crypt.owe.md.*;
 import dev.retrotv.crypt.owe.sha.*;
+import org.json.JSONObject;
 
-import java.io.DataInputStream;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
@@ -20,8 +17,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class OWETest extends Log {
     protected final String PASSWORD = "The quick brown fox jumps over the lazy dog";
-    protected final URL RESOURCE = this.getClass().getClassLoader().getResource("Usb_connectors.JPG");
-    protected final URL RESOURCE2 = this.getClass().getClassLoader().getResource("Usb_connectors2.JPG");
+    protected  final URL CHECKSUM = this.getClass().getClassLoader().getResource("checksum");
+    protected final URL RESOURCE = this.getClass().getClassLoader().getResource("checksum_test_file.txt");
+    protected final URL RESOURCE2 = this.getClass().getClassLoader().getResource("checksum_test_file2.txt");
 
     protected void fileHashTest(Algorithm algorithm) throws IOException {
         File file;
@@ -61,6 +59,14 @@ public class OWETest extends Log {
         }
 
         assertTrue(checksum.matches(fileData, getHash(algorithm)));
+    }
+
+    protected void fileMatchesTest(Checksum checksum) throws IOException {
+        if (RESOURCE != null && RESOURCE2 != null) {
+            assertTrue(checksum.matches(new File(RESOURCE.getFile()), new File(RESOURCE2.getFile())));
+        } else {
+            fail();
+        }
     }
 
     protected void passwordEncryptAndMatchesTest(Password password) {
@@ -133,21 +139,48 @@ public class OWETest extends Log {
         }
     }
 
-    private String getHash(Algorithm algorithm) {
+    private String getHash(Algorithm algorithm) throws IOException {
+        JSONObject jsonObject = new JSONObject(readJson());
+        JSONObject file1 = jsonObject.getJSONObject("checksum_test_file");
+
         switch (algorithm) {
-            case CRC32: return "bbaa4ecc";
-            case MD2: return "a8d6069e4f60c5475f5f42cbf5f315e1";
-            case MD4: return "85348b43a4cdb92b8d8587545b54bf6c";
-            case MD5: return "50612b57c95b3a5168af0803183e11a6";
-            case SHA1: return "ebea6f522d1fca234bcf8fe67bcbe36b16c76a08";
-            case SHA224: return "b1958b147149aa43da0b660359be731c939175a40bf7595641daeb9f";
-            case SHA256: return "77f0dff93e642bf30107409b3c2bf091e68abbcd72e4088644fa4af74bcb03ef";
-            case SHA384: return "8f0cf4885b8d66738c11e060889a50559cb02a41c47680bbbe4dbf83bf80b9811ccf676c8129856d0448371117f4eff2";
-            case SHA512: return "cc4b339254aa795cf37cf9bfbe03c517f4ccca68a957da247e4740bbcfa52eab11578655a6d6686d406f8d78cb208ec41ea236a2c8670ea21cc9f500302e9792";
-            case SHA512224: return "909e7bfd4460eb945558dc28e9e59cee80c7cba836cc2bd69dba1a45";
-            case SHA512256: return "3e86050d3a99a5ad768cdfd75acd100a7ff287d1927fb3c2bc528874f02e9a0d";
+            case CRC32: return file1.getString(Algorithm.CRC32.label());
+            case MD2: return file1.getString(Algorithm.MD2.label());
+            case MD4: return file1.getString(Algorithm.MD4.label());
+            case MD5: return file1.getString(Algorithm.MD5.label());
+            case SHA1: return file1.getString(Algorithm.SHA1.label());
+            case SHA224: return file1.getString(Algorithm.SHA224.label());
+            case SHA256: return file1.getString(Algorithm.SHA256.label());
+            case SHA384: return file1.getString(Algorithm.SHA384.label());
+            case SHA512: return file1.getString(Algorithm.SHA512.label());
+            case SHA512224: return file1.getString(Algorithm.SHA512224.label());
+            case SHA512256: return file1.getString(Algorithm.SHA512256.label());
             default: return null;
         }
+    }
+
+    private String readJson() throws IOException {
+        if (CHECKSUM == null) {
+            throw new IOException();
+        }
+
+        String json;
+
+        try(BufferedReader reader = new BufferedReader(new FileReader(CHECKSUM.getFile()))) {
+            StringBuilder sb = new StringBuilder();
+            String line = reader.readLine();
+
+            while (line != null) {
+                sb.append(line);
+                sb.append("\n");
+                line = reader.readLine();
+            }
+            json = sb.toString();
+        }
+
+        log.info(json);
+
+        return json;
     }
 
 //    protected static final Set<String> encryptedData = new HashSet<>();

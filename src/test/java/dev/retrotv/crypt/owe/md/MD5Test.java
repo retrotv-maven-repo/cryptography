@@ -20,6 +20,12 @@ public class MD5Test extends OWETest {
     }
 
     @Test
+    @DisplayName("MD5 File and File matches 테스트")
+    void fileMatchesTest() throws Exception {
+        fileMatchesTest(new MD5());
+    }
+
+    @Test
     @DisplayName("MD5 password encode 테스트")
     void passwordEncrypt() {
         passwordEncryptAndMatchesTest(new MD5());
