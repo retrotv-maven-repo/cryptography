@@ -8,6 +8,10 @@ JDK 1.8 이상
 
 ## 지원하는 알고리즘
 
+### KDF(Key Derivation Function) 계열
+- Argon2
+- BCrypt
+
 ### CRC 계열
 - CRC-32
 
