@@ -7,13 +7,7 @@ public class Argon2 implements Password {
     private final Argon2PasswordEncoder a2pe;
 
     Argon2() {
-        final int saltLength = 16;
-        final int hashLength = 32;
-        final int parallelism = 1;
-        final int memory = 1 << 14;
-        final int iterations = 2;
-
-        a2pe = new Argon2PasswordEncoder(saltLength, hashLength, parallelism, memory, iterations);
+        a2pe = Argon2PasswordEncoder.defaultsForSpringSecurity_v5_8();
     }
 
     Argon2(int saltLength, int hashLength, int parallelism, int memory, int iterations) {
