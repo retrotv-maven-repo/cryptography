@@ -1,4 +1,4 @@
-package dev.retrotv.crypt;
+package dev.retrotv.crypt.twe;
 
 import dev.retrotv.crypt.exception.CryptFailException;
 import dev.retrotv.crypt.random.SecurityStrength;

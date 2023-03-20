@@ -1,16 +1,11 @@
 package dev.retrotv.crypt.owe;
 
 import dev.retrotv.crypt.Algorithm;
-import dev.retrotv.crypt.Encode;
 import dev.retrotv.crypt.exception.CryptFailException;
-import org.apache.commons.codec.DecoderException;
-import org.apache.commons.codec.binary.Hex;
 
-import java.nio.ByteBuffer;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Optional;
-import java.util.zip.CRC32;
 
 /**
  * {@link MessageDigest}를 사용하는 암호화 구현을 위한 상속용 클래스 입니다.
@@ -33,32 +28,19 @@ public class Encrypt {
         Optional.ofNullable(data).orElseThrow(() ->
                 new CryptFailException("암호화 할 문자열 및 데이터는 null 일 수 없습니다."));
 
-        // CRC-32 알고리즘은 MessageDigest를 쓰지 않으므로 별도로 분리
-        if (Algorithm.CRC32.equals(algorithm)) {
-            return crc32Encrypt(data);
-        }
+        MessageDigest md;
 
         try {
-            MessageDigest md = MessageDigest.getInstance(algorithm.label());
+            if (Algorithm.MD4.equals(algorithm)) {
+                md = sun.security.provider.MD4.getInstance();
+            } else {
+                md = MessageDigest.getInstance(algorithm.label());
+            }
+
             md.update(data);
 
             return md.digest();
         } catch (NoSuchAlgorithmException ignored) { }
-
-        throw new CryptFailException("암호화가 정상적으로 진행되지 않았습니다.");
-    }
-
-    private byte[] crc32Encrypt(byte[] data) {
-        CRC32 crc32 = new CRC32();
-        crc32.update(data);
-
-        ByteBuffer buffer = ByteBuffer.allocate(Long.BYTES);
-        buffer.putLong(crc32.getValue());
-
-        // 앞에 0이 패딩되는 부분을 무시하고 뒤의 8자리만 잘라낸다
-        try {
-            return Encode.hexToBinary(Encode.binaryToHex(buffer.array()).substring(8));
-        } catch (DecoderException ignored) { }
 
         throw new CryptFailException("암호화가 정상적으로 진행되지 않았습니다.");
     }

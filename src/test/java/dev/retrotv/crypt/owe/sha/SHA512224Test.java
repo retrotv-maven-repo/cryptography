@@ -1,46 +1,27 @@
 package dev.retrotv.crypt.owe.sha;
 
-import dev.retrotv.crypt.OneWayEncryption;
+import dev.retrotv.crypt.Algorithm;
 import dev.retrotv.crypt.owe.OWETest;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.RepetitionInfo;
 import org.junit.jupiter.api.Test;
 
 public class SHA512224Test extends OWETest {
 
     @Test
-    @DisplayName("암호화 데이터 null 체크")
-    void dataNullCheck() {
-        OneWayEncryption owe = new SHA512224();
-        parameterDataIsNullTest(owe);
+    @DisplayName("SHA512224 File hash 테스트")
+    void fileHashTest() throws Exception {
+        fileHashTest(Algorithm.SHA512224);
     }
 
     @Test
-    @DisplayName("암호화 문자열 null 체크")
-    void textNullCheck() {
-        OneWayEncryption owe = new SHA512224();
-        parameterTextIsNullTest(owe);
+    @DisplayName("SHA512224 File hash matches 테스트")
+    void fileHashMatchesTest() throws Exception {
+        fileHashMatchesTest(new SHA512224(), Algorithm.SHA512224);
     }
 
     @Test
-    @DisplayName("base64 인코딩 테스트")
-    void base64EncodeTest() {
-        OneWayEncryption owe = new SHA512224();
-        encryptedDataBase64EncodeTest(owe);
-    }
-
-    @RepeatedTest(100)
-    @DisplayName("SHA-512/224 알고리즘 암호화 테스트")
-    void sha512EncryptTest(RepetitionInfo repetitionInfo) {
-        OneWayEncryption owe = new SHA512224();
-        encryptWithoutSaltTest(owe, repetitionInfo);
-    }
-
-    @RepeatedTest(100)
-    @DisplayName("SHA-512/224 알고리즘 + 소금치기 암호화 테스트")
-    void sha512EncryptWithSaltTest(RepetitionInfo repetitionInfo) {
-        OneWayEncryption owe = new SHA512224();
-        encryptWithSaltTest(owe, repetitionInfo);
+    @DisplayName("SHA512224 password encode 테스트")
+    void passwordEncrypt() {
+        passwordEncryptAndMatchesTest(new SHA512224());
     }
 }

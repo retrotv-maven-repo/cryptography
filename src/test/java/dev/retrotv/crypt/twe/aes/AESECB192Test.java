@@ -1,6 +1,6 @@
 package dev.retrotv.crypt.twe.aes;
 
-import dev.retrotv.crypt.TwoWayEncryption;
+import dev.retrotv.crypt.twe.TwoWayEncryption;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.RepetitionInfo;
