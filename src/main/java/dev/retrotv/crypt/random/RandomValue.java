@@ -2,6 +2,7 @@ package dev.retrotv.crypt.random;
 
 import dev.retrotv.crypt.exception.RandomValueGenerateException;
 
+import java.security.SecureRandom;
 import java.util.Optional;
 
 /**
@@ -144,7 +145,8 @@ public class RandomValue {
                 sb = new StringBuilder();
 
                 for(int i=0; i<len; i++) {
-                    int random = (int) (Math.random() * range);
+                    SecureRandom sr = new SecureRandom();
+                    int random = sr.nextInt(range);
                     sb.append(LOW_STRENGTH_CHARS[random]);
                 }
 
@@ -156,7 +158,8 @@ public class RandomValue {
                 sb = new StringBuilder();
 
                 for(int i=0; i<len; i++) {
-                    int random = (int) (Math.random() * range);
+                    SecureRandom sr = new SecureRandom();
+                    int random = sr.nextInt(range);
                     sb.append(MIDDLE_STRENGTH_CHARS[random]);
                 }
 
@@ -168,7 +171,8 @@ public class RandomValue {
                 sb = new StringBuilder();
 
                 for(int i=0; i<len; i++) {
-                    int random = (int) (Math.random() * range);
+                    SecureRandom sr = new SecureRandom();
+                    int random = sr.nextInt(range);
                     sb.append(HIGH_STRENGTH_CHARS[random]);
                 }
 
