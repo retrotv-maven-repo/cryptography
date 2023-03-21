@@ -134,10 +134,11 @@ public class RandomValue {
     public static String generate(SecurityStrength securityStrength, int len) {
         Optional.ofNullable(securityStrength)
                 .orElseThrow(() -> new RandomValueGenerateException("securityStrength는 null 일 수 없습니다."));
-        String randomValue = null;
 
         int range;
         StringBuilder sb;
+        String randomValue = null;
+        SecureRandom sr = new SecureRandom();
 
         switch (securityStrength) {
             case LOW:
@@ -145,7 +146,6 @@ public class RandomValue {
                 sb = new StringBuilder();
 
                 for(int i=0; i<len; i++) {
-                    SecureRandom sr = new SecureRandom();
                     int random = sr.nextInt(range);
                     sb.append(LOW_STRENGTH_CHARS[random]);
                 }
@@ -158,7 +158,6 @@ public class RandomValue {
                 sb = new StringBuilder();
 
                 for(int i=0; i<len; i++) {
-                    SecureRandom sr = new SecureRandom();
                     int random = sr.nextInt(range);
                     sb.append(MIDDLE_STRENGTH_CHARS[random]);
                 }
@@ -171,7 +170,6 @@ public class RandomValue {
                 sb = new StringBuilder();
 
                 for(int i=0; i<len; i++) {
-                    SecureRandom sr = new SecureRandom();
                     int random = sr.nextInt(range);
                     sb.append(HIGH_STRENGTH_CHARS[random]);
                 }
