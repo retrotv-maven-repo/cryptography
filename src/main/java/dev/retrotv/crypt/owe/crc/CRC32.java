@@ -2,18 +2,18 @@ package dev.retrotv.crypt.owe.crc;
 
 import dev.retrotv.crypt.Encode;
 import dev.retrotv.crypt.owe.Checksum;
-import dev.retrotv.crypt.owe.Password;
+import dev.retrotv.crypt.owe.PasswordWithSalt;
 
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 
 /**
- * CRC-32 알고리즘으로 암호화 하기 위한 {@link Checksum}, {@link Password} 인터페이스의 구현체 입니다.
+ * CRC-32 알고리즘으로 암호화 하기 위한 {@link Checksum}, {@link PasswordWithSalt} 인터페이스의 구현체 입니다.
  *
  * @author  yjj8353
  * @since   1.8
  */
-public class CRC32 implements Checksum, Password {
+public class CRC32 implements Checksum, PasswordWithSalt {
 
     @Override
     public String encode(byte[] data) {

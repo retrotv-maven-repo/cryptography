@@ -1,7 +1,6 @@
 package dev.retrotv.crypt.owe.scrypt;
 
 import dev.retrotv.crypt.owe.OWETest;
-import dev.retrotv.crypt.owe.argon2.Argon2;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

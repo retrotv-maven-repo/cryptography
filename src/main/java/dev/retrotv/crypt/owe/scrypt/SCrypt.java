@@ -1,7 +1,6 @@
 package dev.retrotv.crypt.owe.scrypt;
 
 import dev.retrotv.crypt.owe.Password;
-import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 
 public class SCrypt implements Password {
