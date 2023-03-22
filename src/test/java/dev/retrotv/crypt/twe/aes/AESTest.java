@@ -51,7 +51,7 @@ public class AESTest extends Log {
 
         /*
          * 반복된 테스트의 암호화 된 메시지를 List<String>에 저장하고 마지막 테스트에서 중복된 값이 있는지 체크합니다.
-         * 중복된 값이 나온다면, Key 생성 알고리즘의 랜덤성에 문제가 있는 것이므로 Key 생성 알고리즘을 보완해야 합니다.
+         * 중복된 값이 나온다면, Key 생성 알고리즘의 무작위성에 문제가 있는 것이므로 Key 생성 알고리즘을 보완해야 합니다.
          */
         encryptedData.add(encryptedMessage);
         if(repetitionInfo.getCurrentRepetition() == repetitionInfo.getTotalRepetitions()) {
