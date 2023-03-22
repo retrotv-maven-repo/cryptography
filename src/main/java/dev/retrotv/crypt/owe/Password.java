@@ -1,6 +1,5 @@
 package dev.retrotv.crypt.owe;
 
-import dev.retrotv.crypt.exception.CryptFailException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 public interface Password extends PasswordEncoder {

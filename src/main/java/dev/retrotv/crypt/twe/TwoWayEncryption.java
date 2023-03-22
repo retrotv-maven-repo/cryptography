@@ -26,10 +26,10 @@ public interface TwoWayEncryption {
      */
     default String encrypt(String text, String key) throws CryptFailException {
         Optional.ofNullable(text).orElseThrow(() ->
-                new CryptFailException("암호화 할 문자열 및 데이터는 null 일 수 없습니다."));
+                new NullPointerException("암호화 할 문자열 및 데이터는 null 일 수 없습니다."));
 
         Optional.ofNullable(key).orElseThrow(() ->
-                new CryptFailException("암호화 시, 사용할 키가 존재하지 않습니다."));
+                new NullPointerException("암호화 시, 사용할 키가 존재하지 않습니다."));
 
         byte[] data = text.getBytes(StandardCharsets.UTF_8);
         byte[] keyData = key.getBytes(StandardCharsets.UTF_8);
@@ -59,10 +59,10 @@ public interface TwoWayEncryption {
      */
     default String decrypt(String encryptedText, String key) throws CryptFailException {
         Optional.ofNullable(encryptedText).orElseThrow(() ->
-                new CryptFailException("복호화 할 문자열 및 데이터는 null 일 수 없습니다."));
+                new NullPointerException("복호화 할 문자열 및 데이터는 null 일 수 없습니다."));
 
         Optional.ofNullable(key).orElseThrow(() ->
-                new CryptFailException("복호화 시, 사용할 키가 존재하지 않습니다."));
+                new NullPointerException("복호화 시, 사용할 키가 존재하지 않습니다."));
 
         byte[] data = Base64.getDecoder().decode(encryptedText.getBytes(StandardCharsets.UTF_8));
         byte[] keyData = key.getBytes(StandardCharsets.UTF_8);
