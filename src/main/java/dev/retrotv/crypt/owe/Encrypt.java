@@ -19,7 +19,7 @@ public class Encrypt {
      * 지정된 {@link Algorithm} 유형으로 데이터를 암호화 하고, 암호화 된 데이터를 반환 합니다.
      *
      * @param algorithm 암호화 시, 사용할 알고리즘
-     * @param data      암호화 할 데이터
+     * @param data 암호화 할 데이터
      * @return 암호화 된 데이터
      * @throws CryptFailException data가 null 일 경우 발생
      * @throws CryptFailException 암호화가 정상적으로 진행되지 않았을 경우 발생
