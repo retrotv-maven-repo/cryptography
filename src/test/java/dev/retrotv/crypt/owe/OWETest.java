@@ -90,11 +90,6 @@ public class OWETest extends Log {
                 return checksum.encode(fileData);
             }
 
-            case MD4: {
-                Checksum checksum = new MD4();
-                return checksum.encode(fileData);
-            }
-
             case MD5: {
                 Checksum checksum = new MD5();
                 return checksum.encode(fileData);
@@ -146,7 +141,6 @@ public class OWETest extends Log {
         switch (algorithm) {
             case CRC32: return file1.getString(Algorithm.CRC32.label());
             case MD2: return file1.getString(Algorithm.MD2.label());
-            case MD4: return file1.getString(Algorithm.MD4.label());
             case MD5: return file1.getString(Algorithm.MD5.label());
             case SHA1: return file1.getString(Algorithm.SHA1.label());
             case SHA224: return file1.getString(Algorithm.SHA224.label());

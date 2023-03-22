@@ -32,12 +32,7 @@ public class Encrypt {
         MessageDigest md;
 
         try {
-            if (Algorithm.MD4.equals(algorithm)) {
-                md = sun.security.provider.MD4.getInstance();
-            } else {
-                md = MessageDigest.getInstance(algorithm.label());
-            }
-
+            md = MessageDigest.getInstance(algorithm.label());
             md.update(data);
 
             return md.digest();

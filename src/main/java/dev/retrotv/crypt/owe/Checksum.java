@@ -1,7 +1,5 @@
 package dev.retrotv.crypt.owe;
 
-import dev.retrotv.crypt.exception.CryptFailException;
-
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.IOException;
