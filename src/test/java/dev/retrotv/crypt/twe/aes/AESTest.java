@@ -1,6 +1,7 @@
 package dev.retrotv.crypt.twe.aes;
 
 import dev.retrotv.common.Log;
+import dev.retrotv.crypt.exception.CryptFailException;
 import dev.retrotv.crypt.twe.TwoWayEncryption;
 import dev.retrotv.crypt.random.SecurityStrength;
 import org.junit.jupiter.api.RepetitionInfo;
@@ -14,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class AESTest extends Log {
     protected static final Set<String> encryptedData = new HashSet<>();
 
-    void encryptedDataWithIVTest(AESCBC aescbc) {
+    void encryptedDataWithIVTest(AESCBC aescbc) throws CryptFailException {
         String message = "The lazy dog jumps over the brown fox!";
         String key = aescbc.generateKey(SecurityStrength.HIGH);
         IvParameterSpec iv = aescbc.generateInitializationVector(SecurityStrength.HIGH);
@@ -25,7 +26,7 @@ public class AESTest extends Log {
         assertEquals(message, decryptedMessage);
     }
 
-    void encryptDecryptTest(TwoWayEncryption twe, RepetitionInfo repetitionInfo) {
+    void encryptDecryptTest(TwoWayEncryption twe, RepetitionInfo repetitionInfo) throws CryptFailException {
         log.info("암호화 알고리즘: " + twe.getClass().getSimpleName());
 
         String message = "The lazy dog jumps over the brown fox!";
@@ -51,7 +52,7 @@ public class AESTest extends Log {
 
         /*
          * 반복된 테스트의 암호화 된 메시지를 List<String>에 저장하고 마지막 테스트에서 중복된 값이 있는지 체크합니다.
-         * 중복된 값이 나온다면, Key 생성 알고리즘의 랜덤성에 문제가 있는 것이므로 Key 생성 알고리즘을 보완해야 합니다.
+         * 중복된 값이 나온다면, Key 생성 알고리즘의 무작위성에 문제가 있는 것이므로 Key 생성 알고리즘을 보완해야 합니다.
          */
         encryptedData.add(encryptedMessage);
         if(repetitionInfo.getCurrentRepetition() == repetitionInfo.getTotalRepetitions()) {

@@ -2,15 +2,18 @@ package dev.retrotv.crypt.random;
 
 import dev.retrotv.crypt.exception.RandomValueGenerateException;
 
+import java.security.SecureRandom;
 import java.util.Optional;
 
 /**
- * 랜덤한 값을 생성하기 위한 기능성 클래스 입니다.
+ * 무작위 값을 생성하기 위한 기능성 클래스 입니다.
  *
  * @author  yjj8353
  * @since   1.8
  */
 public class RandomValue {
+    private static final int DEFAULT_LENGTH = 16;
+    private static final SecurityStrength DEFAULT_SECURITY_STRENGTH = SecurityStrength.MIDDLE;
 
     private static final char[] CAPITAL_LETTERS = {
         'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
@@ -123,20 +126,64 @@ public class RandomValue {
     }
 
     /**
-     * {@link SecurityStrength}, len 값을 바탕으로 랜덤 값을 생성하고 반환 합니다.
+     * 무작위 값을 생성하고 반환 합니다.
+     * SecurityStrength는 기본 값(DEFAULT_SECURITY_STRENGTH)으로 설정됩니다.
+     * len은 기본 값(DEFAULT_LENGTH)으로 설정됩니다.
      *
-     * @exception RandomValueGenerateException 매개변수 {@link SecurityStrength} 값이 null이거나, 랜덤 값이 정상적으로 생성되지 않은 경우 발생
+     * @exception RandomValueGenerateException 매개변수 len이 0보다 작거나, 무작위 값이 정상적으로 생성되지 않은 경우 발생
+     * @return 생성된 무작위 값
+     */
+    public static String generate() {
+        return generate(DEFAULT_SECURITY_STRENGTH, DEFAULT_LENGTH);
+    }
+
+    /**
+     * len 값을 바탕으로 무작위 값을 생성하고 반환 합니다.
+     * SecurityStrength는 기본 값(DEFAULT_SECURITY_STRENGTH)으로 설정됩니다.
+     *
+     * @exception RandomValueGenerateException 매개변수 len이 0보다 작거나, 무작위 값이 정상적으로 생성되지 않은 경우 발생
+     * @param len 생성할 무작위 값 길이
+     * @return 생성된 무작위 값
+     */
+    public static String generate(int len) {
+        return generate(DEFAULT_SECURITY_STRENGTH, len);
+    }
+
+    /**
+     * {@link SecurityStrength} 값을 바탕으로 무작위 값을 생성하고 반환 합니다.
+     * SecurityStrength가 null인 경우 기본 값(DEFAULT_SECURITY_STRENGTH)으로 설정됩니다.
+     * len은 기본 값(DEFAULT_LENGTH)으로 설정됩니다.
+     *
+     * @exception RandomValueGenerateException 매개변수 len이 0보다 작거나, 무작위 값이 정상적으로 생성되지 않은 경우 발생
      * @param securityStrength 보안 강도: {@link SecurityStrength} 참조
-     * @param len 생성할 랜덤 값 길이
-     * @return 생성된 랜덤 값
+     * @return 생성된 무작위 값
+     */
+    public static String generate(SecurityStrength securityStrength) {
+        return generate(securityStrength, DEFAULT_LENGTH);
+    }
+
+    /**
+     * {@link SecurityStrength}, len 값을 바탕으로 무작위 값을 생성하고 반환 합니다.
+     * SecurityStrength가 null인 경우 기본 값(DEFAULT_SECURITY_STRENGTH)으로 설정됩니다.
+     *
+     * @exception RandomValueGenerateException 매개변수 len이 0보다 작거나, 무작위 값이 정상적으로 생성되지 않은 경우 발생
+     * @param securityStrength 보안 강도: {@link SecurityStrength} 참조
+     * @param len 생성할 무작위 값 길이
+     * @return 생성된 무작위 값
      */
     public static String generate(SecurityStrength securityStrength, int len) {
-        Optional.ofNullable(securityStrength)
-                .orElseThrow(() -> new RandomValueGenerateException("securityStrength는 null 일 수 없습니다."));
-        String randomValue = null;
+        if (len < 0) {
+            throw new RandomValueGenerateException("생성할 무작위 값 길이 len은 0보다 작을 수 없습니다.");
+        }
+
+        if (securityStrength == null) {
+            securityStrength = DEFAULT_SECURITY_STRENGTH;
+        }
 
         int range;
         StringBuilder sb;
+        String randomValue = null;
+        SecureRandom sr = new SecureRandom();
 
         switch (securityStrength) {
             case LOW:
@@ -144,7 +191,7 @@ public class RandomValue {
                 sb = new StringBuilder();
 
                 for(int i=0; i<len; i++) {
-                    int random = (int) (Math.random() * range);
+                    int random = sr.nextInt(range);
                     sb.append(LOW_STRENGTH_CHARS[random]);
                 }
 
@@ -156,7 +203,7 @@ public class RandomValue {
                 sb = new StringBuilder();
 
                 for(int i=0; i<len; i++) {
-                    int random = (int) (Math.random() * range);
+                    int random = sr.nextInt(range);
                     sb.append(MIDDLE_STRENGTH_CHARS[random]);
                 }
 
@@ -168,7 +215,7 @@ public class RandomValue {
                 sb = new StringBuilder();
 
                 for(int i=0; i<len; i++) {
-                    int random = (int) (Math.random() * range);
+                    int random = sr.nextInt(range);
                     sb.append(HIGH_STRENGTH_CHARS[random]);
                 }
 

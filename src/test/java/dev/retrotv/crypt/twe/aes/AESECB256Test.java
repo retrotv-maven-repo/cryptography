@@ -1,5 +1,6 @@
 package dev.retrotv.crypt.twe.aes;
 
+import dev.retrotv.crypt.exception.CryptFailException;
 import dev.retrotv.crypt.twe.TwoWayEncryption;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
@@ -13,7 +14,7 @@ public class AESECB256Test extends AESTest {
 
     @DisplayName("AES-256 ECB 알고리즘 암복호화 테스트")
     @RepeatedTest(value = 100, name = "{currentRepetition}/{totalRepetitions}")
-    void AESECB256EncryptDecryptTest(RepetitionInfo repetitionInfo) {
+    void AESECB256EncryptDecryptTest(RepetitionInfo repetitionInfo) throws CryptFailException {
         TwoWayEncryption twe = new AESECB256();
         encryptDecryptTest(twe, repetitionInfo);
     }

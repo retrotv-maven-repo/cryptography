@@ -13,7 +13,7 @@ public interface Checksum {
 
     default boolean matches(byte[] data, String checksum) {
         if (data == null || checksum == null) {
-            throw new CryptFailException("비교할 data 혹은 checksum 값이 null 입니다.");
+            throw new NullPointerException("비교할 data 혹은 checksum 값이 null 입니다.");
         }
 
         return checksum.equals(encode(data));
@@ -21,7 +21,7 @@ public interface Checksum {
 
     default boolean matches(File file, String checksum) throws IOException {
         if (file == null || checksum == null) {
-            throw new CryptFailException("비교할 file 혹은 checksum 값이 null 입니다.");
+            throw new NullPointerException("비교할 file 혹은 checksum 값이 null 입니다.");
         }
 
         byte[] fileData;
@@ -38,7 +38,7 @@ public interface Checksum {
 
     default boolean matches(byte[] data1, byte[] data2) {
         if (data1 == null || data2 == null) {
-            throw new CryptFailException("비교할 데이터가 null 입니다.");
+            throw new NullPointerException("비교할 데이터가 null 입니다.");
         }
 
         return encode(data1).equals(encode(data2));
@@ -46,7 +46,7 @@ public interface Checksum {
 
     default boolean matches(File file1, File file2) throws IOException {
         if (file1 == null || file2 == null) {
-            throw new CryptFailException("비교할 파일이 null 입니다.");
+            throw new NullPointerException("비교할 파일이 null 입니다.");
         }
 
         byte[] file1Data;

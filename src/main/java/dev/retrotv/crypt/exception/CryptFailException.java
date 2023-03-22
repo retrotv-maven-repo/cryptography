@@ -6,7 +6,7 @@ package dev.retrotv.crypt.exception;
  * @author  yjj8353
  * @since   1.8
  */
-public class CryptFailException extends RuntimeException {
+public class CryptFailException extends Exception {
 
     public CryptFailException() {
         super();

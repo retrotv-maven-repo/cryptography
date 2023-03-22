@@ -4,11 +4,11 @@ import dev.retrotv.crypt.Algorithm;
 import dev.retrotv.crypt.Encode;
 import dev.retrotv.crypt.owe.Checksum;
 import dev.retrotv.crypt.owe.Encrypt;
-import dev.retrotv.crypt.owe.Password;
+import dev.retrotv.crypt.owe.PasswordWithSalt;
 
 import java.nio.charset.StandardCharsets;
 
-public class MD4 extends Encrypt implements Checksum, Password {
+public class MD4 extends Encrypt implements Checksum, PasswordWithSalt {
 
     @Override
     public String encode(byte[] data) {
