@@ -19,15 +19,15 @@ public interface PasswordWithSalt extends Password {
     }
 
     default String generateSalt() {
-        return RandomValue.generate(SecurityStrength.MIDDLE, 16);
+        return RandomValue.generate();
     }
 
     default String generateSalt(int length) {
-        return RandomValue.generate(SecurityStrength.MIDDLE, length);
+        return RandomValue.generate(length);
     }
 
     default String generateSalt(SecurityStrength securityStrength) {
-        return RandomValue.generate(securityStrength, 16);
+        return RandomValue.generate(securityStrength);
     }
 
     default String generateSalt(SecurityStrength securityStrength, int length) {

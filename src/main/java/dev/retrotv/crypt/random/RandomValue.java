@@ -12,6 +12,8 @@ import java.util.Optional;
  * @since   1.8
  */
 public class RandomValue {
+    private static final int DEFAULT_LENGTH = 16;
+    private static final SecurityStrength DEFAULT_SECURITY_STRENGTH = SecurityStrength.MIDDLE;
 
     private static final char[] CAPITAL_LETTERS = {
         'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
@@ -121,6 +123,18 @@ public class RandomValue {
         );
 
         return chars;
+    }
+
+    public static String generate() {
+        return generate(DEFAULT_SECURITY_STRENGTH, DEFAULT_LENGTH);
+    }
+
+    public static String generate(int len) {
+        return generate(DEFAULT_SECURITY_STRENGTH, len);
+    }
+
+    public static String generate(SecurityStrength securityStrength) {
+        return generate(securityStrength, DEFAULT_LENGTH);
     }
 
     /**
