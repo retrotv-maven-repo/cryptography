@@ -60,9 +60,9 @@ public abstract class AESCBC implements TwoWayEncryption {
      * @param key 암호화 시, 사용할 키
      * @return 암호화 된 문자열
      */
-    public String encrypt(String text, String key, IvParameterSpec iv) {
+    public String encrypt(String text, String key, IvParameterSpec iv) throws CryptFailException {
         Optional.ofNullable(text).orElseThrow(() ->
-                new CryptFailException("암호화 할 문자열 및 데이터는 null 일 수 없습니다."));
+                new NullPointerException("암호화 할 문자열 및 데이터는 null 일 수 없습니다."));
 
         Optional.ofNullable(key).orElseThrow(() ->
                 new CryptFailException("암호화 시, 사용할 키가 존재하지 않습니다."));
@@ -74,9 +74,9 @@ public abstract class AESCBC implements TwoWayEncryption {
     }
 
     @Override
-    public byte[] encrypt(byte[] data, byte[] key) {
+    public byte[] encrypt(byte[] data, byte[] key) throws CryptFailException {
         Optional.ofNullable(data).orElseThrow(() ->
-                new CryptFailException("암호화 할 문자열 및 데이터는 null 일 수 없습니다."));
+                new NullPointerException("암호화 할 문자열 및 데이터는 null 일 수 없습니다."));
 
         Optional.ofNullable(key).orElseThrow(() ->
                 new CryptFailException("암호화 시, 사용할 키가 존재하지 않습니다."));
@@ -101,15 +101,15 @@ public abstract class AESCBC implements TwoWayEncryption {
      * @param key 암호화 시, 사용할 키
      * @return 암호화 된 데이터
      */
-    public byte[] encrypt(byte[] data, byte[] key, IvParameterSpec iv) {
+    public byte[] encrypt(byte[] data, byte[] key, IvParameterSpec iv) throws CryptFailException {
         Optional.ofNullable(data).orElseThrow(() ->
-                new CryptFailException("암호화 할 문자열 및 데이터는 null 일 수 없습니다."));
+                new NullPointerException("암호화 할 문자열 및 데이터는 null 일 수 없습니다."));
 
         Optional.ofNullable(key).orElseThrow(() ->
-                new CryptFailException("암호화 시, 사용할 키가 존재하지 않습니다."));
+                new NullPointerException("암호화 시, 사용할 키가 존재하지 않습니다."));
 
         Optional.ofNullable(iv).orElseThrow(() ->
-                new CryptFailException("초기화 벡터 값이 존재하지 않습니다."));
+                new NullPointerException("초기화 벡터 값이 존재하지 않습니다."));
 
         SecretKeySpec secretKey = new SecretKeySpec(key, "AES");
         byte[] encryptedData = null;
@@ -147,12 +147,12 @@ public abstract class AESCBC implements TwoWayEncryption {
      * @param key 복호화 시, 사용할 키
      * @return 복호화 된 문자열
      */
-    public String decrypt(String encryptedText, String key, IvParameterSpec iv) {
+    public String decrypt(String encryptedText, String key, IvParameterSpec iv) throws CryptFailException {
         Optional.ofNullable(encryptedText).orElseThrow(() ->
-                new CryptFailException("암호화 할 문자열 및 데이터는 null 일 수 없습니다."));
+                new NullPointerException("암호화 할 문자열 및 데이터는 null 일 수 없습니다."));
 
         Optional.ofNullable(key).orElseThrow(() ->
-                new CryptFailException("암호화 시, 사용할 키가 존재하지 않습니다."));
+                new NullPointerException("암호화 시, 사용할 키가 존재하지 않습니다."));
 
         byte[] data = Base64.getDecoder().decode(encryptedText.getBytes(StandardCharsets.UTF_8));
         byte[] keyData = key.getBytes(StandardCharsets.UTF_8);
@@ -161,7 +161,7 @@ public abstract class AESCBC implements TwoWayEncryption {
     }
 
     @Override
-    public byte[] decrypt(byte[] encryptedData, byte[] key) {
+    public byte[] decrypt(byte[] encryptedData, byte[] key) throws CryptFailException {
         Optional.ofNullable(encryptedData).orElseThrow(() ->
                 new CryptFailException("암호화 할 문자열 및 데이터는 null 일 수 없습니다."));
 
@@ -188,15 +188,15 @@ public abstract class AESCBC implements TwoWayEncryption {
      * @param key 복호화 시, 사용할 키
      * @return 복호화 된 데이터
      */
-    public byte[] decrypt(byte[] encryptedData, byte[] key, IvParameterSpec iv) {
+    public byte[] decrypt(byte[] encryptedData, byte[] key, IvParameterSpec iv) throws CryptFailException {
         Optional.ofNullable(encryptedData).orElseThrow(() ->
-                new CryptFailException("복호화 할 문자열 및 데이터는 null 일 수 없습니다."));
+                new NullPointerException("복호화 할 문자열 및 데이터는 null 일 수 없습니다."));
 
         Optional.ofNullable(key).orElseThrow(() ->
-                new CryptFailException("복호화 시, 사용할 키가 존재하지 않습니다."));
+                new NullPointerException("복호화 시, 사용할 키가 존재하지 않습니다."));
 
         Optional.ofNullable(iv).orElseThrow(() ->
-                new CryptFailException("초기화 벡터 값이 존재하지 않습니다."));
+                new NullPointerException("초기화 벡터 값이 존재하지 않습니다."));
 
         SecretKeySpec secretKey = new SecretKeySpec(key, "AES");
         byte[] decryptedData = null;

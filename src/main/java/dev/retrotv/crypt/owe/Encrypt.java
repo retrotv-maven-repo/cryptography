@@ -26,7 +26,7 @@ public class Encrypt {
      */
     protected byte[] encrypt(Algorithm algorithm, byte[] data) {
         Optional.ofNullable(data).orElseThrow(() ->
-                new CryptFailException("암호화 할 문자열 및 데이터는 null 일 수 없습니다."));
+                new NullPointerException("암호화 할 문자열 및 데이터가 null 입니다."));
 
         MessageDigest md;
 
@@ -42,6 +42,6 @@ public class Encrypt {
             return md.digest();
         } catch (NoSuchAlgorithmException ignored) { }
 
-        throw new CryptFailException("암호화가 정상적으로 진행되지 않았습니다.");
+        throw new RuntimeException("암호화가 정상적으로 진행되지 않았습니다.");
     }
 }

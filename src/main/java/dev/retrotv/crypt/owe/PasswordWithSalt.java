@@ -12,7 +12,7 @@ public interface PasswordWithSalt extends Password {
 
     default boolean matches(CharSequence rawPassword, CharSequence salt, String encodedPassword) {
         if (rawPassword == null || salt == null || encodedPassword == null) {
-            throw new CryptFailException("비교할 password, salt 혹은 encodedPassword 값이 null 입니다.");
+            throw new NullPointerException("비교할 password, salt 혹은 encodedPassword 값이 null 입니다.");
         }
 
         return matches(String.join(rawPassword, salt), encodedPassword);

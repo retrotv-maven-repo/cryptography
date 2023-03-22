@@ -24,7 +24,7 @@ public interface TwoWayEncryption {
      * @param key 암호화 시, 사용할 키
      * @return 암호화 된 문자열
      */
-    default String encrypt(String text, String key) {
+    default String encrypt(String text, String key) throws CryptFailException {
         Optional.ofNullable(text).orElseThrow(() ->
                 new CryptFailException("암호화 할 문자열 및 데이터는 null 일 수 없습니다."));
 
@@ -46,7 +46,7 @@ public interface TwoWayEncryption {
      * @param key 암호화 시, 사용할 키
      * @return 암호화 된 문자열
      */
-    byte[] encrypt(byte[] data, byte[] key);
+    byte[] encrypt(byte[] data, byte[] key) throws CryptFailException;
 
     /**
      * 암호화 된 문자열을 복호화 하고, 복호화 된 문자열을 반환 합니다.
@@ -57,7 +57,7 @@ public interface TwoWayEncryption {
      * @param key 복호화 시, 사용할 키
      * @return 복호화 된 문자열
      */
-    default String decrypt(String encryptedText, String key) {
+    default String decrypt(String encryptedText, String key) throws CryptFailException {
         Optional.ofNullable(encryptedText).orElseThrow(() ->
                 new CryptFailException("복호화 할 문자열 및 데이터는 null 일 수 없습니다."));
 
@@ -78,7 +78,7 @@ public interface TwoWayEncryption {
      * @param key 복호화 시, 사용할 키
      * @return 복호화 된 데이터
      */
-    byte[] decrypt(byte[] encryptedData, byte[] key);
+    byte[] decrypt(byte[] encryptedData, byte[] key) throws CryptFailException;
 
     /**
      * 암복호화 시, 사용할 키를 생성합니다.
