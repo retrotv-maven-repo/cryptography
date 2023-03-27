@@ -7,11 +7,11 @@ public class SCrypt implements Password {
 
     private final SCryptPasswordEncoder scrypt;
 
-    SCrypt() {
+    public SCrypt() {
         scrypt = SCryptPasswordEncoder.defaultsForSpringSecurity_v5_8();
     }
 
-    SCrypt(int cpuCost, int memoryCost, int parallelization, int keyLength, int saltLength) {
+    public SCrypt(int cpuCost, int memoryCost, int parallelization, int keyLength, int saltLength) {
         scrypt = new SCryptPasswordEncoder(cpuCost, memoryCost, parallelization, keyLength, saltLength);
     }
 

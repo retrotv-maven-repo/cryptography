@@ -7,8 +7,19 @@ import java.nio.file.Files;
 
 public interface Checksum {
 
+    /**
+     *
+     * @param data
+     * @return
+     */
     String encode(byte[] data);
 
+    /**
+     *
+     * @param data
+     * @param checksum
+     * @return
+     */
     default boolean matches(byte[] data, String checksum) {
         if (data == null || checksum == null) {
             throw new NullPointerException("비교할 data 혹은 checksum 값이 null 입니다.");
@@ -17,6 +28,13 @@ public interface Checksum {
         return checksum.equals(encode(data));
     }
 
+    /**
+     *
+     * @param file
+     * @param checksum
+     * @return
+     * @throws IOException
+     */
     default boolean matches(File file, String checksum) throws IOException {
         if (file == null || checksum == null) {
             throw new NullPointerException("비교할 file 혹은 checksum 값이 null 입니다.");

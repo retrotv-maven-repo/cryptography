@@ -8,31 +8,31 @@ import java.security.SecureRandom;
 public class BCrypt implements Password {
     private final BCryptPasswordEncoder bcpe;
 
-    BCrypt() {
+    public BCrypt() {
         bcpe = new BCryptPasswordEncoder();
     }
 
-    BCrypt(int strength) {
+    public BCrypt(int strength) {
         bcpe = new BCryptPasswordEncoder(strength);
     }
 
-    BCrypt(BCryptPasswordEncoder.BCryptVersion version) {
+    public BCrypt(BCryptPasswordEncoder.BCryptVersion version) {
         bcpe = new BCryptPasswordEncoder(version);
     }
 
-    BCrypt(BCryptPasswordEncoder.BCryptVersion version, SecureRandom random) {
+    public BCrypt(BCryptPasswordEncoder.BCryptVersion version, SecureRandom random) {
         bcpe = new BCryptPasswordEncoder(version, random);
     }
 
-    BCrypt(int strength, SecureRandom random) {
+    public BCrypt(int strength, SecureRandom random) {
         bcpe = new BCryptPasswordEncoder(strength, random);
     }
 
-    BCrypt(BCryptPasswordEncoder.BCryptVersion version, int strength) {
+    public BCrypt(BCryptPasswordEncoder.BCryptVersion version, int strength) {
         bcpe = new BCryptPasswordEncoder(version, strength);
     }
 
-    BCrypt(BCryptPasswordEncoder.BCryptVersion version, int strength, SecureRandom random) {
+    public BCrypt(BCryptPasswordEncoder.BCryptVersion version, int strength, SecureRandom random) {
         bcpe = new BCryptPasswordEncoder(version, strength, random);
     }
 

@@ -32,6 +32,11 @@ public enum Algorithm {
         this.label = label;
     }
 
+    /**
+     * 알고리즘의 label(이름)을 반환합니다.
+     *
+     * @return 알고리즘 명
+     */
     public String label() {
         return label;
     }

@@ -6,11 +6,11 @@ import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
 public class Argon2 implements Password {
     private final Argon2PasswordEncoder a2pe;
 
-    Argon2() {
+    public Argon2() {
         a2pe = Argon2PasswordEncoder.defaultsForSpringSecurity_v5_8();
     }
 
-    Argon2(int saltLength, int hashLength, int parallelism, int memory, int iterations) {
+    public Argon2(int saltLength, int hashLength, int parallelism, int memory, int iterations) {
         a2pe = new Argon2PasswordEncoder(saltLength, hashLength, parallelism, memory, iterations);
     }
 
