@@ -1,10 +1,18 @@
 package dev.retrotv.crypt.owe;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 
+/**
+ * 체크섬 클래스 구현을 위한 인터페이스 입니다.
+ *
+ * @author  yjj8353
+ * @since   1.8
+ */
 public interface Checksum {
 
     /**

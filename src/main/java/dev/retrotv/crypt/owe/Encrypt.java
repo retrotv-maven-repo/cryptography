@@ -14,7 +14,7 @@ import java.util.Optional;
  */
 public class Encrypt {
     private static final String WARNING_MESSAGE =
-            "이 예외는 기본적으로 발생하지 않습니다, 발생한다면 다음 사항을 확인하십시오."
+            "이 예외는 기본적으로 발생하지 않습니다, 만약 예외가 발생한다면 다음 사항을 확인하십시오."
           + "\n1. 빌드 한 JAVA version에서 지원하지 않는 MessageDigest 알고리즘을 사용하는지 확인하십시오."
           + "\n2. MessageDigest를 사용하지 않는 암호화 알고리즘의 경우, 해당 암호화 로직이 정상적으로 동작하는지 확인하십시오.";
 
