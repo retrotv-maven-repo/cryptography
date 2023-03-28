@@ -57,6 +57,7 @@ public interface Checksum {
     }
 
     /**
+     * file을 해시해 체크섬을 생성한 뒤, 비교할 checksum과 일치하는지 확인하고 일치 여부를 반환합니다.
      *
      * @param file 해시 할 파일
      * @param checksum 비교할 체크섬
@@ -81,6 +82,7 @@ public interface Checksum {
     }
 
     /**
+     * data1, data2를 해시해 체크섬을 생성한 뒤, 두 체크섬이 일치하는지 확인하고 일치 여부를 반환합니다.
      *
      * @param data1 해시 할 데이터
      * @param data2 해시 할 데이터
@@ -95,6 +97,7 @@ public interface Checksum {
     }
 
     /**
+     * file1, file2를 해시해 체크섬을 생성한 뒤, 두 체크섬이 일치하는지 확인하고 일치 여부를 반환합니다.
      *
      * @param file1 해시 할 파일
      * @param file2 해시 할 파일
