@@ -7,9 +7,10 @@ public interface PasswordWithSalt extends Password {
 
     /**
      *
-     * @param rawPassword
-     * @param salt
-     * @return
+     *
+     * @param rawPassword 암호화 할 패스워드
+     * @param salt 소금
+     * @return 암호화 된 문자열
      */
     default String encode(CharSequence rawPassword, CharSequence salt) {
         return encode(String.join(rawPassword, salt));
@@ -17,10 +18,11 @@ public interface PasswordWithSalt extends Password {
 
     /**
      *
-     * @param rawPassword
-     * @param salt
-     * @param encodedPassword
-     * @return
+     *
+     * @param rawPassword 암호화 할 패스워드
+     * @param salt 소금
+     * @param encodedPassword 비교할 암호화 된 문자열
+     * @return 일치 여부
      */
     default boolean matches(CharSequence rawPassword, CharSequence salt, String encodedPassword) {
         if (rawPassword == null || salt == null || encodedPassword == null) {
@@ -32,7 +34,8 @@ public interface PasswordWithSalt extends Password {
 
     /**
      *
-     * @return
+     *
+     * @return 생성된 소금
      */
     default String generateSalt() {
         return RandomValue.generate();
@@ -40,8 +43,9 @@ public interface PasswordWithSalt extends Password {
 
     /**
      *
-     * @param length
-     * @return
+     *
+     * @param length 생성할 소금의 길이
+     * @return 생성된 소금
      */
     default String generateSalt(int length) {
         return RandomValue.generate(length);
@@ -49,8 +53,9 @@ public interface PasswordWithSalt extends Password {
 
     /**
      *
-     * @param securityStrength
-     * @return
+     *
+     * @param securityStrength 보안 강도, {@link SecurityStrength} 참조
+     * @return 생성된 소금
      */
     default String generateSalt(SecurityStrength securityStrength) {
         return RandomValue.generate(securityStrength);
@@ -58,9 +63,10 @@ public interface PasswordWithSalt extends Password {
 
     /**
      *
-     * @param securityStrength
-     * @param length
-     * @return
+     *
+     * @param securityStrength 보안 강도, {@link SecurityStrength} 참조
+     * @param length 생성할 소금의 길이
+     * @return 생성된 소금
      */
     default String generateSalt(SecurityStrength securityStrength, int length) {
         return RandomValue.generate(securityStrength, length);
