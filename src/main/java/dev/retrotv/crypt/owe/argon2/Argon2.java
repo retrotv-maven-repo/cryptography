@@ -42,7 +42,7 @@ public class Argon2 implements Password {
      * 만약 공간상의 제약이 있다면, hashLength를 16으로 낮추는 것을 고려하십시오.<br>
      * <br>
      * 암호화하는 데 걸리는 시간을 조정하려면 memory와 interation 값을 조금씩 높여보면서 테스트 하십시오.<br>
-     * 암호화하는 데 걸리는 시간이 길수록 안전하지만, 서비스 이용에 불편함이 생길 수 있으니 편의와 보안 간의 균형을 찾으십시오.<br>
+     * 암호화하는 데 걸리는 시간이 길수록 안전하지만, 서비스 이용에 불편함이 생길 수 있으니 편의와 보안 간의 균형을 맞추십시오.<br>
      *
      * @param saltLength 소금의 길이 (bytes 단위)
      * @param hashLength 해시 결과물의 길이 (bytes 단위)
