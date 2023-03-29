@@ -25,7 +25,7 @@ public class Encrypt {
      * @param data 암호화 할 데이터
      * @return 암호화 된 데이터
      */
-    protected byte[] encrypt(Algorithm algorithm, byte[] data) {
+    protected byte[] encode(Algorithm algorithm, byte[] data) {
         Optional.ofNullable(data).orElseThrow(() ->
                 new NullPointerException("암호화 할 문자열 및 데이터가 null 입니다."));
 

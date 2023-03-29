@@ -18,7 +18,7 @@ public class SHA512 extends Encrypt implements Checksum, PasswordWithSalt {
 
     @Override
     public String encode(byte[] data) {
-        return Encode.binaryToHex(encrypt(Algorithm.SHA512, data));
+        return Encode.binaryToHex(encode(Algorithm.SHA512, data));
     }
 
     @Override

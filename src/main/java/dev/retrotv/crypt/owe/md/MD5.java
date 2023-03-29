@@ -18,7 +18,7 @@ public class MD5 extends Encrypt implements Checksum, PasswordWithSalt {
 
     @Override
     public String encode(byte[] data) {
-        return Encode.binaryToHex(encrypt(Algorithm.MD5, data));
+        return Encode.binaryToHex(encode(Algorithm.MD5, data));
     }
 
     @Override
