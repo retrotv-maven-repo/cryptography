@@ -1,7 +1,5 @@
 package dev.retrotv.crypt.owe;
 
-import org.springframework.security.crypto.password.PasswordEncoder;
-
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.IOException;
