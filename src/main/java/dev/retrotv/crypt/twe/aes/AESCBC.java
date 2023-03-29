@@ -58,6 +58,7 @@ public abstract class AESCBC implements TwoWayEncryption {
      * @throws CryptFailException 지원되지 않거나, 부정확한 포맷으로 패딩된 데이터 암복호화를 시도하려고 할 때 발생
      * @param text 암호화 할 문자열
      * @param key 암호화 시, 사용할 키
+     * @param iv 초기화 벡터
      * @return 암호화 된 문자열
      */
     public String encrypt(String text, String key, IvParameterSpec iv) throws CryptFailException {
@@ -99,6 +100,7 @@ public abstract class AESCBC implements TwoWayEncryption {
      * @throws CryptFailException 지원되지 않거나, 부정확한 포맷으로 패딩된 데이터 암복호화를 시도하려고 할 때 발생
      * @param data 암호화 할 데이터
      * @param key 암호화 시, 사용할 키
+     * @param iv 초기화 벡터
      * @return 암호화 된 데이터
      */
     public byte[] encrypt(byte[] data, byte[] key, IvParameterSpec iv) throws CryptFailException {
@@ -145,6 +147,7 @@ public abstract class AESCBC implements TwoWayEncryption {
      * @throws CryptFailException 지원되지 않거나, 부정확한 포맷으로 패딩된 데이터 암복호화를 시도하려고 할 때 발생
      * @param encryptedText 암호화 된 문자열
      * @param key 복호화 시, 사용할 키
+     * @param iv 초기화 벡터
      * @return 복호화 된 문자열
      */
     public String decrypt(String encryptedText, String key, IvParameterSpec iv) throws CryptFailException {
@@ -186,6 +189,7 @@ public abstract class AESCBC implements TwoWayEncryption {
      * @throws CryptFailException 지원되지 않거나, 부정확한 포맷으로 패딩된 데이터 암복호화를 시도하려고 할 때 발생
      * @param encryptedData 암호화 된 데이터
      * @param key 복호화 시, 사용할 키
+     * @param iv 초기화 벡터
      * @return 복호화 된 데이터
      */
     public byte[] decrypt(byte[] encryptedData, byte[] key, IvParameterSpec iv) throws CryptFailException {
