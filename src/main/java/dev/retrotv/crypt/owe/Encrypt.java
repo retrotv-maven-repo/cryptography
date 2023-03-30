@@ -6,7 +6,6 @@ import org.apache.logging.log4j.Logger;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Optional;
 
 /**
  * {@link MessageDigest}를 사용하는 암호화 구현을 위한 상속용 클래스 입니다.
@@ -16,6 +15,8 @@ import java.util.Optional;
  */
 public class Encrypt {
     private final Logger logger = LogManager.getLogger();
+
+    private static final String ENCRYPT_FAIL_MESSAGE = "암호화가 정상적으로 이루어지지 않았습니다.";
 
     private static final String WARNING_MESSAGE =
             "이 예외는 기본적으로 발생하지 않습니다, 만약 예외가 발생한다면 다음 사항을 확인하십시오."
@@ -30,20 +31,25 @@ public class Encrypt {
      * @return 암호화 된 데이터
      */
     protected byte[] encode(Algorithm algorithm, byte[] data) {
-        logger.error("암호화가 정상적으로 이루어지지 않았습니다.");
-        Optional.ofNullable(data).orElseThrow(() ->
-                new NullPointerException("암호화 할 문자열 및 데이터가 null 입니다."));
+        if (algorithm == null) {
+            logger.error(ENCRYPT_FAIL_MESSAGE);
+            throw new NullPointerException("algorithm이 null 입니다.");
+        }
 
-        MessageDigest md;
+        if (data == null) {
+            logger.error(ENCRYPT_FAIL_MESSAGE);
+            throw new NullPointerException("data가 null 입니다.");
+        }
 
         try {
-            md = MessageDigest.getInstance(algorithm.label());
+            logger.debug("알고리즘: {}", algorithm.label());
+            MessageDigest md = MessageDigest.getInstance(algorithm.label());
             md.update(data);
 
             return md.digest();
-        } catch (NoSuchAlgorithmException ignored) { }
-
-        logger.error("암호화가 정상적으로 이루어지지 않았습니다.");
-        throw new RuntimeException(WARNING_MESSAGE);
+        } catch (NoSuchAlgorithmException e) {
+            logger.error(ENCRYPT_FAIL_MESSAGE);
+            throw new RuntimeException(WARNING_MESSAGE);
+        }
     }
 }
