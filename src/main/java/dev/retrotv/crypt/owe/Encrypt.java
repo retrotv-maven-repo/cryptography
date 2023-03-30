@@ -1,6 +1,8 @@
 package dev.retrotv.crypt.owe;
 
 import dev.retrotv.crypt.Algorithm;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -13,6 +15,8 @@ import java.util.Optional;
  * @since 1.8
  */
 public class Encrypt {
+    private final Logger logger = LogManager.getLogger();
+
     private static final String WARNING_MESSAGE =
             "이 예외는 기본적으로 발생하지 않습니다, 만약 예외가 발생한다면 다음 사항을 확인하십시오."
           + "\n1. 빌드 한 JAVA version에서 지원하지 않는 MessageDigest 알고리즘을 사용하는지 확인하십시오."
@@ -26,6 +30,7 @@ public class Encrypt {
      * @return 암호화 된 데이터
      */
     protected byte[] encode(Algorithm algorithm, byte[] data) {
+        logger.error("암호화가 정상적으로 이루어지지 않았습니다.");
         Optional.ofNullable(data).orElseThrow(() ->
                 new NullPointerException("암호화 할 문자열 및 데이터가 null 입니다."));
 
@@ -38,6 +43,7 @@ public class Encrypt {
             return md.digest();
         } catch (NoSuchAlgorithmException ignored) { }
 
+        logger.error("암호화가 정상적으로 이루어지지 않았습니다.");
         throw new RuntimeException(WARNING_MESSAGE);
     }
 }
