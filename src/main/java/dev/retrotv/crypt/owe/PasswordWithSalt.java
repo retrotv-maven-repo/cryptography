@@ -2,15 +2,19 @@ package dev.retrotv.crypt.owe;
 
 import dev.retrotv.crypt.random.RandomValue;
 import dev.retrotv.crypt.random.SecurityStrength;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * 소금을 이용한 패스워드 암호화 클래스 구현을 위한 인터페이스 입니다.
+ * 키 유도 함수를 자체적으로 포함하고 있는 암호화 알고리즘을 사용할 경우 {@link Password} 인터페이스를 상속받아 구현하십시오.
  * {@link Password}를 상속받습니다.
  *
  * @author  yjj8353
  * @since   1.8
  */
 public interface PasswordWithSalt extends Password {
+    Logger logger = LogManager.getLogger();
 
     /**
      * 패스워드에 소금을 치고 암호화 한 뒤, 암호화 된 패스워드 문자열을 반환합니다.
@@ -33,7 +37,8 @@ public interface PasswordWithSalt extends Password {
      */
     default boolean matches(CharSequence rawPassword, CharSequence salt, String encodedPassword) {
         if (rawPassword == null || salt == null || encodedPassword == null) {
-            throw new NullPointerException("비교할 password, salt 혹은 encodedPassword 값이 null 입니다.");
+            logger.warn("비교할 password, salt 혹은 encodedPassword 값이 null 입니다.");
+            return false;
         }
 
         return matches(String.join(rawPassword, salt), encodedPassword);
