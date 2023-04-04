@@ -62,11 +62,20 @@ public abstract class AESCBC implements TwoWayEncryption {
      * @return 암호화 된 문자열
      */
     public String encrypt(String text, String key, IvParameterSpec iv) throws CryptFailException {
-        Optional.ofNullable(text).orElseThrow(() ->
-                new NullPointerException("암호화 할 문자열 및 데이터는 null 일 수 없습니다."));
+        if (text == null) {
+            logger.error("암호화 할 data가 null 입니다.");
+            throw new NullPointerException("매개변수 data가 null 입니다.");
+        }
 
-        Optional.ofNullable(key).orElseThrow(() ->
-                new NullPointerException("암호화 시, 사용할 키가 존재하지 않습니다."));
+        if (key == null) {
+            logger.error("암호화 시, 사용할 key가 null 입니다.");
+            throw new NullPointerException("매개변수 key가 null 입니다.");
+        }
+
+        if (iv == null) {
+            logger.error("암호화 시, 사용할 초기화 벡터 iv가 null 입니다.");
+            throw new NullPointerException("매개변수 iv가 null 입니다.");
+        }
 
         byte[] data = text.getBytes(StandardCharsets.UTF_8);
         byte[] keyData = key.getBytes(StandardCharsets.UTF_8);
@@ -76,11 +85,15 @@ public abstract class AESCBC implements TwoWayEncryption {
 
     @Override
     public byte[] encrypt(byte[] data, byte[] key) throws CryptFailException {
-        Optional.ofNullable(data).orElseThrow(() ->
-                new NullPointerException("암호화 할 문자열 및 데이터는 null 일 수 없습니다."));
+        if (data == null) {
+            logger.error("암호화 할 data가 null 입니다.");
+            throw new NullPointerException("매개변수 data가 null 입니다.");
+        }
 
-        Optional.ofNullable(key).orElseThrow(() ->
-                new NullPointerException("암호화 시, 사용할 키가 존재하지 않습니다."));
+        if (key == null) {
+            logger.error("암호화 시, 사용할 key가 null 입니다.");
+            throw new NullPointerException("매개변수 key가 null 입니다.");
+        }
 
         byte[] cuttedKey = new byte[16];
         System.arraycopy(key, 0, cuttedKey, 0, 16);
@@ -104,14 +117,20 @@ public abstract class AESCBC implements TwoWayEncryption {
      * @return 암호화 된 데이터
      */
     public byte[] encrypt(byte[] data, byte[] key, IvParameterSpec iv) throws CryptFailException {
-        Optional.ofNullable(data).orElseThrow(() ->
-                new NullPointerException("암호화 할 문자열 및 데이터는 null 일 수 없습니다."));
+        if (data == null) {
+            logger.error("암호화 할 data가 null 입니다.");
+            throw new NullPointerException("매개변수 data가 null 입니다.");
+        }
 
-        Optional.ofNullable(key).orElseThrow(() ->
-                new NullPointerException("암호화 시, 사용할 키가 존재하지 않습니다."));
+        if (key == null) {
+            logger.error("암호화 시, 사용할 key가 null 입니다.");
+            throw new NullPointerException("매개변수 key가 null 입니다.");
+        }
 
-        Optional.ofNullable(iv).orElseThrow(() ->
-                new NullPointerException("초기화 벡터 값이 존재하지 않습니다."));
+        if (iv == null) {
+            logger.error("암호화 시, 사용할 초기화 벡터 iv가 null 입니다.");
+            throw new NullPointerException("매개변수 iv가 null 입니다.");
+        }
 
         SecretKeySpec secretKey = new SecretKeySpec(key, "AES");
         byte[] encryptedData = null;
@@ -151,11 +170,15 @@ public abstract class AESCBC implements TwoWayEncryption {
      * @return 복호화 된 문자열
      */
     public String decrypt(String encryptedText, String key, IvParameterSpec iv) throws CryptFailException {
-        Optional.ofNullable(encryptedText).orElseThrow(() ->
-                new NullPointerException("암호화 할 문자열 및 데이터는 null 일 수 없습니다."));
+        if (encryptedText == null) {
+            logger.error("복호화 할 encryptedText가 null 입니다.");
+            throw new NullPointerException("매개변수 encryptedText가 null 입니다.");
+        }
 
-        Optional.ofNullable(key).orElseThrow(() ->
-                new NullPointerException("암호화 시, 사용할 키가 존재하지 않습니다."));
+        if (key == null) {
+            logger.error("복호화 시, 사용할 key가 null 입니다.");
+            throw new NullPointerException("매개변수 key가 null 입니다.");
+        }
 
         byte[] data = Base64.getDecoder().decode(encryptedText.getBytes(StandardCharsets.UTF_8));
         byte[] keyData = key.getBytes(StandardCharsets.UTF_8);
@@ -165,11 +188,15 @@ public abstract class AESCBC implements TwoWayEncryption {
 
     @Override
     public byte[] decrypt(byte[] encryptedData, byte[] key) throws CryptFailException {
-        Optional.ofNullable(encryptedData).orElseThrow(() ->
-                new NullPointerException("암호화 할 문자열 및 데이터는 null 일 수 없습니다."));
+        if (encryptedData == null) {
+            logger.error("복호화 할 encryptedData가 null 입니다.");
+            throw new NullPointerException("매개변수 encryptedData가 null 입니다.");
+        }
 
-        Optional.ofNullable(key).orElseThrow(() ->
-                new NullPointerException("암호화 시, 사용할 키가 존재하지 않습니다."));
+        if (key == null) {
+            logger.error("매개변수 key가 null 입니다.");
+            throw new NullPointerException("매개변수 key가 null 입니다.");
+        }
 
         byte[] cuttedKey = new byte[16];
         System.arraycopy(key, 0, cuttedKey, 0, 16);
@@ -193,14 +220,20 @@ public abstract class AESCBC implements TwoWayEncryption {
      * @return 복호화 된 데이터
      */
     public byte[] decrypt(byte[] encryptedData, byte[] key, IvParameterSpec iv) throws CryptFailException {
-        Optional.ofNullable(encryptedData).orElseThrow(() ->
-                new NullPointerException("복호화 할 문자열 및 데이터는 null 일 수 없습니다."));
+        if (encryptedData == null) {
+            logger.error("복호화 할 encryptedData가 null 입니다.");
+            throw new NullPointerException("매개변수 encryptedData가 null 입니다.");
+        }
 
-        Optional.ofNullable(key).orElseThrow(() ->
-                new NullPointerException("복호화 시, 사용할 키가 존재하지 않습니다."));
+        if (key == null) {
+            logger.error("복호화 시, 사용할 key가 null 입니다.");
+            throw new NullPointerException("매개변수 key가 null 입니다.");
+        }
 
-        Optional.ofNullable(iv).orElseThrow(() ->
-                new NullPointerException("초기화 벡터 값이 존재하지 않습니다."));
+        if (iv == null) {
+            logger.error("복호화 시, 사용할 초기화 벡터 iv가 null 입니다.");
+            throw new NullPointerException("매개변수 iv가 null 입니다.");
+        }
 
         SecretKeySpec secretKey = new SecretKeySpec(key, "AES");
         byte[] decryptedData = null;

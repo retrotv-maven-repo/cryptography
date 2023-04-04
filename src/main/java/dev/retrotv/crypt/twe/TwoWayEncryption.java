@@ -7,7 +7,6 @@ import org.apache.logging.log4j.Logger;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
-import java.util.Optional;
 
 /**
  * 양방향 암호화 클래스 구현을 위한 인터페이스 입니다.
@@ -30,12 +29,12 @@ public interface TwoWayEncryption {
     default String encrypt(String text, String key) throws CryptFailException {
         if (text == null) {
             logger.error("암호화 할 문자열은 null 일 수 없습니다.");
-            throw new NullPointerException("암호화 할 문자열은 null 일 수 없습니다.");
+            throw new NullPointerException("매개변수 text가 null 입니다.");
         }
 
         if (key == null) {
             logger.error("암호화 시, 사용할 key가 존재하지 않습니다.");
-            throw new NullPointerException("암호화 시, 사용할 key가 존재하지 않습니다.");
+            throw new NullPointerException("매개변수 key가 null 입니다.");
         }
 
         byte[] data = text.getBytes(StandardCharsets.UTF_8);
@@ -67,12 +66,12 @@ public interface TwoWayEncryption {
     default String decrypt(String encryptedText, String key) throws CryptFailException {
         if (encryptedText == null) {
             logger.error("복호화 할 문자열은 null 일 수 없습니다.");
-            throw new NullPointerException("암호화 할 문자열은 null 일 수 없습니다.");
+            throw new NullPointerException("매개변수 encryptedText가 null 입니다.");
         }
 
         if (key == null) {
             logger.error("복호화 시, 사용할 key가 존재하지 않습니다.");
-            throw new NullPointerException("암호화 시, 사용할 key가 존재하지 않습니다.");
+            throw new NullPointerException("매개변수 key가 null 입니다.");
         }
 
         byte[] data = Base64.getDecoder().decode(encryptedText.getBytes(StandardCharsets.UTF_8));

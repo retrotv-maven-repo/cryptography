@@ -3,6 +3,8 @@ package dev.retrotv.crypt.twe.aes;
 import dev.retrotv.crypt.twe.TwoWayEncryption;
 import dev.retrotv.crypt.exception.CryptFailException;
 import dev.retrotv.crypt.random.SecurityStrength;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -20,8 +22,6 @@ import java.util.Optional;
  * @since   1.8
  */
 public abstract class AESECB implements TwoWayEncryption {
-
-    //AES/ECB/PKCS5Padding encryption
     private static final String BAD_PADDING_EXCEPTION_MESSAGE =
             "BadPaddingException: "
           + "\n암호화 시 사용한 키와 일치하지 않습니다.";
@@ -53,13 +53,16 @@ public abstract class AESECB implements TwoWayEncryption {
      * @param key 암호화 시, 사용할 키
      * @return 암호화 된 데이터
      */
-    @Override
     public byte[] encrypt(byte[] data, byte[] key) throws CryptFailException {
-        Optional.ofNullable(data).orElseThrow(() ->
-                new NullPointerException("암호화 할 문자열 및 데이터는 null 일 수 없습니다."));
+        if (data == null) {
+            logger.error("암호화 할 data가 null 입니다.");
+            throw new NullPointerException("매개변수 data가 null 입니다.");
+        }
 
-        Optional.ofNullable(key).orElseThrow(() ->
-                new NullPointerException("암호화 시, 사용할 키가 존재하지 않습니다."));
+        if (key == null) {
+            logger.error("암호화 시, 사용할 key가 null 입니다.");
+            throw new NullPointerException("매개변수 key가 null 입니다.");
+        }
 
         SecretKeySpec secretKey = new SecretKeySpec(key, "AES");
         byte[] encryptedData = null;
@@ -97,11 +100,15 @@ public abstract class AESECB implements TwoWayEncryption {
      */
     @Override
     public byte[] decrypt(byte[] encryptedData, byte[] key) throws CryptFailException {
-        Optional.ofNullable(encryptedData).orElseThrow(() ->
-                new NullPointerException("복호화 할 문자열 및 데이터는 null 일 수 없습니다."));
+        if (encryptedData == null) {
+            logger.error("복호화 할 encryptedData가 null 입니다.");
+            throw new NullPointerException("매개변수 encryptedData가 null 입니다.");
+        }
 
-        Optional.ofNullable(key).orElseThrow(() ->
-                new NullPointerException("복호화 시, 사용할 키가 존재하지 않습니다."));
+        if (key == null) {
+            logger.error("복호화 시, 사용할 key가 null 입니다.");
+            throw new NullPointerException("매개변수 key가 null 입니다.");
+        }
 
         SecretKeySpec secretKey = new SecretKeySpec(key, "AES");
         byte[] decryptedData = null;

@@ -16,8 +16,13 @@ public interface Password extends PasswordEncoder {
 
     @Override
     default boolean matches(CharSequence rawPassword, String encodedPassword) {
-        if (rawPassword == null || encodedPassword == null) {
-            logger.warn("rawPassword 혹은 encodedPassword가 null 입니다.");
+        if (rawPassword == null) {
+            logger.warn("rawPassword가 null 입니다.");
+            return false;
+        }
+
+        if (encodedPassword == null) {
+            logger.warn("encodedPassword가 null 입니다.");
             return false;
         }
 

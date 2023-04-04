@@ -36,12 +36,22 @@ public interface PasswordWithSalt extends Password {
      * @return 일치 여부
      */
     default boolean matches(CharSequence rawPassword, CharSequence salt, String encodedPassword) {
-        if (rawPassword == null || salt == null || encodedPassword == null) {
-            logger.warn("비교할 password, salt 혹은 encodedPassword 값이 null 입니다.");
+        if (rawPassword == null) {
+            logger.warn("rawPassword 값이 null 입니다.");
             return false;
         }
 
-        return matches(String.join(rawPassword, salt), encodedPassword);
+        if (encodedPassword == null) {
+            logger.warn("encodedPassword 값이 null 입니다.");
+            return false;
+        }
+
+        if (salt == null) {
+            logger.warn("salt 값이 null 입니다.");
+            logger.warn("의도한 것이 아니라면 matches(CharSequence rawPassword, String encodedPassword) 메소드를 사용하십시오.");
+        }
+
+        return matches(String.valueOf(rawPassword) + salt, encodedPassword);
     }
 
     /**

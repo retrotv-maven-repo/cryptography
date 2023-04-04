@@ -1,5 +1,8 @@
 package dev.retrotv.crypt.owe;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.IOException;
@@ -12,6 +15,7 @@ import java.nio.file.Files;
  * @since   1.8
  */
 public interface Checksum {
+    Logger logger = LogManager.getLogger();
 
     /**
      * data를 해시해 checksum을 생성하고 반환합니다.
@@ -47,8 +51,14 @@ public interface Checksum {
      * @return 일치 여부
      */
     default boolean matches(byte[] data, String checksum) {
-        if (data == null || checksum == null) {
-            throw new NullPointerException("비교할 data 혹은 checksum 값이 null 입니다.");
+        if (data == null) {
+            logger.warn("비교할 data 값이 null 입니다.");
+            return false;
+        }
+
+        if (checksum == null) {
+            logger.warn("비교할 checksum 값이 null 입니다.");
+            return false;
         }
 
         return checksum.equals(encode(data));
@@ -63,8 +73,14 @@ public interface Checksum {
      * @throws IOException 파일을 읽어들이는 과정에서 오류가 발생할 경우 던짐
      */
     default boolean matches(File file, String checksum) throws IOException {
-        if (file == null || checksum == null) {
-            throw new NullPointerException("비교할 file 혹은 checksum 값이 null 입니다.");
+        if (file == null) {
+            logger.warn("비교할 file 값이 null 입니다.");
+            return false;
+        }
+
+        if (checksum == null) {
+            logger.warn("비교할 checksum 값이 null 입니다.");
+            return false;
         }
 
         byte[] fileData;
@@ -87,8 +103,14 @@ public interface Checksum {
      * @return 일치 여부
      */
     default boolean matches(byte[] data1, byte[] data2) {
-        if (data1 == null || data2 == null) {
-            throw new NullPointerException("비교할 데이터가 null 입니다.");
+        if (data1 == null) {
+            logger.warn("비교할 data1이 null 입니다.");
+            return false;
+        }
+
+        if (data2 == null) {
+            logger.warn("비교할 data2가 null 입니다.");
+            return false;
         }
 
         return encode(data1).equals(encode(data2));
@@ -103,8 +125,14 @@ public interface Checksum {
      * @throws IOException 파일을 읽어들이는 과정에서 오류가 발생할 경우 던짐
      */
     default boolean matches(File file1, File file2) throws IOException {
-        if (file1 == null || file2 == null) {
-            throw new NullPointerException("비교할 파일이 null 입니다.");
+        if (file1 == null) {
+            logger.warn("비교할 file1이 null 입니다.");
+            return false;
+        }
+
+        if (file2 == null) {
+            logger.warn("비교할 file2가 null 입니다.");
+            return false;
         }
 
         byte[] file1Data;

@@ -181,8 +181,8 @@ public class RandomValue {
         }
 
         if (securityStrength == null) {
-            logger.warn("securityStrength가 null 입니다. 기본 값인 MIDDLE로 설정됩니다.");
-            securityStrength = DEFAULT_SECURITY_STRENGTH;
+            logger.error("securityStrength가 null 입니다.");
+            throw new RandomValueGenerateException("securityStrength가 null 입니다.");
         }
 
         int range;
