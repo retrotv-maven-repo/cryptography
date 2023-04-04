@@ -1,6 +1,7 @@
 package dev.retrotv.crypt.random;
 
 import dev.retrotv.crypt.exception.RandomValueGenerateException;
+import dev.retrotv.util.CommonMessage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,6 +15,7 @@ import java.security.SecureRandom;
  */
 public class RandomValue {
     private static final Logger logger = LogManager.getLogger();
+    private static final CommonMessage commonMessage = new CommonMessage();
 
     private static final int DEFAULT_LENGTH = 16;
     private static final SecurityStrength DEFAULT_SECURITY_STRENGTH = SecurityStrength.MIDDLE;
@@ -181,13 +183,13 @@ public class RandomValue {
         }
 
         if (securityStrength == null) {
-            logger.error("securityStrength가 null 입니다.");
-            throw new RandomValueGenerateException("securityStrength가 null 입니다.");
+            logger.warn(commonMessage.getMessage("warn.parameter.null", "securityStrength"));
+            logger.warn("SecurityStrength가 기본 값인 MIDDLE로 설정됩니다.");
+            securityStrength = SecurityStrength.MIDDLE;
         }
 
         int range;
         StringBuilder sb;
-        String randomValue = null;
         SecureRandom sr = new SecureRandom();
 
         switch (securityStrength) {
@@ -200,10 +202,10 @@ public class RandomValue {
                     sb.append(LOW_STRENGTH_CHARS[random]);
                 }
 
-                randomValue = sb.toString();
-                break;
+                return sb.toString();
 
             case MIDDLE:
+            default:
                 range = CAPITAL_LETTERS_LENGTH + SMALL_LETTERS_LENGTH + NUMBERS_LENGTH;
                 sb = new StringBuilder();
 
@@ -212,8 +214,7 @@ public class RandomValue {
                     sb.append(MIDDLE_STRENGTH_CHARS[random]);
                 }
 
-                randomValue = sb.toString();
-                break;
+                return sb.toString();
 
             case HIGH:
                 range = CAPITAL_LETTERS_LENGTH + SMALL_LETTERS_LENGTH + NUMBERS_LENGTH + SPECIAL_CHARS_LENGTH;
@@ -224,10 +225,7 @@ public class RandomValue {
                     sb.append(HIGH_STRENGTH_CHARS[random]);
                 }
 
-                randomValue = sb.toString();
-                break;
+                return sb.toString();
         }
-
-        return randomValue;
     }
 }

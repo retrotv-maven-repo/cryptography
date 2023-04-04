@@ -1,5 +1,6 @@
 package dev.retrotv.crypt;
 
+import dev.retrotv.util.CommonMessage;
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.binary.Hex;
@@ -9,10 +10,12 @@ import org.apache.logging.log4j.Logger;
 public class Encode {
     private static final Logger logger = LogManager.getLogger();
 
+    private static final CommonMessage commonMessage = new CommonMessage();
+
     public static String binaryToHex(byte[] data) {
         if (data == null) {
-            logger.error("인코딩 할 데이터가 null 입니다.");
-            throw new NullPointerException("매개변수 data가 null 입니다.");
+            logger.error(commonMessage.getMessage("error.parameter.null", "data"));
+            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "data"));
         }
 
         return Hex.encodeHexString(data);
@@ -20,8 +23,8 @@ public class Encode {
 
     public static String binaryToBase64(byte[] data) {
         if (data == null) {
-            logger.error("인코딩 할 데이터가 null 입니다.");
-            throw new NullPointerException("매개변수 data가 null 입니다.");
+            logger.error(commonMessage.getMessage("error.parameter.null", "data"));
+            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "data"));
         }
 
         return Base64.encodeBase64String(data);
@@ -29,8 +32,8 @@ public class Encode {
 
     public static byte[] hexToBinary(String hex) throws DecoderException {
         if (hex == null) {
-            logger.error("디코딩 할 문자열이 null 입니다.");
-            throw new NullPointerException("매개변수 hex가 null 입니다.");
+            logger.error(commonMessage.getMessage("error.parameter.null", "hex"));
+            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "hex"));
         }
 
         return Hex.decodeHex(hex);
@@ -38,8 +41,8 @@ public class Encode {
 
     public static byte[] base64ToBinary(String base64) {
         if (base64 == null) {
-            logger.error("디코딩 할 문자열이 null 입니다.");
-            throw new NullPointerException("매개변수 base64가 null 입니다.");
+            logger.error(commonMessage.getMessage("error.parameter.null", "base64"));
+            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "base64"));
         }
 
         return Base64.decodeBase64(base64);
@@ -52,8 +55,8 @@ public class Encode {
         }
 
         if (data == null) {
-            logger.error("인코딩할 데이터가 존재하지 않습니다.");
-            throw new NullPointerException("매개변수 data가 null 입니다.");
+            logger.error(commonMessage.getMessage("error.parameter.null", "data"));
+            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "data"));
         }
 
         switch (encodeFormat) {

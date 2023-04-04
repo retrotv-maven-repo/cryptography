@@ -1,5 +1,6 @@
 package dev.retrotv.crypt.owe;
 
+import dev.retrotv.util.CommonMessage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -16,6 +17,7 @@ import java.nio.file.Files;
  */
 public interface Checksum {
     Logger logger = LogManager.getLogger();
+    CommonMessage commonMessage = new CommonMessage();
 
     /**
      * data를 해시해 checksum을 생성하고 반환합니다.
@@ -39,7 +41,7 @@ public interface Checksum {
 
             return encode(fileData);
         } catch (IOException e) {
-            throw new IOException("파일을 읽어들이는 과정에서 오류가 발생했습니다.", e);
+            throw new IOException(commonMessage.getMessage("exception.fileRead"));
         }
     }
 
@@ -52,12 +54,12 @@ public interface Checksum {
      */
     default boolean matches(byte[] data, String checksum) {
         if (data == null) {
-            logger.warn("비교할 data 값이 null 입니다.");
+            logger.warn(commonMessage.getMessage("warn.parameter.null", "data"));
             return false;
         }
 
         if (checksum == null) {
-            logger.warn("비교할 checksum 값이 null 입니다.");
+            logger.warn(commonMessage.getMessage("warn.parameter.null", "checksum"));
             return false;
         }
 
@@ -74,12 +76,12 @@ public interface Checksum {
      */
     default boolean matches(File file, String checksum) throws IOException {
         if (file == null) {
-            logger.warn("비교할 file 값이 null 입니다.");
+            logger.warn(commonMessage.getMessage("warn.parameter.null", "file"));
             return false;
         }
 
         if (checksum == null) {
-            logger.warn("비교할 checksum 값이 null 입니다.");
+            logger.warn(commonMessage.getMessage("warn.parameter.null", "checksum"));
             return false;
         }
 
@@ -89,7 +91,7 @@ public interface Checksum {
             fileData = new byte[(int) file.length()];
             dis.readFully(fileData);
         } catch (IOException e) {
-            throw new IOException("파일을 읽어들이는 과정에서 오류가 발생했습니다.");
+            throw new IOException(commonMessage.getMessage("exception.fileRead"));
         }
 
         return matches(fileData, checksum);
@@ -104,12 +106,12 @@ public interface Checksum {
      */
     default boolean matches(byte[] data1, byte[] data2) {
         if (data1 == null) {
-            logger.warn("비교할 data1이 null 입니다.");
+            logger.warn(commonMessage.getMessage("warn.parameter.null", "data1"));
             return false;
         }
 
         if (data2 == null) {
-            logger.warn("비교할 data2가 null 입니다.");
+            logger.warn(commonMessage.getMessage("warn.parameter.null", "data2"));
             return false;
         }
 
@@ -126,12 +128,12 @@ public interface Checksum {
      */
     default boolean matches(File file1, File file2) throws IOException {
         if (file1 == null) {
-            logger.warn("비교할 file1이 null 입니다.");
+            logger.warn(commonMessage.getMessage("warn.parameter.null", "file1"));
             return false;
         }
 
         if (file2 == null) {
-            logger.warn("비교할 file2가 null 입니다.");
+            logger.warn(commonMessage.getMessage("warn.parameter.null", "file2"));
             return false;
         }
 
@@ -142,14 +144,14 @@ public interface Checksum {
             file1Data = new byte[(int) file1.length()];
             dis.readFully(file1Data);
         } catch (IOException e) {
-            throw new IOException("파일을 읽어들이는 과정에서 오류가 발생했습니다.");
+            throw new IOException(commonMessage.getMessage("exception.fileRead"));
         }
 
         try (DataInputStream dis = new DataInputStream(Files.newInputStream(file2.toPath()))) {
             file2Data = new byte[(int) file2.length()];
             dis.readFully(file2Data);
         } catch (IOException e) {
-            throw new IOException("파일을 읽어들이는 과정에서 오류가 발생했습니다.");
+            throw new IOException(commonMessage.getMessage("exception.fileRead"));
         }
 
         return matches(file1Data, file2Data);

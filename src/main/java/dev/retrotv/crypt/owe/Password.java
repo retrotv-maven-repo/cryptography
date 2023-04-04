@@ -1,5 +1,6 @@
 package dev.retrotv.crypt.owe;
 
+import dev.retrotv.util.CommonMessage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -14,15 +15,17 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public interface Password extends PasswordEncoder {
     Logger logger = LogManager.getLogger();
 
+    CommonMessage commonMessage = new CommonMessage();
+
     @Override
     default boolean matches(CharSequence rawPassword, String encodedPassword) {
         if (rawPassword == null) {
-            logger.warn("rawPassword가 null 입니다.");
+            logger.warn(commonMessage.getMessage("warn.parameter.null", "rawPassword"));
             return false;
         }
 
         if (encodedPassword == null) {
-            logger.warn("encodedPassword가 null 입니다.");
+            logger.warn(commonMessage.getMessage("warn.parameter.null", "encodedPassword"));
             return false;
         }
 

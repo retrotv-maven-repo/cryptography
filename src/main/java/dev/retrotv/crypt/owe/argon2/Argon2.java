@@ -1,6 +1,5 @@
 package dev.retrotv.crypt.owe.argon2;
 
-import dev.retrotv.crypt.owe.Checksum;
 import dev.retrotv.crypt.owe.Password;
 import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
 

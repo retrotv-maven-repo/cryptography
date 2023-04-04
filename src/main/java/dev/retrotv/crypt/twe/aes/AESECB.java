@@ -3,8 +3,6 @@ package dev.retrotv.crypt.twe.aes;
 import dev.retrotv.crypt.twe.TwoWayEncryption;
 import dev.retrotv.crypt.exception.CryptFailException;
 import dev.retrotv.crypt.random.SecurityStrength;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -55,13 +53,13 @@ public abstract class AESECB implements TwoWayEncryption {
      */
     public byte[] encrypt(byte[] data, byte[] key) throws CryptFailException {
         if (data == null) {
-            logger.error("암호화 할 data가 null 입니다.");
-            throw new NullPointerException("매개변수 data가 null 입니다.");
+            logger.error(commonMessage.getMessage("error.parameter.null", "data"));
+            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "data"));
         }
 
         if (key == null) {
-            logger.error("암호화 시, 사용할 key가 null 입니다.");
-            throw new NullPointerException("매개변수 key가 null 입니다.");
+            logger.error(commonMessage.getMessage("error.parameter.null", "key"));
+            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "key"));
         }
 
         SecretKeySpec secretKey = new SecretKeySpec(key, "AES");
@@ -82,7 +80,7 @@ public abstract class AESECB implements TwoWayEncryption {
         } catch (NoSuchAlgorithmException ignored) { }
 
         return Optional.ofNullable(encryptedData)
-                .orElseThrow(() -> new CryptFailException("암호화가 정상적으로 진행되지 않았습니다."));
+                .orElseThrow(() -> new CryptFailException(commonMessage.getMessage("exception.encryptFail")));
     }
 
     /**
@@ -101,13 +99,13 @@ public abstract class AESECB implements TwoWayEncryption {
     @Override
     public byte[] decrypt(byte[] encryptedData, byte[] key) throws CryptFailException {
         if (encryptedData == null) {
-            logger.error("복호화 할 encryptedData가 null 입니다.");
-            throw new NullPointerException("매개변수 encryptedData가 null 입니다.");
+            logger.error(commonMessage.getMessage("error.parameter.null", "encryptedData"));
+            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "encryptedData"));
         }
 
         if (key == null) {
-            logger.error("복호화 시, 사용할 key가 null 입니다.");
-            throw new NullPointerException("매개변수 key가 null 입니다.");
+            logger.error(commonMessage.getMessage("error.parameter.null", "key"));
+            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "key"));
         }
 
         SecretKeySpec secretKey = new SecretKeySpec(key, "AES");
@@ -128,7 +126,7 @@ public abstract class AESECB implements TwoWayEncryption {
         } catch (NoSuchAlgorithmException ignored) { }
 
         return Optional.ofNullable(decryptedData)
-                .orElseThrow(() -> new CryptFailException("복호화가 정상적으로 진행되지 않았습니다."));
+                .orElseThrow(() -> new CryptFailException(commonMessage.getMessage("exception.decryptFail")));
     }
 
     @Override

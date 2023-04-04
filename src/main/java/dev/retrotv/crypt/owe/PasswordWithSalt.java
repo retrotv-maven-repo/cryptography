@@ -2,6 +2,7 @@ package dev.retrotv.crypt.owe;
 
 import dev.retrotv.crypt.random.RandomValue;
 import dev.retrotv.crypt.random.SecurityStrength;
+import dev.retrotv.util.CommonMessage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -16,6 +17,8 @@ import org.apache.logging.log4j.Logger;
 public interface PasswordWithSalt extends Password {
     Logger logger = LogManager.getLogger();
 
+    CommonMessage commonMessage = new CommonMessage();
+
     /**
      * 패스워드에 소금을 치고 암호화 한 뒤, 암호화 된 패스워드 문자열을 반환합니다.
      *
@@ -24,7 +27,17 @@ public interface PasswordWithSalt extends Password {
      * @return 암호화 된 패스워드 문자열
      */
     default String encode(CharSequence rawPassword, CharSequence salt) {
-        return encode(String.join(rawPassword, salt));
+        if (rawPassword == null) {
+            logger.error(commonMessage.getMessage("error.parameter.null", "rawPassword"));
+            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "rawPassword"));
+        }
+
+        if (salt == null) {
+            logger.warn(commonMessage.getMessage("warn.parameter.null", "salt"));
+            logger.warn("의도한 것이 아니라면 encode(CharSequence rawPassword) 메소드를 사용하십시오.");
+        }
+
+        return encode(String.valueOf(rawPassword) + salt);
     }
 
     /**
@@ -37,17 +50,17 @@ public interface PasswordWithSalt extends Password {
      */
     default boolean matches(CharSequence rawPassword, CharSequence salt, String encodedPassword) {
         if (rawPassword == null) {
-            logger.warn("rawPassword 값이 null 입니다.");
+            logger.warn(commonMessage.getMessage("warn.parameter.null", "rawPassword"));
             return false;
         }
 
         if (encodedPassword == null) {
-            logger.warn("encodedPassword 값이 null 입니다.");
+            logger.warn(commonMessage.getMessage("warn.parameter.null", "encodedPassword"));
             return false;
         }
 
         if (salt == null) {
-            logger.warn("salt 값이 null 입니다.");
+            logger.warn(commonMessage.getMessage("warn.parameter.null", "salt"));
             logger.warn("의도한 것이 아니라면 matches(CharSequence rawPassword, String encodedPassword) 메소드를 사용하십시오.");
         }
 

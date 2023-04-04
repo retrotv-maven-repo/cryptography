@@ -9,10 +9,10 @@
     <!--    LogEvent를 전달해주는 Appender-->
     <Appenders>
         <Console name="Console_Appender" target="SYSTEM_OUT">
-            <PatternLayout pattern="${layoutPattern}"/>
+            <PatternLayout charset="UTF-8" pattern="${layoutPattern}"/>
         </Console>
         <RollingFile name="File_Appender" fileName="logs/${logNm}.log" filePattern="logs/${logNm}_%d{yyyy-MM-dd}_%i.log.gz">
-            <PatternLayout pattern="${layoutPattern}"/>
+            <PatternLayout charset="UTF-8" pattern="${layoutPattern}"/>
             <Policies>
                 <SizeBasedTriggeringPolicy size="200KB"/>
                 <TimeBasedTriggeringPolicy interval="1"/>

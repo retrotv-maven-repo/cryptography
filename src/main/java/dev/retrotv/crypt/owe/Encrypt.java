@@ -1,6 +1,7 @@
 package dev.retrotv.crypt.owe;
 
 import dev.retrotv.crypt.Algorithm;
+import dev.retrotv.util.CommonMessage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,9 +15,9 @@ import java.security.NoSuchAlgorithmException;
  * @since 1.8
  */
 public class Encrypt {
-    private final Logger logger = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLogger();
 
-    private static final String ENCRYPT_FAIL_MESSAGE = "암호화가 정상적으로 이루어지지 않았습니다.";
+    private static final CommonMessage commonMessage = new CommonMessage();
 
     private static final String WARNING_MESSAGE =
             "이 예외는 기본적으로 발생하지 않습니다, 만약 예외가 발생한다면 다음 사항을 확인하십시오."
@@ -32,13 +33,13 @@ public class Encrypt {
      */
     protected byte[] encode(Algorithm algorithm, byte[] data) {
         if (algorithm == null) {
-            logger.error(ENCRYPT_FAIL_MESSAGE);
-            throw new NullPointerException("algorithm이 null 입니다.");
+            logger.error(commonMessage.getMessage("error.parameter.null", "algorithm"));
+            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "algorithm"));
         }
 
         if (data == null) {
-            logger.error(ENCRYPT_FAIL_MESSAGE);
-            throw new NullPointerException("data가 null 입니다.");
+            logger.error(commonMessage.getMessage("error.parameter.null", "data"));
+            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "data"));
         }
 
         try {
@@ -48,7 +49,7 @@ public class Encrypt {
 
             return md.digest();
         } catch (NoSuchAlgorithmException e) {
-            logger.error(ENCRYPT_FAIL_MESSAGE);
+            logger.error(commonMessage.getMessage("exception.encryptFail"));
             throw new RuntimeException(WARNING_MESSAGE);
         }
     }
