@@ -55,11 +55,26 @@ public class Argon2 implements Password {
 
     @Override
     public String encode(CharSequence rawPassword) {
+        if (rawPassword == null) {
+            logger.error(commonMessage.getMessage("error.parameter.null", "rawPassword"));
+            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "rawPassword"));
+        }
+
         return a2pe.encode(rawPassword);
     }
 
     @Override
     public boolean matches(CharSequence rawPassword, String encodedPassword) {
+        if (rawPassword == null) {
+            logger.warn(commonMessage.getMessage("warn.parameter.null", "rawPassword"));
+            return false;
+        }
+
+        if (encodedPassword == null) {
+            logger.warn(commonMessage.getMessage("warn.parameter.null", "encodedPassword"));
+            return false;
+        }
+
         return a2pe.matches(rawPassword, encodedPassword);
     }
 }
