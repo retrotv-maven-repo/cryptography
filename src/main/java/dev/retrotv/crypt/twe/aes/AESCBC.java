@@ -58,14 +58,24 @@ public abstract class AESCBC implements TwoWayEncryption {
      * @throws CryptFailException 지원되지 않거나, 부정확한 포맷으로 패딩된 데이터 암복호화를 시도하려고 할 때 발생
      * @param text 암호화 할 문자열
      * @param key 암호화 시, 사용할 키
+     * @param iv 초기화 벡터
      * @return 암호화 된 문자열
      */
     public String encrypt(String text, String key, IvParameterSpec iv) throws CryptFailException {
-        Optional.ofNullable(text).orElseThrow(() ->
-                new NullPointerException("암호화 할 문자열 및 데이터는 null 일 수 없습니다."));
+        if (text == null) {
+            logger.error(commonMessage.getMessage("error.parameter.null", "text"));
+            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "text"));
+        }
 
-        Optional.ofNullable(key).orElseThrow(() ->
-                new NullPointerException("암호화 시, 사용할 키가 존재하지 않습니다."));
+        if (key == null) {
+            logger.error(commonMessage.getMessage("error.parameter.null", "key"));
+            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "key"));
+        }
+
+        if (iv == null) {
+            logger.error(commonMessage.getMessage("error.parameter.null", "iv"));
+            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "iv"));
+        }
 
         byte[] data = text.getBytes(StandardCharsets.UTF_8);
         byte[] keyData = key.getBytes(StandardCharsets.UTF_8);
@@ -75,11 +85,15 @@ public abstract class AESCBC implements TwoWayEncryption {
 
     @Override
     public byte[] encrypt(byte[] data, byte[] key) throws CryptFailException {
-        Optional.ofNullable(data).orElseThrow(() ->
-                new NullPointerException("암호화 할 문자열 및 데이터는 null 일 수 없습니다."));
+        if (data == null) {
+            logger.error(commonMessage.getMessage("error.parameter.null", "data"));
+            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "data"));
+        }
 
-        Optional.ofNullable(key).orElseThrow(() ->
-                new NullPointerException("암호화 시, 사용할 키가 존재하지 않습니다."));
+        if (key == null) {
+            logger.error(commonMessage.getMessage("error.parameter.null", "key"));
+            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "key"));
+        }
 
         byte[] cuttedKey = new byte[16];
         System.arraycopy(key, 0, cuttedKey, 0, 16);
@@ -99,17 +113,24 @@ public abstract class AESCBC implements TwoWayEncryption {
      * @throws CryptFailException 지원되지 않거나, 부정확한 포맷으로 패딩된 데이터 암복호화를 시도하려고 할 때 발생
      * @param data 암호화 할 데이터
      * @param key 암호화 시, 사용할 키
+     * @param iv 초기화 벡터
      * @return 암호화 된 데이터
      */
     public byte[] encrypt(byte[] data, byte[] key, IvParameterSpec iv) throws CryptFailException {
-        Optional.ofNullable(data).orElseThrow(() ->
-                new NullPointerException("암호화 할 문자열 및 데이터는 null 일 수 없습니다."));
+        if (data == null) {
+            logger.error(commonMessage.getMessage("error.parameter.null", "data"));
+            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "data"));
+        }
 
-        Optional.ofNullable(key).orElseThrow(() ->
-                new NullPointerException("암호화 시, 사용할 키가 존재하지 않습니다."));
+        if (key == null) {
+            logger.error(commonMessage.getMessage("error.parameter.null", "key"));
+            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "key"));
+        }
 
-        Optional.ofNullable(iv).orElseThrow(() ->
-                new NullPointerException("초기화 벡터 값이 존재하지 않습니다."));
+        if (iv == null) {
+            logger.error(commonMessage.getMessage("error.parameter.null", "iv"));
+            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "iv"));
+        }
 
         SecretKeySpec secretKey = new SecretKeySpec(key, "AES");
         byte[] encryptedData = null;
@@ -145,14 +166,19 @@ public abstract class AESCBC implements TwoWayEncryption {
      * @throws CryptFailException 지원되지 않거나, 부정확한 포맷으로 패딩된 데이터 암복호화를 시도하려고 할 때 발생
      * @param encryptedText 암호화 된 문자열
      * @param key 복호화 시, 사용할 키
+     * @param iv 초기화 벡터
      * @return 복호화 된 문자열
      */
     public String decrypt(String encryptedText, String key, IvParameterSpec iv) throws CryptFailException {
-        Optional.ofNullable(encryptedText).orElseThrow(() ->
-                new NullPointerException("암호화 할 문자열 및 데이터는 null 일 수 없습니다."));
+        if (encryptedText == null) {
+            logger.error(commonMessage.getMessage("error.parameter.null", "encryptedText"));
+            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "encryptedText"));
+        }
 
-        Optional.ofNullable(key).orElseThrow(() ->
-                new NullPointerException("암호화 시, 사용할 키가 존재하지 않습니다."));
+        if (key == null) {
+            logger.error(commonMessage.getMessage("error.parameter.null", "key"));
+            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "key"));
+        }
 
         byte[] data = Base64.getDecoder().decode(encryptedText.getBytes(StandardCharsets.UTF_8));
         byte[] keyData = key.getBytes(StandardCharsets.UTF_8);
@@ -162,11 +188,15 @@ public abstract class AESCBC implements TwoWayEncryption {
 
     @Override
     public byte[] decrypt(byte[] encryptedData, byte[] key) throws CryptFailException {
-        Optional.ofNullable(encryptedData).orElseThrow(() ->
-                new NullPointerException("암호화 할 문자열 및 데이터는 null 일 수 없습니다."));
+        if (encryptedData == null) {
+            logger.error(commonMessage.getMessage("error.parameter.null", "encryptedData"));
+            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "encryptedData"));
+        }
 
-        Optional.ofNullable(key).orElseThrow(() ->
-                new NullPointerException("암호화 시, 사용할 키가 존재하지 않습니다."));
+        if (key == null) {
+            logger.error(commonMessage.getMessage("error.parameter.null", "key"));
+            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "key"));
+        }
 
         byte[] cuttedKey = new byte[16];
         System.arraycopy(key, 0, cuttedKey, 0, 16);
@@ -186,17 +216,24 @@ public abstract class AESCBC implements TwoWayEncryption {
      * @throws CryptFailException 지원되지 않거나, 부정확한 포맷으로 패딩된 데이터 암복호화를 시도하려고 할 때 발생
      * @param encryptedData 암호화 된 데이터
      * @param key 복호화 시, 사용할 키
+     * @param iv 초기화 벡터
      * @return 복호화 된 데이터
      */
     public byte[] decrypt(byte[] encryptedData, byte[] key, IvParameterSpec iv) throws CryptFailException {
-        Optional.ofNullable(encryptedData).orElseThrow(() ->
-                new NullPointerException("복호화 할 문자열 및 데이터는 null 일 수 없습니다."));
+        if (encryptedData == null) {
+            logger.error(commonMessage.getMessage("error.parameter.null", "encryptedData"));
+            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "encryptedData"));
+        }
 
-        Optional.ofNullable(key).orElseThrow(() ->
-                new NullPointerException("복호화 시, 사용할 키가 존재하지 않습니다."));
+        if (key == null) {
+            logger.error(commonMessage.getMessage("error.parameter.null", "key"));
+            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "key"));
+        }
 
-        Optional.ofNullable(iv).orElseThrow(() ->
-                new NullPointerException("초기화 벡터 값이 존재하지 않습니다."));
+        if (iv == null) {
+            logger.error(commonMessage.getMessage("error.parameter.null", "iv"));
+            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "iv"));
+        }
 
         SecretKeySpec secretKey = new SecretKeySpec(key, "AES");
         byte[] decryptedData = null;

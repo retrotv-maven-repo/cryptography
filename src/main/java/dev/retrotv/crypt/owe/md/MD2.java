@@ -18,7 +18,7 @@ public class MD2 extends Encrypt implements Checksum, PasswordWithSalt {
 
     @Override
     public String encode(byte[] data) {
-        return Encode.binaryToHex(encrypt(Algorithm.MD2, data));
+        return Encode.binaryToHex(encode(Algorithm.MD2, data));
     }
 
     @Override

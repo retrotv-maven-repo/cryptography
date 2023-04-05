@@ -2,18 +2,23 @@ package dev.retrotv.crypt.twe;
 
 import dev.retrotv.crypt.exception.CryptFailException;
 import dev.retrotv.crypt.random.SecurityStrength;
+import dev.retrotv.util.CommonMessage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
-import java.util.Optional;
 
 /**
- * 양방향 알고리즘 클래스 구현을 위한 인터페이스 입니다.
+ * 양방향 암호화 클래스 구현을 위한 인터페이스 입니다.
  *
  * @author  yjj8353
  * @since   1.8
  */
 public interface TwoWayEncryption {
+    Logger logger = LogManager.getLogger();
+
+    CommonMessage commonMessage = new CommonMessage();
 
     /**
      * 문자열을 암호화 하고, 암호화 된 문자열을 반환 합니다.
@@ -25,11 +30,15 @@ public interface TwoWayEncryption {
      * @return 암호화 된 문자열
      */
     default String encrypt(String text, String key) throws CryptFailException {
-        Optional.ofNullable(text).orElseThrow(() ->
-                new NullPointerException("암호화 할 문자열 및 데이터는 null 일 수 없습니다."));
+        if (text == null) {
+            logger.error("암호화 할 문자열은 null 일 수 없습니다.");
+            throw new NullPointerException("매개변수 text가 null 입니다.");
+        }
 
-        Optional.ofNullable(key).orElseThrow(() ->
-                new NullPointerException("암호화 시, 사용할 키가 존재하지 않습니다."));
+        if (key == null) {
+            logger.error("암호화 시, 사용할 key가 존재하지 않습니다.");
+            throw new NullPointerException("매개변수 key가 null 입니다.");
+        }
 
         byte[] data = text.getBytes(StandardCharsets.UTF_8);
         byte[] keyData = key.getBytes(StandardCharsets.UTF_8);
@@ -58,11 +67,15 @@ public interface TwoWayEncryption {
      * @return 복호화 된 문자열
      */
     default String decrypt(String encryptedText, String key) throws CryptFailException {
-        Optional.ofNullable(encryptedText).orElseThrow(() ->
-                new NullPointerException("복호화 할 문자열 및 데이터는 null 일 수 없습니다."));
+        if (encryptedText == null) {
+            logger.error("복호화 할 문자열은 null 일 수 없습니다.");
+            throw new NullPointerException("매개변수 encryptedText가 null 입니다.");
+        }
 
-        Optional.ofNullable(key).orElseThrow(() ->
-                new NullPointerException("복호화 시, 사용할 키가 존재하지 않습니다."));
+        if (key == null) {
+            logger.error("복호화 시, 사용할 key가 존재하지 않습니다.");
+            throw new NullPointerException("매개변수 key가 null 입니다.");
+        }
 
         byte[] data = Base64.getDecoder().decode(encryptedText.getBytes(StandardCharsets.UTF_8));
         byte[] keyData = key.getBytes(StandardCharsets.UTF_8);

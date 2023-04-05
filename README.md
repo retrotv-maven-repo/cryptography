@@ -11,6 +11,8 @@ JDK 1.8 이상
 ### KDF(Key Derivation Function) 계열
 - Argon2
 - BCrypt
+- Pbkdf2
+- SCrypt
 
 ### CRC 계열
 - CRC-32

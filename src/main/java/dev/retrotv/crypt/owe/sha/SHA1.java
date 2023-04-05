@@ -18,7 +18,7 @@ public class SHA1 extends Encrypt implements Checksum, PasswordWithSalt {
 
     @Override
     public String encode(byte[] data) {
-        return Encode.binaryToHex(encrypt(Algorithm.SHA1, data));
+        return Encode.binaryToHex(encode(Algorithm.SHA1, data));
     }
 
     @Override

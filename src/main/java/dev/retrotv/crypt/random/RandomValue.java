@@ -1,9 +1,11 @@
 package dev.retrotv.crypt.random;
 
 import dev.retrotv.crypt.exception.RandomValueGenerateException;
+import dev.retrotv.util.CommonMessage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.security.SecureRandom;
-import java.util.Optional;
 
 /**
  * 무작위 값을 생성하기 위한 기능성 클래스 입니다.
@@ -12,6 +14,9 @@ import java.util.Optional;
  * @since   1.8
  */
 public class RandomValue {
+    private static final Logger logger = LogManager.getLogger();
+    private static final CommonMessage commonMessage = new CommonMessage();
+
     private static final int DEFAULT_LENGTH = 16;
     private static final SecurityStrength DEFAULT_SECURITY_STRENGTH = SecurityStrength.MIDDLE;
 
@@ -173,16 +178,18 @@ public class RandomValue {
      */
     public static String generate(SecurityStrength securityStrength, int len) {
         if (len < 0) {
+            logger.error("생성할 무작위 값 길이 len은 0보다 작을 수 없습니다.");
             throw new RandomValueGenerateException("생성할 무작위 값 길이 len은 0보다 작을 수 없습니다.");
         }
 
         if (securityStrength == null) {
-            securityStrength = DEFAULT_SECURITY_STRENGTH;
+            logger.warn(commonMessage.getMessage("warn.parameter.null", "securityStrength"));
+            logger.warn("SecurityStrength가 기본 값인 MIDDLE로 설정됩니다.");
+            securityStrength = SecurityStrength.MIDDLE;
         }
 
         int range;
         StringBuilder sb;
-        String randomValue = null;
         SecureRandom sr = new SecureRandom();
 
         switch (securityStrength) {
@@ -195,10 +202,10 @@ public class RandomValue {
                     sb.append(LOW_STRENGTH_CHARS[random]);
                 }
 
-                randomValue = sb.toString();
-                break;
+                return sb.toString();
 
             case MIDDLE:
+            default:
                 range = CAPITAL_LETTERS_LENGTH + SMALL_LETTERS_LENGTH + NUMBERS_LENGTH;
                 sb = new StringBuilder();
 
@@ -207,8 +214,7 @@ public class RandomValue {
                     sb.append(MIDDLE_STRENGTH_CHARS[random]);
                 }
 
-                randomValue = sb.toString();
-                break;
+                return sb.toString();
 
             case HIGH:
                 range = CAPITAL_LETTERS_LENGTH + SMALL_LETTERS_LENGTH + NUMBERS_LENGTH + SPECIAL_CHARS_LENGTH;
@@ -219,11 +225,7 @@ public class RandomValue {
                     sb.append(HIGH_STRENGTH_CHARS[random]);
                 }
 
-                randomValue = sb.toString();
-                break;
+                return sb.toString();
         }
-
-        return Optional.ofNullable(randomValue)
-                       .orElseThrow(() -> new RandomValueGenerateException("값이 정상적으로 생성되지 않았습니다."));
     }
 }

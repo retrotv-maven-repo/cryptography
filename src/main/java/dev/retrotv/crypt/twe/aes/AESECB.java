@@ -20,8 +20,6 @@ import java.util.Optional;
  * @since   1.8
  */
 public abstract class AESECB implements TwoWayEncryption {
-
-    //AES/ECB/PKCS5Padding encryption
     private static final String BAD_PADDING_EXCEPTION_MESSAGE =
             "BadPaddingException: "
           + "\n암호화 시 사용한 키와 일치하지 않습니다.";
@@ -53,13 +51,16 @@ public abstract class AESECB implements TwoWayEncryption {
      * @param key 암호화 시, 사용할 키
      * @return 암호화 된 데이터
      */
-    @Override
     public byte[] encrypt(byte[] data, byte[] key) throws CryptFailException {
-        Optional.ofNullable(data).orElseThrow(() ->
-                new NullPointerException("암호화 할 문자열 및 데이터는 null 일 수 없습니다."));
+        if (data == null) {
+            logger.error(commonMessage.getMessage("error.parameter.null", "data"));
+            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "data"));
+        }
 
-        Optional.ofNullable(key).orElseThrow(() ->
-                new NullPointerException("암호화 시, 사용할 키가 존재하지 않습니다."));
+        if (key == null) {
+            logger.error(commonMessage.getMessage("error.parameter.null", "key"));
+            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "key"));
+        }
 
         SecretKeySpec secretKey = new SecretKeySpec(key, "AES");
         byte[] encryptedData = null;
@@ -79,7 +80,7 @@ public abstract class AESECB implements TwoWayEncryption {
         } catch (NoSuchAlgorithmException ignored) { }
 
         return Optional.ofNullable(encryptedData)
-                .orElseThrow(() -> new CryptFailException("암호화가 정상적으로 진행되지 않았습니다."));
+                .orElseThrow(() -> new CryptFailException(commonMessage.getMessage("exception.encryptFail")));
     }
 
     /**
@@ -97,11 +98,15 @@ public abstract class AESECB implements TwoWayEncryption {
      */
     @Override
     public byte[] decrypt(byte[] encryptedData, byte[] key) throws CryptFailException {
-        Optional.ofNullable(encryptedData).orElseThrow(() ->
-                new NullPointerException("복호화 할 문자열 및 데이터는 null 일 수 없습니다."));
+        if (encryptedData == null) {
+            logger.error(commonMessage.getMessage("error.parameter.null", "encryptedData"));
+            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "encryptedData"));
+        }
 
-        Optional.ofNullable(key).orElseThrow(() ->
-                new NullPointerException("복호화 시, 사용할 키가 존재하지 않습니다."));
+        if (key == null) {
+            logger.error(commonMessage.getMessage("error.parameter.null", "key"));
+            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "key"));
+        }
 
         SecretKeySpec secretKey = new SecretKeySpec(key, "AES");
         byte[] decryptedData = null;
@@ -121,7 +126,7 @@ public abstract class AESECB implements TwoWayEncryption {
         } catch (NoSuchAlgorithmException ignored) { }
 
         return Optional.ofNullable(decryptedData)
-                .orElseThrow(() -> new CryptFailException("복호화가 정상적으로 진행되지 않았습니다."));
+                .orElseThrow(() -> new CryptFailException(commonMessage.getMessage("exception.decryptFail")));
     }
 
     @Override
