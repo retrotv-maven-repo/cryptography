@@ -1,13 +1,12 @@
 package dev.retrotv.crypt.owe;
 
 import dev.retrotv.util.CommonMessage;
+import dev.retrotv.util.FileReader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.DataInputStream;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 
 /**
  * 체크섬 클래스 구현을 위한 인터페이스 입니다.
@@ -35,14 +34,7 @@ public interface Checksum {
      * @throws IOException 파일을 읽어들이는 과정에서 오류가 발생할 경우 던짐
      */
     default String encode(File file) throws IOException {
-        try (DataInputStream dis = new DataInputStream(Files.newInputStream(file.toPath()))) {
-            byte[] fileData = new byte[(int) file.length()];
-            dis.readFully(fileData);
-
-            return encode(fileData);
-        } catch (IOException e) {
-            throw new IOException(commonMessage.getMessage("exception.fileRead"));
-        }
+        return encode(FileReader.read(file));
     }
 
     /**
@@ -85,16 +77,7 @@ public interface Checksum {
             return false;
         }
 
-        byte[] fileData;
-
-        try (DataInputStream dis = new DataInputStream(Files.newInputStream(file.toPath()))) {
-            fileData = new byte[(int) file.length()];
-            dis.readFully(fileData);
-        } catch (IOException e) {
-            throw new IOException(commonMessage.getMessage("exception.fileRead"));
-        }
-
-        return matches(fileData, checksum);
+        return matches(FileReader.read(file), checksum);
     }
 
     /**
@@ -137,22 +120,8 @@ public interface Checksum {
             return false;
         }
 
-        byte[] file1Data;
-        byte[] file2Data;
-
-        try (DataInputStream dis = new DataInputStream(Files.newInputStream(file1.toPath()))) {
-            file1Data = new byte[(int) file1.length()];
-            dis.readFully(file1Data);
-        } catch (IOException e) {
-            throw new IOException(commonMessage.getMessage("exception.fileRead"));
-        }
-
-        try (DataInputStream dis = new DataInputStream(Files.newInputStream(file2.toPath()))) {
-            file2Data = new byte[(int) file2.length()];
-            dis.readFully(file2Data);
-        } catch (IOException e) {
-            throw new IOException(commonMessage.getMessage("exception.fileRead"));
-        }
+        byte[] file1Data = FileReader.read(file1);
+        byte[] file2Data = FileReader.read(file2);
 
         return matches(file1Data, file2Data);
     }
