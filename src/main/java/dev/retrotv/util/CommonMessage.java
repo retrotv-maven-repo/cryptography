@@ -4,7 +4,7 @@ import java.text.MessageFormat;
 import java.util.ResourceBundle;
 
 public class CommonMessage {
-    ResourceBundle resourceBundle = ResourceBundle.getBundle("message");
+    private static final ResourceBundle resourceBundle = ResourceBundle.getBundle("message");
 
     public String getMessage(String key) {
         return resourceBundle.getString(key);
