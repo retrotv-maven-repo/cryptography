@@ -1,4 +1,4 @@
-package dev.retrotv.util;
+package dev.retrotv.utils;
 
 import java.io.DataInputStream;
 import java.io.File;

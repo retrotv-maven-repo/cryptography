@@ -1,8 +1,8 @@
 package dev.retrotv.crypt.owe;
 
 import dev.retrotv.crypt.random.RandomValue;
-import dev.retrotv.crypt.random.SecurityStrength;
-import dev.retrotv.util.CommonMessage;
+import dev.retrotv.enums.SecurityStrength;
+import dev.retrotv.utils.CommonMessage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -16,7 +16,6 @@ import org.apache.logging.log4j.Logger;
  */
 public interface PasswordWithSalt extends Password {
     Logger logger = LogManager.getLogger();
-
     CommonMessage commonMessage = new CommonMessage();
 
     /**

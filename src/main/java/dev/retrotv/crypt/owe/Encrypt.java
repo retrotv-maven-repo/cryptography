@@ -1,7 +1,7 @@
 package dev.retrotv.crypt.owe;
 
-import dev.retrotv.crypt.Algorithm;
-import dev.retrotv.util.CommonMessage;
+import dev.retrotv.enums.Algorithm;
+import dev.retrotv.utils.CommonMessage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -16,7 +16,6 @@ import java.security.NoSuchAlgorithmException;
  */
 public class Encrypt {
     private static final Logger logger = LogManager.getLogger();
-
     private static final CommonMessage commonMessage = new CommonMessage();
 
     private static final String WARNING_MESSAGE =

@@ -1,4 +1,4 @@
-package dev.retrotv.util;
+package dev.retrotv.utils;
 
 import java.text.MessageFormat;
 import java.util.ResourceBundle;

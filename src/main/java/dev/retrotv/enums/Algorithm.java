@@ -1,4 +1,4 @@
-package dev.retrotv.crypt;
+package dev.retrotv.enums;
 
 /**
  * 암호화 알고리즘을 표현하기 위한 열거형 클래스 입니다.

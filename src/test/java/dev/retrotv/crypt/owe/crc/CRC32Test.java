@@ -1,6 +1,6 @@
 package dev.retrotv.crypt.owe.crc;
 
-import dev.retrotv.crypt.Algorithm;
+import dev.retrotv.enums.Algorithm;
 import dev.retrotv.crypt.owe.OWETest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

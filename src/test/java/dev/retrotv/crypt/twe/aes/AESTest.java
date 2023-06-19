@@ -2,11 +2,13 @@ package dev.retrotv.crypt.twe.aes;
 
 import dev.retrotv.common.Log;
 import dev.retrotv.crypt.exception.CryptFailException;
+import dev.retrotv.crypt.random.RandomValue;
 import dev.retrotv.crypt.twe.TwoWayEncryption;
-import dev.retrotv.crypt.random.SecurityStrength;
+import dev.retrotv.enums.SecurityStrength;
 import org.junit.jupiter.api.RepetitionInfo;
 
 import javax.crypto.spec.IvParameterSpec;
+import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,7 +19,7 @@ public class AESTest extends Log {
 
     void encryptedDataWithIVTest(AESCBC aescbc) throws CryptFailException {
         String message = "The lazy dog jumps over the brown fox!";
-        String key = aescbc.generateKey(SecurityStrength.HIGH);
+        byte[] key = aescbc.generateKey(SecurityStrength.HIGH).getBytes(StandardCharsets.UTF_8);
         IvParameterSpec iv = aescbc.generateInitializationVector(SecurityStrength.HIGH);
 
         String encryptedMessage = aescbc.encrypt(message, key, iv);
@@ -30,10 +32,10 @@ public class AESTest extends Log {
         log.info("암호화 알고리즘: " + twe.getClass().getSimpleName());
 
         String message = "The lazy dog jumps over the brown fox!";
-        String key = twe.generateKey(SecurityStrength.HIGH);
+        byte[] key = RandomValue.generate(SecurityStrength.HIGH).getBytes(StandardCharsets.UTF_8);
 
-        log.info("생성 된 키: " + key);
-        log.info("키의 길이: " + key.getBytes().length * 8);
+        log.info("생성 된 키: " + new String(key, StandardCharsets.UTF_8));
+        log.info("키의 길이: " + key.length * 8);
 
         String encryptedMessage = twe.encrypt(message, key);
 

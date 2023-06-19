@@ -1,6 +1,7 @@
 package dev.retrotv.crypt;
 
-import dev.retrotv.util.CommonMessage;
+import dev.retrotv.enums.EncodeFormat;
+import dev.retrotv.utils.CommonMessage;
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.binary.Hex;
@@ -9,7 +10,6 @@ import org.apache.logging.log4j.Logger;
 
 public class Encode {
     private static final Logger logger = LogManager.getLogger();
-
     private static final CommonMessage commonMessage = new CommonMessage();
 
     public static String binaryToHex(byte[] data) {
