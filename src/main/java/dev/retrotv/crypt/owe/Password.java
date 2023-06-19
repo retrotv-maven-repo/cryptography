@@ -1,6 +1,6 @@
 package dev.retrotv.crypt.owe;
 
-import dev.retrotv.util.CommonMessage;
+import dev.retrotv.utils.CommonMessage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -14,7 +14,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  */
 public interface Password extends PasswordEncoder {
     Logger logger = LogManager.getLogger();
-
     CommonMessage commonMessage = new CommonMessage();
 
     @Override

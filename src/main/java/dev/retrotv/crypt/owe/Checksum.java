@@ -1,7 +1,7 @@
 package dev.retrotv.crypt.owe;
 
-import dev.retrotv.util.CommonMessage;
-import dev.retrotv.util.FileReader;
+import dev.retrotv.utils.CommonMessage;
+import dev.retrotv.utils.FileReader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

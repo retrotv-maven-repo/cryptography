@@ -1,7 +1,7 @@
 package dev.retrotv.crypt.random;
 
 import dev.retrotv.crypt.exception.RandomValueGenerateException;
-import dev.retrotv.util.CommonMessage;
+import dev.retrotv.utils.CommonMessage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -135,7 +135,7 @@ public class RandomValue {
      * SecurityStrength는 기본 값(DEFAULT_SECURITY_STRENGTH)으로 설정됩니다.
      * len은 기본 값(DEFAULT_LENGTH)으로 설정됩니다.
      *
-     * @exception RandomValueGenerateException 매개변수 len이 0보다 작거나, 무작위 값이 정상적으로 생성되지 않은 경우 발생
+     * @exception RandomValueGenerateException 매개변수 len이 0보다 작은 경우 발생
      * @return 생성된 무작위 값
      */
     public static String generate() {
@@ -146,7 +146,7 @@ public class RandomValue {
      * len 값을 바탕으로 무작위 값을 생성하고 반환 합니다.
      * SecurityStrength는 기본 값(DEFAULT_SECURITY_STRENGTH)으로 설정됩니다.
      *
-     * @exception RandomValueGenerateException 매개변수 len이 0보다 작거나, 무작위 값이 정상적으로 생성되지 않은 경우 발생
+     * @exception RandomValueGenerateException 매개변수 len이 0보다 작은 경우 발생
      * @param len 생성할 무작위 값 길이
      * @return 생성된 무작위 값
      */
@@ -159,7 +159,7 @@ public class RandomValue {
      * SecurityStrength가 null인 경우 기본 값(DEFAULT_SECURITY_STRENGTH)으로 설정됩니다.
      * len은 기본 값(DEFAULT_LENGTH)으로 설정됩니다.
      *
-     * @exception RandomValueGenerateException 매개변수 len이 0보다 작거나, 무작위 값이 정상적으로 생성되지 않은 경우 발생
+     * @exception RandomValueGenerateException 매개변수 len이 0보다 작은 경우 발생
      * @param securityStrength 보안 강도: {@link SecurityStrength} 참조
      * @return 생성된 무작위 값
      */
@@ -171,7 +171,7 @@ public class RandomValue {
      * {@link SecurityStrength}, len 값을 바탕으로 무작위 값을 생성하고 반환 합니다.
      * SecurityStrength가 null인 경우 기본 값(DEFAULT_SECURITY_STRENGTH)으로 설정됩니다.
      *
-     * @exception RandomValueGenerateException 매개변수 len이 0보다 작거나, 무작위 값이 정상적으로 생성되지 않은 경우 발생
+     * @exception RandomValueGenerateException 매개변수 len이 0보다 작은 경우 발생
      * @param securityStrength 보안 강도: {@link SecurityStrength} 참조
      * @param len 생성할 무작위 값 길이
      * @return 생성된 무작위 값

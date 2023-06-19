@@ -1,11 +1,11 @@
 package dev.retrotv.crypt.owe.md;
 
-import dev.retrotv.crypt.Algorithm;
+import dev.retrotv.enums.Algorithm;
 import dev.retrotv.crypt.Encode;
 import dev.retrotv.crypt.owe.Checksum;
 import dev.retrotv.crypt.owe.Encrypt;
 import dev.retrotv.crypt.owe.PasswordWithSalt;
-import dev.retrotv.util.CommonMessage;
+import dev.retrotv.utils.CommonMessage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

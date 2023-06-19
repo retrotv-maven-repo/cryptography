@@ -2,7 +2,7 @@ package dev.retrotv.crypt.twe;
 
 import dev.retrotv.crypt.exception.CryptFailException;
 import dev.retrotv.crypt.random.SecurityStrength;
-import dev.retrotv.util.CommonMessage;
+import dev.retrotv.utils.CommonMessage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -17,7 +17,6 @@ import java.util.Base64;
  */
 public interface TwoWayEncryption {
     Logger logger = LogManager.getLogger();
-
     CommonMessage commonMessage = new CommonMessage();
 
     /**
