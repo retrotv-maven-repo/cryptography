@@ -1,7 +1,7 @@
 package dev.retrotv.crypt.owe;
 
 import dev.retrotv.crypt.random.RandomValue;
-import dev.retrotv.crypt.random.SecurityStrength;
+import dev.retrotv.enums.SecurityStrength;
 import dev.retrotv.utils.CommonMessage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

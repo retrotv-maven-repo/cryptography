@@ -2,8 +2,9 @@ package dev.retrotv.crypt.twe.aes;
 
 import dev.retrotv.common.Log;
 import dev.retrotv.crypt.exception.CryptFailException;
+import dev.retrotv.crypt.random.RandomValue;
 import dev.retrotv.crypt.twe.TwoWayEncryption;
-import dev.retrotv.crypt.random.SecurityStrength;
+import dev.retrotv.enums.SecurityStrength;
 import org.junit.jupiter.api.RepetitionInfo;
 
 import javax.crypto.spec.IvParameterSpec;
@@ -30,7 +31,7 @@ public class AESTest extends Log {
         log.info("암호화 알고리즘: " + twe.getClass().getSimpleName());
 
         String message = "The lazy dog jumps over the brown fox!";
-        String key = twe.generateKey(SecurityStrength.HIGH);
+        String key = RandomValue.generate(SecurityStrength.HIGH);
 
         log.info("생성 된 키: " + key);
         log.info("키의 길이: " + key.getBytes().length * 8);

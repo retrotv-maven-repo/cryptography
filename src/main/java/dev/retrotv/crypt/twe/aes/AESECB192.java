@@ -1,7 +1,7 @@
 package dev.retrotv.crypt.twe.aes;
 
 import dev.retrotv.crypt.random.RandomValue;
-import dev.retrotv.crypt.random.SecurityStrength;
+import dev.retrotv.enums.SecurityStrength;
 
 public class AESECB192 extends AESECB {
 

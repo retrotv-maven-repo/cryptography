@@ -3,7 +3,7 @@ package dev.retrotv.crypt.twe.aes;
 import dev.retrotv.crypt.twe.TwoWayEncryption;
 import dev.retrotv.crypt.exception.CryptFailException;
 import dev.retrotv.crypt.random.RandomValue;
-import dev.retrotv.crypt.random.SecurityStrength;
+import dev.retrotv.enums.SecurityStrength;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -258,7 +258,12 @@ public abstract class AESCBC implements TwoWayEncryption {
                 .orElseThrow(() -> new CryptFailException("복호화가 정상적으로 진행되지 않았습니다."));
     }
 
-    @Override
+    /**
+     * 암복호화 시, 사용할 키를 생성합니다.
+     *
+     * @param securityStrength 보안 강도: {@link SecurityStrength} 참조
+     * @return 생성된 키
+     */
     abstract public String generateKey(SecurityStrength securityStrength);
 
     /**

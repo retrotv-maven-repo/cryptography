@@ -1,7 +1,6 @@
 package dev.retrotv.crypt.twe;
 
 import dev.retrotv.crypt.exception.CryptFailException;
-import dev.retrotv.crypt.random.SecurityStrength;
 import dev.retrotv.utils.CommonMessage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -91,12 +90,4 @@ public interface TwoWayEncryption {
      * @return 복호화 된 데이터
      */
     byte[] decrypt(byte[] encryptedData, byte[] key) throws CryptFailException;
-
-    /**
-     * 암복호화 시, 사용할 키를 생성합니다.
-     *
-     * @param securityStrength 보안 강도: {@link SecurityStrength} 참조
-     * @return 생성된 키
-     */
-    String generateKey(SecurityStrength securityStrength);
 }
