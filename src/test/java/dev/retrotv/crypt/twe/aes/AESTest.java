@@ -34,7 +34,7 @@ public class AESTest extends Log {
         String message = "The lazy dog jumps over the brown fox!";
         byte[] key = RandomValue.generate(SecurityStrength.HIGH).getBytes(StandardCharsets.UTF_8);
 
-        log.info("생성 된 키: " + key);
+        log.info("생성 된 키: " + new String(key, StandardCharsets.UTF_8));
         log.info("키의 길이: " + key.length * 8);
 
         String encryptedMessage = twe.encrypt(message, key);
