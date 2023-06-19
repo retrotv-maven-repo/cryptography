@@ -20,11 +20,11 @@ public class RSA2048Test extends Log {
         RSA2048 rsa = new RSA2048();
         KeyPair keyPair = rsa.generateKeyPair();
 
-        String encryptedMessage = rsa.encrypt(message, new String(keyPair.getPublic().getEncoded(), StandardCharsets.UTF_8));
+        String encryptedMessage = rsa.encrypt(message, keyPair.getPublic().getEncoded());
         // byte[] encryptedData = rsa.encrypt(message.getBytes(StandardCharsets.UTF_8), keyPair.getPublic().getEncoded());
         log.info("암호화 된 메시지: " + encryptedMessage);
 
-        String decryptedMessage = rsa.decrypt(encryptedMessage, new String(keyPair.getPrivate().getEncoded(), StandardCharsets.UTF_8));
+        String decryptedMessage = rsa.decrypt(encryptedMessage, keyPair.getPrivate().getEncoded());
         // byte[] decryptedData = rsa.decrypt(encryptedData, keyPair.getPrivate().getEncoded());
         log.info("복호화 된 메시지: " + decryptedMessage);
 

@@ -61,7 +61,7 @@ public abstract class AESCBC implements TwoWayEncryption {
      * @param iv 초기화 벡터
      * @return 암호화 된 문자열
      */
-    public String encrypt(String text, String key, IvParameterSpec iv) throws CryptFailException {
+    public String encrypt(String text, byte[] key, IvParameterSpec iv) throws CryptFailException {
         if (text == null) {
             logger.error(commonMessage.getMessage("error.parameter.null", "text"));
             throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "text"));
@@ -78,9 +78,8 @@ public abstract class AESCBC implements TwoWayEncryption {
         }
 
         byte[] data = text.getBytes(StandardCharsets.UTF_8);
-        byte[] keyData = key.getBytes(StandardCharsets.UTF_8);
 
-        return new String(Base64.getEncoder().encode(encrypt(data, keyData, iv)));
+        return new String(Base64.getEncoder().encode(encrypt(data, key, iv)));
     }
 
     @Override
@@ -169,7 +168,7 @@ public abstract class AESCBC implements TwoWayEncryption {
      * @param iv 초기화 벡터
      * @return 복호화 된 문자열
      */
-    public String decrypt(String encryptedText, String key, IvParameterSpec iv) throws CryptFailException {
+    public String decrypt(String encryptedText, byte[] key, IvParameterSpec iv) throws CryptFailException {
         if (encryptedText == null) {
             logger.error(commonMessage.getMessage("error.parameter.null", "encryptedText"));
             throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "encryptedText"));
@@ -181,9 +180,8 @@ public abstract class AESCBC implements TwoWayEncryption {
         }
 
         byte[] data = Base64.getDecoder().decode(encryptedText.getBytes(StandardCharsets.UTF_8));
-        byte[] keyData = key.getBytes(StandardCharsets.UTF_8);
 
-        return new String(decrypt(data, keyData, iv));
+        return new String(decrypt(data, key, iv));
     }
 
     @Override

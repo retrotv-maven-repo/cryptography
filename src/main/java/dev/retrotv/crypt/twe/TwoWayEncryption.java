@@ -27,7 +27,7 @@ public interface TwoWayEncryption {
      * @param key 암호화 시, 사용할 키
      * @return 암호화 된 문자열
      */
-    default String encrypt(String text, String key) throws CryptFailException {
+    default String encrypt(String text, byte[] key) throws CryptFailException {
         if (text == null) {
             logger.error("암호화 할 문자열은 null 일 수 없습니다.");
             throw new NullPointerException("매개변수 text가 null 입니다.");
@@ -39,9 +39,8 @@ public interface TwoWayEncryption {
         }
 
         byte[] data = text.getBytes(StandardCharsets.UTF_8);
-        byte[] keyData = key.getBytes(StandardCharsets.UTF_8);
 
-        return new String(Base64.getEncoder().encode(encrypt(data, keyData)));
+        return new String(Base64.getEncoder().encode(encrypt(data, key)));
     }
 
     /**
@@ -64,7 +63,7 @@ public interface TwoWayEncryption {
      * @param key 복호화 시, 사용할 키
      * @return 복호화 된 문자열
      */
-    default String decrypt(String encryptedText, String key) throws CryptFailException {
+    default String decrypt(String encryptedText, byte[] key) throws CryptFailException {
         if (encryptedText == null) {
             logger.error("복호화 할 문자열은 null 일 수 없습니다.");
             throw new NullPointerException("매개변수 encryptedText가 null 입니다.");
@@ -76,9 +75,8 @@ public interface TwoWayEncryption {
         }
 
         byte[] data = Base64.getDecoder().decode(encryptedText.getBytes(StandardCharsets.UTF_8));
-        byte[] keyData = key.getBytes(StandardCharsets.UTF_8);
 
-        return new String(decrypt(data, keyData));
+        return new String(decrypt(data, key));
     }
 
     /**
