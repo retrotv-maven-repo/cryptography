@@ -99,7 +99,9 @@ public interface PasswordWithSalt extends Password {
      * @return 생성된 소금
      */
     default String generateSalt() {
-        return RandomValue.generate();
+        RandomValue rv = new RandomValue();
+        rv.generate();
+        return rv.getValue();
     }
 
     /**
@@ -110,7 +112,9 @@ public interface PasswordWithSalt extends Password {
      * @return 생성된 소금
      */
     default String generateSalt(int len) {
-        return RandomValue.generate(len);
+        RandomValue rv = new RandomValue();
+        rv.generate(len);
+        return rv.getValue();
     }
 
     /**
@@ -121,7 +125,9 @@ public interface PasswordWithSalt extends Password {
      * @return 생성된 소금
      */
     default String generateSalt(SecurityStrength securityStrength) {
-        return RandomValue.generate(securityStrength);
+        RandomValue rv = new RandomValue();
+        rv.generate(securityStrength);
+        return rv.getValue();
     }
 
     /**
@@ -132,6 +138,8 @@ public interface PasswordWithSalt extends Password {
      * @return 생성된 소금
      */
     default String generateSalt(SecurityStrength securityStrength, int length) {
-        return RandomValue.generate(securityStrength, length);
+        RandomValue rv = new RandomValue();
+        rv.generate(securityStrength, length);
+        return rv.getValue();
     }
 }

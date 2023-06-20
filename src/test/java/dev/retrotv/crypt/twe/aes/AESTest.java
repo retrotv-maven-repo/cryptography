@@ -19,7 +19,7 @@ public class AESTest extends Log {
 
     void encryptedDataWithIVTest(AESCBC aescbc) throws CryptFailException {
         String message = "The lazy dog jumps over the brown fox!";
-        byte[] key = aescbc.generateKey(SecurityStrength.HIGH).getBytes(StandardCharsets.UTF_8);
+        byte[] key = aescbc.generateKey(SecurityStrength.HIGH);
         IvParameterSpec iv = aescbc.generateInitializationVector(SecurityStrength.HIGH);
 
         String encryptedMessage = aescbc.encrypt(message, key, iv);
@@ -32,7 +32,9 @@ public class AESTest extends Log {
         log.info("암호화 알고리즘: " + twe.getClass().getSimpleName());
 
         String message = "The lazy dog jumps over the brown fox!";
-        byte[] key = RandomValue.generate(SecurityStrength.HIGH).getBytes(StandardCharsets.UTF_8);
+        RandomValue rv = new RandomValue();
+        rv.generate(SecurityStrength.HIGH);
+        byte[] key = rv.getBytes();
 
         log.info("생성 된 키: " + new String(key, StandardCharsets.UTF_8));
         log.info("키의 길이: " + key.length * 8);

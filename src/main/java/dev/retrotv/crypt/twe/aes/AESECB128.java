@@ -6,7 +6,9 @@ import dev.retrotv.enums.SecurityStrength;
 public class AESECB128 extends AESECB {
 
     @Override
-    public String generateKey(SecurityStrength securityStrength) {
-        return RandomValue.generate(securityStrength, 16);
+    public byte[] generateKey(SecurityStrength securityStrength) {
+        RandomValue rv = new RandomValue();
+        rv.generate(securityStrength, 16);
+        return rv.getBytes();
     }
 }

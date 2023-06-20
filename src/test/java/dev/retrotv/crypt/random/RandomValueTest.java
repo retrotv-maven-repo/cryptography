@@ -14,27 +14,30 @@ public class RandomValueTest {
     @Test
     @DisplayName("낮은 보안 수준의 무작위 값 생성")
     void generateLowStrengthRandomValue() {
-        String randomValue = RandomValue.generate(SecurityStrength.LOW, 200);
-        log.info(randomValue);
+        RandomValue rv = new RandomValue();
+        rv.generate(SecurityStrength.LOW, 200);
+        log.info(rv.getValue());
 
-        assertNotNull(randomValue);
+        assertNotNull(rv.getValue());
     }
 
     @Test
     @DisplayName("중간 보안 수준의 무작위 값 생성")
     void generateMiddleStrengthRandomValue() {
-        String randomValue = RandomValue.generate(SecurityStrength.MIDDLE, 200);
-        log.info(randomValue);
+        RandomValue rv = new RandomValue();
+        rv.generate(SecurityStrength.MIDDLE, 200);
+        log.info(rv.getValue());
 
-        assertNotNull(randomValue);
+        assertNotNull(rv.getValue());
     }
 
     @Test
     @DisplayName("높은 보안 수준의 무작위 값 생성")
     void generateHighStrengthRandomValue() {
-        String randomValue = RandomValue.generate(SecurityStrength.HIGH, 200);
-        log.info(randomValue);
+        RandomValue rv = new RandomValue();
+        rv.generate(SecurityStrength.HIGH, 200);
+        log.info(rv.getValue());
 
-        assertNotNull(randomValue);
+        assertNotNull(rv.getValue());
     }
 }

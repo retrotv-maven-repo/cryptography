@@ -135,5 +135,5 @@ public abstract class AESECB implements TwoWayEncryption {
      * @param securityStrength 보안 강도: {@link SecurityStrength} 참조
      * @return 생성된 키
      */
-    abstract public String generateKey(SecurityStrength securityStrength);
+    abstract public byte[] generateKey(SecurityStrength securityStrength);
 }
