@@ -6,6 +6,8 @@ import dev.retrotv.utils.CommonMessage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.nio.charset.Charset;
+
 /**
  * 소금을 이용한 패스워드 암호화 클래스 구현을 위한 인터페이스 입니다.
  * 키 유도 함수를 자체적으로 포함하고 있는 암호화 알고리즘을 사용할 경우 {@link Password} 인터페이스를 상속받아 구현하십시오.
@@ -17,6 +19,8 @@ import org.apache.logging.log4j.Logger;
 public interface PasswordWithSalt extends Password {
     Logger logger = LogManager.getLogger();
     CommonMessage commonMessage = new CommonMessage();
+
+    String encode(CharSequence rawPassword, Charset charset);
 
     /**
      * 패스워드에 소금을 치고 암호화 한 뒤, 암호화 된 패스워드 문자열을 반환합니다.
@@ -37,6 +41,28 @@ public interface PasswordWithSalt extends Password {
         }
 
         return encode(String.valueOf(rawPassword) + salt);
+    }
+
+    /**
+     * 패스워드에 소금을 치고 암호화 한 뒤, 암호화 된 패스워드 문자열을 반환합니다.
+     *
+     * @param rawPassword 암호화 할 패스워드
+     * @param salt 소금
+     * @param charset 인코딩 시 사용할 문자열 셋
+     * @return 암호화 된 패스워드 문자열
+     */
+    default String encode(CharSequence rawPassword, CharSequence salt, Charset charset) {
+        if (rawPassword == null) {
+            logger.error(commonMessage.getMessage("error.parameter.null", "rawPassword"));
+            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "rawPassword"));
+        }
+
+        if (salt == null) {
+            logger.warn(commonMessage.getMessage("warn.parameter.null", "salt"));
+            logger.warn("의도한 것이 아니라면 encode(CharSequence rawPassword) 메소드를 사용하십시오.");
+        }
+
+        return encode(String.valueOf(rawPassword) + salt, charset);
     }
 
     /**

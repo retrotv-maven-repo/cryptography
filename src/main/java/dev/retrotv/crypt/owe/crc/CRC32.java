@@ -8,7 +8,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.nio.ByteBuffer;
-import java.nio.charset.StandardCharsets;
+import java.nio.charset.Charset;
 
 /**
  * CRC-32 알고리즘으로 암호화 하기 위한 {@link Checksum}, {@link PasswordWithSalt} 인터페이스의 구현체 입니다.
@@ -46,6 +46,17 @@ public class CRC32 implements Checksum, PasswordWithSalt {
         }
 
         String password = String.valueOf(rawPassword);
-        return encode(password.getBytes(StandardCharsets.UTF_8));
+        return encode(password.getBytes());
+    }
+
+    @Override
+    public String encode(CharSequence rawPassword, Charset charset) {
+        if (rawPassword == null) {
+            logger.error(commonMessage.getMessage("error.parameter.null", "rawPassword"));
+            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "rawPassword"));
+        }
+
+        String password = String.valueOf(rawPassword);
+        return encode(password.getBytes(charset));
     }
 }
