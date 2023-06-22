@@ -9,6 +9,7 @@ import dev.retrotv.utils.CommonMessage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
 /**
@@ -40,5 +41,16 @@ public class MD5 extends Encrypt implements Checksum, PasswordWithSalt {
 
         String password = String.valueOf(rawPassword);
         return encode(password.getBytes(StandardCharsets.UTF_8));
+    }
+
+    @Override
+    public String encode(CharSequence rawPassword, Charset charset) {
+        if (rawPassword == null) {
+            logger.error(commonMessage.getMessage("error.parameter.null", "rawPassword"));
+            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "rawPassword"));
+        }
+
+        String password = String.valueOf(rawPassword);
+        return encode(password.getBytes(charset));
     }
 }

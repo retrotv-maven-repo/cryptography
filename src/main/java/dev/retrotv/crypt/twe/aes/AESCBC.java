@@ -262,7 +262,7 @@ public abstract class AESCBC implements TwoWayEncryption {
      * @param securityStrength 보안 강도: {@link SecurityStrength} 참조
      * @return 생성된 키
      */
-    abstract public String generateKey(SecurityStrength securityStrength);
+    abstract public byte[] generateKey(SecurityStrength securityStrength);
 
     /**
      * AES/CBC 알고리즘에서 사용할 초기화 벡터 값을 생성합니다.
@@ -271,7 +271,8 @@ public abstract class AESCBC implements TwoWayEncryption {
      * @return 생성된 초기화 벡터
      */
     public IvParameterSpec generateInitializationVector(SecurityStrength securityStrength) {
-        String iv = RandomValue.generate(securityStrength, 16);
-        return new IvParameterSpec(iv.getBytes());
+        RandomValue rv = new RandomValue();
+        rv.generate(securityStrength, 16);
+        return new IvParameterSpec(rv.getBytes());
     }
 }

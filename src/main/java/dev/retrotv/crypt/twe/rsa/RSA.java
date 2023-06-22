@@ -76,7 +76,7 @@ public abstract class RSA implements TwoWayEncryption {
 
             return cipher.doFinal(encryptedData);
         } catch (InvalidKeyException e) {
-            throw new CryptFailException("InvalidKeyException: \n1. 암호화 키는 각각 1024/2048 byte 길이의 키만 사용할 수 있습니다.");
+            throw new CryptFailException("InvalidKeyException: \n유효하지 않은 키 입니다.\nRSA 암호화 방식에서 지원하는 키 길이인지 확인하십시오.");
         } catch (IllegalBlockSizeException e) {
             throw new CryptFailException("IllegalBlockSizeException: \n암호화 되지 않은 데이터의 복호화를 시도중 이거나, 이미 다른 유형으로 인코딩 된 데이터의 암복호화를 시도하는 중인지 확인하십시오.");
         } catch (BadPaddingException e) {
