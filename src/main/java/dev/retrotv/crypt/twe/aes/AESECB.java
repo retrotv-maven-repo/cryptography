@@ -53,13 +53,13 @@ public abstract class AESECB implements TwoWayEncryption {
      */
     public byte[] encrypt(byte[] data, byte[] key) throws CryptFailException {
         if (data == null) {
-            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "data"));
-            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "data"));
+            logger.error(commonMessageUtil.getMessage("error.parameter.null", "data"));
+            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "data"));
         }
 
         if (key == null) {
-            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "key"));
-            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "key"));
+            logger.error(commonMessageUtil.getMessage("error.parameter.null", "key"));
+            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "key"));
         }
 
         SecretKeySpec secretKey = new SecretKeySpec(key, "AES");
@@ -80,7 +80,7 @@ public abstract class AESECB implements TwoWayEncryption {
         } catch (NoSuchAlgorithmException ignored) { }
 
         return Optional.ofNullable(encryptedData)
-                .orElseThrow(() -> new CryptFailException(COMMON_MESSAGE.getMessage("exception.encryptFail")));
+                .orElseThrow(() -> new CryptFailException(commonMessageUtil.getMessage("exception.encryptFail")));
     }
 
     /**
@@ -99,13 +99,13 @@ public abstract class AESECB implements TwoWayEncryption {
     @Override
     public byte[] decrypt(byte[] encryptedData, byte[] key) throws CryptFailException {
         if (encryptedData == null) {
-            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "encryptedData"));
-            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "encryptedData"));
+            logger.error(commonMessageUtil.getMessage("error.parameter.null", "encryptedData"));
+            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "encryptedData"));
         }
 
         if (key == null) {
-            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "key"));
-            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "key"));
+            logger.error(commonMessageUtil.getMessage("error.parameter.null", "key"));
+            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "key"));
         }
 
         SecretKeySpec secretKey = new SecretKeySpec(key, "AES");
@@ -126,7 +126,7 @@ public abstract class AESECB implements TwoWayEncryption {
         } catch (NoSuchAlgorithmException ignored) { }
 
         return Optional.ofNullable(decryptedData)
-                .orElseThrow(() -> new CryptFailException(COMMON_MESSAGE.getMessage("exception.decryptFail")));
+                .orElseThrow(() -> new CryptFailException(commonMessageUtil.getMessage("exception.decryptFail")));
     }
 
     /**

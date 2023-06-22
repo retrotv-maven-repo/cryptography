@@ -15,8 +15,8 @@ public class SHA1 extends MessageDigestEncrypt {
     @Override
     public String encode(byte[] data) {
         if (data == null) {
-            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "data"));
-            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "data"));
+            logger.error(commonMessageUtil.getMessage("error.parameter.null", "data"));
+            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "data"));
         }
 
         return EncodeUtil.binaryToHex(encode(Algorithm.SHA1, data));

@@ -9,12 +9,12 @@ import org.apache.logging.log4j.Logger;
 
 public class EncodeUtil {
     private static final Logger logger = LogManager.getLogger();
-    private static final CommonMessageUtil COMMON_MESSAGE = new CommonMessageUtil();
+    private static final CommonMessageUtil commonMessageUtil = new CommonMessageUtil();
 
     public static String binaryToHex(byte[] data) {
         if (data == null) {
-            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "data"));
-            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "data"));
+            logger.error(commonMessageUtil.getMessage("error.parameter.null", "data"));
+            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "data"));
         }
 
         return Hex.encodeHexString(data);
@@ -22,8 +22,8 @@ public class EncodeUtil {
 
     public static String binaryToBase64(byte[] data) {
         if (data == null) {
-            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "data"));
-            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "data"));
+            logger.error(commonMessageUtil.getMessage("error.parameter.null", "data"));
+            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "data"));
         }
 
         return Base64.encodeBase64String(data);
@@ -31,8 +31,8 @@ public class EncodeUtil {
 
     public static byte[] hexToBinary(String hex) throws DecoderException {
         if (hex == null) {
-            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "hex"));
-            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "hex"));
+            logger.error(commonMessageUtil.getMessage("error.parameter.null", "hex"));
+            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "hex"));
         }
 
         return Hex.decodeHex(hex);
@@ -40,8 +40,8 @@ public class EncodeUtil {
 
     public static byte[] base64ToBinary(String base64) {
         if (base64 == null) {
-            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "base64"));
-            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "base64"));
+            logger.error(commonMessageUtil.getMessage("error.parameter.null", "base64"));
+            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "base64"));
         }
 
         return Base64.decodeBase64(base64);
@@ -54,8 +54,8 @@ public class EncodeUtil {
         }
 
         if (data == null) {
-            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "data"));
-            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "data"));
+            logger.error(commonMessageUtil.getMessage("error.parameter.null", "data"));
+            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "data"));
         }
 
         switch (encodeFormat) {

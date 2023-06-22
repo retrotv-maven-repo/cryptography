@@ -16,7 +16,7 @@ import java.util.Base64;
  */
 public interface TwoWayEncryption {
     Logger logger = LogManager.getLogger();
-    CommonMessageUtil COMMON_MESSAGE = new CommonMessageUtil();
+    CommonMessageUtil commonMessageUtil = new CommonMessageUtil();
 
     /**
      * 문자열을 암호화 하고, 암호화 된 문자열을 반환 합니다.

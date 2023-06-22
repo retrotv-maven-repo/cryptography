@@ -24,8 +24,8 @@ public class SCrypt implements Password {
     @Override
     public String encode(CharSequence rawPassword) {
         if (rawPassword == null) {
-            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "rawPassword"));
-            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "rawPassword"));
+            logger.error(commonMessageUtil.getMessage("error.parameter.null", "rawPassword"));
+            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "rawPassword"));
         }
 
         return scrypt.encode(rawPassword);
@@ -34,12 +34,12 @@ public class SCrypt implements Password {
     @Override
     public boolean matches(CharSequence rawPassword, String encodedPassword) {
         if (rawPassword == null) {
-            logger.warn(COMMON_MESSAGE.getMessage("warn.parameter.null", "rawPassword"));
+            logger.warn(commonMessageUtil.getMessage("warn.parameter.null", "rawPassword"));
             return false;
         }
 
         if (encodedPassword == null) {
-            logger.warn(COMMON_MESSAGE.getMessage("warn.parameter.null", "encodedPassword"));
+            logger.warn(commonMessageUtil.getMessage("warn.parameter.null", "encodedPassword"));
             return false;
         }
 

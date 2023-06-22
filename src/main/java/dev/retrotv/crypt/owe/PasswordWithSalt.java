@@ -18,7 +18,7 @@ import java.nio.charset.Charset;
  */
 public interface PasswordWithSalt extends Password {
     Logger logger = LogManager.getLogger();
-    CommonMessageUtil COMMON_MESSAGE = new CommonMessageUtil();
+    CommonMessageUtil commonMessageUtil = new CommonMessageUtil();
 
     String encode(CharSequence rawPassword, Charset charset);
 
@@ -31,12 +31,12 @@ public interface PasswordWithSalt extends Password {
      */
     default String encode(CharSequence rawPassword, CharSequence salt) {
         if (rawPassword == null) {
-            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "rawPassword"));
-            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "rawPassword"));
+            logger.error(commonMessageUtil.getMessage("error.parameter.null", "rawPassword"));
+            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "rawPassword"));
         }
 
         if (salt == null) {
-            logger.warn(COMMON_MESSAGE.getMessage("warn.parameter.null", "salt"));
+            logger.warn(commonMessageUtil.getMessage("warn.parameter.null", "salt"));
             logger.warn("의도한 것이 아니라면 encode(CharSequence rawPassword) 메소드를 사용하십시오.");
         }
 
@@ -53,12 +53,12 @@ public interface PasswordWithSalt extends Password {
      */
     default String encode(CharSequence rawPassword, CharSequence salt, Charset charset) {
         if (rawPassword == null) {
-            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "rawPassword"));
-            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "rawPassword"));
+            logger.error(commonMessageUtil.getMessage("error.parameter.null", "rawPassword"));
+            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "rawPassword"));
         }
 
         if (salt == null) {
-            logger.warn(COMMON_MESSAGE.getMessage("warn.parameter.null", "salt"));
+            logger.warn(commonMessageUtil.getMessage("warn.parameter.null", "salt"));
             logger.warn("의도한 것이 아니라면 encode(CharSequence rawPassword) 메소드를 사용하십시오.");
         }
 
@@ -75,17 +75,17 @@ public interface PasswordWithSalt extends Password {
      */
     default boolean matches(CharSequence rawPassword, CharSequence salt, String encodedPassword) {
         if (rawPassword == null) {
-            logger.warn(COMMON_MESSAGE.getMessage("warn.parameter.null", "rawPassword"));
+            logger.warn(commonMessageUtil.getMessage("warn.parameter.null", "rawPassword"));
             return false;
         }
 
         if (encodedPassword == null) {
-            logger.warn(COMMON_MESSAGE.getMessage("warn.parameter.null", "encodedPassword"));
+            logger.warn(commonMessageUtil.getMessage("warn.parameter.null", "encodedPassword"));
             return false;
         }
 
         if (salt == null) {
-            logger.warn(COMMON_MESSAGE.getMessage("warn.parameter.null", "salt"));
+            logger.warn(commonMessageUtil.getMessage("warn.parameter.null", "salt"));
             logger.warn("의도한 것이 아니라면 matches(CharSequence rawPassword, String encodedPassword) 메소드를 사용하십시오.");
         }
 

@@ -18,13 +18,13 @@ import java.nio.charset.Charset;
  */
 public class CRC32 implements Checksum, PasswordWithSalt {
     private static final Logger logger = LogManager.getLogger();
-    private static final CommonMessageUtil COMMON_MESSAGE = new CommonMessageUtil();
+    private static final CommonMessageUtil commonMessageUtil = new CommonMessageUtil();
 
     @Override
     public String encode(byte[] data) {
         if (data == null) {
-            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "data"));
-            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "data"));
+            logger.error(commonMessageUtil.getMessage("error.parameter.null", "data"));
+            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "data"));
         }
 
         java.util.zip.CRC32 crc32 = new java.util.zip.CRC32();
@@ -41,8 +41,8 @@ public class CRC32 implements Checksum, PasswordWithSalt {
     @Override
     public String encode(CharSequence rawPassword) {
         if (rawPassword == null) {
-            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "rawPassword"));
-            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "rawPassword"));
+            logger.error(commonMessageUtil.getMessage("error.parameter.null", "rawPassword"));
+            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "rawPassword"));
         }
 
         String password = String.valueOf(rawPassword);
@@ -52,8 +52,8 @@ public class CRC32 implements Checksum, PasswordWithSalt {
     @Override
     public String encode(CharSequence rawPassword, Charset charset) {
         if (rawPassword == null) {
-            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "rawPassword"));
-            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "rawPassword"));
+            logger.error(commonMessageUtil.getMessage("error.parameter.null", "rawPassword"));
+            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "rawPassword"));
         }
 
         String password = String.valueOf(rawPassword);

@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 
 public class FileReadUtil {
-    private static final CommonMessageUtil COMMON_MESSAGE = new CommonMessageUtil();
+    private static final CommonMessageUtil commonMessageUtil = new CommonMessageUtil();
 
     public static byte[] read(File file) throws IOException {
         byte[] fileData;
@@ -15,7 +15,7 @@ public class FileReadUtil {
             fileData = new byte[(int) file.length()];
             dis.readFully(fileData);
         } catch (IOException e) {
-            throw new IOException(COMMON_MESSAGE.getMessage("exception.fileRead"));
+            throw new IOException(commonMessageUtil.getMessage("exception.fileRead"));
         }
 
         return fileData;

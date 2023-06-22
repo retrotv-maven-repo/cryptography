@@ -17,7 +17,7 @@ import java.security.NoSuchAlgorithmException;
  */
 public abstract class MessageDigestEncrypt implements Checksum, PasswordWithSalt  {
     protected static final Logger logger = LogManager.getLogger();
-    protected static final CommonMessageUtil COMMON_MESSAGE = new CommonMessageUtil();
+    protected static final CommonMessageUtil commonMessageUtil = new CommonMessageUtil();
 
     private static final String WARNING_MESSAGE =
             "이 예외는 기본적으로 발생하지 않습니다, 만약 예외가 발생한다면 다음 사항을 확인하십시오."
@@ -33,13 +33,13 @@ public abstract class MessageDigestEncrypt implements Checksum, PasswordWithSalt
      */
     protected byte[] encode(Algorithm algorithm, byte[] data) {
         if (algorithm == null) {
-            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "algorithm"));
-            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "algorithm"));
+            logger.error(commonMessageUtil.getMessage("error.parameter.null", "algorithm"));
+            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "algorithm"));
         }
 
         if (data == null) {
-            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "data"));
-            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "data"));
+            logger.error(commonMessageUtil.getMessage("error.parameter.null", "data"));
+            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "data"));
         }
 
         try {
@@ -49,7 +49,7 @@ public abstract class MessageDigestEncrypt implements Checksum, PasswordWithSalt
 
             return md.digest();
         } catch (NoSuchAlgorithmException e) {
-            logger.error(COMMON_MESSAGE.getMessage("exception.encryptFail"));
+            logger.error(commonMessageUtil.getMessage("exception.encryptFail"));
             throw new RuntimeException(WARNING_MESSAGE);
         }
     }
@@ -57,8 +57,8 @@ public abstract class MessageDigestEncrypt implements Checksum, PasswordWithSalt
     @Override
     public String encode(CharSequence rawPassword) {
         if (rawPassword == null) {
-            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "rawPassword"));
-            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "rawPassword"));
+            logger.error(commonMessageUtil.getMessage("error.parameter.null", "rawPassword"));
+            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "rawPassword"));
         }
 
         String password = String.valueOf(rawPassword);
@@ -68,8 +68,8 @@ public abstract class MessageDigestEncrypt implements Checksum, PasswordWithSalt
     @Override
     public String encode(CharSequence rawPassword, Charset charset) {
         if (rawPassword == null) {
-            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "rawPassword"));
-            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "rawPassword"));
+            logger.error(commonMessageUtil.getMessage("error.parameter.null", "rawPassword"));
+            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "rawPassword"));
         }
 
         String password = String.valueOf(rawPassword);

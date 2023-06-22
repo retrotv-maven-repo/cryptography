@@ -20,13 +20,13 @@ import java.nio.charset.StandardCharsets;
  */
 public class MD2 extends MessageDigestEncrypt {
     private static final Logger logger = LogManager.getLogger();
-    private static final CommonMessageUtil COMMON_MESSAGE = new CommonMessageUtil();
+    private static final CommonMessageUtil commonMessageUtil = new CommonMessageUtil();
 
     @Override
     public String encode(byte[] data) {
         if (data == null) {
-            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "data"));
-            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "data"));
+            logger.error(commonMessageUtil.getMessage("error.parameter.null", "data"));
+            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "data"));
         }
 
         return EncodeUtil.binaryToHex(encode(Algorithm.MD2, data));
@@ -35,8 +35,8 @@ public class MD2 extends MessageDigestEncrypt {
     @Override
     public String encode(CharSequence rawPassword) {
         if (rawPassword == null) {
-            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "rawPassword"));
-            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "rawPassword"));
+            logger.error(commonMessageUtil.getMessage("error.parameter.null", "rawPassword"));
+            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "rawPassword"));
         }
 
         String password = String.valueOf(rawPassword);
@@ -46,8 +46,8 @@ public class MD2 extends MessageDigestEncrypt {
     @Override
     public String encode(CharSequence rawPassword, Charset charset) {
         if (rawPassword == null) {
-            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "rawPassword"));
-            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "rawPassword"));
+            logger.error(commonMessageUtil.getMessage("error.parameter.null", "rawPassword"));
+            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "rawPassword"));
         }
 
         String password = String.valueOf(rawPassword);
