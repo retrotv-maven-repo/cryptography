@@ -5,8 +5,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 
-public class FileReader {
-    private static final CommonMessage commonMessage = new CommonMessage();
+public class FileReadUtil {
+    private static final CommonMessageUtil COMMON_MESSAGE = new CommonMessageUtil();
 
     public static byte[] read(File file) throws IOException {
         byte[] fileData;
@@ -15,7 +15,7 @@ public class FileReader {
             fileData = new byte[(int) file.length()];
             dis.readFully(fileData);
         } catch (IOException e) {
-            throw new IOException(commonMessage.getMessage("exception.fileRead"));
+            throw new IOException(COMMON_MESSAGE.getMessage("exception.fileRead"));
         }
 
         return fileData;

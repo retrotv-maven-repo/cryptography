@@ -1,7 +1,7 @@
 package dev.retrotv.crypt.owe;
 
-import dev.retrotv.utils.CommonMessage;
-import dev.retrotv.utils.FileReader;
+import dev.retrotv.utils.CommonMessageUtil;
+import dev.retrotv.utils.FileReadUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -16,7 +16,7 @@ import java.io.IOException;
  */
 public interface Checksum {
     Logger logger = LogManager.getLogger();
-    CommonMessage commonMessage = new CommonMessage();
+    CommonMessageUtil COMMON_MESSAGE = new CommonMessageUtil();
 
     /**
      * data를 해시해 checksum을 생성하고 반환합니다.
@@ -34,7 +34,7 @@ public interface Checksum {
      * @throws IOException 파일을 읽어들이는 과정에서 오류가 발생할 경우 던짐
      */
     default String encode(File file) throws IOException {
-        return encode(FileReader.read(file));
+        return encode(FileReadUtil.read(file));
     }
 
     /**
@@ -46,12 +46,12 @@ public interface Checksum {
      */
     default boolean matches(byte[] data, String checksum) {
         if (data == null) {
-            logger.warn(commonMessage.getMessage("warn.parameter.null", "data"));
+            logger.warn(COMMON_MESSAGE.getMessage("warn.parameter.null", "data"));
             return false;
         }
 
         if (checksum == null) {
-            logger.warn(commonMessage.getMessage("warn.parameter.null", "checksum"));
+            logger.warn(COMMON_MESSAGE.getMessage("warn.parameter.null", "checksum"));
             return false;
         }
 
@@ -68,16 +68,16 @@ public interface Checksum {
      */
     default boolean matches(File file, String checksum) throws IOException {
         if (file == null) {
-            logger.warn(commonMessage.getMessage("warn.parameter.null", "file"));
+            logger.warn(COMMON_MESSAGE.getMessage("warn.parameter.null", "file"));
             return false;
         }
 
         if (checksum == null) {
-            logger.warn(commonMessage.getMessage("warn.parameter.null", "checksum"));
+            logger.warn(COMMON_MESSAGE.getMessage("warn.parameter.null", "checksum"));
             return false;
         }
 
-        return matches(FileReader.read(file), checksum);
+        return matches(FileReadUtil.read(file), checksum);
     }
 
     /**
@@ -89,12 +89,12 @@ public interface Checksum {
      */
     default boolean matches(byte[] data1, byte[] data2) {
         if (data1 == null) {
-            logger.warn(commonMessage.getMessage("warn.parameter.null", "data1"));
+            logger.warn(COMMON_MESSAGE.getMessage("warn.parameter.null", "data1"));
             return false;
         }
 
         if (data2 == null) {
-            logger.warn(commonMessage.getMessage("warn.parameter.null", "data2"));
+            logger.warn(COMMON_MESSAGE.getMessage("warn.parameter.null", "data2"));
             return false;
         }
 
@@ -111,17 +111,17 @@ public interface Checksum {
      */
     default boolean matches(File file1, File file2) throws IOException {
         if (file1 == null) {
-            logger.warn(commonMessage.getMessage("warn.parameter.null", "file1"));
+            logger.warn(COMMON_MESSAGE.getMessage("warn.parameter.null", "file1"));
             return false;
         }
 
         if (file2 == null) {
-            logger.warn(commonMessage.getMessage("warn.parameter.null", "file2"));
+            logger.warn(COMMON_MESSAGE.getMessage("warn.parameter.null", "file2"));
             return false;
         }
 
-        byte[] file1Data = FileReader.read(file1);
-        byte[] file2Data = FileReader.read(file2);
+        byte[] file1Data = FileReadUtil.read(file1);
+        byte[] file2Data = FileReadUtil.read(file2);
 
         return matches(file1Data, file2Data);
     }

@@ -63,18 +63,18 @@ public abstract class AESCBC implements TwoWayEncryption {
      */
     public String encrypt(String text, byte[] key, IvParameterSpec iv) throws CryptFailException {
         if (text == null) {
-            logger.error(commonMessage.getMessage("error.parameter.null", "text"));
-            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "text"));
+            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "text"));
+            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "text"));
         }
 
         if (key == null) {
-            logger.error(commonMessage.getMessage("error.parameter.null", "key"));
-            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "key"));
+            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "key"));
+            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "key"));
         }
 
         if (iv == null) {
-            logger.error(commonMessage.getMessage("error.parameter.null", "iv"));
-            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "iv"));
+            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "iv"));
+            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "iv"));
         }
 
         byte[] data = text.getBytes(StandardCharsets.UTF_8);
@@ -85,13 +85,13 @@ public abstract class AESCBC implements TwoWayEncryption {
     @Override
     public byte[] encrypt(byte[] data, byte[] key) throws CryptFailException {
         if (data == null) {
-            logger.error(commonMessage.getMessage("error.parameter.null", "data"));
-            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "data"));
+            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "data"));
+            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "data"));
         }
 
         if (key == null) {
-            logger.error(commonMessage.getMessage("error.parameter.null", "key"));
-            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "key"));
+            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "key"));
+            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "key"));
         }
 
         byte[] cuttedKey = new byte[16];
@@ -117,18 +117,18 @@ public abstract class AESCBC implements TwoWayEncryption {
      */
     public byte[] encrypt(byte[] data, byte[] key, IvParameterSpec iv) throws CryptFailException {
         if (data == null) {
-            logger.error(commonMessage.getMessage("error.parameter.null", "data"));
-            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "data"));
+            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "data"));
+            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "data"));
         }
 
         if (key == null) {
-            logger.error(commonMessage.getMessage("error.parameter.null", "key"));
-            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "key"));
+            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "key"));
+            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "key"));
         }
 
         if (iv == null) {
-            logger.error(commonMessage.getMessage("error.parameter.null", "iv"));
-            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "iv"));
+            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "iv"));
+            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "iv"));
         }
 
         SecretKeySpec secretKey = new SecretKeySpec(key, "AES");
@@ -170,13 +170,13 @@ public abstract class AESCBC implements TwoWayEncryption {
      */
     public String decrypt(String encryptedText, byte[] key, IvParameterSpec iv) throws CryptFailException {
         if (encryptedText == null) {
-            logger.error(commonMessage.getMessage("error.parameter.null", "encryptedText"));
-            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "encryptedText"));
+            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "encryptedText"));
+            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "encryptedText"));
         }
 
         if (key == null) {
-            logger.error(commonMessage.getMessage("error.parameter.null", "key"));
-            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "key"));
+            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "key"));
+            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "key"));
         }
 
         byte[] data = Base64.getDecoder().decode(encryptedText.getBytes(StandardCharsets.UTF_8));
@@ -187,13 +187,13 @@ public abstract class AESCBC implements TwoWayEncryption {
     @Override
     public byte[] decrypt(byte[] encryptedData, byte[] key) throws CryptFailException {
         if (encryptedData == null) {
-            logger.error(commonMessage.getMessage("error.parameter.null", "encryptedData"));
-            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "encryptedData"));
+            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "encryptedData"));
+            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "encryptedData"));
         }
 
         if (key == null) {
-            logger.error(commonMessage.getMessage("error.parameter.null", "key"));
-            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "key"));
+            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "key"));
+            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "key"));
         }
 
         byte[] cuttedKey = new byte[16];
@@ -219,18 +219,18 @@ public abstract class AESCBC implements TwoWayEncryption {
      */
     public byte[] decrypt(byte[] encryptedData, byte[] key, IvParameterSpec iv) throws CryptFailException {
         if (encryptedData == null) {
-            logger.error(commonMessage.getMessage("error.parameter.null", "encryptedData"));
-            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "encryptedData"));
+            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "encryptedData"));
+            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "encryptedData"));
         }
 
         if (key == null) {
-            logger.error(commonMessage.getMessage("error.parameter.null", "key"));
-            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "key"));
+            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "key"));
+            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "key"));
         }
 
         if (iv == null) {
-            logger.error(commonMessage.getMessage("error.parameter.null", "iv"));
-            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "iv"));
+            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "iv"));
+            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "iv"));
         }
 
         SecretKeySpec secretKey = new SecretKeySpec(key, "AES");

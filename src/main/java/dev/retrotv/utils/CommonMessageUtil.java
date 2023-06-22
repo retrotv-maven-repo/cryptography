@@ -3,7 +3,7 @@ package dev.retrotv.utils;
 import java.text.MessageFormat;
 import java.util.ResourceBundle;
 
-public class CommonMessage {
+public class CommonMessageUtil {
     private static final ResourceBundle resourceBundle = ResourceBundle.getBundle("message");
 
     public String getMessage(String key) {

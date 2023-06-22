@@ -24,8 +24,8 @@ public class Pbkdf2 implements Password {
     @Override
     public String encode(CharSequence rawPassword) {
         if (rawPassword == null) {
-            logger.error(commonMessage.getMessage("error.parameter.null", "rawPassword"));
-            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "rawPassword"));
+            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "rawPassword"));
+            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "rawPassword"));
         }
 
         return pbkdf2.encode(rawPassword);
@@ -34,12 +34,12 @@ public class Pbkdf2 implements Password {
     @Override
     public boolean matches(CharSequence rawPassword, String encodedPassword) {
         if (rawPassword == null) {
-            logger.warn(commonMessage.getMessage("warn.parameter.null", "rawPassword"));
+            logger.warn(COMMON_MESSAGE.getMessage("warn.parameter.null", "rawPassword"));
             return false;
         }
 
         if (encodedPassword == null) {
-            logger.warn(commonMessage.getMessage("warn.parameter.null", "encodedPassword"));
+            logger.warn(COMMON_MESSAGE.getMessage("warn.parameter.null", "encodedPassword"));
             return false;
         }
 

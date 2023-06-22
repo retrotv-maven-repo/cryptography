@@ -1,7 +1,7 @@
 package dev.retrotv.crypt.twe;
 
 import dev.retrotv.crypt.exception.CryptFailException;
-import dev.retrotv.utils.CommonMessage;
+import dev.retrotv.utils.CommonMessageUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -16,7 +16,7 @@ import java.util.Base64;
  */
 public interface TwoWayEncryption {
     Logger logger = LogManager.getLogger();
-    CommonMessage commonMessage = new CommonMessage();
+    CommonMessageUtil COMMON_MESSAGE = new CommonMessageUtil();
 
     /**
      * 문자열을 암호화 하고, 암호화 된 문자열을 반환 합니다.

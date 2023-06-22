@@ -1,21 +1,20 @@
-package dev.retrotv.crypt;
+package dev.retrotv.utils;
 
 import dev.retrotv.enums.EncodeFormat;
-import dev.retrotv.utils.CommonMessage;
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.binary.Hex;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class Encode {
+public class EncodeUtil {
     private static final Logger logger = LogManager.getLogger();
-    private static final CommonMessage commonMessage = new CommonMessage();
+    private static final CommonMessageUtil COMMON_MESSAGE = new CommonMessageUtil();
 
     public static String binaryToHex(byte[] data) {
         if (data == null) {
-            logger.error(commonMessage.getMessage("error.parameter.null", "data"));
-            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "data"));
+            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "data"));
+            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "data"));
         }
 
         return Hex.encodeHexString(data);
@@ -23,8 +22,8 @@ public class Encode {
 
     public static String binaryToBase64(byte[] data) {
         if (data == null) {
-            logger.error(commonMessage.getMessage("error.parameter.null", "data"));
-            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "data"));
+            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "data"));
+            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "data"));
         }
 
         return Base64.encodeBase64String(data);
@@ -32,8 +31,8 @@ public class Encode {
 
     public static byte[] hexToBinary(String hex) throws DecoderException {
         if (hex == null) {
-            logger.error(commonMessage.getMessage("error.parameter.null", "hex"));
-            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "hex"));
+            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "hex"));
+            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "hex"));
         }
 
         return Hex.decodeHex(hex);
@@ -41,8 +40,8 @@ public class Encode {
 
     public static byte[] base64ToBinary(String base64) {
         if (base64 == null) {
-            logger.error(commonMessage.getMessage("error.parameter.null", "base64"));
-            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "base64"));
+            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "base64"));
+            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "base64"));
         }
 
         return Base64.decodeBase64(base64);
@@ -55,8 +54,8 @@ public class Encode {
         }
 
         if (data == null) {
-            logger.error(commonMessage.getMessage("error.parameter.null", "data"));
-            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "data"));
+            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "data"));
+            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "data"));
         }
 
         switch (encodeFormat) {

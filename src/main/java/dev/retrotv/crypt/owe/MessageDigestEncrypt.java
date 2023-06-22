@@ -1,7 +1,7 @@
 package dev.retrotv.crypt.owe;
 
 import dev.retrotv.enums.Algorithm;
-import dev.retrotv.utils.CommonMessage;
+import dev.retrotv.utils.CommonMessageUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -16,7 +16,7 @@ import java.security.NoSuchAlgorithmException;
  */
 public abstract class MessageDigestEncrypt {
     private static final Logger logger = LogManager.getLogger();
-    private static final CommonMessage commonMessage = new CommonMessage();
+    private static final CommonMessageUtil COMMON_MESSAGE = new CommonMessageUtil();
 
     private static final String WARNING_MESSAGE =
             "이 예외는 기본적으로 발생하지 않습니다, 만약 예외가 발생한다면 다음 사항을 확인하십시오."
@@ -32,13 +32,13 @@ public abstract class MessageDigestEncrypt {
      */
     protected byte[] encode(Algorithm algorithm, byte[] data) {
         if (algorithm == null) {
-            logger.error(commonMessage.getMessage("error.parameter.null", "algorithm"));
-            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "algorithm"));
+            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "algorithm"));
+            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "algorithm"));
         }
 
         if (data == null) {
-            logger.error(commonMessage.getMessage("error.parameter.null", "data"));
-            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "data"));
+            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "data"));
+            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "data"));
         }
 
         try {
@@ -48,7 +48,7 @@ public abstract class MessageDigestEncrypt {
 
             return md.digest();
         } catch (NoSuchAlgorithmException e) {
-            logger.error(commonMessage.getMessage("exception.encryptFail"));
+            logger.error(COMMON_MESSAGE.getMessage("exception.encryptFail"));
             throw new RuntimeException(WARNING_MESSAGE);
         }
     }
