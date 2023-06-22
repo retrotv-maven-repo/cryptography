@@ -1,9 +1,9 @@
 package dev.retrotv.crypt.owe.md;
 
+import dev.retrotv.crypt.owe.MessageDigestEncrypt;
 import dev.retrotv.enums.Algorithm;
 import dev.retrotv.crypt.Encode;
 import dev.retrotv.crypt.owe.Checksum;
-import dev.retrotv.crypt.owe.Encrypt;
 import dev.retrotv.crypt.owe.PasswordWithSalt;
 import dev.retrotv.utils.CommonMessage;
 import org.apache.logging.log4j.LogManager;
@@ -18,7 +18,7 @@ import java.nio.charset.StandardCharsets;
  * @author  yjj8353
  * @since   1.8
  */
-public class MD2 extends Encrypt implements Checksum, PasswordWithSalt {
+public class MD2 extends MessageDigestEncrypt implements Checksum, PasswordWithSalt {
     private static final Logger logger = LogManager.getLogger();
     private static final CommonMessage commonMessage = new CommonMessage();
 

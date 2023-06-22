@@ -14,7 +14,7 @@ import java.security.NoSuchAlgorithmException;
  * @author yjj8353
  * @since 1.8
  */
-public class Encrypt {
+public abstract class MessageDigestEncrypt {
     private static final Logger logger = LogManager.getLogger();
     private static final CommonMessage commonMessage = new CommonMessage();
 
