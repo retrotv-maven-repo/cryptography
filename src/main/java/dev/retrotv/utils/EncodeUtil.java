@@ -8,12 +8,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class EncodeUtil {
-    private static final Logger logger = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger();
     private static final CommonMessageUtil commonMessageUtil = new CommonMessageUtil();
 
     public static String binaryToHex(byte[] data) {
         if (data == null) {
-            logger.error(commonMessageUtil.getMessage("error.parameter.null", "data"));
+            log.error(commonMessageUtil.getMessage("error.parameter.null", "data"));
             throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "data"));
         }
 
@@ -22,7 +22,7 @@ public class EncodeUtil {
 
     public static String binaryToBase64(byte[] data) {
         if (data == null) {
-            logger.error(commonMessageUtil.getMessage("error.parameter.null", "data"));
+            log.error(commonMessageUtil.getMessage("error.parameter.null", "data"));
             throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "data"));
         }
 
@@ -31,7 +31,7 @@ public class EncodeUtil {
 
     public static byte[] hexToBinary(String hex) throws DecoderException {
         if (hex == null) {
-            logger.error(commonMessageUtil.getMessage("error.parameter.null", "hex"));
+            log.error(commonMessageUtil.getMessage("error.parameter.null", "hex"));
             throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "hex"));
         }
 
@@ -40,7 +40,7 @@ public class EncodeUtil {
 
     public static byte[] base64ToBinary(String base64) {
         if (base64 == null) {
-            logger.error(commonMessageUtil.getMessage("error.parameter.null", "base64"));
+            log.error(commonMessageUtil.getMessage("error.parameter.null", "base64"));
             throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "base64"));
         }
 
@@ -49,12 +49,12 @@ public class EncodeUtil {
 
     public static String binaryEncode(EncodeFormat encodeFormat, byte[] data) {
         if (encodeFormat == null) {
-            logger.warn("인코딩 방식이 지정되지 않았습니다. 기본 설정인 Hex 방식으로 인코딩 됩니다.");
+            log.warn("인코딩 방식이 지정되지 않았습니다. 기본 설정인 Hex 방식으로 인코딩 됩니다.");
             encodeFormat = EncodeFormat.HEX;
         }
 
         if (data == null) {
-            logger.error(commonMessageUtil.getMessage("error.parameter.null", "data"));
+            log.error(commonMessageUtil.getMessage("error.parameter.null", "data"));
             throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "data"));
         }
 

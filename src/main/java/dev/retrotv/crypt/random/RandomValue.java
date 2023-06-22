@@ -16,7 +16,7 @@ import java.security.SecureRandom;
  * @since   1.8
  */
 public class RandomValue {
-    private static final Logger logger = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger();
     private static final CommonMessageUtil commonMessageUtil = new CommonMessageUtil();
 
     private static final int DEFAULT_LENGTH = 16;
@@ -105,13 +105,13 @@ public class RandomValue {
      */
     public void generate(SecurityStrength securityStrength, int len) {
         if (len < 0) {
-            logger.error("생성할 무작위 값 길이 len은 0보다 작을 수 없습니다.");
+            log.error("생성할 무작위 값 길이 len은 0보다 작을 수 없습니다.");
             throw new RandomValueGenerateException("생성할 무작위 값 길이 len은 0보다 작을 수 없습니다.");
         }
 
         if (securityStrength == null) {
-            logger.warn(commonMessageUtil.getMessage("warn.parameter.null", "securityStrength"));
-            logger.warn("SecurityStrength가 기본 값인 MIDDLE로 설정됩니다.");
+            log.warn(commonMessageUtil.getMessage("warn.parameter.null", "securityStrength"));
+            log.warn("SecurityStrength가 기본 값인 MIDDLE로 설정됩니다.");
             securityStrength = SecurityStrength.MIDDLE;
         }
 

@@ -19,13 +19,13 @@ import java.nio.charset.StandardCharsets;
  * @since   1.8
  */
 public class MD2 extends MessageDigestEncrypt {
-    private static final Logger logger = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger();
     private static final CommonMessageUtil commonMessageUtil = new CommonMessageUtil();
 
     @Override
     public String encode(byte[] data) {
         if (data == null) {
-            logger.error(commonMessageUtil.getMessage("error.parameter.null", "data"));
+            log.error(commonMessageUtil.getMessage("error.parameter.null", "data"));
             throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "data"));
         }
 
@@ -35,7 +35,7 @@ public class MD2 extends MessageDigestEncrypt {
     @Override
     public String encode(CharSequence rawPassword) {
         if (rawPassword == null) {
-            logger.error(commonMessageUtil.getMessage("error.parameter.null", "rawPassword"));
+            log.error(commonMessageUtil.getMessage("error.parameter.null", "rawPassword"));
             throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "rawPassword"));
         }
 
@@ -46,7 +46,7 @@ public class MD2 extends MessageDigestEncrypt {
     @Override
     public String encode(CharSequence rawPassword, Charset charset) {
         if (rawPassword == null) {
-            logger.error(commonMessageUtil.getMessage("error.parameter.null", "rawPassword"));
+            log.error(commonMessageUtil.getMessage("error.parameter.null", "rawPassword"));
             throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "rawPassword"));
         }
 

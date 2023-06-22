@@ -13,18 +13,18 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  * @since   1.8
  */
 public interface Password extends PasswordEncoder {
-    Logger logger = LogManager.getLogger();
+    Logger log = LogManager.getLogger();
     CommonMessageUtil commonMessageUtil = new CommonMessageUtil();
 
     @Override
     default boolean matches(CharSequence rawPassword, String encodedPassword) {
         if (rawPassword == null) {
-            logger.warn(commonMessageUtil.getMessage("warn.parameter.null", "rawPassword"));
+            log.warn(commonMessageUtil.getMessage("warn.parameter.null", "rawPassword"));
             return false;
         }
 
         if (encodedPassword == null) {
-            logger.warn(commonMessageUtil.getMessage("warn.parameter.null", "encodedPassword"));
+            log.warn(commonMessageUtil.getMessage("warn.parameter.null", "encodedPassword"));
             return false;
         }
 

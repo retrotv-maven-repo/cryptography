@@ -29,9 +29,10 @@ repositories {
 }
 
 dependencies {
-    api 'commons-codec:commons-codec:1.15'
+    api 'commons-codec:commons-codec:1.16.0'
     api 'org.springframework.security:spring-security-core:5.8.3'
-    implementation 'org.bouncycastle:bcprov-jdk15on:1.70'
+    compileOnly 'org.projectlombok:lombok:1.18.28'
+    // implementation 'org.bouncycastle:bcprov-jdk15on:1.70'
     implementation 'org.apache.logging.log4j:log4j-core:2.20.0'
 
     testImplementation 'org.json:json:20230227'

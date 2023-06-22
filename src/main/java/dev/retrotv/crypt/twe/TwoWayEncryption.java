@@ -15,7 +15,7 @@ import java.util.Base64;
  * @since   1.8
  */
 public interface TwoWayEncryption {
-    Logger logger = LogManager.getLogger();
+    Logger log = LogManager.getLogger();
     CommonMessageUtil commonMessageUtil = new CommonMessageUtil();
 
     /**
@@ -29,12 +29,12 @@ public interface TwoWayEncryption {
      */
     default String encrypt(String text, byte[] key) throws CryptFailException {
         if (text == null) {
-            logger.error("암호화 할 문자열은 null 일 수 없습니다.");
+            log.error("암호화 할 문자열은 null 일 수 없습니다.");
             throw new NullPointerException("매개변수 text가 null 입니다.");
         }
 
         if (key == null) {
-            logger.error("암호화 시, 사용할 key가 존재하지 않습니다.");
+            log.error("암호화 시, 사용할 key가 존재하지 않습니다.");
             throw new NullPointerException("매개변수 key가 null 입니다.");
         }
 
@@ -65,12 +65,12 @@ public interface TwoWayEncryption {
      */
     default String decrypt(String encryptedText, byte[] key) throws CryptFailException {
         if (encryptedText == null) {
-            logger.error("복호화 할 문자열은 null 일 수 없습니다.");
+            log.error("복호화 할 문자열은 null 일 수 없습니다.");
             throw new NullPointerException("매개변수 encryptedText가 null 입니다.");
         }
 
         if (key == null) {
-            logger.error("복호화 시, 사용할 key가 존재하지 않습니다.");
+            log.error("복호화 시, 사용할 key가 존재하지 않습니다.");
             throw new NullPointerException("매개변수 key가 null 입니다.");
         }
 

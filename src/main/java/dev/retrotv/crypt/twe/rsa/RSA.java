@@ -23,12 +23,12 @@ public abstract class RSA implements TwoWayEncryption {
     @Override
     public byte[] encrypt(byte[] data, byte[] key) throws CryptFailException {
         if (data == null) {
-            logger.error(commonMessageUtil.getMessage("error.parameter.null", "data"));
+            log.error(commonMessageUtil.getMessage("error.parameter.null", "data"));
             throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "data"));
         }
 
         if (key == null) {
-            logger.error(commonMessageUtil.getMessage("error.parameter.null", "key"));
+            log.error(commonMessageUtil.getMessage("error.parameter.null", "key"));
             throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "key"));
         }
 
@@ -57,12 +57,12 @@ public abstract class RSA implements TwoWayEncryption {
     @Override
     public byte[] decrypt(byte[] encryptedData, byte[] key) throws CryptFailException {
         if (encryptedData == null) {
-            logger.error(commonMessageUtil.getMessage("error.parameter.null", "encryptedData"));
+            log.error(commonMessageUtil.getMessage("error.parameter.null", "encryptedData"));
             throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "encryptedData"));
         }
 
         if (key == null) {
-            logger.error(commonMessageUtil.getMessage("error.parameter.null", "key"));
+            log.error(commonMessageUtil.getMessage("error.parameter.null", "key"));
             throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "key"));
         }
 

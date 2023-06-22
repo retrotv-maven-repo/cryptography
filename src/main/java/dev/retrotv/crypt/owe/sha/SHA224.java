@@ -15,7 +15,7 @@ public class SHA224 extends MessageDigestEncrypt {
     @Override
     public String encode(byte[] data) {
         if (data == null) {
-            logger.error(commonMessageUtil.getMessage("error.parameter.null", "data"));
+            log.error(commonMessageUtil.getMessage("error.parameter.null", "data"));
             throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "data"));
         }
 
