@@ -23,13 +23,13 @@ public abstract class RSA implements TwoWayEncryption {
     @Override
     public byte[] encrypt(byte[] data, byte[] key) throws CryptFailException {
         if (data == null) {
-            logger.error(commonMessage.getMessage("error.parameter.null", "data"));
-            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "data"));
+            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "data"));
+            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "data"));
         }
 
         if (key == null) {
-            logger.error(commonMessage.getMessage("error.parameter.null", "key"));
-            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "key"));
+            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "key"));
+            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "key"));
         }
 
         try {
@@ -57,13 +57,13 @@ public abstract class RSA implements TwoWayEncryption {
     @Override
     public byte[] decrypt(byte[] encryptedData, byte[] key) throws CryptFailException {
         if (encryptedData == null) {
-            logger.error(commonMessage.getMessage("error.parameter.null", "encryptedData"));
-            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "encryptedData"));
+            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "encryptedData"));
+            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "encryptedData"));
         }
 
         if (key == null) {
-            logger.error(commonMessage.getMessage("error.parameter.null", "key"));
-            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "key"));
+            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "key"));
+            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "key"));
         }
 
         try {

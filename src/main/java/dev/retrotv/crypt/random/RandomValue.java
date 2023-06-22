@@ -2,7 +2,7 @@ package dev.retrotv.crypt.random;
 
 import dev.retrotv.crypt.exception.RandomValueGenerateException;
 import dev.retrotv.enums.SecurityStrength;
-import dev.retrotv.utils.CommonMessage;
+import dev.retrotv.utils.CommonMessageUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -17,7 +17,7 @@ import java.security.SecureRandom;
  */
 public class RandomValue {
     private static final Logger logger = LogManager.getLogger();
-    private static final CommonMessage commonMessage = new CommonMessage();
+    private static final CommonMessageUtil COMMON_MESSAGE = new CommonMessageUtil();
 
     private static final int DEFAULT_LENGTH = 16;
     private static final SecurityStrength DEFAULT_SECURITY_STRENGTH = SecurityStrength.MIDDLE;
@@ -110,7 +110,7 @@ public class RandomValue {
         }
 
         if (securityStrength == null) {
-            logger.warn(commonMessage.getMessage("warn.parameter.null", "securityStrength"));
+            logger.warn(COMMON_MESSAGE.getMessage("warn.parameter.null", "securityStrength"));
             logger.warn("SecurityStrength가 기본 값인 MIDDLE로 설정됩니다.");
             securityStrength = SecurityStrength.MIDDLE;
         }
