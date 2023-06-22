@@ -2,5 +2,6 @@ bin
 logs
 .gradle
 .idea
+.vscode
 build
 .DS_Store
