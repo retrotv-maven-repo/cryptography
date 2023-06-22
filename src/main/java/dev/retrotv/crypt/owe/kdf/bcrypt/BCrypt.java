@@ -1,4 +1,4 @@
-package dev.retrotv.crypt.owe.bcrypt;
+package dev.retrotv.crypt.owe.kdf.bcrypt;
 
 import dev.retrotv.crypt.owe.Password;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

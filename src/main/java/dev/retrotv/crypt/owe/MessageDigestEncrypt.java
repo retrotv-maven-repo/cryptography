@@ -5,6 +5,7 @@ import dev.retrotv.utils.CommonMessageUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -14,9 +15,9 @@ import java.security.NoSuchAlgorithmException;
  * @author yjj8353
  * @since 1.8
  */
-public abstract class MessageDigestEncrypt {
-    private static final Logger logger = LogManager.getLogger();
-    private static final CommonMessageUtil COMMON_MESSAGE = new CommonMessageUtil();
+public abstract class MessageDigestEncrypt implements Checksum, PasswordWithSalt  {
+    protected static final Logger logger = LogManager.getLogger();
+    protected static final CommonMessageUtil COMMON_MESSAGE = new CommonMessageUtil();
 
     private static final String WARNING_MESSAGE =
             "이 예외는 기본적으로 발생하지 않습니다, 만약 예외가 발생한다면 다음 사항을 확인하십시오."
@@ -51,5 +52,27 @@ public abstract class MessageDigestEncrypt {
             logger.error(COMMON_MESSAGE.getMessage("exception.encryptFail"));
             throw new RuntimeException(WARNING_MESSAGE);
         }
+    }
+
+    @Override
+    public String encode(CharSequence rawPassword) {
+        if (rawPassword == null) {
+            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "rawPassword"));
+            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "rawPassword"));
+        }
+
+        String password = String.valueOf(rawPassword);
+        return encode(password.getBytes());
+    }
+
+    @Override
+    public String encode(CharSequence rawPassword, Charset charset) {
+        if (rawPassword == null) {
+            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "rawPassword"));
+            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "rawPassword"));
+        }
+
+        String password = String.valueOf(rawPassword);
+        return encode(password.getBytes(charset));
     }
 }

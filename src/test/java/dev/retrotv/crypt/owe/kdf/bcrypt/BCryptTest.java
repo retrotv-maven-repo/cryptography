@@ -1,4 +1,4 @@
-package dev.retrotv.crypt.owe.bcrypt;
+package dev.retrotv.crypt.owe.kdf.bcrypt;
 
 import dev.retrotv.crypt.owe.OWETest;
 import org.junit.jupiter.api.DisplayName;

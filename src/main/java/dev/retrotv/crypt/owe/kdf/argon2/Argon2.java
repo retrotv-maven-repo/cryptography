@@ -1,4 +1,4 @@
-package dev.retrotv.crypt.owe.argon2;
+package dev.retrotv.crypt.owe.kdf.argon2;
 
 import dev.retrotv.crypt.owe.Password;
 import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;

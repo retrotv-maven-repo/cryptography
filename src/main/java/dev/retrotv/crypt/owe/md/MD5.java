@@ -2,9 +2,7 @@ package dev.retrotv.crypt.owe.md;
 
 import dev.retrotv.enums.Algorithm;
 import dev.retrotv.utils.EncodeUtil;
-import dev.retrotv.crypt.owe.Checksum;
 import dev.retrotv.crypt.owe.MessageDigestEncrypt;
-import dev.retrotv.crypt.owe.PasswordWithSalt;
 import dev.retrotv.utils.CommonMessageUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,12 +11,12 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
 /**
- * MD5 알고리즘으로 암호화 하기 위 {@link Checksum}, {@link PasswordWithSalt} 인터페이스의 구현체 입니다.
+ * MD5 알고리즘으로 암호화 하기 위한 {@link MessageDigestEncrypt} 추상 클래스의 구현체 입니다.
  *
  * @author  yjj8353
  * @since   1.8
  */
-public class MD5 extends MessageDigestEncrypt implements Checksum, PasswordWithSalt {
+public class MD5 extends MessageDigestEncrypt {
     private static final Logger logger = LogManager.getLogger();
     private static final CommonMessageUtil COMMON_MESSAGE = new CommonMessageUtil();
 

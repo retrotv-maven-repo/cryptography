@@ -1,4 +1,4 @@
-package dev.retrotv.crypt.owe.pbkdf2;
+package dev.retrotv.crypt.owe.kdf.pbkdf2;
 
 import dev.retrotv.crypt.owe.Password;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
