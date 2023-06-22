@@ -1,11 +1,9 @@
 package dev.retrotv.crypt.twe.rsa;
 
 import dev.retrotv.common.Log;
-import dev.retrotv.crypt.Encode;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.nio.charset.StandardCharsets;
 import java.security.KeyPair;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

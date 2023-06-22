@@ -1,9 +1,9 @@
 package dev.retrotv.crypt.owe.crc;
 
-import dev.retrotv.crypt.Encode;
+import dev.retrotv.utils.EncodeUtil;
 import dev.retrotv.crypt.owe.Checksum;
 import dev.retrotv.crypt.owe.PasswordWithSalt;
-import dev.retrotv.utils.CommonMessage;
+import dev.retrotv.utils.CommonMessageUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -18,13 +18,13 @@ import java.nio.charset.Charset;
  */
 public class CRC32 implements Checksum, PasswordWithSalt {
     private static final Logger logger = LogManager.getLogger();
-    private static final CommonMessage commonMessage = new CommonMessage();
+    private static final CommonMessageUtil COMMON_MESSAGE = new CommonMessageUtil();
 
     @Override
     public String encode(byte[] data) {
         if (data == null) {
-            logger.error(commonMessage.getMessage("error.parameter.null", "data"));
-            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "data"));
+            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "data"));
+            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "data"));
         }
 
         java.util.zip.CRC32 crc32 = new java.util.zip.CRC32();
@@ -34,15 +34,15 @@ public class CRC32 implements Checksum, PasswordWithSalt {
         buffer.putLong(crc32.getValue());
 
         // 앞에 0이 패딩되는 부분을 무시하고 뒤의 8자리만 잘라낸다
-        return Encode.binaryToHex(buffer.array()).substring(8);
+        return EncodeUtil.binaryToHex(buffer.array()).substring(8);
 
     }
 
     @Override
     public String encode(CharSequence rawPassword) {
         if (rawPassword == null) {
-            logger.error(commonMessage.getMessage("error.parameter.null", "rawPassword"));
-            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "rawPassword"));
+            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "rawPassword"));
+            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "rawPassword"));
         }
 
         String password = String.valueOf(rawPassword);
@@ -52,8 +52,8 @@ public class CRC32 implements Checksum, PasswordWithSalt {
     @Override
     public String encode(CharSequence rawPassword, Charset charset) {
         if (rawPassword == null) {
-            logger.error(commonMessage.getMessage("error.parameter.null", "rawPassword"));
-            throw new NullPointerException(commonMessage.getMessage("exception.nullPointer", "rawPassword"));
+            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "rawPassword"));
+            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "rawPassword"));
         }
 
         String password = String.valueOf(rawPassword);
