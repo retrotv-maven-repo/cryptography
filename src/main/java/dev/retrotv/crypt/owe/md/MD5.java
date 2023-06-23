@@ -23,7 +23,7 @@ public class MD5 extends MessageDigestEncrypt {
     @Override
     public String encode(@NonNull CharSequence rawPassword) {
         String password = String.valueOf(rawPassword);
-        return encode(password.getBytes(StandardCharsets.UTF_8));
+        return encode(password.getBytes());
     }
 
     @Override

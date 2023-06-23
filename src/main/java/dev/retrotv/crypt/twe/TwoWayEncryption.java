@@ -28,7 +28,7 @@ public interface TwoWayEncryption {
      * @return 암호화 된 문자열
      */
     default String encrypt(@NonNull String text,@NonNull byte[] key) throws CryptFailException {
-        byte[] data = text.getBytes(StandardCharsets.UTF_8);
+        byte[] data = text.getBytes();
         return new String(Base64.getEncoder().encode(encrypt(data, key)));
     }
 
@@ -53,7 +53,7 @@ public interface TwoWayEncryption {
      * @return 복호화 된 문자열
      */
     default String decrypt(@NonNull String encryptedText, @NonNull byte[] key) throws CryptFailException {
-        byte[] data = Base64.getDecoder().decode(encryptedText.getBytes(StandardCharsets.UTF_8));
+        byte[] data = Base64.getDecoder().decode(encryptedText.getBytes());
         return new String(decrypt(data, key));
     }
 
