@@ -37,3 +37,14 @@ JDK 1.8 이상
 - AES-192 (CBC PKCS5 Padding)
 - AES-256 (ECB PKCS5 Padding)
 - AES-256 (CBC PKCS5 Padding)
+
+## 사용법
+```JAVA
+// 단방향 암호화 (체크섬)
+Checksum checksum = new SHA256();
+checksum.encode(new File("./image.jpg"));
+
+// 단방향 암호화 (패스워드)
+Password password = new BCrypt();
+password.encode("!Q@W#E4r5t6y");
+```
