@@ -4,6 +4,8 @@ import dev.retrotv.crypt.twe.TwoWayEncryption;
 import dev.retrotv.crypt.exception.CryptFailException;
 import dev.retrotv.crypt.random.RandomValue;
 import dev.retrotv.enums.SecurityStrength;
+import dev.retrotv.utils.CommonMessageUtil;
+import lombok.NonNull;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -11,6 +13,10 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.nio.charset.StandardCharsets;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
@@ -25,6 +31,9 @@ import java.util.Optional;
  * @since   1.8
  */
 public abstract class AESCBC implements TwoWayEncryption {
+    private static final Logger log = LogManager.getLogger();
+    private static final CommonMessageUtil commonMessageUtil = new CommonMessageUtil();
+
     private static final String BAD_PADDING_EXCEPTION_MESSAGE =
             "BadPaddingException: "
           + "\n암호화 시 사용한 키와 일치하지 않습니다.";
@@ -61,39 +70,13 @@ public abstract class AESCBC implements TwoWayEncryption {
      * @param iv 초기화 벡터
      * @return 암호화 된 문자열
      */
-    public String encrypt(String text, byte[] key, IvParameterSpec iv) throws CryptFailException {
-        if (text == null) {
-            log.error(commonMessageUtil.getMessage("error.parameter.null", "text"));
-            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "text"));
-        }
-
-        if (key == null) {
-            log.error(commonMessageUtil.getMessage("error.parameter.null", "key"));
-            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "key"));
-        }
-
-        if (iv == null) {
-            log.error(commonMessageUtil.getMessage("error.parameter.null", "iv"));
-            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "iv"));
-        }
-
+    public String encrypt(@NonNull String text, @NonNull byte[] key, @NonNull IvParameterSpec iv) throws CryptFailException {
         byte[] data = text.getBytes(StandardCharsets.UTF_8);
-
         return new String(Base64.getEncoder().encode(encrypt(data, key, iv)));
     }
 
     @Override
-    public byte[] encrypt(byte[] data, byte[] key) throws CryptFailException {
-        if (data == null) {
-            log.error(commonMessageUtil.getMessage("error.parameter.null", "data"));
-            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "data"));
-        }
-
-        if (key == null) {
-            log.error(commonMessageUtil.getMessage("error.parameter.null", "key"));
-            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "key"));
-        }
-
+    public byte[] encrypt(@NonNull byte[] data, @NonNull byte[] key) throws CryptFailException {
         byte[] cuttedKey = new byte[16];
         System.arraycopy(key, 0, cuttedKey, 0, 16);
         IvParameterSpec iv = new IvParameterSpec(cuttedKey);
@@ -115,22 +98,7 @@ public abstract class AESCBC implements TwoWayEncryption {
      * @param iv 초기화 벡터
      * @return 암호화 된 데이터
      */
-    public byte[] encrypt(byte[] data, byte[] key, IvParameterSpec iv) throws CryptFailException {
-        if (data == null) {
-            log.error(commonMessageUtil.getMessage("error.parameter.null", "data"));
-            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "data"));
-        }
-
-        if (key == null) {
-            log.error(commonMessageUtil.getMessage("error.parameter.null", "key"));
-            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "key"));
-        }
-
-        if (iv == null) {
-            log.error(commonMessageUtil.getMessage("error.parameter.null", "iv"));
-            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "iv"));
-        }
-
+    public byte[] encrypt(@NonNull byte[] data, @NonNull byte[] key, @NonNull IvParameterSpec iv) throws CryptFailException {
         SecretKeySpec secretKey = new SecretKeySpec(key, "AES");
         byte[] encryptedData = null;
 
@@ -168,34 +136,13 @@ public abstract class AESCBC implements TwoWayEncryption {
      * @param iv 초기화 벡터
      * @return 복호화 된 문자열
      */
-    public String decrypt(String encryptedText, byte[] key, IvParameterSpec iv) throws CryptFailException {
-        if (encryptedText == null) {
-            log.error(commonMessageUtil.getMessage("error.parameter.null", "encryptedText"));
-            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "encryptedText"));
-        }
-
-        if (key == null) {
-            log.error(commonMessageUtil.getMessage("error.parameter.null", "key"));
-            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "key"));
-        }
-
+    public String decrypt(@NonNull String encryptedText, @NonNull byte[] key, @NonNull IvParameterSpec iv) throws CryptFailException {
         byte[] data = Base64.getDecoder().decode(encryptedText.getBytes(StandardCharsets.UTF_8));
-
         return new String(decrypt(data, key, iv));
     }
 
     @Override
-    public byte[] decrypt(byte[] encryptedData, byte[] key) throws CryptFailException {
-        if (encryptedData == null) {
-            log.error(commonMessageUtil.getMessage("error.parameter.null", "encryptedData"));
-            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "encryptedData"));
-        }
-
-        if (key == null) {
-            log.error(commonMessageUtil.getMessage("error.parameter.null", "key"));
-            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "key"));
-        }
-
+    public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull byte[] key) throws CryptFailException {
         byte[] cuttedKey = new byte[16];
         System.arraycopy(key, 0, cuttedKey, 0, 16);
         IvParameterSpec iv = new IvParameterSpec(cuttedKey);
@@ -217,22 +164,7 @@ public abstract class AESCBC implements TwoWayEncryption {
      * @param iv 초기화 벡터
      * @return 복호화 된 데이터
      */
-    public byte[] decrypt(byte[] encryptedData, byte[] key, IvParameterSpec iv) throws CryptFailException {
-        if (encryptedData == null) {
-            log.error(commonMessageUtil.getMessage("error.parameter.null", "encryptedData"));
-            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "encryptedData"));
-        }
-
-        if (key == null) {
-            log.error(commonMessageUtil.getMessage("error.parameter.null", "key"));
-            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "key"));
-        }
-
-        if (iv == null) {
-            log.error(commonMessageUtil.getMessage("error.parameter.null", "iv"));
-            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "iv"));
-        }
-
+    public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull byte[] key, @NonNull IvParameterSpec iv) throws CryptFailException {
         SecretKeySpec secretKey = new SecretKeySpec(key, "AES");
         byte[] decryptedData = null;
 

@@ -1,6 +1,8 @@
 package dev.retrotv.crypt.owe.kdf.argon2;
 
 import dev.retrotv.crypt.owe.Password;
+import lombok.NonNull;
+
 import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
 
 /**
@@ -54,12 +56,7 @@ public class Argon2 implements Password {
     }
 
     @Override
-    public String encode(CharSequence rawPassword) {
-        if (rawPassword == null) {
-            log.error(commonMessageUtil.getMessage("error.parameter.null", "rawPassword"));
-            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "rawPassword"));
-        }
-
+    public String encode(@NonNull CharSequence rawPassword) {
         return a2pe.encode(rawPassword);
     }
 

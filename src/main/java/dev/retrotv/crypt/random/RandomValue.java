@@ -132,6 +132,18 @@ public class RandomValue {
                 value = sb.toString();
                 break;
 
+            case HIGH:
+                range = CAPITAL_LETTERS_LENGTH + SMALL_LETTERS_LENGTH + NUMBERS_LENGTH + SPECIAL_CHARS_LENGTH;
+                sb = new StringBuilder();
+
+                for(int i=0; i<len; i++) {
+                    int random = sr.nextInt(range);
+                    sb.append(HIGH_STRENGTH_CHARS[random]);
+                }
+
+                value = sb.toString();
+                break;
+
             case MIDDLE:
             default:
                 range = CAPITAL_LETTERS_LENGTH + SMALL_LETTERS_LENGTH + NUMBERS_LENGTH;
@@ -140,18 +152,6 @@ public class RandomValue {
                 for(int i=0; i<len; i++) {
                     int random = sr.nextInt(range);
                     sb.append(MIDDLE_STRENGTH_CHARS[random]);
-                }
-
-                value = sb.toString();
-                break;
-
-            case HIGH:
-                range = CAPITAL_LETTERS_LENGTH + SMALL_LETTERS_LENGTH + NUMBERS_LENGTH + SPECIAL_CHARS_LENGTH;
-                sb = new StringBuilder();
-
-                for(int i=0; i<len; i++) {
-                    int random = sr.nextInt(range);
-                    sb.append(HIGH_STRENGTH_CHARS[random]);
                 }
 
                 value = sb.toString();

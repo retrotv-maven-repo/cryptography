@@ -1,6 +1,7 @@
 package dev.retrotv.crypt.owe.crc;
 
 import dev.retrotv.utils.EncodeUtil;
+import lombok.NonNull;
 import dev.retrotv.crypt.owe.Checksum;
 import dev.retrotv.crypt.owe.PasswordWithSalt;
 import dev.retrotv.utils.CommonMessageUtil;
@@ -21,12 +22,7 @@ public class CRC32 implements Checksum, PasswordWithSalt {
     private static final CommonMessageUtil commonMessageUtil = new CommonMessageUtil();
 
     @Override
-    public String encode(byte[] data) {
-        if (data == null) {
-            log.error(commonMessageUtil.getMessage("error.parameter.null", "data"));
-            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "data"));
-        }
-
+    public String encode(@NonNull byte[] data) {
         java.util.zip.CRC32 crc32 = new java.util.zip.CRC32();
         crc32.update(data);
 
@@ -39,23 +35,13 @@ public class CRC32 implements Checksum, PasswordWithSalt {
     }
 
     @Override
-    public String encode(CharSequence rawPassword) {
-        if (rawPassword == null) {
-            log.error(commonMessageUtil.getMessage("error.parameter.null", "rawPassword"));
-            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "rawPassword"));
-        }
-
+    public String encode(@NonNull CharSequence rawPassword) {
         String password = String.valueOf(rawPassword);
         return encode(password.getBytes());
     }
 
     @Override
-    public String encode(CharSequence rawPassword, Charset charset) {
-        if (rawPassword == null) {
-            log.error(commonMessageUtil.getMessage("error.parameter.null", "rawPassword"));
-            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "rawPassword"));
-        }
-
+    public String encode(@NonNull CharSequence rawPassword, @NonNull Charset charset) {
         String password = String.valueOf(rawPassword);
         return encode(password.getBytes(charset));
     }

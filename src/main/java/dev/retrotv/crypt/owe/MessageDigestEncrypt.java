@@ -2,6 +2,8 @@ package dev.retrotv.crypt.owe;
 
 import dev.retrotv.enums.Algorithm;
 import dev.retrotv.utils.CommonMessageUtil;
+import lombok.NonNull;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -31,19 +33,11 @@ public abstract class MessageDigestEncrypt implements Checksum, PasswordWithSalt
      * @param data 암호화 할 데이터
      * @return 암호화 된 데이터
      */
-    protected byte[] encode(Algorithm algorithm, byte[] data) {
-        if (algorithm == null) {
-            log.error(commonMessageUtil.getMessage("error.parameter.null", "algorithm"));
-            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "algorithm"));
-        }
-
-        if (data == null) {
-            log.error(commonMessageUtil.getMessage("error.parameter.null", "data"));
-            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "data"));
-        }
-
+    protected byte[] encode(@NonNull Algorithm algorithm, @NonNull byte[] data) {
         try {
-            log.debug("알고리즘: {}", algorithm.label());
+            String algorithmName = algorithm.label();
+            log.debug("알고리즘: {}", algorithmName);
+            
             MessageDigest md = MessageDigest.getInstance(algorithm.label());
             md.update(data);
 
@@ -55,23 +49,13 @@ public abstract class MessageDigestEncrypt implements Checksum, PasswordWithSalt
     }
 
     @Override
-    public String encode(CharSequence rawPassword) {
-        if (rawPassword == null) {
-            log.error(commonMessageUtil.getMessage("error.parameter.null", "rawPassword"));
-            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "rawPassword"));
-        }
-
+    public String encode(@NonNull CharSequence rawPassword) {
         String password = String.valueOf(rawPassword);
         return encode(password.getBytes());
     }
 
     @Override
-    public String encode(CharSequence rawPassword, Charset charset) {
-        if (rawPassword == null) {
-            log.error(commonMessageUtil.getMessage("error.parameter.null", "rawPassword"));
-            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "rawPassword"));
-        }
-
+    public String encode(@NonNull CharSequence rawPassword, @NonNull Charset charset) {
         String password = String.valueOf(rawPassword);
         return encode(password.getBytes(charset));
     }

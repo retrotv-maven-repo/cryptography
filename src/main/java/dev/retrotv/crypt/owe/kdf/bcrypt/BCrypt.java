@@ -1,6 +1,8 @@
 package dev.retrotv.crypt.owe.kdf.bcrypt;
 
 import dev.retrotv.crypt.owe.Password;
+import lombok.NonNull;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.security.SecureRandom;
@@ -43,12 +45,7 @@ public class BCrypt implements Password {
     }
 
     @Override
-    public String encode(CharSequence rawPassword) {
-        if (rawPassword == null) {
-            log.error(commonMessageUtil.getMessage("error.parameter.null", "rawPassword"));
-            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "rawPassword"));
-        }
-
+    public String encode(@NonNull CharSequence rawPassword) {
         return bcpe.encode(rawPassword);
     }
 

@@ -1,6 +1,8 @@
 package dev.retrotv.crypt.owe.kdf.scrypt;
 
 import dev.retrotv.crypt.owe.Password;
+import lombok.NonNull;
+
 import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 
 /**
@@ -22,12 +24,7 @@ public class SCrypt implements Password {
     }
 
     @Override
-    public String encode(CharSequence rawPassword) {
-        if (rawPassword == null) {
-            log.error(commonMessageUtil.getMessage("error.parameter.null", "rawPassword"));
-            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "rawPassword"));
-        }
-
+    public String encode(@NonNull CharSequence rawPassword) {
         return scrypt.encode(rawPassword);
     }
 

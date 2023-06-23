@@ -3,8 +3,7 @@ package dev.retrotv.crypt.owe.md;
 import dev.retrotv.crypt.owe.MessageDigestEncrypt;
 import dev.retrotv.enums.Algorithm;
 import dev.retrotv.utils.EncodeUtil;
-import dev.retrotv.crypt.owe.Checksum;
-import dev.retrotv.crypt.owe.PasswordWithSalt;
+import lombok.NonNull;
 import dev.retrotv.utils.CommonMessageUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,37 +18,19 @@ import java.nio.charset.StandardCharsets;
  * @since   1.8
  */
 public class MD2 extends MessageDigestEncrypt {
-    private static final Logger log = LogManager.getLogger();
-    private static final CommonMessageUtil commonMessageUtil = new CommonMessageUtil();
-
     @Override
-    public String encode(byte[] data) {
-        if (data == null) {
-            log.error(commonMessageUtil.getMessage("error.parameter.null", "data"));
-            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "data"));
-        }
-
+    public String encode(@NonNull byte[] data) {
         return EncodeUtil.binaryToHex(encode(Algorithm.MD2, data));
     }
 
     @Override
-    public String encode(CharSequence rawPassword) {
-        if (rawPassword == null) {
-            log.error(commonMessageUtil.getMessage("error.parameter.null", "rawPassword"));
-            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "rawPassword"));
-        }
-
+    public String encode(@NonNull CharSequence rawPassword) {
         String password = String.valueOf(rawPassword);
         return encode(password.getBytes(StandardCharsets.UTF_8));
     }
 
     @Override
-    public String encode(CharSequence rawPassword, Charset charset) {
-        if (rawPassword == null) {
-            log.error(commonMessageUtil.getMessage("error.parameter.null", "rawPassword"));
-            throw new NullPointerException(commonMessageUtil.getMessage("exception.nullPointer", "rawPassword"));
-        }
-
+    public String encode(@NonNull CharSequence rawPassword, @NonNull Charset charset) {
         String password = String.valueOf(rawPassword);
         return encode(password.getBytes(charset));
     }
