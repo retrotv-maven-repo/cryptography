@@ -28,6 +28,10 @@ public abstract class RSA implements TwoWayEncryption {
     protected static final Logger log = LogManager.getLogger();
     protected static final CommonMessageUtil commonMessageUtil = new CommonMessageUtil();
 
+    private static final String NO_SUCH_ALGORITHM_EXCEPTION_MESSAGE =
+            "NoSuchAlgorithmException: "
+          + "\n지원하지 않는 암호화 알고리즘 입니다.";
+
     @Override
     public byte[] encrypt(@NonNull byte[] data, @NonNull byte[] key) throws CryptFailException {
         try {
@@ -49,7 +53,9 @@ public abstract class RSA implements TwoWayEncryption {
             throw new CryptFailException("InvalidKeySpecException: \n유효하지 않은 키 스펙 입니다.\nJAVA에서는 PrivateKey 생성 시, PKCS#8 방식의 키 스펙만을 지원합니다.");
         } catch (NoSuchPaddingException e) {
             throw new CryptFailException("NoSuchPaddingException: \n지원되지 않거나, 부정확한 포맷으로 패딩된 데이터를 암복호화 시도하고 있습니다.");
-        } catch (NoSuchAlgorithmException ignored) { return null; }
+        } catch (NoSuchAlgorithmException e) {
+            throw new CryptFailException(NO_SUCH_ALGORITHM_EXCEPTION_MESSAGE, e);
+        }
     }
 
     @Override
@@ -73,7 +79,9 @@ public abstract class RSA implements TwoWayEncryption {
             throw new CryptFailException("InvalidKeySpecException: \n유효하지 않은 키 입니다.");
         } catch (NoSuchPaddingException e) {
             throw new CryptFailException("NoSuchPaddingException: \n지원되지 않거나, 부정확한 포맷으로 패딩된 데이터를 암복호화 시도하고 있습니다.");
-        } catch (NoSuchAlgorithmException ignored) { return null; }
+        } catch (NoSuchAlgorithmException e) {
+            throw new CryptFailException(NO_SUCH_ALGORITHM_EXCEPTION_MESSAGE, e);
+        }
     }
 
     abstract public KeyPair generateKeyPair();

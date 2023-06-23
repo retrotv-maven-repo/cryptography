@@ -13,19 +13,19 @@ import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
  */
 public class SCrypt implements Password {
 
-    private final SCryptPasswordEncoder scrypt;
+    private final SCryptPasswordEncoder sCryptPasswordEncoder;
 
     public SCrypt() {
-        scrypt = SCryptPasswordEncoder.defaultsForSpringSecurity_v5_8();
+        sCryptPasswordEncoder = SCryptPasswordEncoder.defaultsForSpringSecurity_v5_8();
     }
 
     public SCrypt(int cpuCost, int memoryCost, int parallelization, int keyLength, int saltLength) {
-        scrypt = new SCryptPasswordEncoder(cpuCost, memoryCost, parallelization, keyLength, saltLength);
+        sCryptPasswordEncoder = new SCryptPasswordEncoder(cpuCost, memoryCost, parallelization, keyLength, saltLength);
     }
 
     @Override
     public String encode(@NonNull CharSequence rawPassword) {
-        return scrypt.encode(rawPassword);
+        return sCryptPasswordEncoder.encode(rawPassword);
     }
 
     @Override
@@ -40,6 +40,6 @@ public class SCrypt implements Password {
             return false;
         }
 
-        return scrypt.matches(rawPassword, encodedPassword);
+        return sCryptPasswordEncoder.matches(rawPassword, encodedPassword);
     }
 }

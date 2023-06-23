@@ -11,7 +11,6 @@ import org.apache.logging.log4j.Logger;
 
 public class EncodeUtil {
     private static final Logger log = LogManager.getLogger();
-    private static final CommonMessageUtil commonMessageUtil = new CommonMessageUtil();
 
     EncodeUtil() {
         throw new IllegalStateException("유틸리티 클래스 입니다.");

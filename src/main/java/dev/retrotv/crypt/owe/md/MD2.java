@@ -6,7 +6,6 @@ import dev.retrotv.utils.EncodeUtil;
 import lombok.NonNull;
 
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 
 /**
  * MD2 알고리즘으로 암호화 하기 위한 {@link MessageDigestEncrypt} 추상 클래스의 구현체 입니다.

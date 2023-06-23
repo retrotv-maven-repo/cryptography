@@ -47,6 +47,10 @@ public abstract class AESECB implements TwoWayEncryption {
             "NoSuchPaddingException: "
           + "\n지원되지 않거나, 부정확한 포맷으로 패딩된 데이터를 암복호화 시도하고 있습니다.";
 
+    private static final String NO_SUCH_ALGORITHM_EXCEPTION_MESSAGE =
+            "NoSuchAlgorithmException: "
+          + "\n지원하지 않는 암호화 알고리즘 입니다.";
+
     /**
      * 데이터를 암호화 하고, 암호화 된 데이터를 반환 합니다.
      *
@@ -76,10 +80,12 @@ public abstract class AESECB implements TwoWayEncryption {
             throw new CryptFailException(INVALID_KEY_EXCEPTION_MESSAGE, e);
         } catch (NoSuchPaddingException e) {
             throw new CryptFailException(NO_SUCH_PADDING_EXCEPTION_MESSAGE, e);
-        } catch (NoSuchAlgorithmException ignored) { }
+        } catch (NoSuchAlgorithmException e) {
+            throw new CryptFailException(NO_SUCH_ALGORITHM_EXCEPTION_MESSAGE, e);
+        }
 
         return Optional.ofNullable(encryptedData)
-                .orElseThrow(() -> new CryptFailException(commonMessageUtil.getMessage("exception.encryptFail")));
+                       .orElseThrow(() -> new CryptFailException(commonMessageUtil.getMessage("exception.encryptFail")));
     }
 
     /**
@@ -112,10 +118,12 @@ public abstract class AESECB implements TwoWayEncryption {
             throw new CryptFailException(INVALID_KEY_EXCEPTION_MESSAGE, e);
         } catch (NoSuchPaddingException e) {
             throw new CryptFailException(NO_SUCH_PADDING_EXCEPTION_MESSAGE, e);
-        } catch (NoSuchAlgorithmException ignored) { }
+        } catch (NoSuchAlgorithmException e) {
+            throw new CryptFailException(NO_SUCH_ALGORITHM_EXCEPTION_MESSAGE, e);
+        }
 
         return Optional.ofNullable(decryptedData)
-                .orElseThrow(() -> new CryptFailException(commonMessageUtil.getMessage("exception.decryptFail")));
+                       .orElseThrow(() -> new CryptFailException(commonMessageUtil.getMessage("exception.decryptFail")));
     }
 
     /**

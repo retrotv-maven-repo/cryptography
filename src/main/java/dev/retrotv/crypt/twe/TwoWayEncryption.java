@@ -1,13 +1,8 @@
 package dev.retrotv.crypt.twe;
 
 import dev.retrotv.crypt.exception.CryptFailException;
-import dev.retrotv.utils.CommonMessageUtil;
 import lombok.NonNull;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
 /**
