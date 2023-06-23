@@ -1,12 +1,9 @@
 package dev.retrotv.crypt.owe.crc;
 
 import dev.retrotv.utils.EncodeUtil;
-import lombok.NonNull;
 import dev.retrotv.crypt.owe.Checksum;
 import dev.retrotv.crypt.owe.PasswordWithSalt;
-import dev.retrotv.utils.CommonMessageUtil;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.NonNull;
 
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
@@ -18,8 +15,6 @@ import java.nio.charset.Charset;
  * @since   1.8
  */
 public class CRC32 implements Checksum, PasswordWithSalt {
-    private static final Logger log = LogManager.getLogger();
-    private static final CommonMessageUtil commonMessageUtil = new CommonMessageUtil();
 
     @Override
     public String encode(@NonNull byte[] data) {

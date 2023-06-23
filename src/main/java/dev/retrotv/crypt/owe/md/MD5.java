@@ -4,9 +4,6 @@ import dev.retrotv.enums.Algorithm;
 import dev.retrotv.utils.EncodeUtil;
 import lombok.NonNull;
 import dev.retrotv.crypt.owe.MessageDigestEncrypt;
-import dev.retrotv.utils.CommonMessageUtil;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
@@ -30,7 +27,8 @@ public class MD5 extends MessageDigestEncrypt {
     }
 
     @Override
-    public String encode(@NonNull CharSequence rawPassword, @NonNull Charset charset) {String password = String.valueOf(rawPassword);
+    public String encode(@NonNull CharSequence rawPassword, @NonNull Charset charset) {
+        String password = String.valueOf(rawPassword);
         return encode(password.getBytes(charset));
     }
 }
