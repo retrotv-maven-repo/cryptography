@@ -2,6 +2,8 @@ package dev.retrotv.crypt.owe;
 
 import dev.retrotv.enums.Algorithm;
 import dev.retrotv.utils.CommonMessageUtil;
+import lombok.NonNull;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -16,8 +18,8 @@ import java.security.NoSuchAlgorithmException;
  * @since 1.8
  */
 public abstract class MessageDigestEncrypt implements Checksum, PasswordWithSalt  {
-    protected static final Logger logger = LogManager.getLogger();
-    protected static final CommonMessageUtil COMMON_MESSAGE = new CommonMessageUtil();
+    protected static final Logger log = LogManager.getLogger();
+    protected static final CommonMessageUtil commonMessageUtil = new CommonMessageUtil();
 
     private static final String WARNING_MESSAGE =
             "이 예외는 기본적으로 발생하지 않습니다, 만약 예외가 발생한다면 다음 사항을 확인하십시오."
@@ -31,47 +33,29 @@ public abstract class MessageDigestEncrypt implements Checksum, PasswordWithSalt
      * @param data 암호화 할 데이터
      * @return 암호화 된 데이터
      */
-    protected byte[] encode(Algorithm algorithm, byte[] data) {
-        if (algorithm == null) {
-            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "algorithm"));
-            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "algorithm"));
-        }
-
-        if (data == null) {
-            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "data"));
-            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "data"));
-        }
-
+    protected byte[] encode(@NonNull Algorithm algorithm, @NonNull byte[] data) {
         try {
-            logger.debug("알고리즘: {}", algorithm.label());
+            String algorithmName = algorithm.label();
+            log.debug("알고리즘: {}", algorithmName);
+            
             MessageDigest md = MessageDigest.getInstance(algorithm.label());
             md.update(data);
 
             return md.digest();
         } catch (NoSuchAlgorithmException e) {
-            logger.error(COMMON_MESSAGE.getMessage("exception.encryptFail"));
+            log.error(commonMessageUtil.getMessage("exception.encryptFail"));
             throw new RuntimeException(WARNING_MESSAGE);
         }
     }
 
     @Override
-    public String encode(CharSequence rawPassword) {
-        if (rawPassword == null) {
-            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "rawPassword"));
-            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "rawPassword"));
-        }
-
+    public String encode(@NonNull CharSequence rawPassword) {
         String password = String.valueOf(rawPassword);
         return encode(password.getBytes());
     }
 
     @Override
-    public String encode(CharSequence rawPassword, Charset charset) {
-        if (rawPassword == null) {
-            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "rawPassword"));
-            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "rawPassword"));
-        }
-
+    public String encode(@NonNull CharSequence rawPassword, @NonNull Charset charset) {
         String password = String.valueOf(rawPassword);
         return encode(password.getBytes(charset));
     }

@@ -3,6 +3,8 @@ package dev.retrotv.crypt.owe;
 import dev.retrotv.crypt.random.RandomValue;
 import dev.retrotv.enums.SecurityStrength;
 import dev.retrotv.utils.CommonMessageUtil;
+import lombok.NonNull;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -17,8 +19,8 @@ import java.nio.charset.Charset;
  * @since   1.8
  */
 public interface PasswordWithSalt extends Password {
-    Logger logger = LogManager.getLogger();
-    CommonMessageUtil COMMON_MESSAGE = new CommonMessageUtil();
+    Logger log = LogManager.getLogger();
+    CommonMessageUtil commonMessageUtil = new CommonMessageUtil();
 
     String encode(CharSequence rawPassword, Charset charset);
 
@@ -29,15 +31,10 @@ public interface PasswordWithSalt extends Password {
      * @param salt 소금
      * @return 암호화 된 패스워드 문자열
      */
-    default String encode(CharSequence rawPassword, CharSequence salt) {
-        if (rawPassword == null) {
-            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "rawPassword"));
-            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "rawPassword"));
-        }
-
+    default String encode(@NonNull CharSequence rawPassword, CharSequence salt) {
         if (salt == null) {
-            logger.warn(COMMON_MESSAGE.getMessage("warn.parameter.null", "salt"));
-            logger.warn("의도한 것이 아니라면 encode(CharSequence rawPassword) 메소드를 사용하십시오.");
+            log.warn(commonMessageUtil.getMessage("warn.parameter.null", "salt"));
+            log.warn("의도한 것이 아니라면 encode(CharSequence rawPassword) 메소드를 사용하십시오.");
         }
 
         return encode(String.valueOf(rawPassword) + salt);
@@ -51,15 +48,10 @@ public interface PasswordWithSalt extends Password {
      * @param charset 인코딩 시 사용할 문자열 셋
      * @return 암호화 된 패스워드 문자열
      */
-    default String encode(CharSequence rawPassword, CharSequence salt, Charset charset) {
-        if (rawPassword == null) {
-            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "rawPassword"));
-            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "rawPassword"));
-        }
-
+    default String encode(@NonNull CharSequence rawPassword, CharSequence salt, Charset charset) {
         if (salt == null) {
-            logger.warn(COMMON_MESSAGE.getMessage("warn.parameter.null", "salt"));
-            logger.warn("의도한 것이 아니라면 encode(CharSequence rawPassword) 메소드를 사용하십시오.");
+            log.warn(commonMessageUtil.getMessage("warn.parameter.null", "salt"));
+            log.warn("의도한 것이 아니라면 encode(CharSequence rawPassword) 메소드를 사용하십시오.");
         }
 
         return encode(String.valueOf(rawPassword) + salt, charset);
@@ -75,18 +67,18 @@ public interface PasswordWithSalt extends Password {
      */
     default boolean matches(CharSequence rawPassword, CharSequence salt, String encodedPassword) {
         if (rawPassword == null) {
-            logger.warn(COMMON_MESSAGE.getMessage("warn.parameter.null", "rawPassword"));
+            log.warn(commonMessageUtil.getMessage("warn.parameter.null", "rawPassword"));
             return false;
         }
 
         if (encodedPassword == null) {
-            logger.warn(COMMON_MESSAGE.getMessage("warn.parameter.null", "encodedPassword"));
+            log.warn(commonMessageUtil.getMessage("warn.parameter.null", "encodedPassword"));
             return false;
         }
 
         if (salt == null) {
-            logger.warn(COMMON_MESSAGE.getMessage("warn.parameter.null", "salt"));
-            logger.warn("의도한 것이 아니라면 matches(CharSequence rawPassword, String encodedPassword) 메소드를 사용하십시오.");
+            log.warn(commonMessageUtil.getMessage("warn.parameter.null", "salt"));
+            log.warn("의도한 것이 아니라면 matches(CharSequence rawPassword, String encodedPassword) 메소드를 사용하십시오.");
         }
 
         return matches(String.valueOf(rawPassword) + salt, encodedPassword);
@@ -134,12 +126,12 @@ public interface PasswordWithSalt extends Password {
      * securityStrength의 수준과 len 만큼의 길이를 가진 소금을 생성하고 반환합니다.
      *
      * @param securityStrength 보안 강도, {@link SecurityStrength} 참조
-     * @param length 생성할 소금의 길이
+     * @param len 생성할 소금의 길이
      * @return 생성된 소금
      */
-    default String generateSalt(SecurityStrength securityStrength, int length) {
+    default String generateSalt(SecurityStrength securityStrength, int len) {
         RandomValue rv = new RandomValue();
-        rv.generate(securityStrength, length);
+        rv.generate(securityStrength, len);
         return rv.getValue();
     }
 }

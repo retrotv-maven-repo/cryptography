@@ -2,11 +2,17 @@ package dev.retrotv.crypt.twe.rsa;
 
 import dev.retrotv.crypt.exception.CryptFailException;
 import dev.retrotv.crypt.twe.TwoWayEncryption;
+import dev.retrotv.utils.CommonMessageUtil;
+import lombok.NonNull;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.security.*;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
@@ -19,19 +25,11 @@ import java.security.spec.X509EncodedKeySpec;
  * @since   1.8
  */
 public abstract class RSA implements TwoWayEncryption {
+    protected static final Logger log = LogManager.getLogger();
+    protected static final CommonMessageUtil commonMessageUtil = new CommonMessageUtil();
 
     @Override
-    public byte[] encrypt(byte[] data, byte[] key) throws CryptFailException {
-        if (data == null) {
-            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "data"));
-            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "data"));
-        }
-
-        if (key == null) {
-            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "key"));
-            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "key"));
-        }
-
+    public byte[] encrypt(@NonNull byte[] data, @NonNull byte[] key) throws CryptFailException {
         try {
             KeyFactory keyFactory = KeyFactory.getInstance("RSA");
             X509EncodedKeySpec publicKeySpec = new X509EncodedKeySpec(key);
@@ -55,17 +53,7 @@ public abstract class RSA implements TwoWayEncryption {
     }
 
     @Override
-    public byte[] decrypt(byte[] encryptedData, byte[] key) throws CryptFailException {
-        if (encryptedData == null) {
-            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "encryptedData"));
-            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "encryptedData"));
-        }
-
-        if (key == null) {
-            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "key"));
-            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "key"));
-        }
-
+    public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull byte[] key) throws CryptFailException {
         try {
             KeyFactory keyFactory = KeyFactory.getInstance("RSA");
             PKCS8EncodedKeySpec privateKeySpec = new PKCS8EncodedKeySpec(key);

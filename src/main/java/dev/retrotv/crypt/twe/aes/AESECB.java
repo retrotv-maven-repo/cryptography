@@ -3,12 +3,18 @@ package dev.retrotv.crypt.twe.aes;
 import dev.retrotv.crypt.twe.TwoWayEncryption;
 import dev.retrotv.crypt.exception.CryptFailException;
 import dev.retrotv.enums.SecurityStrength;
+import dev.retrotv.utils.CommonMessageUtil;
+import lombok.NonNull;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Optional;
@@ -20,6 +26,9 @@ import java.util.Optional;
  * @since   1.8
  */
 public abstract class AESECB implements TwoWayEncryption {
+    private static final Logger log = LogManager.getLogger();
+    private static final CommonMessageUtil commonMessageUtil = new CommonMessageUtil();
+
     private static final String BAD_PADDING_EXCEPTION_MESSAGE =
             "BadPaddingException: "
           + "\n암호화 시 사용한 키와 일치하지 않습니다.";
@@ -51,17 +60,7 @@ public abstract class AESECB implements TwoWayEncryption {
      * @param key 암호화 시, 사용할 키
      * @return 암호화 된 데이터
      */
-    public byte[] encrypt(byte[] data, byte[] key) throws CryptFailException {
-        if (data == null) {
-            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "data"));
-            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "data"));
-        }
-
-        if (key == null) {
-            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "key"));
-            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "key"));
-        }
-
+    public byte[] encrypt(@NonNull byte[] data, @NonNull byte[] key) throws CryptFailException {
         SecretKeySpec secretKey = new SecretKeySpec(key, "AES");
         byte[] encryptedData = null;
 
@@ -80,7 +79,7 @@ public abstract class AESECB implements TwoWayEncryption {
         } catch (NoSuchAlgorithmException ignored) { }
 
         return Optional.ofNullable(encryptedData)
-                .orElseThrow(() -> new CryptFailException(COMMON_MESSAGE.getMessage("exception.encryptFail")));
+                .orElseThrow(() -> new CryptFailException(commonMessageUtil.getMessage("exception.encryptFail")));
     }
 
     /**
@@ -97,17 +96,7 @@ public abstract class AESECB implements TwoWayEncryption {
      * @return 복호화 된 데이터
      */
     @Override
-    public byte[] decrypt(byte[] encryptedData, byte[] key) throws CryptFailException {
-        if (encryptedData == null) {
-            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "encryptedData"));
-            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "encryptedData"));
-        }
-
-        if (key == null) {
-            logger.error(COMMON_MESSAGE.getMessage("error.parameter.null", "key"));
-            throw new NullPointerException(COMMON_MESSAGE.getMessage("exception.nullPointer", "key"));
-        }
-
+    public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull byte[] key) throws CryptFailException {
         SecretKeySpec secretKey = new SecretKeySpec(key, "AES");
         byte[] decryptedData = null;
 
@@ -126,7 +115,7 @@ public abstract class AESECB implements TwoWayEncryption {
         } catch (NoSuchAlgorithmException ignored) { }
 
         return Optional.ofNullable(decryptedData)
-                .orElseThrow(() -> new CryptFailException(COMMON_MESSAGE.getMessage("exception.decryptFail")));
+                .orElseThrow(() -> new CryptFailException(commonMessageUtil.getMessage("exception.decryptFail")));
     }
 
     /**

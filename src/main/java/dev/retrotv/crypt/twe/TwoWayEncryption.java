@@ -2,6 +2,8 @@ package dev.retrotv.crypt.twe;
 
 import dev.retrotv.crypt.exception.CryptFailException;
 import dev.retrotv.utils.CommonMessageUtil;
+import lombok.NonNull;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -15,9 +17,7 @@ import java.util.Base64;
  * @since   1.8
  */
 public interface TwoWayEncryption {
-    Logger logger = LogManager.getLogger();
-    CommonMessageUtil COMMON_MESSAGE = new CommonMessageUtil();
-
+    
     /**
      * 문자열을 암호화 하고, 암호화 된 문자열을 반환 합니다.
      * 이 때, 암호화 된 데이터는 {@link Base64} 타입의 문자열로 인코딩 됩니다.
@@ -27,19 +27,8 @@ public interface TwoWayEncryption {
      * @param key 암호화 시, 사용할 키
      * @return 암호화 된 문자열
      */
-    default String encrypt(String text, byte[] key) throws CryptFailException {
-        if (text == null) {
-            logger.error("암호화 할 문자열은 null 일 수 없습니다.");
-            throw new NullPointerException("매개변수 text가 null 입니다.");
-        }
-
-        if (key == null) {
-            logger.error("암호화 시, 사용할 key가 존재하지 않습니다.");
-            throw new NullPointerException("매개변수 key가 null 입니다.");
-        }
-
-        byte[] data = text.getBytes(StandardCharsets.UTF_8);
-
+    default String encrypt(@NonNull String text,@NonNull byte[] key) throws CryptFailException {
+        byte[] data = text.getBytes();
         return new String(Base64.getEncoder().encode(encrypt(data, key)));
     }
 
@@ -63,19 +52,8 @@ public interface TwoWayEncryption {
      * @param key 복호화 시, 사용할 키
      * @return 복호화 된 문자열
      */
-    default String decrypt(String encryptedText, byte[] key) throws CryptFailException {
-        if (encryptedText == null) {
-            logger.error("복호화 할 문자열은 null 일 수 없습니다.");
-            throw new NullPointerException("매개변수 encryptedText가 null 입니다.");
-        }
-
-        if (key == null) {
-            logger.error("복호화 시, 사용할 key가 존재하지 않습니다.");
-            throw new NullPointerException("매개변수 key가 null 입니다.");
-        }
-
-        byte[] data = Base64.getDecoder().decode(encryptedText.getBytes(StandardCharsets.UTF_8));
-
+    default String decrypt(@NonNull String encryptedText, @NonNull byte[] key) throws CryptFailException {
+        byte[] data = Base64.getDecoder().decode(encryptedText.getBytes());
         return new String(decrypt(data, key));
     }
 

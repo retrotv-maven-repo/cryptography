@@ -16,8 +16,8 @@ import java.security.SecureRandom;
  * @since   1.8
  */
 public class RandomValue {
-    private static final Logger logger = LogManager.getLogger();
-    private static final CommonMessageUtil COMMON_MESSAGE = new CommonMessageUtil();
+    private static final Logger log = LogManager.getLogger();
+    private static final CommonMessageUtil commonMessageUtil = new CommonMessageUtil();
 
     private static final int DEFAULT_LENGTH = 16;
     private static final SecurityStrength DEFAULT_SECURITY_STRENGTH = SecurityStrength.MIDDLE;
@@ -105,13 +105,13 @@ public class RandomValue {
      */
     public void generate(SecurityStrength securityStrength, int len) {
         if (len < 0) {
-            logger.error("생성할 무작위 값 길이 len은 0보다 작을 수 없습니다.");
+            log.error("생성할 무작위 값 길이 len은 0보다 작을 수 없습니다.");
             throw new RandomValueGenerateException("생성할 무작위 값 길이 len은 0보다 작을 수 없습니다.");
         }
 
         if (securityStrength == null) {
-            logger.warn(COMMON_MESSAGE.getMessage("warn.parameter.null", "securityStrength"));
-            logger.warn("SecurityStrength가 기본 값인 MIDDLE로 설정됩니다.");
+            log.warn(commonMessageUtil.getMessage("warn.parameter.null", "securityStrength"));
+            log.warn("SecurityStrength가 기본 값인 MIDDLE로 설정됩니다.");
             securityStrength = SecurityStrength.MIDDLE;
         }
 
@@ -132,6 +132,18 @@ public class RandomValue {
                 value = sb.toString();
                 break;
 
+            case HIGH:
+                range = CAPITAL_LETTERS_LENGTH + SMALL_LETTERS_LENGTH + NUMBERS_LENGTH + SPECIAL_CHARS_LENGTH;
+                sb = new StringBuilder();
+
+                for(int i=0; i<len; i++) {
+                    int random = sr.nextInt(range);
+                    sb.append(HIGH_STRENGTH_CHARS[random]);
+                }
+
+                value = sb.toString();
+                break;
+
             case MIDDLE:
             default:
                 range = CAPITAL_LETTERS_LENGTH + SMALL_LETTERS_LENGTH + NUMBERS_LENGTH;
@@ -140,18 +152,6 @@ public class RandomValue {
                 for(int i=0; i<len; i++) {
                     int random = sr.nextInt(range);
                     sb.append(MIDDLE_STRENGTH_CHARS[random]);
-                }
-
-                value = sb.toString();
-                break;
-
-            case HIGH:
-                range = CAPITAL_LETTERS_LENGTH + SMALL_LETTERS_LENGTH + NUMBERS_LENGTH + SPECIAL_CHARS_LENGTH;
-                sb = new StringBuilder();
-
-                for(int i=0; i<len; i++) {
-                    int random = sr.nextInt(range);
-                    sb.append(HIGH_STRENGTH_CHARS[random]);
                 }
 
                 value = sb.toString();
