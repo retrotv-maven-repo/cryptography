@@ -14,39 +14,39 @@ import java.security.SecureRandom;
  * @since   1.8
  */
 public class BCrypt implements Password {
-    private final BCryptPasswordEncoder bcpe;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public BCrypt() {
-        bcpe = new BCryptPasswordEncoder();
+        bCryptPasswordEncoder = new BCryptPasswordEncoder();
     }
 
     public BCrypt(int strength) {
-        bcpe = new BCryptPasswordEncoder(strength);
+        bCryptPasswordEncoder = new BCryptPasswordEncoder(strength);
     }
 
     public BCrypt(BCryptPasswordEncoder.BCryptVersion version) {
-        bcpe = new BCryptPasswordEncoder(version);
+        bCryptPasswordEncoder = new BCryptPasswordEncoder(version);
     }
 
     public BCrypt(BCryptPasswordEncoder.BCryptVersion version, SecureRandom random) {
-        bcpe = new BCryptPasswordEncoder(version, random);
+        bCryptPasswordEncoder = new BCryptPasswordEncoder(version, random);
     }
 
     public BCrypt(int strength, SecureRandom random) {
-        bcpe = new BCryptPasswordEncoder(strength, random);
+        bCryptPasswordEncoder = new BCryptPasswordEncoder(strength, random);
     }
 
     public BCrypt(BCryptPasswordEncoder.BCryptVersion version, int strength) {
-        bcpe = new BCryptPasswordEncoder(version, strength);
+        bCryptPasswordEncoder = new BCryptPasswordEncoder(version, strength);
     }
 
     public BCrypt(BCryptPasswordEncoder.BCryptVersion version, int strength, SecureRandom random) {
-        bcpe = new BCryptPasswordEncoder(version, strength, random);
+        bCryptPasswordEncoder = new BCryptPasswordEncoder(version, strength, random);
     }
 
     @Override
     public String encode(@NonNull CharSequence rawPassword) {
-        return bcpe.encode(rawPassword);
+        return bCryptPasswordEncoder.encode(rawPassword);
     }
 
     @Override
@@ -61,6 +61,6 @@ public class BCrypt implements Password {
             return false;
         }
 
-        return bcpe.matches(rawPassword, encodedPassword);
+        return bCryptPasswordEncoder.matches(rawPassword, encodedPassword);
     }
 }

@@ -12,7 +12,7 @@ import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
  * @since   1.8
  */
 public class Argon2 implements Password {
-    private final Argon2PasswordEncoder a2pe;
+    private final Argon2PasswordEncoder argon2PasswordEncoder;
 
     /**
      * {@link Argon2PasswordEncoder} 인스턴스를 초기화 합니다.<br>
@@ -26,7 +26,7 @@ public class Argon2 implements Password {
      * interations 2<br>
      */
     public Argon2() {
-        a2pe = Argon2PasswordEncoder.defaultsForSpringSecurity_v5_8();
+        argon2PasswordEncoder = Argon2PasswordEncoder.defaultsForSpringSecurity_v5_8();
     }
 
     /**
@@ -52,12 +52,12 @@ public class Argon2 implements Password {
      * @param iterations 메모리에 대한 연산 반복 횟수 (클수록 안전함)
      */
     public Argon2(int saltLength, int hashLength, int parallelism, int memory, int iterations) {
-        a2pe = new Argon2PasswordEncoder(saltLength, hashLength, parallelism, memory, iterations);
+        argon2PasswordEncoder = new Argon2PasswordEncoder(saltLength, hashLength, parallelism, memory, iterations);
     }
 
     @Override
     public String encode(@NonNull CharSequence rawPassword) {
-        return a2pe.encode(rawPassword);
+        return argon2PasswordEncoder.encode(rawPassword);
     }
 
     @Override
@@ -72,6 +72,6 @@ public class Argon2 implements Password {
             return false;
         }
 
-        return a2pe.matches(rawPassword, encodedPassword);
+        return argon2PasswordEncoder.matches(rawPassword, encodedPassword);
     }
 }

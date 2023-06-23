@@ -49,7 +49,7 @@ public abstract class RSA implements TwoWayEncryption {
             throw new CryptFailException("InvalidKeySpecException: \n유효하지 않은 키 스펙 입니다.\nJAVA에서는 PrivateKey 생성 시, PKCS#8 방식의 키 스펙만을 지원합니다.");
         } catch (NoSuchPaddingException e) {
             throw new CryptFailException("NoSuchPaddingException: \n지원되지 않거나, 부정확한 포맷으로 패딩된 데이터를 암복호화 시도하고 있습니다.");
-        } catch (NoSuchAlgorithmException ignored) { return null; }
+        } catch (NoSuchAlgorithmException ignored) { return new byte[0]; }
     }
 
     @Override
@@ -73,7 +73,7 @@ public abstract class RSA implements TwoWayEncryption {
             throw new CryptFailException("InvalidKeySpecException: \n유효하지 않은 키 입니다.");
         } catch (NoSuchPaddingException e) {
             throw new CryptFailException("NoSuchPaddingException: \n지원되지 않거나, 부정확한 포맷으로 패딩된 데이터를 암복호화 시도하고 있습니다.");
-        } catch (NoSuchAlgorithmException ignored) { return null; }
+        } catch (NoSuchAlgorithmException ignored) { return new byte[0]; }
     }
 
     abstract public KeyPair generateKeyPair();

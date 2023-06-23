@@ -4,7 +4,6 @@ import dev.retrotv.crypt.twe.TwoWayEncryption;
 import dev.retrotv.crypt.exception.CryptFailException;
 import dev.retrotv.crypt.random.RandomValue;
 import dev.retrotv.enums.SecurityStrength;
-import dev.retrotv.utils.CommonMessageUtil;
 import lombok.NonNull;
 
 import javax.crypto.BadPaddingException;
@@ -14,10 +13,6 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import java.nio.charset.StandardCharsets;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -31,9 +26,6 @@ import java.util.Optional;
  * @since   1.8
  */
 public abstract class AESCBC implements TwoWayEncryption {
-    private static final Logger log = LogManager.getLogger();
-    private static final CommonMessageUtil commonMessageUtil = new CommonMessageUtil();
-
     private static final String BAD_PADDING_EXCEPTION_MESSAGE =
             "BadPaddingException: "
           + "\n암호화 시 사용한 키와 일치하지 않습니다.";
