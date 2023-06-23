@@ -4,6 +4,7 @@ import dev.retrotv.crypt.twe.TwoWayEncryption;
 import dev.retrotv.crypt.exception.CryptFailException;
 import dev.retrotv.crypt.random.RandomValue;
 import dev.retrotv.enums.SecurityStrength;
+import dev.retrotv.utils.CommonMessageUtil;
 import lombok.NonNull;
 
 import javax.crypto.BadPaddingException;
@@ -12,6 +13,9 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
@@ -26,6 +30,9 @@ import java.util.Optional;
  * @since   1.8
  */
 public abstract class AESCBC implements TwoWayEncryption {
+    protected static final Logger log = LogManager.getLogger();
+    protected static final CommonMessageUtil commonMessageUtil = new CommonMessageUtil();
+
     private static final String BAD_PADDING_EXCEPTION_MESSAGE =
             "BadPaddingException: "
           + "\n암호화 시 사용한 키와 일치하지 않습니다.";
@@ -47,6 +54,10 @@ public abstract class AESCBC implements TwoWayEncryption {
     private static final String NO_SUCH_PADDING_EXCEPTION_MESSAGE =
             "NoSuchPaddingException: "
           + "\n지원되지 않거나, 부정확한 포맷으로 패딩된 데이터를 암복호화 시도하고 있습니다.";
+
+    private static final String NO_SUCH_ALGORITHM_EXCEPTION_MESSAGE =
+            "NoSuchAlgorithmException: "
+          + "\n지원하지 않는 암호화 알고리즘 입니다.";
 
     /**
      * 문자열을 암호화 하고, 암호화 된 문자열을 반환 합니다.
@@ -108,10 +119,12 @@ public abstract class AESCBC implements TwoWayEncryption {
             throw new CryptFailException(INVALID_KEY_EXCEPTION_MESSAGE, e);
         } catch (NoSuchPaddingException e) {
             throw new CryptFailException(NO_SUCH_PADDING_EXCEPTION_MESSAGE, e);
-        } catch (NoSuchAlgorithmException ignored) { }
+        } catch (NoSuchAlgorithmException e) {
+            throw new CryptFailException(NO_SUCH_ALGORITHM_EXCEPTION_MESSAGE, e);
+        }
 
         return Optional.ofNullable(encryptedData)
-                .orElseThrow(() -> new CryptFailException("암호화가 정상적으로 진행되지 않았습니다."));
+                       .orElseThrow(() -> new CryptFailException("암호화가 정상적으로 진행되지 않았습니다."));
     }
 
     /**
@@ -174,10 +187,12 @@ public abstract class AESCBC implements TwoWayEncryption {
             throw new CryptFailException(INVALID_KEY_EXCEPTION_MESSAGE, e);
         } catch (NoSuchPaddingException e) {
             throw new CryptFailException(NO_SUCH_PADDING_EXCEPTION_MESSAGE, e);
-        } catch (NoSuchAlgorithmException ignored) { }
+        } catch (NoSuchAlgorithmException e) {
+            throw new CryptFailException(NO_SUCH_ALGORITHM_EXCEPTION_MESSAGE, e);
+        }
 
         return Optional.ofNullable(decryptedData)
-                .orElseThrow(() -> new CryptFailException("복호화가 정상적으로 진행되지 않았습니다."));
+                       .orElseThrow(() -> new CryptFailException("복호화가 정상적으로 진행되지 않았습니다."));
     }
 
     /**
