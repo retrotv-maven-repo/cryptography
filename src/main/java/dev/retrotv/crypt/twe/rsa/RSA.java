@@ -39,7 +39,8 @@ public abstract class RSA implements TwoWayEncryption {
             X509EncodedKeySpec publicKeySpec = new X509EncodedKeySpec(key);
             PublicKey publicKey = keyFactory.generatePublic(publicKeySpec);
 
-            Cipher cipher = Cipher.getInstance("RSA");
+            // "RSA/ECB/OAEPWITHSHA-256ANDMGF1PADDING"는 "RSA/None/OAEPWITHSHA-256ANDMGF1PADDING"와 동일하다.
+            Cipher cipher = Cipher.getInstance("RSA/ECB/OAEPWITHSHA-256ANDMGF1PADDING");
             cipher.init(Cipher.ENCRYPT_MODE, publicKey);
 
             return cipher.doFinal(data);
@@ -65,7 +66,7 @@ public abstract class RSA implements TwoWayEncryption {
             PKCS8EncodedKeySpec privateKeySpec = new PKCS8EncodedKeySpec(key);
             PrivateKey privateKey = keyFactory.generatePrivate(privateKeySpec);
 
-            Cipher cipher = Cipher.getInstance("RSA");
+            Cipher cipher = Cipher.getInstance("RSA/ECB/OAEPWITHSHA-256ANDMGF1PADDING");
             cipher.init(Cipher.DECRYPT_MODE, privateKey);
 
             return cipher.doFinal(encryptedData);
