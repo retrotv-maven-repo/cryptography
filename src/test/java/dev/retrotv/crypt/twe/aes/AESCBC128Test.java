@@ -1,6 +1,7 @@
 package dev.retrotv.crypt.twe.aes;
 
 import dev.retrotv.crypt.exception.CryptFailException;
+import dev.retrotv.crypt.exception.KeyGenerateException;
 import dev.retrotv.crypt.twe.TwoWayEncryption;
 
 import org.junit.jupiter.api.*;
@@ -12,7 +13,7 @@ public class AESCBC128Test extends AESTest {
 
     @Test
     @DisplayName("AES/CBC IV 생성 테스트")
-    void IVGenerateTest() throws CryptFailException {
+    void IVGenerateTest() throws CryptFailException, KeyGenerateException {
         encryptedDataWithIVTest(new AESCBC128());
     }
 

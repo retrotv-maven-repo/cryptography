@@ -12,7 +12,6 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 import dev.retrotv.crypt.exception.CryptFailException;
-import dev.retrotv.crypt.exception.KeyGenerateException;
 import dev.retrotv.crypt.twe.TwoWayEncryption;
 import dev.retrotv.enums.Algorithm;
 import lombok.NonNull;
@@ -59,10 +58,10 @@ public abstract class DES implements TwoWayEncryption {
                     cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(key, "DES"), new IvParameterSpec(iv));
                     break;
                 case TRIPLE_DESECB_PADDING, TRIPLE_DESECB_NO_PADDING:
-                    cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(key, "TripleDES"));
+                    cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(key, "DESede"));
                     break;
                 case TRIPLE_DESCBC_PADDING, TRIPLE_DESCBC_NO_PADDING:
-                    cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(key, "TripleDES"), new IvParameterSpec(iv));
+                    cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(key, "DESede"), new IvParameterSpec(iv));
                     break;
                 default:
                     throw new NoSuchAlgorithmException("사용되지 않는 암호화 알고리즘 입니다.");
@@ -121,6 +120,4 @@ public abstract class DES implements TwoWayEncryption {
             throw new CryptFailException(NO_SUCH_ALGORITHM_EXCEPTION_MESSAGE, e);
         }
     }
-
-    abstract byte[] generateKey() throws KeyGenerateException;
 }

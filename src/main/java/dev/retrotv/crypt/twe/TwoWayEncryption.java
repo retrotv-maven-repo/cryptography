@@ -1,6 +1,7 @@
 package dev.retrotv.crypt.twe;
 
 import dev.retrotv.crypt.exception.CryptFailException;
+import dev.retrotv.crypt.exception.KeyGenerateException;
 import lombok.NonNull;
 
 import java.util.Base64;
@@ -61,4 +62,6 @@ public interface TwoWayEncryption {
      * @return 복호화 된 데이터
      */
     byte[] decrypt(@NonNull byte[] encryptedData, @NonNull byte[] key, byte[] iv) throws CryptFailException;
+
+    byte[] generateKey() throws KeyGenerateException;
 }

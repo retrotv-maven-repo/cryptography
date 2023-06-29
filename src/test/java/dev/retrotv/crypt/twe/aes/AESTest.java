@@ -2,6 +2,7 @@ package dev.retrotv.crypt.twe.aes;
 
 import dev.retrotv.common.Log;
 import dev.retrotv.crypt.exception.CryptFailException;
+import dev.retrotv.crypt.exception.KeyGenerateException;
 import dev.retrotv.crypt.random.RandomValue;
 import dev.retrotv.crypt.twe.TwoWayEncryption;
 import dev.retrotv.enums.SecurityStrength;
@@ -16,9 +17,9 @@ import static org.junit.jupiter.api.Assertions.*;
 public class AESTest extends Log {
     protected static final Set<String> encryptedData = new HashSet<>();
 
-    void encryptedDataWithIVTest(AESCBC aescbc) throws CryptFailException {
+    void encryptedDataWithIVTest(AESCBC aescbc) throws CryptFailException, KeyGenerateException {
         String message = "The lazy dog jumps over the brown fox!";
-        byte[] key = aescbc.generateKey(SecurityStrength.HIGH);
+        byte[] key = aescbc.generateKey();
         byte[] iv = aescbc.generateInitializationVector(SecurityStrength.HIGH);
 
         byte[] encryptedMessage = aescbc.encrypt(message.getBytes(), key, iv);

@@ -1,7 +1,7 @@
 package dev.retrotv.crypt.twe.rsa;
 
 import dev.retrotv.crypt.exception.CryptFailException;
-import dev.retrotv.crypt.twe.TwoWayEncryption;
+import dev.retrotv.crypt.twe.DigitalSignature;
 import dev.retrotv.utils.CommonMessageUtil;
 import lombok.NonNull;
 
@@ -24,7 +24,7 @@ import java.security.spec.X509EncodedKeySpec;
  * @author  yjj8353
  * @since   1.8
  */
-public abstract class RSA implements TwoWayEncryption {
+public abstract class RSA implements DigitalSignature {
     protected static final Logger log = LogManager.getLogger();
     protected static final CommonMessageUtil commonMessageUtil = new CommonMessageUtil();
 
@@ -32,7 +32,14 @@ public abstract class RSA implements TwoWayEncryption {
             "NoSuchAlgorithmException: "
           + "\n지원하지 않는 암호화 알고리즘 입니다.";
 
-    @Override
+    protected static final String INVALID_KEY_EXCEPTION_MESSAGE =
+            "InvalidKeyException: "
+          + "\n암호화 키는 DES의 경우 8byte, Triple DES의 경우 24byte 길이의 키만 사용할 수 있습니다.";
+
+    private static final String SIGNATURE_EXCEPTION_MESSAGE =
+            "SignatureException: "
+          + "\n서명이 유효하지 않습니다.";
+
     public byte[] encrypt(@NonNull byte[] data, @NonNull byte[] key, byte[] iv) throws CryptFailException {
         return encrypt(data, key);
     }
@@ -63,7 +70,6 @@ public abstract class RSA implements TwoWayEncryption {
         }
     }
 
-    @Override
     public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull byte[] key, byte[] iv) throws CryptFailException {
         return decrypt(encryptedData, key);
     }
@@ -90,6 +96,37 @@ public abstract class RSA implements TwoWayEncryption {
             throw new CryptFailException("NoSuchPaddingException: \n지원되지 않거나, 부정확한 포맷으로 패딩된 데이터를 암복호화 시도하고 있습니다.");
         } catch (NoSuchAlgorithmException e) {
             throw new CryptFailException(NO_SUCH_ALGORITHM_EXCEPTION_MESSAGE, e);
+        }
+    }
+
+    public byte[] sign(byte[] data, PrivateKey privateKey) throws CryptFailException {
+        try {
+            Signature signature = Signature.getInstance("SHA256withRSA");
+            signature.initSign(privateKey);
+            signature.update(data);
+            return signature.sign();
+        } catch (NoSuchAlgorithmException e) {
+            throw new CryptFailException(NO_SUCH_ALGORITHM_EXCEPTION_MESSAGE, e);
+        } catch (InvalidKeyException e) {
+            throw new CryptFailException(INVALID_KEY_EXCEPTION_MESSAGE, e);
+        } catch (SignatureException e) {
+            throw new CryptFailException(SIGNATURE_EXCEPTION_MESSAGE, e);
+        }
+    }
+
+    public boolean verify(byte[] originalData, byte[] encryptedData, PublicKey publicKey) throws CryptFailException {
+        try {
+            Signature signature = Signature.getInstance("SHA256withRSA");
+            signature.initVerify(publicKey);
+            signature.update(originalData);
+    
+            return signature.verify(encryptedData);
+        } catch (NoSuchAlgorithmException e) {
+            throw new CryptFailException(NO_SUCH_ALGORITHM_EXCEPTION_MESSAGE, e);
+        } catch (InvalidKeyException e) {
+            throw new CryptFailException(INVALID_KEY_EXCEPTION_MESSAGE, e);
+        } catch (SignatureException e) {
+            throw new CryptFailException(SIGNATURE_EXCEPTION_MESSAGE, e);
         }
     }
 

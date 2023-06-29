@@ -1,14 +1,10 @@
 package dev.retrotv.crypt.twe.aes;
 
-import dev.retrotv.crypt.random.RandomValue;
-import dev.retrotv.enums.SecurityStrength;
+import dev.retrotv.enums.Algorithm;
 
 public class AESCBC256 extends AESCBC {
-
-    @Override
-    public byte[] generateKey(SecurityStrength securityStrength) {
-        RandomValue rv = new RandomValue();
-        rv.generate(securityStrength, 32);
-        return rv.getBytes();
+    public AESCBC256() {
+        this.keyLength = 32;
+        this.algorithm = Algorithm.AESCBC256_PADDING;
     }
 }

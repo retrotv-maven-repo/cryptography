@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.security.KeyPair;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class RSA2048Test extends Log {
 
@@ -22,5 +23,9 @@ public class RSA2048Test extends Log {
         byte[] decryptedMessage = rsa.decrypt(encryptedMessage, keyPair.getPrivate().getEncoded(), null);
 
         assertEquals(message, new String(decryptedMessage));
+
+        encryptedMessage = rsa.sign(message.getBytes(), keyPair.getPrivate());
+
+        assertTrue(rsa.verify(message.getBytes(), encryptedMessage, keyPair.getPublic()));
     }
 }
