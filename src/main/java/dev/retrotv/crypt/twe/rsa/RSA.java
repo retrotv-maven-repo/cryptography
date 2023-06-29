@@ -33,6 +33,10 @@ public abstract class RSA implements TwoWayEncryption {
           + "\n지원하지 않는 암호화 알고리즘 입니다.";
 
     @Override
+    public byte[] encrypt(@NonNull byte[] data, @NonNull byte[] key, byte[] iv) throws CryptFailException {
+        return encrypt(data, key);
+    }
+
     public byte[] encrypt(@NonNull byte[] data, @NonNull byte[] key) throws CryptFailException {
         try {
             KeyFactory keyFactory = KeyFactory.getInstance("RSA");
@@ -60,6 +64,10 @@ public abstract class RSA implements TwoWayEncryption {
     }
 
     @Override
+    public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull byte[] key, byte[] iv) throws CryptFailException {
+        return decrypt(encryptedData, key);
+    }
+
     public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull byte[] key) throws CryptFailException {
         try {
             KeyFactory keyFactory = KeyFactory.getInstance("RSA");

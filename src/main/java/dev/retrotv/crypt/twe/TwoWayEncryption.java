@@ -22,10 +22,10 @@ public interface TwoWayEncryption {
      * @param key 암호화 시, 사용할 키
      * @return 암호화 된 문자열
      */
-    default String encrypt(@NonNull String text,@NonNull byte[] key) throws CryptFailException {
-        byte[] data = text.getBytes();
-        return new String(Base64.getEncoder().encode(encrypt(data, key)));
-    }
+    // default String encrypt(@NonNull String text,@NonNull byte[] key) throws CryptFailException {
+    //     byte[] data = text.getBytes();
+    //     return new String(Base64.getEncoder().encode(encrypt(data, key)));
+    // }
 
     /**
      * 문자열을 암호화 하고, 암호화 된 문자열을 반환 합니다.
@@ -36,7 +36,7 @@ public interface TwoWayEncryption {
      * @param key 암호화 시, 사용할 키
      * @return 암호화 된 문자열
      */
-    byte[] encrypt(byte[] data, byte[] key) throws CryptFailException;
+    byte[] encrypt(@NonNull byte[] data, @NonNull byte[] key, byte[] iv) throws CryptFailException;
 
     /**
      * 암호화 된 문자열을 복호화 하고, 복호화 된 문자열을 반환 합니다.
@@ -47,10 +47,10 @@ public interface TwoWayEncryption {
      * @param key 복호화 시, 사용할 키
      * @return 복호화 된 문자열
      */
-    default String decrypt(@NonNull String encryptedText, @NonNull byte[] key) throws CryptFailException {
-        byte[] data = Base64.getDecoder().decode(encryptedText.getBytes());
-        return new String(decrypt(data, key));
-    }
+    // default String decrypt(@NonNull String encryptedText, @NonNull byte[] key) throws CryptFailException {
+    //     byte[] data = Base64.getDecoder().decode(encryptedText.getBytes());
+    //     return new String(decrypt(data, key));
+    // }
 
     /**
      * 암호화 된 데이터를 복호화 하고, 복호화 된 데이터를 반환 합니다.
@@ -60,5 +60,5 @@ public interface TwoWayEncryption {
      * @param key 복호화 시, 사용할 키
      * @return 복호화 된 데이터
      */
-    byte[] decrypt(byte[] encryptedData, byte[] key) throws CryptFailException;
+    byte[] decrypt(@NonNull byte[] encryptedData, @NonNull byte[] key, byte[] iv) throws CryptFailException;
 }

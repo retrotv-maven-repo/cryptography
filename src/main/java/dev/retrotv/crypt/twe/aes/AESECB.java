@@ -64,13 +64,17 @@ public abstract class AESECB implements TwoWayEncryption {
      * @param key 암호화 시, 사용할 키
      * @return 암호화 된 데이터
      */
+    @Override
+    public byte[] encrypt(@NonNull byte[] data, @NonNull byte[] key, byte[] iv) throws CryptFailException {
+        return encrypt(data, key);
+    }
+
     public byte[] encrypt(@NonNull byte[] data, @NonNull byte[] key) throws CryptFailException {
-        SecretKeySpec secretKey = new SecretKeySpec(key, "AES");
         byte[] encryptedData = null;
 
         try {
             Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
-            cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+            cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(key, "AES"));
             encryptedData = cipher.doFinal(data);
         } catch (BadPaddingException e) {
             throw new CryptFailException(BAD_PADDING_EXCEPTION_MESSAGE, e);
@@ -102,13 +106,16 @@ public abstract class AESECB implements TwoWayEncryption {
      * @return 복호화 된 데이터
      */
     @Override
+    public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull byte[] key, byte[] iv) throws CryptFailException {
+        return decrypt(encryptedData, key);
+    }
+
     public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull byte[] key) throws CryptFailException {
-        SecretKeySpec secretKey = new SecretKeySpec(key, "AES");
         byte[] decryptedData = null;
 
         try {
             Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
-            cipher.init(Cipher.DECRYPT_MODE, secretKey);
+            cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(key, "AES"));
             decryptedData = cipher.doFinal(encryptedData);
         } catch (BadPaddingException e) {
             throw new CryptFailException(BAD_PADDING_EXCEPTION_MESSAGE, e);

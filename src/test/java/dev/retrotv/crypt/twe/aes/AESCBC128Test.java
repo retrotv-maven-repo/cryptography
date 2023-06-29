@@ -2,6 +2,7 @@ package dev.retrotv.crypt.twe.aes;
 
 import dev.retrotv.crypt.exception.CryptFailException;
 import dev.retrotv.crypt.twe.TwoWayEncryption;
+
 import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS;

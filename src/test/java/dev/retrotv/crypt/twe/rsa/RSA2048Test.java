@@ -18,12 +18,9 @@ public class RSA2048Test extends Log {
         RSA2048 rsa = new RSA2048();
         KeyPair keyPair = rsa.generateKeyPair();
 
-        String encryptedMessage = rsa.encrypt(message, keyPair.getPublic().getEncoded());
-        log.info("암호화 된 메시지: " + encryptedMessage);
+        byte[] encryptedMessage = rsa.encrypt(message.getBytes(), keyPair.getPublic().getEncoded(), null);
+        byte[] decryptedMessage = rsa.decrypt(encryptedMessage, keyPair.getPrivate().getEncoded(), null);
 
-        String decryptedMessage = rsa.decrypt(encryptedMessage, keyPair.getPrivate().getEncoded());
-        log.info("복호화 된 메시지: " + decryptedMessage);
-
-        assertEquals(message, decryptedMessage);
+        assertEquals(message, new String(decryptedMessage));
     }
 }
