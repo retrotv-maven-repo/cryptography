@@ -2,6 +2,7 @@ package dev.retrotv.crypt.twe.rsa;
 
 import dev.retrotv.crypt.exception.CryptFailException;
 import dev.retrotv.crypt.twe.DigitalSignature;
+import dev.retrotv.crypt.twe.TwoWayEncryption;
 import dev.retrotv.utils.CommonMessageUtil;
 import lombok.NonNull;
 
@@ -24,7 +25,7 @@ import java.security.spec.X509EncodedKeySpec;
  * @author  yjj8353
  * @since   1.8
  */
-public abstract class RSA implements DigitalSignature {
+public abstract class RSA implements DigitalSignature, TwoWayEncryption {
     protected static final Logger log = LogManager.getLogger();
     protected static final CommonMessageUtil commonMessageUtil = new CommonMessageUtil();
 
@@ -40,6 +41,7 @@ public abstract class RSA implements DigitalSignature {
             "SignatureException: "
           + "\n서명이 유효하지 않습니다.";
 
+    @Override
     public byte[] encrypt(@NonNull byte[] data, @NonNull byte[] key, byte[] iv) throws CryptFailException {
         return encrypt(data, key);
     }
@@ -70,6 +72,7 @@ public abstract class RSA implements DigitalSignature {
         }
     }
 
+    @Override
     public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull byte[] key, byte[] iv) throws CryptFailException {
         return decrypt(encryptedData, key);
     }
@@ -99,6 +102,7 @@ public abstract class RSA implements DigitalSignature {
         }
     }
 
+    @Override
     public byte[] sign(byte[] data, PrivateKey privateKey) throws CryptFailException {
         try {
             Signature signature = Signature.getInstance("SHA256withRSA");
@@ -114,6 +118,7 @@ public abstract class RSA implements DigitalSignature {
         }
     }
 
+    @Override
     public boolean verify(byte[] originalData, byte[] encryptedData, PublicKey publicKey) throws CryptFailException {
         try {
             Signature signature = Signature.getInstance("SHA256withRSA");

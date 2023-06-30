@@ -12,8 +12,7 @@ public class DESCBC extends DES {
     public DESCBC() {
         this.algorithm = Algorithm.DESCBC_PADDING;
     }
-
-    @Override
+    
     public byte[] generateKey() throws KeyGenerateException {
         try {
             KeyGenerator keyGenerator = KeyGenerator.getInstance("DES");

@@ -62,6 +62,4 @@ public interface TwoWayEncryption {
      * @return 복호화 된 데이터
      */
     byte[] decrypt(@NonNull byte[] encryptedData, @NonNull byte[] key, byte[] iv) throws CryptFailException;
-
-    byte[] generateKey() throws KeyGenerateException;
 }

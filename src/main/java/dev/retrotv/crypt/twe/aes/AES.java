@@ -153,7 +153,6 @@ public abstract class AES implements TwoWayEncryption {
         }
     }
 
-    @Override
     public byte[] generateKey() throws KeyGenerateException {
         SecureRandom sr = new SecureRandom();
         byte[] key = new byte[keyLength];
