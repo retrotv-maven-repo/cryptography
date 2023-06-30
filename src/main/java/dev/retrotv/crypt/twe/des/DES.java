@@ -12,11 +12,12 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 import dev.retrotv.crypt.exception.CryptFailException;
+import dev.retrotv.crypt.twe.KeyGenerator;
 import dev.retrotv.crypt.twe.TwoWayEncryption;
 import dev.retrotv.enums.Algorithm;
 import lombok.NonNull;
 
-public abstract class DES implements TwoWayEncryption {
+public abstract class DES implements TwoWayEncryption, KeyGenerator {
     protected Algorithm algorithm;
 
     protected static final String BAD_PADDING_EXCEPTION_MESSAGE =

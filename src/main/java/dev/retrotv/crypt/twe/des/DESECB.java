@@ -13,6 +13,7 @@ public class DESECB extends DES {
         this.algorithm = Algorithm.DESECB_PADDING;
     }
 
+    @Override
     public byte[] generateKey() throws KeyGenerateException {
         try {
             KeyGenerator keyGenerator = KeyGenerator.getInstance("DES");

@@ -17,12 +17,13 @@ import org.apache.logging.log4j.Logger;
 
 import dev.retrotv.crypt.exception.CryptFailException;
 import dev.retrotv.crypt.exception.KeyGenerateException;
+import dev.retrotv.crypt.twe.KeyGenerator;
 import dev.retrotv.crypt.twe.TwoWayEncryption;
 import dev.retrotv.enums.Algorithm;
 import dev.retrotv.utils.CommonMessageUtil;
 import lombok.NonNull;
 
-public abstract class AES implements TwoWayEncryption {
+public abstract class AES implements TwoWayEncryption, KeyGenerator {
     protected static final Logger log = LogManager.getLogger();
     protected static final CommonMessageUtil commonMessageUtil = new CommonMessageUtil();
 
@@ -153,6 +154,7 @@ public abstract class AES implements TwoWayEncryption {
         }
     }
 
+    @Override
     public byte[] generateKey() throws KeyGenerateException {
         SecureRandom sr = new SecureRandom();
         byte[] key = new byte[keyLength];

@@ -2,6 +2,7 @@ package dev.retrotv.crypt.twe.rsa;
 
 import dev.retrotv.crypt.exception.CryptFailException;
 import dev.retrotv.crypt.twe.DigitalSignature;
+import dev.retrotv.crypt.twe.KeyPairGenerator;
 import dev.retrotv.crypt.twe.TwoWayEncryption;
 import dev.retrotv.utils.CommonMessageUtil;
 import lombok.NonNull;
@@ -25,15 +26,15 @@ import java.security.spec.X509EncodedKeySpec;
  * @author  yjj8353
  * @since   1.8
  */
-public abstract class RSA implements DigitalSignature, TwoWayEncryption {
+public abstract class RSA implements DigitalSignature, TwoWayEncryption, KeyPairGenerator {
     protected static final Logger log = LogManager.getLogger();
     protected static final CommonMessageUtil commonMessageUtil = new CommonMessageUtil();
 
-    private static final String NO_SUCH_ALGORITHM_EXCEPTION_MESSAGE =
+    protected static final String NO_SUCH_ALGORITHM_EXCEPTION_MESSAGE =
             "NoSuchAlgorithmException: "
           + "\n지원하지 않는 암호화 알고리즘 입니다.";
 
-    protected static final String INVALID_KEY_EXCEPTION_MESSAGE =
+    private static final String INVALID_KEY_EXCEPTION_MESSAGE =
             "InvalidKeyException: "
           + "\n암호화 키는 DES의 경우 8byte, Triple DES의 경우 24byte 길이의 키만 사용할 수 있습니다.";
 
@@ -134,6 +135,4 @@ public abstract class RSA implements DigitalSignature, TwoWayEncryption {
             throw new CryptFailException(SIGNATURE_EXCEPTION_MESSAGE, e);
         }
     }
-
-    abstract public KeyPair generateKeyPair();
 }

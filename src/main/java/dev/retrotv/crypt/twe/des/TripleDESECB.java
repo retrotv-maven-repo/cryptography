@@ -13,6 +13,7 @@ public class TripleDESECB extends DES {
         this.algorithm = Algorithm.TRIPLE_DESECB_PADDING;
     }
 
+    @Override
     public byte[] generateKey() throws KeyGenerateException {
         try {
             KeyGenerator keyGenerator = KeyGenerator.getInstance("DESede");
