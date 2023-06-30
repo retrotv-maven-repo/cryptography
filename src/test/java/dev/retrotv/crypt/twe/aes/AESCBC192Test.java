@@ -5,21 +5,25 @@ import dev.retrotv.crypt.exception.KeyGenerateException;
 import dev.retrotv.crypt.twe.TwoWayEncryption;
 import org.junit.jupiter.api.*;
 
+import java.security.Key;
+import java.security.spec.AlgorithmParameterSpec;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS;
 
-@TestInstance(value = PER_CLASS)
-public class AESCBC192Test extends AESTest {
+class AESCBC192Test {
 
-    @Test
-    @DisplayName("AES/CBC IV 생성 테스트")
-    void IVGenerateTest() throws CryptFailException, KeyGenerateException {
-        encryptedDataWithIVTest(new AESCBC192());
-    }
-
-    @DisplayName("AES-192 CBC 알고리즘 암복호화 테스트")
+    @DisplayName("AES/CBC-192 암복호화 반복 테스트")
     @RepeatedTest(value = 100, name = "{currentRepetition}/{totalRepetitions}")
-    void AESCBC192EncryptDecryptTest(RepetitionInfo repetitionInfo) throws CryptFailException {
-        TwoWayEncryption twe = new AESCBC192();
-        encryptDecryptTest(twe, repetitionInfo);
+    void aescbc192_100_repeat_test(RepetitionInfo repetitionInfo) throws Exception {
+        String message = "The lazy dog jumps over the brown fox!";
+        AESCBC aescbc = new AESCBC192();
+        Key key = aescbc.generateKey();
+        AlgorithmParameterSpec iv = aescbc.generateSpec();
+
+        byte[] encryptedData = aescbc.encrypt(message.getBytes(), key, iv);
+        String originalMessage = new String(aescbc.decrypt(encryptedData, key, iv));
+
+        assertEquals(message, originalMessage);
     }
 }

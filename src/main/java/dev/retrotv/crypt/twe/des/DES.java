@@ -2,7 +2,9 @@ package dev.retrotv.crypt.twe.des;
 
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
+import java.security.Key;
 import java.security.NoSuchAlgorithmException;
+import java.security.spec.AlgorithmParameterSpec;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -16,8 +18,12 @@ import dev.retrotv.crypt.twe.KeyGenerator;
 import dev.retrotv.crypt.twe.TwoWayEncryption;
 import dev.retrotv.enums.Algorithm;
 import lombok.NonNull;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public abstract class DES implements TwoWayEncryption, KeyGenerator {
+    protected static final Logger log = LogManager.getLogger();
+
     protected Algorithm algorithm;
 
     protected static final String BAD_PADDING_EXCEPTION_MESSAGE =
@@ -47,26 +53,24 @@ public abstract class DES implements TwoWayEncryption, KeyGenerator {
           + "\n지원하지 않는 암호화 알고리즘 입니다.";
 
     @Override
-    public byte[] encrypt(@NonNull byte[] data, @NonNull byte[] key, byte[] iv) throws CryptFailException {
+    public byte[] encrypt(@NonNull byte[] data, @NonNull Key key, AlgorithmParameterSpec iv) throws CryptFailException {
         try {
             Cipher cipher = Cipher.getInstance(algorithm.label());
 
             switch (algorithm) {
                 case DESECB_PADDING:
                 case DESECB_NO_PADDING:
-                    cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(key, "DES"));
+                case TRIPLE_DESECB_PADDING:
+                case TRIPLE_DESECB_NO_PADDING:
+                    log.debug("선택된 알고리즘: {}", algorithm.label());
+                    cipher.init(Cipher.ENCRYPT_MODE, key);
                     break;
                 case DESCBC_PADDING:
                 case DESCBC_NO_PADDING:
-                    cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(key, "DES"), new IvParameterSpec(iv));
-                    break;
-                case TRIPLE_DESECB_PADDING:
-                case TRIPLE_DESECB_NO_PADDING:
-                    cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(key, "DESede"));
-                    break;
                 case TRIPLE_DESCBC_PADDING:
                 case TRIPLE_DESCBC_NO_PADDING:
-                    cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(key, "DESede"), new IvParameterSpec(iv));
+                    log.debug("선택된 알고리즘: {}", algorithm.label());
+                    cipher.init(Cipher.ENCRYPT_MODE, key, iv);
                     break;
                 default:
                     throw new NoSuchAlgorithmException("사용되지 않는 암호화 알고리즘 입니다.");
@@ -89,26 +93,24 @@ public abstract class DES implements TwoWayEncryption, KeyGenerator {
     }
 
     @Override
-    public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull byte[] key, byte[] iv) throws CryptFailException {
+    public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull Key key, AlgorithmParameterSpec iv) throws CryptFailException {
         try {
             Cipher cipher = Cipher.getInstance(algorithm.label());
 
             switch (algorithm) {
                 case DESECB_PADDING:
                 case DESECB_NO_PADDING:
-                    cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(key, "DES"));
+                case TRIPLE_DESECB_PADDING:
+                case TRIPLE_DESECB_NO_PADDING:
+                    log.debug("선택된 알고리즘: {}", algorithm.label());
+                    cipher.init(Cipher.DECRYPT_MODE, key);
                     break;
                 case DESCBC_PADDING:
                 case DESCBC_NO_PADDING:
-                    cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(key, "DES"), new IvParameterSpec(iv));
-                    break;
-                case TRIPLE_DESECB_PADDING:
-                case TRIPLE_DESECB_NO_PADDING:
-                    cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(key, "TripleDES"));
-                    break;
                 case TRIPLE_DESCBC_PADDING:
                 case TRIPLE_DESCBC_NO_PADDING:
-                    cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(key, "TripleDES"), new IvParameterSpec(iv));
+                    log.debug("선택된 알고리즘: {}", algorithm.label());
+                    cipher.init(Cipher.DECRYPT_MODE, key, iv);
                     break;
                 default:
                     throw new NoSuchAlgorithmException("사용되지 않는 암호화 알고리즘 입니다.");

@@ -1,16 +1,18 @@
 package dev.retrotv.crypt.twe.aes;
 
+import dev.retrotv.crypt.twe.ParameterSpecGenerator;
+import dev.retrotv.utils.SecureRandomUtil;
+
+import javax.crypto.spec.GCMParameterSpec;
+import javax.crypto.spec.IvParameterSpec;
 import java.security.SecureRandom;
 
-public abstract class AESGCM extends AES {
+public abstract class AESGCM extends AES implements ParameterSpecGenerator<GCMParameterSpec> {
     protected static final int GCM_IV_LENGTH = 12;
     protected static final int GCM_TAG_LENGTH = 16;
-    
-    public byte[] generateIV() {
-        SecureRandom sr = new SecureRandom();
-        byte[] iv = new byte[GCM_IV_LENGTH];
-        sr.nextBytes(iv);
 
-        return iv;
+    @Override
+    public GCMParameterSpec generateSpec() {
+        return new GCMParameterSpec(GCM_TAG_LENGTH * 8, SecureRandomUtil.generate(GCM_IV_LENGTH));
     }
 }

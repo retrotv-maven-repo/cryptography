@@ -15,6 +15,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.security.*;
+import java.security.spec.AlgorithmParameterSpec;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
@@ -41,16 +42,12 @@ public abstract class RSA implements DigitalSignature, TwoWayEncryption, KeyPair
           + "\n서명이 유효하지 않습니다.";
 
     @Override
-    public byte[] encrypt(@NonNull byte[] data, @NonNull byte[] key, byte[] iv) throws CryptFailException {
-        return encrypt(data, key);
+    public byte[] encrypt(@NonNull byte[] data, @NonNull Key publicKey, AlgorithmParameterSpec iv) throws CryptFailException {
+        return encrypt(data, publicKey);
     }
 
-    public byte[] encrypt(@NonNull byte[] data, @NonNull byte[] key) throws CryptFailException {
+    public byte[] encrypt(@NonNull byte[] data, @NonNull Key publicKey) throws CryptFailException {
         try {
-            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-            X509EncodedKeySpec publicKeySpec = new X509EncodedKeySpec(key);
-            PublicKey publicKey = keyFactory.generatePublic(publicKeySpec);
-
             // "RSA/ECB/OAEPWITHSHA-256ANDMGF1PADDING"는 "RSA/None/OAEPWITHSHA-256ANDMGF1PADDING"와 동일하다.
             Cipher cipher = Cipher.getInstance("RSA/ECB/OAEPWITHSHA-256ANDMGF1PADDING");
             cipher.init(Cipher.ENCRYPT_MODE, publicKey);
@@ -62,8 +59,6 @@ public abstract class RSA implements DigitalSignature, TwoWayEncryption, KeyPair
             throw new CryptFailException("IllegalBlockSizeException: \n암호화 되지 않은 데이터의 복호화를 시도중 이거나, 이미 다른 유형으로 인코딩 된 데이터의 암복호화를 시도하는 중인지 확인하십시오.");
         } catch (BadPaddingException e) {
             throw new CryptFailException("BadPaddingException: \n암호화 시 사용한 키와 일치하지 않습니다.");
-        } catch (InvalidKeySpecException e) {
-            throw new CryptFailException("InvalidKeySpecException: \n유효하지 않은 키 스펙 입니다.\nJAVA에서는 PrivateKey 생성 시, PKCS#8 방식의 키 스펙만을 지원합니다.");
         } catch (NoSuchPaddingException e) {
             throw new CryptFailException("NoSuchPaddingException: \n지원되지 않거나, 부정확한 포맷으로 패딩된 데이터를 암복호화 시도하고 있습니다.");
         } catch (NoSuchAlgorithmException e) {
@@ -72,16 +67,12 @@ public abstract class RSA implements DigitalSignature, TwoWayEncryption, KeyPair
     }
 
     @Override
-    public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull byte[] key, byte[] iv) throws CryptFailException {
-        return decrypt(encryptedData, key);
+    public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull Key privateKey, AlgorithmParameterSpec iv) throws CryptFailException {
+        return decrypt(encryptedData, privateKey);
     }
 
-    public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull byte[] key) throws CryptFailException {
+    public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull Key privateKey) throws CryptFailException {
         try {
-            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-            PKCS8EncodedKeySpec privateKeySpec = new PKCS8EncodedKeySpec(key);
-            PrivateKey privateKey = keyFactory.generatePrivate(privateKeySpec);
-
             Cipher cipher = Cipher.getInstance("RSA/ECB/OAEPWITHSHA-256ANDMGF1PADDING");
             cipher.init(Cipher.DECRYPT_MODE, privateKey);
 
@@ -92,8 +83,6 @@ public abstract class RSA implements DigitalSignature, TwoWayEncryption, KeyPair
             throw new CryptFailException("IllegalBlockSizeException: \n암호화 되지 않은 데이터의 복호화를 시도중 이거나, 이미 다른 유형으로 인코딩 된 데이터의 암복호화를 시도하는 중인지 확인하십시오.");
         } catch (BadPaddingException e) {
             throw new CryptFailException("BadPaddingException: \n암호화 시 사용한 키와 일치하지 않습니다.");
-        } catch (InvalidKeySpecException e) {
-            throw new CryptFailException("InvalidKeySpecException: \n유효하지 않은 키 입니다.");
         } catch (NoSuchPaddingException e) {
             throw new CryptFailException("NoSuchPaddingException: \n지원되지 않거나, 부정확한 포맷으로 패딩된 데이터를 암복호화 시도하고 있습니다.");
         } catch (NoSuchAlgorithmException e) {

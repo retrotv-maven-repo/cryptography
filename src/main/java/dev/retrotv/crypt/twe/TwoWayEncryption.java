@@ -3,6 +3,8 @@ package dev.retrotv.crypt.twe;
 import dev.retrotv.crypt.exception.CryptFailException;
 import lombok.NonNull;
 
+import java.security.Key;
+import java.security.spec.AlgorithmParameterSpec;
 import java.util.Base64;
 
 /**
@@ -36,7 +38,7 @@ public interface TwoWayEncryption {
      * @param key 암호화 시, 사용할 키
      * @return 암호화 된 문자열
      */
-    byte[] encrypt(@NonNull byte[] data, @NonNull byte[] key, byte[] iv) throws CryptFailException;
+    byte[] encrypt(@NonNull byte[] data, @NonNull Key key, AlgorithmParameterSpec iv) throws CryptFailException;
 
     /**
      * 암호화 된 문자열을 복호화 하고, 복호화 된 문자열을 반환 합니다.
@@ -60,5 +62,5 @@ public interface TwoWayEncryption {
      * @param key 복호화 시, 사용할 키
      * @return 복호화 된 데이터
      */
-    byte[] decrypt(@NonNull byte[] encryptedData, @NonNull byte[] key, byte[] iv) throws CryptFailException;
+    byte[] decrypt(@NonNull byte[] encryptedData, @NonNull Key key, AlgorithmParameterSpec iv) throws CryptFailException;
 }

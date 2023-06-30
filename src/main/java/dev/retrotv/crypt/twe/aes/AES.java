@@ -1,9 +1,7 @@
 package dev.retrotv.crypt.twe.aes;
 
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
+import java.security.*;
+import java.security.spec.AlgorithmParameterSpec;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -13,11 +11,11 @@ import javax.crypto.spec.GCMParameterSpec;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
+import dev.retrotv.utils.SecureRandomUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import dev.retrotv.crypt.exception.CryptFailException;
-import dev.retrotv.crypt.exception.KeyGenerateException;
 import dev.retrotv.crypt.twe.KeyGenerator;
 import dev.retrotv.crypt.twe.TwoWayEncryption;
 import dev.retrotv.enums.Algorithm;
@@ -72,7 +70,7 @@ public abstract class AES implements TwoWayEncryption, KeyGenerator {
      * @return 암호화 된 데이터
      */
     @Override
-    public byte[] encrypt(@NonNull byte[] data, @NonNull byte[] key, byte[] iv) throws CryptFailException {
+    public byte[] encrypt(@NonNull byte[] data, @NonNull Key key, AlgorithmParameterSpec iv) throws CryptFailException {
         try {
             Cipher cipher = Cipher.getInstance(algorithm.label());
 
@@ -80,17 +78,17 @@ public abstract class AES implements TwoWayEncryption, KeyGenerator {
                 case AESECB128_PADDING:
                 case AESECB192_PADDING:
                 case AESECB256_PADDING:
-                    cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(key, "AES"));
+                    log.debug("선택된 알고리즘: {}", algorithm.label());
+                    cipher.init(Cipher.ENCRYPT_MODE, key);
                     break;
                 case AESCBC128_PADDING:
                 case AESCBC192_PADDING:
                 case AESCBC256_PADDING:
-                    cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(key, "AES"), new IvParameterSpec(iv));
-                    break;
                 case AESGCM128_NO_PADDING:
                 case AESGCM192_NO_PADDING:
                 case AESGCM256_NO_PADDING:
-                    cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(key, "AES"), new GCMParameterSpec(GCM_TAG_LENGTH * 8, iv));
+                    log.debug("선택된 알고리즘: {}", algorithm.label());
+                    cipher.init(Cipher.ENCRYPT_MODE, key, iv);
                     break;
                 default:
                     throw new NoSuchAlgorithmException("사용되지 않는 암호화 알고리즘 입니다.");
@@ -127,7 +125,7 @@ public abstract class AES implements TwoWayEncryption, KeyGenerator {
      * @return 복호화 된 데이터
      */
     @Override
-    public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull byte[] key, byte[] iv) throws CryptFailException {
+    public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull Key key, AlgorithmParameterSpec iv) throws CryptFailException {
         try {
             Cipher cipher = Cipher.getInstance(algorithm.label());
 
@@ -135,17 +133,17 @@ public abstract class AES implements TwoWayEncryption, KeyGenerator {
                 case AESECB128_PADDING:
                 case AESECB192_PADDING:
                 case AESECB256_PADDING:
-                    cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(key, "AES"));
+                    log.debug("선택된 알고리즘: {}", algorithm.label());
+                    cipher.init(Cipher.DECRYPT_MODE, key);
                     break;
                 case AESCBC128_PADDING:
                 case AESCBC192_PADDING:
                 case AESCBC256_PADDING:
-                    cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(key, "AES"), new IvParameterSpec(iv));
-                    break;
                 case AESGCM128_NO_PADDING:
                 case AESGCM192_NO_PADDING:
                 case AESGCM256_NO_PADDING:
-                    cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(key, "AES"), new GCMParameterSpec(GCM_TAG_LENGTH * 8, iv));
+                    log.debug("선택된 알고리즘: {}", algorithm.label());
+                    cipher.init(Cipher.DECRYPT_MODE, key, iv);
                     break;
                 default:
                     throw new NoSuchAlgorithmException("사용되지 않는 암호화 알고리즘 입니다.");
@@ -168,11 +166,7 @@ public abstract class AES implements TwoWayEncryption, KeyGenerator {
     }
 
     @Override
-    public byte[] generateKey() {
-        SecureRandom sr = new SecureRandom();
-        byte[] key = new byte[keyLength];
-        sr.nextBytes(key);
-
-        return key;
+    public Key generateKey() {
+        return new SecretKeySpec(SecureRandomUtil.generate(keyLength), "AES");
     }
 }
