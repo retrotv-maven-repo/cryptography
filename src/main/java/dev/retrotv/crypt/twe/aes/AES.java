@@ -9,6 +9,7 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
+import javax.crypto.spec.GCMParameterSpec;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
@@ -20,12 +21,12 @@ import dev.retrotv.crypt.exception.KeyGenerateException;
 import dev.retrotv.crypt.twe.KeyGenerator;
 import dev.retrotv.crypt.twe.TwoWayEncryption;
 import dev.retrotv.enums.Algorithm;
-import dev.retrotv.utils.CommonMessageUtil;
 import lombok.NonNull;
+
+import static dev.retrotv.crypt.twe.aes.AESGCM.GCM_TAG_LENGTH;
 
 public abstract class AES implements TwoWayEncryption, KeyGenerator {
     protected static final Logger log = LogManager.getLogger();
-    protected static final CommonMessageUtil commonMessageUtil = new CommonMessageUtil();
 
     protected int keyLength;
     protected Algorithm algorithm;
@@ -76,14 +77,20 @@ public abstract class AES implements TwoWayEncryption, KeyGenerator {
             Cipher cipher = Cipher.getInstance(algorithm.label());
 
             switch (algorithm) {
-                case AESECB128_PADDING, AESECB192_PADDING, AESECB256_PADDING:
+                case AESECB128_PADDING:
+                case AESECB192_PADDING:
+                case AESECB256_PADDING:
                     cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(key, "AES"));
                     break;
-                case AESCBC128_PADDING, AESCBC192_PADDING, AESCBC256_PADDING:
+                case AESCBC128_PADDING:
+                case AESCBC192_PADDING:
+                case AESCBC256_PADDING:
                     cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(key, "AES"), new IvParameterSpec(iv));
                     break;
-                case AESGCM128_NO_PADDING, AESGCM192_NO_PADDING, AESGCM256_NO_PADDING:
-                    cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(key, "AES"), new IvParameterSpec(iv));
+                case AESGCM128_NO_PADDING:
+                case AESGCM192_NO_PADDING:
+                case AESGCM256_NO_PADDING:
+                    cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(key, "AES"), new GCMParameterSpec(GCM_TAG_LENGTH * 8, iv));
                     break;
                 default:
                     throw new NoSuchAlgorithmException("사용되지 않는 암호화 알고리즘 입니다.");
@@ -125,14 +132,20 @@ public abstract class AES implements TwoWayEncryption, KeyGenerator {
             Cipher cipher = Cipher.getInstance(algorithm.label());
 
             switch (algorithm) {
-                case AESECB128_PADDING, AESECB192_PADDING, AESECB256_PADDING:
+                case AESECB128_PADDING:
+                case AESECB192_PADDING:
+                case AESECB256_PADDING:
                     cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(key, "AES"));
                     break;
-                case AESCBC128_PADDING, AESCBC192_PADDING, AESCBC256_PADDING:
+                case AESCBC128_PADDING:
+                case AESCBC192_PADDING:
+                case AESCBC256_PADDING:
                     cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(key, "AES"), new IvParameterSpec(iv));
                     break;
-                case AESGCM128_NO_PADDING, AESGCM192_NO_PADDING, AESGCM256_NO_PADDING:
-                    cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(key, "AES"), new IvParameterSpec(iv));
+                case AESGCM128_NO_PADDING:
+                case AESGCM192_NO_PADDING:
+                case AESGCM256_NO_PADDING:
+                    cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(key, "AES"), new GCMParameterSpec(GCM_TAG_LENGTH * 8, iv));
                     break;
                 default:
                     throw new NoSuchAlgorithmException("사용되지 않는 암호화 알고리즘 입니다.");
@@ -155,7 +168,7 @@ public abstract class AES implements TwoWayEncryption, KeyGenerator {
     }
 
     @Override
-    public byte[] generateKey() throws KeyGenerateException {
+    public byte[] generateKey() {
         SecureRandom sr = new SecureRandom();
         byte[] key = new byte[keyLength];
         sr.nextBytes(key);

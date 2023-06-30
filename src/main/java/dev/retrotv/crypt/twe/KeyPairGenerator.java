@@ -5,5 +5,5 @@ import java.security.KeyPair;
 import dev.retrotv.crypt.exception.KeyGenerateException;
 
 public interface KeyPairGenerator {
-    public KeyPair generateKeyPair() throws KeyGenerateException;
+    KeyPair generateKeyPair() throws KeyGenerateException;
 }

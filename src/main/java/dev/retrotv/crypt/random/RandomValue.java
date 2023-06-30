@@ -17,7 +17,6 @@ import java.security.SecureRandom;
  */
 public class RandomValue {
     private static final Logger log = LogManager.getLogger();
-    private static final CommonMessageUtil commonMessageUtil = new CommonMessageUtil();
 
     private static final int DEFAULT_LENGTH = 16;
     private static final SecurityStrength DEFAULT_SECURITY_STRENGTH = SecurityStrength.MIDDLE;
@@ -110,7 +109,7 @@ public class RandomValue {
         }
 
         if (securityStrength == null) {
-            log.warn(commonMessageUtil.getMessage("warn.parameter.null", "securityStrength"));
+            log.warn(CommonMessageUtil.getMessage("warn.parameter.null", "securityStrength"));
             log.warn("SecurityStrength가 기본 값인 MIDDLE로 설정됩니다.");
             securityStrength = SecurityStrength.MIDDLE;
         }

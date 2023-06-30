@@ -1,7 +1,6 @@
 package dev.retrotv.crypt.twe;
 
 import dev.retrotv.crypt.exception.CryptFailException;
-import dev.retrotv.crypt.exception.KeyGenerateException;
 import lombok.NonNull;
 
 import java.util.Base64;

@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 
 public class FileReadUtil {
-    private static final CommonMessageUtil commonMessageUtil = new CommonMessageUtil();
 
     FileReadUtil() {
         throw new IllegalStateException("유틸리티 클래스 입니다.");
@@ -19,7 +18,7 @@ public class FileReadUtil {
             fileData = new byte[(int) file.length()];
             dis.readFully(fileData);
         } catch (IOException e) {
-            throw new IOException(commonMessageUtil.getMessage("exception.fileRead"));
+            throw new IOException(CommonMessageUtil.getMessage("exception.fileRead"));
         }
 
         return fileData;

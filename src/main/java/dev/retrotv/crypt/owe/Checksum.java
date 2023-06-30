@@ -16,7 +16,6 @@ import java.io.IOException;
  */
 public interface Checksum {
     Logger log = LogManager.getLogger();
-    CommonMessageUtil commonMessageUtil = new CommonMessageUtil();
 
     /**
      * data를 해시해 checksum을 생성하고 반환합니다.
@@ -46,12 +45,12 @@ public interface Checksum {
      */
     default boolean matches(byte[] data, String checksum) {
         if (data == null) {
-            log.warn(commonMessageUtil.getMessage("warn.parameter.null", "data"));
+            log.warn(CommonMessageUtil.getMessage("warn.parameter.null", "data"));
             return false;
         }
 
         if (checksum == null) {
-            log.warn(commonMessageUtil.getMessage("warn.parameter.null", "checksum"));
+            log.warn(CommonMessageUtil.getMessage("warn.parameter.null", "checksum"));
             return false;
         }
 
@@ -68,12 +67,12 @@ public interface Checksum {
      */
     default boolean matches(File file, String checksum) throws IOException {
         if (file == null) {
-            log.warn(commonMessageUtil.getMessage("warn.parameter.null", "file"));
+            log.warn(CommonMessageUtil.getMessage("warn.parameter.null", "file"));
             return false;
         }
 
         if (checksum == null) {
-            log.warn(commonMessageUtil.getMessage("warn.parameter.null", "checksum"));
+            log.warn(CommonMessageUtil.getMessage("warn.parameter.null", "checksum"));
             return false;
         }
 
@@ -89,12 +88,12 @@ public interface Checksum {
      */
     default boolean matches(byte[] data1, byte[] data2) {
         if (data1 == null) {
-            log.warn(commonMessageUtil.getMessage("warn.parameter.null", "data1"));
+            log.warn(CommonMessageUtil.getMessage("warn.parameter.null", "data1"));
             return false;
         }
 
         if (data2 == null) {
-            log.warn(commonMessageUtil.getMessage("warn.parameter.null", "data2"));
+            log.warn(CommonMessageUtil.getMessage("warn.parameter.null", "data2"));
             return false;
         }
 
@@ -111,12 +110,12 @@ public interface Checksum {
      */
     default boolean matches(File file1, File file2) throws IOException {
         if (file1 == null) {
-            log.warn(commonMessageUtil.getMessage("warn.parameter.null", "file1"));
+            log.warn(CommonMessageUtil.getMessage("warn.parameter.null", "file1"));
             return false;
         }
 
         if (file2 == null) {
-            log.warn(commonMessageUtil.getMessage("warn.parameter.null", "file2"));
+            log.warn(CommonMessageUtil.getMessage("warn.parameter.null", "file2"));
             return false;
         }
 

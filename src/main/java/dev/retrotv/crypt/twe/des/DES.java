@@ -52,16 +52,20 @@ public abstract class DES implements TwoWayEncryption, KeyGenerator {
             Cipher cipher = Cipher.getInstance(algorithm.label());
 
             switch (algorithm) {
-                case DESECB_PADDING, DESECB_NO_PADDING:
+                case DESECB_PADDING:
+                case DESECB_NO_PADDING:
                     cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(key, "DES"));
                     break;
-                case DESCBC_PADDING, DESCBC_NO_PADDING:
+                case DESCBC_PADDING:
+                case DESCBC_NO_PADDING:
                     cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(key, "DES"), new IvParameterSpec(iv));
                     break;
-                case TRIPLE_DESECB_PADDING, TRIPLE_DESECB_NO_PADDING:
+                case TRIPLE_DESECB_PADDING:
+                case TRIPLE_DESECB_NO_PADDING:
                     cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(key, "DESede"));
                     break;
-                case TRIPLE_DESCBC_PADDING, TRIPLE_DESCBC_NO_PADDING:
+                case TRIPLE_DESCBC_PADDING:
+                case TRIPLE_DESCBC_NO_PADDING:
                     cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(key, "DESede"), new IvParameterSpec(iv));
                     break;
                 default:
@@ -90,16 +94,20 @@ public abstract class DES implements TwoWayEncryption, KeyGenerator {
             Cipher cipher = Cipher.getInstance(algorithm.label());
 
             switch (algorithm) {
-                case DESECB_PADDING, DESECB_NO_PADDING:
+                case DESECB_PADDING:
+                case DESECB_NO_PADDING:
                     cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(key, "DES"));
                     break;
-                case DESCBC_PADDING, DESCBC_NO_PADDING:
+                case DESCBC_PADDING:
+                case DESCBC_NO_PADDING:
                     cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(key, "DES"), new IvParameterSpec(iv));
                     break;
-                case TRIPLE_DESECB_PADDING, TRIPLE_DESECB_NO_PADDING:
+                case TRIPLE_DESECB_PADDING:
+                case TRIPLE_DESECB_NO_PADDING:
                     cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(key, "TripleDES"));
                     break;
-                case TRIPLE_DESCBC_PADDING, TRIPLE_DESCBC_NO_PADDING:
+                case TRIPLE_DESCBC_PADDING:
+                case TRIPLE_DESCBC_NO_PADDING:
                     cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(key, "TripleDES"), new IvParameterSpec(iv));
                     break;
                 default:

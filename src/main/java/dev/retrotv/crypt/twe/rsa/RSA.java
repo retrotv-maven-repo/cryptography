@@ -4,7 +4,6 @@ import dev.retrotv.crypt.exception.CryptFailException;
 import dev.retrotv.crypt.twe.DigitalSignature;
 import dev.retrotv.crypt.twe.KeyPairGenerator;
 import dev.retrotv.crypt.twe.TwoWayEncryption;
-import dev.retrotv.utils.CommonMessageUtil;
 import lombok.NonNull;
 
 import javax.crypto.BadPaddingException;
@@ -28,7 +27,6 @@ import java.security.spec.X509EncodedKeySpec;
  */
 public abstract class RSA implements DigitalSignature, TwoWayEncryption, KeyPairGenerator {
     protected static final Logger log = LogManager.getLogger();
-    protected static final CommonMessageUtil commonMessageUtil = new CommonMessageUtil();
 
     protected static final String NO_SUCH_ALGORITHM_EXCEPTION_MESSAGE =
             "NoSuchAlgorithmException: "

@@ -1,7 +1,6 @@
 package dev.retrotv.crypt.owe;
 
 import dev.retrotv.enums.Algorithm;
-import dev.retrotv.utils.CommonMessageUtil;
 import lombok.NonNull;
 
 import org.apache.logging.log4j.LogManager;
@@ -17,9 +16,8 @@ import java.security.NoSuchAlgorithmException;
  * @author yjj8353
  * @since 1.8
  */
-public abstract class MessageDigestEncrypt implements Checksum, PasswordWithSalt  {
+public abstract class MessageDigestEncode implements Checksum, PasswordWithSalt {
     protected static final Logger log = LogManager.getLogger();
-    protected static final CommonMessageUtil commonMessageUtil = new CommonMessageUtil();
 
     /**
      * 지정된 {@link Algorithm} 유형으로 데이터를 암호화 하고, 암호화 된 데이터를 반환 합니다.
