@@ -10,8 +10,6 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
-import javax.crypto.spec.IvParameterSpec;
-import javax.crypto.spec.SecretKeySpec;
 
 import dev.retrotv.crypt.exception.CryptFailException;
 import dev.retrotv.crypt.twe.KeyGenerator;

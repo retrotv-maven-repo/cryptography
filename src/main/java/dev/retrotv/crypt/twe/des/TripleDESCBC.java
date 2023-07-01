@@ -4,7 +4,6 @@ import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 
 import javax.crypto.KeyGenerator;
-import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 
 import dev.retrotv.crypt.exception.KeyGenerateException;

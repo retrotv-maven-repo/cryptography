@@ -7,8 +7,6 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
-import javax.crypto.spec.GCMParameterSpec;
-import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 import dev.retrotv.utils.SecureRandomUtil;
@@ -20,8 +18,6 @@ import dev.retrotv.crypt.twe.KeyGenerator;
 import dev.retrotv.crypt.twe.TwoWayEncryption;
 import dev.retrotv.enums.Algorithm;
 import lombok.NonNull;
-
-import static dev.retrotv.crypt.twe.aes.AESGCM.GCM_TAG_LENGTH;
 
 public abstract class AES implements TwoWayEncryption, KeyGenerator {
     protected static final Logger log = LogManager.getLogger();

@@ -4,8 +4,6 @@ import dev.retrotv.crypt.twe.ParameterSpecGenerator;
 import dev.retrotv.utils.SecureRandomUtil;
 
 import javax.crypto.spec.GCMParameterSpec;
-import javax.crypto.spec.IvParameterSpec;
-import java.security.SecureRandom;
 
 public abstract class AESGCM extends AES implements ParameterSpecGenerator<GCMParameterSpec> {
     protected static final int GCM_IV_LENGTH = 12;

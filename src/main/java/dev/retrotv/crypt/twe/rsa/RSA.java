@@ -16,9 +16,6 @@ import org.apache.logging.log4j.Logger;
 
 import java.security.*;
 import java.security.spec.AlgorithmParameterSpec;
-import java.security.spec.InvalidKeySpecException;
-import java.security.spec.PKCS8EncodedKeySpec;
-import java.security.spec.X509EncodedKeySpec;
 
 /**
  * RSA 계열의 양방향 암호화 구현을 위한 상속용 클래스 입니다.
