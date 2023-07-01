@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.security.InvalidKeyException;
 
-public class AriaTest {
+public class ARIATest {
 
     @Test
     @DisplayName("ARIA128 암복호화 테스트")
