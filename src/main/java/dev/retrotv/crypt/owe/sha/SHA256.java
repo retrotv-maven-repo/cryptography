@@ -14,7 +14,7 @@ import lombok.NonNull;
 public class SHA256 extends MessageDigestEncode {
 
     @Override
-    public String encode(@NonNull byte[] data) {
+    public String hash(@NonNull byte[] data) {
         return EncodeUtil.binaryToHex(encode(Algorithm.SHA256, data));
     }
 }

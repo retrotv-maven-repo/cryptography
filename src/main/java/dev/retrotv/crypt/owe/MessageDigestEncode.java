@@ -41,12 +41,12 @@ public abstract class MessageDigestEncode implements Checksum, PasswordWithSalt 
     @Override
     public String encode(@NonNull CharSequence rawPassword) {
         String password = String.valueOf(rawPassword);
-        return encode(password.getBytes());
+        return hash(password.getBytes());
     }
 
     @Override
     public String encode(@NonNull CharSequence rawPassword, @NonNull Charset charset) {
         String password = String.valueOf(rawPassword);
-        return encode(password.getBytes(charset));
+        return hash(password.getBytes(charset));
     }
 }

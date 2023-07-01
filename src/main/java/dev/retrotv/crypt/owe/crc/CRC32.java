@@ -17,7 +17,7 @@ import java.nio.charset.Charset;
 public class CRC32 implements Checksum, PasswordWithSalt {
 
     @Override
-    public String encode(@NonNull byte[] data) {
+    public String hash(@NonNull byte[] data) {
         java.util.zip.CRC32 crc32 = new java.util.zip.CRC32();
         crc32.update(data);
 
@@ -32,12 +32,12 @@ public class CRC32 implements Checksum, PasswordWithSalt {
     @Override
     public String encode(@NonNull CharSequence rawPassword) {
         String password = String.valueOf(rawPassword);
-        return encode(password.getBytes());
+        return hash(password.getBytes());
     }
 
     @Override
     public String encode(@NonNull CharSequence rawPassword, @NonNull Charset charset) {
         String password = String.valueOf(rawPassword);
-        return encode(password.getBytes(charset));
+        return hash(password.getBytes(charset));
     }
 }

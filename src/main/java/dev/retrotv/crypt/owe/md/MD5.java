@@ -15,19 +15,19 @@ import java.nio.charset.Charset;
  */
 public class MD5 extends MessageDigestEncode {
     @Override
-    public String encode(@NonNull byte[] data) {
+    public String hash(@NonNull byte[] data) {
         return EncodeUtil.binaryToHex(encode(Algorithm.MD5, data));
     }
 
     @Override
     public String encode(@NonNull CharSequence rawPassword) {
         String password = String.valueOf(rawPassword);
-        return encode(password.getBytes());
+        return hash(password.getBytes());
     }
 
     @Override
     public String encode(@NonNull CharSequence rawPassword, @NonNull Charset charset) {
         String password = String.valueOf(rawPassword);
-        return encode(password.getBytes(charset));
+        return hash(password.getBytes(charset));
     }
 }

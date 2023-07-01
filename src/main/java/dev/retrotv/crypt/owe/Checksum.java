@@ -23,7 +23,7 @@ public interface Checksum {
      * @param data 해시 할 데이터
      * @return 체크섬
      */
-    String encode(byte[] data);
+    String hash(byte[] data);
 
     /**
      * file을 해시해 checksum을 생성하고 반환합니다.
@@ -32,8 +32,8 @@ public interface Checksum {
      * @return 체크섬
      * @throws IOException 파일을 읽어들이는 과정에서 오류가 발생할 경우 던짐
      */
-    default String encode(File file) throws IOException {
-        return encode(FileReadUtil.read(file));
+    default String hash(File file) throws IOException {
+        return hash(FileReadUtil.read(file));
     }
 
     /**
@@ -54,7 +54,7 @@ public interface Checksum {
             return false;
         }
 
-        return checksum.equals(encode(data));
+        return checksum.equals(hash(data));
     }
 
     /**
@@ -97,7 +97,7 @@ public interface Checksum {
             return false;
         }
 
-        return encode(data1).equals(encode(data2));
+        return hash(data1).equals(hash(data2));
     }
 
     /**
