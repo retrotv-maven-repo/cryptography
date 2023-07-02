@@ -80,6 +80,15 @@ public abstract class AES implements TwoWayEncryption, KeyGenerator {
                 case AESCBC128_PADDING:
                 case AESCBC192_PADDING:
                 case AESCBC256_PADDING:
+                case AESCFB128_NO_PADDING:
+                case AESCFB192_NO_PADDING:
+                case AESCFB256_NO_PADDING:
+                case AESCTR128_NO_PADDING:
+                case AESCTR192_NO_PADDING:
+                case AESCTR256_NO_PADDING:
+                case AESOFB128_NO_PADDING:
+                case AESOFB192_NO_PADDING:
+                case AESOFB256_NO_PADDING:
                 case AESGCM128_NO_PADDING:
                 case AESGCM192_NO_PADDING:
                 case AESGCM256_NO_PADDING:
@@ -134,6 +143,15 @@ public abstract class AES implements TwoWayEncryption, KeyGenerator {
                 case AESCBC128_PADDING:
                 case AESCBC192_PADDING:
                 case AESCBC256_PADDING:
+                case AESCFB128_NO_PADDING:
+                case AESCFB192_NO_PADDING:
+                case AESCFB256_NO_PADDING:
+                case AESCTR128_NO_PADDING:
+                case AESCTR192_NO_PADDING:
+                case AESCTR256_NO_PADDING:
+                case AESOFB128_NO_PADDING:
+                case AESOFB192_NO_PADDING:
+                case AESOFB256_NO_PADDING:
                 case AESGCM128_NO_PADDING:
                 case AESGCM192_NO_PADDING:
                 case AESGCM256_NO_PADDING:
