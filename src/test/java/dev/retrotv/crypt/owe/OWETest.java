@@ -82,52 +82,52 @@ public class OWETest extends Log {
         switch (algorithm) {
             case CRC32: {
                 Checksum checksum = new CRC32();
-                return checksum.encode(fileData);
+                return checksum.hash(fileData);
             }
 
             case MD2: {
                 Checksum checksum = new MD2();
-                return checksum.encode(fileData);
+                return checksum.hash(fileData);
             }
 
             case MD5: {
                 Checksum checksum = new MD5();
-                return checksum.encode(fileData);
+                return checksum.hash(fileData);
             }
 
             case SHA1:  {
                 Checksum checksum = new SHA1();
-                return checksum.encode(fileData);
+                return checksum.hash(fileData);
             }
 
             case SHA224: {
                 Checksum checksum = new SHA224();
-                return checksum.encode(fileData);
+                return checksum.hash(fileData);
             }
 
             case SHA256:  {
                 Checksum checksum = new SHA256();
-                return checksum.encode(fileData);
+                return checksum.hash(fileData);
             }
 
             case SHA384: {
                 Checksum checksum = new SHA384();
-                return checksum.encode(fileData);
+                return checksum.hash(fileData);
             }
 
             case SHA512: {
                 Checksum checksum = new SHA512();
-                return checksum.encode(fileData);
+                return checksum.hash(fileData);
             }
 
             case SHA512224: {
                 Checksum checksum = new SHA512224();
-                return checksum.encode(fileData);
+                return checksum.hash(fileData);
             }
 
             case SHA512256: {
                 Checksum checksum = new SHA512256();
-                return checksum.encode(fileData);
+                return checksum.hash(fileData);
             }
 
             default: return null;

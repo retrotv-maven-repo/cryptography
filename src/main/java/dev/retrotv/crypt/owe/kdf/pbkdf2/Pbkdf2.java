@@ -1,6 +1,7 @@
 package dev.retrotv.crypt.owe.kdf.pbkdf2;
 
 import dev.retrotv.crypt.owe.Password;
+import dev.retrotv.utils.CommonMessageUtil;
 import lombok.NonNull;
 
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
@@ -31,12 +32,12 @@ public class Pbkdf2 implements Password {
     @Override
     public boolean matches(CharSequence rawPassword, String encodedPassword) {
         if (rawPassword == null) {
-            log.warn(commonMessageUtil.getMessage("warn.parameter.null", "rawPassword"));
+            log.warn(CommonMessageUtil.getMessage("warn.parameter.null", "rawPassword"));
             return false;
         }
 
         if (encodedPassword == null) {
-            log.warn(commonMessageUtil.getMessage("warn.parameter.null", "encodedPassword"));
+            log.warn(CommonMessageUtil.getMessage("warn.parameter.null", "encodedPassword"));
             return false;
         }
 

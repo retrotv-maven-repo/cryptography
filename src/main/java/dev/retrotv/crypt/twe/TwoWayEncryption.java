@@ -3,6 +3,8 @@ package dev.retrotv.crypt.twe;
 import dev.retrotv.crypt.exception.CryptFailException;
 import lombok.NonNull;
 
+import java.security.Key;
+import java.security.spec.AlgorithmParameterSpec;
 import java.util.Base64;
 
 /**
@@ -12,20 +14,6 @@ import java.util.Base64;
  * @since   1.8
  */
 public interface TwoWayEncryption {
-    
-    /**
-     * 문자열을 암호화 하고, 암호화 된 문자열을 반환 합니다.
-     * 이 때, 암호화 된 데이터는 {@link Base64} 타입의 문자열로 인코딩 됩니다.
-     *
-     * @throws CryptFailException text 혹은 key가 null인 경우 발생
-     * @param text 암호화 할 문자열
-     * @param key 암호화 시, 사용할 키
-     * @return 암호화 된 문자열
-     */
-    default String encrypt(@NonNull String text,@NonNull byte[] key) throws CryptFailException {
-        byte[] data = text.getBytes();
-        return new String(Base64.getEncoder().encode(encrypt(data, key)));
-    }
 
     /**
      * 문자열을 암호화 하고, 암호화 된 문자열을 반환 합니다.
@@ -36,21 +24,7 @@ public interface TwoWayEncryption {
      * @param key 암호화 시, 사용할 키
      * @return 암호화 된 문자열
      */
-    byte[] encrypt(byte[] data, byte[] key) throws CryptFailException;
-
-    /**
-     * 암호화 된 문자열을 복호화 하고, 복호화 된 문자열을 반환 합니다.
-     * 복호화 할 문자열은 {@link Base64} 유형으로 인코딩 된 문자열이어야 합니다.
-     *
-     * @throws CryptFailException encryptedText 혹은 key가 null인 경우 발생
-     * @param encryptedText 암호화 된 문자열
-     * @param key 복호화 시, 사용할 키
-     * @return 복호화 된 문자열
-     */
-    default String decrypt(@NonNull String encryptedText, @NonNull byte[] key) throws CryptFailException {
-        byte[] data = Base64.getDecoder().decode(encryptedText.getBytes());
-        return new String(decrypt(data, key));
-    }
+    byte[] encrypt(@NonNull byte[] data, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptFailException;
 
     /**
      * 암호화 된 데이터를 복호화 하고, 복호화 된 데이터를 반환 합니다.
@@ -60,5 +34,5 @@ public interface TwoWayEncryption {
      * @param key 복호화 시, 사용할 키
      * @return 복호화 된 데이터
      */
-    byte[] decrypt(byte[] encryptedData, byte[] key) throws CryptFailException;
+    byte[] decrypt(@NonNull byte[] encryptedData, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptFailException;
 }

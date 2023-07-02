@@ -1,21 +1,25 @@
 package dev.retrotv.crypt.twe.aes;
 
-import dev.retrotv.crypt.exception.CryptFailException;
-import dev.retrotv.crypt.twe.TwoWayEncryption;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.RepetitionInfo;
-import org.junit.jupiter.api.TestInstance;
 
-import static org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS;
+import java.security.Key;
 
-@TestInstance(value = PER_CLASS)
-public class AESECB192Test extends AESTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-    @DisplayName("AES-192 ECB 알고리즘 암복호화 테스트")
+class AESECB192Test {
+
+    @DisplayName("AES/ECB-192 암복호화 반복 테스트")
     @RepeatedTest(value = 100, name = "{currentRepetition}/{totalRepetitions}")
-    void AESECB192EncryptDecryptTest(RepetitionInfo repetitionInfo) throws CryptFailException {
-        TwoWayEncryption twe = new AESECB192();
-        encryptDecryptTest(twe, repetitionInfo);
+    void aesecb192_100_repeat_test(RepetitionInfo repetitionInfo) throws Exception {
+        String message = "The lazy dog jumps over the brown fox!";
+        AESECB aesecb = new AESECB192();
+        Key key = aesecb.generateKey();
+
+        byte[] encryptedData = aesecb.encrypt(message.getBytes(), key, null);
+        String originalMessage = new String(aesecb.decrypt(encryptedData, key, null));
+
+        assertEquals(message, originalMessage);
     }
 }
