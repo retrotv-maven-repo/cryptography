@@ -8,7 +8,7 @@ JDK 1.8 이상
 
 ## 지원하는 알고리즘
 
-### KDF(Key Derivation Function) 계열
+### KDF(키 유도 함수) 계열
 - Argon2
 - BCrypt
 - Pbkdf2
