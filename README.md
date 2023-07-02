@@ -31,20 +31,42 @@ JDK 1.8 이상
 - SHA-512/256
 
 ### AES 계열
-- AES-128 (ECB PKCS5 Padding)
-- AES-128 (CBC PKCS5 Padding)
-- AES-192 (ECB PKCS5 Padding)
-- AES-192 (CBC PKCS5 Padding)
-- AES-256 (ECB PKCS5 Padding)
-- AES-256 (CBC PKCS5 Padding)
+- AES-128 (ECB, CBC, GCM)
+- AES-192 (ECB, CBC, GCM)
+- AES-256 (ECB, CBC, GCM)
+#### (GCM 모드를 제외한 나머지는 PKCS#5 Padding을 기본으로 사용)
+
+### LEA 계열
+- LEA-128 (ECB, CBC, GCM)
+- LEA-192 (ECB, CBC, GCM)
+- LEA-256 (ECB, CBC, GCM)
+#### (GCM 모드를 제외한 나머지는 PKCS#5 Padding을 기본으로 사용)
+
+### RSA 계열
+- RSA-1024 (OAEPWITHSHA-256ANDMGF1PADDING, SHA256withRSA)
+- RSA-2048 (OAEPWITHSHA-256ANDMGF1PADDING, SHA256withRSA)
 
 ## 사용법
 ```JAVA
 // 단방향 암호화 (체크섬)
 Checksum checksum = new SHA256();
-checksum.encode(new File("./image.jpg"));
+checksum.hash(new File(filePath));
 
-// 단방향 암호화 (패스워드)
+// 단방향 암호화 (키 유도 함수 패스워드)
 Password password = new BCrypt();
-password.encode("!Q@W#E4r5t6y");
+password.encode(myPassword);
+
+// 단방향 암호화 (salt가 필요한 일반 패스워드)
+PasswordWithSalt password = new SHA256();
+password.encode(myPassword, salt);
+
+// 양방향 암호화 (암/복호화)
+TwoWayEncryption twe = new AESCBC128();
+byte[] encryptedData = twe.encrypt(data, key, iv);
+byte[] originalData = twe.decrypt(encryptedData, key, iv);
+
+// 양방향 암호화 (전자서명)
+DigitalSignature ds = new RSA2048();
+byte[] encryptedData = ds.sign(data, privateKey);
+boolean verifyResult = ds.verify(encryptedData, publicKey);
 ```
