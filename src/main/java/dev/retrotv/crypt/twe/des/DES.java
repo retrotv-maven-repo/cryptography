@@ -51,7 +51,7 @@ public abstract class DES implements TwoWayEncryption, KeyGenerator {
           + "\n지원하지 않는 암호화 알고리즘 입니다.";
 
     @Override
-    public byte[] encrypt(@NonNull byte[] data, @NonNull Key key, AlgorithmParameterSpec iv) throws CryptFailException {
+    public byte[] encrypt(@NonNull byte[] data, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptFailException {
         try {
             Cipher cipher = Cipher.getInstance(algorithm.label());
 
@@ -68,7 +68,7 @@ public abstract class DES implements TwoWayEncryption, KeyGenerator {
                 case TRIPLE_DESCBC_PADDING:
                 case TRIPLE_DESCBC_NO_PADDING:
                     log.debug("선택된 알고리즘: {}", algorithm.label());
-                    cipher.init(Cipher.ENCRYPT_MODE, key, iv);
+                    cipher.init(Cipher.ENCRYPT_MODE, key, spec);
                     break;
                 default:
                     throw new NoSuchAlgorithmException("사용되지 않는 암호화 알고리즘 입니다.");
@@ -91,7 +91,7 @@ public abstract class DES implements TwoWayEncryption, KeyGenerator {
     }
 
     @Override
-    public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull Key key, AlgorithmParameterSpec iv) throws CryptFailException {
+    public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptFailException {
         try {
             Cipher cipher = Cipher.getInstance(algorithm.label());
 
@@ -108,7 +108,7 @@ public abstract class DES implements TwoWayEncryption, KeyGenerator {
                 case TRIPLE_DESCBC_PADDING:
                 case TRIPLE_DESCBC_NO_PADDING:
                     log.debug("선택된 알고리즘: {}", algorithm.label());
-                    cipher.init(Cipher.DECRYPT_MODE, key, iv);
+                    cipher.init(Cipher.DECRYPT_MODE, key, spec);
                     break;
                 default:
                     throw new NoSuchAlgorithmException("사용되지 않는 암호화 알고리즘 입니다.");

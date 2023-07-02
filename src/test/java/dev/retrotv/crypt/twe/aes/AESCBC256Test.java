@@ -15,10 +15,10 @@ class AESCBC256Test {
         String message = "The lazy dog jumps over the brown fox!";
         AESCBC aescbc = new AESCBC256();
         Key key = aescbc.generateKey();
-        AlgorithmParameterSpec iv = aescbc.generateSpec();
+        AlgorithmParameterSpec spec = aescbc.generateSpec();
 
-        byte[] encryptedData = aescbc.encrypt(message.getBytes(), key, iv);
-        String originalMessage = new String(aescbc.decrypt(encryptedData, key, iv));
+        byte[] encryptedData = aescbc.encrypt(message.getBytes(), key, spec);
+        String originalMessage = new String(aescbc.decrypt(encryptedData, key, spec));
 
         assertEquals(message, originalMessage);
     }

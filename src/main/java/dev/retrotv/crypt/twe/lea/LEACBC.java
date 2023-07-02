@@ -16,10 +16,10 @@ import java.security.spec.AlgorithmParameterSpec;
 public abstract class LEACBC extends LEA implements ParameterSpecGenerator<IvParameterSpec> {
 
     @Override
-    public byte[] encrypt(@NonNull byte[] data, @NonNull Key key, AlgorithmParameterSpec iv) throws CryptFailException {
+    public byte[] encrypt(@NonNull byte[] data, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptFailException {
         try {
             BlockCipherMode cipher = new CBC();
-            IvParameterSpec ivSpec = (IvParameterSpec) iv;
+            IvParameterSpec ivSpec = (IvParameterSpec) spec;
 
             cipher.init(BlockCipher.Mode.ENCRYPT, key.getEncoded(), ivSpec.getIV());
             cipher.setPadding(new PKCS5Padding(16));
@@ -31,10 +31,10 @@ public abstract class LEACBC extends LEA implements ParameterSpecGenerator<IvPar
     }
 
     @Override
-    public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull Key key, AlgorithmParameterSpec iv) throws CryptFailException {
+    public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptFailException {
         try {
             BlockCipherMode cipher = new CBC();
-            IvParameterSpec ivSpec = (IvParameterSpec) iv;
+            IvParameterSpec ivSpec = (IvParameterSpec) spec;
 
             cipher.init(BlockCipher.Mode.DECRYPT, key.getEncoded(), ivSpec.getIV());
             cipher.setPadding(new PKCS5Padding(16));

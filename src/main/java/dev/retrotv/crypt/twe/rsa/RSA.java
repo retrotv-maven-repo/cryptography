@@ -39,7 +39,7 @@ public abstract class RSA implements DigitalSignature, TwoWayEncryption, KeyPair
           + "\n서명이 유효하지 않습니다.";
 
     @Override
-    public byte[] encrypt(@NonNull byte[] data, @NonNull Key publicKey, AlgorithmParameterSpec iv) throws CryptFailException {
+    public byte[] encrypt(@NonNull byte[] data, @NonNull Key publicKey, AlgorithmParameterSpec spec) throws CryptFailException {
         return encrypt(data, publicKey);
     }
 
@@ -64,7 +64,7 @@ public abstract class RSA implements DigitalSignature, TwoWayEncryption, KeyPair
     }
 
     @Override
-    public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull Key privateKey, AlgorithmParameterSpec iv) throws CryptFailException {
+    public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull Key privateKey, AlgorithmParameterSpec spec) throws CryptFailException {
         return decrypt(encryptedData, privateKey);
     }
 

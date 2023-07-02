@@ -13,7 +13,7 @@ import java.security.spec.AlgorithmParameterSpec;
 public abstract class LEAECB extends LEA {
 
     @Override
-    public byte[] encrypt(@NonNull byte[] data, @NonNull Key key, AlgorithmParameterSpec iv) throws CryptFailException {
+    public byte[] encrypt(@NonNull byte[] data, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptFailException {
         try {
             return encrypt(data, key);
         } catch (Exception e) {
@@ -34,7 +34,7 @@ public abstract class LEAECB extends LEA {
     }
 
     @Override
-    public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull Key key, AlgorithmParameterSpec iv) throws CryptFailException {
+    public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptFailException {
         try {
             return decrypt(encryptedData, key);
         } catch (Exception e) {

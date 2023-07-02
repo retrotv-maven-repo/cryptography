@@ -17,10 +17,10 @@ public abstract class LEAGCM extends LEA implements ParameterSpecGenerator<GCMPa
     protected static final int GCM_TAG_LENGTH = 16;
 
     @Override
-    public byte[] encrypt(@NonNull byte[] data, @NonNull Key key, AlgorithmParameterSpec iv) throws CryptFailException {
+    public byte[] encrypt(@NonNull byte[] data, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptFailException {
         try {
             BlockCipherModeAE cipher = new GCM();
-            GCMParameterSpec gcmSpec = (GCMParameterSpec) iv;
+            GCMParameterSpec gcmSpec = (GCMParameterSpec) spec;
 
             // GCMParameterSpec의 tLen은 bit 기준이고, taglen이 byte 크기여야 하므로 8로 나눔
             cipher.init(BlockCipher.Mode.ENCRYPT, key.getEncoded(), gcmSpec.getIV(), gcmSpec.getTLen() / 8);
@@ -32,10 +32,10 @@ public abstract class LEAGCM extends LEA implements ParameterSpecGenerator<GCMPa
     }
 
     @Override
-    public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull Key key, AlgorithmParameterSpec iv) throws CryptFailException {
+    public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptFailException {
         try {
             BlockCipherModeAE cipher = new GCM();
-            GCMParameterSpec gcmSpec = (GCMParameterSpec) iv;
+            GCMParameterSpec gcmSpec = (GCMParameterSpec) spec;
 
             cipher.init(BlockCipher.Mode.DECRYPT, key.getEncoded(), gcmSpec.getIV(), gcmSpec.getTLen() / 8);
 
