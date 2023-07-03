@@ -62,14 +62,14 @@ public abstract class AES implements TwoWayEncryption, KeyGenerator {
      * @throws CryptFailException 지원되지 않거나, 부정확한 포맷으로 패딩된 데이터 암복호화를 시도하려고 할 때 발생
      * @param data 암호화 할 데이터
      * @param key 암호화 시, 사용할 키
-     * @param iv 초기화 벡터
+     * @param spec 초기화 벡터
      * @return 암호화 된 데이터
      */
     @Override
     public byte[] encrypt(@NonNull byte[] data, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptFailException {
         try {
-            Cipher cipher = Cipher.getInstance(algorithm.label());
             log.debug("선택된 알고리즘: {}", algorithm.label());
+            Cipher cipher = Cipher.getInstance(algorithm.label());
 
             switch (algorithm) {
                 case AESECB128_PADDING:
@@ -77,25 +77,9 @@ public abstract class AES implements TwoWayEncryption, KeyGenerator {
                 case AESECB256_PADDING:
                     cipher.init(Cipher.ENCRYPT_MODE, key);
                     break;
-                case AESCBC128_PADDING:
-                case AESCBC192_PADDING:
-                case AESCBC256_PADDING:
-                case AESCFB128_NO_PADDING:
-                case AESCFB192_NO_PADDING:
-                case AESCFB256_NO_PADDING:
-                case AESCTR128_NO_PADDING:
-                case AESCTR192_NO_PADDING:
-                case AESCTR256_NO_PADDING:
-                case AESOFB128_NO_PADDING:
-                case AESOFB192_NO_PADDING:
-                case AESOFB256_NO_PADDING:
-                case AESGCM128_NO_PADDING:
-                case AESGCM192_NO_PADDING:
-                case AESGCM256_NO_PADDING:
+                default:
                     cipher.init(Cipher.ENCRYPT_MODE, key, spec);
                     break;
-                default:
-                    throw new NoSuchAlgorithmException("사용되지 않는 암호화 알고리즘 입니다.");
             }
 
             return cipher.doFinal(data);
@@ -125,7 +109,7 @@ public abstract class AES implements TwoWayEncryption, KeyGenerator {
      * @throws CryptFailException 지원되지 않거나, 부정확한 포맷으로 패딩된 데이터 암복호화를 시도하려고 할 때 발생
      * @param encryptedData 암호화 된 데이터
      * @param key 복호화 시, 사용할 키
-     * @param iv 초기화 벡터
+     * @param spec 초기화 벡터
      * @return 복호화 된 데이터
      */
     @Override
@@ -140,26 +124,10 @@ public abstract class AES implements TwoWayEncryption, KeyGenerator {
                     log.debug("선택된 알고리즘: {}", algorithm.label());
                     cipher.init(Cipher.DECRYPT_MODE, key);
                     break;
-                case AESCBC128_PADDING:
-                case AESCBC192_PADDING:
-                case AESCBC256_PADDING:
-                case AESCFB128_NO_PADDING:
-                case AESCFB192_NO_PADDING:
-                case AESCFB256_NO_PADDING:
-                case AESCTR128_NO_PADDING:
-                case AESCTR192_NO_PADDING:
-                case AESCTR256_NO_PADDING:
-                case AESOFB128_NO_PADDING:
-                case AESOFB192_NO_PADDING:
-                case AESOFB256_NO_PADDING:
-                case AESGCM128_NO_PADDING:
-                case AESGCM192_NO_PADDING:
-                case AESGCM256_NO_PADDING:
+                default:
                     log.debug("선택된 알고리즘: {}", algorithm.label());
                     cipher.init(Cipher.DECRYPT_MODE, key, spec);
                     break;
-                default:
-                    throw new NoSuchAlgorithmException("사용되지 않는 암호화 알고리즘 입니다.");
             }
 
             return cipher.doFinal(encryptedData);
