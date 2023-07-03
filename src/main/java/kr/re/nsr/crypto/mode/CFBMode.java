@@ -45,7 +45,6 @@ public class CFBMode extends BlockCipherModeStream {
 
 		if (mode == Mode.ENCRYPT) {
 			System.arraycopy(out, outOff, feedback, 0, blocksize);
-
 		} else {
 			System.arraycopy(in, inOff, feedback, 0, blocksize);
 		}
