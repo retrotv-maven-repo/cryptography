@@ -8,6 +8,7 @@ import kr.re.nsr.crypto.BlockCipherModeAE;
 import kr.re.nsr.crypto.symm.LEA.GCM;
 import lombok.NonNull;
 
+import javax.crypto.AEADBadTagException;
 import javax.crypto.spec.GCMParameterSpec;
 import java.security.Key;
 import java.security.spec.AlgorithmParameterSpec;
@@ -15,6 +16,7 @@ import java.security.spec.AlgorithmParameterSpec;
 public abstract class LEAGCM extends LEA implements ParameterSpecGenerator<GCMParameterSpec> {
     protected static final int GCM_IV_LENGTH = 12;
     protected static final int GCM_TAG_LENGTH = 16;
+    protected String aad = null;
 
     @Override
     public byte[] encrypt(@NonNull byte[] data, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptFailException {
@@ -24,6 +26,7 @@ public abstract class LEAGCM extends LEA implements ParameterSpecGenerator<GCMPa
 
             // GCMParameterSpec의 tLen은 bit 기준이고, taglen이 byte 크기여야 하므로 8로 나눔
             cipher.init(BlockCipher.Mode.ENCRYPT, key.getEncoded(), gcmSpec.getIV(), gcmSpec.getTLen() / 8);
+            if (aad != null) { cipher.updateAAD(aad.getBytes()); }
 
             return cipher.doFinal(data);
         } catch (Exception e) {
@@ -38,8 +41,14 @@ public abstract class LEAGCM extends LEA implements ParameterSpecGenerator<GCMPa
             GCMParameterSpec gcmSpec = (GCMParameterSpec) spec;
 
             cipher.init(BlockCipher.Mode.DECRYPT, key.getEncoded(), gcmSpec.getIV(), gcmSpec.getTLen() / 8);
+            if (aad != null) { cipher.updateAAD(aad.getBytes()); }
 
-            return cipher.doFinal(encryptedData);
+            byte[] originalData = cipher.doFinal(encryptedData);
+            if (originalData == null) {
+                throw new AEADBadTagException("동일한 Tag를 사용해 복호화를 시도했는지 확인 하십시오.");
+            }
+
+            return originalData;
         } catch (Exception e) {
             throw new CryptFailException(e.getMessage(), e);
         }
@@ -48,5 +57,9 @@ public abstract class LEAGCM extends LEA implements ParameterSpecGenerator<GCMPa
     @Override
     public GCMParameterSpec generateSpec() {
         return new GCMParameterSpec(GCM_TAG_LENGTH * 8, SecureRandomUtil.generate(GCM_IV_LENGTH));
+    }
+
+    public void updateAAD(String aad) {
+        this.aad = aad;
     }
 }

@@ -8,7 +8,7 @@ import java.security.Key;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class LEACBCTest {
+class LEACBCTest {
 
     @Test
     @DisplayName("LEACBC-128 암복호화 테스트")
