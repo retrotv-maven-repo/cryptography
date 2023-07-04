@@ -5,6 +5,7 @@ import dev.retrotv.crypt.twe.ParameterSpecGenerator;
 import dev.retrotv.utils.SecureRandomUtil;
 import kr.re.nsr.crypto.BlockCipher;
 import kr.re.nsr.crypto.BlockCipherMode;
+import kr.re.nsr.crypto.padding.PKCS5Padding;
 import kr.re.nsr.crypto.symm.LEA.CFB;
 import lombok.NonNull;
 

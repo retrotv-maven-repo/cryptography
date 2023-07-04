@@ -13,7 +13,7 @@ class LEACFBTest {
 //    @Test
 //    @DisplayName("LEACFB-128 암복호화 테스트")
 //    void leacfb128_test() throws Exception {
-//        String message = "The lazy dog jumps over the brown fox!";
+//        String message = "aaaaaaaaaaaaaaaa";
 //        LEACFB lea = new LEACFB128();
 //        Key key = lea.generateKey();
 //        IvParameterSpec iv = lea.generateSpec();
@@ -23,7 +23,7 @@ class LEACFBTest {
 //
 //        assertEquals(message, originalMessage);
 //    }
-//
+
 //    @Test
 //    @DisplayName("LEACFB-192 암복호화 테스트")
 //    void leacfb192_test() throws Exception {
