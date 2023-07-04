@@ -1,11 +1,24 @@
 package dev.retrotv.crypt.twe.aes;
 
+import dev.retrotv.crypt.exception.WrongKeyLengthException;
 import dev.retrotv.crypt.twe.ParameterSpecGenerator;
 import dev.retrotv.utils.SecureRandomUtil;
 
 import javax.crypto.spec.IvParameterSpec;
 
-public abstract class AESCTR extends AES implements ParameterSpecGenerator<IvParameterSpec> {
+import static dev.retrotv.enums.Algorithm.AESCTR;
+
+public class AESCTR extends AES implements ParameterSpecGenerator<IvParameterSpec> {
+
+    public AESCTR(int keyLen) {
+        if (keyLen != 128 && keyLen != 192 && keyLen != 256) {
+            log.debug("keyLen 값: {}", keyLen);
+            throw new WrongKeyLengthException();
+        }
+
+        this.keyLen = keyLen;
+        this.algorithm = AESCTR;
+    }
 
     @Override
     public IvParameterSpec generateSpec() {

@@ -1,45 +1,23 @@
 package dev.retrotv.crypt.twe.lea;
 
-import dev.retrotv.crypt.exception.CryptFailException;
+import dev.retrotv.crypt.exception.WrongKeyLengthException;
 import dev.retrotv.crypt.twe.ParameterSpecGenerator;
 import dev.retrotv.utils.SecureRandomUtil;
-import kr.re.nsr.crypto.BlockCipher;
-import kr.re.nsr.crypto.BlockCipherMode;
-import kr.re.nsr.crypto.symm.LEA.CTR;
-import lombok.NonNull;
 
 import javax.crypto.spec.IvParameterSpec;
-import java.security.Key;
-import java.security.spec.AlgorithmParameterSpec;
 
-public abstract class LEACTR extends LEA implements ParameterSpecGenerator<IvParameterSpec> {
+import static dev.retrotv.enums.Algorithm.LEACTR;
 
-    @Override
-    public byte[] encrypt(@NonNull byte[] data, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptFailException {
-        try {
-            BlockCipherMode cipher = new CTR();
-            IvParameterSpec ivSpec = (IvParameterSpec) spec;
+public class LEACTR extends LEA implements ParameterSpecGenerator<IvParameterSpec> {
 
-            cipher.init(BlockCipher.Mode.ENCRYPT, key.getEncoded(), ivSpec.getIV());
-
-            return cipher.doFinal(data);
-        } catch (Exception e) {
-            throw new CryptFailException(e.getMessage(), e);
+    public LEACTR(int keyLen) {
+        if (keyLen != 128 && keyLen != 192 && keyLen != 256) {
+            log.debug("keyLen 값: {}", keyLen);
+            throw new WrongKeyLengthException();
         }
-    }
 
-    @Override
-    public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptFailException {
-        try {
-            BlockCipherMode cipher = new CTR();
-            IvParameterSpec ivSpec = (IvParameterSpec) spec;
-
-            cipher.init(BlockCipher.Mode.DECRYPT, key.getEncoded(), ivSpec.getIV());
-
-            return cipher.doFinal(encryptedData);
-        } catch (Exception e) {
-            throw new CryptFailException(e.getMessage(), e);
-        }
+        this.keyLen = keyLen;
+        this.algorithm = LEACTR;
     }
 
     @Override

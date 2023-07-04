@@ -14,7 +14,7 @@ class LEACFBTest {
 //    @DisplayName("LEACFB-128 암복호화 테스트")
 //    void leacfb128_test() throws Exception {
 //        String message = "aaaaaaaaaaaaaaaa";
-//        LEACFB lea = new LEACFB128();
+//        LEACFB lea = new LEACFB(128);
 //        Key key = lea.generateKey();
 //        IvParameterSpec iv = lea.generateSpec();
 //

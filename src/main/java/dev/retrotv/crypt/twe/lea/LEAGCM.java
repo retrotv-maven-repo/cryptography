@@ -1,6 +1,7 @@
 package dev.retrotv.crypt.twe.lea;
 
 import dev.retrotv.crypt.exception.CryptFailException;
+import dev.retrotv.crypt.exception.WrongKeyLengthException;
 import dev.retrotv.crypt.twe.ParameterSpecGenerator;
 import dev.retrotv.utils.SecureRandomUtil;
 import kr.re.nsr.crypto.BlockCipher;
@@ -13,10 +14,22 @@ import javax.crypto.spec.GCMParameterSpec;
 import java.security.Key;
 import java.security.spec.AlgorithmParameterSpec;
 
-public abstract class LEAGCM extends LEA implements ParameterSpecGenerator<GCMParameterSpec> {
+import static dev.retrotv.enums.Algorithm.LEAGCM;
+
+public class LEAGCM extends LEA implements ParameterSpecGenerator<GCMParameterSpec> {
     protected static final int GCM_IV_LENGTH = 12;
     protected static final int GCM_TAG_LENGTH = 16;
     protected String aad = null;
+
+    public LEAGCM(int keyLen) {
+        if (keyLen != 128 && keyLen != 192 && keyLen != 256) {
+            log.debug("keyLen 값: {}", keyLen);
+            throw new WrongKeyLengthException();
+        }
+
+        this.keyLen = keyLen;
+        this.algorithm = LEAGCM;
+    }
 
     @Override
     public byte[] encrypt(@NonNull byte[] data, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptFailException {

@@ -1,6 +1,7 @@
 package dev.retrotv.crypt.twe.aes;
 
 import dev.retrotv.crypt.exception.CryptFailException;
+import dev.retrotv.crypt.exception.WrongKeyLengthException;
 import dev.retrotv.crypt.twe.ParameterSpecGenerator;
 import dev.retrotv.utils.SecureRandomUtil;
 import lombok.NonNull;
@@ -16,16 +17,30 @@ import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.AlgorithmParameterSpec;
 
-public abstract class AESGCM extends AES implements ParameterSpecGenerator<GCMParameterSpec> {
+import static dev.retrotv.enums.Algorithm.AESGCM;
+
+public class AESGCM extends AES implements ParameterSpecGenerator<GCMParameterSpec> {
     protected static final int GCM_IV_LENGTH = 12;
     protected static final int GCM_TAG_LENGTH = 16;
     protected String aad = null;
 
+    public AESGCM(int keyLen) {
+        if (keyLen != 128 && keyLen != 192 && keyLen != 256) {
+            log.debug("keyLen 값: {}", keyLen);
+            throw new WrongKeyLengthException();
+        }
+
+        this.keyLen = keyLen;
+        this.algorithm = AESGCM;
+    }
+
     @Override
     public byte[] encrypt(@NonNull byte[] data, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptFailException {
+        String algorithmName = algorithm.label() + "/" + padding.label();
+        log.debug("선택된 알고리즘: {}", algorithmName);
+
         try {
-            log.debug("선택된 알고리즘: {}", algorithm.label());
-            Cipher cipher = Cipher.getInstance(algorithm.label());
+            Cipher cipher = Cipher.getInstance(algorithmName);
             cipher.init(Cipher.ENCRYPT_MODE, key, spec);
             if (aad != null) {
                 cipher.updateAAD(aad.getBytes());
@@ -49,8 +64,11 @@ public abstract class AESGCM extends AES implements ParameterSpecGenerator<GCMPa
 
     @Override
     public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptFailException {
+        String algorithmName = algorithm.label() + "/" + padding.label();
+        log.debug("선택된 알고리즘: {}", algorithmName);
+
         try {
-            Cipher cipher = Cipher.getInstance(algorithm.label());
+            Cipher cipher = Cipher.getInstance(algorithmName);
             cipher.init(Cipher.DECRYPT_MODE, key, spec);
             if (aad != null) {
                 cipher.updateAAD(aad.getBytes());

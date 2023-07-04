@@ -1,4 +1,4 @@
-package dev.retrotv.crypt.twe.lea;
+package dev.retrotv.crypt.twe.aes;
 
 import dev.retrotv.crypt.exception.WrongKeyLengthException;
 import dev.retrotv.crypt.twe.ParameterSpecGenerator;
@@ -6,18 +6,18 @@ import dev.retrotv.utils.SecureRandomUtil;
 
 import javax.crypto.spec.IvParameterSpec;
 
-import static dev.retrotv.enums.Algorithm.LEACFB;
+import static dev.retrotv.enums.Algorithm.AESCTS;
 
-public class LEACFB extends LEA implements ParameterSpecGenerator<IvParameterSpec> {
+public class AESCTS extends AES implements ParameterSpecGenerator<IvParameterSpec> {
 
-    public LEACFB(int keyLen) {
+    public AESCTS(int keyLen) {
         if (keyLen != 128 && keyLen != 192 && keyLen != 256) {
             log.debug("keyLen 값: {}", keyLen);
             throw new WrongKeyLengthException();
         }
 
         this.keyLen = keyLen;
-        this.algorithm = LEACFB;
+        this.algorithm = AESCTS;
     }
 
     @Override

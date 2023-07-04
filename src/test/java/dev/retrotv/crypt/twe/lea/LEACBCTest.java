@@ -14,9 +14,10 @@ class LEACBCTest {
     @DisplayName("LEACBC-128 암복호화 테스트")
     void leacbc128_test() throws Exception {
         String message = "The lazy dog jumps over the brown fox!";
-        LEACBC lea = new LEACBC128();
+        LEACBC lea = new LEACBC(128);
         Key key = lea.generateKey();
         IvParameterSpec iv = lea.generateSpec();
+        lea.dataPadding();
 
         byte[] encryptedData = lea.encrypt(message.getBytes(), key, iv);
         String originalMessage = new String(lea.decrypt(encryptedData, key, iv));
@@ -28,9 +29,10 @@ class LEACBCTest {
     @DisplayName("LEACBC-192 암복호화 테스트")
     void leacbc192_test() throws Exception {
         String message = "The lazy dog jumps over the brown fox!";
-        LEACBC lea = new LEACBC192();
+        LEACBC lea = new LEACBC(192);
         Key key = lea.generateKey();
         IvParameterSpec iv = lea.generateSpec();
+        lea.dataPadding();
 
         byte[] encryptedData = lea.encrypt(message.getBytes(), key, iv);
         String originalMessage = new String(lea.decrypt(encryptedData, key, iv));
@@ -42,9 +44,10 @@ class LEACBCTest {
     @DisplayName("LEACBC-256 암복호화 테스트")
     void leacbc256_test() throws Exception {
         String message = "The lazy dog jumps over the brown fox!";
-        LEACBC lea = new LEACBC256();
+        LEACBC lea = new LEACBC(256);
         Key key = lea.generateKey();
         IvParameterSpec iv = lea.generateSpec();
+        lea.dataPadding();
 
         byte[] encryptedData = lea.encrypt(message.getBytes(), key, iv);
         String originalMessage = new String(lea.decrypt(encryptedData, key, iv));

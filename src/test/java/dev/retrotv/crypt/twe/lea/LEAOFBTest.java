@@ -14,7 +14,7 @@ class LEAOFBTest {
     @DisplayName("LEAOFB-128 암복호화 테스트")
     void leaofb128_test() throws Exception {
         String message = "The lazy dog jumps over the brown fox!";
-        LEAOFB lea = new LEAOFB128();
+        LEAOFB lea = new LEAOFB(128);
         Key key = lea.generateKey();
         IvParameterSpec iv = lea.generateSpec();
 
@@ -28,7 +28,7 @@ class LEAOFBTest {
     @DisplayName("LEAOFB-192 암복호화 테스트")
     void leaofb192_test() throws Exception {
         String message = "The lazy dog jumps over the brown fox!";
-        LEAOFB lea = new LEAOFB192();
+        LEAOFB lea = new LEAOFB(192);
         Key key = lea.generateKey();
         IvParameterSpec iv = lea.generateSpec();
 
@@ -42,7 +42,7 @@ class LEAOFBTest {
     @DisplayName("LEAOFB-256 암복호화 테스트")
     void leaofb256_test() throws Exception {
         String message = "The lazy dog jumps over the brown fox!";
-        LEAOFB lea = new LEAOFB256();
+        LEAOFB lea = new LEAOFB(256);
         Key key = lea.generateKey();
         IvParameterSpec iv = lea.generateSpec();
 

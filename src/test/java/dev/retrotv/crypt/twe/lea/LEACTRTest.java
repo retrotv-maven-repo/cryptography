@@ -14,7 +14,7 @@ class LEACTRTest {
     @DisplayName("LEACTR-128 암복호화 테스트")
     void leactr128_test() throws Exception {
         String message = "The lazy dog jumps over the brown fox!";
-        LEACTR lea = new LEACTR128();
+        LEACTR lea = new LEACTR(128);
         Key key = lea.generateKey();
         IvParameterSpec iv = lea.generateSpec();
 
@@ -28,7 +28,7 @@ class LEACTRTest {
     @DisplayName("LEACTR-192 암복호화 테스트")
     void leactr192_test() throws Exception {
         String message = "The lazy dog jumps over the brown fox!";
-        LEACTR lea = new LEACTR192();
+        LEACTR lea = new LEACTR(192);
         Key key = lea.generateKey();
         IvParameterSpec iv = lea.generateSpec();
 
@@ -42,7 +42,7 @@ class LEACTRTest {
     @DisplayName("LEACTR-256 암복호화 테스트")
     void leactr256_test() throws Exception {
         String message = "The lazy dog jumps over the brown fox!";
-        LEACTR lea = new LEACTR256();
+        LEACTR lea = new LEACTR(256);
         Key key = lea.generateKey();
         IvParameterSpec iv = lea.generateSpec();
 

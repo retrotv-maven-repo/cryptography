@@ -14,7 +14,7 @@ class LEAGCMTest {
     @DisplayName("LEAGCM-128 암복호화 테스트")
     void leagcm128_test() throws Exception {
         String message = "The lazy dog jumps over the brown fox!";
-        LEAGCM lea = new LEAGCM128();
+        LEAGCM lea = new LEAGCM(128);
         Key key = lea.generateKey();
         GCMParameterSpec iv = lea.generateSpec();
 
@@ -28,7 +28,7 @@ class LEAGCMTest {
     @DisplayName("LEAGCM-192 암복호화 테스트")
     void leagcm192_test() throws Exception {
         String message = "The lazy dog jumps over the brown fox!";
-        LEAGCM lea = new LEAGCM192();
+        LEAGCM lea = new LEAGCM(192);
         Key key = lea.generateKey();
         GCMParameterSpec iv = lea.generateSpec();
 
@@ -42,7 +42,7 @@ class LEAGCMTest {
     @DisplayName("LEAGCM-256 암복호화 테스트")
     void leagcm256_test() throws Exception {
         String message = "The lazy dog jumps over the brown fox!";
-        LEAGCM lea = new LEAGCM256();
+        LEAGCM lea = new LEAGCM(256);
         Key key = lea.generateKey();
         GCMParameterSpec iv = lea.generateSpec();
 
