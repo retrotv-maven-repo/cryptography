@@ -31,16 +31,16 @@ JDK 1.8 이상
 - SHA-512/256
 
 ### AES 계열
-- AES-128 (ECB, CBC, GCM)
-- AES-192 (ECB, CBC, GCM)
-- AES-256 (ECB, CBC, GCM)
-#### (GCM 모드를 제외한 나머지는 PKCS#5 Padding을 기본으로 사용)
+- AES-128 (ECB, CBC, CFB, OFB, CRT, GCM)
+- AES-192 (ECB, CBC, CFB, OFB, CRT, GCM)
+- AES-256 (ECB, CBC, CFB, OFB, CRT, GCM)
+#### (ECB, CBC 모드는 PKCS#5 Padding을 기본으로 사용)
 
 ### LEA 계열
-- LEA-128 (ECB, CBC, GCM)
-- LEA-192 (ECB, CBC, GCM)
-- LEA-256 (ECB, CBC, GCM)
-#### (GCM 모드를 제외한 나머지는 PKCS#5 Padding을 기본으로 사용)
+- LEA-128 (ECB, CBC, OFB, CRT, GCM)
+- LEA-192 (ECB, CBC, OFB, CRT, GCM)
+- LEA-256 (ECB, CBC, OFB, CRT, GCM)
+#### #### (ECB, CBC 모드는 PKCS#5 Padding을 기본으로 사용)
 
 ### RSA 계열
 - RSA-1024 (OAEPWITHSHA-256ANDMGF1PADDING, SHA256withRSA)
