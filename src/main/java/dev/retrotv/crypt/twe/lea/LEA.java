@@ -32,29 +32,9 @@ public abstract class LEA implements TwoWayEncryption, KeyGenerator {
     @Override
     public byte[] encrypt(@NonNull byte[] data, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptFailException {
         log.debug("선택된 알고리즘: {}", algorithm.label() + "/" + padding.label());
-        BlockCipherMode cipher;
 
         try {
-            switch (algorithm) {
-                case LEACBC:
-                    cipher = new kr.re.nsr.crypto.symm.LEA.CBC();
-                    break;
-                case LEACFB:
-                    cipher = new kr.re.nsr.crypto.symm.LEA.CFB();
-                    break;
-                case LEACTR:
-                    cipher = new kr.re.nsr.crypto.symm.LEA.CTR();
-                    break;
-                case LEAECB:
-                    cipher = new kr.re.nsr.crypto.symm.LEA.ECB();
-                    break;
-                case LEAOFB:
-                    cipher = new kr.re.nsr.crypto.symm.LEA.OFB();
-                    break;
-                default:
-                    throw new NoSuchAlgorithmException("지원하지 않는 알고리즘 입니다.");
-            }
-
+            BlockCipherMode cipher = getCipherMode(algorithm);
             IvParameterSpec ivSpec = (IvParameterSpec) spec;
 
             if (algorithm == LEAECB) {
@@ -76,29 +56,9 @@ public abstract class LEA implements TwoWayEncryption, KeyGenerator {
     @Override
     public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptFailException {
         log.debug("선택된 알고리즘: {}", algorithm.label() + "/" + padding.label());
-        BlockCipherMode cipher;
 
         try {
-            switch (algorithm) {
-                case LEACBC:
-                    cipher = new kr.re.nsr.crypto.symm.LEA.CBC();
-                    break;
-                case LEACFB:
-                    cipher = new kr.re.nsr.crypto.symm.LEA.CFB();
-                    break;
-                case LEACTR:
-                    cipher = new kr.re.nsr.crypto.symm.LEA.CTR();
-                    break;
-                case LEAECB:
-                    cipher = new kr.re.nsr.crypto.symm.LEA.ECB();
-                    break;
-                case LEAOFB:
-                    cipher = new kr.re.nsr.crypto.symm.LEA.OFB();
-                    break;
-                default:
-                    throw new NoSuchAlgorithmException("지원하지 않는 알고리즘 입니다.");
-            }
-
+            BlockCipherMode cipher = getCipherMode(algorithm);
             IvParameterSpec ivSpec = (IvParameterSpec) spec;
 
             if (algorithm == LEAECB) {
@@ -124,5 +84,31 @@ public abstract class LEA implements TwoWayEncryption, KeyGenerator {
     @Override
     public Key generateKey() {
         return new SecretKeySpec(SecureRandomUtil.generate(keyLen / 8), "LEA");
+    }
+
+    private BlockCipherMode getCipherMode(Algorithm algorithm) throws NoSuchAlgorithmException {
+        BlockCipherMode cipher;
+
+        switch (algorithm) {
+            case LEACBC:
+                cipher = new kr.re.nsr.crypto.symm.LEA.CBC();
+                break;
+            case LEACFB:
+                cipher = new kr.re.nsr.crypto.symm.LEA.CFB();
+                break;
+            case LEACTR:
+                cipher = new kr.re.nsr.crypto.symm.LEA.CTR();
+                break;
+            case LEAECB:
+                cipher = new kr.re.nsr.crypto.symm.LEA.ECB();
+                break;
+            case LEAOFB:
+                cipher = new kr.re.nsr.crypto.symm.LEA.OFB();
+                break;
+            default:
+                throw new NoSuchAlgorithmException("지원하지 않는 알고리즘 입니다.");
+        }
+
+        return cipher;
     }
 }

@@ -62,7 +62,7 @@ PasswordWithSalt password = new SHA256();
 password.encode(myPassword, salt);
 
 // 양방향 암호화 (암/복호화)
-TwoWayEncryption twe = new AESCBC128();
+TwoWayEncryption twe = new AESCBC(128);
 byte[] encryptedData = twe.encrypt(data, key, iv);
 byte[] originalData = twe.decrypt(encryptedData, key, iv);
 
