@@ -77,6 +77,10 @@ public abstract class LEA implements TwoWayEncryption, KeyGenerator {
         }
     }
 
+    /**
+     * 데이터를 패딩하도록 설정합니다.
+     * 기본적으로 PKCS#5 Padding을 사용합니다.
+     */
     public void dataPadding() {
         padding = PADDING;
     }

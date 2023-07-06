@@ -55,20 +55,6 @@ public abstract class AES implements TwoWayEncryption, KeyGenerator {
             "NoSuchAlgorithmException: "
           + "\n지원하지 않는 암호화 알고리즘 입니다.";
 
-    /**
-     * 데이터를 암호화 하고, 암호화 된 데이터를 반환 합니다.
-     *
-     * @throws CryptFailException data 혹은 key, initialization vector가 null인 경우 발생
-     * @throws CryptFailException 복호화 시 사용한 키가, 암호화 할 때 사용한 키와 일치하지 않는 경우 발생
-     * @throws CryptFailException 암호화 되지 않은 데이터의 복호화를 시도중 이거나, 이미 다른 유형으로 인코딩 된 데이터의 암복호화를 시도할 경우 발생
-     * @throws CryptFailException %JAVA_HOME%\jre\lib\security\cacerts 파일이 존재하지 않거나 내부에 데이터가 존재하지 않는 경우 발생
-     * @throws CryptFailException 암호화 키 값이 각각 16/24/32 byte가 아니거나, 키 값이 16 byte를 초과하면서 무제한 강도 정책이 활성화 되지 않은 경우 발생
-     * @throws CryptFailException 지원되지 않거나, 부정확한 포맷으로 패딩된 데이터 암복호화를 시도하려고 할 때 발생
-     * @param data 암호화 할 데이터
-     * @param key 암호화 시, 사용할 키
-     * @param spec 초기화 벡터
-     * @return 암호화 된 데이터
-     */
     @Override
     public byte[] encrypt(@NonNull byte[] data, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptFailException {
         String algorithmName = algorithm.label() + "/" + padding.label();
@@ -99,20 +85,6 @@ public abstract class AES implements TwoWayEncryption, KeyGenerator {
         }
     }
 
-    /**
-     * 데이터를 암호화 하고, 암호화 된 데이터를 반환 합니다.
-     *
-     * @throws CryptFailException encryptedData 혹은 key, initialization vector가 null인 경우 발생
-     * @throws CryptFailException 복호화 시 사용한 키가, 암호화 할 때 사용한 키와 일치하지 않는 경우 발생
-     * @throws CryptFailException 암호화 되지 않은 데이터의 복호화를 시도중 이거나, 이미 다른 유형으로 인코딩 된 데이터의 암복호화를 시도할 경우 발생
-     * @throws CryptFailException %JAVA_HOME%\jre\lib\security\cacerts 파일이 존재하지 않거나 내부에 데이터가 존재하지 않는 경우 발생
-     * @throws CryptFailException 암호화 키 값이 각각 16/24/32 byte가 아니거나, 키 값이 16 byte를 초과하면서 무제한 강도 정책이 활성화 되지 않은 경우 발생
-     * @throws CryptFailException 지원되지 않거나, 부정확한 포맷으로 패딩된 데이터 암복호화를 시도하려고 할 때 발생
-     * @param encryptedData 암호화 된 데이터
-     * @param key 복호화 시, 사용할 키
-     * @param spec 초기화 벡터
-     * @return 복호화 된 데이터
-     */
     @Override
     public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptFailException {
         String algorithmName = algorithm.label() + "/" + padding.label();
@@ -148,6 +120,10 @@ public abstract class AES implements TwoWayEncryption, KeyGenerator {
         return new SecretKeySpec(SecureRandomUtil.generate(keyLen / 8), "AES");
     }
 
+    /**
+     * 데이터를 패딩하도록 설정합니다.
+     * 기본적으로 PKCS#5 Padding을 사용합니다.
+     */
     public void dataPadding() {
         padding = PADDING;
     }
