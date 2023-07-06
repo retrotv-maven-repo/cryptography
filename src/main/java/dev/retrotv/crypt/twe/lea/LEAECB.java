@@ -1,6 +1,7 @@
 package dev.retrotv.crypt.twe.lea;
 
 import dev.retrotv.crypt.exception.CryptFailException;
+import dev.retrotv.crypt.exception.WrongKeyLengthException;
 import kr.re.nsr.crypto.BlockCipher;
 import kr.re.nsr.crypto.BlockCipherMode;
 import kr.re.nsr.crypto.padding.PKCS5Padding;
@@ -8,17 +9,19 @@ import kr.re.nsr.crypto.symm.LEA.ECB;
 import lombok.NonNull;
 
 import java.security.Key;
-import java.security.spec.AlgorithmParameterSpec;
 
-public abstract class LEAECB extends LEA {
+import static dev.retrotv.enums.Algorithm.LEAECB;
 
-    @Override
-    public byte[] encrypt(@NonNull byte[] data, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptFailException {
-        try {
-            return encrypt(data, key);
-        } catch (Exception e) {
-            throw new CryptFailException(e.getMessage(), e);
+public class LEAECB extends LEA {
+
+    public LEAECB(int keyLen) {
+        if (keyLen != 128 && keyLen != 192 && keyLen != 256) {
+            log.debug("keyLen 값: {}", keyLen);
+            throw new WrongKeyLengthException();
         }
+
+        this.keyLen = keyLen;
+        this.algorithm = LEAECB;
     }
 
     public byte[] encrypt(@NonNull byte[] data, @NonNull Key key) throws CryptFailException {
@@ -28,15 +31,6 @@ public abstract class LEAECB extends LEA {
             cipher.setPadding(new PKCS5Padding(16));
 
             return cipher.doFinal(data);
-        } catch (Exception e) {
-            throw new CryptFailException(e.getMessage(), e);
-        }
-    }
-
-    @Override
-    public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptFailException {
-        try {
-            return decrypt(encryptedData, key);
         } catch (Exception e) {
             throw new CryptFailException(e.getMessage(), e);
         }

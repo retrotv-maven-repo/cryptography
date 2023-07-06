@@ -16,14 +16,18 @@ import org.apache.logging.log4j.Logger;
 import dev.retrotv.crypt.exception.CryptFailException;
 import dev.retrotv.crypt.twe.KeyGenerator;
 import dev.retrotv.crypt.twe.TwoWayEncryption;
-import dev.retrotv.enums.Algorithm;
+import dev.retrotv.enums.*;
 import lombok.NonNull;
+
+import static dev.retrotv.enums.Padding.*;
+import static dev.retrotv.enums.Algorithm.AESECB;
 
 public abstract class AES implements TwoWayEncryption, KeyGenerator {
     protected static final Logger log = LogManager.getLogger();
 
-    protected int keyLength;
+    protected int keyLen;
     protected Algorithm algorithm;
+    protected Padding padding = NO_PADDING;
 
     protected static final String BAD_PADDING_EXCEPTION_MESSAGE =
             "BadPaddingException: "
@@ -62,31 +66,21 @@ public abstract class AES implements TwoWayEncryption, KeyGenerator {
      * @throws CryptFailException 지원되지 않거나, 부정확한 포맷으로 패딩된 데이터 암복호화를 시도하려고 할 때 발생
      * @param data 암호화 할 데이터
      * @param key 암호화 시, 사용할 키
-     * @param iv 초기화 벡터
+     * @param spec 초기화 벡터
      * @return 암호화 된 데이터
      */
     @Override
     public byte[] encrypt(@NonNull byte[] data, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptFailException {
-        try {
-            Cipher cipher = Cipher.getInstance(algorithm.label());
-            log.debug("선택된 알고리즘: {}", algorithm.label());
+        String algorithmName = algorithm.label() + "/" + padding.label();
 
-            switch (algorithm) {
-                case AESECB128_PADDING:
-                case AESECB192_PADDING:
-                case AESECB256_PADDING:
-                    cipher.init(Cipher.ENCRYPT_MODE, key);
-                    break;
-                case AESCBC128_PADDING:
-                case AESCBC192_PADDING:
-                case AESCBC256_PADDING:
-                case AESGCM128_NO_PADDING:
-                case AESGCM192_NO_PADDING:
-                case AESGCM256_NO_PADDING:
-                    cipher.init(Cipher.ENCRYPT_MODE, key, spec);
-                    break;
-                default:
-                    throw new NoSuchAlgorithmException("사용되지 않는 암호화 알고리즘 입니다.");
+        try {
+            log.debug("선택된 알고리즘: {}", algorithmName);
+            Cipher cipher = Cipher.getInstance(algorithmName);
+
+            if (algorithm == AESECB) {
+                cipher.init(Cipher.ENCRYPT_MODE, key);
+            } else {
+                cipher.init(Cipher.ENCRYPT_MODE, key, spec);
             }
 
             return cipher.doFinal(data);
@@ -116,32 +110,21 @@ public abstract class AES implements TwoWayEncryption, KeyGenerator {
      * @throws CryptFailException 지원되지 않거나, 부정확한 포맷으로 패딩된 데이터 암복호화를 시도하려고 할 때 발생
      * @param encryptedData 암호화 된 데이터
      * @param key 복호화 시, 사용할 키
-     * @param iv 초기화 벡터
+     * @param spec 초기화 벡터
      * @return 복호화 된 데이터
      */
     @Override
     public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptFailException {
-        try {
-            Cipher cipher = Cipher.getInstance(algorithm.label());
+        String algorithmName = algorithm.label() + "/" + padding.label();
 
-            switch (algorithm) {
-                case AESECB128_PADDING:
-                case AESECB192_PADDING:
-                case AESECB256_PADDING:
-                    log.debug("선택된 알고리즘: {}", algorithm.label());
-                    cipher.init(Cipher.DECRYPT_MODE, key);
-                    break;
-                case AESCBC128_PADDING:
-                case AESCBC192_PADDING:
-                case AESCBC256_PADDING:
-                case AESGCM128_NO_PADDING:
-                case AESGCM192_NO_PADDING:
-                case AESGCM256_NO_PADDING:
-                    log.debug("선택된 알고리즘: {}", algorithm.label());
-                    cipher.init(Cipher.DECRYPT_MODE, key, spec);
-                    break;
-                default:
-                    throw new NoSuchAlgorithmException("사용되지 않는 암호화 알고리즘 입니다.");
+        try {
+            log.debug("선택된 알고리즘: {}", algorithmName);
+            Cipher cipher = Cipher.getInstance(algorithmName);
+
+            if (algorithm == AESECB) {
+                cipher.init(Cipher.DECRYPT_MODE, key);
+            } else {
+                cipher.init(Cipher.DECRYPT_MODE, key, spec);
             }
 
             return cipher.doFinal(encryptedData);
@@ -162,6 +145,10 @@ public abstract class AES implements TwoWayEncryption, KeyGenerator {
 
     @Override
     public Key generateKey() {
-        return new SecretKeySpec(SecureRandomUtil.generate(keyLength), "AES");
+        return new SecretKeySpec(SecureRandomUtil.generate(keyLen / 8), "AES");
+    }
+
+    public void dataPadding() {
+        padding = PADDING;
     }
 }

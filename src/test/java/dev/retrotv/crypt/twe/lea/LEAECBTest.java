@@ -7,14 +7,15 @@ import java.security.Key;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class LEAECBTest {
+class LEAECBTest {
 
     @Test
     @DisplayName("LEAECB-128 암복호화 테스트")
     void leaecb128_test() throws Exception {
         String message = "The lazy dog jumps over the brown fox!";
-        LEAECB lea = new LEAECB128();
+        LEAECB lea = new LEAECB(128);
         Key key = lea.generateKey();
+        lea.dataPadding();
 
         byte[] encryptedData = lea.encrypt(message.getBytes(), key);
         String originalMessage = new String(lea.decrypt(encryptedData, key));
@@ -26,8 +27,9 @@ public class LEAECBTest {
     @DisplayName("LEAECB-192 암복호화 테스트")
     void leaecb192_test() throws Exception {
         String message = "The lazy dog jumps over the brown fox!";
-        LEAECB lea = new LEAECB192();
+        LEAECB lea = new LEAECB(192);
         Key key = lea.generateKey();
+        lea.dataPadding();
 
         byte[] encryptedData = lea.encrypt(message.getBytes(), key);
         String originalMessage = new String(lea.decrypt(encryptedData, key));
@@ -39,8 +41,9 @@ public class LEAECBTest {
     @DisplayName("LEAECB-256 암복호화 테스트")
     void leaecb256_test() throws Exception {
         String message = "The lazy dog jumps over the brown fox!";
-        LEAECB lea = new LEAECB256();
+        LEAECB lea = new LEAECB(256);
         Key key = lea.generateKey();
+        lea.dataPadding();
 
         byte[] encryptedData = lea.encrypt(message.getBytes(), key);
         String originalMessage = new String(lea.decrypt(encryptedData, key));

@@ -30,17 +30,18 @@ JDK 1.8 이상
 - SHA-512/224
 - SHA-512/256
 
-### AES 계열
-- AES-128 (ECB, CBC, GCM)
-- AES-192 (ECB, CBC, GCM)
-- AES-256 (ECB, CBC, GCM)
-#### (GCM 모드를 제외한 나머지는 PKCS#5 Padding을 기본으로 사용)
+### AES 알고리즘
+- AES-128 (ECB, CBC, CFB, OFB, CRT, CTS, GCM)
+- AES-192 (ECB, CBC, CFB, OFB, CRT, CTS, GCM)
+- AES-256 (ECB, CBC, CFB, OFB, CRT, CTS, GCM)
+#### ECB, CBC 모드는 PKCS#5 Padding을 기본으로 사용
 
-### LEA 계열
-- LEA-128 (ECB, CBC, GCM)
-- LEA-192 (ECB, CBC, GCM)
-- LEA-256 (ECB, CBC, GCM)
-#### (GCM 모드를 제외한 나머지는 PKCS#5 Padding을 기본으로 사용)
+### LEA 알고리즘
+- LEA-128 (ECB, CBC, CCM, OFB, CRT, GCM)
+- LEA-192 (ECB, CBC, CCM, OFB, CRT, GCM)
+- LEA-256 (ECB, CBC, CCM, OFB, CRT, GCM)
+#### ECB, CBC 모드는 PKCS#5 Padding을 기본으로 사용
+#### CFB 모드는 현재 문제가 있으므로 사용하지 말 것
 
 ### RSA 계열
 - RSA-1024 (OAEPWITHSHA-256ANDMGF1PADDING, SHA256withRSA)
@@ -61,7 +62,7 @@ PasswordWithSalt password = new SHA256();
 password.encode(myPassword, salt);
 
 // 양방향 암호화 (암/복호화)
-TwoWayEncryption twe = new AESCBC128();
+TwoWayEncryption twe = new AESCBC(128);
 byte[] encryptedData = twe.encrypt(data, key, iv);
 byte[] originalData = twe.decrypt(encryptedData, key, iv);
 

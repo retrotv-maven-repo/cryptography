@@ -8,13 +8,13 @@ import java.security.Key;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class LEAGCMTest {
+class LEACCMTest {
 
     @Test
     @DisplayName("LEAGCM-128 암복호화 테스트")
     void leagcm128_test() throws Exception {
         String message = "The lazy dog jumps over the brown fox!";
-        LEAGCM lea = new LEAGCM(128);
+        LEACCM lea = new LEACCM(128);
         Key key = lea.generateKey();
         GCMParameterSpec iv = lea.generateSpec();
 
@@ -28,7 +28,7 @@ class LEAGCMTest {
     @DisplayName("LEAGCM-192 암복호화 테스트")
     void leagcm192_test() throws Exception {
         String message = "The lazy dog jumps over the brown fox!";
-        LEAGCM lea = new LEAGCM(192);
+        LEACCM lea = new LEACCM(192);
         Key key = lea.generateKey();
         GCMParameterSpec iv = lea.generateSpec();
 
@@ -42,7 +42,7 @@ class LEAGCMTest {
     @DisplayName("LEAGCM-256 암복호화 테스트")
     void leagcm256_test() throws Exception {
         String message = "The lazy dog jumps over the brown fox!";
-        LEAGCM lea = new LEAGCM(256);
+        LEACCM lea = new LEACCM(256);
         Key key = lea.generateKey();
         GCMParameterSpec iv = lea.generateSpec();
 

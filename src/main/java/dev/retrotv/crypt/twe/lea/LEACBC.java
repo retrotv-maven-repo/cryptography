@@ -1,48 +1,23 @@
 package dev.retrotv.crypt.twe.lea;
 
-import dev.retrotv.crypt.exception.CryptFailException;
+import dev.retrotv.crypt.exception.WrongKeyLengthException;
 import dev.retrotv.crypt.twe.ParameterSpecGenerator;
 import dev.retrotv.utils.SecureRandomUtil;
-import kr.re.nsr.crypto.BlockCipher;
-import kr.re.nsr.crypto.BlockCipherMode;
-import kr.re.nsr.crypto.padding.PKCS5Padding;
-import kr.re.nsr.crypto.symm.LEA.CBC;
-import lombok.NonNull;
 
 import javax.crypto.spec.IvParameterSpec;
-import java.security.Key;
-import java.security.spec.AlgorithmParameterSpec;
 
-public abstract class LEACBC extends LEA implements ParameterSpecGenerator<IvParameterSpec> {
+import static dev.retrotv.enums.Algorithm.LEACBC;
 
-    @Override
-    public byte[] encrypt(@NonNull byte[] data, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptFailException {
-        try {
-            BlockCipherMode cipher = new CBC();
-            IvParameterSpec ivSpec = (IvParameterSpec) spec;
+public class LEACBC extends LEA implements ParameterSpecGenerator<IvParameterSpec> {
 
-            cipher.init(BlockCipher.Mode.ENCRYPT, key.getEncoded(), ivSpec.getIV());
-            cipher.setPadding(new PKCS5Padding(16));
-
-            return cipher.doFinal(data);
-        } catch (Exception e) {
-            throw new CryptFailException(e.getMessage(), e);
+    public LEACBC(int keyLen) {
+        if (keyLen != 128 && keyLen != 192 && keyLen != 256) {
+            log.debug("keyLen 값: {}", keyLen);
+            throw new WrongKeyLengthException();
         }
-    }
 
-    @Override
-    public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptFailException {
-        try {
-            BlockCipherMode cipher = new CBC();
-            IvParameterSpec ivSpec = (IvParameterSpec) spec;
-
-            cipher.init(BlockCipher.Mode.DECRYPT, key.getEncoded(), ivSpec.getIV());
-            cipher.setPadding(new PKCS5Padding(16));
-
-            return cipher.doFinal(encryptedData);
-        } catch (Exception e) {
-            throw new CryptFailException(e.getMessage(), e);
-        }
+        this.keyLen = keyLen;
+        this.algorithm = LEACBC;
     }
 
     @Override

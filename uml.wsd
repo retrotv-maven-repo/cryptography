@@ -1,8 +1,8 @@
 @startuml 단방향암호화
 
 interface Checksum {
-    +encode(byte[] data): String
-    +encode(File file): String
+    +hash(byte[] data): String
+    +hash(File file): String
     +matches(byte[] data, String checksum): boolean
     +matches(File file, String checksum): boolean
     +matches(byte[] data1, byte[] data2): boolean
