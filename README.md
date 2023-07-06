@@ -30,16 +30,16 @@ JDK 1.8 이상
 - SHA-512/224
 - SHA-512/256
 
-### AES 계열
-- AES-128 (ECB, CBC, CFB, OFB, CRT, GCM)
-- AES-192 (ECB, CBC, CFB, OFB, CRT, GCM)
-- AES-256 (ECB, CBC, CFB, OFB, CRT, GCM)
+### AES 알고리즘
+- AES-128 (ECB, CBC, CFB, OFB, CRT, CTS, GCM)
+- AES-192 (ECB, CBC, CFB, OFB, CRT, CTS, GCM)
+- AES-256 (ECB, CBC, CFB, OFB, CRT, CTS, GCM)
 #### ECB, CBC 모드는 PKCS#5 Padding을 기본으로 사용
 
-### LEA 계열
-- LEA-128 (ECB, CBC, OFB, CRT, GCM)
-- LEA-192 (ECB, CBC, OFB, CRT, GCM)
-- LEA-256 (ECB, CBC, OFB, CRT, GCM)
+### LEA 알고리즘
+- LEA-128 (ECB, CBC, CCM, OFB, CRT, GCM)
+- LEA-192 (ECB, CBC, CCM, OFB, CRT, GCM)
+- LEA-256 (ECB, CBC, CCM, OFB, CRT, GCM)
 #### ECB, CBC 모드는 PKCS#5 Padding을 기본으로 사용
 #### CFB 모드는 현재 문제가 있으므로 사용하지 말 것
 
