@@ -1,6 +1,5 @@
 package dev.retrotv.crypt.owe;
 
-import dev.retrotv.utils.CommonMessageUtil;
 import dev.retrotv.utils.FileReadUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -45,12 +44,12 @@ public interface Checksum {
      */
     default boolean matches(byte[] data, String checksum) {
         if (data == null) {
-            log.warn(CommonMessageUtil.getMessage("warn.parameter.null", "data"));
+            log.warn("매개변수 data가 null 입니다.");
             return false;
         }
 
         if (checksum == null) {
-            log.warn(CommonMessageUtil.getMessage("warn.parameter.null", "checksum"));
+            log.warn("매개변수 checksum이 null 입니다.");
             return false;
         }
 
@@ -67,12 +66,12 @@ public interface Checksum {
      */
     default boolean matches(File file, String checksum) throws IOException {
         if (file == null) {
-            log.warn(CommonMessageUtil.getMessage("warn.parameter.null", "file"));
+            log.warn("매개변수 file이 null 입니다.");
             return false;
         }
 
         if (checksum == null) {
-            log.warn(CommonMessageUtil.getMessage("warn.parameter.null", "checksum"));
+            log.warn("매개변수 checksum이 null 입니다.");
             return false;
         }
 
@@ -88,12 +87,12 @@ public interface Checksum {
      */
     default boolean matches(byte[] data1, byte[] data2) {
         if (data1 == null) {
-            log.warn(CommonMessageUtil.getMessage("warn.parameter.null", "data1"));
+            log.warn("매개변수 data1이 null 입니다.");
             return false;
         }
 
         if (data2 == null) {
-            log.warn(CommonMessageUtil.getMessage("warn.parameter.null", "data2"));
+            log.warn("매개변수 data2가 null 입니다.");
             return false;
         }
 
@@ -110,12 +109,12 @@ public interface Checksum {
      */
     default boolean matches(File file1, File file2) throws IOException {
         if (file1 == null) {
-            log.warn(CommonMessageUtil.getMessage("warn.parameter.null", "file1"));
+            log.warn("매개변수 file1이 null 입니다.");
             return false;
         }
 
         if (file2 == null) {
-            log.warn(CommonMessageUtil.getMessage("warn.parameter.null", "file2"));
+            log.warn("매개변수 file2가 null 입니다.");
             return false;
         }
 

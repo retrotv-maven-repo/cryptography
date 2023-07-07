@@ -32,7 +32,7 @@ public interface PasswordWithSalt extends Password {
      */
     default String encode(@NonNull CharSequence rawPassword, CharSequence salt) {
         if (salt == null) {
-            log.warn(CommonMessageUtil.getMessage("warn.parameter.null", "salt"));
+            log.warn("매개변수 salt가 null 입니다.");
             log.warn("의도한 것이 아니라면 encode(CharSequence rawPassword) 메소드를 사용하십시오.");
         }
 
@@ -49,7 +49,7 @@ public interface PasswordWithSalt extends Password {
      */
     default String encode(@NonNull CharSequence rawPassword, CharSequence salt, Charset charset) {
         if (salt == null) {
-            log.warn(CommonMessageUtil.getMessage("warn.parameter.null", "salt"));
+            log.warn("매개변수 salt가 null 입니다.");
             log.warn("의도한 것이 아니라면 encode(CharSequence rawPassword) 메소드를 사용하십시오.");
         }
 
@@ -66,17 +66,17 @@ public interface PasswordWithSalt extends Password {
      */
     default boolean matches(CharSequence rawPassword, CharSequence salt, String encodedPassword) {
         if (rawPassword == null) {
-            log.warn(CommonMessageUtil.getMessage("warn.parameter.null", "rawPassword"));
+            log.warn("매개변수 rawPassword가 null 입니다.");
             return false;
         }
 
         if (encodedPassword == null) {
-            log.warn(CommonMessageUtil.getMessage("warn.parameter.null", "encodedPassword"));
+            log.warn("매개변수 encodedPassword가 null 입니다.");
             return false;
         }
 
         if (salt == null) {
-            log.warn(CommonMessageUtil.getMessage("warn.parameter.null", "salt"));
+            log.warn("매개변수 salt가 null 입니다.");
             log.warn("의도한 것이 아니라면 matches(CharSequence rawPassword, String encodedPassword) 메소드를 사용하십시오.");
         }
 

@@ -18,12 +18,12 @@ public interface Password extends PasswordEncoder {
     @Override
     default boolean matches(CharSequence rawPassword, String encodedPassword) {
         if (rawPassword == null) {
-            log.warn(CommonMessageUtil.getMessage("warn.parameter.null", "rawPassword"));
+            log.warn("매개변수 rawPassword가 null 입니다.");
             return false;
         }
 
         if (encodedPassword == null) {
-            log.warn(CommonMessageUtil.getMessage("warn.parameter.null", "encodedPassword"));
+            log.warn("매개변수 encodedPassword가 null 입니다.");
             return false;
         }
 
