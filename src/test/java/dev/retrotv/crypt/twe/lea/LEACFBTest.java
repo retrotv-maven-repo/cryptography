@@ -10,45 +10,45 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LEACFBTest {
 
-//    @Test
-//    @DisplayName("LEACFB-128 암복호화 테스트")
-//    void leacfb128_test() throws Exception {
-//        String message = "aaaaaaaaaaaaaaaa";
-//        LEACFB lea = new LEACFB(128);
-//        Key key = lea.generateKey();
-//        IvParameterSpec iv = lea.generateSpec();
-//
-//        byte[] encryptedData = lea.encrypt(message.getBytes(), key, iv);
-//        String originalMessage = new String(lea.decrypt(encryptedData, key, iv));
-//
-//        assertEquals(message, originalMessage);
-//    }
+    @Test
+    @DisplayName("LEACFB-128 암복호화 테스트")
+    void leacfb128_test() throws Exception {
+        String message = "The lazy dog jumps over the brown fox!";
+        LEACFB lea = new LEACFB(128);
+        Key key = lea.generateKey();
+        IvParameterSpec iv = lea.generateSpec();
 
-//    @Test
-//    @DisplayName("LEACFB-192 암복호화 테스트")
-//    void leacfb192_test() throws Exception {
-//        String message = "The lazy dog jumps over the brown fox!";
-//        LEACFB lea = new LEACFB192();
-//        Key key = lea.generateKey();
-//        IvParameterSpec iv = lea.generateSpec();
-//
-//        byte[] encryptedData = lea.encrypt(message.getBytes(), key, iv);
-//        String originalMessage = new String(lea.decrypt(encryptedData, key, iv));
-//
-//        assertEquals(message, originalMessage);
-//    }
-//
-//    @Test
-//    @DisplayName("LEACFB-256 암복호화 테스트")
-//    void leacfb256_test() throws Exception {
-//        String message = "The lazy dog jumps over the brown fox!";
-//        LEACFB lea = new LEACFB256();
-//        Key key = lea.generateKey();
-//        IvParameterSpec iv = lea.generateSpec();
-//
-//        byte[] encryptedData = lea.encrypt(message.getBytes(), key, iv);
-//        String originalMessage = new String(lea.decrypt(encryptedData, key, iv));
-//
-//        assertEquals(message, originalMessage);
-//    }
+        byte[] encryptedData = lea.encrypt(message.getBytes(), key, iv);
+        String originalMessage = new String(lea.decrypt(encryptedData, key, iv));
+
+        assertEquals(message, originalMessage);
+    }
+
+    @Test
+    @DisplayName("LEACFB-192 암복호화 테스트")
+    void leacfb192_test() throws Exception {
+        String message = "The lazy dog jumps over the brown fox!";
+        LEACFB lea = new LEACFB(192);
+        Key key = lea.generateKey();
+        IvParameterSpec iv = lea.generateSpec();
+
+        byte[] encryptedData = lea.encrypt(message.getBytes(), key, iv);
+        String originalMessage = new String(lea.decrypt(encryptedData, key, iv));
+
+        assertEquals(message, originalMessage);
+    }
+
+    @Test
+    @DisplayName("LEACFB-256 암복호화 테스트")
+    void leacfb256_test() throws Exception {
+        String message = "The lazy dog jumps over the brown fox!";
+        LEACFB lea = new LEACFB(256);
+        Key key = lea.generateKey();
+        IvParameterSpec iv = lea.generateSpec();
+
+        byte[] encryptedData = lea.encrypt(message.getBytes(), key, iv);
+        String originalMessage = new String(lea.decrypt(encryptedData, key, iv));
+
+        assertEquals(message, originalMessage);
+    }
 }

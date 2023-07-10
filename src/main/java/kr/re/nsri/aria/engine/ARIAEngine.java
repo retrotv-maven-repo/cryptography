@@ -10,7 +10,10 @@
 //
 // CHECKSTYLE:OFF
 
-package kr.re.nsri.aria;
+package kr.re.nsri.aria.engine;
+
+import kr.re.nsri.aria.AnsiX923Padding;
+import kr.re.nsri.aria.CryptoPadding;
 
 import java.io.PrintStream;
 import java.security.InvalidKeyException;
