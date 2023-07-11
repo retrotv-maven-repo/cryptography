@@ -1,6 +1,6 @@
 package dev.retrotv.crypt.owe;
 
-import dev.retrotv.enums.Algorithm;
+import dev.retrotv.enums.HashAlgorithm;
 import lombok.NonNull;
 
 import org.apache.logging.log4j.LogManager;
@@ -20,13 +20,13 @@ public abstract class MessageDigestEncode implements Checksum, PasswordWithSalt 
     protected static final Logger log = LogManager.getLogger();
 
     /**
-     * 지정된 {@link Algorithm} 유형으로 데이터를 암호화 하고, 암호화 된 데이터를 반환 합니다.
+     * 지정된 {@link HashAlgorithm} 유형으로 데이터를 암호화 하고, 암호화 된 데이터를 반환 합니다.
      *
      * @param algorithm 암호화 시, 사용할 알고리즘
      * @param data 암호화 할 데이터
      * @return 암호화 된 데이터
      */
-    protected byte[] encode(@NonNull Algorithm algorithm, @NonNull byte[] data) {
+    protected byte[] encode(@NonNull HashAlgorithm algorithm, @NonNull byte[] data) {
         try {
             String algorithmName = algorithm.label();
             log.debug("알고리즘: {}", algorithmName);

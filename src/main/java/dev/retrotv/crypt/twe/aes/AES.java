@@ -20,13 +20,13 @@ import dev.retrotv.enums.*;
 import lombok.NonNull;
 
 import static dev.retrotv.enums.Padding.*;
-import static dev.retrotv.enums.Algorithm.AESECB;
+import static dev.retrotv.enums.CipherAlgorithm.AESECB;
 
 public abstract class AES implements TwoWayEncryption, KeyGenerator {
     protected static final Logger log = LogManager.getLogger();
 
     protected int keyLen;
-    protected Algorithm algorithm;
+    protected CipherAlgorithm algorithm;
     protected Padding padding = NO_PADDING;
 
     protected static final String BAD_PADDING_EXCEPTION_MESSAGE =
@@ -64,7 +64,8 @@ public abstract class AES implements TwoWayEncryption, KeyGenerator {
         }
 
         if (padding == PKCS5_PADDING) {
-            log.info("PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.\n호환성이 목적이 아니라면 보안을 위해, 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.");
+            log.info("PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.");
+            log.info("호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.");
         }
 
         try {

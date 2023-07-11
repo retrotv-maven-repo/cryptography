@@ -6,11 +6,12 @@ import java.security.NoSuchAlgorithmException;
 import javax.crypto.KeyGenerator;
 
 import dev.retrotv.crypt.exception.KeyGenerateException;
-import dev.retrotv.enums.Algorithm;
+
+import static dev.retrotv.enums.CipherAlgorithm.TRIPLE_DESCBC_PADDING;
 
 public class TripleDESECB extends DES {
     public TripleDESECB() {
-        this.algorithm = Algorithm.TRIPLE_DESECB_PADDING;
+        this.algorithm = TRIPLE_DESCBC_PADDING;
     }
 
     @Override

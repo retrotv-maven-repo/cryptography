@@ -1,19 +1,29 @@
 package dev.retrotv.crypt.twe.rsa;
 
 import dev.retrotv.crypt.exception.CryptFailException;
-import dev.retrotv.crypt.exception.KeyGenerateException;
 import dev.retrotv.crypt.twe.DigitalSignature;
-import dev.retrotv.crypt.twe.KeyPairGenerator;
-import dev.retrotv.enums.Algorithm;
+import dev.retrotv.enums.HashAlgorithm;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.security.*;
 
-public abstract class RSASignature implements DigitalSignature, KeyPairGenerator {
-    protected int keyLen;
-    protected Algorithm algorithm;
+import static dev.retrotv.enums.HashAlgorithm.SHA1;
 
-    private
-    static final String NO_SUCH_ALGORITHM_EXCEPTION_MESSAGE =
+public class RSASignature implements DigitalSignature {
+    private static final Logger log = LogManager.getLogger();
+
+    private final HashAlgorithm algorithm;
+
+    public RSASignature() {
+        this.algorithm = SHA1;
+    }
+
+    public RSASignature(HashAlgorithm algorithm) {
+        this.algorithm = algorithm;
+    }
+
+    private static final String NO_SUCH_ALGORITHM_EXCEPTION_MESSAGE =
             "NoSuchAlgorithmException: "
           + "\n지원하지 않는 암호화 알고리즘 입니다.";
 
@@ -31,6 +41,7 @@ public abstract class RSASignature implements DigitalSignature, KeyPairGenerator
             Signature signature = Signature.getInstance("SHA256withRSA");
             signature.initSign(privateKey);
             signature.update(data);
+
             return signature.sign();
         } catch (NoSuchAlgorithmException e) {
             throw new CryptFailException(NO_SUCH_ALGORITHM_EXCEPTION_MESSAGE, e);
@@ -55,18 +66,6 @@ public abstract class RSASignature implements DigitalSignature, KeyPairGenerator
             throw new CryptFailException(INVALID_KEY_EXCEPTION_MESSAGE, e);
         } catch (SignatureException e) {
             throw new CryptFailException(SIGNATURE_EXCEPTION_MESSAGE, e);
-        }
-    }
-
-    @Override
-    public KeyPair generateKeyPair() throws KeyGenerateException {
-        try {
-            java.security.KeyPairGenerator keyPairGenerator = java.security.KeyPairGenerator.getInstance("RSA");
-            keyPairGenerator.initialize(keyLen, new SecureRandom());
-
-            return keyPairGenerator.generateKeyPair();
-        } catch (NoSuchAlgorithmException e) {
-            throw new KeyGenerateException(NO_SUCH_ALGORITHM_EXCEPTION_MESSAGE, e);
         }
     }
 }

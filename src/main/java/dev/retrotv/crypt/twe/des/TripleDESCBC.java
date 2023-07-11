@@ -8,12 +8,13 @@ import javax.crypto.spec.IvParameterSpec;
 
 import dev.retrotv.crypt.exception.KeyGenerateException;
 import dev.retrotv.crypt.twe.ParameterSpecGenerator;
-import dev.retrotv.enums.Algorithm;
 import dev.retrotv.utils.SecureRandomUtil;
+
+import static dev.retrotv.enums.CipherAlgorithm.TRIPLE_DESCBC_PADDING;
 
 public class TripleDESCBC extends DES implements ParameterSpecGenerator<IvParameterSpec> {
     public TripleDESCBC() {
-        this.algorithm = Algorithm.TRIPLE_DESCBC_PADDING;
+        this.algorithm = TRIPLE_DESCBC_PADDING;
     }
 
     @Override

@@ -1,11 +1,12 @@
 package dev.retrotv.crypt.owe.md;
 
 import dev.retrotv.crypt.owe.MessageDigestEncode;
-import dev.retrotv.enums.Algorithm;
 import dev.retrotv.utils.EncodeUtil;
 import lombok.NonNull;
 
 import java.nio.charset.Charset;
+
+import static dev.retrotv.enums.HashAlgorithm.MD2;
 
 /**
  * MD2 알고리즘으로 암호화 하기 위한 {@link MessageDigestEncode} 추상 클래스의 구현체 입니다.
@@ -17,7 +18,7 @@ public class MD2 extends MessageDigestEncode {
 
     @Override
     public String hash(@NonNull byte[] data) {
-        return EncodeUtil.binaryToHex(encode(Algorithm.MD2, data));
+        return EncodeUtil.binaryToHex(encode(MD2, data));
     }
 
     @Override

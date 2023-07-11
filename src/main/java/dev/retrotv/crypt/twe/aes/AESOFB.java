@@ -6,7 +6,7 @@ import dev.retrotv.utils.SecureRandomUtil;
 
 import javax.crypto.spec.IvParameterSpec;
 
-import static dev.retrotv.enums.Algorithm.AESOFB;
+import static dev.retrotv.enums.CipherAlgorithm.AESOFB;
 
 public class AESOFB extends AES implements ParameterSpecGenerator<IvParameterSpec> {
 

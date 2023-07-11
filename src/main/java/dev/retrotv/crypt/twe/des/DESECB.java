@@ -6,11 +6,12 @@ import java.security.NoSuchAlgorithmException;
 import javax.crypto.KeyGenerator;
 
 import dev.retrotv.crypt.exception.KeyGenerateException;
-import dev.retrotv.enums.Algorithm;
+
+import static dev.retrotv.enums.CipherAlgorithm.DESECB_PADDING;
 
 public class DESECB extends DES {
     public DESECB() {
-        this.algorithm = Algorithm.DESECB_PADDING;
+        this.algorithm = DESECB_PADDING;
     }
 
     @Override

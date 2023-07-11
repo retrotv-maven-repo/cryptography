@@ -3,7 +3,7 @@ package dev.retrotv.crypt.twe.lea;
 import dev.retrotv.crypt.exception.CryptFailException;
 import dev.retrotv.crypt.twe.KeyGenerator;
 import dev.retrotv.crypt.twe.TwoWayEncryption;
-import dev.retrotv.enums.Algorithm;
+import dev.retrotv.enums.CipherAlgorithm;
 import dev.retrotv.enums.Padding;
 import dev.retrotv.utils.SecureRandomUtil;
 import kr.re.nsr.crypto.BlockCipher;
@@ -20,13 +20,13 @@ import java.security.NoSuchAlgorithmException;
 import java.security.spec.AlgorithmParameterSpec;
 
 import static dev.retrotv.enums.Padding.*;
-import static dev.retrotv.enums.Algorithm.LEAECB;
+import static dev.retrotv.enums.CipherAlgorithm.LEAECB;
 
 public abstract class LEA implements TwoWayEncryption, KeyGenerator {
     protected static final Logger log = LogManager.getLogger();
 
     protected int keyLen;
-    protected Algorithm algorithm;
+    protected CipherAlgorithm algorithm;
     protected Padding padding = NO_PADDING;
 
     @Override
@@ -38,7 +38,8 @@ public abstract class LEA implements TwoWayEncryption, KeyGenerator {
         }
 
         if (padding == PKCS5_PADDING) {
-            log.info("PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.\n호환성이 목적이 아니라면 보안을 위해, 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.");
+            log.info("PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.");
+            log.info("호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.");
         }
 
         try {
@@ -98,7 +99,7 @@ public abstract class LEA implements TwoWayEncryption, KeyGenerator {
         return new SecretKeySpec(SecureRandomUtil.generate(keyLen / 8), "LEA");
     }
 
-    private BlockCipherMode getCipherMode(Algorithm algorithm) throws NoSuchAlgorithmException {
+    private BlockCipherMode getCipherMode(CipherAlgorithm algorithm) throws NoSuchAlgorithmException {
         BlockCipherMode cipher;
 
         switch (algorithm) {

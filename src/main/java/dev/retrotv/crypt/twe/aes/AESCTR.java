@@ -6,7 +6,7 @@ import dev.retrotv.utils.SecureRandomUtil;
 
 import javax.crypto.spec.IvParameterSpec;
 
-import static dev.retrotv.enums.Algorithm.AESCTR;
+import static dev.retrotv.enums.CipherAlgorithm.AESCTR;
 
 public class AESCTR extends AES implements ParameterSpecGenerator<IvParameterSpec> {
 

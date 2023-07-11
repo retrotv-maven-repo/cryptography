@@ -14,7 +14,7 @@ import javax.crypto.spec.GCMParameterSpec;
 import java.security.Key;
 import java.security.spec.AlgorithmParameterSpec;
 
-import static dev.retrotv.enums.Algorithm.LEAGCM;
+import static dev.retrotv.enums.CipherAlgorithm.LEAGCM;
 
 public class LEAGCM extends LEA implements ParameterSpecGenerator<GCMParameterSpec> {
     protected static final int GCM_IV_LENGTH = 12;

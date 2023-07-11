@@ -1,7 +1,7 @@
 package dev.retrotv.crypt.owe.crc;
 
-import dev.retrotv.enums.Algorithm;
 import dev.retrotv.crypt.owe.OWETest;
+import dev.retrotv.enums.HashAlgorithm;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,13 +10,13 @@ public class CRC32Test extends OWETest {
     @Test
     @DisplayName("CRC32 File hash 테스트")
     void fileHashTest() throws Exception {
-        fileHashTest(Algorithm.CRC32);
+        fileHashTest(HashAlgorithm.CRC32);
     }
 
     @Test
     @DisplayName("CRC32 File hash matches 테스트")
     void fileHashMatchesTest() throws Exception {
-        fileHashMatchesTest(new CRC32(), Algorithm.CRC32);
+        fileHashMatchesTest(new CRC32(), HashAlgorithm.CRC32);
     }
 
     @Test

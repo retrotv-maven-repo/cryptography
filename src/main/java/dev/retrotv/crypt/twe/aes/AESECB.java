@@ -2,7 +2,7 @@ package dev.retrotv.crypt.twe.aes;
 
 import dev.retrotv.crypt.exception.WrongKeyLengthException;
 
-import static dev.retrotv.enums.Algorithm.AESECB;
+import static dev.retrotv.enums.CipherAlgorithm.AESECB;
 
 /**
  * AES/ECB 계열의 양방향 암호화 구현을 위한 상속용 클래스 입니다.

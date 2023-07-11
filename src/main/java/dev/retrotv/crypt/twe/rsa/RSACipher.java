@@ -1,11 +1,9 @@
 package dev.retrotv.crypt.twe.rsa;
 
 import dev.retrotv.crypt.exception.CryptFailException;
-import dev.retrotv.crypt.exception.KeyGenerateException;
 import dev.retrotv.crypt.exception.WrongPaddingException;
-import dev.retrotv.crypt.twe.KeyPairGenerator;
 import dev.retrotv.crypt.twe.TwoWayEncryption;
-import dev.retrotv.enums.Algorithm;
+import dev.retrotv.enums.CipherAlgorithm;
 import dev.retrotv.enums.Padding;
 import lombok.NonNull;
 
@@ -20,6 +18,7 @@ import org.apache.logging.log4j.Logger;
 import java.security.*;
 import java.security.spec.AlgorithmParameterSpec;
 
+import static dev.retrotv.enums.CipherAlgorithm.RSA;
 import static dev.retrotv.enums.Padding.*;
 
 /**
@@ -28,16 +27,19 @@ import static dev.retrotv.enums.Padding.*;
  * @author  yjj8353
  * @since   1.8
  */
-public abstract class RSACipher implements TwoWayEncryption, KeyPairGenerator {
-    protected static final Logger log = LogManager.getLogger();
+public class RSACipher implements TwoWayEncryption {
+    private static final Logger log = LogManager.getLogger();
 
     private static final String NO_SUCH_ALGORITHM_EXCEPTION_MESSAGE =
             "NoSuchAlgorithmException: "
           + "\n지원하지 않는 암호화 알고리즘 입니다.";
 
-    protected int keyLen;
-    protected Algorithm algorithm;
-    protected Padding padding = OAEP_WITH_SHA1_MGF1_PADDING;
+    private final CipherAlgorithm algorithm;
+    private Padding padding = OAEP_WITH_SHA1_MGF1_PADDING;
+
+    public RSACipher() {
+        this.algorithm = RSA;
+    }
 
     @Override
     public byte[] encrypt(@NonNull byte[] data, @NonNull Key publicKey, AlgorithmParameterSpec spec) throws CryptFailException {
@@ -46,11 +48,6 @@ public abstract class RSACipher implements TwoWayEncryption, KeyPairGenerator {
 
     public byte[] encrypt(@NonNull byte[] data, @NonNull Key publicKey) throws CryptFailException {
         String algorithmName = algorithm.label() + "/" + padding.label();
-        log.debug("선택된 알고리즘: {}", algorithmName);
-
-        if ((publicKey.getEncoded().length * 8) == 1024) {
-            log.info("key 길이는 2048bit 이상을 권장합니다.");
-        }
 
         if (padding == PKCS1_PADDING) {
             log.info("PKCS#1 Padding 기법은 오라클 패딩 공격에 취약합니다.\n호환성이 목적이 아니라면 보안을 위해, 패딩 방식 변경을 고려하십시오.");
@@ -98,18 +95,6 @@ public abstract class RSACipher implements TwoWayEncryption, KeyPairGenerator {
             throw new CryptFailException("NoSuchPaddingException: \n지원되지 않거나, 부정확한 포맷으로 패딩된 데이터를 암복호화 시도하고 있습니다.");
         } catch (NoSuchAlgorithmException e) {
             throw new CryptFailException(NO_SUCH_ALGORITHM_EXCEPTION_MESSAGE, e);
-        }
-    }
-
-    @Override
-    public KeyPair generateKeyPair() throws KeyGenerateException {
-        try {
-            java.security.KeyPairGenerator keyPairGenerator = java.security.KeyPairGenerator.getInstance("RSA");
-            keyPairGenerator.initialize(keyLen, new SecureRandom());
-
-            return keyPairGenerator.generateKeyPair();
-        } catch (NoSuchAlgorithmException e) {
-            throw new KeyGenerateException(NO_SUCH_ALGORITHM_EXCEPTION_MESSAGE, e);
         }
     }
 

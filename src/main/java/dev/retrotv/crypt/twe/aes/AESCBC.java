@@ -6,7 +6,7 @@ import dev.retrotv.utils.SecureRandomUtil;
 
 import javax.crypto.spec.IvParameterSpec;
 
-import static dev.retrotv.enums.Algorithm.AESCBC;
+import static dev.retrotv.enums.CipherAlgorithm.AESCBC;
 
 /**
  * AES/CBC 계열의 양방향 암호화 구현을 위한 상속용 클래스 입니다.
