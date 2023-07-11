@@ -2,24 +2,24 @@ package dev.retrotv.crypt.twe.rsa;
 
 import dev.retrotv.crypt.exception.CryptFailException;
 import dev.retrotv.crypt.twe.DigitalSignature;
-import dev.retrotv.enums.HashAlgorithm;
+import dev.retrotv.enums.SignatureAlgorithm;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.security.*;
 
-import static dev.retrotv.enums.HashAlgorithm.SHA1;
+import static dev.retrotv.enums.SignatureAlgorithm.SHA1;
 
 public class RSASignature implements DigitalSignature {
     private static final Logger log = LogManager.getLogger();
 
-    private final HashAlgorithm algorithm;
+    private final SignatureAlgorithm algorithm;
 
     public RSASignature() {
         this.algorithm = SHA1;
     }
 
-    public RSASignature(HashAlgorithm algorithm) {
+    public RSASignature(SignatureAlgorithm algorithm) {
         this.algorithm = algorithm;
     }
 
@@ -38,7 +38,7 @@ public class RSASignature implements DigitalSignature {
     @Override
     public byte[] sign(byte[] data, PrivateKey privateKey) throws CryptFailException {
         try {
-            Signature signature = Signature.getInstance("SHA256withRSA");
+            Signature signature = Signature.getInstance(algorithm.label());
             signature.initSign(privateKey);
             signature.update(data);
 
@@ -55,7 +55,7 @@ public class RSASignature implements DigitalSignature {
     @Override
     public boolean verify(byte[] originalData, byte[] encryptedData, PublicKey publicKey) throws CryptFailException {
         try {
-            Signature signature = Signature.getInstance("SHA256withRSA");
+            Signature signature = Signature.getInstance(algorithm.label());
             signature.initVerify(publicKey);
             signature.update(originalData);
 
