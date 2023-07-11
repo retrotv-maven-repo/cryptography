@@ -43,9 +43,12 @@ public enum Algorithm {
     , TRIPLE_DESCBC_NO_PADDING("DESede/CBC/NoPadding")
     , TRIPLE_DESECB_PADDING("DESede/ECB/PKCS5Padding")
     , TRIPLE_DESCBC_PADDING("DESede/CBC/PKCS5Padding")
-    , RSAECB_PKCS1_PADDING("RSA/ECB/PKCS1Padding")
-    , RSAECB_OAEP_WITH_SHA1_MGF1_PADDING("RSA/ECB/OAEPWithSHA-1AndMGF1Padding")
-    , RSAECB_OAEP_WITH_SHA256_MGF1_PADDING("RSA/ECB/OAEPWithSHA-256AndMGF1Padding")
+
+    // Java는 스펙상 RSA 알고리즘의 None과 ECB의 구별이 없음
+    , RSA("RSA/None")
+    , RSAECB("RSA/ECB")
+    , SHA1_WITH_RSA("SHA1WithRSA")
+    , SHA256_WITH_RSA("SHA256withRSA")
     ;
 
     private final String label;

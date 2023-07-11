@@ -59,6 +59,14 @@ public abstract class AES implements TwoWayEncryption, KeyGenerator {
     public byte[] encrypt(@NonNull byte[] data, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptFailException {
         String algorithmName = algorithm.label() + "/" + padding.label();
 
+        if (algorithm == AESECB && data.length > keyLen) {
+            log.info("ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.");
+        }
+
+        if (padding == PKCS5_PADDING) {
+            log.info("PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.\n호환성이 목적이 아니라면 보안을 위해, 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.");
+        }
+
         try {
             log.debug("선택된 알고리즘: {}", algorithmName);
             Cipher cipher = Cipher.getInstance(algorithmName);
@@ -125,6 +133,6 @@ public abstract class AES implements TwoWayEncryption, KeyGenerator {
      * 기본적으로 PKCS#5 Padding을 사용합니다.
      */
     public void dataPadding() {
-        padding = PADDING;
+        padding = PKCS5_PADDING;
     }
 }
