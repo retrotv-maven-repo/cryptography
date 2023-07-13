@@ -1,4 +1,4 @@
-package dev.retrotv.crypt.owe.crc;
+package dev.retrotv.crypt.owe.hash.crc;
 
 import dev.retrotv.utils.EncodeUtil;
 import dev.retrotv.crypt.owe.Checksum;
@@ -27,17 +27,5 @@ public class CRC32 implements Checksum, PasswordWithSalt {
         // 앞에 0이 패딩되는 부분을 무시하고 뒤의 8자리만 잘라낸다
         return EncodeUtil.binaryToHex(buffer.array()).substring(8);
 
-    }
-
-    @Override
-    public String encode(@NonNull CharSequence rawPassword) {
-        String password = String.valueOf(rawPassword);
-        return hash(password.getBytes());
-    }
-
-    @Override
-    public String encode(@NonNull CharSequence rawPassword, @NonNull Charset charset) {
-        String password = String.valueOf(rawPassword);
-        return hash(password.getBytes(charset));
     }
 }

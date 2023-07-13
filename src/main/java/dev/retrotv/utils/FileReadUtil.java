@@ -7,7 +7,7 @@ import java.nio.file.Files;
 
 public class FileReadUtil {
 
-    FileReadUtil() {
+    private FileReadUtil() {
         throw new IllegalStateException("유틸리티 클래스 입니다.");
     }
 

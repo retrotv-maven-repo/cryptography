@@ -17,10 +17,18 @@ import java.nio.charset.Charset;
  * @author  yjj8353
  * @since   1.8
  */
-public interface PasswordWithSalt extends Password {
+public interface PasswordWithSalt extends Checksum, Password {
     Logger log = LogManager.getLogger();
 
-    String encode(CharSequence rawPassword, Charset charset);
+    default String encode(@NonNull CharSequence rawPassword) {
+        String password = String.valueOf(rawPassword);
+        return hash(password.getBytes());
+    }
+
+    default String encode(@NonNull CharSequence rawPassword, @NonNull Charset charset) {
+        String password = String.valueOf(rawPassword);
+        return hash(password.getBytes(charset));
+    }
 
     /**
      * 패스워드에 소금을 치고 암호화 한 뒤, 암호화 된 패스워드 문자열을 반환합니다.

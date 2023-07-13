@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 public class CommonMessageUtil {
     private static final ResourceBundle resourceBundle = ResourceBundle.getBundle("message");
 
-    CommonMessageUtil() {
+    private CommonMessageUtil() {
         throw new IllegalStateException("유틸리티 클래스 입니다.");
     }
 

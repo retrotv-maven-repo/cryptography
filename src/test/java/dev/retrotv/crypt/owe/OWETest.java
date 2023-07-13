@@ -1,9 +1,10 @@
 package dev.retrotv.crypt.owe;
 
 import dev.retrotv.common.Log;
-import dev.retrotv.crypt.owe.crc.CRC32;
-import dev.retrotv.crypt.owe.md.*;
-import dev.retrotv.crypt.owe.sha.*;
+import dev.retrotv.crypt.owe.hash.crc.CRC32;
+import dev.retrotv.crypt.owe.hash.md.MD2;
+import dev.retrotv.crypt.owe.hash.md.MD5;
+import dev.retrotv.crypt.owe.hash.sha.*;
 import dev.retrotv.enums.HashAlgorithm;
 import org.json.JSONObject;
 

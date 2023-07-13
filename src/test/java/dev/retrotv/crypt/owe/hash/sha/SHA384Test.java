@@ -1,6 +1,7 @@
-package dev.retrotv.crypt.owe.sha;
+package dev.retrotv.crypt.owe.hash.sha;
 
 import dev.retrotv.crypt.owe.OWETest;
+import dev.retrotv.crypt.owe.hash.sha.SHA384;
 import dev.retrotv.enums.HashAlgorithm;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

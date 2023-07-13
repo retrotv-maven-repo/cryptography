@@ -8,7 +8,7 @@ import java.security.SecureRandom;
 public class SecureRandomUtil {
     private static final Logger log = LogManager.getLogger();
 
-    SecureRandomUtil() {
+    private SecureRandomUtil() {
         throw new IllegalStateException("유틸리티 클래스 입니다.");
     }
 
