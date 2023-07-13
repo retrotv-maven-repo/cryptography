@@ -1,6 +1,6 @@
 package dev.retrotv.crypt.owe.kdf.argon2;
 
-import dev.retrotv.crypt.owe.Password;
+import dev.retrotv.crypt.owe.kdf.KDF;
 import lombok.NonNull;
 
 import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
@@ -11,7 +11,7 @@ import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
  * @author  yjj8353
  * @since   1.8
  */
-public class Argon2 implements Password {
+public class Argon2 extends KDF {
     private final Argon2PasswordEncoder argon2PasswordEncoder;
 
     /**

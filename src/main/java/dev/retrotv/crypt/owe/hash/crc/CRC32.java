@@ -1,12 +1,12 @@
 package dev.retrotv.crypt.owe.hash.crc;
 
+import dev.retrotv.crypt.owe.hash.Hash;
 import dev.retrotv.utils.EncodeUtil;
-import dev.retrotv.crypt.owe.Checksum;
-import dev.retrotv.crypt.owe.PasswordWithSalt;
+import dev.retrotv.crypt.owe.hash.Checksum;
+import dev.retrotv.crypt.owe.hash.PasswordWithSalt;
 import lombok.NonNull;
 
 import java.nio.ByteBuffer;
-import java.nio.charset.Charset;
 
 /**
  * CRC-32 알고리즘으로 암호화 하기 위한 {@link Checksum}, {@link PasswordWithSalt} 인터페이스의 구현체 입니다.
@@ -14,7 +14,7 @@ import java.nio.charset.Charset;
  * @author  yjj8353
  * @since   1.8
  */
-public class CRC32 implements Checksum, PasswordWithSalt {
+public class CRC32 extends Hash {
 
     @Override
     public String hash(@NonNull byte[] data) {

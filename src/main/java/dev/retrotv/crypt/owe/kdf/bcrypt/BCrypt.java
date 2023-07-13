@@ -1,6 +1,6 @@
 package dev.retrotv.crypt.owe.kdf.bcrypt;
 
-import dev.retrotv.crypt.owe.Password;
+import dev.retrotv.crypt.owe.kdf.KDF;
 import lombok.NonNull;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -13,7 +13,7 @@ import java.security.SecureRandom;
  * @author  yjj8353
  * @since   1.8
  */
-public class BCrypt implements Password {
+public class BCrypt extends KDF {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public BCrypt() {
