@@ -10,7 +10,7 @@ import lombok.NonNull;
 
 import java.security.Key;
 
-import static dev.retrotv.enums.Algorithm.LEAECB;
+import static dev.retrotv.enums.CipherAlgorithm.LEAECB;
 
 public class LEAECB extends LEA {
 

@@ -1,7 +1,10 @@
 package dev.retrotv.enums;
 
 public enum Padding {
-      PADDING("PKCS5Padding")
+      OAEP_WITH_SHA1_MGF1_PADDING("OAEPWithSHA-1AndMGF1Padding")
+    , OAEP_WITH_SHA256_MGF1_PADDING("OAEPWithSHA-256AndMGF1Padding")
+    , PKCS1_PADDING("PKCS1Padding")
+    , PKCS5_PADDING("PKCS5Padding")
     , NO_PADDING("NoPadding")
     ;
 

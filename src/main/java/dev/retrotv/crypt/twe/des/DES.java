@@ -14,7 +14,7 @@ import javax.crypto.NoSuchPaddingException;
 import dev.retrotv.crypt.exception.CryptFailException;
 import dev.retrotv.crypt.twe.KeyGenerator;
 import dev.retrotv.crypt.twe.TwoWayEncryption;
-import dev.retrotv.enums.Algorithm;
+import dev.retrotv.enums.CipherAlgorithm;
 import lombok.NonNull;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,7 +22,7 @@ import org.apache.logging.log4j.Logger;
 public abstract class DES implements TwoWayEncryption, KeyGenerator {
     protected static final Logger log = LogManager.getLogger();
 
-    protected Algorithm algorithm;
+    protected CipherAlgorithm algorithm;
 
     protected static final String BAD_PADDING_EXCEPTION_MESSAGE =
             "BadPaddingException: "

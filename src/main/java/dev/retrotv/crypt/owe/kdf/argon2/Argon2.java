@@ -1,7 +1,6 @@
 package dev.retrotv.crypt.owe.kdf.argon2;
 
 import dev.retrotv.crypt.owe.Password;
-import dev.retrotv.utils.CommonMessageUtil;
 import lombok.NonNull;
 
 import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
@@ -64,12 +63,12 @@ public class Argon2 implements Password {
     @Override
     public boolean matches(CharSequence rawPassword, String encodedPassword) {
         if (rawPassword == null) {
-            log.warn(CommonMessageUtil.getMessage("warn.parameter.null", "rawPassword"));
+            log.warn("매개변수 rawPassword가 null 입니다.");
             return false;
         }
 
         if (encodedPassword == null) {
-            log.warn(CommonMessageUtil.getMessage("warn.parameter.null", "encodedPassword"));
+            log.warn("매개변수 encodedPassword가 null 입니다.");
             return false;
         }
 

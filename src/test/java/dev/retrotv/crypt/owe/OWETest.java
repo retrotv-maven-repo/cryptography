@@ -1,10 +1,11 @@
 package dev.retrotv.crypt.owe;
 
 import dev.retrotv.common.Log;
-import dev.retrotv.enums.Algorithm;
-import dev.retrotv.crypt.owe.crc.CRC32;
-import dev.retrotv.crypt.owe.md.*;
-import dev.retrotv.crypt.owe.sha.*;
+import dev.retrotv.crypt.owe.hash.crc.CRC32;
+import dev.retrotv.crypt.owe.hash.md.MD2;
+import dev.retrotv.crypt.owe.hash.md.MD5;
+import dev.retrotv.crypt.owe.hash.sha.*;
+import dev.retrotv.enums.HashAlgorithm;
 import org.json.JSONObject;
 
 import java.io.*;
@@ -21,7 +22,7 @@ public class OWETest extends Log {
     protected final URL RESOURCE = this.getClass().getClassLoader().getResource("checksum_test_file.txt");
     protected final URL RESOURCE2 = this.getClass().getClassLoader().getResource("checksum_test_file2.txt");
 
-    protected void fileHashTest(Algorithm algorithm) throws IOException {
+    protected void fileHashTest(HashAlgorithm algorithm) throws IOException {
         File file;
         byte[] fileData;
 
@@ -41,7 +42,7 @@ public class OWETest extends Log {
         assertEquals(getHash(algorithm), hash(algorithm, fileData));
     }
 
-    protected void fileHashMatchesTest(Checksum checksum, Algorithm algorithm) throws IOException {
+    protected void fileHashMatchesTest(Checksum checksum, HashAlgorithm algorithm) throws IOException {
         File file;
         byte[] fileData;
 
@@ -78,7 +79,7 @@ public class OWETest extends Log {
         assertTrue(password.matches(PASSWORD, encryptedPassword));
     }
 
-    private String hash(Algorithm algorithm, byte[] fileData) {
+    private String hash(HashAlgorithm algorithm, byte[] fileData) {
         switch (algorithm) {
             case CRC32: {
                 Checksum checksum = new CRC32();
@@ -134,21 +135,21 @@ public class OWETest extends Log {
         }
     }
 
-    private String getHash(Algorithm algorithm) throws IOException {
+    private String getHash(HashAlgorithm algorithm) throws IOException {
         JSONObject jsonObject = new JSONObject(readJson());
         JSONObject file1 = jsonObject.getJSONObject("checksum_test_file");
 
         switch (algorithm) {
-            case CRC32: return file1.getString(Algorithm.CRC32.label());
-            case MD2: return file1.getString(Algorithm.MD2.label());
-            case MD5: return file1.getString(Algorithm.MD5.label());
-            case SHA1: return file1.getString(Algorithm.SHA1.label());
-            case SHA224: return file1.getString(Algorithm.SHA224.label());
-            case SHA256: return file1.getString(Algorithm.SHA256.label());
-            case SHA384: return file1.getString(Algorithm.SHA384.label());
-            case SHA512: return file1.getString(Algorithm.SHA512.label());
-            case SHA512224: return file1.getString(Algorithm.SHA512224.label());
-            case SHA512256: return file1.getString(Algorithm.SHA512256.label());
+            case CRC32: return file1.getString(HashAlgorithm.CRC32.label());
+            case MD2: return file1.getString(HashAlgorithm.MD2.label());
+            case MD5: return file1.getString(HashAlgorithm.MD5.label());
+            case SHA1: return file1.getString(HashAlgorithm.SHA1.label());
+            case SHA224: return file1.getString(HashAlgorithm.SHA224.label());
+            case SHA256: return file1.getString(HashAlgorithm.SHA256.label());
+            case SHA384: return file1.getString(HashAlgorithm.SHA384.label());
+            case SHA512: return file1.getString(HashAlgorithm.SHA512.label());
+            case SHA512224: return file1.getString(HashAlgorithm.SHA512224.label());
+            case SHA512256: return file1.getString(HashAlgorithm.SHA512256.label());
             default: return null;
         }
     }

@@ -6,7 +6,7 @@ import dev.retrotv.utils.SecureRandomUtil;
 
 import javax.crypto.spec.IvParameterSpec;
 
-import static dev.retrotv.enums.Algorithm.LEACFB;
+import static dev.retrotv.enums.CipherAlgorithm.LEACFB;
 
 public class LEACFB extends LEA implements ParameterSpecGenerator<IvParameterSpec> {
 

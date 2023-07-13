@@ -17,7 +17,7 @@ import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.AlgorithmParameterSpec;
 
-import static dev.retrotv.enums.Algorithm.AESGCM;
+import static dev.retrotv.enums.CipherAlgorithm.AESGCM;
 
 public class AESGCM extends AES implements ParameterSpecGenerator<GCMParameterSpec> {
     protected static final int GCM_IV_LENGTH = 12;

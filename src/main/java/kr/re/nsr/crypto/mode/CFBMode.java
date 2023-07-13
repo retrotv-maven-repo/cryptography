@@ -46,17 +46,11 @@ public class CFBMode extends BlockCipherModeStream {
 		int length = engine.processBlock(feedback, 0, block, 0);
 		XOR(out, outOff, in, inOff, block, 0, outlen);
 
-		log.debug("in size: {}", in.length);
-		log.debug("inOff: {}", inOff);
-		log.debug("out size: {}", out.length);
-		log.debug("outOff: {}", outOff);
-		log.debug("outlen: {}", outlen);
-		log.debug("feedback size: {}", feedback.length);
-		log.debug("blocksize: {}", blocksize);
-
 		if (mode == Mode.ENCRYPT) {
+			blocksize = Math.min(out.length, blocksize);
 			System.arraycopy(out, outOff, feedback, 0, blocksize);
 		} else {
+			blocksize = Math.min(in.length, blocksize);
 			System.arraycopy(in, inOff, feedback, 0, blocksize);
 		}
 

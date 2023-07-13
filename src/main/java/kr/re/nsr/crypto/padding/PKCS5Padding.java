@@ -78,6 +78,7 @@ public class PKCS5Padding extends Padding {
 		for (int i = in.length - 1; i > lower_bound; --i) {
 			if (in[i] != count) {
 				isBadPadding = true;
+				break;
 			}
 		}
 
