@@ -1,6 +1,6 @@
 package dev.retrotv.crypt.owe.kdf.pbkdf2;
 
-import dev.retrotv.crypt.owe.Password;
+import dev.retrotv.crypt.owe.kdf.KDF;
 import lombok.NonNull;
 
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
@@ -11,7 +11,7 @@ import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
  * @author  yjj8353
  * @since   1.8
  */
-public class Pbkdf2 implements Password {
+public class Pbkdf2 extends KDF {
     private final Pbkdf2PasswordEncoder pbkdf2PasswordEncoder;
 
     public Pbkdf2() {

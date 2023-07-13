@@ -1,6 +1,6 @@
 package dev.retrotv.crypt.owe.kdf.scrypt;
 
-import dev.retrotv.crypt.owe.Password;
+import dev.retrotv.crypt.owe.kdf.KDF;
 import lombok.NonNull;
 
 import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
@@ -11,7 +11,7 @@ import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
  * @author  yjj8353
  * @since   1.8
  */
-public class SCrypt implements Password {
+public class SCrypt extends KDF {
 
     private final SCryptPasswordEncoder sCryptPasswordEncoder;
 
