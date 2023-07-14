@@ -4,12 +4,13 @@ import dev.retrotv.crypt.owe.kdf.KDF;
 import lombok.NonNull;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.security.SecureRandom;
 
 /**
- * BCrypt 알고리즘으로 암호화 하기 위한 {@link Password} 인터페이스의 구현체 입니다.
- *
+ * BCrypt 알고리즘으로 암호화 하기 위한 {@link KDF} 추상 클래스의 구현체 입니다.
+ * Spring Security의 {@link PasswordEncoder}와 호환됩니다.
  * @author  yjj8353
  * @since   1.8
  */
