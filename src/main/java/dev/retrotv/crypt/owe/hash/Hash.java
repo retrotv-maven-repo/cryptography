@@ -11,7 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 
-public abstract class Hash implements Checksum, PasswordWithSalt {
+public abstract class Hash implements Checksum, PasswordWithSalt, SaltGenerator {
     protected static final Logger log = LogManager.getLogger();
 
     @Override
