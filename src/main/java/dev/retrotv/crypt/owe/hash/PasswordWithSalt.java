@@ -1,6 +1,5 @@
 package dev.retrotv.crypt.owe.hash;
 
-import dev.retrotv.enums.SecurityStrength;
 import lombok.NonNull;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -14,14 +13,9 @@ import java.nio.charset.Charset;
  * @author  yjj8353
  * @since   1.8
  */
-public interface PasswordWithSalt extends Checksum, PasswordEncoder {
+public interface PasswordWithSalt extends PasswordEncoder {
 
-    /**
-     * 패스워드를 암호화 한 뒤, 암호화 된 패스워드 문자열을 반환합니다.
-     *
-     * @param rawPassword 암호화 할 패스워드
-     * @return 암호화 된 패스워드 문자열
-     */
+    @Override
     String encode(@NonNull CharSequence rawPassword);
 
     /**

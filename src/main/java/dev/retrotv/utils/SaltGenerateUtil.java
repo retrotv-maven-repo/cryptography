@@ -1,8 +1,14 @@
-package dev.retrotv.crypt.owe.hash;
+package dev.retrotv.utils;
 
+import dev.retrotv.crypt.random.RandomValue;
 import dev.retrotv.enums.SecurityStrength;
 
-public interface SaltGenerator {
+public class SaltGenerateUtil {
+    public static final RandomValue rv = new RandomValue();
+
+    private SaltGenerateUtil() {
+        throw new IllegalStateException("유틸리티 클래스 입니다.");
+    }
 
     /**
      * 소금을 생성하고 반환합니다.
@@ -10,7 +16,10 @@ public interface SaltGenerator {
      *
      * @return 생성된 소금
      */
-    String generateSalt();
+    public static String generateSalt() {
+        rv.generate();
+        return rv.getValue();
+    }
 
     /**
      * len 만큼의 길이를 가진 소금을 생성하고 반환합니다.
@@ -19,7 +28,10 @@ public interface SaltGenerator {
      * @param len 생성할 소금의 길이
      * @return 생성된 소금
      */
-    String generateSalt(int len);
+    public static String generateSalt(int len) {
+        rv.generate(len);
+        return rv.getValue();
+    }
 
     /**
      * securityStrength 수준의 소금을 생성하고 반환합니다.
@@ -28,7 +40,10 @@ public interface SaltGenerator {
      * @param securityStrength 보안 강도, {@link SecurityStrength} 참조
      * @return 생성된 소금
      */
-    String generateSalt(SecurityStrength securityStrength);
+    public static String generateSalt(SecurityStrength securityStrength) {
+        rv.generate(securityStrength);
+        return rv.getValue();
+    }
 
     /**
      * securityStrength의 수준과 len 만큼의 길이를 가진 소금을 생성하고 반환합니다.
@@ -37,5 +52,8 @@ public interface SaltGenerator {
      * @param len 생성할 소금의 길이
      * @return 생성된 소금
      */
-    String generateSalt(SecurityStrength securityStrength, int len);
+    public static String generateSalt(SecurityStrength securityStrength, int len) {
+        rv.generate(securityStrength, len);
+        return rv.getValue();
+    }
 }

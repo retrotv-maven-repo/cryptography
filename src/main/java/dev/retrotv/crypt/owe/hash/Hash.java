@@ -1,7 +1,5 @@
 package dev.retrotv.crypt.owe.hash;
 
-import dev.retrotv.crypt.random.RandomValue;
-import dev.retrotv.enums.SecurityStrength;
 import dev.retrotv.utils.FileReadUtil;
 import lombok.NonNull;
 import org.apache.logging.log4j.LogManager;
@@ -11,7 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 
-public abstract class Hash implements Checksum, PasswordWithSalt, SaltGenerator {
+public abstract class Hash implements Checksum, PasswordWithSalt {
     protected static final Logger log = LogManager.getLogger();
 
     @Override
@@ -147,33 +145,5 @@ public abstract class Hash implements Checksum, PasswordWithSalt, SaltGenerator 
         }
 
         return matches(String.valueOf(rawPassword) + salt, encodedPassword);
-    }
-
-    @Override
-    public String generateSalt() {
-        RandomValue rv = new RandomValue();
-        rv.generate();
-        return rv.getValue();
-    }
-
-    @Override
-    public String generateSalt(int len) {
-        RandomValue rv = new RandomValue();
-        rv.generate(len);
-        return rv.getValue();
-    }
-
-    @Override
-    public String generateSalt(SecurityStrength securityStrength) {
-        RandomValue rv = new RandomValue();
-        rv.generate(securityStrength);
-        return rv.getValue();
-    }
-
-    @Override
-    public String generateSalt(SecurityStrength securityStrength, int len) {
-        RandomValue rv = new RandomValue();
-        rv.generate(securityStrength, len);
-        return rv.getValue();
     }
 }
