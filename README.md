@@ -14,14 +14,10 @@ JDK 1.8 이상
 - Pbkdf2
 - SCrypt
 
-### CRC 계열
+### Hash(해시) 계열
 - CRC-32
-
-### MD 계열
 - MD2
 - MD5
-
-### SHA 계열
 - SHA-1
 - SHA-224
 - SHA-256
@@ -37,29 +33,28 @@ JDK 1.8 이상
 #### ECB, CBC 모드는 PKCS#5 Padding을 기본으로 사용
 
 ### LEA 알고리즘
-- LEA-128 (ECB, CBC, CCM, OFB, CRT, GCM)
-- LEA-192 (ECB, CBC, CCM, OFB, CRT, GCM)
-- LEA-256 (ECB, CBC, CCM, OFB, CRT, GCM)
+- LEA-128 (ECB, CBC, CCM, CFB, OFB, CRT, GCM)
+- LEA-192 (ECB, CBC, CCM, CFB, OFB, CRT, GCM)
+- LEA-256 (ECB, CBC, CCM, CFB, OFB, CRT, GCM)
 #### ECB, CBC 모드는 PKCS#5 Padding을 기본으로 사용
-#### CFB 모드는 현재 문제가 있으므로 사용하지 말 것
 
 ### RSA 계열
 - RSA-1024 (OAEPWITHSHA-256ANDMGF1PADDING, SHA256withRSA)
 - RSA-2048 (OAEPWITHSHA-256ANDMGF1PADDING, SHA256withRSA)
 
 ## 사용법
-```JAVA
-// 단방향 암호화 (체크섬)
-Checksum checksum = new SHA256();
+```
+// 해시 (체크섬)
+Hash checksum = new SHA256();
 checksum.hash(new File(filePath));
 
-// 단방향 암호화 (키 유도 함수 패스워드)
+// 해시 (패스워드 + 소금 암호화)
+Hash password = new SHA256();
+password.encode(myPassword, salt);
+
+// 키 유도 함수 (패스워드 암호화)
 Password password = new BCrypt();
 password.encode(myPassword);
-
-// 단방향 암호화 (salt가 필요한 일반 패스워드)
-PasswordWithSalt password = new SHA256();
-password.encode(myPassword, salt);
 
 // 양방향 암호화 (암/복호화)
 TwoWayEncryption twe = new AESCBC(128);

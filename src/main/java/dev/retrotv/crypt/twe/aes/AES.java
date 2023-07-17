@@ -35,7 +35,8 @@ public abstract class AES implements TwoWayEncryption, KeyGenerator {
 
     protected static final String ILLEGAL_BLOCK_SIZE_EXCEPTION_MESSAGE =
             "IllegalBlockSizeException: "
-          + "\n암호화 되지 않은 데이터의 복호화를 시도중 이거나, 이미 다른 유형으로 인코딩 된 데이터의 암복호화를 시도하는 중인지 확인하십시오.";
+          + "\n1. 암호화 되지 않은 데이터의 복호화를 시도중 이거나, 이미 다른 유형으로 인코딩 된 데이터의 암복호화를 시도하는 중인지 확인하십시오."
+          + "\n2. 데이터 패딩이 필요한 운영모드(ECB, CBC)를 사용할 경우, 데이터가 정상적으로 패딩되었는지 확인하십시오.";
 
     protected static final String INVALID_ALGORITHM_PARAMETER_EXCEPTION_MESSAGE =
             "InvalidAlgorithmParameterException: "
