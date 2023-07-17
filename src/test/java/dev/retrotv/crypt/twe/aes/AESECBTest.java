@@ -1,10 +1,9 @@
 package dev.retrotv.crypt.twe.aes;
 
 import dev.retrotv.common.Log;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.RepetitionInfo;
-import org.junit.jupiter.api.TestInstance;
+import dev.retrotv.crypt.exception.CryptFailException;
+import dev.retrotv.enums.EncodeFormat;
+import org.junit.jupiter.api.*;
 
 import java.security.Key;
 import java.util.HashSet;
@@ -96,5 +95,19 @@ class AESECBTest extends Log {
 
             encryptedAllData256.clear();
         }
+    }
+
+    @Test
+    @DisplayName("EncodeFormat 지정 테스트")
+    void encode_format_test() throws CryptFailException {
+        String message = "The lazy dog jumps over the brown fox!";
+        AESECB aes = new AESECB(128);
+        Key key = aes.generateKey();
+        aes.dataPadding();
+
+        String encryptedData = aes.encrypt(message.getBytes(), key, null, EncodeFormat.BASE64);
+        String originalMessage = new String(aes.decrypt(encryptedData, key, null, EncodeFormat.BASE64));
+
+        assertEquals(message, originalMessage);
     }
 }

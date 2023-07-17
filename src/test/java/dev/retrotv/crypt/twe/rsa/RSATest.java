@@ -5,6 +5,8 @@ import dev.retrotv.crypt.exception.KeyGenerateException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+import java.net.Socket;
 import java.security.KeyPair;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -62,5 +64,14 @@ class RSATest {
 
         byte[] encryptedSign = signature.sign(sign.getBytes(), keyPair.getPrivate());
         assertTrue(signature.verify(sign.getBytes(), encryptedSign, keyPair.getPublic()));
+    }
+
+    @Test
+    void tcpic() throws IOException {
+        try (Socket socket = new Socket("127.0.0.1", 8888)) {
+            System.out.println("연결성공");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
