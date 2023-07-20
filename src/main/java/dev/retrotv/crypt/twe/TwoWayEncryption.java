@@ -30,6 +30,16 @@ public interface TwoWayEncryption {
      */
     byte[] encrypt(@NonNull byte[] data, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptFailException;
 
+    /**
+     * 데이터를 암호화 하고, 지정된 인코딩 포맷으로 인코딩 후 반환합니다.
+     *
+     * @throws CryptFailException 암호화가 실패한 경우 발생
+     * @param data 암호화 할 데이터
+     * @param key 암호화 시, 사용할 키
+     * @param spec 초기화 벡터
+     * @param format 인코딩 포맷
+     * @return 암호화 완료 후, 지정된 포맷으로 인코딩 된 데이터
+     */
     default String encrypt(@NonNull byte[] data, @NonNull Key key, AlgorithmParameterSpec spec, @NonNull EncodeFormat format)
             throws CryptFailException {
         byte[] encryptedData = encrypt(data, key, spec);
@@ -52,6 +62,16 @@ public interface TwoWayEncryption {
      */
     byte[] decrypt(@NonNull byte[] encryptedData, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptFailException;
 
+    /**
+     * 암호화 된 데이터를 지정된 인코딩 포맷으로 디코딩 후, 복호화 된 데이터를 반환 합니다.
+     *
+     * @throws CryptFailException 복호화가 실패한 경우 발생
+     * @param encryptedData 인코딩 된 암호화 데이터
+     * @param key 암호화 시, 사용할 키
+     * @param spec 초기화 벡터
+     * @param format 인코딩 포맷
+     * @return 복호화 된 데이터
+     */
     default byte[] decrypt(@NonNull String encryptedData, @NonNull Key key, AlgorithmParameterSpec spec, @NonNull EncodeFormat format)
             throws CryptFailException {
         byte[] decodedData;
