@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class OWETest extends Log {
     protected final String PASSWORD = "The quick brown fox jumps over the lazy dog";
-    protected  final URL CHECKSUM = this.getClass().getClassLoader().getResource("checksum");
+    protected final URL CHECKSUM = this.getClass().getClassLoader().getResource("checksum");
     protected final URL RESOURCE = this.getClass().getClassLoader().getResource("checksum_test_file.txt");
     protected final URL RESOURCE2 = this.getClass().getClassLoader().getResource("checksum_test_file2.txt");
 

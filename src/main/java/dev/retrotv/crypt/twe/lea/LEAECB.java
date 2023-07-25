@@ -1,6 +1,6 @@
 package dev.retrotv.crypt.twe.lea;
 
-import dev.retrotv.crypt.exception.CryptFailException;
+import dev.retrotv.crypt.exception.CryptoFailException;
 import dev.retrotv.crypt.exception.WrongKeyLengthException;
 import kr.re.nsr.crypto.BlockCipher;
 import kr.re.nsr.crypto.BlockCipherMode;
@@ -24,7 +24,7 @@ public class LEAECB extends LEA {
         this.algorithm = LEAECB;
     }
 
-    public byte[] encrypt(@NonNull byte[] data, @NonNull Key key) throws CryptFailException {
+    public byte[] encrypt(@NonNull byte[] data, @NonNull Key key) throws CryptoFailException {
         try {
             BlockCipherMode cipher = new ECB();
             cipher.init(BlockCipher.Mode.ENCRYPT, key.getEncoded());
@@ -32,11 +32,11 @@ public class LEAECB extends LEA {
 
             return cipher.doFinal(data);
         } catch (Exception e) {
-            throw new CryptFailException(e.getMessage(), e);
+            throw new CryptoFailException(e.getMessage(), e);
         }
     }
 
-    public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull Key key) throws CryptFailException {
+    public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull Key key) throws CryptoFailException {
         try {
             BlockCipherMode cipher = new ECB();
             cipher.init(BlockCipher.Mode.DECRYPT, key.getEncoded());
@@ -44,7 +44,7 @@ public class LEAECB extends LEA {
 
             return cipher.doFinal(encryptedData);
         }  catch (Exception e) {
-            throw new CryptFailException(e.getMessage(), e);
+            throw new CryptoFailException(e.getMessage(), e);
         }
     }
 }

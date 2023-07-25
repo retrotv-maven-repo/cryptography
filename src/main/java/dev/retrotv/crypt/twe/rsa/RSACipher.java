@@ -1,6 +1,6 @@
 package dev.retrotv.crypt.twe.rsa;
 
-import dev.retrotv.crypt.exception.CryptFailException;
+import dev.retrotv.crypt.exception.CryptoFailException;
 import dev.retrotv.crypt.exception.WrongPaddingException;
 import dev.retrotv.crypt.twe.TwoWayEncryption;
 import dev.retrotv.enums.CipherAlgorithm;
@@ -42,11 +42,11 @@ public class RSACipher implements TwoWayEncryption {
     }
 
     @Override
-    public byte[] encrypt(@NonNull byte[] data, @NonNull Key publicKey, AlgorithmParameterSpec spec) throws CryptFailException {
+    public byte[] encrypt(@NonNull byte[] data, @NonNull Key publicKey, AlgorithmParameterSpec spec) throws CryptoFailException {
         return encrypt(data, publicKey);
     }
 
-    public byte[] encrypt(@NonNull byte[] data, @NonNull Key publicKey) throws CryptFailException {
+    public byte[] encrypt(@NonNull byte[] data, @NonNull Key publicKey) throws CryptoFailException {
         String algorithmName = algorithm.label() + "/" + padding.label();
 
         if (padding == PKCS1_PADDING) {
@@ -59,24 +59,24 @@ public class RSACipher implements TwoWayEncryption {
 
             return cipher.doFinal(data);
         } catch (InvalidKeyException e) {
-            throw new CryptFailException("InvalidKeyException: \n유효하지 않은 키 입니다.\nRSA 암호화 방식에서 지원하는 키 길이인지 확인하십시오.");
+            throw new CryptoFailException("InvalidKeyException: \n유효하지 않은 키 입니다.\nRSA 암호화 방식에서 지원하는 키 길이인지 확인하십시오.");
         } catch (IllegalBlockSizeException e) {
-            throw new CryptFailException("IllegalBlockSizeException: \n암호화 되지 않은 데이터의 복호화를 시도중 이거나, 이미 다른 유형으로 인코딩 된 데이터의 암복호화를 시도하는 중인지 확인하십시오.");
+            throw new CryptoFailException("IllegalBlockSizeException: \n암호화 되지 않은 데이터의 복호화를 시도중 이거나, 이미 다른 유형으로 인코딩 된 데이터의 암복호화를 시도하는 중인지 확인하십시오.");
         } catch (BadPaddingException e) {
-            throw new CryptFailException("BadPaddingException: \n암호화 시 사용한 키와 일치하지 않습니다.");
+            throw new CryptoFailException("BadPaddingException: \n암호화 시 사용한 키와 일치하지 않습니다.");
         } catch (NoSuchPaddingException e) {
-            throw new CryptFailException("NoSuchPaddingException: \n지원되지 않거나, 부정확한 포맷으로 패딩된 데이터를 암복호화 시도하고 있습니다.");
+            throw new CryptoFailException("NoSuchPaddingException: \n지원되지 않거나, 부정확한 포맷으로 패딩된 데이터를 암복호화 시도하고 있습니다.");
         } catch (NoSuchAlgorithmException e) {
-            throw new CryptFailException(NO_SUCH_ALGORITHM_EXCEPTION_MESSAGE, e);
+            throw new CryptoFailException(NO_SUCH_ALGORITHM_EXCEPTION_MESSAGE, e);
         }
     }
 
     @Override
-    public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull Key privateKey, AlgorithmParameterSpec spec) throws CryptFailException {
+    public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull Key privateKey, AlgorithmParameterSpec spec) throws CryptoFailException {
         return decrypt(encryptedData, privateKey);
     }
 
-    public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull Key privateKey) throws CryptFailException {
+    public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull Key privateKey) throws CryptoFailException {
         String algorithmName = algorithm.label() + "/" + padding.label();
         log.debug("선택된 알고리즘: {}", algorithmName);
 
@@ -86,15 +86,15 @@ public class RSACipher implements TwoWayEncryption {
 
             return cipher.doFinal(encryptedData);
         } catch (InvalidKeyException e) {
-            throw new CryptFailException("InvalidKeyException: \n유효하지 않은 키 입니다.\nRSA 암호화 방식에서 지원하는 키 길이인지 확인하십시오.");
+            throw new CryptoFailException("InvalidKeyException: \n유효하지 않은 키 입니다.\nRSA 암호화 방식에서 지원하는 키 길이인지 확인하십시오.");
         } catch (IllegalBlockSizeException e) {
-            throw new CryptFailException("IllegalBlockSizeException: \n암호화 되지 않은 데이터의 복호화를 시도중 이거나, 이미 다른 유형으로 인코딩 된 데이터의 암복호화를 시도하는 중인지 확인하십시오.");
+            throw new CryptoFailException("IllegalBlockSizeException: \n암호화 되지 않은 데이터의 복호화를 시도중 이거나, 이미 다른 유형으로 인코딩 된 데이터의 암복호화를 시도하는 중인지 확인하십시오.");
         } catch (BadPaddingException e) {
-            throw new CryptFailException("BadPaddingException: \n암호화 시 사용한 키와 일치하지 않습니다.");
+            throw new CryptoFailException("BadPaddingException: \n암호화 시 사용한 키와 일치하지 않습니다.");
         } catch (NoSuchPaddingException e) {
-            throw new CryptFailException("NoSuchPaddingException: \n지원되지 않거나, 부정확한 포맷으로 패딩된 데이터를 암복호화 시도하고 있습니다.");
+            throw new CryptoFailException("NoSuchPaddingException: \n지원되지 않거나, 부정확한 포맷으로 패딩된 데이터를 암복호화 시도하고 있습니다.");
         } catch (NoSuchAlgorithmException e) {
-            throw new CryptFailException(NO_SUCH_ALGORITHM_EXCEPTION_MESSAGE, e);
+            throw new CryptoFailException(NO_SUCH_ALGORITHM_EXCEPTION_MESSAGE, e);
         }
     }
 

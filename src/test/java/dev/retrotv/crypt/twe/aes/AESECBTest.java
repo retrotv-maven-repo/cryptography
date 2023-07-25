@@ -1,7 +1,7 @@
 package dev.retrotv.crypt.twe.aes;
 
 import dev.retrotv.common.Log;
-import dev.retrotv.crypt.exception.CryptFailException;
+import dev.retrotv.crypt.exception.CryptoFailException;
 import dev.retrotv.enums.EncodeFormat;
 import org.junit.jupiter.api.*;
 
@@ -99,7 +99,7 @@ class AESECBTest extends Log {
 
     @Test
     @DisplayName("EncodeFormat 지정 테스트")
-    void encode_format_test() throws CryptFailException {
+    void encode_format_test() throws CryptoFailException {
         String message = "The lazy dog jumps over the brown fox!";
         AESECB aes = new AESECB(128);
         Key key = aes.generateKey();

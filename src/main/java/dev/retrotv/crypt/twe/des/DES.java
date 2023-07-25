@@ -11,7 +11,7 @@ import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
-import dev.retrotv.crypt.exception.CryptFailException;
+import dev.retrotv.crypt.exception.CryptoFailException;
 import dev.retrotv.crypt.twe.KeyGenerator;
 import dev.retrotv.crypt.twe.TwoWayEncryption;
 import dev.retrotv.enums.CipherAlgorithm;
@@ -51,7 +51,7 @@ public abstract class DES implements TwoWayEncryption, KeyGenerator {
           + "\n지원하지 않는 암호화 알고리즘 입니다.";
 
     @Override
-    public byte[] encrypt(@NonNull byte[] data, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptFailException {
+    public byte[] encrypt(@NonNull byte[] data, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptoFailException {
         try {
             Cipher cipher = Cipher.getInstance(algorithm.label());
 
@@ -76,22 +76,22 @@ public abstract class DES implements TwoWayEncryption, KeyGenerator {
 
             return cipher.doFinal(data);
         } catch (BadPaddingException e) {
-            throw new CryptFailException(BAD_PADDING_EXCEPTION_MESSAGE, e);
+            throw new CryptoFailException(BAD_PADDING_EXCEPTION_MESSAGE, e);
         } catch (IllegalBlockSizeException e) {
-            throw new CryptFailException(ILLEGAL_BLOCK_SIZE_EXCEPTION_MESSAGE, e);
+            throw new CryptoFailException(ILLEGAL_BLOCK_SIZE_EXCEPTION_MESSAGE, e);
         } catch (InvalidAlgorithmParameterException e) {
-            throw new CryptFailException(INVALID_ALGORITHM_PARAMETER_EXCEPTION_MESSAGE, e);
+            throw new CryptoFailException(INVALID_ALGORITHM_PARAMETER_EXCEPTION_MESSAGE, e);
         } catch (InvalidKeyException e) {
-            throw new CryptFailException(INVALID_KEY_EXCEPTION_MESSAGE, e);
+            throw new CryptoFailException(INVALID_KEY_EXCEPTION_MESSAGE, e);
         } catch (NoSuchPaddingException e) {
-            throw new CryptFailException(NO_SUCH_PADDING_EXCEPTION_MESSAGE, e);
+            throw new CryptoFailException(NO_SUCH_PADDING_EXCEPTION_MESSAGE, e);
         } catch (NoSuchAlgorithmException e) {
-            throw new CryptFailException(NO_SUCH_ALGORITHM_EXCEPTION_MESSAGE, e);
+            throw new CryptoFailException(NO_SUCH_ALGORITHM_EXCEPTION_MESSAGE, e);
         }
     }
 
     @Override
-    public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptFailException {
+    public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptoFailException {
         try {
             Cipher cipher = Cipher.getInstance(algorithm.label());
 
@@ -116,17 +116,17 @@ public abstract class DES implements TwoWayEncryption, KeyGenerator {
 
             return cipher.doFinal(encryptedData);
         } catch (BadPaddingException e) {
-            throw new CryptFailException(BAD_PADDING_EXCEPTION_MESSAGE, e);
+            throw new CryptoFailException(BAD_PADDING_EXCEPTION_MESSAGE, e);
         } catch (IllegalBlockSizeException e) {
-            throw new CryptFailException(ILLEGAL_BLOCK_SIZE_EXCEPTION_MESSAGE, e);
+            throw new CryptoFailException(ILLEGAL_BLOCK_SIZE_EXCEPTION_MESSAGE, e);
         } catch (InvalidAlgorithmParameterException e) {
-            throw new CryptFailException(INVALID_ALGORITHM_PARAMETER_EXCEPTION_MESSAGE, e);
+            throw new CryptoFailException(INVALID_ALGORITHM_PARAMETER_EXCEPTION_MESSAGE, e);
         } catch (InvalidKeyException e) {
-            throw new CryptFailException(INVALID_KEY_EXCEPTION_MESSAGE, e);
+            throw new CryptoFailException(INVALID_KEY_EXCEPTION_MESSAGE, e);
         } catch (NoSuchPaddingException e) {
-            throw new CryptFailException(NO_SUCH_PADDING_EXCEPTION_MESSAGE, e);
+            throw new CryptoFailException(NO_SUCH_PADDING_EXCEPTION_MESSAGE, e);
         } catch (NoSuchAlgorithmException e) {
-            throw new CryptFailException(NO_SUCH_ALGORITHM_EXCEPTION_MESSAGE, e);
+            throw new CryptoFailException(NO_SUCH_ALGORITHM_EXCEPTION_MESSAGE, e);
         }
     }
 }

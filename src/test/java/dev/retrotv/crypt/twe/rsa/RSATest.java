@@ -1,6 +1,6 @@
 package dev.retrotv.crypt.twe.rsa;
 
-import dev.retrotv.crypt.exception.CryptFailException;
+import dev.retrotv.crypt.exception.CryptoFailException;
 import dev.retrotv.crypt.exception.KeyGenerateException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,7 +16,7 @@ class RSATest {
 
     @Test
     @DisplayName("RSA-1024 암복호화 테스트")
-    void rsa1024_test() throws KeyGenerateException, CryptFailException {
+    void rsa1024_test() throws KeyGenerateException, CryptoFailException {
         RSAKeyPairGenerator keyPairGenerator = new RSAKeyPairGenerator(1024);
         String message = "The lazy dog jumps over the brown fox!";
         KeyPair keyPair = keyPairGenerator.generateKeyPair();
@@ -30,7 +30,7 @@ class RSATest {
 
     @Test
     @DisplayName("RSA-2048 암복호화 테스트")
-    void rsa2048_test() throws KeyGenerateException, CryptFailException {
+    void rsa2048_test() throws KeyGenerateException, CryptoFailException {
         RSAKeyPairGenerator keyPairGenerator = new RSAKeyPairGenerator(2048);
         String message = "The lazy dog jumps over the brown fox!";
         KeyPair keyPair = keyPairGenerator.generateKeyPair();
