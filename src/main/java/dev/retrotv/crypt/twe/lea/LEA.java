@@ -1,6 +1,6 @@
 package dev.retrotv.crypt.twe.lea;
 
-import dev.retrotv.crypt.exception.CryptFailException;
+import dev.retrotv.crypt.exception.CryptoFailException;
 import dev.retrotv.crypt.twe.KeyGenerator;
 import dev.retrotv.crypt.twe.TwoWayEncryption;
 import dev.retrotv.enums.CipherAlgorithm;
@@ -30,7 +30,7 @@ public abstract class LEA implements TwoWayEncryption, KeyGenerator {
     protected Padding padding = NO_PADDING;
 
     @Override
-    public byte[] encrypt(@NonNull byte[] data, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptFailException {
+    public byte[] encrypt(@NonNull byte[] data, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptoFailException {
         log.debug("선택된 알고리즘: {}", algorithm.label() + "/" + padding.label());
 
         if (algorithm == LEAECB && data.length > keyLen) {
@@ -58,12 +58,12 @@ public abstract class LEA implements TwoWayEncryption, KeyGenerator {
 
             return cipher.doFinal(data);
         } catch (Exception e) {
-            throw new CryptFailException(e.getMessage(), e);
+            throw new CryptoFailException(e.getMessage(), e);
         }
     }
 
     @Override
-    public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptFailException {
+    public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptoFailException {
         log.debug("선택된 알고리즘: {}", algorithm.label() + "/" + padding.label());
 
         try {
@@ -82,7 +82,7 @@ public abstract class LEA implements TwoWayEncryption, KeyGenerator {
 
             return cipher.doFinal(encryptedData);
         } catch (Exception e) {
-            throw new CryptFailException(e.getMessage(), e);
+            throw new CryptoFailException(e.getMessage(), e);
         }
     }
 

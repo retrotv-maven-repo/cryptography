@@ -6,17 +6,17 @@ package dev.retrotv.crypt.exception;
  * @author  yjj8353
  * @since   1.8
  */
-public class CryptFailException extends Exception {
+public class CryptoFailException extends Exception {
 
-    public CryptFailException() {
+    public CryptoFailException() {
         super();
     }
 
-    public CryptFailException(String message) {
+    public CryptoFailException(String message) {
         super(message);
     }
 
-    public CryptFailException(String message, Throwable throwable) {
+    public CryptoFailException(String message, Throwable throwable) {
         super(message, throwable);
     }
 }

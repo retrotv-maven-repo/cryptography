@@ -1,6 +1,6 @@
 package dev.retrotv.crypt.twe.lea;
 
-import dev.retrotv.crypt.exception.CryptFailException;
+import dev.retrotv.crypt.exception.CryptoFailException;
 import dev.retrotv.crypt.exception.WrongKeyLengthException;
 import dev.retrotv.crypt.twe.ParameterSpecGenerator;
 import dev.retrotv.utils.SecureRandomUtil;
@@ -32,7 +32,7 @@ public class LEAGCM extends LEA implements ParameterSpecGenerator<GCMParameterSp
     }
 
     @Override
-    public byte[] encrypt(@NonNull byte[] data, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptFailException {
+    public byte[] encrypt(@NonNull byte[] data, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptoFailException {
         try {
             BlockCipherModeAE cipher = new GCM();
             GCMParameterSpec gcmSpec = (GCMParameterSpec) spec;
@@ -43,12 +43,12 @@ public class LEAGCM extends LEA implements ParameterSpecGenerator<GCMParameterSp
 
             return cipher.doFinal(data);
         } catch (Exception e) {
-            throw new CryptFailException(e.getMessage(), e);
+            throw new CryptoFailException(e.getMessage(), e);
         }
     }
 
     @Override
-    public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptFailException {
+    public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptoFailException {
         try {
             BlockCipherModeAE cipher = new GCM();
             GCMParameterSpec gcmSpec = (GCMParameterSpec) spec;
@@ -63,7 +63,7 @@ public class LEAGCM extends LEA implements ParameterSpecGenerator<GCMParameterSp
 
             return originalData;
         } catch (Exception e) {
-            throw new CryptFailException(e.getMessage(), e);
+            throw new CryptoFailException(e.getMessage(), e);
         }
     }
 

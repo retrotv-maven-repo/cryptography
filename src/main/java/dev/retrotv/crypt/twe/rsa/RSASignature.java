@@ -1,6 +1,6 @@
 package dev.retrotv.crypt.twe.rsa;
 
-import dev.retrotv.crypt.exception.CryptFailException;
+import dev.retrotv.crypt.exception.CryptoFailException;
 import dev.retrotv.crypt.twe.DigitalSignature;
 import dev.retrotv.enums.SignatureAlgorithm;
 import org.apache.logging.log4j.LogManager;
@@ -36,7 +36,7 @@ public class RSASignature implements DigitalSignature {
           + "\n서명이 유효하지 않습니다.";
 
     @Override
-    public byte[] sign(byte[] data, PrivateKey privateKey) throws CryptFailException {
+    public byte[] sign(byte[] data, PrivateKey privateKey) throws CryptoFailException {
         try {
             Signature signature = Signature.getInstance(algorithm.label());
             signature.initSign(privateKey);
@@ -44,16 +44,16 @@ public class RSASignature implements DigitalSignature {
 
             return signature.sign();
         } catch (NoSuchAlgorithmException e) {
-            throw new CryptFailException(NO_SUCH_ALGORITHM_EXCEPTION_MESSAGE, e);
+            throw new CryptoFailException(NO_SUCH_ALGORITHM_EXCEPTION_MESSAGE, e);
         } catch (InvalidKeyException e) {
-            throw new CryptFailException(INVALID_KEY_EXCEPTION_MESSAGE, e);
+            throw new CryptoFailException(INVALID_KEY_EXCEPTION_MESSAGE, e);
         } catch (SignatureException e) {
-            throw new CryptFailException(SIGNATURE_EXCEPTION_MESSAGE, e);
+            throw new CryptoFailException(SIGNATURE_EXCEPTION_MESSAGE, e);
         }
     }
 
     @Override
-    public boolean verify(byte[] originalData, byte[] encryptedData, PublicKey publicKey) throws CryptFailException {
+    public boolean verify(byte[] originalData, byte[] encryptedData, PublicKey publicKey) throws CryptoFailException {
         try {
             Signature signature = Signature.getInstance(algorithm.label());
             signature.initVerify(publicKey);
@@ -61,11 +61,11 @@ public class RSASignature implements DigitalSignature {
 
             return signature.verify(encryptedData);
         } catch (NoSuchAlgorithmException e) {
-            throw new CryptFailException(NO_SUCH_ALGORITHM_EXCEPTION_MESSAGE, e);
+            throw new CryptoFailException(NO_SUCH_ALGORITHM_EXCEPTION_MESSAGE, e);
         } catch (InvalidKeyException e) {
-            throw new CryptFailException(INVALID_KEY_EXCEPTION_MESSAGE, e);
+            throw new CryptoFailException(INVALID_KEY_EXCEPTION_MESSAGE, e);
         } catch (SignatureException e) {
-            throw new CryptFailException(SIGNATURE_EXCEPTION_MESSAGE, e);
+            throw new CryptoFailException(SIGNATURE_EXCEPTION_MESSAGE, e);
         }
     }
 }
