@@ -1,6 +1,6 @@
 package dev.retrotv.utils;
 
-import dev.retrotv.crypt.random.RandomValue;
+import dev.retrotv.crypto.random.RandomValue;
 import dev.retrotv.enums.SecurityStrength;
 
 public class SaltGenerateUtil {
