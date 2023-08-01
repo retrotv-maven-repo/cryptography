@@ -17,12 +17,12 @@ import dev.retrotv.crypto.twe.KeyGenerator;
 import dev.retrotv.crypto.twe.TwoWayEncryption;
 import dev.retrotv.enums.CipherAlgorithm;
 import dev.retrotv.enums.Padding;
-import dev.retrotv.utils.SecureRandomUtil;
 import lombok.NonNull;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import static dev.retrotv.enums.CipherAlgorithm.DESECB;
+import static dev.retrotv.enums.CipherAlgorithm.TRIPLE_DESECB;
 import static dev.retrotv.enums.Padding.NO_PADDING;
 import static dev.retrotv.enums.Padding.PKCS5_PADDING;
 
@@ -62,7 +62,7 @@ public abstract class DES implements TwoWayEncryption, KeyGenerator {
     public byte[] encrypt(@NonNull byte[] data, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptoFailException {
         String algorithmName = algorithm.label() + "/" + padding.label();
 
-        if (algorithm == DESECB) {
+        if (algorithm == DESECB || algorithm == TRIPLE_DESECB) {
             log.info("ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.");
         }
 
@@ -75,7 +75,7 @@ public abstract class DES implements TwoWayEncryption, KeyGenerator {
             log.debug("선택된 알고리즘: {}", algorithmName);
             Cipher cipher = Cipher.getInstance(algorithmName);
 
-            if (algorithm == DESECB) {
+            if (algorithm == DESECB || algorithm == TRIPLE_DESECB) {
                 cipher.init(Cipher.ENCRYPT_MODE, key);
             } else {
                 cipher.init(Cipher.ENCRYPT_MODE, key, spec);
@@ -105,7 +105,7 @@ public abstract class DES implements TwoWayEncryption, KeyGenerator {
             log.debug("선택된 알고리즘: {}", algorithmName);
             Cipher cipher = Cipher.getInstance(algorithmName);
 
-            if (algorithm == DESECB) {
+            if (algorithm == DESECB || algorithm == TRIPLE_DESECB) {
                 cipher.init(Cipher.DECRYPT_MODE, key);
             } else {
                 cipher.init(Cipher.DECRYPT_MODE, key, spec);
