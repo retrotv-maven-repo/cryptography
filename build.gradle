@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'dev.retrotv'
-version '0.12.0-alpha'
+version '0.13.0-alpha'
 
 // Github Action 버전 출력용
 tasks.register('printVersionName') {
@@ -26,18 +26,18 @@ javadoc {
 
 repositories {
     mavenCentral()
-    maven { url "https://www.egovframe.go.kr/maven/" }
+    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
     api 'commons-codec:commons-codec:1.16.0'
     api 'org.springframework.security:spring-security-core:5.8.3'
+    implementation 'com.github.retrotv-maven-repo:data-utils:0.7.0-alpha'
     compileOnly 'org.projectlombok:lombok:1.18.28'
 
     // Argon2, SCrypt java.lang.NoClassDefFoundError 방지용
     implementation 'org.bouncycastle:bcprov-jdk15on:1.70'
     implementation 'org.apache.logging.log4j:log4j-core:2.20.0'
-    // implementation 'org.egovframe.rte:org.egovframe.rte.fdl.crypto:4.1.0'
 
     testImplementation 'org.json:json:20230227'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'

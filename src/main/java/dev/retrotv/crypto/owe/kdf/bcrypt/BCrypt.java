@@ -1,6 +1,7 @@
 package dev.retrotv.crypto.owe.kdf.bcrypt;
 
 import dev.retrotv.crypto.owe.kdf.KDF;
+import dev.retrotv.utils.PasswordStrengthUtil;
 import lombok.NonNull;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -64,4 +65,17 @@ public class BCrypt extends KDF {
 
         return bCryptPasswordEncoder.matches(rawPassword, encodedPassword);
     }
+
+    @Override
+    public boolean upgradeEncoding(String encodedPassword) {
+        return PasswordStrengthUtil.checkLength(8, encodedPassword) &&
+               PasswordStrengthUtil.isInclude(
+                   true,
+                   false,
+                   false,
+                   true,
+                   true,
+                   encodedPassword
+               );
+	}
 }
