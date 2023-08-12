@@ -1,6 +1,7 @@
 package dev.retrotv.crypto.owe.kdf.argon2;
 
 import dev.retrotv.crypto.owe.kdf.KDF;
+import dev.retrotv.utils.PasswordStrengthUtil;
 import lombok.NonNull;
 
 import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
@@ -76,4 +77,17 @@ public class Argon2 extends KDF {
 
         return argon2PasswordEncoder.matches(rawPassword, encodedPassword);
     }
+
+    @Override
+    public boolean upgradeEncoding(String encodedPassword) {
+        return PasswordStrengthUtil.checkLength(8, encodedPassword) &&
+               PasswordStrengthUtil.isInclude(
+                   true,
+                   false,
+                   false,
+                   true,
+                   true,
+                   encodedPassword
+               );
+	}
 }

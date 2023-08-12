@@ -26,6 +26,11 @@ JDK 1.8 이상
 - SHA-512/224
 - SHA-512/256
 
+### DES 알고리즘
+- DES (ECB, CBC, CFB, OFB, CRT, CTS)
+- TripleDES (ECB, CBC, CFB, OFB, CRT, CTS)
+#### ECB, CBC 모드는 PKCS#5 Padding을 기본으로 사용
+
 ### AES 알고리즘
 - AES-128 (ECB, CBC, CFB, OFB, CRT, CTS, GCM)
 - AES-192 (ECB, CBC, CFB, OFB, CRT, CTS, GCM)

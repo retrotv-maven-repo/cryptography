@@ -1,6 +1,7 @@
 package dev.retrotv.crypto.owe.kdf.pbkdf2;
 
 import dev.retrotv.crypto.owe.kdf.KDF;
+import dev.retrotv.utils.PasswordStrengthUtil;
 import lombok.NonNull;
 
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
@@ -43,4 +44,17 @@ public class Pbkdf2 extends KDF {
 
         return pbkdf2PasswordEncoder.matches(rawPassword, encodedPassword);
     }
+
+    @Override
+    public boolean upgradeEncoding(String encodedPassword) {
+        return PasswordStrengthUtil.checkLength(8, encodedPassword) &&
+               PasswordStrengthUtil.isInclude(
+                   true,
+                   false,
+                   false,
+                   true,
+                   true,
+                   encodedPassword
+               );
+	}
 }

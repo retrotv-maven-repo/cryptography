@@ -4,6 +4,8 @@ import lombok.NonNull;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import dev.retrotv.utils.PasswordStrengthUtil;
+
 import java.nio.charset.Charset;
 
 /**
@@ -57,4 +59,17 @@ public interface PasswordWithSalt extends PasswordEncoder {
      * @return 일치 여부
      */
     boolean matches(CharSequence rawPassword, CharSequence salt, String encodedPassword);
+
+    @Override
+    default boolean upgradeEncoding(String encodedPassword) {
+        return PasswordStrengthUtil.checkLength(8, encodedPassword) &&
+               PasswordStrengthUtil.isInclude(
+                   true,
+                   false,
+                   false,
+                   true,
+                   true,
+                   encodedPassword
+               );
+	}
 }
