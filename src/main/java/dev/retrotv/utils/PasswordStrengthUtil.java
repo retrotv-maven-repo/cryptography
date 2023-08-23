@@ -8,7 +8,7 @@ public class PasswordStrengthUtil {
     }
     
     public static boolean checkLength(int minLength, CharSequence password) {
-        return password.length() < minLength;
+        return password.length() >= minLength;
     }
 
     public static boolean isInclude(boolean includeEnglish
