@@ -3,7 +3,6 @@ package dev.retrotv.crypto.owe.hash.sha;
 import dev.retrotv.crypto.owe.hash.Hash;
 import dev.retrotv.utils.MessageDigestEncodeUtil;
 import dev.retrotv.utils.EncodeUtil;
-import lombok.NonNull;
 
 import static dev.retrotv.enums.HashAlgorithm.SHA256;
 
@@ -16,7 +15,7 @@ import static dev.retrotv.enums.HashAlgorithm.SHA256;
 public class SHA256 extends Hash {
 
     @Override
-    public String hash(@NonNull byte[] data) {
+    public String hash(byte[] data) {
         return EncodeUtil.binaryToHex(MessageDigestEncodeUtil.encode(SHA256, data));
     }
 }

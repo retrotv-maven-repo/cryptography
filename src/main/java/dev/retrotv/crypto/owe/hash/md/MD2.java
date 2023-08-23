@@ -3,7 +3,6 @@ package dev.retrotv.crypto.owe.hash.md;
 import dev.retrotv.crypto.owe.hash.Hash;
 import dev.retrotv.utils.MessageDigestEncodeUtil;
 import dev.retrotv.utils.EncodeUtil;
-import lombok.NonNull;
 
 import static dev.retrotv.enums.HashAlgorithm.MD2;
 
@@ -16,7 +15,7 @@ import static dev.retrotv.enums.HashAlgorithm.MD2;
 public class MD2 extends Hash {
 
     @Override
-    public String hash(@NonNull byte[] data) {
+    public String hash(byte[] data) {
         return EncodeUtil.binaryToHex(MessageDigestEncodeUtil.encode(MD2, data));
     }
 }
