@@ -1,7 +1,7 @@
 package dev.retrotv.utils;
 
 import dev.retrotv.enums.HashAlgorithm;
-import lombok.NonNull;
+
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -29,7 +29,7 @@ public class MessageDigestEncodeUtil {
      * @param data 암호화 할 데이터
      * @return 암호화 된 데이터
      */
-    public static byte[] encode(@NonNull HashAlgorithm algorithm, @NonNull byte[] data) {
+    public static byte[] encode(HashAlgorithm algorithm, byte[] data) {
         try {
             String algorithmName = algorithm.label();
             log.debug("알고리즘: {}", algorithmName);

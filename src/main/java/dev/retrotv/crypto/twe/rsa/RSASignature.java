@@ -36,7 +36,7 @@ public class RSASignature implements DigitalSignature {
           + "\n서명이 유효하지 않습니다.";
 
     @Override
-    public byte[] sign(byte[] data, PrivateKey privateKey) throws CryptoFailException {
+    public byte[] sign(byte[] data, PrivateKey privateKey) {
         try {
             Signature signature = Signature.getInstance(algorithm.label());
             signature.initSign(privateKey);
@@ -53,7 +53,7 @@ public class RSASignature implements DigitalSignature {
     }
 
     @Override
-    public boolean verify(byte[] originalData, byte[] encryptedData, PublicKey publicKey) throws CryptoFailException {
+    public boolean verify(byte[] originalData, byte[] encryptedData, PublicKey publicKey) {
         try {
             Signature signature = Signature.getInstance(algorithm.label());
             signature.initVerify(publicKey);

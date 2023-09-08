@@ -9,7 +9,7 @@ import dev.retrotv.utils.SecureRandomUtil;
 import kr.re.nsr.crypto.BlockCipher;
 import kr.re.nsr.crypto.BlockCipherMode;
 import kr.re.nsr.crypto.padding.PKCS5Padding;
-import lombok.NonNull;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -30,7 +30,7 @@ public abstract class LEA implements TwoWayEncryption, KeyGenerator {
     protected Padding padding = NO_PADDING;
 
     @Override
-    public byte[] encrypt(@NonNull byte[] data, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptoFailException {
+    public byte[] encrypt(byte[] data, Key key, AlgorithmParameterSpec spec) {
         log.debug("선택된 알고리즘: {}", algorithm.label() + "/" + padding.label());
 
         if (algorithm == LEAECB && data.length > keyLen) {
@@ -63,7 +63,7 @@ public abstract class LEA implements TwoWayEncryption, KeyGenerator {
     }
 
     @Override
-    public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptoFailException {
+    public byte[] decrypt(byte[] encryptedData, Key key, AlgorithmParameterSpec spec) {
         log.debug("선택된 알고리즘: {}", algorithm.label() + "/" + padding.label());
 
         try {

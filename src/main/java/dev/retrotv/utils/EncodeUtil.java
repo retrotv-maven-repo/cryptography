@@ -1,7 +1,7 @@
 package dev.retrotv.utils;
 
 import dev.retrotv.enums.EncodeFormat;
-import lombok.NonNull;
+
 
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Base64;
@@ -16,23 +16,23 @@ public class EncodeUtil {
         throw new IllegalStateException("유틸리티 클래스 입니다.");
     }
 
-    public static String binaryToHex(@NonNull byte[] data) {
+    public static String binaryToHex(byte[] data) {
         return Hex.encodeHexString(data);
     }
 
-    public static String binaryToBase64(@NonNull byte[] data) {
+    public static String binaryToBase64(byte[] data) {
         return Base64.encodeBase64String(data);
     }
 
-    public static byte[] hexToBinary(@NonNull String hex) throws DecoderException {
+    public static byte[] hexToBinary(String hex) throws DecoderException {
         return Hex.decodeHex(hex);
     }
 
-    public static byte[] base64ToBinary(@NonNull String base64) {
+    public static byte[] base64ToBinary(String base64) {
         return Base64.decodeBase64(base64);
     }
 
-    public static String binaryEncode(EncodeFormat encodeFormat, @NonNull byte[] data) {
+    public static String binaryEncode(EncodeFormat encodeFormat, byte[] data) {
         if (encodeFormat == null) {
             log.warn("인코딩 방식이 지정되지 않았습니다. 기본 설정인 Hex 방식으로 인코딩 됩니다.");
             encodeFormat = EncodeFormat.HEX;

@@ -6,7 +6,6 @@ import kr.re.nsr.crypto.BlockCipher;
 import kr.re.nsr.crypto.BlockCipherMode;
 import kr.re.nsr.crypto.padding.PKCS5Padding;
 import kr.re.nsr.crypto.symm.LEA.ECB;
-import lombok.NonNull;
 
 import java.security.Key;
 
@@ -24,7 +23,7 @@ public class LEAECB extends LEA {
         this.algorithm = LEAECB;
     }
 
-    public byte[] encrypt(@NonNull byte[] data, @NonNull Key key) throws CryptoFailException {
+    public byte[] encrypt(byte[] data, Key key) throws CryptoFailException {
         try {
             BlockCipherMode cipher = new ECB();
             cipher.init(BlockCipher.Mode.ENCRYPT, key.getEncoded());
@@ -36,7 +35,7 @@ public class LEAECB extends LEA {
         }
     }
 
-    public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull Key key) throws CryptoFailException {
+    public byte[] decrypt(byte[] encryptedData, Key key) throws CryptoFailException {
         try {
             BlockCipherMode cipher = new ECB();
             cipher.init(BlockCipher.Mode.DECRYPT, key.getEncoded());
