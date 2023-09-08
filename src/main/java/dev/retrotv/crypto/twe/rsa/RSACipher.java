@@ -41,11 +41,11 @@ public class RSACipher implements TwoWayEncryption {
     }
 
     @Override
-    public byte[] encrypt(byte[] data, Key publicKey, AlgorithmParameterSpec spec) throws CryptoFailException {
+    public byte[] encrypt(byte[] data, Key publicKey, AlgorithmParameterSpec spec) {
         return encrypt(data, publicKey);
     }
 
-    public byte[] encrypt(byte[] data, Key publicKey) throws CryptoFailException {
+    public byte[] encrypt(byte[] data, Key publicKey) {
         String algorithmName = algorithm.label() + "/" + padding.label();
 
         if (padding == PKCS1_PADDING) {
@@ -71,11 +71,11 @@ public class RSACipher implements TwoWayEncryption {
     }
 
     @Override
-    public byte[] decrypt(byte[] encryptedData, Key privateKey, AlgorithmParameterSpec spec) throws CryptoFailException {
+    public byte[] decrypt(byte[] encryptedData, Key privateKey, AlgorithmParameterSpec spec) {
         return decrypt(encryptedData, privateKey);
     }
 
-    public byte[] decrypt(byte[] encryptedData, Key privateKey) throws CryptoFailException {
+    public byte[] decrypt(byte[] encryptedData, Key privateKey) {
         String algorithmName = algorithm.label() + "/" + padding.label();
         log.debug("선택된 알고리즘: {}", algorithmName);
 

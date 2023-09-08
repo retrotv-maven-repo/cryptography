@@ -22,13 +22,12 @@ public interface TwoWayEncryption {
     /**
      * 데이터를 암호화 하고, 암호화 된 데이터를 반환 합니다.
      *
-     * @throws CryptoFailException 암호화가 실패한 경우 발생
      * @param data 암호화 할 데이터
      * @param key 암호화 시, 사용할 키
      * @param spec 초기화 벡터
      * @return 암호화 된 데이터
      */
-    byte[] encrypt(byte[] data, Key key, AlgorithmParameterSpec spec) throws CryptoFailException;
+    byte[] encrypt(byte[] data, Key key, AlgorithmParameterSpec spec);
 
     /**
      * 데이터를 암호화 하고, 지정된 인코딩 포맷으로 인코딩 후 반환합니다.
@@ -39,8 +38,7 @@ public interface TwoWayEncryption {
      * @param format 인코딩 포맷
      * @return 암호화 완료 후, 지정된 포맷으로 인코딩 된 데이터
      */
-    default String encrypt(byte[] data, Key key, AlgorithmParameterSpec spec, EncodeFormat format)
-            throws CryptoFailException {
+    default String encrypt(byte[] data, Key key, AlgorithmParameterSpec spec, EncodeFormat format) {
         byte[] encryptedData = encrypt(data, key, spec);
 
         if (format == HEX) {
@@ -53,13 +51,12 @@ public interface TwoWayEncryption {
     /**
      * 암호화 된 데이터를 복호화 하고, 복호화 된 데이터를 반환 합니다.
      *
-     * @throws CryptoFailException 복호화가 실패한 경우 발생
      * @param encryptedData 암호화 된 데이터
      * @param key 복호화 시, 사용할 키
      * @param spec 초기화 벡터
      * @return 복호화 된 데이터
      */
-    byte[] decrypt(byte[] encryptedData, Key key, AlgorithmParameterSpec spec) throws CryptoFailException;
+    byte[] decrypt(byte[] encryptedData, Key key, AlgorithmParameterSpec spec);
 
     /**
      * 암호화 된 데이터를 지정된 인코딩 포맷으로 디코딩 후, 복호화 된 데이터를 반환 합니다.
@@ -70,8 +67,7 @@ public interface TwoWayEncryption {
      * @param format 인코딩 포맷
      * @return 복호화 된 데이터
      */
-    default byte[] decrypt(String encryptedData, Key key, AlgorithmParameterSpec spec, EncodeFormat format)
-            throws CryptoFailException {
+    default byte[] decrypt(String encryptedData, Key key, AlgorithmParameterSpec spec, EncodeFormat format) {
         byte[] decodedData;
 
         if (format == HEX) {

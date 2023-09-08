@@ -58,7 +58,7 @@ public abstract class DES implements TwoWayEncryption, KeyGenerator {
           + "\n지원하지 않는 암호화 알고리즘 입니다.";
 
     @Override
-    public byte[] encrypt(byte[] data, Key key, AlgorithmParameterSpec spec) throws CryptoFailException {
+    public byte[] encrypt(byte[] data, Key key, AlgorithmParameterSpec spec) {
         String algorithmName = algorithm.label() + "/" + padding.label();
 
         if (algorithm == DESECB || algorithm == TRIPLE_DESECB) {
@@ -97,7 +97,7 @@ public abstract class DES implements TwoWayEncryption, KeyGenerator {
     }
 
     @Override
-    public byte[] decrypt(byte[] encryptedData, Key key, AlgorithmParameterSpec spec) throws CryptoFailException {
+    public byte[] decrypt(byte[] encryptedData, Key key, AlgorithmParameterSpec spec) {
         String algorithmName = algorithm.label() + "/" + padding.label();
 
         try {

@@ -6,7 +6,7 @@ package dev.retrotv.crypto.exception;
  * @author  yjj8353
  * @since   1.8
  */
-public class KeyGenerateException extends Exception {
+public class KeyGenerateException extends RuntimeException {
     public KeyGenerateException() {
         super();
     }

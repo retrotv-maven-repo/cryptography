@@ -33,7 +33,7 @@ public class RSAKeyPairGenerator implements KeyPairGenerator {
     }
 
     @Override
-    public KeyPair generateKeyPair() throws KeyGenerateException {
+    public KeyPair generateKeyPair() {
         try {
             java.security.KeyPairGenerator keyPairGenerator = java.security.KeyPairGenerator.getInstance("RSA");
             keyPairGenerator.initialize(keyLen, new SecureRandom());
