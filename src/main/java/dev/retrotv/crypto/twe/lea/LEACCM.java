@@ -6,7 +6,6 @@ import dev.retrotv.crypto.twe.ParameterSpecGenerator;
 import dev.retrotv.utils.SecureRandomUtil;
 import kr.re.nsr.crypto.BlockCipher;
 import kr.re.nsr.crypto.BlockCipherModeAE;
-import lombok.NonNull;
 
 import javax.crypto.AEADBadTagException;
 import javax.crypto.spec.GCMParameterSpec;
@@ -31,7 +30,7 @@ public class LEACCM extends LEA implements ParameterSpecGenerator<GCMParameterSp
     }
 
     @Override
-    public byte[] encrypt(@NonNull byte[] data, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptoFailException {
+    public byte[] encrypt(byte[] data, Key key, AlgorithmParameterSpec spec) throws CryptoFailException {
         try {
             BlockCipherModeAE cipher = new kr.re.nsr.crypto.symm.LEA.GCM();
             GCMParameterSpec gcmSpec = (GCMParameterSpec) spec;
@@ -47,7 +46,7 @@ public class LEACCM extends LEA implements ParameterSpecGenerator<GCMParameterSp
     }
 
     @Override
-    public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptoFailException {
+    public byte[] decrypt(byte[] encryptedData, Key key, AlgorithmParameterSpec spec) throws CryptoFailException {
         try {
             BlockCipherModeAE cipher = new kr.re.nsr.crypto.symm.LEA.GCM();
             GCMParameterSpec gcmSpec = (GCMParameterSpec) spec;

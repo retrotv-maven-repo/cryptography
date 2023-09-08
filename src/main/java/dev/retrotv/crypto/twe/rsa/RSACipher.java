@@ -5,7 +5,6 @@ import dev.retrotv.crypto.exception.WrongPaddingException;
 import dev.retrotv.crypto.twe.TwoWayEncryption;
 import dev.retrotv.enums.CipherAlgorithm;
 import dev.retrotv.enums.Padding;
-import lombok.NonNull;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -42,11 +41,11 @@ public class RSACipher implements TwoWayEncryption {
     }
 
     @Override
-    public byte[] encrypt(@NonNull byte[] data, @NonNull Key publicKey, AlgorithmParameterSpec spec) throws CryptoFailException {
+    public byte[] encrypt(byte[] data, Key publicKey, AlgorithmParameterSpec spec) throws CryptoFailException {
         return encrypt(data, publicKey);
     }
 
-    public byte[] encrypt(@NonNull byte[] data, @NonNull Key publicKey) throws CryptoFailException {
+    public byte[] encrypt(byte[] data, Key publicKey) throws CryptoFailException {
         String algorithmName = algorithm.label() + "/" + padding.label();
 
         if (padding == PKCS1_PADDING) {
@@ -72,11 +71,11 @@ public class RSACipher implements TwoWayEncryption {
     }
 
     @Override
-    public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull Key privateKey, AlgorithmParameterSpec spec) throws CryptoFailException {
+    public byte[] decrypt(byte[] encryptedData, Key privateKey, AlgorithmParameterSpec spec) throws CryptoFailException {
         return decrypt(encryptedData, privateKey);
     }
 
-    public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull Key privateKey) throws CryptoFailException {
+    public byte[] decrypt(byte[] encryptedData, Key privateKey) throws CryptoFailException {
         String algorithmName = algorithm.label() + "/" + padding.label();
         log.debug("선택된 알고리즘: {}", algorithmName);
 

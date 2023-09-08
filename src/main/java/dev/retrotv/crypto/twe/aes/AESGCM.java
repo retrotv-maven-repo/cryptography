@@ -4,7 +4,6 @@ import dev.retrotv.crypto.exception.CryptoFailException;
 import dev.retrotv.crypto.exception.WrongKeyLengthException;
 import dev.retrotv.crypto.twe.ParameterSpecGenerator;
 import dev.retrotv.utils.SecureRandomUtil;
-import lombok.NonNull;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -35,7 +34,7 @@ public class AESGCM extends AES implements ParameterSpecGenerator<GCMParameterSp
     }
 
     @Override
-    public byte[] encrypt(@NonNull byte[] data, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptoFailException {
+    public byte[] encrypt(byte[] data, Key key, AlgorithmParameterSpec spec) throws CryptoFailException {
         String algorithmName = algorithm.label() + "/" + padding.label();
         log.debug("선택된 알고리즘: {}", algorithmName);
 
@@ -63,7 +62,7 @@ public class AESGCM extends AES implements ParameterSpecGenerator<GCMParameterSp
     }
 
     @Override
-    public byte[] decrypt(@NonNull byte[] encryptedData, @NonNull Key key, AlgorithmParameterSpec spec) throws CryptoFailException {
+    public byte[] decrypt(byte[] encryptedData, Key key, AlgorithmParameterSpec spec) throws CryptoFailException {
         String algorithmName = algorithm.label() + "/" + padding.label();
         log.debug("선택된 알고리즘: {}", algorithmName);
 
@@ -90,7 +89,7 @@ public class AESGCM extends AES implements ParameterSpecGenerator<GCMParameterSp
         }
     }
 
-    public void updateAAD(@NonNull String aad) {
+    public void updateAAD(String aad) {
         this.aad = aad;
     }
 
