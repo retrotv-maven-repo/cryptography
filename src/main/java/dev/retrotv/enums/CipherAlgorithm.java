@@ -27,7 +27,6 @@ public enum CipherAlgorithm {
     , TRIPLE_DESCFB("DESede/CFB")
     , TRIPLE_DESOFB("DESede/OFB")
     , TRIPLE_DESCTR("DESede/CTR")
-    , TRIPLE_DESGCM("DESede/GCM")
 
     // Java는 스펙상 RSA 알고리즘의 None과 ECB의 구별이 없음
     , RSA("RSA/ECB")
