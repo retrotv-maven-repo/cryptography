@@ -20,24 +20,28 @@ public class RandomValue {
     private static final int DEFAULT_LENGTH = 16;
     private static final SecurityStrength DEFAULT_SECURITY_STRENGTH = SecurityStrength.MIDDLE;
 
+    // 최소공배수: 2080, 80
     private static final char[] CAPITAL_LETTERS = {
-            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
-            'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+        'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
     };
 
+    // 최소공배수: 2080, 80
     private static final char[] SMALL_LETTERS = {
-            'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
-            'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
+        'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+        'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
     };
 
+    // 최소공배수: 2080, 208
     private static final char[] NUMBERS = {
-            '0', '1', '2', '3', '4',
-            '5', '6', '7', '8', '9'
+        '0', '1', '2', '3', '4',
+        '5', '6', '7', '8', '9'
     };
 
+    // 최소공배수: 2080, 65
     private static final char[] SPECIAL_CHARS = {
-            '!', '"', '#', '$', '%', '&', '\'', '(', ')', '*', '+', ',', '-', '.', '/', ':',
-            ';', '<', '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~'
+        '!', '"', '#', '$', '%', '&', '\'', '(', ')', '*', '+', ',', '-', '.', '/', ':',
+        ';', '<', '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~'
     };
 
     private static final int CAPITAL_LETTERS_LENGTH = CAPITAL_LETTERS.length;
