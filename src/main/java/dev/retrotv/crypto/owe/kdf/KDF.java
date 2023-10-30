@@ -16,13 +16,7 @@ public abstract class KDF implements PasswordEncoder {
 
     @Override
     public boolean matches(CharSequence rawPassword, String encodedPassword) {
-        if (rawPassword == null) {
-            log.warn("매개변수 rawPassword가 null 입니다.");
-            return false;
-        }
-
-        if (encodedPassword == null) {
-            log.warn("매개변수 encodedPassword가 null 입니다.");
+        if (rawPassword == null || encodedPassword == null) {
             return false;
         }
 

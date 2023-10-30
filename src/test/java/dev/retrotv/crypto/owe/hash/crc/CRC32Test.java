@@ -5,7 +5,7 @@ import dev.retrotv.enums.HashAlgorithm;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class CRC32Test extends OWETest {
+class CRC32Test extends OWETest {
 
     @Test
     @DisplayName("CRC32 File hash 테스트")

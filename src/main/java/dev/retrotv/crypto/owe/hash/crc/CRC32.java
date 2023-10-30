@@ -6,6 +6,7 @@ import dev.retrotv.crypto.owe.hash.PasswordWithSalt;
 import dev.retrotv.utils.EncodeUtil;
 
 import java.nio.ByteBuffer;
+import java.util.Optional;
 
 /**
  * CRC-32 알고리즘으로 암호화 하기 위한 {@link Checksum}, {@link PasswordWithSalt} 인터페이스의 구현체 입니다.
@@ -17,6 +18,10 @@ public class CRC32 extends Hash {
 
     @Override
     public String hash(byte[] data) {
+        if (data == null) {
+            throw new IllegalArgumentException("data는 null일 수 없습니다.");
+        }
+
         java.util.zip.CRC32 crc32 = new java.util.zip.CRC32();
         crc32.update(data);
 
