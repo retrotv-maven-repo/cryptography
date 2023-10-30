@@ -1,6 +1,6 @@
 package dev.retrotv.utils;
 
-import dev.retrotv.data.utils.StringUtils;
+import static dev.retrotv.data.utils.ValidUtils.*;
 
 public class PasswordStrengthUtil {
     private PasswordStrengthUtil() {
@@ -18,26 +18,22 @@ public class PasswordStrengthUtil {
                                   , boolean includeSpecialCharacter
                                   , CharSequence password) {
 
-        if (includeEnglish && !StringUtils.isIncludeEnglish(password.toString())) {
+        if (includeEnglish && !isIncludeEnglish(password.toString())) {
             return false;
         }
 
-        if (includeLowerCaseEnglish && !StringUtils.isIncludeLowerCase(password.toString())) {
+        if (includeLowerCaseEnglish && !isIncludeLowerCase(password.toString())) {
             return false;
         }
 
-        if (includeUpperCaseEnglish && !StringUtils.isIncludeUpperCase(password.toString())) {
+        if (includeUpperCaseEnglish && !isIncludeUpperCase(password.toString())) {
             return false;
         }
 
-        if (includeNumber && !StringUtils.isIncludeNumber(password.toString())) {
+        if (includeNumber && !isIncludeNumber(password.toString())) {
             return false;
         }
 
-        if (includeSpecialCharacter && !StringUtils.isIncludeSpecialCharacter(password.toString())) {
-            return false;
-        }
-
-        return true;
+        return !includeSpecialCharacter || isIncludeSpecialCharacter(password.toString());
     }
 }

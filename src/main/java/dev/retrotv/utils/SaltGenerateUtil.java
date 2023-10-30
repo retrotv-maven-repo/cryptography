@@ -1,6 +1,7 @@
 package dev.retrotv.utils;
 
-import dev.retrotv.random.RandomValue;
+import dev.retrotv.random.Generator;
+import dev.retrotv.random.PasswordGenerator;
 import dev.retrotv.random.enums.SecurityStrength;
 
 public class SaltGenerateUtil {
@@ -16,8 +17,8 @@ public class SaltGenerateUtil {
      * @return 생성된 소금
      */
     public static String generateSalt() {
-        final RandomValue rv = new RandomValue();
-        rv.generate();
+        final Generator rv = new PasswordGenerator(SecurityStrength.MIDDLE);
+        rv.generate(16);
         return rv.getValue();
     }
 
@@ -29,8 +30,8 @@ public class SaltGenerateUtil {
      * @return 생성된 소금
      */
     public static String generateSalt(int len) {
-        final RandomValue rv = new RandomValue(len);
-        rv.generate();
+        final Generator rv = new PasswordGenerator(SecurityStrength.MIDDLE);
+        rv.generate(len);
         return rv.getValue();
     }
 
@@ -42,8 +43,8 @@ public class SaltGenerateUtil {
      * @return 생성된 소금
      */
     public static String generateSalt(SecurityStrength securityStrength) {
-        final RandomValue rv = new RandomValue(16, securityStrength);
-        rv.generate();
+        final Generator rv = new PasswordGenerator(securityStrength);
+        rv.generate(16);
         return rv.getValue();
     }
 
@@ -55,8 +56,8 @@ public class SaltGenerateUtil {
      * @return 생성된 소금
      */
     public static String generateSalt(int len, SecurityStrength securityStrength) {
-        final RandomValue rv = new RandomValue(len, securityStrength);
-        rv.generate();
+        final Generator rv = new PasswordGenerator(securityStrength);
+        rv.generate(len);
         return rv.getValue();
     }
 }
