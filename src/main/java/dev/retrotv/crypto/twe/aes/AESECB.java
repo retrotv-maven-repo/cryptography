@@ -14,7 +14,6 @@ public class AESECB extends AES {
 
     public AESECB(int keyLen) {
         if (keyLen != 128 && keyLen != 192 && keyLen != 256) {
-            log.debug("keyLen 값: {}", keyLen);
             throw new WrongKeyLengthException();
         }
 

@@ -1,25 +1,28 @@
 package dev.retrotv.crypto.twe.aes;
 
-import java.security.*;
-import java.security.spec.AlgorithmParameterSpec;
+import dev.retrotv.crypto.exception.CryptoFailException;
+import dev.retrotv.crypto.twe.KeyGenerator;
+import dev.retrotv.crypto.twe.TwoWayEncryption;
+import dev.retrotv.enums.CipherAlgorithm;
+import dev.retrotv.enums.Padding;
+import dev.retrotv.utils.SecureRandomUtil;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.Key;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.AlgorithmParameterSpec;
 
-import dev.retrotv.crypto.exception.CryptoFailException;
-import dev.retrotv.crypto.twe.TwoWayEncryption;
-import dev.retrotv.utils.SecureRandomUtil;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import dev.retrotv.crypto.twe.KeyGenerator;
-import dev.retrotv.enums.*;
-
-import static dev.retrotv.enums.Padding.*;
 import static dev.retrotv.enums.CipherAlgorithm.AESECB;
+import static dev.retrotv.enums.Padding.NO_PADDING;
+import static dev.retrotv.enums.Padding.PKCS5_PADDING;
 
 public abstract class AES implements TwoWayEncryption, KeyGenerator {
     protected static final Logger log = LogManager.getLogger();

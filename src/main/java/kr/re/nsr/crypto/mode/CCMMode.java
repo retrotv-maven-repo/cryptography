@@ -1,15 +1,15 @@
 package kr.re.nsr.crypto.mode;
 
-import static kr.re.nsr.crypto.util.Hex.*;
-import static kr.re.nsr.crypto.util.Ops.*;
+import kr.re.nsr.crypto.BlockCipher;
+import kr.re.nsr.crypto.BlockCipher.Mode;
+import kr.re.nsr.crypto.BlockCipherModeAE;
 
 import java.io.ByteArrayOutputStream;
 import java.io.Closeable;
 import java.util.Arrays;
 
-import kr.re.nsr.crypto.BlockCipher;
-import kr.re.nsr.crypto.BlockCipher.Mode;
-import kr.re.nsr.crypto.BlockCipherModeAE;
+import static kr.re.nsr.crypto.util.Hex.toBytes;
+import static kr.re.nsr.crypto.util.Ops.XOR;
 
 public class CCMMode extends BlockCipherModeAE {
 

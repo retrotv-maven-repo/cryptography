@@ -2,7 +2,6 @@ package dev.retrotv.crypto.owe.kdf.argon2;
 
 import dev.retrotv.crypto.owe.kdf.KDF;
 import dev.retrotv.utils.PasswordStrengthUtil;
-
 import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -59,18 +58,16 @@ public class Argon2 extends KDF {
 
     @Override
     public String encode(CharSequence rawPassword) {
+        if (rawPassword == null) {
+            throw new IllegalArgumentException("rawPassword는 null일 수 없습니다.");
+        }
+
         return argon2PasswordEncoder.encode(rawPassword);
     }
 
     @Override
     public boolean matches(CharSequence rawPassword, String encodedPassword) {
-        if (rawPassword == null) {
-            log.warn("매개변수 rawPassword가 null 입니다.");
-            return false;
-        }
-
-        if (encodedPassword == null) {
-            log.warn("매개변수 encodedPassword가 null 입니다.");
+        if (rawPassword == null || encodedPassword == null) {
             return false;
         }
 
@@ -79,6 +76,10 @@ public class Argon2 extends KDF {
 
     @Override
     public boolean upgradeEncoding(String encodedPassword) {
+        if (encodedPassword == null) {
+            return false;
+        }
+
         return PasswordStrengthUtil.checkLength(8, encodedPassword) &&
                PasswordStrengthUtil.isInclude(
                    true,

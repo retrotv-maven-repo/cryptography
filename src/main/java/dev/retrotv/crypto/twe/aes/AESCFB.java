@@ -12,7 +12,6 @@ public class AESCFB  extends AES implements ParameterSpecGenerator<IvParameterSp
 
     public AESCFB(int keyLen) {
         if (keyLen != 128 && keyLen != 192 && keyLen != 256) {
-            log.debug("keyLen 값: {}", keyLen);
             throw new WrongKeyLengthException();
         }
 

@@ -1,9 +1,10 @@
 package kr.re.nsr.crypto.mode;
 
-import static kr.re.nsr.crypto.util.Ops.*;
 import kr.re.nsr.crypto.BlockCipher;
 import kr.re.nsr.crypto.BlockCipher.Mode;
 import kr.re.nsr.crypto.BlockCipherModeStream;
+
+import static kr.re.nsr.crypto.util.Ops.XOR;
 
 // DONE: block vs buffer
 public class OFBMode extends BlockCipherModeStream {

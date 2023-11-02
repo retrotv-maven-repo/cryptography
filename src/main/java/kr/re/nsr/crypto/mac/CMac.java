@@ -1,12 +1,13 @@
 package kr.re.nsr.crypto.mac;
 
-import static kr.re.nsr.crypto.util.Ops.*;
-
-import java.util.Arrays;
-
 import kr.re.nsr.crypto.BlockCipher;
 import kr.re.nsr.crypto.BlockCipher.Mode;
 import kr.re.nsr.crypto.Mac;
+
+import java.util.Arrays;
+
+import static kr.re.nsr.crypto.util.Ops.XOR;
+import static kr.re.nsr.crypto.util.Ops.shiftLeft;
 
 public class CMac extends Mac {
 

@@ -1,12 +1,12 @@
 package dev.retrotv.crypto.owe.hash.crc;
 
-import dev.retrotv.crypto.owe.hash.Hash;
 import dev.retrotv.crypto.owe.hash.Checksum;
+import dev.retrotv.crypto.owe.hash.Hash;
 import dev.retrotv.crypto.owe.hash.PasswordWithSalt;
 import dev.retrotv.utils.EncodeUtil;
+import dev.retrotv.utils.MessageDigestEncodeUtil;
 
-import java.nio.ByteBuffer;
-import java.util.Optional;
+import static dev.retrotv.enums.HashAlgorithm.CRC32;
 
 /**
  * CRC-32 알고리즘으로 암호화 하기 위한 {@link Checksum}, {@link PasswordWithSalt} 인터페이스의 구현체 입니다.
@@ -18,17 +18,9 @@ public class CRC32 extends Hash {
 
     @Override
     public String hash(byte[] data) {
-        if (data == null) {
-            throw new IllegalArgumentException("data는 null일 수 없습니다.");
-        }
-
-        java.util.zip.CRC32 crc32 = new java.util.zip.CRC32();
-        crc32.update(data);
-
-        ByteBuffer buffer = ByteBuffer.allocate(Long.BYTES);
-        buffer.putLong(crc32.getValue());
 
         // 앞에 0이 패딩되는 부분을 무시하고 뒤의 8자리만 잘라낸다
-        return EncodeUtil.binaryToHex(buffer.array()).substring(8);
+        return EncodeUtil.binaryToHex(MessageDigestEncodeUtil.encode(CRC32, data))
+                         .substring(8);
     }
 }

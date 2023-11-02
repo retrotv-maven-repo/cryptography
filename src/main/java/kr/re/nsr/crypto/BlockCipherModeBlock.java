@@ -1,8 +1,8 @@
 package kr.re.nsr.crypto;
 
-import java.util.Arrays;
-
 import kr.re.nsr.crypto.BlockCipher.Mode;
+
+import java.util.Arrays;
 
 public abstract class BlockCipherModeBlock extends BlockCipherModeImpl {
 

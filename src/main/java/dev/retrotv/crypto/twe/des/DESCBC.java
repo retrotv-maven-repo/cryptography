@@ -1,14 +1,13 @@
 package dev.retrotv.crypto.twe.des;
 
-import java.security.Key;
-import java.security.NoSuchAlgorithmException;
-
-import javax.crypto.KeyGenerator;
-import javax.crypto.spec.IvParameterSpec;
-
 import dev.retrotv.crypto.exception.KeyGenerateException;
 import dev.retrotv.crypto.twe.ParameterSpecGenerator;
 import dev.retrotv.utils.SecureRandomUtil;
+
+import javax.crypto.KeyGenerator;
+import javax.crypto.spec.IvParameterSpec;
+import java.security.Key;
+import java.security.NoSuchAlgorithmException;
 
 import static dev.retrotv.enums.CipherAlgorithm.DESCBC;
 

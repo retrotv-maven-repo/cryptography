@@ -1,11 +1,10 @@
 package dev.retrotv.crypto.twe.des;
 
-import java.security.Key;
-import java.security.NoSuchAlgorithmException;
+import dev.retrotv.crypto.exception.KeyGenerateException;
 
 import javax.crypto.KeyGenerator;
-
-import dev.retrotv.crypto.exception.KeyGenerateException;
+import java.security.Key;
+import java.security.NoSuchAlgorithmException;
 
 import static dev.retrotv.enums.CipherAlgorithm.TRIPLE_DESECB;
 

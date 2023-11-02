@@ -2,8 +2,6 @@ package dev.retrotv.crypto.twe;
 
 import java.security.KeyPair;
 
-import dev.retrotv.crypto.exception.KeyGenerateException;
-
 public interface KeyPairGenerator {
 
     /**

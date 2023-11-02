@@ -3,13 +3,12 @@ package dev.retrotv.crypto.twe;
 import dev.retrotv.crypto.exception.CryptoFailException;
 import dev.retrotv.enums.EncodeFormat;
 import dev.retrotv.utils.EncodeUtil;
-
 import org.apache.commons.codec.DecoderException;
 
 import java.security.Key;
 import java.security.spec.AlgorithmParameterSpec;
 
-import static dev.retrotv.enums.EncodeFormat.*;
+import static dev.retrotv.enums.EncodeFormat.HEX;
 
 /**
  * 양방향 암호화 클래스 구현을 위한 인터페이스 입니다.

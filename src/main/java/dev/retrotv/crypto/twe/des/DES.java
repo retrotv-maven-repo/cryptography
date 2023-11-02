@@ -1,24 +1,22 @@
 package dev.retrotv.crypto.twe.des;
 
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.Key;
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.AlgorithmParameterSpec;
-
-import javax.crypto.BadPaddingException;
-import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-
 import dev.retrotv.crypto.exception.CryptoFailException;
 import dev.retrotv.crypto.twe.KeyGenerator;
 import dev.retrotv.crypto.twe.TwoWayEncryption;
 import dev.retrotv.enums.CipherAlgorithm;
 import dev.retrotv.enums.Padding;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.Key;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.AlgorithmParameterSpec;
 
 import static dev.retrotv.enums.CipherAlgorithm.DESECB;
 import static dev.retrotv.enums.CipherAlgorithm.TRIPLE_DESECB;

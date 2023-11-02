@@ -1,8 +1,8 @@
 package dev.retrotv.crypto.owe.hash.sha;
 
 import dev.retrotv.crypto.owe.hash.Hash;
-import dev.retrotv.utils.MessageDigestEncodeUtil;
 import dev.retrotv.utils.EncodeUtil;
+import dev.retrotv.utils.MessageDigestEncodeUtil;
 
 import static dev.retrotv.enums.HashAlgorithm.SHA1;
 

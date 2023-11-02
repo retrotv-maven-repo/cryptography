@@ -3,8 +3,6 @@ package dev.retrotv.crypto.twe;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 
-import dev.retrotv.crypto.exception.CryptoFailException;
-
 public interface DigitalSignature {
 
     /**
