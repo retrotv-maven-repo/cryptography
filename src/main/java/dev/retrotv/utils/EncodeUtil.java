@@ -1,14 +1,9 @@
 package dev.retrotv.utils;
 
 import dev.retrotv.enums.EncodeFormat;
-
-
-import lombok.NonNull;
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.binary.Hex;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class EncodeUtil {
 
@@ -32,11 +27,11 @@ public class EncodeUtil {
         return Base64.encodeBase64String(data);
     }
 
-    public static byte[] hexToBinary(@NonNull String hex) throws DecoderException {
+    public static byte[] hexToBinary(String hex) throws DecoderException {
         return Hex.decodeHex(hex);
     }
 
-    public static byte[] base64ToBinary(@NonNull String base64) {
+    public static byte[] base64ToBinary(String base64) {
         return Base64.decodeBase64(base64);
     }
 

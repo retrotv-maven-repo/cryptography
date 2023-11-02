@@ -1,7 +1,5 @@
 package dev.retrotv.crypto.twe;
 
-import dev.retrotv.crypto.exception.KeyGenerateException;
-
 import java.security.Key;
 
 public interface KeyGenerator  {

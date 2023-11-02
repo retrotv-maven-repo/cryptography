@@ -2,7 +2,6 @@ package dev.retrotv.crypto.owe.kdf.bcrypt;
 
 import dev.retrotv.crypto.owe.kdf.KDF;
 import dev.retrotv.utils.PasswordStrengthUtil;
-
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -26,39 +25,65 @@ public class BCrypt extends KDF {
     }
 
     public BCrypt(BCryptPasswordEncoder.BCryptVersion version) {
+        if (version == null) {
+            throw new IllegalArgumentException("version은 null일 수 없습니다.");
+        }
+
         bCryptPasswordEncoder = new BCryptPasswordEncoder(version);
     }
 
     public BCrypt(BCryptPasswordEncoder.BCryptVersion version, SecureRandom random) {
+        if (version == null) {
+            throw new IllegalArgumentException("version은 null일 수 없습니다.");
+        }
+
+        if (random == null) {
+            throw new IllegalArgumentException("random은 null일 수 없습니다.");
+        }
+
         bCryptPasswordEncoder = new BCryptPasswordEncoder(version, random);
     }
 
     public BCrypt(int strength, SecureRandom random) {
+        if (random == null) {
+            throw new IllegalArgumentException("random은 null일 수 없습니다.");
+        }
+
         bCryptPasswordEncoder = new BCryptPasswordEncoder(strength, random);
     }
 
     public BCrypt(BCryptPasswordEncoder.BCryptVersion version, int strength) {
+        if (version == null) {
+            throw new IllegalArgumentException("version은 null일 수 없습니다.");
+        }
+
         bCryptPasswordEncoder = new BCryptPasswordEncoder(version, strength);
     }
 
     public BCrypt(BCryptPasswordEncoder.BCryptVersion version, int strength, SecureRandom random) {
+        if (version == null) {
+            throw new IllegalArgumentException("version은 null일 수 없습니다.");
+        }
+
+        if (random == null) {
+            throw new IllegalArgumentException("random은 null일 수 없습니다.");
+        }
+
         bCryptPasswordEncoder = new BCryptPasswordEncoder(version, strength, random);
     }
 
     @Override
     public String encode(CharSequence rawPassword) {
+        if (rawPassword == null) {
+            throw new IllegalArgumentException("rawPassword는 null일 수 없습니다.");
+        }
+
         return bCryptPasswordEncoder.encode(rawPassword);
     }
 
     @Override
     public boolean matches(CharSequence rawPassword, String encodedPassword) {
-        if (rawPassword == null) {
-            log.warn("매개변수 rawPassword가 null 입니다.");
-            return false;
-        }
-
-        if (encodedPassword == null) {
-            log.warn("매개변수 encodedPassword가 null 입니다.");
+        if (rawPassword == null || encodedPassword == null) {
             return false;
         }
 
@@ -67,6 +92,10 @@ public class BCrypt extends KDF {
 
     @Override
     public boolean upgradeEncoding(String encodedPassword) {
+        if (encodedPassword == null) {
+            return false;
+        }
+
         return PasswordStrengthUtil.checkLength(8, encodedPassword) &&
                PasswordStrengthUtil.isInclude(
                    true,

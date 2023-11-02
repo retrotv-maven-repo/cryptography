@@ -32,7 +32,7 @@ repositories {
 dependencies {
     api 'commons-codec:commons-codec:1.16.0'
     api 'org.springframework.security:spring-security-core:5.8.8'
-    implementation 'com.github.retrotv-maven-repo:data-utils:0.12.0-alpha'
+    implementation 'com.github.retrotv-maven-repo:data-utils:0.13.0-alpha'
     implementation 'com.github.retrotv-maven-repo:random-value:0.4.0-alpha'
     compileOnly 'org.projectlombok:lombok:1.18.28'
 

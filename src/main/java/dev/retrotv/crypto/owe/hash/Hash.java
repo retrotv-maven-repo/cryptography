@@ -1,8 +1,6 @@
 package dev.retrotv.crypto.owe.hash;
 
-import dev.retrotv.utils.FileReadUtil;
-
-import lombok.NonNull;
+import dev.retrotv.data.utils.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,8 +9,12 @@ import java.nio.charset.Charset;
 public abstract class Hash implements Checksum, PasswordWithSalt {
 
     @Override
-    public String hash(@NonNull File file) throws IOException {
-        return hash(FileReadUtil.read(file));
+    public String hash(File file) throws IOException {
+        if (file == null) {
+            throw new IllegalArgumentException("file은 null일 수 없습니다.");
+        }
+
+        return hash(FileUtils.read(file));
     }
 
     @Override
@@ -30,7 +32,7 @@ public abstract class Hash implements Checksum, PasswordWithSalt {
             return false;
         }
 
-        return matches(FileReadUtil.read(file), checksum);
+        return matches(FileUtils.read(file), checksum);
     }
 
     @Override
@@ -48,37 +50,57 @@ public abstract class Hash implements Checksum, PasswordWithSalt {
             return false;
         }
 
-        byte[] file1Data = FileReadUtil.read(file1);
-        byte[] file2Data = FileReadUtil.read(file2);
+        byte[] file1Data = FileUtils.read(file1);
+        byte[] file2Data = FileUtils.read(file2);
 
         return matches(file1Data, file2Data);
     }
 
     @Override
-    public String encode(@NonNull CharSequence rawPassword) {
+    public String encode(CharSequence rawPassword) {
+        if (rawPassword == null) {
+            throw new IllegalArgumentException("rawPassword은 null일 수 없습니다.");
+        }
+
         String password = String.valueOf(rawPassword);
         return hash(password.getBytes());
     }
 
     @Override
-    public String encode(@NonNull CharSequence rawPassword, @NonNull Charset charset) {
+    public String encode(CharSequence rawPassword, Charset charset) {
+        if (rawPassword == null) {
+            throw new IllegalArgumentException("rawPassword은 null일 수 없습니다.");
+        }
+
+        if (charset == null) {
+            throw new IllegalArgumentException("charset은 null일 수 없습니다.");
+        }
+
         String password = String.valueOf(rawPassword);
         return hash(password.getBytes(charset));
     }
 
     @Override
-    public String encode(@NonNull CharSequence rawPassword, @NonNull CharSequence salt) {
-        if ("".contentEquals(rawPassword) && "".contentEquals(salt)) {
-            throw new IllegalArgumentException("rawPassword 및 salt는 빈 값일 수 없습니다.");
+    public String encode(CharSequence rawPassword, CharSequence salt) {
+        if (rawPassword == null) {
+            throw new IllegalArgumentException("rawPassword는 null일 수 없습니다.");
+        }
+
+        if (salt == null) {
+            throw new IllegalArgumentException("salt는 null일 수 없습니다.");
         }
 
         return encode(String.valueOf(rawPassword) + salt);
     }
 
     @Override
-    public String encode(@NonNull CharSequence rawPassword, @NonNull CharSequence salt, @NonNull Charset charset) {
-        if ("".contentEquals(rawPassword) && "".contentEquals(salt)) {
-            return "";
+    public String encode(CharSequence rawPassword, CharSequence salt, Charset charset) {
+        if (rawPassword == null) {
+            throw new IllegalArgumentException("rawPassword는 null일 수 없습니다.");
+        }
+
+        if (salt == null) {
+            throw new IllegalArgumentException("salt는 null일 수 없습니다.");
         }
 
         return encode(String.valueOf(rawPassword) + salt, charset);
@@ -95,12 +117,8 @@ public abstract class Hash implements Checksum, PasswordWithSalt {
 
     @Override
     public boolean matches(CharSequence rawPassword, CharSequence salt, String encodedPassword) {
-        if (rawPassword == null || encodedPassword == null) {
+        if (rawPassword == null || salt == null || encodedPassword == null) {
             return false;
-        }
-
-        if (salt == null) {
-            salt = "";
         }
 
         return matches(String.valueOf(rawPassword) + salt, encodedPassword);

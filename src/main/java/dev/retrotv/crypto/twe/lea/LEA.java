@@ -9,7 +9,6 @@ import dev.retrotv.utils.SecureRandomUtil;
 import kr.re.nsr.crypto.BlockCipher;
 import kr.re.nsr.crypto.BlockCipherMode;
 import kr.re.nsr.crypto.padding.PKCS5Padding;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -19,8 +18,9 @@ import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.AlgorithmParameterSpec;
 
-import static dev.retrotv.enums.Padding.*;
 import static dev.retrotv.enums.CipherAlgorithm.LEAECB;
+import static dev.retrotv.enums.Padding.NO_PADDING;
+import static dev.retrotv.enums.Padding.PKCS5_PADDING;
 
 public abstract class LEA implements TwoWayEncryption, KeyGenerator {
     protected static final Logger log = LogManager.getLogger();

@@ -25,7 +25,6 @@ public class AESGCM extends AES implements ParameterSpecGenerator<GCMParameterSp
 
     public AESGCM(int keyLen) {
         if (keyLen != 128 && keyLen != 192 && keyLen != 256) {
-            log.debug("keyLen 값: {}", keyLen);
             throw new WrongKeyLengthException();
         }
 
@@ -36,7 +35,6 @@ public class AESGCM extends AES implements ParameterSpecGenerator<GCMParameterSp
     @Override
     public byte[] encrypt(byte[] data, Key key, AlgorithmParameterSpec spec) throws CryptoFailException {
         String algorithmName = algorithm.label() + "/" + padding.label();
-        log.debug("선택된 알고리즘: {}", algorithmName);
 
         try {
             Cipher cipher = Cipher.getInstance(algorithmName);
@@ -64,7 +62,6 @@ public class AESGCM extends AES implements ParameterSpecGenerator<GCMParameterSp
     @Override
     public byte[] decrypt(byte[] encryptedData, Key key, AlgorithmParameterSpec spec) throws CryptoFailException {
         String algorithmName = algorithm.label() + "/" + padding.label();
-        log.debug("선택된 알고리즘: {}", algorithmName);
 
         try {
             Cipher cipher = Cipher.getInstance(algorithmName);

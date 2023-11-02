@@ -1,7 +1,5 @@
 package dev.retrotv.crypto.owe.hash;
 
-import lombok.NonNull;
-
 import java.io.File;
 import java.io.IOException;
 
@@ -28,7 +26,7 @@ public interface Checksum {
      * @return 체크섬
      * @throws IOException 파일을 읽어들이는 과정에서 오류가 발생할 경우 던짐
      */
-    String hash(@NonNull File file) throws IOException;
+    String hash(File file) throws IOException;
 
     /**
      * data를 해시해 체크섬을 생성한 뒤, 비교할 checksum과 일치하는지 확인하고 일치 여부를 반환합니다.

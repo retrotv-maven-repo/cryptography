@@ -1,10 +1,11 @@
 package kr.re.nsr.crypto.engine;
 
-import java.util.Arrays;
-
 import kr.re.nsr.crypto.BlockCipher;
 
-import static kr.re.nsr.crypto.util.Ops.*;
+import java.util.Arrays;
+
+import static kr.re.nsr.crypto.util.Ops.pack;
+import static kr.re.nsr.crypto.util.Ops.unpack;
 
 public class LeaEngine extends BlockCipher {
 
