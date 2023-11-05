@@ -1,7 +1,6 @@
 package kr.re.nsr.crypto.mode;
 
 import kr.re.nsr.crypto.BlockCipher;
-import kr.re.nsr.crypto.BlockCipher.Mode;
 import kr.re.nsr.crypto.BlockCipherModeBlock;
 
 public class ECBMode extends BlockCipherModeBlock {
@@ -16,7 +15,7 @@ public class ECBMode extends BlockCipherModeBlock {
 	}
 
 	@Override
-	public void init(Mode mode, byte[] mk) {
+	public void init(BlockCipher.Mode mode, byte[] mk) {
 		this.mode = mode;
 		engine.init(mode, mk);
 	}

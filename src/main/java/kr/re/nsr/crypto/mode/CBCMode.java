@@ -1,9 +1,10 @@
 package kr.re.nsr.crypto.mode;
 
-import static kr.re.nsr.crypto.util.Ops.*;
 import kr.re.nsr.crypto.BlockCipher;
-import kr.re.nsr.crypto.BlockCipher.Mode;
 import kr.re.nsr.crypto.BlockCipherModeBlock;
+import kr.re.nsr.crypto.util.Ops;
+
+import static kr.re.nsr.crypto.util.Ops.XOR;
 
 public class CBCMode extends BlockCipherModeBlock {
 
@@ -20,7 +21,7 @@ public class CBCMode extends BlockCipherModeBlock {
 	}
 
 	@Override
-	public void init(Mode mode, byte[] mk, byte[] iv) {
+	public void init(BlockCipher.Mode mode, byte[] mk, byte[] iv) {
 		this.mode = mode;
 		engine.init(mode, mk);
 		this.iv = clone(iv);
@@ -41,7 +42,7 @@ public class CBCMode extends BlockCipherModeBlock {
 			throw new IllegalArgumentException("outlen should be " + blocksize + " in " + getAlgorithmName());
 		}
 
-		if (mode == Mode.ENCRYPT) {
+		if (mode == BlockCipher.Mode.ENCRYPT) {
 			return encryptBlock(in, inOff, out, outOff);
 		}
 
@@ -53,7 +54,7 @@ public class CBCMode extends BlockCipherModeBlock {
 			throw new IllegalStateException("input data too short");
 		}
 
-		XOR(feedback, 0, in, inOff, blocksize);
+		Ops.XOR(feedback, 0, in, inOff, blocksize);
 
 		engine.processBlock(feedback, 0, out, outOff);
 
@@ -69,7 +70,7 @@ public class CBCMode extends BlockCipherModeBlock {
 
 		engine.processBlock(in, inOff, out, outOff);
 
-		XOR(out, outOff, feedback, 0, blocksize);
+		Ops.XOR(out, outOff, feedback, 0, blocksize);
 
 		System.arraycopy(in, inOff, feedback, 0, blocksize);
 

@@ -2,8 +2,6 @@ package kr.re.nsr.crypto;
 
 import java.util.Arrays;
 
-import kr.re.nsr.crypto.BlockCipher.Mode;
-
 public abstract class BlockCipherModeBlock extends BlockCipherModeImpl {
 
 	protected Padding padding;
@@ -17,7 +15,7 @@ public abstract class BlockCipherModeBlock extends BlockCipherModeImpl {
 		// TODO
 
 		int size = ((len + bufferOffset) & blockmask) + blocksize;
-		if (mode == Mode.ENCRYPT) {
+		if (mode == BlockCipher.Mode.ENCRYPT) {
 			return padding != null ? size : len;
 		}
 
@@ -26,7 +24,7 @@ public abstract class BlockCipherModeBlock extends BlockCipherModeImpl {
 
 	@Override
 	public int getUpdateOutputSize(int len) {
-		if (mode == Mode.DECRYPT && padding != null) {
+		if (mode == BlockCipher.Mode.DECRYPT && padding != null) {
 			return (len + bufferOffset - blocksize) & blockmask;
 		}
 
@@ -34,12 +32,12 @@ public abstract class BlockCipherModeBlock extends BlockCipherModeImpl {
 	}
 
 	@Override
-	public void init(Mode mode, byte[] mk) {
+	public void init(BlockCipher.Mode mode, byte[] mk) {
 		throw new IllegalStateException("This init method is not applicable to " + getAlgorithmName());
 	}
 
 	@Override
-	public void init(Mode mode, byte[] mk, byte[] iv) {
+	public void init(BlockCipher.Mode mode, byte[] mk, byte[] iv) {
 		throw new IllegalStateException("This init method is not applicable to " + getAlgorithmName());
 	}
 
@@ -56,7 +54,7 @@ public abstract class BlockCipherModeBlock extends BlockCipherModeImpl {
 
 	@Override
 	public byte[] update(byte[] msg) {
-		if (padding != null && mode == Mode.DECRYPT) {
+		if (padding != null && mode == BlockCipher.Mode.DECRYPT) {
 			return decryptWithPadding(msg);
 		}
 
@@ -162,7 +160,7 @@ public abstract class BlockCipherModeBlock extends BlockCipherModeImpl {
 	private byte[] doFinalWithPadding() {
 		byte[] out = null;
 
-		if (mode == Mode.ENCRYPT) {
+		if (mode == BlockCipher.Mode.ENCRYPT) {
 			padding.pad(buffer, bufferOffset);
 			out = new byte[getOutputSize(0)];
 			processBlock(buffer, 0, out, 0);

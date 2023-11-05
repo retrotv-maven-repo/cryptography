@@ -1,9 +1,11 @@
 package kr.re.nsr.crypto.mode;
 
-import static kr.re.nsr.crypto.util.Ops.*;
+import kr.re.nsr.crypto.BlockCipherModeStream;
+import kr.re.nsr.crypto.util.Ops;
 import kr.re.nsr.crypto.BlockCipher;
 import kr.re.nsr.crypto.BlockCipher.Mode;
-import kr.re.nsr.crypto.BlockCipherModeStream;
+
+import static kr.re.nsr.crypto.util.Ops.XOR;
 
 // DONE: block vs buffer
 public class OFBMode extends BlockCipherModeStream {
@@ -39,7 +41,7 @@ public class OFBMode extends BlockCipherModeStream {
 	@Override
 	protected int processBlock(byte[] in, int inOff, byte[] out, int outOff, int outlen) {
 		int length = engine.processBlock(block, 0, block, 0);
-		XOR(out, outOff, in, inOff, block, 0, outlen);
+		Ops.XOR(out, outOff, in, inOff, block, 0, outlen);
 
 		return length;
 	}

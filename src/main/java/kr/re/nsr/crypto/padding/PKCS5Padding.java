@@ -1,8 +1,8 @@
 package kr.re.nsr.crypto.padding;
 
-import java.util.Arrays;
-
 import kr.re.nsr.crypto.Padding;
+
+import java.util.Arrays;
 
 public class PKCS5Padding extends Padding {
 

@@ -1,14 +1,16 @@
 package kr.re.nsr.crypto.mode;
 
-import static kr.re.nsr.crypto.util.Ops.*;
-import static kr.re.nsr.crypto.util.Pack.*;
+import kr.re.nsr.crypto.BlockCipherModeAE;
+import kr.re.nsr.crypto.BlockCipher;
+import kr.re.nsr.crypto.BlockCipher.Mode;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Arrays;
 
-import kr.re.nsr.crypto.BlockCipher;
-import kr.re.nsr.crypto.BlockCipher.Mode;
-import kr.re.nsr.crypto.BlockCipherModeAE;
+import static kr.re.nsr.crypto.util.Ops.XOR;
+import static kr.re.nsr.crypto.util.Ops.shiftRight;
+import static kr.re.nsr.crypto.util.Pack.intToBigEndian;
+import static kr.re.nsr.crypto.util.Pack.longToBigEndian;
 
 public class GCMMode extends BlockCipherModeAE {
 
