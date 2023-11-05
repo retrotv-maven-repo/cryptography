@@ -1,8 +1,9 @@
 package kr.re.nsr.crypto.mode;
 
+import kr.re.nsr.crypto.BlockCipherModeAE;
+import kr.re.nsr.crypto.util.Ops;
 import kr.re.nsr.crypto.BlockCipher;
 import kr.re.nsr.crypto.BlockCipher.Mode;
-import kr.re.nsr.crypto.BlockCipherModeAE;
 
 import java.io.ByteArrayOutputStream;
 import java.io.Closeable;
@@ -93,7 +94,7 @@ public class CCMMode extends BlockCipherModeAE {
 		engine.processBlock(ctr, 0, block, 0);
 
 		if (mode == Mode.ENCRYPT) {
-			XOR(mac, block);
+			Ops.XOR(mac, block);
 			System.arraycopy(mac, 0, tag, 0, taglen);
 			System.arraycopy(mac, 0, out, out.length - taglen, taglen);
 
@@ -189,12 +190,12 @@ public class CCMMode extends BlockCipherModeAE {
 		remained -= processed;
 		System.arraycopy(aad, 0, block, alen, processed);
 
-		XOR(mac, block);
+		Ops.XOR(mac, block);
 		engine.processBlock(mac, 0, mac, 0);
 
 		while (remained > 0) {
 			processed = remained >= blocksize ? blocksize : remained;
-			XOR(mac, 0, mac, 0, aad, i, processed);
+			Ops.XOR(mac, 0, mac, 0, aad, i, processed);
 			engine.processBlock(mac, 0, mac, 0);
 
 			i += processed;
@@ -214,12 +215,12 @@ public class CCMMode extends BlockCipherModeAE {
 		while (remained > 0) {
 			processed = remained >= blocksize ? blocksize : remained;
 
-			XOR(mac, 0, mac, 0, in, inIdx, processed);
+			Ops.XOR(mac, 0, mac, 0, in, inIdx, processed);
 			engine.processBlock(mac, 0, mac, 0);
 
 			increaseCounter();
 			engine.processBlock(ctr, 0, block, 0);
-			XOR(out, outIdx, block, 0, in, inIdx, processed);
+			Ops.XOR(out, outIdx, block, 0, in, inIdx, processed);
 
 			inIdx += processed;
 			outIdx += processed;
@@ -237,7 +238,7 @@ public class CCMMode extends BlockCipherModeAE {
 
 		System.arraycopy(in, msglen, tag, 0, taglen);
 		engine.processBlock(ctr, 0, block, 0);
-		XOR(tag, 0, block, 0, taglen);
+		Ops.XOR(tag, 0, block, 0, taglen);
 
 		remained = msglen;
 		while (remained > 0) {
@@ -245,9 +246,9 @@ public class CCMMode extends BlockCipherModeAE {
 
 			increaseCounter();
 			engine.processBlock(ctr, 0, block, 0);
-			XOR(out, outIdx, block, 0, in, i, processed);
+			Ops.XOR(out, outIdx, block, 0, in, i, processed);
 
-			XOR(mac, 0, mac, 0, out, outIdx, processed);
+			Ops.XOR(mac, 0, mac, 0, out, outIdx, processed);
 			engine.processBlock(mac, 0, mac, 0);
 
 			i += processed;

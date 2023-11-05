@@ -1,0 +1,994 @@
+[36m2023/11/05 15:41:19.400[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.403[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.404[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.404[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.405[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.405[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.405[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.405[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.406[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.406[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.406[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.406[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.406[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.407[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.407[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.407[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.407[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.407[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.407[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.408[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.408[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.408[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.408[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.408[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.409[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.409[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.409[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.409[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.410[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.410[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.410[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.410[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.410[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.410[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.410[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.411[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.411[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.411[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.411[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.411[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.411[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.411[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.412[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.412[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.412[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.412[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.412[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.413[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.413[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.413[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.413[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.413[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.414[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.414[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.414[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.414[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.414[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.414[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.415[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.415[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.415[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.415[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.415[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.415[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.415[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.415[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.416[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.416[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.416[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.416[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.416[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.416[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.417[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.417[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.417[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.417[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.417[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.417[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.417[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.418[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.418[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.418[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.418[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.418[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.418[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.418[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.419[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.419[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.419[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.419[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTR/NoPadding
+[36m2023/11/05 15:41:19.420[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.420[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.421[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.421[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.421[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.421[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.421[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.421[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.421[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.422[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.422[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.422[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.422[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.422[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.423[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.423[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.423[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.423[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.423[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.423[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.424[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.424[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.424[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.424[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.424[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.424[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.424[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.424[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.425[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.425[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.425[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.425[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.425[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.426[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.426[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.426[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.426[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.426[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.426[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.426[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.426[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.427[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.427[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.427[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.427[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.427[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.427[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.427[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.427[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.428[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.428[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.428[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.428[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.428[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.428[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.428[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.428[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.429[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.429[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.429[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.429[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.429[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.429[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.429[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.430[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.430[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.430[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.430[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.430[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.430[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.430[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.430[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.430[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.431[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.431[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.431[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.431[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.431[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.431[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.432[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.432[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.432[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.432[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.432[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.432[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.432[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.433[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.433[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.433[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.433[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.433[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.433[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.433[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.434[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.434[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.434[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.434[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.434[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.435[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.435[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.435[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.435[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.435[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.435[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.436[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.436[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.436[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.436[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.436[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.436[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.436[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.436[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.437[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.437[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.437[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.437[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.437[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.437[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.437[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.437[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.438[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.438[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.438[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.438[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.438[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.438[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.438[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.439[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.439[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.439[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.439[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.439[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.439[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.439[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.440[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.440[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.440[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.440[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.440[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.440[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.440[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.440[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.441[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.441[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.441[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.441[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.441[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.441[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.441[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.441[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.442[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.442[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.442[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.442[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.442[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.442[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.442[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.443[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.443[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.443[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.443[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.443[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.443[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.443[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.443[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.444[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.444[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.444[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.444[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.444[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.444[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.444[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.445[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.445[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.445[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.445[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.445[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.445[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.445[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.445[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.446[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.446[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.446[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.446[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.446[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.446[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.446[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.446[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.447[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.447[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.447[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.447[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.447[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.447[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.447[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.447[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.448[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.448[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.448[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.448[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/CTS/NoPadding
+[36m2023/11/05 15:41:19.449[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.449[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.449[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.449[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.450[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.450[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.450[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.451[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.451[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.451[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.452[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.452[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.452[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.452[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.452[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.453[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.453[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.453[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.453[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.453[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.454[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.454[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.454[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.454[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.454[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.454[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.454[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.454[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.454[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.455[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.455[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.455[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.455[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.455[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.455[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.455[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.455[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.456[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.456[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.456[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.456[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.456[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.456[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.456[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.456[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.457[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.457[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.457[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.457[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.457[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.457[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.457[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.457[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.457[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.458[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.458[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.458[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.458[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.458[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.458[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.458[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.458[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.459[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.459[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.459[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.459[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.459[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.459[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.459[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.459[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.459[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.460[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.460[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.460[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.460[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.460[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.460[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.461[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.461[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.461[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.461[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.461[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.461[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.461[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.461[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.462[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.462[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.462[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.462[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.462[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.462[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.462[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.462[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.462[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.462[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.463[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.463[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.463[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.463[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.463[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.463[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.463[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.463[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.463[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.464[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.464[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.464[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.464[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.464[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.464[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.464[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.465[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.465[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.465[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.465[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.465[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.465[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.465[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.465[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.465[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.466[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.466[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.466[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.466[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.466[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.466[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.466[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.466[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.466[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.467[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.467[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.467[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.467[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.467[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.467[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.467[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.467[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.467[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.468[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.468[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.468[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.468[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.468[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.468[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.468[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.468[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.468[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.469[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.469[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.469[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.469[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.469[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.469[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.469[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.469[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.469[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.469[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.470[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.470[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.470[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.470[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.470[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.470[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.470[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.470[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.470[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.471[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.471[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.471[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.471[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.471[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.471[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.471[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.471[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.471[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.471[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.471[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.472[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.472[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.472[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.472[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.472[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.472[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.472[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.472[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.472[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.473[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.473[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.473[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.473[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.473[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.473[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.473[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.473[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.473[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.473[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.474[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.474[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.474[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.474[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.474[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.474[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.474[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.474[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.474[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.474[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.474[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.475[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.475[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.475[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.475[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.475[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.475[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.475[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.475[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.475[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.475[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.476[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.476[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.476[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.476[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.476[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.476[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.476[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.476[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.476[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.476[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.477[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.477[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.477[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.477[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.477[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.477[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.477[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.477[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.477[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.478[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.478[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.478[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.478[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.478[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.478[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.478[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.478[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.478[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.478[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.479[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.479[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.479[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.479[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.479[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.479[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.479[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.479[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.479[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.479[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.480[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.480[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.480[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.480[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.480[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.480[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.480[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.480[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.480[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.480[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.480[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.481[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.481[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.481[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.481[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.481[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.481[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.481[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.481[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.481[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.482[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.482[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.482[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.482[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.482[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.482[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.482[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.482[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.482[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.483[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.483[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.483[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.483[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.483[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.483[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.483[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.483[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.483[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.483[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.484[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.484[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.484[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.484[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.484[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.484[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.484[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.484[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.484[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.484[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.485[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.485[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.485[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.485[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.485[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.485[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.485[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.486[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.486[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.486[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.487[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.488[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.488[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.488[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.488[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.489[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.489[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.490[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.490[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.490[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.491[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.491[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.491[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.491[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.492[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.492[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.492[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.493[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.493[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.493[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.493[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.494[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.494[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.494[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.494[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.494[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.495[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.495[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.495[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.495[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.496[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.496[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.496[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.496[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.496[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.496[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.496[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.496[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.497[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.497[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.497[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.497[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.497[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.497[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.497[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.497[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.498[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.498[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.498[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.498[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.498[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.498[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.498[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.498[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.499[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.499[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.499[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.499[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.499[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.499[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.499[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.499[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.500[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.500[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.500[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.500[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.500[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.500[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.500[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.500[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.500[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.501[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.501[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.501[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.501[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.501[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.501[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.501[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.501[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.501[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.501[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.501[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.502[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.502[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.502[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.502[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.502[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.502[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.502[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.502[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.502[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.503[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.503[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.503[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.503[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.503[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.503[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.503[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.503[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.504[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.504[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.504[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.504[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.504[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.504[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.504[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.505[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.505[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.505[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.505[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.505[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.505[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.505[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.505[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.505[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.506[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.506[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.506[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.506[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.506[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.506[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.506[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.506[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.507[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.507[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.507[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.507[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.507[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.507[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.507[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.508[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.508[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.508[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.508[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.508[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.508[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.508[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.508[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.509[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.509[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.509[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.509[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.509[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.509[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.509[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.509[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.510[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.510[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.510[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.510[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.510[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.510[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.510[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.510[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.510[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.510[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.511[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.511[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.511[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.511[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.511[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.511[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.511[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.512[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.512[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.512[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.512[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.513[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.513[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.513[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.513[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.514[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.514[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.514[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.514[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.514[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.514[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.515[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.515[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.515[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.515[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.
+[36m2023/11/05 15:41:19.516[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.
+[36m2023/11/05 15:41:19.516[m [32m[INFO ][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.
+[36m2023/11/05 15:41:19.516[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.516[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/ECB/PKCS5Padding
+[36m2023/11/05 15:41:19.522[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.522[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.523[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.523[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.524[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.524[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.525[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.525[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.526[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.526[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.526[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.526[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.526[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.526[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.526[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.526[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.527[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.527[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.527[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.527[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.527[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.527[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.528[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.528[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.528[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.528[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.528[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.528[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.528[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.529[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.529[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.529[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.529[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.529[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.529[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.529[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.530[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.530[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.530[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.530[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.530[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.530[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.530[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.530[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.531[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.531[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.531[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.531[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.531[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.531[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.531[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.532[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.532[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.532[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.532[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.532[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.532[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.532[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.532[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.533[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.533[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.533[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.533[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.533[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.533[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.533[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.533[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.533[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.534[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.534[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.534[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.534[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.534[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.534[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.534[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.535[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.535[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.535[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.535[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.535[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.535[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.535[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.536[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.536[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.536[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.536[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.536[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.536[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.536[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.536[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.537[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.537[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.537[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.537[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.537[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.537[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.538[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.538[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.538[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.538[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.538[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.538[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.538[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.538[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.539[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.539[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.539[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.539[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.539[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.539[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.539[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.540[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.540[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.540[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.540[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.540[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.540[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.540[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.540[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.541[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.541[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.541[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.541[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.541[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.541[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.541[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.541[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.542[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.542[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.542[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.542[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.542[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.542[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.542[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.542[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.543[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.543[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.543[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.543[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.543[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.543[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.543[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.543[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.544[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.544[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.544[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.544[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.544[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.544[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.544[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.544[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.544[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.545[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.545[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.545[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.545[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.545[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.545[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.545[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.545[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.545[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.546[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.547[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.547[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.549[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.549[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.550[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.550[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.551[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.552[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.552[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.552[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.553[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.553[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.554[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.554[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.554[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.555[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.555[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.555[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.556[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.556[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.557[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.557[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.558[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.558[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.558[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.558[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.559[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.559[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.559[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.560[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.560[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.560[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.561[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.561[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.561[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.561[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.561[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.561[m [34m[DEBUG][m [dev.retrotv.crypto.twe.des.DES] [33m[Test worker][m - 선택된 알고리즘: DESede/OFB/NoPadding
+[36m2023/11/05 15:41:19.706[m [32m[INFO ][m [dev.retrotv.crypto.twe.rsa.RSAKeyPairGenerator] [33m[Test worker][m - key 길이는 2048bit 이상을 권장합니다.
+[36m2023/11/05 15:41:19.731[m [32m[INFO ][m [dev.retrotv.crypto.twe.rsa.RSAKeyPairGenerator] [33m[Test worker][m - key 길이는 2048bit 이상을 권장합니다.
+[36m2023/11/05 15:41:19.742[m [34m[DEBUG][m [dev.retrotv.crypto.twe.rsa.RSACipher] [33m[Test worker][m - 선택된 알고리즘: RSA/ECB/OAEPWithSHA-1AndMGF1Padding
+[36m2023/11/05 15:41:19.814[m [34m[DEBUG][m [dev.retrotv.crypto.twe.rsa.RSACipher] [33m[Test worker][m - 선택된 알고리즘: RSA/ECB/OAEPWithSHA-1AndMGF1Padding

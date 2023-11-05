@@ -16,7 +16,7 @@ public abstract class BlockCipher {
 	 * 초기화 함수
 	 * 
 	 * @param mode
-	 *            {@link BlockCipher.Mode}
+	 *            {@link Mode}
 	 * @param mk
 	 *            암호화 키
 	 */
