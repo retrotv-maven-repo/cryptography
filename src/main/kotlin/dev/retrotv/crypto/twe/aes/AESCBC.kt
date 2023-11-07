@@ -7,8 +7,9 @@ import dev.retrotv.utils.SecureRandomUtil
 import javax.crypto.spec.IvParameterSpec
 
 /**
- * AES/CBC 계열의 양방향 암호화 구현을 위한 상속용 클래스 입니다.
+ * AES/CBC 양방향 암호화 클래스 입니다.
  *
+ * @property keyLen 암호화에 사용할 키의 길이 입니다.
  * @author  yjj8353
  * @since   1.0.0
  */

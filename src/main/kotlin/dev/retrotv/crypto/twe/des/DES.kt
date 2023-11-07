@@ -44,6 +44,12 @@ const val NO_SUCH_ALGORITHM_EXCEPTION_MESSAGE = (
         "NoSuchAlgorithmException: "
         + "\n지원하지 않는 암호화 알고리즘 입니다.")
 
+/**
+ * DES 계열의 양방향 암호화 구현을 위한 상속용 클래스 입니다.
+ *
+ * @author  yjj8353
+ * @since   1.0.0
+ */
 abstract class DES : TwoWayEncryption, KeyGenerator {
     protected var algorithm: CipherAlgorithm? = null
     protected var padding = Padding.NO_PADDING

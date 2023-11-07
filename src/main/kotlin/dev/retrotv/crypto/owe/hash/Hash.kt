@@ -5,7 +5,12 @@ import java.io.File
 import java.io.IOException
 import java.nio.charset.Charset
 
+/**
+ * 해시 알고리즘 클래스 구현을 위한 추상 클래스 입니다.
+ * [Checksum], [PasswordWithSalt] 인터페이스를 상속받습니다.
+ */
 abstract class Hash : Checksum, PasswordWithSalt {
+
     @Throws(IOException::class)
     override fun hash(file: File): String {
         return hash(read(file))

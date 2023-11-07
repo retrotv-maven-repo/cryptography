@@ -9,12 +9,19 @@ import java.security.NoSuchAlgorithmException
 import javax.crypto.KeyGenerator
 import javax.crypto.spec.IvParameterSpec
 
+/**
+ * DES/CFB 양방향 암호화 클래스 입니다.
+ *
+ * @author  yjj8353
+ * @since   1.0.0
+ */
+@Deprecated("해킹에 취약한 양방향 암호화 알고리즘 입니다.")
 class DESCFB : DES(), ParameterSpecGenerator<IvParameterSpec> {
+
     init {
         algorithm = CipherAlgorithm.DESCFB
     }
 
-    @Throws(KeyGenerateException::class)
     override fun generateKey(): Key {
         return try {
             val keyGenerator = KeyGenerator.getInstance("DES")
