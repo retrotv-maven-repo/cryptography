@@ -26,7 +26,6 @@ class LEACCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
         algorithm = CipherAlgorithm.LEACCM
     }
 
-    @Throws(CryptoFailException::class)
     override fun encrypt(data: ByteArray, key: Key, spec: AlgorithmParameterSpec?): ByteArray {
         return try {
             val cipher: BlockCipherModeAE = CCM()
@@ -45,7 +44,6 @@ class LEACCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
         }
     }
 
-    @Throws(CryptoFailException::class)
     override fun decrypt(encryptedData: ByteArray, key: Key, spec: AlgorithmParameterSpec?): ByteArray {
         return try {
             val cipher: BlockCipherModeAE = CCM()

@@ -21,7 +21,6 @@ class LEAECB(keyLen: Int) : LEA() {
         algorithm = CipherAlgorithm.LEAECB
     }
 
-    @Throws(CryptoFailException::class)
     fun encrypt(data: ByteArray?, key: Key): ByteArray {
         return try {
             val cipher: BlockCipherMode = ECB()
@@ -33,7 +32,6 @@ class LEAECB(keyLen: Int) : LEA() {
         }
     }
 
-    @Throws(CryptoFailException::class)
     fun decrypt(encryptedData: ByteArray?, key: Key): ByteArray {
         return try {
             val cipher: BlockCipherMode = ECB()

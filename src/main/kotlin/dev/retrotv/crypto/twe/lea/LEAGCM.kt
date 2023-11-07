@@ -26,7 +26,6 @@ class LEAGCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
         algorithm = CipherAlgorithm.LEAGCM
     }
 
-    @Throws(CryptoFailException::class)
     override fun encrypt(data: ByteArray, key: Key, spec: AlgorithmParameterSpec?): ByteArray {
         return try {
             val cipher: BlockCipherModeAE = GCM()
@@ -44,7 +43,6 @@ class LEAGCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
         }
     }
 
-    @Throws(CryptoFailException::class)
     override fun decrypt(encryptedData: ByteArray, key: Key, spec: AlgorithmParameterSpec?): ByteArray {
         return try {
             val cipher: BlockCipherModeAE = GCM()

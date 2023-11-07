@@ -35,7 +35,6 @@ class AESGCM(keyLen: Int) : AES(), ParameterSpecGenerator<GCMParameterSpec> {
         algorithm = CipherAlgorithm.AESGCM
     }
 
-    @Throws(CryptoFailException::class)
     override fun encrypt(data: ByteArray, key: Key, spec: AlgorithmParameterSpec?): ByteArray {
         val algorithmName = algorithm!!.label() + "/" + padding.label()
         return try {
@@ -60,7 +59,6 @@ class AESGCM(keyLen: Int) : AES(), ParameterSpecGenerator<GCMParameterSpec> {
         }
     }
 
-    @Throws(CryptoFailException::class)
     override fun decrypt(encryptedData: ByteArray, key: Key, spec: AlgorithmParameterSpec?): ByteArray {
         val algorithmName = algorithm!!.label() + "/" + padding.label()
         return try {
