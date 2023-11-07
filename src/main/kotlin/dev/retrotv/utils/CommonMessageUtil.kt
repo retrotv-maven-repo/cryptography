@@ -4,6 +4,7 @@ import java.text.MessageFormat
 import java.util.*
 
 class CommonMessageUtil private constructor() {
+
     init {
         throw IllegalStateException("유틸리티 클래스 입니다.")
     }

@@ -8,6 +8,7 @@ import org.apache.commons.codec.binary.Hex
 import dev.retrotv.enums.EncodeFormat.*
 
 class EncodeUtil private constructor() {
+
     init {
         throw IllegalStateException("유틸리티 클래스 입니다.")
     }
@@ -32,11 +33,7 @@ class EncodeUtil private constructor() {
             return Base64.decodeBase64(base64)
         }
 
-        fun binaryEncode(encodeFormat: EncodeFormat?, data: ByteArray?): String {
-            var encodeFormat: EncodeFormat? = encodeFormat
-            if (encodeFormat == null) {
-                encodeFormat = EncodeFormat.HEX
-            }
+        fun binaryEncode(encodeFormat: EncodeFormat = HEX, data: ByteArray?): String {
             return when (encodeFormat) {
                 BASE64 -> binaryToBase64(data)
                 HEX -> binaryToHex(data)

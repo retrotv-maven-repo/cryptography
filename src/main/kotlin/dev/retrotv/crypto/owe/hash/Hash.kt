@@ -24,15 +24,15 @@ abstract class Hash : Checksum, PasswordWithSalt {
         } else matches(read(file), checksum)
     }
 
-    override fun matches(data1: ByteArray?, data2: ByteArray?): Boolean {
-        return if (data1 == null || data2 == null) {
+    override fun matches(data1: ByteArray, data2: ByteArray?): Boolean {
+        return if (data2 == null) {
             false
         } else hash(data1) == hash(data2)
     }
 
     @Throws(IOException::class)
-    override fun matches(file1: File?, file2: File?): Boolean {
-        if (file1 == null || file2 == null) {
+    override fun matches(file1: File, file2: File?): Boolean {
+        if (file2 == null) {
             return false
         }
 
@@ -62,7 +62,7 @@ abstract class Hash : Checksum, PasswordWithSalt {
     override fun matches(rawPassword: CharSequence, encodedPassword: String?): Boolean {
         return if (encodedPassword == null) {
             false
-        } else  encodedPassword == encode(rawPassword.toString())
+        } else  encodedPassword == encode(rawPassword)
     }
 
     override fun matches(rawPassword: CharSequence, salt: CharSequence, encodedPassword: String?): Boolean {

@@ -9,7 +9,7 @@ import org.springframework.security.crypto.argon2.Argon2PasswordEncoder
  * Spring Security의 [PasswordEncoder]와 호환됩니다.
  *
  * @author  yjj8353
- * @since   1.8
+ * @since   1.0.0
  */
 class Argon2 : KDF {
     private val argon2PasswordEncoder: Argon2PasswordEncoder

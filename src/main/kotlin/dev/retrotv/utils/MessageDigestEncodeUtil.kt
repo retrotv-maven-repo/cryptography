@@ -15,6 +15,7 @@ import dev.retrotv.enums.HashAlgorithm.CRC32
  * @since 1.8
  */
 class MessageDigestEncodeUtil private constructor() {
+
     init {
         throw IllegalStateException("유틸리티 클래스 입니다.")
     }

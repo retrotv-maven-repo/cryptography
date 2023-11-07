@@ -4,6 +4,7 @@ import java.security.PrivateKey
 import java.security.PublicKey
 
 interface DigitalSignature {
+
     /**
      * 전자 서명을 생성하고 암호화 된 데이터를 반환합니다.
      *

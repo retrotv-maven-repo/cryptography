@@ -3,6 +3,7 @@ package dev.retrotv.utils
 import java.security.SecureRandom
 
 class SecureRandomUtil private constructor() {
+
     init {
         throw IllegalStateException("유틸리티 클래스 입니다.")
     }

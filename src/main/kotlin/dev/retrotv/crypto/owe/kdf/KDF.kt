@@ -7,12 +7,8 @@ import org.springframework.security.crypto.password.PasswordEncoder
  * [PasswordEncoder]를 상속받습니다.
  *
  * @author  yjj8353
- * @since   1.8
+ * @since   1.0.0
  */
 abstract class KDF : PasswordEncoder {
-    override fun matches(rawPassword: CharSequence, encodedPassword: String?): Boolean {
-        return if (encodedPassword == null) {
-            false
-        } else encodedPassword == encode(rawPassword)
-    }
+
 }

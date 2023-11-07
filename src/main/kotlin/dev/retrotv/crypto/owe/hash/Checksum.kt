@@ -7,7 +7,7 @@ import java.io.IOException
  * 체크섬 클래스 구현을 위한 인터페이스 입니다.
  *
  * @author  yjj8353
- * @since   1.8
+ * @since   1.0.0
  */
 interface Checksum {
 
@@ -52,20 +52,20 @@ interface Checksum {
     /**
      * data1, data2를 해시해 체크섬을 생성한 뒤, 두 체크섬이 일치하는지 확인하고 일치 여부를 반환합니다.
      *
-     * @param data1 해시 할 데이터
-     * @param data2 해시 할 데이터
+     * @param data1 기준 데이터
+     * @param data2 비교할 데이터
      * @return 일치 여부
      */
-    fun matches(data1: ByteArray?, data2: ByteArray?): Boolean
+    fun matches(data1: ByteArray, data2: ByteArray?): Boolean
 
     /**
      * file1, file2를 해시해 체크섬을 생성한 뒤, 두 체크섬이 일치하는지 확인하고 일치 여부를 반환합니다.
      *
-     * @param file1 해시 할 파일
-     * @param file2 해시 할 파일
+     * @param file1 기준 파일
+     * @param file2 비교할 파일
      * @return 일치 여부
      * @throws IOException 파일을 읽어들이는 과정에서 오류가 발생할 경우 던짐
      */
     @Throws(IOException::class)
-    fun matches(file1: File?, file2: File?): Boolean
+    fun matches(file1: File, file2: File?): Boolean
 }

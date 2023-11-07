@@ -14,13 +14,14 @@ import javax.crypto.AEADBadTagException
 import javax.crypto.spec.GCMParameterSpec
 
 class LEAGCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
-    protected var aad: String? = null
+    private var aad: String? = null
 
     init {
         if (keyLen != 128 && keyLen != 192 && keyLen != 256) {
             log.debug("keyLen 값: {}", keyLen)
             throw WrongKeyLengthException()
         }
+
         this.keyLen = keyLen
         algorithm = CipherAlgorithm.LEAGCM
     }
@@ -39,7 +40,7 @@ class LEAGCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
 
             cipher.doFinal(data)
         } catch (e: Exception) {
-            throw CryptoFailException(e.message, e)
+            throw CryptoFailException(e.message ?: "예외 상황을 설명할 메시지가 없습니다.", e)
         }
     }
 
@@ -59,7 +60,7 @@ class LEAGCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
 
             originalData
         } catch (e: Exception) {
-            throw CryptoFailException(e.message, e)
+            throw CryptoFailException(e.message ?: "예외 상황을 설명할 메시지가 없습니다.", e)
         }
     }
 

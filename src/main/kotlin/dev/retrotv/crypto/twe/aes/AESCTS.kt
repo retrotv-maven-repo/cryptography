@@ -6,11 +6,13 @@ import dev.retrotv.enums.CipherAlgorithm
 import dev.retrotv.utils.SecureRandomUtil
 import javax.crypto.spec.IvParameterSpec
 
-class AESCTS(keyLen: Int) : AES(), ParameterSpecGenerator<IvParameterSpec?> {
+class AESCTS(keyLen: Int) : AES(), ParameterSpecGenerator<IvParameterSpec> {
+
     init {
         if (keyLen != 128 && keyLen != 192 && keyLen != 256) {
             throw WrongKeyLengthException()
         }
+
         this.keyLen = keyLen
         algorithm = CipherAlgorithm.AESCTS
     }

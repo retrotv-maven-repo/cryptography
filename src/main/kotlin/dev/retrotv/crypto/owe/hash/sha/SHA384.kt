@@ -9,7 +9,7 @@ import dev.retrotv.utils.MessageDigestEncodeUtil
  * SHA-384 알고리즘으로 암호화 하기 위한 [MessageDigestEncodeUtil] 추상 클래스의 구현체 입니다.
  *
  * @author  yjj8353
- * @since   1.8
+ * @since   1.0.0
  */
 class SHA384 : Hash() {
     override fun hash(data: ByteArray): String {

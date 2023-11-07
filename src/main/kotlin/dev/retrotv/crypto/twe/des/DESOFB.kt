@@ -9,13 +9,13 @@ import java.security.NoSuchAlgorithmException
 import javax.crypto.KeyGenerator
 import javax.crypto.spec.IvParameterSpec
 
-class DESOFB : DES(), ParameterSpecGenerator<IvParameterSpec?> {
+class DESOFB : DES(), ParameterSpecGenerator<IvParameterSpec> {
     init {
         algorithm = CipherAlgorithm.DESOFB
     }
 
     @Throws(KeyGenerateException::class)
-    override fun generateKey(): Key? {
+    override fun generateKey(): Key {
         return try {
             val keyGenerator = KeyGenerator.getInstance("DES")
             keyGenerator.generateKey()

@@ -16,13 +16,14 @@ import javax.crypto.IllegalBlockSizeException
 import javax.crypto.NoSuchPaddingException
 import javax.crypto.spec.GCMParameterSpec
 
-class AESGCM(keyLen: Int) : AES(), ParameterSpecGenerator<GCMParameterSpec?> {
+class AESGCM(keyLen: Int) : AES(), ParameterSpecGenerator<GCMParameterSpec> {
     protected var aad: String? = null
 
     init {
         if (keyLen != 128 && keyLen != 192 && keyLen != 256) {
             throw WrongKeyLengthException()
         }
+
         this.keyLen = keyLen
         algorithm = CipherAlgorithm.AESGCM
     }

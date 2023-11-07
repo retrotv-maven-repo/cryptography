@@ -10,11 +10,13 @@ import kr.re.nsr.crypto.symm.LEA.ECB
 import java.security.Key
 
 class LEAECB(keyLen: Int) : LEA() {
+
     init {
         if (keyLen != 128 && keyLen != 192 && keyLen != 256) {
             log.debug("keyLen 값: {}", keyLen)
             throw WrongKeyLengthException()
         }
+
         this.keyLen = keyLen
         algorithm = CipherAlgorithm.LEAECB
     }
@@ -27,7 +29,7 @@ class LEAECB(keyLen: Int) : LEA() {
             cipher.setPadding(PKCS5Padding(16))
             cipher.doFinal(data)
         } catch (e: Exception) {
-            throw CryptoFailException(e.message, e)
+            throw CryptoFailException(e.message ?: "예외 상황을 설명할 메시지가 없습니다.", e)
         }
     }
 
@@ -39,7 +41,7 @@ class LEAECB(keyLen: Int) : LEA() {
             cipher.setPadding(PKCS5Padding(16))
             cipher.doFinal(encryptedData)
         } catch (e: Exception) {
-            throw CryptoFailException(e.message, e)
+            throw CryptoFailException(e.message ?: "예외 상황을 설명할 메시지가 없습니다.", e)
         }
     }
 }

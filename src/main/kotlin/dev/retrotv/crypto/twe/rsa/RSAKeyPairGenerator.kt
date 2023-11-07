@@ -18,7 +18,7 @@ class RSAKeyPairGenerator(keyLen: Int) : KeyPairGenerator {
         }
 
         if (keyLen == 1024) {
-            log.info("key 길이는 2048bit 이상을 권장합니다.")
+            log.debug("key 길이는 2048bit 이상을 권장합니다.")
         }
 
         this.keyLen = keyLen

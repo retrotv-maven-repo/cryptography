@@ -12,7 +12,7 @@ class TripleDESECB : DES() {
     }
 
     @Throws(KeyGenerateException::class)
-    override fun generateKey(): Key? {
+    override fun generateKey(): Key {
         return try {
             val keyGenerator = KeyGenerator.getInstance("DESede")
             keyGenerator.generateKey()

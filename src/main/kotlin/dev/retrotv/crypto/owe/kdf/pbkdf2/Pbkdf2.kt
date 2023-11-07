@@ -9,7 +9,7 @@ import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder.Secret
  * Pbkdf2 알고리즘으로 암호화 하기 위한 [KDF] 추상 클래스의 구현체 입니다.
  * Spring Security의 [PasswordEncoder]와 호환됩니다.
  * @author  yjj8353
- * @since   1.8
+ * @since   1.0.0
  */
 class Pbkdf2 : KDF {
     private val pbkdf2PasswordEncoder: Pbkdf2PasswordEncoder

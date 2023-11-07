@@ -21,6 +21,7 @@ class LEACCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
             log.debug("keyLen 값: {}", keyLen)
             throw WrongKeyLengthException()
         }
+
         this.keyLen = keyLen
         algorithm = CipherAlgorithm.LEACCM
     }
@@ -33,12 +34,14 @@ class LEACCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
 
             // GCMParameterSpec의 tLen은 bit 기준이고, taglen이 byte 크기여야 하므로 8로 나눔
             cipher.init(BlockCipher.Mode.ENCRYPT, key.encoded, gcmSpec.iv, gcmSpec.tLen / 8)
+
             if (aad != null) {
                 cipher.updateAAD(aad!!.toByteArray())
             }
+
             cipher.doFinal(data)
         } catch (e: Exception) {
-            throw CryptoFailException(e.message, e)
+            throw CryptoFailException(e.message ?: "예외 상황을 설명할 메시지가 없습니다.", e)
         }
     }
 
@@ -47,15 +50,18 @@ class LEACCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
         return try {
             val cipher: BlockCipherModeAE = CCM()
             val gcmSpec: GCMParameterSpec = spec as GCMParameterSpec
+
             cipher.init(BlockCipher.Mode.DECRYPT, key.encoded, gcmSpec.iv, gcmSpec.tLen / 8)
+
             if (aad != null) {
                 cipher.updateAAD(aad!!.toByteArray())
             }
+
             val originalData: ByteArray = cipher.doFinal(encryptedData)
                 ?: throw AEADBadTagException("동일한 Tag를 사용해 복호화를 시도했는지 확인 하십시오.")
             originalData
         } catch (e: Exception) {
-            throw CryptoFailException(e.message, e)
+            throw CryptoFailException(e.message ?: "예외 상황을 설명할 메시지가 없습니다.", e)
         }
     }
 
@@ -68,7 +74,7 @@ class LEACCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
     }
 
     companion object {
-        protected const val GCM_IV_LENGTH = 12
-        protected const val GCM_TAG_LENGTH = 16
+        private const val GCM_IV_LENGTH = 12
+        private const val GCM_TAG_LENGTH = 16
     }
 }
