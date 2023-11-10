@@ -9,7 +9,7 @@ import org.springframework.security.crypto.argon2.Argon2PasswordEncoder
  * Spring Security의 [PasswordEncoder]와 호환됩니다.
  *
  * @author  yjj8353
- * @since   1.8
+ * @since   1.0.0
  */
 class Argon2 : KDF {
     private val argon2PasswordEncoder: Argon2PasswordEncoder
@@ -32,7 +32,7 @@ class Argon2 : KDF {
     /**
      * [Argon2PasswordEncoder] 인스턴스를 초기화 합니다.<br></br>
      * <br></br>
-     * **!매개변수 권장 값**<br></br>
+     * **!! 인자 권장 값**<br></br>
      * saltLength: 16<br></br>
      * hashLength: 32 혹은 16<br></br>
      * parallelism: CPU Core 수의 두 배<br></br>

@@ -13,19 +13,26 @@ import java.security.spec.AlgorithmParameterSpec
 import javax.crypto.AEADBadTagException
 import javax.crypto.spec.GCMParameterSpec
 
+/**
+ * LEA/GCM 양방향 암호화 클래스 입니다.
+ *
+ * @property keyLen 암호화에 사용할 키의 길이 입니다.
+ * @author  yjj8353
+ * @since   1.0.0
+ */
 class LEAGCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
-    protected var aad: String? = null
+    private var aad: String? = null
 
     init {
         if (keyLen != 128 && keyLen != 192 && keyLen != 256) {
             log.debug("keyLen 값: {}", keyLen)
             throw WrongKeyLengthException()
         }
+
         this.keyLen = keyLen
         algorithm = CipherAlgorithm.LEAGCM
     }
 
-    @Throws(CryptoFailException::class)
     override fun encrypt(data: ByteArray, key: Key, spec: AlgorithmParameterSpec?): ByteArray {
         return try {
             val cipher: BlockCipherModeAE = GCM()
@@ -39,11 +46,10 @@ class LEAGCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
 
             cipher.doFinal(data)
         } catch (e: Exception) {
-            throw CryptoFailException(e.message, e)
+            throw CryptoFailException(e.message ?: "예외 상황을 설명할 메시지가 없습니다.", e)
         }
     }
 
-    @Throws(CryptoFailException::class)
     override fun decrypt(encryptedData: ByteArray, key: Key, spec: AlgorithmParameterSpec?): ByteArray {
         return try {
             val cipher: BlockCipherModeAE = GCM()
@@ -59,7 +65,7 @@ class LEAGCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
 
             originalData
         } catch (e: Exception) {
-            throw CryptoFailException(e.message, e)
+            throw CryptoFailException(e.message ?: "예외 상황을 설명할 메시지가 없습니다.", e)
         }
     }
 
@@ -67,6 +73,11 @@ class LEAGCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
         return GCMParameterSpec(GCM_TAG_LENGTH * 8, SecureRandomUtil.generate(GCM_IV_LENGTH))
     }
 
+    /**
+     * 추가 인증 데이터를 업데이트 합니다.
+     *
+     * @param aad 추가 인증 데이터
+     */
     fun updateAAD(aad: String?) {
         this.aad = aad
     }

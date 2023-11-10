@@ -5,11 +5,13 @@ import dev.retrotv.random.PasswordGenerator
 import dev.retrotv.random.enums.SecurityStrength
 
 class SaltGenerateUtil private constructor() {
+
     init {
         throw IllegalStateException("유틸리티 클래스 입니다.")
     }
 
     companion object {
+
         /**
          * 소금을 생성하고 반환합니다.
          * 보안 강도와 소금의 길이는 RandomValue에서 지정한 기본 값으로 설정됩니다.

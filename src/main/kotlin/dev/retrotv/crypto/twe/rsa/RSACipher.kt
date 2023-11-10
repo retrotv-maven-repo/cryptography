@@ -19,7 +19,7 @@ import javax.crypto.NoSuchPaddingException
  * RSA 계열의 양방향 암호화 구현을 위한 상속용 클래스 입니다.
  *
  * @author  yjj8353
- * @since   1.8
+ * @since   1.0.0
  */
 class RSACipher : TwoWayEncryption {
     private val algorithm: CipherAlgorithm = CipherAlgorithm.RSA
@@ -32,7 +32,7 @@ class RSACipher : TwoWayEncryption {
     fun encrypt(data: ByteArray, publicKey: Key): ByteArray {
         val algorithmName = algorithm.label() + "/" + padding.label()
         if (padding == Padding.PKCS1_PADDING) {
-            log.info("PKCS#1 Padding 기법은 오라클 패딩 공격에 취약합니다.\n호환성이 목적이 아니라면 보안을 위해, 패딩 방식 변경을 고려하십시오.")
+            log.debug("PKCS#1 Padding 기법은 오라클 패딩 공격에 취약합니다.\n호환성이 목적이 아니라면 보안을 위해, 패딩 방식 변경을 고려하십시오.")
         }
         return try {
             val cipher = Cipher.getInstance(algorithmName)

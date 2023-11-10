@@ -1,5 +1,11 @@
 package dev.retrotv.enums
 
+/**
+ * 양방향/전자서명 암호화 알고리즘을 표현하기 위한 열거형 클래스 입니다.
+ *
+ * @author  yjj8353
+ * @since   1.0.0
+ */
 enum class CipherAlgorithm(private val label: String) {
     AESECB("AES/ECB"),
     AESCBC("AES/CBC"),

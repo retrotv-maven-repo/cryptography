@@ -9,13 +9,19 @@ import java.security.NoSuchAlgorithmException
 import javax.crypto.KeyGenerator
 import javax.crypto.spec.IvParameterSpec
 
-class TripleDESOFB : DES(), ParameterSpecGenerator<IvParameterSpec?> {
+/**
+ * TripleDES/OFB 양방향 암호화 클래스 입니다.
+ *
+ * @author  yjj8353
+ * @since   1.0.0
+ */
+class TripleDESOFB : DES(), ParameterSpecGenerator<IvParameterSpec> {
+
     init {
         algorithm = CipherAlgorithm.TRIPLE_DESOFB
     }
 
-    @Throws(KeyGenerateException::class)
-    override fun generateKey(): Key? {
+    override fun generateKey(): Key {
         return try {
             val keyGenerator = KeyGenerator.getInstance("DESede")
             keyGenerator.generateKey()

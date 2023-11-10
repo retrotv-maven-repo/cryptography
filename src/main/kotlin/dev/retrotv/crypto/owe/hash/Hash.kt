@@ -5,7 +5,12 @@ import java.io.File
 import java.io.IOException
 import java.nio.charset.Charset
 
+/**
+ * 해시 알고리즘 클래스 구현을 위한 추상 클래스 입니다.
+ * [Checksum], [PasswordWithSalt] 인터페이스를 상속받습니다.
+ */
 abstract class Hash : Checksum, PasswordWithSalt {
+
     @Throws(IOException::class)
     override fun hash(file: File): String {
         return hash(read(file))
@@ -24,15 +29,15 @@ abstract class Hash : Checksum, PasswordWithSalt {
         } else matches(read(file), checksum)
     }
 
-    override fun matches(data1: ByteArray?, data2: ByteArray?): Boolean {
-        return if (data1 == null || data2 == null) {
+    override fun matches(data1: ByteArray, data2: ByteArray?): Boolean {
+        return if (data2 == null) {
             false
         } else hash(data1) == hash(data2)
     }
 
     @Throws(IOException::class)
-    override fun matches(file1: File?, file2: File?): Boolean {
-        if (file1 == null || file2 == null) {
+    override fun matches(file1: File, file2: File?): Boolean {
+        if (file2 == null) {
             return false
         }
 
@@ -62,7 +67,7 @@ abstract class Hash : Checksum, PasswordWithSalt {
     override fun matches(rawPassword: CharSequence, encodedPassword: String?): Boolean {
         return if (encodedPassword == null) {
             false
-        } else  encodedPassword == encode(rawPassword.toString())
+        } else  encodedPassword == encode(rawPassword)
     }
 
     override fun matches(rawPassword: CharSequence, salt: CharSequence, encodedPassword: String?): Boolean {

@@ -6,11 +6,20 @@ import dev.retrotv.enums.CipherAlgorithm
 import dev.retrotv.utils.SecureRandomUtil
 import javax.crypto.spec.IvParameterSpec
 
-class AESCTS(keyLen: Int) : AES(), ParameterSpecGenerator<IvParameterSpec?> {
+/**
+ * AES/CTS 양방향 암호화 클래스 입니다.
+ *
+ * @property keyLen 암호화에 사용할 키의 길이 입니다.
+ * @author  yjj8353
+ * @since   1.0.0
+ */
+class AESCTS(keyLen: Int) : AES(), ParameterSpecGenerator<IvParameterSpec> {
+
     init {
         if (keyLen != 128 && keyLen != 192 && keyLen != 256) {
             throw WrongKeyLengthException()
         }
+
         this.keyLen = keyLen
         algorithm = CipherAlgorithm.AESCTS
     }

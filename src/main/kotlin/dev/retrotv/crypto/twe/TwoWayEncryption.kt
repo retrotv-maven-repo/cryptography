@@ -1,8 +1,8 @@
 package dev.retrotv.crypto.twe
 
 import dev.retrotv.crypto.exception.CryptoFailException
+import dev.retrotv.data.utils.*
 import dev.retrotv.enums.EncodeFormat
-import dev.retrotv.utils.EncodeUtil
 import org.apache.commons.codec.DecoderException
 import java.security.Key
 import java.security.spec.AlgorithmParameterSpec
@@ -11,9 +11,10 @@ import java.security.spec.AlgorithmParameterSpec
  * 양방향 암호화 클래스 구현을 위한 인터페이스 입니다.
  *
  * @author  yjj8353
- * @since   1.8
+ * @since   1.0.0
  */
 interface TwoWayEncryption {
+
     /**
      * 데이터를 암호화 하고, 암호화 된 데이터를 반환 합니다.
      *
@@ -36,9 +37,9 @@ interface TwoWayEncryption {
     fun encrypt(data: ByteArray, key: Key, spec: AlgorithmParameterSpec?, format: EncodeFormat): String {
         val encryptedData = encrypt(data, key, spec)
         return if (format == EncodeFormat.HEX) {
-            EncodeUtil.binaryToHex(encryptedData)
+            binaryToHex(encryptedData)
         } else {
-            EncodeUtil.binaryToBase64(encryptedData)
+            binaryToBase64(encryptedData)
         }
     }
 
@@ -64,12 +65,12 @@ interface TwoWayEncryption {
     fun decrypt(encryptedData: String, key: Key, spec: AlgorithmParameterSpec?, format: EncodeFormat): ByteArray {
         val decodedData: ByteArray = if (format == EncodeFormat.HEX) {
             try {
-                EncodeUtil.hexToBinary(encryptedData)
+                hexToBinary(encryptedData)
             } catch (e: DecoderException) {
                 throw CryptoFailException("바이너리로 변환하는 과정에서 오류가 발생했습니다. Hex 값으로 인코딩된 값이 맞는지 확인하십시오.", e)
             }
         } else {
-            EncodeUtil.base64ToBinary(encryptedData)
+            base64ToBinary(encryptedData)
         }
 
         return decrypt(decodedData, key, spec)

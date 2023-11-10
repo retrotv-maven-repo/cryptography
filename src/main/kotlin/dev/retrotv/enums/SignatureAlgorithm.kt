@@ -1,5 +1,11 @@
 package dev.retrotv.enums
 
+/**
+ * 서명 알고리즘을 표현하기 열거형 클래스 입니다.
+ *
+ * @author  yjj8353
+ * @since   1.0.0
+ */
 enum class SignatureAlgorithm(private val label: String) {
     NONE("NONEwithRSA"),
     MD2("MD2withRSA"),

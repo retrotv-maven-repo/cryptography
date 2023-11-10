@@ -16,18 +16,25 @@ import javax.crypto.IllegalBlockSizeException
 import javax.crypto.NoSuchPaddingException
 import javax.crypto.spec.GCMParameterSpec
 
-class AESGCM(keyLen: Int) : AES(), ParameterSpecGenerator<GCMParameterSpec?> {
-    protected var aad: String? = null
+/**
+ * AES/GCM 양방향 암호화 클래스 입니다.
+ *
+ * @property keyLen 암호화에 사용할 키의 길이 입니다.
+ * @author  yjj8353
+ * @since   1.0.0
+ */
+class AESGCM(keyLen: Int) : AES(), ParameterSpecGenerator<GCMParameterSpec> {
+    private var aad: String? = null
 
     init {
         if (keyLen != 128 && keyLen != 192 && keyLen != 256) {
             throw WrongKeyLengthException()
         }
+
         this.keyLen = keyLen
         algorithm = CipherAlgorithm.AESGCM
     }
 
-    @Throws(CryptoFailException::class)
     override fun encrypt(data: ByteArray, key: Key, spec: AlgorithmParameterSpec?): ByteArray {
         val algorithmName = algorithm!!.label() + "/" + padding.label()
         return try {
@@ -52,7 +59,6 @@ class AESGCM(keyLen: Int) : AES(), ParameterSpecGenerator<GCMParameterSpec?> {
         }
     }
 
-    @Throws(CryptoFailException::class)
     override fun decrypt(encryptedData: ByteArray, key: Key, spec: AlgorithmParameterSpec?): ByteArray {
         val algorithmName = algorithm!!.label() + "/" + padding.label()
         return try {
@@ -77,7 +83,12 @@ class AESGCM(keyLen: Int) : AES(), ParameterSpecGenerator<GCMParameterSpec?> {
         }
     }
 
-    fun updateAAD(aad: String?) {
+    /**
+     * 추가 인증 데이터를 업데이트 합니다.
+     *
+     * @param aad 추가 인증 데이터
+     */
+    fun updateAAD(aad: String) {
         this.aad = aad
     }
 

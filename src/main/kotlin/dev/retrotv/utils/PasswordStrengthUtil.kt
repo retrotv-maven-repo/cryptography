@@ -3,6 +3,7 @@ package dev.retrotv.utils
 import dev.retrotv.data.utils.*
 
 class PasswordStrengthUtil private constructor() {
+
     init {
         throw IllegalStateException("유틸리티 클래스 입니다.")
     }
@@ -23,12 +24,15 @@ class PasswordStrengthUtil private constructor() {
             if (includeEnglish && !isIncludeEnglish(password.toString())) {
                 return false
             }
+
             if (includeLowerCaseEnglish && !isIncludeLowerCase(password.toString())) {
                 return false
             }
+
             if (includeUpperCaseEnglish && !isIncludeUpperCase(password.toString())) {
                 return false
             }
+
             return if (includeNumber && !isIncludeNumber(password.toString())) {
                 false
             } else !includeSpecialCharacter || isIncludeSpecialCharacter(password.toString())
