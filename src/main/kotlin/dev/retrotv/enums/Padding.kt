@@ -1,5 +1,11 @@
 package dev.retrotv.enums
 
+/**
+ * 패딩 방식 열거형 클래스 입니다.
+ *
+ * @author  yjj8353
+ * @since   1.0.0
+ */
 enum class Padding(private val label: String) {
     OAEP_WITH_SHA1_MGF1_PADDING("OAEPWithSHA-1AndMGF1Padding"),
     OAEP_WITH_SHA256_MGF1_PADDING("OAEPWithSHA-256AndMGF1Padding"),

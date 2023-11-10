@@ -1,8 +1,8 @@
 package dev.retrotv.crypto.owe.hash.sha
 
 import dev.retrotv.crypto.owe.hash.Hash
+import dev.retrotv.data.utils.binaryToHex
 import dev.retrotv.enums.HashAlgorithm
-import dev.retrotv.utils.EncodeUtil
 import dev.retrotv.utils.MessageDigestEncodeUtil
 
 /**
@@ -13,6 +13,6 @@ import dev.retrotv.utils.MessageDigestEncodeUtil
  */
 class SHA256 : Hash() {
     override fun hash(data: ByteArray): String {
-        return EncodeUtil.binaryToHex(MessageDigestEncodeUtil.encode(HashAlgorithm.SHA256, data))
+        return binaryToHex(MessageDigestEncodeUtil.encode(HashAlgorithm.SHA256, data))
     }
 }

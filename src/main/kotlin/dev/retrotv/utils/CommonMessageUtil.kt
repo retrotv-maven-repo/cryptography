@@ -11,6 +11,7 @@ class CommonMessageUtil private constructor() {
 
     companion object {
         private val resourceBundle = ResourceBundle.getBundle("message")
+
         fun getMessage(key: String): String {
             return resourceBundle.getString(key)
         }

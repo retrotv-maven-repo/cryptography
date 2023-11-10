@@ -32,7 +32,7 @@ class Argon2 : KDF {
     /**
      * [Argon2PasswordEncoder] 인스턴스를 초기화 합니다.<br></br>
      * <br></br>
-     * **!매개변수 권장 값**<br></br>
+     * **!! 인자 권장 값**<br></br>
      * saltLength: 16<br></br>
      * hashLength: 32 혹은 16<br></br>
      * parallelism: CPU Core 수의 두 배<br></br>

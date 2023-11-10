@@ -2,6 +2,12 @@ package dev.retrotv.crypto.twe
 
 import java.security.KeyPair
 
+/**
+ * 키 페어 생성 메소드 구현을 위한 인터페이스 입니다.
+ *
+ * @author  yjj8353
+ * @since   1.0.0
+ */
 fun interface KeyPairGenerator {
 
     /**

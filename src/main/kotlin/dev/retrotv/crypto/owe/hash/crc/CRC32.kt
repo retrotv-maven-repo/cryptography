@@ -2,8 +2,8 @@ package dev.retrotv.crypto.owe.hash.crc
 
 import dev.retrotv.crypto.owe.hash.Hash
 import dev.retrotv.crypto.twe.aes.log
+import dev.retrotv.data.utils.binaryToHex
 import dev.retrotv.enums.HashAlgorithm
-import dev.retrotv.utils.EncodeUtil
 import dev.retrotv.utils.MessageDigestEncodeUtil
 
 /**
@@ -16,7 +16,7 @@ class CRC32 : Hash() {
     override fun hash(data: ByteArray): String {
 
         // 앞에 0이 패딩되는 부분을 무시하고 뒤의 8자리만 잘라낸다
-        return EncodeUtil.binaryToHex(MessageDigestEncodeUtil.encode(HashAlgorithm.CRC32, data))
+        return binaryToHex(MessageDigestEncodeUtil.encode(HashAlgorithm.CRC32, data))
                          .substring(8)
     }
 

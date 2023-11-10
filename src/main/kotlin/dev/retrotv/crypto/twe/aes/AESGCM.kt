@@ -83,7 +83,12 @@ class AESGCM(keyLen: Int) : AES(), ParameterSpecGenerator<GCMParameterSpec> {
         }
     }
 
-    fun updateAAD(aad: String?) {
+    /**
+     * 추가 인증 데이터를 업데이트 합니다.
+     *
+     * @param aad 추가 인증 데이터
+     */
+    fun updateAAD(aad: String) {
         this.aad = aad
     }
 

@@ -6,6 +6,13 @@ import dev.retrotv.enums.CipherAlgorithm
 import dev.retrotv.utils.SecureRandomUtil
 import javax.crypto.spec.IvParameterSpec
 
+/**
+ * LEA/CTR 양방향 암호화 클래스 입니다.
+ *
+ * @property keyLen 암호화에 사용할 키의 길이 입니다.
+ * @author  yjj8353
+ * @since   1.0.0
+ */
 class LEACTR(keyLen: Int) : LEA(), ParameterSpecGenerator<IvParameterSpec> {
 
     init {
@@ -13,6 +20,7 @@ class LEACTR(keyLen: Int) : LEA(), ParameterSpecGenerator<IvParameterSpec> {
             log.debug("keyLen 값: {}", keyLen)
             throw WrongKeyLengthException()
         }
+
         this.keyLen = keyLen
         algorithm = CipherAlgorithm.LEACTR
     }

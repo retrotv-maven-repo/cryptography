@@ -13,6 +13,13 @@ import java.security.spec.AlgorithmParameterSpec
 import javax.crypto.AEADBadTagException
 import javax.crypto.spec.GCMParameterSpec
 
+/**
+ * LEA/GCM 양방향 암호화 클래스 입니다.
+ *
+ * @property keyLen 암호화에 사용할 키의 길이 입니다.
+ * @author  yjj8353
+ * @since   1.0.0
+ */
 class LEAGCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
     private var aad: String? = null
 
@@ -66,6 +73,11 @@ class LEAGCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
         return GCMParameterSpec(GCM_TAG_LENGTH * 8, SecureRandomUtil.generate(GCM_IV_LENGTH))
     }
 
+    /**
+     * 추가 인증 데이터를 업데이트 합니다.
+     *
+     * @param aad 추가 인증 데이터
+     */
     fun updateAAD(aad: String?) {
         this.aad = aad
     }

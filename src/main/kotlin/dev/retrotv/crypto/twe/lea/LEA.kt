@@ -20,6 +20,12 @@ import javax.crypto.spec.SecretKeySpec
 
 val log: Logger = LogManager.getLogger()
 
+/**
+ * LEA 계열의 양방향 암호화 구현을 위한 상속용 클래스 입니다.
+ *
+ * @author  yjj8353
+ * @since   1.0.0
+ */
 abstract class LEA : TwoWayEncryption, KeyGenerator {
     protected var keyLen = 0
     protected var algorithm: CipherAlgorithm? = null
