@@ -52,16 +52,4 @@ class BCrypt : KDF {
     override fun encode(rawPassword: CharSequence): String {
         return bCryptPasswordEncoder.encode(rawPassword)
     }
-
-    override fun upgradeEncoding(encodedPassword: String): Boolean {
-        return PasswordStrengthUtil.checkLength(8, encodedPassword) &&
-               PasswordStrengthUtil.isInclude(
-                   true,
-                   false,
-                   false,
-                   true,
-                   true,
-                   encodedPassword
-               )
-    }
 }

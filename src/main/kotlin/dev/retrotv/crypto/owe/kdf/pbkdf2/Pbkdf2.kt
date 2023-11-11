@@ -34,16 +34,4 @@ class Pbkdf2 : KDF {
             false
         } else pbkdf2PasswordEncoder.matches(rawPassword, encodedPassword)
     }
-
-    override fun upgradeEncoding(encodedPassword: String): Boolean {
-        return PasswordStrengthUtil.checkLength(8, encodedPassword) &&
-               PasswordStrengthUtil.isInclude(
-                   true,
-                   false,
-                   false,
-                   true,
-                   true,
-                   encodedPassword
-               )
-    }
 }
