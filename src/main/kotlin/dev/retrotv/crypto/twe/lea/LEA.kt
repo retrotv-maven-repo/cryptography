@@ -5,7 +5,7 @@ import dev.retrotv.crypto.twe.KeyGenerator
 import dev.retrotv.crypto.twe.TwoWayEncryption
 import dev.retrotv.enums.CipherAlgorithm
 import dev.retrotv.enums.Padding
-import dev.retrotv.utils.SecureRandomUtil
+import dev.retrotv.utils.generate
 import kr.re.nsr.crypto.BlockCipher
 import kr.re.nsr.crypto.BlockCipherMode
 import kr.re.nsr.crypto.padding.PKCS5Padding
@@ -92,7 +92,7 @@ abstract class LEA : TwoWayEncryption, KeyGenerator {
     }
 
     override fun generateKey(): Key {
-        return SecretKeySpec(SecureRandomUtil.generate(keyLen / 8), "LEA")
+        return SecretKeySpec(generate(keyLen / 8), "LEA")
     }
 
     @Throws(NoSuchAlgorithmException::class)

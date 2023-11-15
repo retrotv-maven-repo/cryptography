@@ -3,7 +3,7 @@ package dev.retrotv.crypto.twe.lea
 import dev.retrotv.crypto.exception.WrongKeyLengthException
 import dev.retrotv.crypto.twe.ParameterSpecGenerator
 import dev.retrotv.enums.CipherAlgorithm
-import dev.retrotv.utils.SecureRandomUtil
+import dev.retrotv.utils.generate
 import javax.crypto.spec.IvParameterSpec
 
 /**
@@ -26,6 +26,6 @@ class LEACTR(keyLen: Int) : LEA(), ParameterSpecGenerator<IvParameterSpec> {
     }
 
     override fun generateSpec(): IvParameterSpec {
-        return IvParameterSpec(SecureRandomUtil.generate(16))
+        return IvParameterSpec(generate(16))
     }
 }

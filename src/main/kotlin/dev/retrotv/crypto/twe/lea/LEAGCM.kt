@@ -4,7 +4,7 @@ import dev.retrotv.crypto.exception.CryptoFailException
 import dev.retrotv.crypto.exception.WrongKeyLengthException
 import dev.retrotv.crypto.twe.ParameterSpecGenerator
 import dev.retrotv.enums.CipherAlgorithm
-import dev.retrotv.utils.SecureRandomUtil
+import dev.retrotv.utils.generate
 import kr.re.nsr.crypto.BlockCipher
 import kr.re.nsr.crypto.BlockCipherModeAE
 import kr.re.nsr.crypto.symm.LEA.GCM
@@ -70,7 +70,7 @@ class LEAGCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
     }
 
     override fun generateSpec(): GCMParameterSpec {
-        return GCMParameterSpec(GCM_TAG_LENGTH * 8, SecureRandomUtil.generate(GCM_IV_LENGTH))
+        return GCMParameterSpec(GCM_TAG_LENGTH * 8, generate(GCM_IV_LENGTH))
     }
 
     /**
