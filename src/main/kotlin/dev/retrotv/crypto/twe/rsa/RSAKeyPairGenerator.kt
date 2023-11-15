@@ -1,7 +1,6 @@
 package dev.retrotv.crypto.twe.rsa
 
 import dev.retrotv.crypto.exception.KeyGenerateException
-import dev.retrotv.crypto.exception.WrongKeyLengthException
 import dev.retrotv.crypto.twe.KeyPairGenerator
 import org.apache.logging.log4j.LogManager
 import java.security.KeyPair
@@ -12,9 +11,8 @@ class RSAKeyPairGenerator(keyLen: Int) : KeyPairGenerator {
     private val keyLen: Int
 
     init {
-        if (keyLen != 1024 && keyLen != 2048) {
-            log.debug("keyLen 값: {}", keyLen)
-            throw WrongKeyLengthException()
+        require(keyLen == 1024 || keyLen == 2048) {
+            "해당 알고리즘이 지원하지 않는 키 길이 입니다."
         }
 
         if (keyLen == 1024) {
