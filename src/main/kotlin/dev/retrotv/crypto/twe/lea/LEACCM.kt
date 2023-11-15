@@ -45,7 +45,7 @@ class LEACCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
 
             cipher.doFinal(data)
         } catch (e: Exception) {
-            throw CryptoFailException(e.message ?: "예외 상황을 설명할 메시지가 없습니다.", e)
+            throw CryptoFailException(e.message!!, e)
         }
     }
 
@@ -64,7 +64,7 @@ class LEACCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
                 ?: throw AEADBadTagException("동일한 Tag를 사용해 복호화를 시도했는지 확인 하십시오.")
             originalData
         } catch (e: Exception) {
-            throw CryptoFailException(e.message ?: "예외 상황을 설명할 메시지가 없습니다.", e)
+            throw CryptoFailException(e.message!!, e)
         }
     }
 

@@ -7,7 +7,7 @@ import dev.retrotv.enums.HashAlgorithm
 import dev.retrotv.utils.encode
 
 /**
- * MD5 알고리즘으로 암호화 하기 위한 [MessageDigestEncodeUtil] 추상 클래스의 구현체 입니다.
+ * MD5 알고리즘으로 암호화 하기 위한 [Hash] 추상 클래스의 구현체 입니다.
  *
  * @author  yjj8353
  * @since   1.0.0

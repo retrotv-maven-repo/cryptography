@@ -56,7 +56,7 @@ abstract class LEA : TwoWayEncryption, KeyGenerator {
             }
             cipher.doFinal(data)
         } catch (e: Exception) {
-            throw CryptoFailException(e.message ?: "예외 상황을 설명할 메시지가 없습니다.", e)
+            throw CryptoFailException(e.message!!, e)
         }
     }
 
@@ -79,7 +79,7 @@ abstract class LEA : TwoWayEncryption, KeyGenerator {
 
             cipher.doFinal(encryptedData)
         } catch (e: Exception) {
-            throw CryptoFailException(e.message ?: "예외 상황을 설명할 메시지가 없습니다.", e)
+            throw CryptoFailException(e.message!!, e)
         }
     }
 

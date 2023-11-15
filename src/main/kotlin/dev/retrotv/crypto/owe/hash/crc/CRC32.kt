@@ -7,7 +7,7 @@ import dev.retrotv.enums.HashAlgorithm
 import dev.retrotv.utils.encode
 
 /**
- * CRC-32 알고리즘으로 암호화 하기 위한 [Checksum], [PasswordWithSalt] 인터페이스의 구현체 입니다.
+ * CRC-32 알고리즘으로 암호화 하기 위한 [Hash] 추상 클래스의 구현체 입니다.
  *
  * @author  yjj8353
  * @since   1.0.0
