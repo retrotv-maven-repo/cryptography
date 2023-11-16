@@ -1,7 +1,6 @@
 package dev.retrotv.crypto.twe.rsa
 
 import dev.retrotv.crypto.exception.CryptoFailException
-import dev.retrotv.crypto.exception.WrongPaddingException
 import dev.retrotv.crypto.twe.TwoWayEncryption
 import dev.retrotv.enums.CipherAlgorithm
 import dev.retrotv.enums.Padding
@@ -76,9 +75,6 @@ class RSACipher : TwoWayEncryption {
     }
 
     fun dataPadding(padding: Padding) {
-        if (padding != Padding.PKCS1_PADDING && padding != Padding.OAEP_WITH_SHA1_MGF1_PADDING && padding != Padding.OAEP_WITH_SHA256_MGF1_PADDING) {
-            throw WrongPaddingException()
-        }
         this.padding = padding
     }
 

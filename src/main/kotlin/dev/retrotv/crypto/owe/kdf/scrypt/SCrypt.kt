@@ -30,16 +30,4 @@ class SCrypt : KDF {
             false
         } else sCryptPasswordEncoder.matches(rawPassword, encodedPassword)
     }
-
-    override fun upgradeEncoding(encodedPassword: String): Boolean {
-        return PasswordStrengthUtil.checkLength(8, encodedPassword) &&
-               PasswordStrengthUtil.isInclude(
-                   true,
-                   false,
-                   false,
-                   true,
-                   true,
-                   encodedPassword
-               )
-    }
 }
