@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "dev.retrotv"
-version = "0.17.1-alpha"
+version = "0.18.0-alpha"
 
 // Github Action 버전 출력용
 tasks.register("printVersionName") {
@@ -21,8 +21,8 @@ repositories {
 dependencies {
     api("commons-codec:commons-codec:1.16.0")
     api("org.springframework.security:spring-security-core:5.8.8")
-    implementation("com.github.retrotv-maven-repo:data-utils:0.13.1-alpha")
-    implementation("com.github.retrotv-maven-repo:random-value:0.4.0-alpha")
+    implementation("com.github.retrotv-maven-repo:data-utils:0.13.2-alpha")
+    implementation("com.github.retrotv-maven-repo:random-value:0.5.0-alpha")
 
     // Argon2, SCrypt java.lang.NoClassDefFoundError 방지용
     implementation("org.bouncycastle:bcprov-jdk18on:1.76")

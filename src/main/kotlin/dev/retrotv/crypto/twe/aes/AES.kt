@@ -5,7 +5,7 @@ import dev.retrotv.crypto.twe.KeyGenerator
 import dev.retrotv.crypto.twe.TwoWayEncryption
 import dev.retrotv.enums.CipherAlgorithm
 import dev.retrotv.enums.Padding
-import dev.retrotv.utils.SecureRandomUtil
+import dev.retrotv.utils.generate
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 import java.security.InvalidAlgorithmParameterException
@@ -122,7 +122,7 @@ abstract class AES : TwoWayEncryption, KeyGenerator {
     }
 
     override fun generateKey(): Key {
-        return SecretKeySpec(SecureRandomUtil.generate(keyLen / 8), "AES")
+        return SecretKeySpec(generate(keyLen / 8), "AES")
     }
 
     /**

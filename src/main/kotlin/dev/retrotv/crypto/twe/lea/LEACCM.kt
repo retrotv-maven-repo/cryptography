@@ -1,10 +1,9 @@
 package dev.retrotv.crypto.twe.lea
 
 import dev.retrotv.crypto.exception.CryptoFailException
-import dev.retrotv.crypto.exception.WrongKeyLengthException
 import dev.retrotv.crypto.twe.ParameterSpecGenerator
 import dev.retrotv.enums.CipherAlgorithm
-import dev.retrotv.utils.SecureRandomUtil
+import dev.retrotv.utils.generate
 import kr.re.nsr.crypto.BlockCipher
 import kr.re.nsr.crypto.BlockCipherModeAE
 import kr.re.nsr.crypto.symm.LEA.CCM
@@ -24,9 +23,8 @@ class LEACCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
     private var aad: String? = null
 
     init {
-        if (keyLen != 128 && keyLen != 192 && keyLen != 256) {
-            log.debug("keyLen 값: {}", keyLen)
-            throw WrongKeyLengthException()
+        require(keyLen == 128 || keyLen == 192 || keyLen == 256) {
+            "해당 알고리즘이 지원하지 않는 키 길이 입니다."
         }
 
         this.keyLen = keyLen
@@ -47,7 +45,7 @@ class LEACCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
 
             cipher.doFinal(data)
         } catch (e: Exception) {
-            throw CryptoFailException(e.message ?: "예외 상황을 설명할 메시지가 없습니다.", e)
+            throw CryptoFailException(e.message!!, e)
         }
     }
 
@@ -66,12 +64,12 @@ class LEACCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
                 ?: throw AEADBadTagException("동일한 Tag를 사용해 복호화를 시도했는지 확인 하십시오.")
             originalData
         } catch (e: Exception) {
-            throw CryptoFailException(e.message ?: "예외 상황을 설명할 메시지가 없습니다.", e)
+            throw CryptoFailException(e.message!!, e)
         }
     }
 
     override fun generateSpec(): GCMParameterSpec {
-        return GCMParameterSpec(GCM_TAG_LENGTH * 8, SecureRandomUtil.generate(GCM_IV_LENGTH))
+        return GCMParameterSpec(GCM_TAG_LENGTH * 8, generate(GCM_IV_LENGTH))
     }
 
     /**

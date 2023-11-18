@@ -2,7 +2,7 @@ package dev.retrotv.crypto.twe.aes
 
 import dev.retrotv.common.Log
 import dev.retrotv.crypto.exception.CryptoFailException
-import dev.retrotv.enums.EncodeFormat
+import dev.retrotv.data.enums.EncodeFormat.*
 import org.junit.jupiter.api.*
 
 @TestInstance(value = TestInstance.Lifecycle.PER_CLASS)
@@ -96,8 +96,8 @@ internal class AESECBTest : Log() {
         val aes = AESECB(128)
         val key = aes.generateKey()
         aes.dataPadding()
-        val encryptedData = aes.encrypt(message.toByteArray(), key, null, EncodeFormat.BASE64)
-        val originalMessage = String(aes.decrypt(encryptedData, key, null, EncodeFormat.BASE64))
+        val encryptedData = aes.encrypt(message.toByteArray(), key, null, BASE64)
+        val originalMessage = String(aes.decrypt(encryptedData, key, null, BASE64))
         Assertions.assertEquals(message, originalMessage)
     }
 }

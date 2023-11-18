@@ -1,7 +1,6 @@
 package dev.retrotv.crypto.owe.kdf.scrypt
 
 import dev.retrotv.crypto.owe.kdf.KDF
-import dev.retrotv.utils.PasswordStrengthUtil
 import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder
 
 /**
@@ -29,17 +28,5 @@ class SCrypt : KDF {
         return if (encodedPassword == null) {
             false
         } else sCryptPasswordEncoder.matches(rawPassword, encodedPassword)
-    }
-
-    override fun upgradeEncoding(encodedPassword: String): Boolean {
-        return PasswordStrengthUtil.checkLength(8, encodedPassword) &&
-               PasswordStrengthUtil.isInclude(
-                   true,
-                   false,
-                   false,
-                   true,
-                   true,
-                   encodedPassword
-               )
     }
 }

@@ -3,7 +3,7 @@ package dev.retrotv.crypto.twe.des
 import dev.retrotv.crypto.exception.KeyGenerateException
 import dev.retrotv.crypto.twe.ParameterSpecGenerator
 import dev.retrotv.enums.CipherAlgorithm
-import dev.retrotv.utils.SecureRandomUtil
+import dev.retrotv.utils.generate
 import java.security.Key
 import java.security.NoSuchAlgorithmException
 import javax.crypto.KeyGenerator
@@ -32,6 +32,6 @@ class DESCTR : DES(), ParameterSpecGenerator<IvParameterSpec> {
     }
 
     override fun generateSpec(): IvParameterSpec {
-        return IvParameterSpec(SecureRandomUtil.generate(8))
+        return IvParameterSpec(generate(8))
     }
 }

@@ -1,7 +1,6 @@
 package dev.retrotv.crypto.owe.kdf.bcrypt
 
 import dev.retrotv.crypto.owe.kdf.KDF
-import dev.retrotv.utils.PasswordStrengthUtil
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder.BCryptVersion
 import java.security.SecureRandom
@@ -51,17 +50,5 @@ class BCrypt : KDF {
 
     override fun encode(rawPassword: CharSequence): String {
         return bCryptPasswordEncoder.encode(rawPassword)
-    }
-
-    override fun upgradeEncoding(encodedPassword: String): Boolean {
-        return PasswordStrengthUtil.checkLength(8, encodedPassword) &&
-               PasswordStrengthUtil.isInclude(
-                   true,
-                   false,
-                   false,
-                   true,
-                   true,
-                   encodedPassword
-               )
     }
 }
