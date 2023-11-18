@@ -1,8 +1,9 @@
 package dev.retrotv.crypto.twe
 
 import dev.retrotv.crypto.exception.CryptoFailException
+import dev.retrotv.data.enums.EncodeFormat
+import dev.retrotv.data.enums.EncodeFormat.*
 import dev.retrotv.data.utils.*
-import dev.retrotv.enums.EncodeFormat
 import org.apache.commons.codec.DecoderException
 import java.security.Key
 import java.security.spec.AlgorithmParameterSpec
@@ -36,7 +37,7 @@ interface TwoWayEncryption {
      */
     fun encrypt(data: ByteArray, key: Key, spec: AlgorithmParameterSpec?, format: EncodeFormat): String {
         val encryptedData = encrypt(data, key, spec)
-        return if (format == EncodeFormat.HEX) {
+        return if (format == HEX) {
             binaryToHex(encryptedData)
         } else {
             binaryToBase64(encryptedData)
@@ -63,7 +64,7 @@ interface TwoWayEncryption {
      * @return 복호화 된 데이터
      */
     fun decrypt(encryptedData: String, key: Key, spec: AlgorithmParameterSpec?, format: EncodeFormat): ByteArray {
-        val decodedData: ByteArray = if (format == EncodeFormat.HEX) {
+        val decodedData: ByteArray = if (format == HEX) {
             try {
                 hexToBinary(encryptedData)
             } catch (e: DecoderException) {

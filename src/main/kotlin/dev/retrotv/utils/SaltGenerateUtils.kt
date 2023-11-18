@@ -1,8 +1,8 @@
 @file:JvmName("SaltGenerateUtils")
 package dev.retrotv.utils
 
-import dev.retrotv.random.Generator
 import dev.retrotv.random.PasswordGenerator
+import dev.retrotv.random.RandomStringGenerator
 import dev.retrotv.random.enums.SecurityStrength
 
 /**
@@ -12,9 +12,9 @@ import dev.retrotv.random.enums.SecurityStrength
  * @return 생성된 소금
  */
 fun generateSalt(): String? {
-    val rv: Generator = PasswordGenerator(SecurityStrength.MIDDLE)
+    val rv: RandomStringGenerator = PasswordGenerator(SecurityStrength.MIDDLE)
     rv.generate(16)
-    return rv.getValue()
+    return rv.getString()
 }
 
 /**
@@ -25,9 +25,9 @@ fun generateSalt(): String? {
  * @return 생성된 소금
  */
 fun generateSalt(len: Int): String? {
-    val rv: Generator = PasswordGenerator(SecurityStrength.MIDDLE)
+    val rv: RandomStringGenerator = PasswordGenerator(SecurityStrength.MIDDLE)
     rv.generate(len)
-    return rv.getValue()
+    return rv.getString()
 }
 
 /**
@@ -37,10 +37,10 @@ fun generateSalt(len: Int): String? {
  * @param securityStrength 보안 강도, [SecurityStrength] 참조
  * @return 생성된 소금
  */
-fun generateSalt(securityStrength: SecurityStrength?): String? {
-    val rv: Generator = PasswordGenerator(securityStrength!!)
+fun generateSalt(securityStrength: SecurityStrength): String? {
+    val rv: RandomStringGenerator = PasswordGenerator(securityStrength)
     rv.generate(16)
-    return rv.getValue()
+    return rv.getString()
 }
 
 /**
@@ -50,8 +50,8 @@ fun generateSalt(securityStrength: SecurityStrength?): String? {
  * @param securityStrength 보안 강도, [SecurityStrength] 참조
  * @return 생성된 소금
  */
-fun generateSalt(len: Int, securityStrength: SecurityStrength?): String? {
-    val rv: Generator = PasswordGenerator(securityStrength!!)
+fun generateSalt(len: Int, securityStrength: SecurityStrength): String? {
+    val rv: RandomStringGenerator = PasswordGenerator(securityStrength)
     rv.generate(len)
-    return rv.getValue()
+    return rv.getString()
 }
