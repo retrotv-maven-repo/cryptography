@@ -10,7 +10,7 @@ import java.nio.charset.Charset
  * @author  yjj8353
  * @since   1.0.0
  */
-interface PasswordWithSalt : PasswordEncoder {
+interface PasswordEncoderWithSalt : PasswordEncoder {
 
     /**
      * 패스워드를 암호화 한 뒤, 암호화 된 패스워드를 반환합니다.
@@ -36,7 +36,9 @@ interface PasswordWithSalt : PasswordEncoder {
      * @param salt 소금
      * @return 암호화 된 패스워드 문자열
      */
-    fun encode(rawPassword: CharSequence, salt: CharSequence): String
+    fun encode(rawPassword: CharSequence, salt: CharSequence): String {
+        return encode(rawPassword.toString() + salt)
+    }
 
     /**
      * 패스워드에 소금을 치고 암호화 한 뒤, 암호화 된 패스워드 문자열을 반환합니다.
@@ -46,7 +48,9 @@ interface PasswordWithSalt : PasswordEncoder {
      * @param charset 인코딩 시 사용할 문자열 셋
      * @return 암호화 된 패스워드 문자열
      */
-    fun encode(rawPassword: CharSequence, salt: CharSequence, charset: Charset): String
+    fun encode(rawPassword: CharSequence, salt: CharSequence, charset: Charset): String {
+        return encode(rawPassword.toString() + salt, charset)
+    }
 
     /**
      * 패스워드를 암호화하고 비교할 암호화 된 문자열과 비교 후, 일치 여부를 반환합니다.
@@ -55,7 +59,11 @@ interface PasswordWithSalt : PasswordEncoder {
      * @param encodedPassword 비교할 암호화 된 문자열
      * @return 일치 여부
      */
-    override fun matches(rawPassword: CharSequence, encodedPassword: String?): Boolean
+    override fun matches(rawPassword: CharSequence, encodedPassword: String?): Boolean {
+        return if (encodedPassword == null) {
+            false
+        } else  encodedPassword == encode(rawPassword)
+    }
 
     /**
      * 패스워드에 소금을 치고 암호화 된 문자열을 비교할 암호화 된 문자열과 비교 후, 일치 여부를 반환합니다.
@@ -65,7 +73,14 @@ interface PasswordWithSalt : PasswordEncoder {
      * @param encodedPassword 비교할 암호화 된 문자열
      * @return 일치 여부
      */
-    fun matches(rawPassword: CharSequence, salt: CharSequence, encodedPassword: String?): Boolean
+    fun matches(rawPassword: CharSequence, salt: CharSequence, encodedPassword: String?): Boolean {
+        return if (encodedPassword == null) {
+            false
+        } else matches(
+            rawPassword.toString() + salt,
+            encodedPassword
+        )
+    }
 
     /**
      * 더 나은 보안을 위해 인코딩된 비밀번호를 다시 인코딩해야 하는 경우 true를 반환하고,
