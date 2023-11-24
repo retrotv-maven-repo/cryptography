@@ -8,6 +8,7 @@ import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 
 import dev.retrotv.enums.HashAlgorithm.CRC32
+import java.lang.Long.BYTES
 
 private val log = LogManager.getLogger()
 
@@ -37,7 +38,7 @@ private fun encodeCRC32(data: ByteArray): ByteArray {
     val crc32 = java.util.zip.CRC32()
     crc32.update(data)
 
-    val buffer = ByteBuffer.allocate(java.lang.Long.BYTES)
+    val buffer = ByteBuffer.allocate(BYTES)
     buffer.putLong(crc32.value)
 
     return buffer.array()
