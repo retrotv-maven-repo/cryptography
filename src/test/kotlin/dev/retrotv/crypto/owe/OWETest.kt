@@ -2,6 +2,7 @@ package dev.retrotv.crypto.owe
 
 import dev.retrotv.common.Log
 import dev.retrotv.crypto.owe.hash.Checksum
+import dev.retrotv.crypto.owe.hash.FileChecksum
 import dev.retrotv.crypto.owe.hash.crc.CRC32
 import dev.retrotv.crypto.owe.hash.md.MD2
 import dev.retrotv.crypto.owe.hash.md.MD5
@@ -61,7 +62,7 @@ open class OWETest : Log() {
     }
 
     @Throws(IOException::class)
-    protected fun fileMatchesTest(checksum: Checksum) {
+    protected fun fileMatchesTest(checksum: FileChecksum) {
         if (RESOURCE != null && RESOURCE2 != null) {
             Assertions.assertTrue(checksum.matches(File(RESOURCE.file), File(RESOURCE2.file)))
         } else {

@@ -18,7 +18,7 @@ internal class DESCTRTest : Log() {
         val des = DESCTR()
         val key = des.generateKey()
         val spec: AlgorithmParameterSpec = des.generateSpec()
-        val encryptedData = des.encrypt(message.toByteArray(), key!!, spec)
+        val encryptedData = des.encrypt(message.toByteArray(), key, spec)
         val originalMessage = String(des.decrypt(encryptedData, key, spec))
         Assertions.assertEquals(message, originalMessage)
         encryptedAllData.add(encryptedData)

@@ -2,6 +2,8 @@ package dev.retrotv.crypto.owe.hash.sha
 
 import dev.retrotv.crypto.owe.hash.Hash
 import dev.retrotv.crypto.twe.aes.log
+import dev.retrotv.data.enums.EncodeFormat
+import dev.retrotv.data.utils.binaryEncode
 import dev.retrotv.data.utils.binaryToHex
 import dev.retrotv.enums.HashAlgorithm
 import dev.retrotv.utils.encode
@@ -17,8 +19,12 @@ class SHA1 : Hash() {
         return binaryToHex(encode(HashAlgorithm.SHA1, data))
     }
 
+    override fun hash(data: ByteArray, encodeFormat: EncodeFormat): String {
+        return binaryEncode(encodeFormat, encode(HashAlgorithm.SHA1, data))
+    }
+
     override fun upgradeEncoding(encodedPassword: String?): Boolean {
-        log.debug("파일 해싱 이외의 용도로 사용중일 경우, 알고리즘 업그레이드를 권장합니다.");
+        log.debug("파일 해싱 이외의 용도로 사용중일 경우, 알고리즘 업그레이드를 권장합니다.")
         return true
     }
 }

@@ -17,7 +17,7 @@ internal class TripleDESECBTest : Log() {
         val des = TripleDESECB()
         val key = des.generateKey()
         des.dataPadding()
-        val encryptedData = des.encrypt(message.toByteArray(), key!!, null)
+        val encryptedData = des.encrypt(message.toByteArray(), key, null)
         val originalMessage = String(des.decrypt(encryptedData, key, null))
         Assertions.assertEquals(message, originalMessage)
         encryptedAllData.add(encryptedData)

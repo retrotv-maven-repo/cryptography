@@ -2,6 +2,9 @@ package dev.retrotv.crypto.owe.hash.crc
 
 import dev.retrotv.crypto.owe.hash.Hash
 import dev.retrotv.crypto.twe.aes.log
+import dev.retrotv.data.enums.EncodeFormat
+import dev.retrotv.data.utils.binaryEncode
+import dev.retrotv.data.utils.binaryToBase64
 import dev.retrotv.data.utils.binaryToHex
 import dev.retrotv.enums.HashAlgorithm
 import dev.retrotv.utils.encode
@@ -13,15 +16,21 @@ import dev.retrotv.utils.encode
  * @since   1.0.0
  */
 class CRC32 : Hash() {
+
     override fun hash(data: ByteArray): String {
 
         // 앞에 0이 패딩되는 부분을 무시하고 뒤의 8자리만 잘라낸다
-        return binaryToHex(encode(HashAlgorithm.CRC32, data))
-                         .substring(8)
+        return binaryToHex(encode(HashAlgorithm.CRC32, data)).substring(8)
+    }
+
+    override fun hash(data: ByteArray, encodeFormat: EncodeFormat): String {
+
+        // 앞에 0이 패딩되는 부분을 무시하고 뒤의 8자리만 잘라낸다
+        return binaryEncode(encodeFormat, encode(HashAlgorithm.CRC32, data)).substring(8)
     }
 
     override fun upgradeEncoding(encodedPassword: String?): Boolean {
-        log.debug("파일 해싱 이외의 용도로 사용중일 경우, 알고리즘 업그레이드를 권장합니다.");
+        log.debug("파일 해싱 이외의 용도로 사용중일 경우, 알고리즘 업그레이드를 권장합니다.")
         return true
     }
 }

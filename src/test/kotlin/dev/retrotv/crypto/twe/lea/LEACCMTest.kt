@@ -14,7 +14,7 @@ internal class LEACCMTest {
         val lea = LEACCM(128)
         val key = lea.generateKey()
         val iv: GCMParameterSpec = lea.generateSpec()
-        val encryptedData = lea.encrypt(message.toByteArray(), key!!, iv)
+        val encryptedData = lea.encrypt(message.toByteArray(), key, iv)
         val originalMessage = String(lea.decrypt(encryptedData, key, iv))
         Assertions.assertEquals(message, originalMessage)
     }
@@ -27,7 +27,7 @@ internal class LEACCMTest {
         val lea = LEACCM(192)
         val key = lea.generateKey()
         val iv: GCMParameterSpec = lea.generateSpec()
-        val encryptedData = lea.encrypt(message.toByteArray(), key!!, iv)
+        val encryptedData = lea.encrypt(message.toByteArray(), key, iv)
         val originalMessage = String(lea.decrypt(encryptedData, key, iv))
         Assertions.assertEquals(message, originalMessage)
     }
@@ -40,7 +40,7 @@ internal class LEACCMTest {
         val lea = LEACCM(256)
         val key = lea.generateKey()
         val iv: GCMParameterSpec = lea.generateSpec()
-        val encryptedData = lea.encrypt(message.toByteArray(), key!!, iv)
+        val encryptedData = lea.encrypt(message.toByteArray(), key, iv)
         val originalMessage = String(lea.decrypt(encryptedData, key, iv))
         Assertions.assertEquals(message, originalMessage)
     }

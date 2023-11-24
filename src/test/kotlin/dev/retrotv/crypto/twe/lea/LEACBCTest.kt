@@ -14,7 +14,7 @@ internal class LEACBCTest {
         val key = lea.generateKey()
         val iv = lea.generateSpec()
         lea.dataPadding()
-        val encryptedData = lea.encrypt(message.toByteArray(), key!!, iv)
+        val encryptedData = lea.encrypt(message.toByteArray(), key, iv)
         val originalMessage = String(lea.decrypt(encryptedData, key, iv))
         Assertions.assertEquals(message, originalMessage)
     }
@@ -28,7 +28,7 @@ internal class LEACBCTest {
         val key = lea.generateKey()
         val iv = lea.generateSpec()
         lea.dataPadding()
-        val encryptedData = lea.encrypt(message.toByteArray(), key!!, iv)
+        val encryptedData = lea.encrypt(message.toByteArray(), key, iv)
         val originalMessage = String(lea.decrypt(encryptedData, key, iv))
         Assertions.assertEquals(message, originalMessage)
     }
@@ -42,7 +42,7 @@ internal class LEACBCTest {
         val key = lea.generateKey()
         val iv = lea.generateSpec()
         lea.dataPadding()
-        val encryptedData = lea.encrypt(message.toByteArray(), key!!, iv)
+        val encryptedData = lea.encrypt(message.toByteArray(), key, iv)
         val originalMessage = String(lea.decrypt(encryptedData, key, iv))
         Assertions.assertEquals(message, originalMessage)
     }
