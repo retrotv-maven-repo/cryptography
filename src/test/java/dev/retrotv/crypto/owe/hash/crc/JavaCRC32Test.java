@@ -4,7 +4,6 @@ import dev.retrotv.crypto.owe.hash.Checksum;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
 import java.io.IOException;
 
 class JavaCRC32Test {

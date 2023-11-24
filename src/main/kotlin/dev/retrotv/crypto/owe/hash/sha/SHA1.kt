@@ -18,7 +18,7 @@ class SHA1 : Hash() {
     }
 
     override fun upgradeEncoding(encodedPassword: String?): Boolean {
-        log.debug("파일 해싱 이외의 용도로 사용중일 경우, 알고리즘 업그레이드를 권장합니다.");
+        log.debug("파일 해싱 이외의 용도로 사용중일 경우, 알고리즘 업그레이드를 권장합니다.")
         return true
     }
 }

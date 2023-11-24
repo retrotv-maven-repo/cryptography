@@ -17,7 +17,7 @@ internal class DESECBTest : Log() {
         val des: DES = DESECB()
         val key = des.generateKey()
         des.dataPadding()
-        val encryptedData = des.encrypt(message.toByteArray(), key!!, null)
+        val encryptedData = des.encrypt(message.toByteArray(), key, null)
         val originalMessage = String(des.decrypt(encryptedData, key, null))
         Assertions.assertEquals(message, originalMessage)
         encryptedAllData.add(encryptedData)
