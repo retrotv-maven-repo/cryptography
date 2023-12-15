@@ -1,26 +1,25 @@
 package dev.retrotv.crypto.owe.hash.sha
 
-import dev.retrotv.crypto.owe.hash.Hash
-import dev.retrotv.crypto.twe.aes.log
+import dev.retrotv.crypto.owe.hash.HashAlgorithm
 import dev.retrotv.data.enums.EncodeFormat
 import dev.retrotv.data.utils.binaryEncode
 import dev.retrotv.data.utils.binaryToHex
-import dev.retrotv.enums.HashAlgorithm
+import dev.retrotv.enums.HashAlgorithm.SHA1
 import dev.retrotv.utils.encode
 
 /**
- * SHA-1 알고리즘으로 암호화 하기 위한 [Hash] 추상 클래스의 구현체 입니다.
+ * SHA-1 알고리즘으로 암호화 하기 위한 [HashAlgorithm] 추상 클래스의 구현체 입니다.
  *
  * @author  yjj8353
  * @since   1.0.0
  */
-class SHA1 : Hash() {
+class SHA1 : HashAlgorithm() {
     override fun hash(data: ByteArray): String {
-        return binaryToHex(encode(HashAlgorithm.SHA1, data))
+        return binaryToHex(encode(SHA1, data))
     }
 
     override fun hash(data: ByteArray, encodeFormat: EncodeFormat): String {
-        return binaryEncode(encodeFormat, encode(HashAlgorithm.SHA1, data))
+        return binaryEncode(encodeFormat, encode(SHA1, data))
     }
 
     override fun upgradeEncoding(encodedPassword: String?): Boolean {

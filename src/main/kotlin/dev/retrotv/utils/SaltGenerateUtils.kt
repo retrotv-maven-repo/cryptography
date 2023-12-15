@@ -4,6 +4,7 @@ package dev.retrotv.utils
 import dev.retrotv.random.PasswordGenerator
 import dev.retrotv.random.RandomStringGenerator
 import dev.retrotv.random.enums.SecurityStrength
+import dev.retrotv.random.enums.SecurityStrength.MIDDLE
 
 /**
  * 소금을 생성하고 반환합니다.
@@ -12,7 +13,7 @@ import dev.retrotv.random.enums.SecurityStrength
  * @return 생성된 소금
  */
 fun generateSalt(): String? {
-    val rv: RandomStringGenerator = PasswordGenerator(SecurityStrength.MIDDLE)
+    val rv: RandomStringGenerator = PasswordGenerator(MIDDLE)
     rv.generate(16)
     return rv.getString()
 }
@@ -25,7 +26,7 @@ fun generateSalt(): String? {
  * @return 생성된 소금
  */
 fun generateSalt(len: Int): String? {
-    val rv: RandomStringGenerator = PasswordGenerator(SecurityStrength.MIDDLE)
+    val rv: RandomStringGenerator = PasswordGenerator(MIDDLE)
     rv.generate(len)
     return rv.getString()
 }

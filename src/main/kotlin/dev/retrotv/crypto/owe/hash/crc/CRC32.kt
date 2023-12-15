@@ -1,32 +1,30 @@
 package dev.retrotv.crypto.owe.hash.crc
 
-import dev.retrotv.crypto.owe.hash.Hash
-import dev.retrotv.crypto.twe.aes.log
+import dev.retrotv.crypto.owe.hash.HashAlgorithm
 import dev.retrotv.data.enums.EncodeFormat
 import dev.retrotv.data.utils.binaryEncode
-import dev.retrotv.data.utils.binaryToBase64
 import dev.retrotv.data.utils.binaryToHex
-import dev.retrotv.enums.HashAlgorithm
+import dev.retrotv.enums.HashAlgorithm.CRC32
 import dev.retrotv.utils.encode
 
 /**
- * CRC-32 알고리즘으로 암호화 하기 위한 [Hash] 추상 클래스의 구현체 입니다.
+ * CRC-32 알고리즘으로 암호화 하기 위한 [HashAlgorithm] 추상 클래스의 구현체 입니다.
  *
  * @author  yjj8353
  * @since   1.0.0
  */
-class CRC32 : Hash() {
+class CRC32 : HashAlgorithm() {
 
     override fun hash(data: ByteArray): String {
 
         // 앞에 0이 패딩되는 부분을 무시하고 뒤의 8자리만 잘라낸다
-        return binaryToHex(encode(HashAlgorithm.CRC32, data)).substring(8)
+        return binaryToHex(encode(CRC32, data)).substring(8)
     }
 
     override fun hash(data: ByteArray, encodeFormat: EncodeFormat): String {
 
         // 앞에 0이 패딩되는 부분을 무시하고 뒤의 8자리만 잘라낸다
-        return binaryEncode(encodeFormat, encode(HashAlgorithm.CRC32, data)).substring(8)
+        return binaryEncode(encodeFormat, encode(CRC32, data)).substring(8)
     }
 
     override fun upgradeEncoding(encodedPassword: String?): Boolean {

@@ -19,7 +19,6 @@ import javax.crypto.IllegalBlockSizeException
 import javax.crypto.NoSuchPaddingException
 import javax.crypto.spec.SecretKeySpec
 
-val log: Logger = LogManager.getLogger()
 const val BAD_PADDING_EXCEPTION_MESSAGE = (
           "BadPaddingException: "
         + "\n암호화 시 사용한 키와 일치하지 않습니다.")
@@ -54,6 +53,8 @@ const val NO_SUCH_ALGORITHM_EXCEPTION_MESSAGE = (
  * @since   1.0.0
  */
 abstract class AES : TwoWayEncryption, KeyGenerator {
+    protected val log: Logger = LogManager.getLogger(this.javaClass)
+
     protected var keyLen = 0
     protected var algorithm: CipherAlgorithm? = null
     protected var padding = Padding.NO_PADDING
