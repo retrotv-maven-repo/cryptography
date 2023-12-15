@@ -1,8 +1,8 @@
 package dev.retrotv.crypto.owe
 
 import dev.retrotv.common.Log
-import dev.retrotv.crypto.owe.hash.Checksum
-import dev.retrotv.crypto.owe.hash.FileChecksum
+import dev.retrotv.crypto.owe.hash.Hash
+import dev.retrotv.crypto.owe.hash.FileHash
 import dev.retrotv.crypto.owe.hash.crc.CRC32
 import dev.retrotv.crypto.owe.hash.md.MD2
 import dev.retrotv.crypto.owe.hash.md.MD5
@@ -42,7 +42,7 @@ open class OWETest : Log() {
     }
 
     @Throws(IOException::class)
-    protected fun fileHashMatchesTest(checksum: Checksum, algorithm: HashAlgorithm) {
+    protected fun fileHashMatchesTest(checksum: Hash, algorithm: HashAlgorithm) {
         val file: File
         var fileData: ByteArray
         file = try {
@@ -62,7 +62,7 @@ open class OWETest : Log() {
     }
 
     @Throws(IOException::class)
-    protected fun fileMatchesTest(checksum: FileChecksum) {
+    protected fun fileMatchesTest(checksum: FileHash) {
         if (RESOURCE != null && RESOURCE2 != null) {
             Assertions.assertTrue(checksum.matches(File(RESOURCE.file), File(RESOURCE2.file)))
         } else {
@@ -80,52 +80,52 @@ open class OWETest : Log() {
     private fun hash(algorithm: HashAlgorithm, fileData: ByteArray): String? {
         return when (algorithm) {
             HashAlgorithm.CRC32 -> {
-                val checksum: Checksum = CRC32()
+                val checksum: Hash = CRC32()
                 checksum.hash(fileData)
             }
 
             HashAlgorithm.MD2 -> {
-                val checksum: Checksum = MD2()
+                val checksum: Hash = MD2()
                 checksum.hash(fileData)
             }
 
             HashAlgorithm.MD5 -> {
-                val checksum: Checksum = MD5()
+                val checksum: Hash = MD5()
                 checksum.hash(fileData)
             }
 
             HashAlgorithm.SHA1 -> {
-                val checksum: Checksum = SHA1()
+                val checksum: Hash = SHA1()
                 checksum.hash(fileData)
             }
 
             HashAlgorithm.SHA224 -> {
-                val checksum: Checksum = SHA224()
+                val checksum: Hash = SHA224()
                 checksum.hash(fileData)
             }
 
             HashAlgorithm.SHA256 -> {
-                val checksum: Checksum = SHA256()
+                val checksum: Hash = SHA256()
                 checksum.hash(fileData)
             }
 
             HashAlgorithm.SHA384 -> {
-                val checksum: Checksum = SHA384()
+                val checksum: Hash = SHA384()
                 checksum.hash(fileData)
             }
 
             HashAlgorithm.SHA512 -> {
-                val checksum: Checksum = SHA512()
+                val checksum: Hash = SHA512()
                 checksum.hash(fileData)
             }
 
             HashAlgorithm.SHA512224 -> {
-                val checksum: Checksum = SHA512224()
+                val checksum: Hash = SHA512224()
                 checksum.hash(fileData)
             }
 
             HashAlgorithm.SHA512256 -> {
-                val checksum: Checksum = SHA512256()
+                val checksum: Hash = SHA512256()
                 checksum.hash(fileData)
             }
 
