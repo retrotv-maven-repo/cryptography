@@ -1,10 +1,8 @@
 package dev.retrotv.crypto.owe.hash.crc
 
 import dev.retrotv.crypto.owe.hash.Hash
-import dev.retrotv.crypto.twe.aes.log
 import dev.retrotv.data.enums.EncodeFormat
 import dev.retrotv.data.utils.binaryEncode
-import dev.retrotv.data.utils.binaryToBase64
 import dev.retrotv.data.utils.binaryToHex
 import dev.retrotv.enums.HashAlgorithm
 import dev.retrotv.utils.encode

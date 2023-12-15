@@ -19,14 +19,14 @@ private val log = LogManager.getLogger()
  * @param data 암호화 할 데이터
  * @return 암호화 된 데이터
  */
-fun encode(algorithm: HashAlgorithm, data: ByteArray): ByteArray {
+fun  encode(algorithm: HashAlgorithm, data: ByteArray): ByteArray {
     return if (CRC32 === algorithm) {
         encodeCRC32(data)
     } else try {
         val algorithmName: String = algorithm.label()
         log.debug("알고리즘: {}", algorithmName)
 
-        val md: MessageDigest = MessageDigest.getInstance(algorithm.label())
+        val md = MessageDigest.getInstance(algorithm.label())
         md.update(data)
         md.digest()
     } catch (ignored: NoSuchAlgorithmException) {
