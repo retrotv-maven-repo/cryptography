@@ -2,7 +2,7 @@ package dev.retrotv.crypto.twe.aes
 
 import dev.retrotv.crypto.exception.CryptoFailException
 import dev.retrotv.crypto.twe.ParameterSpecGenerator
-import dev.retrotv.enums.CipherAlgorithm
+import dev.retrotv.enums.Algorithm
 import dev.retrotv.utils.generate
 import java.security.InvalidAlgorithmParameterException
 import java.security.InvalidKeyException
@@ -31,7 +31,7 @@ class AESGCM(keyLen: Int) : AES(), ParameterSpecGenerator<GCMParameterSpec> {
         }
 
         this.keyLen = keyLen
-        algorithm = CipherAlgorithm.AESGCM
+        algorithm = Algorithm.Cipher.AESGCM
     }
 
     override fun encrypt(data: ByteArray, key: Key, spec: AlgorithmParameterSpec?): ByteArray {

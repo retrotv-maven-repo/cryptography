@@ -49,9 +49,9 @@ JDK 1.8 이상
 
 ## 사용법
 ```
-// 해시 (체크섬)
-Hash checksum = new SHA256();
-checksum.hash(new File(filePath));
+// 해시 (파일 해시)
+Hash fileHash = new SHA256();
+fileHash.hash(new File(filePath));
 
 // 해시 (패스워드 + 소금 암호화)
 Hash password = new SHA256();

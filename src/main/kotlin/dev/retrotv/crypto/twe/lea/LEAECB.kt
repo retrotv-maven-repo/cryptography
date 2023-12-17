@@ -1,7 +1,7 @@
 package dev.retrotv.crypto.twe.lea
 
 import dev.retrotv.crypto.exception.CryptoFailException
-import dev.retrotv.enums.CipherAlgorithm
+import dev.retrotv.enums.Algorithm
 import kr.re.nsr.crypto.BlockCipher
 import kr.re.nsr.crypto.BlockCipherMode
 import kr.re.nsr.crypto.padding.PKCS5Padding
@@ -23,7 +23,7 @@ class LEAECB(keyLen: Int) : LEA() {
         }
 
         this.keyLen = keyLen
-        algorithm = CipherAlgorithm.LEAECB
+        algorithm = Algorithm.Cipher.LEAECB
     }
 
     fun encrypt(data: ByteArray, key: Key): ByteArray {

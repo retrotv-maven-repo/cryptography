@@ -2,18 +2,18 @@ package dev.retrotv.crypto.twe.rsa
 
 import dev.retrotv.crypto.exception.CryptoFailException
 import dev.retrotv.crypto.twe.DigitalSignature
-import dev.retrotv.enums.SignatureAlgorithm
+import dev.retrotv.enums.Algorithm
 import org.apache.logging.log4j.LogManager
 import java.security.*
 
 class RSASignature : DigitalSignature {
-    private val algorithm: SignatureAlgorithm
+    private val algorithm: Algorithm.Signature
 
     constructor() {
-        algorithm = SignatureAlgorithm.SHA1
+        algorithm = Algorithm.Signature.SHA1
     }
 
-    constructor(algorithm: SignatureAlgorithm) {
+    constructor(algorithm: Algorithm.Signature) {
         this.algorithm = algorithm
     }
 

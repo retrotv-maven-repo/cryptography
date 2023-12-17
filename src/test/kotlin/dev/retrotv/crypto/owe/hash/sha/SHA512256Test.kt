@@ -1,7 +1,7 @@
 package dev.retrotv.crypto.owe.hash.sha
 
 import dev.retrotv.crypto.owe.OWETest
-import dev.retrotv.enums.HashAlgorithm
+import dev.retrotv.enums.Algorithm
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
@@ -10,7 +10,7 @@ class SHA512256Test : OWETest() {
     @DisplayName("SHA512256 File hash 테스트")
     @Throws(Exception::class)
     fun fileHashTest() {
-        fileHashTest(HashAlgorithm.SHA512256)
+        fileHashTest(Algorithm.Hash.SHA512256)
     }
 
     @Test
@@ -19,7 +19,7 @@ class SHA512256Test : OWETest() {
         Exception::class
     )
     fun fileHashMatchesTest() {
-        fileHashMatchesTest(SHA512256(), HashAlgorithm.SHA512256)
+        fileHashMatchesTest(SHA512256(), Algorithm.Hash.SHA512256)
     }
 
     @Test

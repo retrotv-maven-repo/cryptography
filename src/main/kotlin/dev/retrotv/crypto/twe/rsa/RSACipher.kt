@@ -2,7 +2,7 @@ package dev.retrotv.crypto.twe.rsa
 
 import dev.retrotv.crypto.exception.CryptoFailException
 import dev.retrotv.crypto.twe.TwoWayEncryption
-import dev.retrotv.enums.CipherAlgorithm
+import dev.retrotv.enums.Algorithm
 import dev.retrotv.enums.Padding
 import org.apache.logging.log4j.LogManager
 import java.security.InvalidKeyException
@@ -21,7 +21,7 @@ import javax.crypto.NoSuchPaddingException
  * @since   1.0.0
  */
 class RSACipher : TwoWayEncryption {
-    private val algorithm: CipherAlgorithm = CipherAlgorithm.RSA
+    private val algorithm = Algorithm.Cipher.RSA
     private var padding = Padding.OAEP_WITH_SHA1_MGF1_PADDING
 
     override fun encrypt(data: ByteArray, publicKey: Key, spec: AlgorithmParameterSpec?): ByteArray {

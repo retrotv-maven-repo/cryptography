@@ -1,7 +1,7 @@
 package dev.retrotv.crypto.twe.des
 
 import dev.retrotv.crypto.exception.KeyGenerateException
-import dev.retrotv.enums.CipherAlgorithm
+import dev.retrotv.enums.Algorithm
 import java.security.Key
 import java.security.NoSuchAlgorithmException
 import javax.crypto.KeyGenerator
@@ -15,7 +15,7 @@ import javax.crypto.KeyGenerator
 class TripleDESECB : DES() {
 
     init {
-        algorithm = CipherAlgorithm.TRIPLE_DESECB
+        algorithm = Algorithm.Cipher.TRIPLE_DESECB
     }
 
     override fun generateKey(): Key {
