@@ -1,6 +1,6 @@
 package dev.retrotv.crypto.twe.aes
 
-import dev.retrotv.enums.CipherAlgorithm
+import dev.retrotv.enums.Algorithm
 
 /**
  * AES/ECB 양방향 암호화 클래스 입니다.
@@ -17,6 +17,6 @@ class AESECB(keyLen: Int) : AES() {
         }
 
         this.keyLen = keyLen
-        algorithm = CipherAlgorithm.AESECB
+        algorithm = Algorithm.Cipher.AESECB
     }
 }

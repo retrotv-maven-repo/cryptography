@@ -1,7 +1,7 @@
 package dev.retrotv.crypto.twe.lea
 
 import dev.retrotv.crypto.twe.ParameterSpecGenerator
-import dev.retrotv.enums.CipherAlgorithm
+import dev.retrotv.enums.Algorithm
 import dev.retrotv.utils.generate
 import javax.crypto.spec.IvParameterSpec
 
@@ -20,7 +20,7 @@ class LEACTR(keyLen: Int) : LEA(), ParameterSpecGenerator<IvParameterSpec> {
         }
 
         this.keyLen = keyLen
-        algorithm = CipherAlgorithm.LEACTR
+        algorithm = Algorithm.Cipher.LEACTR
     }
 
     override fun generateSpec(): IvParameterSpec {

@@ -12,7 +12,5 @@ class JavaCRC32Test {
     @DisplayName("fileMatch")
     void test_fileMatch() throws IOException {
         HashAlgorithm hash = new CRC32();
-        // Checksum checksum = new CRC32();
-        // checksum.matches((File) null, (File) null);
     }
 }

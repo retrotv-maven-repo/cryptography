@@ -2,7 +2,7 @@ package dev.retrotv.crypto.twe.des
 
 import dev.retrotv.crypto.exception.KeyGenerateException
 import dev.retrotv.crypto.twe.ParameterSpecGenerator
-import dev.retrotv.enums.CipherAlgorithm
+import dev.retrotv.enums.Algorithm
 import dev.retrotv.utils.generate
 import java.security.Key
 import java.security.NoSuchAlgorithmException
@@ -19,7 +19,7 @@ import javax.crypto.spec.IvParameterSpec
 class DESCFB : DES(), ParameterSpecGenerator<IvParameterSpec> {
 
     init {
-        algorithm = CipherAlgorithm.DESCFB
+        algorithm = Algorithm.Cipher.DESCFB
     }
 
     override fun generateKey(): Key {

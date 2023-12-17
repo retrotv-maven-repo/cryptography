@@ -4,10 +4,9 @@ import dev.retrotv.common.Log
 import dev.retrotv.crypto.owe.hash.Hash
 import dev.retrotv.crypto.owe.hash.FileHash
 import dev.retrotv.crypto.owe.hash.crc.CRC32
-import dev.retrotv.crypto.owe.hash.md.MD2
-import dev.retrotv.crypto.owe.hash.md.MD5
+import dev.retrotv.crypto.owe.hash.md.*
 import dev.retrotv.crypto.owe.hash.sha.*
-import dev.retrotv.enums.HashAlgorithm
+import dev.retrotv.enums.Algorithm
 import org.json.JSONObject
 import org.junit.jupiter.api.Assertions
 import org.springframework.security.crypto.password.PasswordEncoder
@@ -18,11 +17,11 @@ import java.util.*
 
 open class OWETest : Log() {
     protected val PASSWORD = "The quick brown fox jumps over the lazy dog"
-    protected val CHECKSUM = this.javaClass.getClassLoader().getResource("checksum")
-    protected val RESOURCE = this.javaClass.getClassLoader().getResource("checksum_test_file.txt")
-    protected val RESOURCE2 = this.javaClass.getClassLoader().getResource("checksum_test_file2.txt")
+    protected val CHECKSUM = this.javaClass.getClassLoader().getResource("hash_code")
+    protected val RESOURCE = this.javaClass.getClassLoader().getResource("hash_code_test_file.txt")
+    protected val RESOURCE2 = this.javaClass.getClassLoader().getResource("hash_code_test_file2.txt")
     @Throws(IOException::class)
-    protected fun fileHashTest(algorithm: HashAlgorithm) {
+    protected fun fileHashTest(algorithm: Algorithm.Hash) {
         val file: File
         var fileData: ByteArray
         file = try {
@@ -42,7 +41,7 @@ open class OWETest : Log() {
     }
 
     @Throws(IOException::class)
-    protected fun fileHashMatchesTest(checksum: Hash, algorithm: HashAlgorithm) {
+    protected fun fileHashMatchesTest(fileHash: Hash, algorithm: Algorithm.Hash) {
         val file: File
         var fileData: ByteArray
         file = try {
@@ -58,13 +57,13 @@ open class OWETest : Log() {
         } catch (e: IOException) {
             throw IOException("파일을 읽어들이는 과정에서 예상치 못한 오류가 발생했습니다.")
         }
-        Assertions.assertTrue(checksum.matches(fileData, getHash(algorithm)))
+        Assertions.assertTrue(fileHash.matches(fileData, getHash(algorithm)))
     }
 
     @Throws(IOException::class)
-    protected fun fileMatchesTest(checksum: FileHash) {
+    protected fun fileMatchesTest(fileHash: FileHash) {
         if (RESOURCE != null && RESOURCE2 != null) {
-            Assertions.assertTrue(checksum.matches(File(RESOURCE.file), File(RESOURCE2.file)))
+            Assertions.assertTrue(fileHash.matches(File(RESOURCE.file), File(RESOURCE2.file)))
         } else {
             Assertions.fail<Any>()
         }
@@ -77,56 +76,56 @@ open class OWETest : Log() {
         Assertions.assertTrue(password.matches(PASSWORD, encryptedPassword))
     }
 
-    private fun hash(algorithm: HashAlgorithm, fileData: ByteArray): String? {
+    private fun hash(algorithm: Algorithm.Hash, fileData: ByteArray): String? {
         return when (algorithm) {
-            HashAlgorithm.CRC32 -> {
-                val checksum: Hash = CRC32()
-                checksum.hash(fileData)
+            Algorithm.Hash.CRC32 -> {
+                val hash: Hash = CRC32()
+                hash.hash(fileData)
             }
 
-            HashAlgorithm.MD2 -> {
-                val checksum: Hash = MD2()
-                checksum.hash(fileData)
+            Algorithm.Hash.MD2 -> {
+                val hash: Hash = MD2()
+                hash.hash(fileData)
             }
 
-            HashAlgorithm.MD5 -> {
-                val checksum: Hash = MD5()
-                checksum.hash(fileData)
+            Algorithm.Hash.MD5 -> {
+                val hash: Hash = MD5()
+                hash.hash(fileData)
             }
 
-            HashAlgorithm.SHA1 -> {
-                val checksum: Hash = SHA1()
-                checksum.hash(fileData)
+            Algorithm.Hash.SHA1 -> {
+                val hash: Hash = SHA1()
+                hash.hash(fileData)
             }
 
-            HashAlgorithm.SHA224 -> {
-                val checksum: Hash = SHA224()
-                checksum.hash(fileData)
+            Algorithm.Hash.SHA224 -> {
+                val hash: Hash = SHA224()
+                hash.hash(fileData)
             }
 
-            HashAlgorithm.SHA256 -> {
-                val checksum: Hash = SHA256()
-                checksum.hash(fileData)
+            Algorithm.Hash.SHA256 -> {
+                val hash: Hash = SHA256()
+                hash.hash(fileData)
             }
 
-            HashAlgorithm.SHA384 -> {
-                val checksum: Hash = SHA384()
-                checksum.hash(fileData)
+            Algorithm.Hash.SHA384 -> {
+                val hash: Hash = SHA384()
+                hash.hash(fileData)
             }
 
-            HashAlgorithm.SHA512 -> {
-                val checksum: Hash = SHA512()
-                checksum.hash(fileData)
+            Algorithm.Hash.SHA512 -> {
+                val hash: Hash = SHA512()
+                hash.hash(fileData)
             }
 
-            HashAlgorithm.SHA512224 -> {
-                val checksum: Hash = SHA512224()
-                checksum.hash(fileData)
+            Algorithm.Hash.SHA512224 -> {
+                val hash: Hash = SHA512224()
+                hash.hash(fileData)
             }
 
-            HashAlgorithm.SHA512256 -> {
-                val checksum: Hash = SHA512256()
-                checksum.hash(fileData)
+            Algorithm.Hash.SHA512256 -> {
+                val hash: Hash = SHA512256()
+                hash.hash(fileData)
             }
 
             else -> null
@@ -134,20 +133,20 @@ open class OWETest : Log() {
     }
 
     @Throws(IOException::class)
-    private fun getHash(algorithm: HashAlgorithm): String? {
+    private fun getHash(algorithm: Algorithm.Hash): String? {
         val jsonObject = JSONObject(readJson())
-        val file1 = jsonObject.getJSONObject("checksum_test_file")
+        val file1 = jsonObject.getJSONObject("hash_code_test_file")
         return when (algorithm) {
-            HashAlgorithm.CRC32 -> file1.getString(HashAlgorithm.CRC32.label())
-            HashAlgorithm.MD2 -> file1.getString(HashAlgorithm.MD2.label())
-            HashAlgorithm.MD5 -> file1.getString(HashAlgorithm.MD5.label())
-            HashAlgorithm.SHA1 -> file1.getString(HashAlgorithm.SHA1.label())
-            HashAlgorithm.SHA224 -> file1.getString(HashAlgorithm.SHA224.label())
-            HashAlgorithm.SHA256 -> file1.getString(HashAlgorithm.SHA256.label())
-            HashAlgorithm.SHA384 -> file1.getString(HashAlgorithm.SHA384.label())
-            HashAlgorithm.SHA512 -> file1.getString(HashAlgorithm.SHA512.label())
-            HashAlgorithm.SHA512224 -> file1.getString(HashAlgorithm.SHA512224.label())
-            HashAlgorithm.SHA512256 -> file1.getString(HashAlgorithm.SHA512256.label())
+            Algorithm.Hash.CRC32 -> file1.getString(Algorithm.Hash.CRC32.label())
+            Algorithm.Hash.MD2 -> file1.getString(Algorithm.Hash.MD2.label())
+            Algorithm.Hash.MD5 -> file1.getString(Algorithm.Hash.MD5.label())
+            Algorithm.Hash.SHA1 -> file1.getString(Algorithm.Hash.SHA1.label())
+            Algorithm.Hash.SHA224 -> file1.getString(Algorithm.Hash.SHA224.label())
+            Algorithm.Hash.SHA256 -> file1.getString(Algorithm.Hash.SHA256.label())
+            Algorithm.Hash.SHA384 -> file1.getString(Algorithm.Hash.SHA384.label())
+            Algorithm.Hash.SHA512 -> file1.getString(Algorithm.Hash.SHA512.label())
+            Algorithm.Hash.SHA512224 -> file1.getString(Algorithm.Hash.SHA512224.label())
+            Algorithm.Hash.SHA512256 -> file1.getString(Algorithm.Hash.SHA512256.label())
             else -> null
         }
     }
