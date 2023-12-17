@@ -3,7 +3,7 @@ package dev.retrotv.crypto.twe.aes
 import dev.retrotv.crypto.exception.CryptoFailException
 import dev.retrotv.crypto.twe.KeyGenerator
 import dev.retrotv.crypto.twe.TwoWayEncryption
-import dev.retrotv.enums.CipherAlgorithm
+import dev.retrotv.enums.Algorithm
 import dev.retrotv.enums.Padding
 import dev.retrotv.utils.generate
 import org.apache.logging.log4j.LogManager
@@ -56,11 +56,11 @@ abstract class AES : TwoWayEncryption, KeyGenerator {
     protected val log: Logger = LogManager.getLogger(this.javaClass)
 
     protected var keyLen = 0
-    protected var algorithm: CipherAlgorithm? = null
+    protected var algorithm: Algorithm.Cipher? = null
     protected var padding = Padding.NO_PADDING
 
     override fun encrypt(data: ByteArray, key: Key, spec: AlgorithmParameterSpec?): ByteArray {
-        if (algorithm == CipherAlgorithm.AESECB && data.size > keyLen) {
+        if (algorithm == Algorithm.Cipher.AESECB && data.size > keyLen) {
             log.debug("ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.")
         }
 
@@ -73,7 +73,7 @@ abstract class AES : TwoWayEncryption, KeyGenerator {
         return try {
             log.debug("선택된 알고리즘: {}", algorithmName)
             val cipher = Cipher.getInstance(algorithmName)
-            if (algorithm == CipherAlgorithm.AESECB) {
+            if (algorithm == Algorithm.Cipher.AESECB) {
                 cipher.init(Cipher.ENCRYPT_MODE, key)
             } else {
                 cipher.init(Cipher.ENCRYPT_MODE, key, spec)
@@ -100,7 +100,7 @@ abstract class AES : TwoWayEncryption, KeyGenerator {
         return try {
             log.debug("선택된 알고리즘: {}", algorithmName)
             val cipher = Cipher.getInstance(algorithmName)
-            if (algorithm == CipherAlgorithm.AESECB) {
+            if (algorithm == Algorithm.Cipher.AESECB) {
                 cipher.init(Cipher.DECRYPT_MODE, key)
             } else {
                 cipher.init(Cipher.DECRYPT_MODE, key, spec)

@@ -22,19 +22,19 @@ interface FileHash : Hash {
      * file을 해시해 해시 값을 생성한 뒤, 비교할 해시 값과의 일치 여부를 반환합니다.
      *
      * @param file 해시 할 파일
-     * @param checksum 비교할 해시 값
+     * @param hashCode 비교할 해시 값
      * @return 일치 여부
      * @throws IOException 파일을 읽어들이는 과정에서 오류가 발생할 경우 던짐
      */
     @Throws(IOException::class)
-    fun matches(file: File, checksum: String?): Boolean {
-        return if (checksum == null) {
+    fun matches(file: File, hashCode: String?): Boolean {
+        return if (hashCode == null) {
             false
-        } else matches(read(file), checksum)
+        } else matches(read(file), hashCode)
     }
 
     /**
-     * file1, file2를 해시해 체크섬을 생성한 뒤, 두 체크섬이 일치하는지 확인하고 일치 여부를 반환합니다.
+     * file1, file2를 해시해 해시 값을 생성한 뒤, 두 해시 값이 일치하는지 확인하고 일치 여부를 반환합니다.
      *
      * @param file1 기준 파일
      * @param file2 비교할 파일

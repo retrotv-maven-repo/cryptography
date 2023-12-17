@@ -1,7 +1,7 @@
 package dev.retrotv.crypto.twe.aes
 
 import dev.retrotv.crypto.twe.ParameterSpecGenerator
-import dev.retrotv.enums.CipherAlgorithm
+import dev.retrotv.enums.Algorithm
 import dev.retrotv.utils.generate
 import javax.crypto.spec.IvParameterSpec
 
@@ -20,7 +20,7 @@ class AESCBC(keyLen: Int) : AES(), ParameterSpecGenerator<IvParameterSpec> {
         }
 
         this.keyLen = keyLen
-        algorithm = CipherAlgorithm.AESCBC
+        algorithm = Algorithm.Cipher.AESCBC
     }
 
     override fun generateSpec(): IvParameterSpec {

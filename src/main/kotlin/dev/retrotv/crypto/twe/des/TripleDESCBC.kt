@@ -2,7 +2,7 @@ package dev.retrotv.crypto.twe.des
 
 import dev.retrotv.crypto.exception.KeyGenerateException
 import dev.retrotv.crypto.twe.ParameterSpecGenerator
-import dev.retrotv.enums.CipherAlgorithm
+import dev.retrotv.enums.Algorithm
 import dev.retrotv.utils.generate
 import java.security.Key
 import java.security.NoSuchAlgorithmException
@@ -18,7 +18,7 @@ import javax.crypto.spec.IvParameterSpec
 class TripleDESCBC : DES(), ParameterSpecGenerator<IvParameterSpec> {
 
     init {
-        algorithm = CipherAlgorithm.TRIPLE_DESCBC
+        algorithm = Algorithm.Cipher.TRIPLE_DESCBC
     }
 
     override fun generateKey(): Key {

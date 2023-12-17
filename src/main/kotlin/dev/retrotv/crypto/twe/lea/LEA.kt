@@ -3,7 +3,7 @@ package dev.retrotv.crypto.twe.lea
 import dev.retrotv.crypto.exception.CryptoFailException
 import dev.retrotv.crypto.twe.KeyGenerator
 import dev.retrotv.crypto.twe.TwoWayEncryption
-import dev.retrotv.enums.CipherAlgorithm
+import dev.retrotv.enums.Algorithm
 import dev.retrotv.enums.Padding
 import dev.retrotv.utils.generate
 import kr.re.nsr.crypto.BlockCipher
@@ -28,12 +28,12 @@ val log: Logger = LogManager.getLogger()
  */
 abstract class LEA : TwoWayEncryption, KeyGenerator {
     protected var keyLen = 0
-    protected var algorithm: CipherAlgorithm? = null
+    protected var algorithm: Algorithm.Cipher? = null
     protected var padding = Padding.NO_PADDING
 
     override fun encrypt(data: ByteArray, key: Key, spec: AlgorithmParameterSpec?): ByteArray {
         log.debug("선택된 알고리즘: {}", algorithm?.label() + "/" + padding.label())
-        if (algorithm == CipherAlgorithm.LEAECB && data.size > keyLen) {
+        if (algorithm == Algorithm.Cipher.LEAECB && data.size > keyLen) {
             log.debug("ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.")
         }
 
@@ -45,7 +45,7 @@ abstract class LEA : TwoWayEncryption, KeyGenerator {
         return try {
             val cipher: BlockCipherMode = getCipherMode(algorithm)
             val ivSpec: IvParameterSpec? = spec as IvParameterSpec?
-            if (algorithm == CipherAlgorithm.LEAECB) {
+            if (algorithm == Algorithm.Cipher.LEAECB) {
                 cipher.init(BlockCipher.Mode.ENCRYPT, key.encoded)
             } else {
                 checkNotNull(ivSpec)
@@ -66,7 +66,7 @@ abstract class LEA : TwoWayEncryption, KeyGenerator {
             val cipher: BlockCipherMode = getCipherMode(algorithm)
             val ivSpec: IvParameterSpec? = spec as IvParameterSpec?
 
-            if (algorithm == CipherAlgorithm.LEAECB) {
+            if (algorithm == Algorithm.Cipher.LEAECB) {
                 cipher.init(BlockCipher.Mode.DECRYPT, key.encoded)
             } else {
                 checkNotNull(ivSpec)
@@ -96,13 +96,13 @@ abstract class LEA : TwoWayEncryption, KeyGenerator {
     }
 
     @Throws(NoSuchAlgorithmException::class)
-    private fun getCipherMode(algorithm: CipherAlgorithm?): BlockCipherMode {
+    private fun getCipherMode(algorithm: Algorithm.Cipher?): BlockCipherMode {
         val cipher: BlockCipherMode = when (algorithm) {
-            CipherAlgorithm.LEACBC -> CBC()
-            CipherAlgorithm.LEACFB -> CFB()
-            CipherAlgorithm.LEACTR -> CTR()
-            CipherAlgorithm.LEAECB -> ECB()
-            CipherAlgorithm.LEAOFB -> OFB()
+            Algorithm.Cipher.LEACBC -> CBC()
+            Algorithm.Cipher.LEACFB -> CFB()
+            Algorithm.Cipher.LEACTR -> CTR()
+            Algorithm.Cipher.LEAECB -> ECB()
+            Algorithm.Cipher.LEAOFB -> OFB()
             else -> throw NoSuchAlgorithmException("지원하지 않는 알고리즘 입니다.")
         }
 

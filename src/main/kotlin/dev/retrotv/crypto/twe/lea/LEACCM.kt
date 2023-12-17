@@ -2,7 +2,7 @@ package dev.retrotv.crypto.twe.lea
 
 import dev.retrotv.crypto.exception.CryptoFailException
 import dev.retrotv.crypto.twe.ParameterSpecGenerator
-import dev.retrotv.enums.CipherAlgorithm
+import dev.retrotv.enums.Algorithm
 import dev.retrotv.utils.generate
 import kr.re.nsr.crypto.BlockCipher
 import kr.re.nsr.crypto.BlockCipherModeAE
@@ -28,7 +28,7 @@ class LEACCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
         }
 
         this.keyLen = keyLen
-        algorithm = CipherAlgorithm.LEACCM
+        algorithm = Algorithm.Cipher.LEACCM
     }
 
     override fun encrypt(data: ByteArray, key: Key, spec: AlgorithmParameterSpec?): ByteArray {
