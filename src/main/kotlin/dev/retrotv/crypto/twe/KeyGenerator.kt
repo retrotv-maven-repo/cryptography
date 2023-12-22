@@ -1,5 +1,6 @@
 package dev.retrotv.crypto.twe
 
+import dev.retrotv.crypto.exception.KeyGenerateException
 import java.security.Key
 
 /**
@@ -15,5 +16,6 @@ fun interface KeyGenerator {
      *
      * @return 생성 된 키
      */
+    @Throws(KeyGenerateException::class)
     fun generateKey(): Key
 }

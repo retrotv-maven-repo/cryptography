@@ -1,10 +1,12 @@
 package dev.retrotv.crypto.twe.des
 
 import dev.retrotv.crypto.exception.CryptoFailException
+import dev.retrotv.crypto.exception.KeyGenerateException
 import dev.retrotv.crypto.twe.KeyGenerator
 import dev.retrotv.crypto.twe.TwoWayEncryption
 import dev.retrotv.enums.Algorithm
 import dev.retrotv.enums.Padding
+import dev.retrotv.utils.getMessage
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 import java.security.InvalidAlgorithmParameterException
@@ -55,6 +57,7 @@ abstract class DES : TwoWayEncryption, KeyGenerator {
     protected var algorithm: Algorithm.Cipher? = null
     protected var padding = Padding.NO_PADDING
 
+    @Throws(CryptoFailException::class)
     override fun encrypt(data: ByteArray, key: Key, spec: AlgorithmParameterSpec?): ByteArray {
         if (algorithm == Algorithm.Cipher.DESECB || algorithm == Algorithm.Cipher.TRIPLE_DESECB) {
             log.debug("ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.")
@@ -91,6 +94,7 @@ abstract class DES : TwoWayEncryption, KeyGenerator {
         }
     }
 
+    @Throws(CryptoFailException::class)
     override fun decrypt(encryptedData: ByteArray, key: Key, spec: AlgorithmParameterSpec?): ByteArray {
         val algorithmName = algorithm!!.label() + "/" + padding.label()
         return try {
@@ -115,6 +119,16 @@ abstract class DES : TwoWayEncryption, KeyGenerator {
             throw CryptoFailException(NO_SUCH_PADDING_EXCEPTION_MESSAGE, e)
         } catch (e: NoSuchAlgorithmException) {
             throw CryptoFailException(NO_SUCH_ALGORITHM_EXCEPTION_MESSAGE, e)
+        }
+    }
+
+    @Throws(KeyGenerateException::class)
+    override fun generateKey(): Key {
+        return try {
+            val keyGenerator = javax.crypto.KeyGenerator.getInstance("DES")
+            keyGenerator.generateKey()
+        } catch (e: NoSuchAlgorithmException) {
+            throw KeyGenerateException(getMessage("exception.noSuchAlgorithm"), e)
         }
     }
 

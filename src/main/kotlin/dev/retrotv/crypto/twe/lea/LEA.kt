@@ -31,6 +31,7 @@ abstract class LEA : TwoWayEncryption, KeyGenerator {
     protected var algorithm: Algorithm.Cipher? = null
     protected var padding = Padding.NO_PADDING
 
+    @Throws(CryptoFailException::class)
     override fun encrypt(data: ByteArray, key: Key, spec: AlgorithmParameterSpec?): ByteArray {
         log.debug("선택된 알고리즘: {}", algorithm?.label() + "/" + padding.label())
         if (algorithm == Algorithm.Cipher.LEAECB && data.size > keyLen) {
@@ -60,6 +61,7 @@ abstract class LEA : TwoWayEncryption, KeyGenerator {
         }
     }
 
+    @Throws(CryptoFailException::class)
     override fun decrypt(encryptedData: ByteArray, key: Key, spec: AlgorithmParameterSpec?): ByteArray {
         log.debug("선택된 알고리즘: {}", algorithm?.label() + "/" + padding.label())
         return try {

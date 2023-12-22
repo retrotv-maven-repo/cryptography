@@ -1,5 +1,6 @@
 package dev.retrotv.crypto.twe.des
 
+import dev.retrotv.crypto.exception.CryptoFailException
 import dev.retrotv.crypto.exception.KeyGenerateException
 import dev.retrotv.crypto.twe.ParameterSpecGenerator
 import dev.retrotv.enums.Algorithm
@@ -20,15 +21,6 @@ class DESCTR : DES(), ParameterSpecGenerator<IvParameterSpec> {
 
     init {
         algorithm = Algorithm.Cipher.DESCTR
-    }
-
-    override fun generateKey(): Key {
-        return try {
-            val keyGenerator = KeyGenerator.getInstance("DES")
-            keyGenerator.generateKey()
-        } catch (e: NoSuchAlgorithmException) {
-            throw KeyGenerateException("NoSuchAlgorithmException: \n지원하지 않는 암호화 알고리즘 입니다.")
-        }
     }
 
     override fun generateSpec(): IvParameterSpec {

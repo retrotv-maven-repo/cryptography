@@ -59,6 +59,7 @@ abstract class AES : TwoWayEncryption, KeyGenerator {
     protected var algorithm: Algorithm.Cipher? = null
     protected var padding = Padding.NO_PADDING
 
+    @Throws(CryptoFailException::class)
     override fun encrypt(data: ByteArray, key: Key, spec: AlgorithmParameterSpec?): ByteArray {
         if (algorithm == Algorithm.Cipher.AESECB && data.size > keyLen) {
             log.debug("ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.")
@@ -95,6 +96,7 @@ abstract class AES : TwoWayEncryption, KeyGenerator {
         }
     }
 
+    @Throws(CryptoFailException::class)
     override fun decrypt(encryptedData: ByteArray, key: Key, spec: AlgorithmParameterSpec?): ByteArray {
         val algorithmName = algorithm!!.label() + "/" + padding.label()
         return try {

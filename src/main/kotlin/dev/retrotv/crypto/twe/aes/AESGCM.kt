@@ -4,6 +4,7 @@ import dev.retrotv.crypto.exception.CryptoFailException
 import dev.retrotv.crypto.twe.ParameterSpecGenerator
 import dev.retrotv.enums.Algorithm
 import dev.retrotv.utils.generate
+import dev.retrotv.utils.getMessage
 import java.security.InvalidAlgorithmParameterException
 import java.security.InvalidKeyException
 import java.security.Key
@@ -27,13 +28,14 @@ class AESGCM(keyLen: Int) : AES(), ParameterSpecGenerator<GCMParameterSpec> {
 
     init {
         require(keyLen == 128 || keyLen == 192 || keyLen == 256) {
-            "해당 알고리즘이 지원하지 않는 키 길이 입니다."
+            getMessage("exception.wrongKeyLength")
         }
 
         this.keyLen = keyLen
         algorithm = Algorithm.Cipher.AESGCM
     }
 
+    @Throws(CryptoFailException::class)
     override fun encrypt(data: ByteArray, key: Key, spec: AlgorithmParameterSpec?): ByteArray {
         val algorithmName = algorithm!!.label() + "/" + padding.label()
         return try {
@@ -58,6 +60,7 @@ class AESGCM(keyLen: Int) : AES(), ParameterSpecGenerator<GCMParameterSpec> {
         }
     }
 
+    @Throws(CryptoFailException::class)
     override fun decrypt(encryptedData: ByteArray, key: Key, spec: AlgorithmParameterSpec?): ByteArray {
         val algorithmName = algorithm!!.label() + "/" + padding.label()
         return try {

@@ -1,5 +1,6 @@
 package dev.retrotv.crypto.twe
 
+import dev.retrotv.crypto.exception.CryptoFailException
 import java.security.PrivateKey
 import java.security.PublicKey
 
@@ -18,6 +19,7 @@ interface DigitalSignature {
      * @param privateKey 암호화 시, 사용할 개인 키
      * @return 암호화 된 데이터
      */
+    @Throws(CryptoFailException::class)
     fun sign(data: ByteArray, privateKey: PrivateKey): ByteArray
 
     /**
@@ -28,5 +30,6 @@ interface DigitalSignature {
      * @param publicKey 복호화 시, 사용할 공개 키
      * @return 검증 성공 여부
      */
+    @Throws(CryptoFailException::class)
     fun verify(originalData: ByteArray, encryptedData: ByteArray, publicKey: PublicKey): Boolean
 }

@@ -15,19 +15,10 @@ import javax.crypto.spec.IvParameterSpec
  * @author  yjj8353
  * @since   1.0.0
  */
-class TripleDESCTR : DES(), ParameterSpecGenerator<IvParameterSpec> {
+class TripleDESCTR : TripleDES(), ParameterSpecGenerator<IvParameterSpec> {
 
     init {
         algorithm = Algorithm.Cipher.TRIPLE_DESCTR
-    }
-
-    override fun generateKey(): Key {
-        return try {
-            val keyGenerator = KeyGenerator.getInstance("DESede")
-            keyGenerator.generateKey()
-        } catch (e: NoSuchAlgorithmException) {
-            throw KeyGenerateException("NoSuchAlgorithmException: \n지원하지 않는 암호화 알고리즘 입니다.")
-        }
     }
 
     override fun generateSpec(): IvParameterSpec {

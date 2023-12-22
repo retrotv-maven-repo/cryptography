@@ -12,18 +12,9 @@ import javax.crypto.KeyGenerator
  * @author  yjj8353
  * @since   1.0.0
  */
-class TripleDESECB : DES() {
+class TripleDESECB : TripleDES() {
 
     init {
         algorithm = Algorithm.Cipher.TRIPLE_DESECB
-    }
-
-    override fun generateKey(): Key {
-        return try {
-            val keyGenerator = KeyGenerator.getInstance("DESede")
-            keyGenerator.generateKey()
-        } catch (e: NoSuchAlgorithmException) {
-            throw KeyGenerateException("NoSuchAlgorithmException: \n지원하지 않는 암호화 알고리즘 입니다.")
-        }
     }
 }

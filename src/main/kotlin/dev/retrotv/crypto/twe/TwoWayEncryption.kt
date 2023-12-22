@@ -24,6 +24,7 @@ interface TwoWayEncryption {
      * @param spec 초기화 벡터
      * @return 암호화 된 데이터
      */
+    @Throws(CryptoFailException::class)
     fun encrypt(data: ByteArray, key: Key, spec: AlgorithmParameterSpec?): ByteArray
 
     /**
@@ -35,6 +36,7 @@ interface TwoWayEncryption {
      * @param format 인코딩 포맷
      * @return 암호화 완료 후, 지정된 포맷으로 인코딩 된 데이터
      */
+    @Throws(CryptoFailException::class)
     fun encrypt(data: ByteArray, key: Key, spec: AlgorithmParameterSpec?, format: EncodeFormat): String {
         val encryptedData = encrypt(data, key, spec)
         return if (format == HEX) {
@@ -52,6 +54,7 @@ interface TwoWayEncryption {
      * @param spec 초기화 벡터
      * @return 복호화 된 데이터
      */
+    @Throws(CryptoFailException::class)
     fun decrypt(encryptedData: ByteArray, key: Key, spec: AlgorithmParameterSpec?): ByteArray
 
     /**
@@ -63,6 +66,7 @@ interface TwoWayEncryption {
      * @param format 인코딩 포맷
      * @return 복호화 된 데이터
      */
+    @Throws(CryptoFailException::class)
     fun decrypt(encryptedData: String, key: Key, spec: AlgorithmParameterSpec?, format: EncodeFormat): ByteArray {
         val decodedData: ByteArray = if (format == HEX) {
             try {

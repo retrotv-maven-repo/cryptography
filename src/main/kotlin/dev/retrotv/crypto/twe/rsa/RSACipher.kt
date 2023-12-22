@@ -4,6 +4,7 @@ import dev.retrotv.crypto.exception.CryptoFailException
 import dev.retrotv.crypto.twe.TwoWayEncryption
 import dev.retrotv.enums.Algorithm
 import dev.retrotv.enums.Padding
+import dev.retrotv.utils.getMessage
 import org.apache.logging.log4j.LogManager
 import java.security.InvalidKeyException
 import java.security.Key
@@ -24,10 +25,12 @@ class RSACipher : TwoWayEncryption {
     private val algorithm = Algorithm.Cipher.RSA
     private var padding = Padding.OAEP_WITH_SHA1_MGF1_PADDING
 
+    @Throws(CryptoFailException::class)
     override fun encrypt(data: ByteArray, publicKey: Key, spec: AlgorithmParameterSpec?): ByteArray {
         return encrypt(data, publicKey)
     }
 
+    @Throws(CryptoFailException::class)
     fun encrypt(data: ByteArray, publicKey: Key): ByteArray {
         val algorithmName = algorithm.label() + "/" + padding.label()
         if (padding == Padding.PKCS1_PADDING) {
@@ -46,14 +49,16 @@ class RSACipher : TwoWayEncryption {
         } catch (e: NoSuchPaddingException) {
             throw CryptoFailException("NoSuchPaddingException: \n지원되지 않거나, 부정확한 포맷으로 패딩된 데이터를 암복호화 시도하고 있습니다.")
         } catch (e: NoSuchAlgorithmException) {
-            throw CryptoFailException(NO_SUCH_ALGORITHM_EXCEPTION_MESSAGE, e)
+            throw CryptoFailException(getMessage("exception.noSuchAlgorithm"), e)
         }
     }
 
+    @Throws(CryptoFailException::class)
     override fun decrypt(encryptedData: ByteArray, privateKey: Key, spec: AlgorithmParameterSpec?): ByteArray {
         return decrypt(encryptedData, privateKey)
     }
 
+    @Throws(CryptoFailException::class)
     fun decrypt(encryptedData: ByteArray, privateKey: Key): ByteArray {
         val algorithmName = algorithm.label() + "/" + padding.label()
         log.debug("선택된 알고리즘: {}", algorithmName)
@@ -70,7 +75,7 @@ class RSACipher : TwoWayEncryption {
         } catch (e: NoSuchPaddingException) {
             throw CryptoFailException("NoSuchPaddingException: \n지원되지 않거나, 부정확한 포맷으로 패딩된 데이터를 암복호화 시도하고 있습니다.")
         } catch (e: NoSuchAlgorithmException) {
-            throw CryptoFailException(NO_SUCH_ALGORITHM_EXCEPTION_MESSAGE, e)
+            throw CryptoFailException(getMessage("exception.noSuchAlgorithm"), e)
         }
     }
 
@@ -80,7 +85,5 @@ class RSACipher : TwoWayEncryption {
 
     companion object {
         private val log = LogManager.getLogger()
-        private const val NO_SUCH_ALGORITHM_EXCEPTION_MESSAGE = ("NoSuchAlgorithmException: "
-                + "\n지원하지 않는 암호화 알고리즘 입니다.")
     }
 }
