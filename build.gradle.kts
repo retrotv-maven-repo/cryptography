@@ -21,7 +21,7 @@ repositories {
 dependencies {
     api("commons-codec:commons-codec:1.16.0")
     api("org.springframework.security:spring-security-core:5.8.9")
-    implementation("com.github.retrotv-maven-repo:data-utils:0.13.2-alpha")
+    implementation("com.github.retrotv-maven-repo:data-utils:0.13.3-alpha")
     implementation("com.github.retrotv-maven-repo:random-value:0.5.0-alpha")
 
     // Argon2, SCrypt java.lang.NoClassDefFoundError 방지용
