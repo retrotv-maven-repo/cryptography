@@ -1,5 +1,7 @@
 package dev.retrotv.crypto.owe.kdf
 
+import org.apache.logging.log4j.LogManager
+import org.apache.logging.log4j.Logger
 import org.springframework.security.crypto.password.PasswordEncoder
 
 /**
@@ -10,5 +12,5 @@ import org.springframework.security.crypto.password.PasswordEncoder
  * @since   1.0.0
  */
 abstract class KDF : PasswordEncoder {
-
+    protected val log: Logger = LogManager.getLogger(this.javaClass)
 }

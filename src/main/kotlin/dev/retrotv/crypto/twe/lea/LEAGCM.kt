@@ -1,7 +1,6 @@
 package dev.retrotv.crypto.twe.lea
 
 import dev.retrotv.crypto.exception.CryptoFailException
-import dev.retrotv.crypto.exception.KeyGenerateException
 import dev.retrotv.crypto.twe.ParameterSpecGenerator
 import dev.retrotv.enums.Algorithm
 import dev.retrotv.utils.generate

@@ -1,12 +1,8 @@
 package dev.retrotv.crypto.twe.des
 
-import dev.retrotv.crypto.exception.KeyGenerateException
 import dev.retrotv.crypto.twe.ParameterSpecGenerator
 import dev.retrotv.enums.Algorithm
 import dev.retrotv.utils.generate
-import java.security.Key
-import java.security.NoSuchAlgorithmException
-import javax.crypto.KeyGenerator
 import javax.crypto.spec.IvParameterSpec
 
 /**

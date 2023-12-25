@@ -10,8 +10,9 @@ open class Log {
         @JvmStatic
         protected val log: Logger = Logger.getGlobal()
 
+        @JvmStatic
         @BeforeAll
-        fun setLoggerFormatter() {
+        fun setLoggerFormatter(): Unit {
             log.setUseParentHandlers(false)
             val formatter = LogFormatter()
             val handler = ConsoleHandler()

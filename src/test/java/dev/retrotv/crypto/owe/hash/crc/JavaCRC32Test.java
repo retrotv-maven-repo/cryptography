@@ -10,7 +10,7 @@ class JavaCRC32Test {
 
     @Test
     @DisplayName("fileMatch")
-    void test_fileMatch() throws IOException {
+    void test_fileMatch() {
         HashAlgorithm hash = new CRC32();
     }
 }

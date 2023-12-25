@@ -46,15 +46,18 @@ abstract class LEA : TwoWayEncryption, KeyGenerator {
         return try {
             val cipher: BlockCipherMode = getCipherMode(algorithm)
             val ivSpec: IvParameterSpec? = spec as IvParameterSpec?
+
             if (algorithm == Algorithm.Cipher.LEAECB) {
                 cipher.init(BlockCipher.Mode.ENCRYPT, key.encoded)
             } else {
                 checkNotNull(ivSpec)
                 cipher.init(BlockCipher.Mode.ENCRYPT, key.encoded, ivSpec.iv)
             }
+
             if (padding == Padding.PKCS5_PADDING) {
                 cipher.setPadding(PKCS5Padding(16))
             }
+
             cipher.doFinal(data)
         } catch (e: Exception) {
             throw CryptoFailException(e.message!!, e)
