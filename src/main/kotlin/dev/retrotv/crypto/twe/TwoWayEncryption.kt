@@ -4,6 +4,7 @@ import dev.retrotv.crypto.exception.CryptoFailException
 import dev.retrotv.data.enums.EncodeFormat
 import dev.retrotv.data.enums.EncodeFormat.*
 import dev.retrotv.data.utils.*
+import dev.retrotv.utils.getMessage
 import org.apache.commons.codec.DecoderException
 import java.security.Key
 import java.security.spec.AlgorithmParameterSpec
@@ -72,7 +73,7 @@ interface TwoWayEncryption {
             try {
                 hexToBinary(encryptedData)
             } catch (e: DecoderException) {
-                throw CryptoFailException("바이너리로 변환하는 과정에서 오류가 발생했습니다. Hex 값으로 인코딩된 값이 맞는지 확인하십시오.", e)
+                throw CryptoFailException(getMessage("exception.decoder"), e)
             }
         } else {
             base64ToBinary(encryptedData)

@@ -46,17 +46,17 @@ class AESGCM(keyLen: Int) : AES(), ParameterSpecGenerator<GCMParameterSpec> {
             }
             cipher.doFinal(data)
         } catch (e: BadPaddingException) {
-            throw CryptoFailException(BAD_PADDING_EXCEPTION_MESSAGE, e)
+            throw CryptoFailException(getMessage("exception.badPadding"), e)
         } catch (e: IllegalBlockSizeException) {
-            throw CryptoFailException(ILLEGAL_BLOCK_SIZE_EXCEPTION_MESSAGE, e)
+            throw CryptoFailException(getMessage("exception.illegalBlockSize"), e)
         } catch (e: InvalidAlgorithmParameterException) {
-            throw CryptoFailException(INVALID_ALGORITHM_PARAMETER_EXCEPTION_MESSAGE, e)
+            throw CryptoFailException(getMessage("exception.invalidAlgorithmParameter"), e)
         } catch (e: InvalidKeyException) {
-            throw CryptoFailException(INVALID_KEY_EXCEPTION_MESSAGE, e)
+            throw CryptoFailException(getMessage("exception.aes.invalidKey"), e)
         } catch (e: NoSuchPaddingException) {
-            throw CryptoFailException(NO_SUCH_PADDING_EXCEPTION_MESSAGE, e)
+            throw CryptoFailException(getMessage("exception.noSuchPadding"), e)
         } catch (e: NoSuchAlgorithmException) {
-            throw CryptoFailException(NO_SUCH_ALGORITHM_EXCEPTION_MESSAGE, e)
+            throw CryptoFailException(getMessage("exception.noSuchAlgorithm"), e)
         }
     }
 
@@ -71,17 +71,17 @@ class AESGCM(keyLen: Int) : AES(), ParameterSpecGenerator<GCMParameterSpec> {
             }
             cipher.doFinal(encryptedData)
         } catch (e: BadPaddingException) {
-            throw CryptoFailException(BAD_PADDING_EXCEPTION_MESSAGE, e)
+            throw CryptoFailException(getMessage("exception.badPadding"), e)
         } catch (e: IllegalBlockSizeException) {
-            throw CryptoFailException(ILLEGAL_BLOCK_SIZE_EXCEPTION_MESSAGE, e)
+            throw CryptoFailException(getMessage("exception.illegalBlockSize"), e)
         } catch (e: InvalidAlgorithmParameterException) {
-            throw CryptoFailException(INVALID_ALGORITHM_PARAMETER_EXCEPTION_MESSAGE, e)
+            throw CryptoFailException(getMessage("exception.invalidAlgorithmParameter"), e)
         } catch (e: InvalidKeyException) {
-            throw CryptoFailException(INVALID_KEY_EXCEPTION_MESSAGE, e)
+            throw CryptoFailException(getMessage("exception.aes.invalidKey"), e)
         } catch (e: NoSuchPaddingException) {
-            throw CryptoFailException(NO_SUCH_PADDING_EXCEPTION_MESSAGE, e)
+            throw CryptoFailException(getMessage("exception.noSuchPadding"), e)
         } catch (e: NoSuchAlgorithmException) {
-            throw CryptoFailException(NO_SUCH_ALGORITHM_EXCEPTION_MESSAGE, e)
+            throw CryptoFailException(getMessage("exception.noSuchAlgorithm"), e)
         }
     }
 

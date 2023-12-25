@@ -4,7 +4,6 @@ import dev.retrotv.crypto.exception.CryptoFailException
 import dev.retrotv.crypto.twe.DigitalSignature
 import dev.retrotv.enums.Algorithm
 import dev.retrotv.utils.getMessage
-import org.apache.logging.log4j.LogManager
 import java.security.*
 
 class RSASignature : DigitalSignature {
@@ -28,9 +27,9 @@ class RSASignature : DigitalSignature {
         } catch (e: NoSuchAlgorithmException) {
             throw CryptoFailException(getMessage("exception.noSuchAlgorithm"), e)
         } catch (e: InvalidKeyException) {
-            throw CryptoFailException(INVALID_KEY_EXCEPTION_MESSAGE, e)
+            throw CryptoFailException(getMessage("exception.private.invalidKey"), e)
         } catch (e: SignatureException) {
-            throw CryptoFailException(SIGNATURE_EXCEPTION_MESSAGE, e)
+            throw CryptoFailException(getMessage("exception.signature"), e)
         }
     }
 
@@ -44,15 +43,9 @@ class RSASignature : DigitalSignature {
         } catch (e: NoSuchAlgorithmException) {
             throw CryptoFailException(getMessage("exception.noSuchAlgorithm"), e)
         } catch (e: InvalidKeyException) {
-            throw CryptoFailException(INVALID_KEY_EXCEPTION_MESSAGE, e)
+            throw CryptoFailException(getMessage("exception.public.invalidKey"), e)
         } catch (e: SignatureException) {
-            throw CryptoFailException(SIGNATURE_EXCEPTION_MESSAGE, e)
+            throw CryptoFailException(getMessage("exception.signature"), e)
         }
-    }
-
-    companion object {
-        private val log = LogManager.getLogger()
-        private const val INVALID_KEY_EXCEPTION_MESSAGE = "암호화 키는 DES의 경우 8byte, Triple DES의 경우 24byte 길이의 키만 사용할 수 있습니다."
-        private const val SIGNATURE_EXCEPTION_MESSAGE = "서명이 유효하지 않습니다."
     }
 }

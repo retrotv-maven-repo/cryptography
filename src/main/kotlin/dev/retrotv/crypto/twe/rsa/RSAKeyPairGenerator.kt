@@ -13,7 +13,7 @@ class RSAKeyPairGenerator(keyLen: Int) : KeyPairGenerator {
 
     init {
         require(keyLen == 1024 || keyLen == 2048) {
-            "해당 알고리즘이 지원하지 않는 키 길이 입니다."
+            getMessage("exception.wrongKeyLength")
         }
 
         if (keyLen == 1024) {
