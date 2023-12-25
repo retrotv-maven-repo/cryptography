@@ -8,7 +8,7 @@ import dev.retrotv.enums.Algorithm.Hash.SHA1
 import dev.retrotv.utils.encode
 
 /**
- * SHA-1 알고리즘으로 암호화 하기 위한 [Algorithm.Hash] 추상 클래스의 구현체 입니다.
+ * SHA-1 알고리즘으로 암호화 하기 위한 [HashAlgorithm] 추상 클래스의 구현체 입니다.
  *
  * @author  yjj8353
  * @since   1.0.0

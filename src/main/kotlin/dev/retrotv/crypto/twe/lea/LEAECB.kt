@@ -2,6 +2,7 @@ package dev.retrotv.crypto.twe.lea
 
 import dev.retrotv.crypto.exception.CryptoFailException
 import dev.retrotv.enums.Algorithm
+import dev.retrotv.utils.getMessage
 import kr.re.nsr.crypto.BlockCipher
 import kr.re.nsr.crypto.BlockCipherMode
 import kr.re.nsr.crypto.padding.PKCS5Padding
@@ -19,13 +20,14 @@ class LEAECB(keyLen: Int) : LEA() {
 
     init {
         require(keyLen == 128 || keyLen == 192 || keyLen == 256) {
-            "해당 알고리즘이 지원하지 않는 키 길이 입니다."
+            getMessage("exception.wrongKeyLength")
         }
 
         this.keyLen = keyLen
         algorithm = Algorithm.Cipher.LEAECB
     }
 
+    @Throws(CryptoFailException::class)
     fun encrypt(data: ByteArray, key: Key): ByteArray {
         return try {
             val cipher: BlockCipherMode = ECB()
@@ -37,6 +39,7 @@ class LEAECB(keyLen: Int) : LEA() {
         }
     }
 
+    @Throws(CryptoFailException::class)
     fun decrypt(encryptedData: ByteArray, key: Key): ByteArray {
         return try {
             val cipher: BlockCipherMode = ECB()

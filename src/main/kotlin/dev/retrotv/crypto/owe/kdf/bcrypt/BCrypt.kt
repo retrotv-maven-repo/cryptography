@@ -3,6 +3,7 @@ package dev.retrotv.crypto.owe.kdf.bcrypt
 import dev.retrotv.crypto.owe.kdf.KDF
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder.BCryptVersion
+import org.springframework.security.crypto.password.PasswordEncoder
 import java.security.SecureRandom
 
 /**

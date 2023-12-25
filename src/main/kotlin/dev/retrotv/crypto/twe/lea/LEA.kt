@@ -31,6 +31,7 @@ abstract class LEA : TwoWayEncryption, KeyGenerator {
     protected var algorithm: Algorithm.Cipher? = null
     protected var padding = Padding.NO_PADDING
 
+    @Throws(CryptoFailException::class)
     override fun encrypt(data: ByteArray, key: Key, spec: AlgorithmParameterSpec?): ByteArray {
         log.debug("선택된 알고리즘: {}", algorithm?.label() + "/" + padding.label())
         if (algorithm == Algorithm.Cipher.LEAECB && data.size > keyLen) {
@@ -45,21 +46,25 @@ abstract class LEA : TwoWayEncryption, KeyGenerator {
         return try {
             val cipher: BlockCipherMode = getCipherMode(algorithm)
             val ivSpec: IvParameterSpec? = spec as IvParameterSpec?
+
             if (algorithm == Algorithm.Cipher.LEAECB) {
                 cipher.init(BlockCipher.Mode.ENCRYPT, key.encoded)
             } else {
                 checkNotNull(ivSpec)
                 cipher.init(BlockCipher.Mode.ENCRYPT, key.encoded, ivSpec.iv)
             }
+
             if (padding == Padding.PKCS5_PADDING) {
                 cipher.setPadding(PKCS5Padding(16))
             }
+
             cipher.doFinal(data)
         } catch (e: Exception) {
             throw CryptoFailException(e.message!!, e)
         }
     }
 
+    @Throws(CryptoFailException::class)
     override fun decrypt(encryptedData: ByteArray, key: Key, spec: AlgorithmParameterSpec?): ByteArray {
         log.debug("선택된 알고리즘: {}", algorithm?.label() + "/" + padding.label())
         return try {

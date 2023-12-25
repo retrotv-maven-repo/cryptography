@@ -1,6 +1,7 @@
 package dev.retrotv.crypto.twe.aes
 
 import dev.retrotv.enums.Algorithm
+import dev.retrotv.utils.getMessage
 
 /**
  * AES/ECB 양방향 암호화 클래스 입니다.
@@ -13,7 +14,7 @@ class AESECB(keyLen: Int) : AES() {
 
     init {
         require(keyLen == 128 || keyLen == 192 || keyLen == 256) {
-            "해당 알고리즘이 지원하지 않는 키 길이 입니다."
+            getMessage("exception.wrongKeyLength")
         }
 
         this.keyLen = keyLen

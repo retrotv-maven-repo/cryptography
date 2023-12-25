@@ -4,6 +4,7 @@ import dev.retrotv.crypto.exception.CryptoFailException
 import dev.retrotv.data.enums.EncodeFormat
 import dev.retrotv.data.enums.EncodeFormat.*
 import dev.retrotv.data.utils.*
+import dev.retrotv.utils.getMessage
 import org.apache.commons.codec.DecoderException
 import java.security.Key
 import java.security.spec.AlgorithmParameterSpec
@@ -24,6 +25,7 @@ interface TwoWayEncryption {
      * @param spec 초기화 벡터
      * @return 암호화 된 데이터
      */
+    @Throws(CryptoFailException::class)
     fun encrypt(data: ByteArray, key: Key, spec: AlgorithmParameterSpec?): ByteArray
 
     /**
@@ -35,6 +37,7 @@ interface TwoWayEncryption {
      * @param format 인코딩 포맷
      * @return 암호화 완료 후, 지정된 포맷으로 인코딩 된 데이터
      */
+    @Throws(CryptoFailException::class)
     fun encrypt(data: ByteArray, key: Key, spec: AlgorithmParameterSpec?, format: EncodeFormat): String {
         val encryptedData = encrypt(data, key, spec)
         return if (format == HEX) {
@@ -52,6 +55,7 @@ interface TwoWayEncryption {
      * @param spec 초기화 벡터
      * @return 복호화 된 데이터
      */
+    @Throws(CryptoFailException::class)
     fun decrypt(encryptedData: ByteArray, key: Key, spec: AlgorithmParameterSpec?): ByteArray
 
     /**
@@ -63,12 +67,13 @@ interface TwoWayEncryption {
      * @param format 인코딩 포맷
      * @return 복호화 된 데이터
      */
+    @Throws(CryptoFailException::class)
     fun decrypt(encryptedData: String, key: Key, spec: AlgorithmParameterSpec?, format: EncodeFormat): ByteArray {
         val decodedData: ByteArray = if (format == HEX) {
             try {
                 hexToBinary(encryptedData)
             } catch (e: DecoderException) {
-                throw CryptoFailException("바이너리로 변환하는 과정에서 오류가 발생했습니다. Hex 값으로 인코딩된 값이 맞는지 확인하십시오.", e)
+                throw CryptoFailException(getMessage("exception.decoder"), e)
             }
         } else {
             base64ToBinary(encryptedData)

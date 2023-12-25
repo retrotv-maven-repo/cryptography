@@ -16,19 +16,20 @@ import java.nio.file.Files
 import java.util.*
 
 open class OWETest : Log() {
-    protected val PASSWORD = "The quick brown fox jumps over the lazy dog"
-    protected val CHECKSUM = this.javaClass.getClassLoader().getResource("hash_code")
-    protected val RESOURCE = this.javaClass.getClassLoader().getResource("hash_code_test_file.txt")
-    protected val RESOURCE2 = this.javaClass.getClassLoader().getResource("hash_code_test_file2.txt")
+    private val PASSWORD = "The quick brown fox jumps over the lazy dog"
+    private val CHECKSUM = this.javaClass.getClassLoader().getResource("hash_code")
+    private val RESOURCE = this.javaClass.getClassLoader().getResource("hash_code_test_file.txt")
+    private val RESOURCE2 = this.javaClass.getClassLoader().getResource("hash_code_test_file2.txt")
+
     @Throws(IOException::class)
     protected fun fileHashTest(algorithm: Algorithm.Hash) {
-        val file: File
         var fileData: ByteArray
-        file = try {
+        val file = try {
             File(Objects.requireNonNull(RESOURCE).toURI())
         } catch (e: URISyntaxException) {
             throw RuntimeException(e)
         }
+
         try {
             DataInputStream(Files.newInputStream(file.toPath())).use { dis ->
                 fileData = ByteArray(file.length().toInt())
@@ -37,18 +38,19 @@ open class OWETest : Log() {
         } catch (e: IOException) {
             throw IOException("파일을 읽어들이는 과정에서 예상치 못한 오류가 발생했습니다.")
         }
+
         Assertions.assertEquals(getHash(algorithm), hash(algorithm, fileData))
     }
 
     @Throws(IOException::class)
     protected fun fileHashMatchesTest(fileHash: Hash, algorithm: Algorithm.Hash) {
-        val file: File
         var fileData: ByteArray
-        file = try {
+        val file = try {
             File(Objects.requireNonNull(RESOURCE).toURI())
         } catch (e: URISyntaxException) {
             throw RuntimeException(e)
         }
+
         try {
             DataInputStream(Files.newInputStream(file.toPath())).use { dis ->
                 fileData = ByteArray(file.length().toInt())
@@ -57,6 +59,7 @@ open class OWETest : Log() {
         } catch (e: IOException) {
             throw IOException("파일을 읽어들이는 과정에서 예상치 못한 오류가 발생했습니다.")
         }
+
         Assertions.assertTrue(fileHash.matches(fileData, getHash(algorithm)))
     }
 
@@ -72,6 +75,7 @@ open class OWETest : Log() {
     protected fun passwordEncryptAndMatchesTest(password: PasswordEncoder) {
         val encryptedPassword = password.encode(PASSWORD)
         log.info(encryptedPassword)
+
         Assertions.assertNotEquals(PASSWORD, encryptedPassword)
         Assertions.assertTrue(password.matches(PASSWORD, encryptedPassword))
     }
@@ -156,6 +160,7 @@ open class OWETest : Log() {
         if (CHECKSUM == null) {
             throw IOException()
         }
+
         var json: String
         BufferedReader(FileReader(CHECKSUM.file)).use { reader ->
             val sb = StringBuilder()
@@ -167,6 +172,7 @@ open class OWETest : Log() {
             }
             json = sb.toString()
         }
+
         log.info(json)
         return json
     }
