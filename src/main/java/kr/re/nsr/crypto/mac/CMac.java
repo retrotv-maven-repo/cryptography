@@ -15,7 +15,7 @@ public class CMac extends Mac {
 	private static final byte[] R128 = { (byte) 0x87 };
 	private static final byte[] R64 = { (byte) 0x1b };
 
-	private BlockCipher engine;
+	private final BlockCipher engine;
 
 	private int blocksize;
 	private int blkIdx;
@@ -23,7 +23,7 @@ public class CMac extends Mac {
 	private byte[] mac;
 
 	private byte[] RB;
-	private byte k1[], k2[];
+	private byte[] k1, k2;
 
 	public CMac(BlockCipher cipher) {
 		engine = cipher;
@@ -117,17 +117,17 @@ public class CMac extends Mac {
 
 	private void selectRB() {
 		switch (blocksize) {
-		case 8:
-			RB = R64;
-			break;
+			case 8:
+				RB = R64;
+				break;
 
-		case 16:
-			RB = R128;
-			break;
+			case 16:
+				RB = R128;
+				break;
 
-		case 32:
-			RB = R256;
-			break;
+			case 32:
+				RB = R256;
+				break;
 		}
 	}
 

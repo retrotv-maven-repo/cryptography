@@ -17,7 +17,7 @@ public class GCMMode extends BlockCipherModeAE {
 	private static final int MAX_TAGLEN = 16;
 
 	//@formatter:off
-	private static final byte REDUCTION[][] = {
+	private static final byte[][] REDUCTION = {
 		{(byte)0x00, (byte)0x00}, {(byte)0x01, (byte)0xc2}, {(byte)0x03, (byte)0x84}, {(byte)0x02, (byte)0x46}, {(byte)0x07, (byte)0x08}, {(byte)0x06, (byte)0xca}, {(byte)0x04, (byte)0x8c}, {(byte)0x05, (byte)0x4e},
 		{(byte)0x0e, (byte)0x10}, {(byte)0x0f, (byte)0xd2}, {(byte)0x0d, (byte)0x94}, {(byte)0x0c, (byte)0x56}, {(byte)0x09, (byte)0x18}, {(byte)0x08, (byte)0xda}, {(byte)0x0a, (byte)0x9c}, {(byte)0x0b, (byte)0x5e},
 		{(byte)0x1c, (byte)0x20}, {(byte)0x1d, (byte)0xe2}, {(byte)0x1f, (byte)0xa4}, {(byte)0x1e, (byte)0x66}, {(byte)0x1b, (byte)0x28}, {(byte)0x1a, (byte)0xea}, {(byte)0x18, (byte)0xac}, {(byte)0x19, (byte)0x6e},
@@ -54,15 +54,14 @@ public class GCMMode extends BlockCipherModeAE {
 	//@formatter:on
 
 	private byte[] initialCtr;
-	private byte[] nonce;
 	private byte[] tag;
 
 	private byte[][] hTable;
-	private byte[] block;
+	private final byte[] block;
 	private byte[] macBlock;
-	private byte[] aadBlock;
-	private byte[] hashBlock;
-	private byte[] mulBlock;
+	private final byte[] aadBlock;
+	private final byte[] hashBlock;
+	private final byte[] mulBlock;
 	private byte[] inBuffer;
 
 	private int blockOff;
@@ -236,7 +235,7 @@ public class GCMMode extends BlockCipherModeAE {
 			updateDecrypt(in);
 		}
 
-		return null;
+		return new byte[0];
 	}
 
 	@Override
@@ -263,7 +262,7 @@ public class GCMMode extends BlockCipherModeAE {
 					try {
 						baos.write(out, outOff, extra);
 					} catch (Exception e) {
-						e.printStackTrace();
+						log.error(e);
 					}
 				}
 				System.arraycopy(inBuffer, extra, tag, 0, taglen);
@@ -385,7 +384,7 @@ public class GCMMode extends BlockCipherModeAE {
 			baos.write(out);
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(e);
 		}
 	}
 
@@ -439,7 +438,7 @@ public class GCMMode extends BlockCipherModeAE {
 		}
 	}
 
-	private void increase_counter(byte ctr[]) {
+	private void increase_counter(byte[] ctr) {
 
 		for (int i = 15; i >= 12; --i) {
 			if (++ctr[i] != 0) {
@@ -448,7 +447,7 @@ public class GCMMode extends BlockCipherModeAE {
 		}
 	}
 
-	private void ghash(byte r[], byte data[], int data_len) {
+	private void ghash(byte[] r, byte[] data, int data_len) {
 
 		System.arraycopy(r, 0, hashBlock, 0, blocksize);
 
@@ -467,7 +466,7 @@ public class GCMMode extends BlockCipherModeAE {
 		System.arraycopy(hashBlock, 0, r, 0, blocksize);
 	}
 
-	private void gfmul(byte r[], byte x[]) {
+	private void gfmul(byte[] r, byte[] x) {
 		Arrays.fill(mulBlock, (byte) 0x00);
 
 		int rowIdx = 0;
@@ -475,10 +474,10 @@ public class GCMMode extends BlockCipherModeAE {
 			int colIdx = 0;
 
 			for (colIdx = 0; colIdx < 16; ++colIdx) {
-				mulBlock[colIdx] ^= hTable[(int) (x[rowIdx] & 0xff)][colIdx];
+				mulBlock[colIdx] ^= hTable[x[rowIdx] & 0xff][colIdx];
 			}
 
-			int mask = (int) (mulBlock[15] & 0xff);
+			int mask = mulBlock[15] & 0xff;
 			for (colIdx = 15; colIdx > 0; --colIdx) {
 				mulBlock[colIdx] = mulBlock[colIdx - 1];
 			}
@@ -487,7 +486,7 @@ public class GCMMode extends BlockCipherModeAE {
 			mulBlock[0] ^= REDUCTION[mask][0];
 			mulBlock[1] ^= REDUCTION[mask][1];
 		}
-		rowIdx = (int) (x[0] & 0xff);
+		rowIdx = x[0] & 0xff;
 
 		XOR(r, mulBlock, hTable[rowIdx]);
 	}

@@ -1,7 +1,6 @@
 package kr.re.nsr.crypto.mode;
 
 import kr.re.nsr.crypto.BlockCipherModeAE;
-import kr.re.nsr.crypto.util.Ops;
 import kr.re.nsr.crypto.BlockCipher;
 import kr.re.nsr.crypto.BlockCipher.Mode;
 
@@ -14,16 +13,15 @@ import static kr.re.nsr.crypto.util.Ops.XOR;
 
 public class CCMMode extends BlockCipherModeAE {
 
-	private byte[] ctr;
+	private final byte[] ctr;
 	private byte[] mac;
 	private byte[] tag;
-	private byte[] block;
+	private final byte[] block;
 
 	private ByteArrayOutputStream aadBytes;
 	private ByteArrayOutputStream inputBytes;
 
 	private int msglen;
-	private int taglen;
 	private int noncelen;
 
 	public CCMMode(BlockCipher cipher) {
@@ -58,7 +56,7 @@ public class CCMMode extends BlockCipherModeAE {
 	@Override
 	public byte[] update(byte[] msg) {
 		inputBytes.write(msg, 0, msg.length);
-		return null;
+		return new byte[0];
 	}
 
 	@Override
@@ -94,13 +92,13 @@ public class CCMMode extends BlockCipherModeAE {
 		engine.processBlock(ctr, 0, block, 0);
 
 		if (mode == Mode.ENCRYPT) {
-			Ops.XOR(mac, block);
+			XOR(mac, block);
 			System.arraycopy(mac, 0, tag, 0, taglen);
 			System.arraycopy(mac, 0, out, out.length - taglen, taglen);
 
 		} else {
 			mac = Arrays.copyOf(mac, taglen);
-			if (Arrays.equals(tag, mac) == false) {
+			if (!Arrays.equals(tag, mac)) {
 				Arrays.fill(out, (byte) 0);
 			}
 		}
@@ -190,12 +188,12 @@ public class CCMMode extends BlockCipherModeAE {
 		remained -= processed;
 		System.arraycopy(aad, 0, block, alen, processed);
 
-		Ops.XOR(mac, block);
+		XOR(mac, block);
 		engine.processBlock(mac, 0, mac, 0);
 
 		while (remained > 0) {
-			processed = remained >= blocksize ? blocksize : remained;
-			Ops.XOR(mac, 0, mac, 0, aad, i, processed);
+			processed = Math.min(remained, blocksize);
+			XOR(mac, 0, mac, 0, aad, i, processed);
 			engine.processBlock(mac, 0, mac, 0);
 
 			i += processed;
@@ -213,14 +211,14 @@ public class CCMMode extends BlockCipherModeAE {
 
 		remained = msglen;
 		while (remained > 0) {
-			processed = remained >= blocksize ? blocksize : remained;
+			processed = Math.min(remained, blocksize);
 
-			Ops.XOR(mac, 0, mac, 0, in, inIdx, processed);
+			XOR(mac, 0, mac, 0, in, inIdx, processed);
 			engine.processBlock(mac, 0, mac, 0);
 
 			increaseCounter();
 			engine.processBlock(ctr, 0, block, 0);
-			Ops.XOR(out, outIdx, block, 0, in, inIdx, processed);
+			XOR(out, outIdx, block, 0, in, inIdx, processed);
 
 			inIdx += processed;
 			outIdx += processed;
@@ -238,17 +236,17 @@ public class CCMMode extends BlockCipherModeAE {
 
 		System.arraycopy(in, msglen, tag, 0, taglen);
 		engine.processBlock(ctr, 0, block, 0);
-		Ops.XOR(tag, 0, block, 0, taglen);
+		XOR(tag, 0, block, 0, taglen);
 
 		remained = msglen;
 		while (remained > 0) {
-			processed = remained >= blocksize ? blocksize : remained;
+			processed = Math.min(remained, blocksize);
 
 			increaseCounter();
 			engine.processBlock(ctr, 0, block, 0);
-			Ops.XOR(out, outIdx, block, 0, in, i, processed);
+			XOR(out, outIdx, block, 0, in, i, processed);
 
-			Ops.XOR(mac, 0, mac, 0, out, outIdx, processed);
+			XOR(mac, 0, mac, 0, out, outIdx, processed);
 			engine.processBlock(mac, 0, mac, 0);
 
 			i += processed;
@@ -264,9 +262,8 @@ public class CCMMode extends BlockCipherModeAE {
 
 		try {
 			obj.close();
-
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(e);
 		}
 	}
 

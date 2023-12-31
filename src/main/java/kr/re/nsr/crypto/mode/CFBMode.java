@@ -1,6 +1,5 @@
 package kr.re.nsr.crypto.mode;
 
-import kr.re.nsr.crypto.util.Ops;
 import kr.re.nsr.crypto.BlockCipher;
 import kr.re.nsr.crypto.BlockCipher.Mode;
 import kr.re.nsr.crypto.BlockCipherModeStream;
@@ -11,7 +10,6 @@ import static kr.re.nsr.crypto.util.Ops.XOR;
 
 // DONE: block vs buffer
 public class CFBMode extends BlockCipherModeStream {
-	private static final Logger log = LogManager.getLogger();
 
 	private byte[] iv;
 	private byte[] block;
@@ -46,7 +44,7 @@ public class CFBMode extends BlockCipherModeStream {
 	@Override
 	protected int processBlock(byte[] in, int inOff, byte[] out, int outOff, int outlen) {
 		int length = engine.processBlock(feedback, 0, block, 0);
-		Ops.XOR(out, outOff, in, inOff, block, 0, outlen);
+		XOR(out, outOff, in, inOff, block, 0, outlen);
 
 		if (mode == Mode.ENCRYPT) {
 			blocksize = Math.min(out.length, blocksize);
@@ -58,5 +56,4 @@ public class CFBMode extends BlockCipherModeStream {
 
 		return length;
 	}
-
 }

@@ -7,7 +7,7 @@ public abstract class Padding {
 
 	protected int blocksize;
 
-	public Padding(int blocksize) {
+	protected Padding(int blocksize) {
 		this.blocksize = blocksize;
 	}
 

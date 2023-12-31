@@ -15,10 +15,8 @@ public abstract class BlockCipher {
 	/**
 	 * 초기화 함수
 	 * 
-	 * @param mode
-	 *            {@link Mode}
-	 * @param mk
-	 *            암호화 키
+	 * @param mode {@link Mode}
+	 * @param mk 암호화 키
 	 */
 	public abstract void init(Mode mode, byte[] mk);
 
@@ -44,14 +42,10 @@ public abstract class BlockCipher {
 	/**
 	 * 한블록 암호화
 	 * 
-	 * @param in
-	 *            입력
-	 * @param inOff
-	 *            입력 시작 위치
-	 * @param out
-	 *            출력
-	 * @param outOff
-	 *            출력 시작 위치
+	 * @param in 입력
+	 * @param inOff 입력 시작 위치
+	 * @param out 출력
+	 * @param outOff 출력 시작 위치
 	 * @return 처리한 데이터의 길이
 	 */
 	public abstract int processBlock(byte[] in, int inOff, byte[] out, int outOff);

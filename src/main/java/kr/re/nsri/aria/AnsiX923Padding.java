@@ -18,7 +18,7 @@ package kr.re.nsri.aria;
 public class AnsiX923Padding implements CryptoPadding {
 
 	/** 패딩 규칙 이름 */
-	private String name = "ANSI-X.923-Padding";
+	private final String name = "ANSI-X.923-Padding";
 
 	private static final byte PADDING_VALUE = 0x00;
 

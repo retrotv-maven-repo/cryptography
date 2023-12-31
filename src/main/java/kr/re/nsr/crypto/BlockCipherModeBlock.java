@@ -6,14 +6,12 @@ public abstract class BlockCipherModeBlock extends BlockCipherModeImpl {
 
 	protected Padding padding;
 
-	public BlockCipherModeBlock(BlockCipher cipher) {
+	protected BlockCipherModeBlock(BlockCipher cipher) {
 		super(cipher);
 	}
 
 	@Override
 	public int getOutputSize(int len) {
-		// TODO
-
 		int size = ((len + bufferOffset) & blockmask) + blocksize;
 		if (mode == BlockCipher.Mode.ENCRYPT) {
 			return padding != null ? size : len;
@@ -59,7 +57,7 @@ public abstract class BlockCipherModeBlock extends BlockCipherModeImpl {
 		}
 
 		if (msg == null) {
-			return null;
+			return new byte[0];
 		}
 
 		int len = msg.length;
@@ -86,7 +84,6 @@ public abstract class BlockCipherModeBlock extends BlockCipherModeImpl {
 		if (len > 0) {
 			System.arraycopy(msg, inOff, buffer, bufferOffset, len);
 			bufferOffset += len;
-			len = 0;
 		}
 
 		return out;
@@ -99,7 +96,7 @@ public abstract class BlockCipherModeBlock extends BlockCipherModeImpl {
 		}
 
 		if (bufferOffset == 0) {
-			return null;
+			return new byte[0];
 
 		} else if (bufferOffset != blocksize) {
 			throw new IllegalStateException("Bad padding");
@@ -119,7 +116,7 @@ public abstract class BlockCipherModeBlock extends BlockCipherModeImpl {
 	 */
 	private byte[] decryptWithPadding(byte[] msg) {
 		if (msg == null) {
-			return null;
+			return new byte[0];
 		}
 
 		int len = msg.length;
@@ -146,7 +143,6 @@ public abstract class BlockCipherModeBlock extends BlockCipherModeImpl {
 		if (len > 0) {
 			System.arraycopy(msg, inOff, buffer, bufferOffset, len);
 			bufferOffset += len;
-			len = 0;
 		}
 
 		return out;

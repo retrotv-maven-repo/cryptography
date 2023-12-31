@@ -16,7 +16,7 @@ public class PKCS5Padding extends Padding {
 			throw new NullPointerException();
 		}
 
-		if (in.length < 0 || in.length > blocksize) {
+		if (in.length > blocksize) {
 			throw new IllegalStateException("input should be shorter than blocksize");
 		}
 
@@ -52,7 +52,7 @@ public class PKCS5Padding extends Padding {
 
 		int cnt = in.length - getPadCount(in);
 		if (cnt == 0) {
-			return null;
+			return new byte[0];
 		}
 
 		byte[] out = new byte[cnt];
