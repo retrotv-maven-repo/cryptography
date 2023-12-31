@@ -50,13 +50,13 @@ internal class LEAECBTest {
 
     @Test
     fun leaecb128() {
-        val lea = LEAECB(128)
+        val lea = LEACBC(128)
 
         val key = hexToBinary("00000000000000000000000000000000")
         val iv = hexToBinary("00000000000000000000000000000000")
-        val data = hexToBinary("80000000000000000000000000000000")
+        val data = hexToBinary("E0000000000000000000000000000000")
 
-        val encryptedData = lea.encrypt(data, SecretKeySpec(key, ""), null)
+        val encryptedData = lea.encrypt(data, SecretKeySpec(key, ""), IvParameterSpec(iv))
         println(binaryToHex(encryptedData))
     }
 }
