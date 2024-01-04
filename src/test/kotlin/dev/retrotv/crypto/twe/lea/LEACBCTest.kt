@@ -1,8 +1,11 @@
 package dev.retrotv.crypto.twe.lea
 
+import dev.retrotv.data.utils.toHexString
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import javax.crypto.spec.IvParameterSpec
+import javax.crypto.spec.SecretKeySpec
 
 internal class LEACBCTest {
     @Test
@@ -45,5 +48,39 @@ internal class LEACBCTest {
         val encryptedData = lea.encrypt(message.toByteArray(), key, iv)
         val originalMessage = String(lea.decrypt(encryptedData, key, iv))
         Assertions.assertEquals(message, originalMessage)
+    }
+
+    @Test
+    fun leacbc128() {
+        val lea = LEACBC(128)
+
+        val key = hexStringToByteArray("00000000000000000000000000000000")
+        val iv = hexStringToByteArray("00000000000000000000000000000000")
+        val data = hexStringToByteArray("80000000000000000000000000000000")
+
+        val encryptedData = lea.encrypt(data, SecretKeySpec(key, ""), IvParameterSpec(iv))
+        println(toHexString(encryptedData))
+    }
+
+    fun hexStringToByteArray(s: String): ByteArray {
+        val len = s.length
+        val data = ByteArray(len / 2)
+        var i = 0
+        while (i < len) {
+            data[i / 2] = ((s[i].digitToIntOrNull(16) ?: -1 shl 4)
+            + s[i + 1].digitToIntOrNull(16)!! ?: -1).toByte()
+            i += 2
+        }
+        return data
+    }
+
+    fun byteArrayToHexString(bytes: ByteArray): String {
+        val sb = StringBuilder()
+
+        for (b in bytes) {
+            sb.append(String.format("%02X", b.toInt() and 0xff))
+        }
+
+        return sb.toString()
     }
 }

@@ -35,6 +35,30 @@ class Algorithm {
     }
 
     /**
+     * 해시 알고리즘을 표현하기 열거형 클래스 입니다.
+     *
+     * @author  yjj8353
+     * @since   1.0.0
+     */
+    enum class Hmac(private val label: String) {
+        HMAC_MD5("HmacMD5"),
+        HMAC_SHA1("HmacSHA1"),
+        HMAC_SHA224("HmacSHA224"),
+        HMAC_SHA256("HmacSHA256"),
+        HMAC_SHA384("HmacSHA384"),
+        HMAC_SHA512("HmacSHA512");
+
+        /**
+         * 알고리즘의 label(이름)을 반환합니다.
+         *
+         * @return 알고리즘 명
+         */
+        fun label(): String {
+            return label
+        }
+    }
+
+    /**
      * 양방향/전자서명 암호화 알고리즘을 표현하기 위한 열거형 클래스 입니다.
      *
      * @author  yjj8353

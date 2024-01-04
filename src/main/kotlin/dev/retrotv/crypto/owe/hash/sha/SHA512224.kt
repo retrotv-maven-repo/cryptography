@@ -2,9 +2,9 @@ package dev.retrotv.crypto.owe.hash.sha
 
 import dev.retrotv.crypto.owe.hash.HashAlgorithm
 import dev.retrotv.data.enums.EncodeFormat
-import dev.retrotv.data.utils.binaryEncode
-import dev.retrotv.data.utils.binaryToHex
+import dev.retrotv.data.utils.toHexString
 import dev.retrotv.enums.Algorithm.Hash.SHA512224
+import dev.retrotv.utils.digest
 import dev.retrotv.utils.encode
 
 /**
@@ -15,10 +15,10 @@ import dev.retrotv.utils.encode
  */
 class SHA512224 : HashAlgorithm() {
     override fun hash(data: ByteArray): String {
-        return binaryToHex(encode(SHA512224, data))
+        return toHexString(digest(SHA512224, data))
     }
 
     override fun hash(data: ByteArray, encodeFormat: EncodeFormat): String {
-        return binaryEncode(encodeFormat, encode(SHA512224, data))
+        return encode(encodeFormat, digest(SHA512224, data))
     }
 }

@@ -10,12 +10,12 @@ import static kr.re.nsr.crypto.util.Ops.unpack;
 public class LeaEngine extends BlockCipher {
 
 	private static final int BLOCKSIZE = 16;
-	private static final int delta[] = { 0xc3efe9db, 0x44626b02, 0x79e27c8a, 0x78df30ec, 0x715ea49e, 0xc785da0a, 0xe04ef22a, 0xe5c40957 };
+	private static final int[] delta = { 0xc3efe9db, 0x44626b02, 0x79e27c8a, 0x78df30ec, 0x715ea49e, 0xc785da0a, 0xe04ef22a, 0xe5c40957 };
 
 	private Mode mode;
 	private int rounds;
 	protected int[][] roundKeys;
-	private int[] block;
+	private final int[] block;
 
 	public LeaEngine() {
 		block = new int[BLOCKSIZE / 4];
@@ -169,7 +169,7 @@ public class LeaEngine extends BlockCipher {
 			for (int i = 0; i < 32; ++i) {
 				int temp = ROL(delta[i & 7], i & 0x1f);
 
-				this.roundKeys[i][0] = T[(6 * i + 0) & 7] = ROL(T[(6 * i + 0) & 7] + temp, 1);
+				this.roundKeys[i][0] = T[(6 * i) & 7] = ROL(T[(6 * i) & 7] + temp, 1);
 				this.roundKeys[i][1] = T[(6 * i + 1) & 7] = ROL(T[(6 * i + 1) & 7] + ROL(temp, 1), 3);
 				this.roundKeys[i][2] = T[(6 * i + 2) & 7] = ROL(T[(6 * i + 2) & 7] + ROL(temp, 2), 6);
 				this.roundKeys[i][3] = T[(6 * i + 3) & 7] = ROL(T[(6 * i + 3) & 7] + ROL(temp, 3), 11);
@@ -181,12 +181,12 @@ public class LeaEngine extends BlockCipher {
 	}
 
 	// utilities
-	private static final int ROL(int state, int num) {
-		return (int) ((state << num) | (state >>> (32 - num)));
+	private static int ROL(int state, int num) {
+		return (state << num) | (state >>> (32 - num));
 	}
 
-	private static final int ROR(int state, int num) {
-		return (int) ((state >>> num) | (state << (32 - num)));
+	private static int ROR(int state, int num) {
+		return (state >>> num) | (state << (32 - num));
 	}
 
 }

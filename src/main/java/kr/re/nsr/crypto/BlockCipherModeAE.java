@@ -1,8 +1,11 @@
 package kr.re.nsr.crypto;
 
 import kr.re.nsr.crypto.BlockCipher.Mode;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public abstract class BlockCipherModeAE {
+	protected static final Logger log = LogManager.getLogger();
 
 	protected Mode mode;
 	protected BlockCipher engine;
@@ -14,7 +17,7 @@ public abstract class BlockCipherModeAE {
 
 	protected int taglen;
 
-	public BlockCipherModeAE(BlockCipher cipher) {
+	protected BlockCipherModeAE(BlockCipher cipher) {
 		engine = cipher;
 		blocksize = engine.getBlockSize();
 		buffer = new byte[blocksize];

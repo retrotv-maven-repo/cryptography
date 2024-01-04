@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 public abstract class BlockCipherModeStream extends BlockCipherModeImpl {
 
-	public BlockCipherModeStream(BlockCipher cipher) {
+	protected BlockCipherModeStream(BlockCipher cipher) {
 		super(cipher);
 	}
 
@@ -44,7 +44,7 @@ public abstract class BlockCipherModeStream extends BlockCipherModeImpl {
 	@Override
 	public byte[] update(byte[] msg) {
 		if (msg == null) {
-			return null;
+			return new byte[0];
 		}
 
 		int len = msg.length;
@@ -71,7 +71,6 @@ public abstract class BlockCipherModeStream extends BlockCipherModeImpl {
 		if (len > 0) {
 			System.arraycopy(msg, inOff, buffer, bufferOffset, len);
 			bufferOffset += len;
-			len = 0;
 		}
 
 		return out;
@@ -80,7 +79,7 @@ public abstract class BlockCipherModeStream extends BlockCipherModeImpl {
 	@Override
 	public byte[] doFinal() {
 		if (bufferOffset == 0) {
-			return null;
+			return new byte[0];
 		}
 
 		byte[] out = new byte[bufferOffset];

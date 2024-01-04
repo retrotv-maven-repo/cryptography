@@ -10,7 +10,7 @@ public class LEA {
 		throw new AssertionError();
 	}
 
-	public static final BlockCipher getEngine() {
+	public static BlockCipher getEngine() {
 		return new LeaEngine();
 	}
 

@@ -2,7 +2,6 @@ package kr.re.nsr.crypto.mode;
 
 import kr.re.nsr.crypto.BlockCipher;
 import kr.re.nsr.crypto.BlockCipherModeBlock;
-import kr.re.nsr.crypto.util.Ops;
 
 import static kr.re.nsr.crypto.util.Ops.XOR;
 
@@ -54,7 +53,7 @@ public class CBCMode extends BlockCipherModeBlock {
 			throw new IllegalStateException("input data too short");
 		}
 
-		Ops.XOR(feedback, 0, in, inOff, blocksize);
+		XOR(feedback, 0, in, inOff, blocksize);
 
 		engine.processBlock(feedback, 0, out, outOff);
 
@@ -70,7 +69,7 @@ public class CBCMode extends BlockCipherModeBlock {
 
 		engine.processBlock(in, inOff, out, outOff);
 
-		Ops.XOR(out, outOff, feedback, 0, blocksize);
+		XOR(out, outOff, feedback, 0, blocksize);
 
 		System.arraycopy(in, inOff, feedback, 0, blocksize);
 

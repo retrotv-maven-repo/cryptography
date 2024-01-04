@@ -1,4 +1,4 @@
-@file:JvmName("MessageDigestEncodeUtils")
+@file:JvmName("MessageDigestUtils")
 package dev.retrotv.utils
 
 import dev.retrotv.enums.Algorithm
@@ -19,9 +19,9 @@ private val log = LogManager.getLogger()
  * @param data 암호화 할 데이터
  * @return 암호화 된 데이터
  */
-fun  encode(algorithm: Algorithm.Hash, data: ByteArray): ByteArray {
+fun digest(algorithm: Algorithm.Hash, data: ByteArray): ByteArray {
     return if (CRC32 === algorithm) {
-        encodeCRC32(data)
+        digestCRC32(data)
     } else try {
         val algorithmName: String = algorithm.label()
         log.debug("알고리즘: {}", algorithmName)
@@ -34,7 +34,7 @@ fun  encode(algorithm: Algorithm.Hash, data: ByteArray): ByteArray {
     }
 }
 
-private fun encodeCRC32(data: ByteArray): ByteArray {
+private fun digestCRC32(data: ByteArray): ByteArray {
     val crc32 = java.util.zip.CRC32()
     crc32.update(data)
 
