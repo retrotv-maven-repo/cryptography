@@ -1,19 +1,29 @@
 package dev.retrotv.crypto.owe.mac
 
 import dev.retrotv.data.enums.EncodeFormat
-import dev.retrotv.data.utils.binaryEncode
-import dev.retrotv.data.utils.binaryToHex
+import dev.retrotv.data.utils.toHexString
 import dev.retrotv.enums.Algorithm
+import dev.retrotv.utils.encode
 import java.security.Key
 import java.security.NoSuchAlgorithmException
 import javax.crypto.Mac
 import javax.crypto.spec.SecretKeySpec
 
+/**
+ * HMAC (Hash-based message authentication code) 알고리즘 클래스를 구현하기 위한 추상 클래스 입니다.
+ */
 abstract class HMAC {
     protected var algorithm: Algorithm.Hmac? = null
     private var mac: Mac? = null
     private var key: Key? = null
 
+    /**
+     * 데이터와 키를 이용해 해시된 메시지 인증 코드를 생성하고 반환합니다.
+     *
+     * @param data
+     * @param key
+     * @return 해시된 메시지 인증 코드
+     */
     @Throws(NoSuchAlgorithmException::class)
     fun hash(data: ByteArray, key: ByteArray): String {
         this.mac = Mac.getInstance(this.algorithm!!.label())
@@ -21,7 +31,7 @@ abstract class HMAC {
         mac!!.init(this.key)
 
         val hashCode = mac!!.doFinal(data)
-        return binaryToHex(hashCode)
+        return toHexString(hashCode)
     }
 
     @Throws(NoSuchAlgorithmException::class)
@@ -31,7 +41,7 @@ abstract class HMAC {
         mac!!.init(this.key)
 
         val hashCode = mac!!.doFinal(data)
-        return binaryEncode(encodeFormat, hashCode)
+        return encode(encodeFormat, hashCode)
     }
 
     @Throws(NoSuchAlgorithmException::class)

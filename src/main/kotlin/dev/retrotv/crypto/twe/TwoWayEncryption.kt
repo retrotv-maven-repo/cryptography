@@ -4,6 +4,8 @@ import dev.retrotv.crypto.exception.CryptoFailException
 import dev.retrotv.data.enums.EncodeFormat
 import dev.retrotv.data.enums.EncodeFormat.*
 import dev.retrotv.data.utils.*
+import dev.retrotv.utils.decode
+import dev.retrotv.utils.encode
 import dev.retrotv.utils.getMessage
 import org.apache.commons.codec.DecoderException
 import java.security.Key
@@ -40,11 +42,7 @@ interface TwoWayEncryption {
     @Throws(CryptoFailException::class)
     fun encrypt(data: ByteArray, key: Key, spec: AlgorithmParameterSpec?, format: EncodeFormat): String {
         val encryptedData = encrypt(data, key, spec)
-        return if (format == HEX) {
-            binaryToHex(encryptedData)
-        } else {
-            binaryToBase64(encryptedData)
-        }
+        return encode(format, encryptedData)
     }
 
     /**
@@ -69,16 +67,11 @@ interface TwoWayEncryption {
      */
     @Throws(CryptoFailException::class)
     fun decrypt(encryptedData: String, key: Key, spec: AlgorithmParameterSpec?, format: EncodeFormat): ByteArray {
-        val decodedData: ByteArray = if (format == HEX) {
-            try {
-                hexToBinary(encryptedData)
-            } catch (e: DecoderException) {
-                throw CryptoFailException(getMessage("exception.decoder"), e)
-            }
-        } else {
-            base64ToBinary(encryptedData)
+        try {
+            val decodedData = decode(format, encryptedData)
+            return decrypt(decodedData, key, spec)
+        } catch (e: DecoderException) {
+            throw CryptoFailException(getMessage("exception.decoder"), e)
         }
-
-        return decrypt(decodedData, key, spec)
     }
 }

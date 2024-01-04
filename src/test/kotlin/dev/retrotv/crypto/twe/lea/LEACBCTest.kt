@@ -1,7 +1,6 @@
 package dev.retrotv.crypto.twe.lea
 
-import dev.retrotv.data.utils.binaryToHex
-import dev.retrotv.data.utils.hexToBinary
+import dev.retrotv.data.utils.toHexString
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -55,12 +54,12 @@ internal class LEACBCTest {
     fun leacbc128() {
         val lea = LEACBC(128)
 
-        val key = hexToBinary("00000000000000000000000000000000")
-        val iv = hexToBinary("00000000000000000000000000000000")
-        val data = hexToBinary("80000000000000000000000000000000")
+        val key = hexStringToByteArray("00000000000000000000000000000000")
+        val iv = hexStringToByteArray("00000000000000000000000000000000")
+        val data = hexStringToByteArray("80000000000000000000000000000000")
 
         val encryptedData = lea.encrypt(data, SecretKeySpec(key, ""), IvParameterSpec(iv))
-        println(binaryToHex(encryptedData))
+        println(toHexString(encryptedData))
     }
 
     fun hexStringToByteArray(s: String): ByteArray {
