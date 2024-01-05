@@ -17,7 +17,7 @@ import java.nio.charset.Charset
  */
 interface PasswordEncoderWithSalt : PasswordEncoder {
 
-    companion object {
+    private companion object {
         val SALT_GENERATE_EXCEPTION = getMessage("exception.saltGenerate")
     }
 

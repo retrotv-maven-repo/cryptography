@@ -1,9 +1,16 @@
 package dev.retrotv.crypto.owe.mac
 
+import dev.retrotv.crypto.exception.KeyGenerateException
+import dev.retrotv.crypto.exception.SaltGenerateException
+import dev.retrotv.crypto.owe.hash.PasswordEncoderWithSalt
 import dev.retrotv.data.enums.EncodeFormat
 import dev.retrotv.data.utils.toHexString
 import dev.retrotv.enums.Algorithm
+import dev.retrotv.random.PasswordGenerator
+import dev.retrotv.random.RandomStringGenerator
+import dev.retrotv.random.enums.SecurityStrength
 import dev.retrotv.utils.encode
+import dev.retrotv.utils.getMessage
 import java.security.Key
 import java.security.NoSuchAlgorithmException
 import javax.crypto.Mac
@@ -52,5 +59,12 @@ abstract class HMAC {
     @Throws(NoSuchAlgorithmException::class)
     fun verify(data: ByteArray, key: ByteArray, mac: String, encodeFormat: EncodeFormat): Boolean {
         return mac == hash(data, key, encodeFormat)
+    }
+
+    @JvmOverloads
+    fun generateKey(len: Int = 16, securityStrength: SecurityStrength = SecurityStrength.MIDDLE): String {
+        val rv: RandomStringGenerator = PasswordGenerator(securityStrength)
+        rv.generate(len)
+        return rv.getString() ?: throw SaltGenerateException(getMessage("exception.saltGenerate"))
     }
 }

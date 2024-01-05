@@ -23,7 +23,6 @@ class RSAKeyPairGenerator(keyLen: Int) : KeyPairGenerator {
         this.keyLen = keyLen
     }
 
-    @Throws(KeyGenerateException::class)
     override fun generateKeyPair(): KeyPair {
         return try {
             val keyPairGenerator = java.security.KeyPairGenerator.getInstance("RSA")

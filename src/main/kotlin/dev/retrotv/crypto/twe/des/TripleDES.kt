@@ -9,7 +9,6 @@ import dev.retrotv.utils.getMessage
 
 abstract class TripleDES : DES() {
 
-    @Throws(KeyGenerateException::class)
     override fun generateKey(): Key {
         return try {
             val keyGenerator = KeyGenerator.getInstance("DESede")

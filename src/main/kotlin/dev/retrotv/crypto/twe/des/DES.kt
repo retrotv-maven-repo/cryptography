@@ -96,7 +96,6 @@ abstract class DES : TwoWayEncryption, KeyGenerator {
         }
     }
 
-    @Throws(KeyGenerateException::class)
     override fun generateKey(): Key {
         return try {
             val keyGenerator = javax.crypto.KeyGenerator.getInstance("DES")
