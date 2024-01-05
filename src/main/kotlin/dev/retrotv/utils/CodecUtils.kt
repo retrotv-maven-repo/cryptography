@@ -1,4 +1,4 @@
-@file:JvmName("EncodeUtils")
+@file:JvmName("CodecUtils")
 package dev.retrotv.utils
 
 import dev.retrotv.data.enums.EncodeFormat
