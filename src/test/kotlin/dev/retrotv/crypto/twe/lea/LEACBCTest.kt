@@ -1,6 +1,11 @@
 package dev.retrotv.crypto.twe.lea
 
 import dev.retrotv.data.utils.toHexString
+import org.bouncycastle.crypto.engines.LEAEngine
+import org.bouncycastle.crypto.modes.CBCBlockCipher
+import org.bouncycastle.crypto.paddings.PaddedBufferedBlockCipher
+import org.bouncycastle.crypto.params.KeyParameter
+import org.bouncycastle.crypto.params.ParametersWithIV
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -58,7 +63,7 @@ internal class LEACBCTest {
         val iv = hexStringToByteArray("00000000000000000000000000000000")
         val data = hexStringToByteArray("80000000000000000000000000000000")
 
-        val encryptedData = lea.encrypt(data, SecretKeySpec(key, ""), IvParameterSpec(iv))
+        val encryptedData = lea.encrypt(data, SecretKeySpec(key, "LEA"), IvParameterSpec(iv))
         println(toHexString(encryptedData))
     }
 
