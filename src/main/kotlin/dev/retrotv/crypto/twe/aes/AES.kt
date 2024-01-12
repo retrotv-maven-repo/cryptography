@@ -1,5 +1,6 @@
 package dev.retrotv.crypto.twe.aes
 
+import dev.retrotv.crypto.common.ExtendedSecretKeySpec
 import dev.retrotv.crypto.exception.CryptoFailException
 import dev.retrotv.crypto.twe.KeyGenerator
 import dev.retrotv.crypto.twe.TwoWayEncryption
@@ -18,7 +19,6 @@ import javax.crypto.BadPaddingException
 import javax.crypto.Cipher
 import javax.crypto.IllegalBlockSizeException
 import javax.crypto.NoSuchPaddingException
-import javax.crypto.spec.SecretKeySpec
 
 /**
  * AES 계열의 양방향 암호화 구현을 위한 상속용 클래스 입니다.
@@ -99,7 +99,7 @@ abstract class AES : TwoWayEncryption, KeyGenerator {
     }
 
     override fun generateKey(): Key {
-        return SecretKeySpec(generate(keyLen / 8), "AES")
+        return ExtendedSecretKeySpec(generate(keyLen / 8), "AES")
     }
 
     /**

@@ -1,5 +1,6 @@
 package dev.retrotv.crypto.twe.lea
 
+import dev.retrotv.crypto.common.ExtendedSecretKeySpec
 import dev.retrotv.crypto.exception.CryptoFailException
 import dev.retrotv.crypto.twe.KeyGenerator
 import dev.retrotv.crypto.twe.TwoWayEncryption
@@ -16,7 +17,6 @@ import java.security.Key
 import java.security.NoSuchAlgorithmException
 import java.security.spec.AlgorithmParameterSpec
 import javax.crypto.spec.IvParameterSpec
-import javax.crypto.spec.SecretKeySpec
 
 val log: Logger = LogManager.getLogger()
 
@@ -97,7 +97,7 @@ abstract class LEA : TwoWayEncryption, KeyGenerator {
     }
 
     override fun generateKey(): Key {
-        return SecretKeySpec(generate(keyLen / 8), "LEA")
+        return ExtendedSecretKeySpec(generate(keyLen / 8), "LEA")
     }
 
     @Throws(NoSuchAlgorithmException::class)

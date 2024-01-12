@@ -1,6 +1,5 @@
 package dev.retrotv.crypto.twe
 
-import dev.retrotv.crypto.exception.KeyGenerateException
 import java.security.KeyPair
 
 /**

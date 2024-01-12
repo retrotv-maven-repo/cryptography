@@ -1,16 +1,11 @@
 package dev.retrotv.crypto.owe.mac
 
-import dev.retrotv.crypto.exception.KeyGenerateException
-import dev.retrotv.crypto.exception.SaltGenerateException
-import dev.retrotv.crypto.owe.hash.PasswordEncoderWithSalt
+import dev.retrotv.crypto.common.ExtendedSecretKeySpec
 import dev.retrotv.data.enums.EncodeFormat
 import dev.retrotv.data.utils.toHexString
 import dev.retrotv.enums.Algorithm
-import dev.retrotv.random.PasswordGenerator
-import dev.retrotv.random.RandomStringGenerator
-import dev.retrotv.random.enums.SecurityStrength
 import dev.retrotv.utils.encode
-import dev.retrotv.utils.getMessage
+import dev.retrotv.utils.generate
 import java.security.Key
 import java.security.NoSuchAlgorithmException
 import javax.crypto.Mac
@@ -61,10 +56,19 @@ abstract class HMAC {
         return mac == hash(data, key, encodeFormat)
     }
 
-    @JvmOverloads
-    fun generateKey(len: Int = 16, securityStrength: SecurityStrength = SecurityStrength.MIDDLE): String {
-        val rv: RandomStringGenerator = PasswordGenerator(securityStrength)
-        rv.generate(len)
-        return rv.getString() ?: throw SaltGenerateException(getMessage("exception.saltGenerate"))
+    fun generateKey(len: Int): ExtendedSecretKeySpec {
+        require(len < 1) {
+            "인자 len 값이 0보다 같거나 작을 수 없습니다."
+        }
+
+        return ExtendedSecretKeySpec(generate(len), "HMAC")
+    }
+
+    fun generateKey(encoded: ByteArray): ExtendedSecretKeySpec {
+        require(encoded.isEmpty()) {
+            "인자 encoded 값은 빈 ByteArray일 수 없습니다."
+        }
+
+        return ExtendedSecretKeySpec(encoded, "HMAC")
     }
 }

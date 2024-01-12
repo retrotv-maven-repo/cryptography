@@ -28,10 +28,14 @@ dependencies {
     implementation("org.bouncycastle:bcprov-jdk18on:1.76")
     implementation("org.apache.logging.log4j:log4j-core:2.20.0")
 
+    // Bouncy Castle
+    implementation("org.bouncycastle:bcprov-jdk18on:1.77")
+
     testImplementation("org.json:json:20231013")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.0")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.0")
     testImplementation(kotlin("test"))
+
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.0")
 }
 
 tasks {
