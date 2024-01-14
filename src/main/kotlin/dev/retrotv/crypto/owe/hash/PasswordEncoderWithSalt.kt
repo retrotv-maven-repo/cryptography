@@ -145,10 +145,9 @@ interface PasswordEncoderWithSalt : PasswordEncoder, PlaintextHash {
     /**
      * 더 나은 보안을 위해 인코딩된 비밀번호를 다시 인코딩해야 하는 경우 true를 반환하고,
      * 그렇지 않으면 false를 반환합니다. 기본 구현은 항상 false를 반환합니다.
+     * 로직을 구성할 시, encodedPassword 인자를 이용해 로직을 구성할 수 있습니다.
      *
      * @param encodedPassword 암호화 된 문자열
      */
-    override fun upgradeEncoding(encodedPassword: String?): Boolean {
-        return false
-    }
+    override fun upgradeEncoding(encodedPassword: String?): Boolean = false
 }
