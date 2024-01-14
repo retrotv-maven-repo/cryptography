@@ -1,25 +1,19 @@
 package dev.retrotv.crypto.owe.hash.md
 
-import dev.retrotv.crypto.owe.hash.HashAlgorithm
-import dev.retrotv.data.enums.EncodeFormat
+import dev.retrotv.crypto.owe.hash.Hash
 import dev.retrotv.data.utils.toHexString
 import dev.retrotv.enums.Algorithm.Hash.MD2
 import dev.retrotv.utils.digest
-import dev.retrotv.utils.encode
 
 /**
- * MD2 알고리즘으로 암호화 하기 위한 [HashAlgorithm] 추상 클래스의 구현체 입니다.
+ * MD2 알고리즘으로 암호화 하기 위한 [Hash] 추상 클래스의 구현체 입니다.
  *
  * @author  yjj8353
  * @since   1.0.0
  */
-class MD2 : HashAlgorithm() {
+class MD2 : Hash() {
     override fun hash(data: ByteArray): String {
         return toHexString(digest(MD2, data))
-    }
-
-    override fun hash(data: ByteArray, encodeFormat: EncodeFormat): String {
-        return encode(encodeFormat, digest(MD2, data))
     }
 
     override fun upgradeEncoding(encodedPassword: String?): Boolean {

@@ -21,15 +21,6 @@ class SHA224Test : OWETest() {
     }
 
     @Test
-    @DisplayName("SHA224 File and File matches 테스트")
-    @Throws(
-        Exception::class
-    )
-    fun fileMatchesTest() {
-        fileMatchesTest(SHA224())
-    }
-
-    @Test
     @DisplayName("SHA224 password encode 테스트")
     fun passwordEncrypt() {
         passwordEncryptAndMatchesTest(SHA224())

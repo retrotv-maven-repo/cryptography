@@ -21,13 +21,6 @@ class MD5Test : OWETest() {
     }
 
     @Test
-    @DisplayName("MD5 File and File matches 테스트")
-    @Throws(Exception::class)
-    fun fileMatchesTest() {
-        fileMatchesTest(MD5())
-    }
-
-    @Test
     @DisplayName("MD5 password encode 테스트")
     fun passwordEncrypt() {
         passwordEncryptAndMatchesTest(MD5())

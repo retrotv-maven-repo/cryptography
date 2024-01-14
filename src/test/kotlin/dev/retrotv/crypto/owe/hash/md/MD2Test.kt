@@ -21,13 +21,6 @@ class MD2Test : OWETest() {
     }
 
     @Test
-    @DisplayName("MD2 File and File matches 테스트")
-    @Throws(Exception::class)
-    fun fileMatchesTest() {
-        fileMatchesTest(MD2())
-    }
-
-    @Test
     @DisplayName("MD2 password encode 테스트")
     fun passwordEncrypt() {
         passwordEncryptAndMatchesTest(MD2())

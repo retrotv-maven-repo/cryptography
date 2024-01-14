@@ -21,13 +21,6 @@ internal class CRC32Test : OWETest() {
     }
 
     @Test
-    @DisplayName("CRC32 File and File matches 테스트")
-    @Throws(Exception::class)
-    fun fileMatchesTest() {
-        fileMatchesTest(CRC32())
-    }
-
-    @Test
     @DisplayName("CRC32 password encode 테스트")
     fun passwordEncrypt() {
         passwordEncryptAndMatchesTest(CRC32())

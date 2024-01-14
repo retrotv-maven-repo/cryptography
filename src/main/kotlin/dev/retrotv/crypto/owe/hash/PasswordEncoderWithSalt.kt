@@ -15,7 +15,7 @@ import java.nio.charset.Charset
  * @author  yjj8353
  * @since   1.0.0
  */
-interface PasswordEncoderWithSalt : PasswordEncoder {
+interface PasswordEncoderWithSalt : PasswordEncoder, PlaintextHash {
 
     private companion object {
         val SALT_GENERATE_EXCEPTION = getMessage("exception.saltGenerate")
@@ -27,7 +27,7 @@ interface PasswordEncoderWithSalt : PasswordEncoder {
      * @param rawPassword 암호화 할 패스워드
      * @return 암호화 된 패스워드 문자열
      */
-    override fun encode(rawPassword: CharSequence): String
+    override fun encode(rawPassword: CharSequence): String = hash(rawPassword)
 
     /**
      * 패스워드를 암호화 한 뒤, 암호화 된 패스워드를 지정된 캐릭터 셋으로 변환한 문자열을 반환합니다.
@@ -36,7 +36,7 @@ interface PasswordEncoderWithSalt : PasswordEncoder {
      * @param charset 인코딩 시 사용할 문자열 셋
      * @return 암호화 된 패스워드 문자열
      */
-    fun encode(rawPassword: CharSequence, charset: Charset): String
+    fun encode(rawPassword: CharSequence, charset: Charset): String = hash(rawPassword, charset)
 
     /**
      * 패스워드에 소금을 치고 암호화 한 뒤, 암호화 된 패스워드 문자열을 반환합니다.

@@ -2,7 +2,6 @@ package dev.retrotv.crypto.owe
 
 import dev.retrotv.common.Log
 import dev.retrotv.crypto.owe.hash.Hash
-import dev.retrotv.crypto.owe.hash.FileHash
 import dev.retrotv.crypto.owe.hash.crc.CRC32
 import dev.retrotv.crypto.owe.hash.md.*
 import dev.retrotv.crypto.owe.hash.sha.*
@@ -19,7 +18,6 @@ open class OWETest : Log() {
     private val PASSWORD = "The quick brown fox jumps over the lazy dog"
     private val CHECKSUM = this.javaClass.getClassLoader().getResource("hash_code")
     private val RESOURCE = this.javaClass.getClassLoader().getResource("hash_code_test_file.txt")
-    private val RESOURCE2 = this.javaClass.getClassLoader().getResource("hash_code_test_file2.txt")
 
     @Throws(IOException::class)
     protected fun fileHashTest(algorithm: Algorithm.Hash) {
@@ -38,6 +36,9 @@ open class OWETest : Log() {
         } catch (e: IOException) {
             throw IOException("파일을 읽어들이는 과정에서 예상치 못한 오류가 발생했습니다.")
         }
+
+        println(getHash(algorithm))
+        println(hash(algorithm, fileData))
 
         Assertions.assertEquals(getHash(algorithm), hash(algorithm, fileData))
     }
@@ -61,15 +62,6 @@ open class OWETest : Log() {
         }
 
         Assertions.assertTrue(fileHash.matches(fileData, getHash(algorithm)))
-    }
-
-    @Throws(IOException::class)
-    protected fun fileMatchesTest(fileHash: FileHash) {
-        if (RESOURCE != null && RESOURCE2 != null) {
-            Assertions.assertTrue(fileHash.matches(File(RESOURCE.file), File(RESOURCE2.file)))
-        } else {
-            Assertions.fail<Any>()
-        }
     }
 
     protected fun passwordEncryptAndMatchesTest(password: PasswordEncoder) {

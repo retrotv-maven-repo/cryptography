@@ -23,15 +23,6 @@ class SHA512256Test : OWETest() {
     }
 
     @Test
-    @DisplayName("SHA512256 File and File matches 테스트")
-    @Throws(
-        Exception::class
-    )
-    fun fileMatchesTest() {
-        fileMatchesTest(SHA512256())
-    }
-
-    @Test
     @DisplayName("SHA512256 password encode 테스트")
     fun passwordEncrypt() {
         passwordEncryptAndMatchesTest(SHA512256())

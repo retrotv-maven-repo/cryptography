@@ -1,30 +1,20 @@
 package dev.retrotv.crypto.owe.hash.crc
 
-import dev.retrotv.crypto.owe.hash.HashAlgorithm
-import dev.retrotv.data.enums.EncodeFormat
+import dev.retrotv.crypto.owe.hash.Hash
 import dev.retrotv.data.utils.toHexString
 import dev.retrotv.enums.Algorithm.Hash.CRC32
 import dev.retrotv.utils.digest
-import dev.retrotv.utils.encode
 
 /**
- * CRC-32 알고리즘으로 암호화 하기 위한 [HashAlgorithm] 추상 클래스의 구현체 입니다.
+ * CRC-32 알고리즘으로 암호화 하기 위한 [Hash] 추상 클래스의 구현체 입니다.
  *
  * @author  yjj8353
  * @since   1.0.0
  */
-class CRC32 : HashAlgorithm() {
+class CRC32 : Hash() {
 
     override fun hash(data: ByteArray): String {
-
-        // 앞에 0이 패딩되는 부분을 무시하고 뒤의 8자리만 잘라낸다
         return toHexString(digest(CRC32, data)).substring(8)
-    }
-
-    override fun hash(data: ByteArray, encodeFormat: EncodeFormat): String {
-
-        // 앞에 0이 패딩되는 부분을 무시하고 뒤의 8자리만 잘라낸다
-        return encode(encodeFormat, digest(CRC32, data)).substring(8)
     }
 
     override fun upgradeEncoding(encodedPassword: String?): Boolean {
