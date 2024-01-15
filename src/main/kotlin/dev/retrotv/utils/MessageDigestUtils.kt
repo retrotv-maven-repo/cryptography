@@ -1,9 +1,11 @@
 @file:JvmName("MessageDigestUtils")
 package dev.retrotv.utils
 
+import dev.retrotv.crypto.exception.CryptoFailException
 import dev.retrotv.enums.Algorithm
-import dev.retrotv.enums.Algorithm.Hash.CRC32
+import dev.retrotv.enums.Algorithm.Hash.*
 import org.apache.logging.log4j.LogManager
+import org.bouncycastle.jcajce.provider.digest.SHA3
 import java.nio.ByteBuffer
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
@@ -20,17 +22,38 @@ private val log = LogManager.getLogger()
  * @return 암호화 된 데이터
  */
 fun digest(algorithm: Algorithm.Hash, data: ByteArray): ByteArray {
-    return if (CRC32 === algorithm) {
-        digestCRC32(data)
-    } else try {
-        val algorithmName: String = algorithm.label()
-        log.debug("알고리즘: {}", algorithmName)
+    return when (algorithm) {
+        CRC32 -> digestCRC32(data)
 
-        val md = MessageDigest.getInstance(algorithm.label())
-        md.update(data)
-        md.digest()
-    } catch (ignored: NoSuchAlgorithmException) {
-        ByteArray(0)
+        MD2, MD5, SHA1, SHA224, SHA256, SHA384, SHA512, SHA512224, SHA512256 -> {
+            val algorithmName: String = algorithm.label()
+            log.debug("알고리즘: {}", algorithmName)
+
+            val md = MessageDigest.getInstance(algorithm.label())
+            md.update(data)
+            md.digest()
+        }
+
+        SHA3224 -> {
+            val md = SHA3.DigestSHA3(224)
+            md.update(data)
+            return md.digest()
+        }
+        SHA3256 -> {
+            val md = SHA3.DigestSHA3(256)
+            md.update(data)
+            return md.digest()
+        }
+        SHA3384 -> {
+            val md = SHA3.DigestSHA3(384)
+            md.update(data)
+            return md.digest()
+        }
+        SHA3512 -> {
+            val md = SHA3.DigestSHA3(512)
+            md.update(data)
+            return md.digest()
+        }
     }
 }
 

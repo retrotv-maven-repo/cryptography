@@ -124,6 +124,26 @@ open class OWETest : Log() {
                 hash.hash(fileData)
             }
 
+            Algorithm.Hash.SHA3224 -> {
+                val hash: Hash = SHA3224()
+                hash.hash(fileData)
+            }
+
+            Algorithm.Hash.SHA3256 -> {
+                val hash: Hash = SHA3256()
+                hash.hash(fileData)
+            }
+
+            Algorithm.Hash.SHA3384 -> {
+                val hash: Hash = SHA3384()
+                hash.hash(fileData)
+            }
+
+            Algorithm.Hash.SHA3512 -> {
+                val hash: Hash = SHA3512()
+                hash.hash(fileData)
+            }
+
             else -> null
         }
     }
@@ -143,6 +163,10 @@ open class OWETest : Log() {
             Algorithm.Hash.SHA512 -> file1.getString(Algorithm.Hash.SHA512.label())
             Algorithm.Hash.SHA512224 -> file1.getString(Algorithm.Hash.SHA512224.label())
             Algorithm.Hash.SHA512256 -> file1.getString(Algorithm.Hash.SHA512256.label())
+            Algorithm.Hash.SHA3224 -> file1.getString(Algorithm.Hash.SHA3224.label())
+            Algorithm.Hash.SHA3256 -> file1.getString(Algorithm.Hash.SHA3256.label())
+            Algorithm.Hash.SHA3384 -> file1.getString(Algorithm.Hash.SHA3384.label())
+            Algorithm.Hash.SHA3512 -> file1.getString(Algorithm.Hash.SHA3512.label())
             else -> null
         }
     }
