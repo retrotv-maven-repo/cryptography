@@ -3,7 +3,7 @@ package dev.retrotv.crypto.owe.hash.crc
 import dev.retrotv.crypto.owe.hash.Hash
 import dev.retrotv.data.utils.toHexString
 import dev.retrotv.enums.Algorithm.Hash.CRC32
-import dev.retrotv.utils.digest
+import dev.retrotv.utils.hashing
 
 /**
  * CRC-32 알고리즘으로 암호화 하기 위한 [Hash] 추상 클래스의 구현체 입니다.
@@ -18,7 +18,7 @@ class CRC32 : Hash() {
     }
 
     override fun hash(data: ByteArray): String {
-        return toHexString(digest(this.algorithm, data)).substring(8)
+        return toHexString(hashing(this.algorithm, data)).substring(8)
     }
 
     override fun upgradeEncoding(encodedPassword: String?): Boolean {

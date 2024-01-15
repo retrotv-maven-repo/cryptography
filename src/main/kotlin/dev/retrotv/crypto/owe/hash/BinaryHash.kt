@@ -4,5 +4,5 @@ interface BinaryHash {
 
     fun hash(data: ByteArray): String
 
-    fun matches(data: ByteArray, hashCode: String?): Boolean
+    fun matches(data: ByteArray, digest: String?): Boolean
 }

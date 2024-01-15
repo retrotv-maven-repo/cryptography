@@ -2,7 +2,7 @@ package dev.retrotv.crypto.owe.hash
 
 import dev.retrotv.data.utils.toHexString
 import dev.retrotv.enums.Algorithm
-import dev.retrotv.utils.digest
+import dev.retrotv.utils.hashing
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 import java.nio.charset.Charset
@@ -17,7 +17,7 @@ abstract class Hash : FileHash, PasswordEncoderWithSalt {
     protected var algorithm: Algorithm.Hash? = null
 
     override fun hash(data: ByteArray): String {
-        return toHexString(digest(this.algorithm, data))
+        return toHexString(hashing(this.algorithm, data))
     }
 
     override fun encode(rawPassword: CharSequence): String {
@@ -30,7 +30,7 @@ abstract class Hash : FileHash, PasswordEncoderWithSalt {
         return hash(password.toByteArray(charset))
     }
 
-    override fun matches(data: ByteArray, hashCode: String?): Boolean {
-        return hash(data) == hashCode
+    override fun matches(data: ByteArray, digest: String?): Boolean {
+        return hash(data) == digest
     }
 }
