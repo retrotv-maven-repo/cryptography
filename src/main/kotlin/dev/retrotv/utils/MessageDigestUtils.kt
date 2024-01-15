@@ -21,7 +21,7 @@ private val log = LogManager.getLogger()
  * @param data 암호화 할 데이터
  * @return 암호화 된 데이터
  */
-fun digest(algorithm: Algorithm.Hash, data: ByteArray): ByteArray {
+fun digest(algorithm: Algorithm.Hash?, data: ByteArray): ByteArray {
     return when (algorithm) {
         CRC32 -> digestCRC32(data)
 
@@ -54,6 +54,8 @@ fun digest(algorithm: Algorithm.Hash, data: ByteArray): ByteArray {
             md.update(data)
             return md.digest()
         }
+
+        null -> throw NullPointerException("해시 알고리즘이 지정되지 않았습니다.")
     }
 }
 

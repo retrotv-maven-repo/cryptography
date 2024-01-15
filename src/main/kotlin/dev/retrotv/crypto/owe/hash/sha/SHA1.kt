@@ -1,9 +1,7 @@
 package dev.retrotv.crypto.owe.hash.sha
 
 import dev.retrotv.crypto.owe.hash.Hash
-import dev.retrotv.data.utils.toHexString
 import dev.retrotv.enums.Algorithm.Hash.SHA1
-import dev.retrotv.utils.digest
 
 /**
  * SHA-1 알고리즘으로 암호화 하기 위한 [Hash] 추상 클래스의 구현체 입니다.
@@ -12,8 +10,9 @@ import dev.retrotv.utils.digest
  * @since   1.0.0
  */
 class SHA1 : Hash() {
-    override fun hash(data: ByteArray): String {
-        return toHexString(digest(SHA1, data))
+
+    init {
+        this.algorithm = SHA1
     }
 
     override fun upgradeEncoding(encodedPassword: String?): Boolean {

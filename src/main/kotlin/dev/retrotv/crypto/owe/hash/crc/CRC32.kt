@@ -13,8 +13,12 @@ import dev.retrotv.utils.digest
  */
 class CRC32 : Hash() {
 
+    init {
+        this.algorithm = CRC32
+    }
+
     override fun hash(data: ByteArray): String {
-        return toHexString(digest(CRC32, data)).substring(8)
+        return toHexString(digest(this.algorithm, data)).substring(8)
     }
 
     override fun upgradeEncoding(encodedPassword: String?): Boolean {

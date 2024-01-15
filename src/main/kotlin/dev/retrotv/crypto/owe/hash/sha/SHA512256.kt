@@ -1,9 +1,7 @@
 package dev.retrotv.crypto.owe.hash.sha
 
 import dev.retrotv.crypto.owe.hash.Hash
-import dev.retrotv.data.utils.toHexString
 import dev.retrotv.enums.Algorithm.Hash.SHA512256
-import dev.retrotv.utils.digest
 
 /**
  * SHA-512/256 알고리즘으로 암호화 하기 위한 [Hash] 추상 클래스의 구현체 입니다.
@@ -12,7 +10,8 @@ import dev.retrotv.utils.digest
  * @since   1.0.0
  */
 class SHA512256 : Hash() {
-    override fun hash(data: ByteArray): String {
-        return toHexString(digest(SHA512256, data))
+
+    init {
+        this.algorithm = SHA512256
     }
 }
