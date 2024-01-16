@@ -14,7 +14,7 @@ import java.nio.charset.Charset
 abstract class Hash : FileHash, PasswordEncoderWithSalt {
     protected val log: Logger = LogManager.getLogger(this.javaClass)
 
-    protected var algorithm: Algorithm.Hash? = null
+    protected lateinit var algorithm: Algorithm.Hash
 
     override fun hash(data: ByteArray): String {
         return toHexString(hashing(this.algorithm, data))

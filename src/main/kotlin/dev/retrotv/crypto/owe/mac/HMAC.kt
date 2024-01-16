@@ -15,9 +15,9 @@ import javax.crypto.spec.SecretKeySpec
  * HMAC (Hash-based message authentication code) 알고리즘 클래스를 구현하기 위한 추상 클래스 입니다.
  */
 abstract class HMAC {
-    protected var algorithm: Algorithm.Hmac? = null
-    private var mac: Mac? = null
-    private var key: Key? = null
+    protected lateinit var algorithm: Algorithm.Hmac
+    protected lateinit var mac: Mac
+    private lateinit var key: Key
 
     /**
      * 데이터와 키를 이용해 해시된 메시지 인증 코드를 생성하고 반환합니다.
@@ -28,21 +28,19 @@ abstract class HMAC {
      */
     @Throws(NoSuchAlgorithmException::class)
     fun hash(data: ByteArray, key: ByteArray): String {
-        this.mac = Mac.getInstance(this.algorithm!!.label())
-        this.key = SecretKeySpec(key, this.algorithm!!.label())
-        mac!!.init(this.key)
+        this.key = SecretKeySpec(key, this.algorithm.label())
+        mac.init(this.key)
 
-        val hashCode = mac!!.doFinal(data)
+        val hashCode = mac.doFinal(data)
         return toHexString(hashCode)
     }
 
     @Throws(NoSuchAlgorithmException::class)
     fun hash(data: ByteArray, key: ByteArray, encodeFormat: EncodeFormat): String {
-        this.mac = Mac.getInstance(this.algorithm!!.label())
-        this.key = SecretKeySpec(key, this.algorithm!!.label())
-        mac!!.init(this.key)
+        this.key = SecretKeySpec(key, this.algorithm.label())
+        mac.init(this.key)
 
-        val hashCode = mac!!.doFinal(data)
+        val hashCode = mac.doFinal(data)
         return encode(encodeFormat, hashCode)
     }
 
