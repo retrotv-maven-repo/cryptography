@@ -7,4 +7,5 @@ class Crypto {
     private lateinit var data: ByteArray
     private lateinit var key: Key
     private lateinit var spec: AlgorithmParameterSpec
+    private var aad: String? = null
 }

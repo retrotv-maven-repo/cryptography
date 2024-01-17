@@ -8,6 +8,5 @@ class HMACSHA512: HMAC() {
 
     init {
         this.algorithm = Algorithm.Hmac.HMAC_SHA512
-        this.mac = Mac.getInstance(this.algorithm.label())
     }
 }

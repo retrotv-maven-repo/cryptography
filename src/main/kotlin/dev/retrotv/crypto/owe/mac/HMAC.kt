@@ -16,7 +16,7 @@ import javax.crypto.spec.SecretKeySpec
  */
 abstract class HMAC {
     protected lateinit var algorithm: Algorithm.Hmac
-    protected lateinit var mac: Mac
+    protected val mac: Mac by lazy { Mac.getInstance(this.algorithm.label()) }
     private lateinit var key: Key
 
     /**
