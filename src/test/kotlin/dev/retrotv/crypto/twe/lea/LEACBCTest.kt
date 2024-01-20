@@ -80,37 +80,4 @@ internal class LEACBCTest {
 
         Assertions.assertTrue(encryptedData1.contentEquals(encryptedData2))
     }
-
-//    @Test
-//    fun leacbc128() {
-//        val lea = LEACBC(128)
-//
-//        val key = hexStringToByteArray("00000000000000000000000000000000")
-//        val iv = hexStringToByteArray("00000000000000000000000000000000")
-//        val data = hexStringToByteArray("80000000000000000000000000000000")
-//
-//        val encryptedData = lea.encrypt(data, SecretKeySpec(key, "LEA"), IvParameterSpec(iv))
-//        println(toHexString(encryptedData))
-//    }
-//
-//    private fun hexStringToByteArray(s: String): ByteArray {
-//        val len = s.length
-//        val data = ByteArray(len / 2)
-//        var i = 0
-//        while (i < len) {
-//            data[i / 2] = (((s[i].digitToIntOrNull(16) ?: (-1 shl 4)) + s[i + 1].digitToIntOrNull(16)!!)).toByte()
-//            i += 2
-//        }
-//        return data
-//    }
-//
-//    fun byteArrayToHexString(bytes: ByteArray): String {
-//        val sb = StringBuilder()
-//
-//        for (b in bytes) {
-//            sb.append(String.format("%02X", b.toInt() and 0xff))
-//        }
-//
-//        return sb.toString()
-//    }
 }
