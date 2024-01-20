@@ -9,14 +9,12 @@ class SHA3384Test : OWETest() {
 
     @Test
     @DisplayName("SHA3384 File hash 테스트")
-    @Throws(Exception::class)
     fun fileHashTest() {
         fileHashTest(Algorithm.Hash.SHA3384)
     }
 
     @Test
     @DisplayName("SHA3384 File hash matches 테스트")
-    @Throws(Exception::class)
     fun fileHashMatchesTest() {
         fileHashMatchesTest(SHA3384(), Algorithm.Hash.SHA3384)
     }

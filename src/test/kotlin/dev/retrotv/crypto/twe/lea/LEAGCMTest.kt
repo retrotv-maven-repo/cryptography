@@ -5,9 +5,9 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
 internal class LEAGCMTest {
+
     @Test
     @DisplayName("LEAGCM-128 암복호화 테스트")
-    @Throws(Exception::class)
     fun leagcm128_test() {
         val message = "The lazy dog jumps over the brown fox!"
         val lea = LEAGCM(128)
@@ -20,7 +20,6 @@ internal class LEAGCMTest {
 
     @Test
     @DisplayName("LEAGCM-192 암복호화 테스트")
-    @Throws(Exception::class)
     fun leagcm192_test() {
         val message = "The lazy dog jumps over the brown fox!"
         val lea = LEAGCM(192)
@@ -33,7 +32,6 @@ internal class LEAGCMTest {
 
     @Test
     @DisplayName("LEAGCM-256 암복호화 테스트")
-    @Throws(Exception::class)
     fun leagcm256_test() {
         val message = "The lazy dog jumps over the brown fox!"
         val lea = LEAGCM(256)

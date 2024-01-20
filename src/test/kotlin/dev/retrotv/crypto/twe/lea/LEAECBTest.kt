@@ -14,9 +14,9 @@ import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
 
 internal class LEAECBTest {
+
     @Test
     @DisplayName("LEAECB-128 암복호화 테스트")
-    @Throws(Exception::class)
     fun leaecb128_test() {
         val message = "The lazy dog jumps over the brown fox!"
         val lea = LEAECB(128)
@@ -29,7 +29,6 @@ internal class LEAECBTest {
 
     @Test
     @DisplayName("LEAECB-192 암복호화 테스트")
-    @Throws(Exception::class)
     fun leaecb192_test() {
         val message = "The lazy dog jumps over the brown fox!"
         val lea = LEAECB(192)
@@ -42,7 +41,7 @@ internal class LEAECBTest {
 
     @Test
     @DisplayName("LEAECB-256 암복호화 테스트")
-    @Throws(Exception::class)
+    
     fun leaecb256_test() {
         val message = "The lazy dog jumps over the brown fox!"
         val lea = LEAECB(256)

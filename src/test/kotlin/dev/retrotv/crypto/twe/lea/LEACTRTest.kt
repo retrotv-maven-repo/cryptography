@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test
 internal class LEACTRTest {
     @Test
     @DisplayName("LEACTR-128 암복호화 테스트")
-    @Throws(Exception::class)
     fun leactr128_test() {
         val message = "The lazy dog jumps over the brown fox!"
         val lea = LEACTR(128)
@@ -20,7 +19,6 @@ internal class LEACTRTest {
 
     @Test
     @DisplayName("LEACTR-192 암복호화 테스트")
-    @Throws(Exception::class)
     fun leactr192_test() {
         val message = "The lazy dog jumps over the brown fox!"
         val lea = LEACTR(192)
@@ -33,7 +31,6 @@ internal class LEACTRTest {
 
     @Test
     @DisplayName("LEACTR-256 암복호화 테스트")
-    @Throws(Exception::class)
     fun leactr256_test() {
         val message = "The lazy dog jumps over the brown fox!"
         val lea = LEACTR(256)

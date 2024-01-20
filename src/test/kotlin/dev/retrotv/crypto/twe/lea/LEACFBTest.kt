@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test
 internal class LEACFBTest {
     @Test
     @DisplayName("LEACFB-128 암복호화 테스트")
-    @Throws(Exception::class)
     fun leacfb128_test() {
         val message = "The lazy dog jumps over the brown fox!"
         val lea = LEACFB(128)
@@ -20,7 +19,6 @@ internal class LEACFBTest {
 
     @Test
     @DisplayName("LEACFB-192 암복호화 테스트")
-    @Throws(Exception::class)
     fun leacfb192_test() {
         val message = "The lazy dog jumps over the brown fox!"
         val lea = LEACFB(192)
@@ -33,7 +31,6 @@ internal class LEACFBTest {
 
     @Test
     @DisplayName("LEACFB-256 암복호화 테스트")
-    @Throws(Exception::class)
     fun leacfb256_test() {
         val message = "The lazy dog jumps over the brown fox!"
         val lea = LEACFB(256)

@@ -8,14 +8,12 @@ import org.junit.jupiter.api.Test
 class MD2Test : OWETest() {
     @Test
     @DisplayName("MD2 File hash 테스트")
-    @Throws(Exception::class)
     fun fileHashTest() {
         fileHashTest(Algorithm.Hash.MD2)
     }
 
     @Test
     @DisplayName("MD2 File hash matches 테스트")
-    @Throws(Exception::class)
     fun fileHashMatchesTest() {
         fileHashMatchesTest(MD2(), Algorithm.Hash.MD2)
     }

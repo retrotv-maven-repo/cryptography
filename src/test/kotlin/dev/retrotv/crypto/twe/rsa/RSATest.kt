@@ -41,7 +41,7 @@ internal class RSATest {
 
     @Test
     @DisplayName("RSA-1024 전자서명 테스트")
-    @Throws(Exception::class)
+    
     fun rsa1024_signature_test() {
         val keyPairGenerator = RSAKeyPairGenerator(1024)
         val keyPair = keyPairGenerator.generateKeyPair()
@@ -53,7 +53,7 @@ internal class RSATest {
 
     @Test
     @DisplayName("RSA-2048 전자서명 테스트")
-    @Throws(Exception::class)
+    
     fun rsa2048_signature_test() {
         val keyPairGenerator = RSAKeyPairGenerator(2048)
         val keyPair = keyPairGenerator.generateKeyPair()
