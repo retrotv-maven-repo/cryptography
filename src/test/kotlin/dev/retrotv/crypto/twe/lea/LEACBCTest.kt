@@ -3,6 +3,7 @@ package dev.retrotv.crypto.twe.lea
 import dev.retrotv.data.utils.toHexString
 import org.bouncycastle.crypto.engines.LEAEngine
 import org.bouncycastle.crypto.modes.CBCBlockCipher
+import org.bouncycastle.crypto.paddings.PKCS7Padding
 import org.bouncycastle.crypto.paddings.PaddedBufferedBlockCipher
 import org.bouncycastle.crypto.params.KeyParameter
 import org.bouncycastle.crypto.params.ParametersWithIV
@@ -12,10 +13,10 @@ import org.junit.jupiter.api.Test
 import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
 
+
 internal class LEACBCTest {
     @Test
     @DisplayName("LEACBC-128 암복호화 테스트")
-    @Throws(Exception::class)
     fun leacbc128_test() {
         val message = "The lazy dog jumps over the brown fox!"
         val lea = LEACBC(128)
@@ -29,7 +30,6 @@ internal class LEACBCTest {
 
     @Test
     @DisplayName("LEACBC-192 암복호화 테스트")
-    @Throws(Exception::class)
     fun leacbc192_test() {
         val message = "The lazy dog jumps over the brown fox!"
         val lea = LEACBC(192)
@@ -43,7 +43,6 @@ internal class LEACBCTest {
 
     @Test
     @DisplayName("LEACBC-256 암복호화 테스트")
-    @Throws(Exception::class)
     fun leacbc256_test() {
         val message = "The lazy dog jumps over the brown fox!"
         val lea = LEACBC(256)
@@ -56,35 +55,62 @@ internal class LEACBCTest {
     }
 
     @Test
-    fun leacbc128() {
-        val lea = LEACBC(128)
-
-        val key = hexStringToByteArray("00000000000000000000000000000000")
-        val iv = hexStringToByteArray("00000000000000000000000000000000")
-        val data = hexStringToByteArray("80000000000000000000000000000000")
-
-        val encryptedData = lea.encrypt(data, SecretKeySpec(key, "LEA"), IvParameterSpec(iv))
-        println(toHexString(encryptedData))
+    @DisplayName("KISA, Bouncy Castle 비교")
+    fun leacbc128_kisa_bc_test() {
+        leaKisaBc(128)
+        leaKisaBc(192)
+        leaKisaBc(256)
     }
 
-    private fun hexStringToByteArray(s: String): ByteArray {
-        val len = s.length
-        val data = ByteArray(len / 2)
-        var i = 0
-        while (i < len) {
-            data[i / 2] = (((s[i].digitToIntOrNull(16) ?: (-1 shl 4)) + s[i + 1].digitToIntOrNull(16)!!)).toByte()
-            i += 2
-        }
-        return data
+    private fun leaKisaBc(keySize: Int) {
+        val message = "The lazy dog jumps over the brown fox!"
+        val lea = LEACBC(keySize)
+        val key = lea.generateKey()
+        val iv = lea.generateSpec()
+        lea.dataPadding()
+        val encryptedData1 = lea.encrypt(message.toByteArray(), key, iv)
+
+        val cbc = PaddedBufferedBlockCipher(CBCBlockCipher.newInstance(LEAEngine()), PKCS7Padding())
+        cbc.init(true, ParametersWithIV(KeyParameter(key.encoded), iv.iv))
+        val encryptedData2 = ByteArray(cbc.getOutputSize(message.toByteArray().size))
+        val bytesProcessed1: Int = cbc.processBytes(message.toByteArray(), 0, message.toByteArray().size, encryptedData2, 0)
+        val bytesProcessed2: Int = cbc.doFinal(encryptedData2, bytesProcessed1)
+        val result = ByteArray(bytesProcessed1 + bytesProcessed2)
+        System.arraycopy(encryptedData2, 0, result, 0, result.size)
+
+        Assertions.assertTrue(encryptedData1.contentEquals(encryptedData2))
     }
 
-    fun byteArrayToHexString(bytes: ByteArray): String {
-        val sb = StringBuilder()
-
-        for (b in bytes) {
-            sb.append(String.format("%02X", b.toInt() and 0xff))
-        }
-
-        return sb.toString()
-    }
+//    @Test
+//    fun leacbc128() {
+//        val lea = LEACBC(128)
+//
+//        val key = hexStringToByteArray("00000000000000000000000000000000")
+//        val iv = hexStringToByteArray("00000000000000000000000000000000")
+//        val data = hexStringToByteArray("80000000000000000000000000000000")
+//
+//        val encryptedData = lea.encrypt(data, SecretKeySpec(key, "LEA"), IvParameterSpec(iv))
+//        println(toHexString(encryptedData))
+//    }
+//
+//    private fun hexStringToByteArray(s: String): ByteArray {
+//        val len = s.length
+//        val data = ByteArray(len / 2)
+//        var i = 0
+//        while (i < len) {
+//            data[i / 2] = (((s[i].digitToIntOrNull(16) ?: (-1 shl 4)) + s[i + 1].digitToIntOrNull(16)!!)).toByte()
+//            i += 2
+//        }
+//        return data
+//    }
+//
+//    fun byteArrayToHexString(bytes: ByteArray): String {
+//        val sb = StringBuilder()
+//
+//        for (b in bytes) {
+//            sb.append(String.format("%02X", b.toInt() and 0xff))
+//        }
+//
+//        return sb.toString()
+//    }
 }
