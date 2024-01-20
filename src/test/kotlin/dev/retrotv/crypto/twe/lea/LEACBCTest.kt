@@ -56,7 +56,7 @@ internal class LEACBCTest {
 
     @Test
     @DisplayName("KISA, Bouncy Castle 비교")
-    fun leacbc128_kisa_bc_test() {
+    fun leacbc_kisa_bc_test() {
         leaKisaBc(128)
         leaKisaBc(192)
         leaKisaBc(256)
@@ -70,7 +70,7 @@ internal class LEACBCTest {
         lea.dataPadding()
         val encryptedData1 = lea.encrypt(message.toByteArray(), key, iv)
 
-        val cbc = PaddedBufferedBlockCipher(CBCBlockCipher.newInstance(LEAEngine()), PKCS7Padding())
+        val cbc = PaddedBufferedBlockCipher(CBCBlockCipher.newInstance(LEAEngine()))
         cbc.init(true, ParametersWithIV(KeyParameter(key.encoded), iv.iv))
         val encryptedData2 = ByteArray(cbc.getOutputSize(message.toByteArray().size))
         val bytesProcessed1: Int = cbc.processBytes(message.toByteArray(), 0, message.toByteArray().size, encryptedData2, 0)
