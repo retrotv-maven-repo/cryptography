@@ -1,23 +1,18 @@
 package dev.retrotv.crypto.twe.lea
 
-import dev.retrotv.data.utils.hexStringToByteArray
-import dev.retrotv.data.utils.toHexString
+import org.bouncycastle.crypto.BufferedBlockCipher
 import org.bouncycastle.crypto.engines.LEAEngine
-import org.bouncycastle.crypto.modes.CBCBlockCipher
 import org.bouncycastle.crypto.paddings.PaddedBufferedBlockCipher
 import org.bouncycastle.crypto.params.KeyParameter
-import org.bouncycastle.crypto.params.ParametersWithIV
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.DisplayName
-import org.junit.jupiter.api.Test
-import javax.crypto.spec.IvParameterSpec
-import javax.crypto.spec.SecretKeySpec
+import kotlin.test.Test
 
 internal class LEAECBTest {
 
     @Test
-    @DisplayName("LEAECB-128 암복호화 테스트")
-    fun leaecb128_test() {
+    @DisplayName("KISA LEAECB-128 암복호화 테스트")
+    fun kisa_leaecb128_test() {
         val message = "The lazy dog jumps over the brown fox!"
         val lea = LEAECB(128)
         val key = lea.generateKey()
@@ -28,8 +23,8 @@ internal class LEAECBTest {
     }
 
     @Test
-    @DisplayName("LEAECB-192 암복호화 테스트")
-    fun leaecb192_test() {
+    @DisplayName("KISA LEAECB-192 암복호화 테스트")
+    fun kisa_leaecb192_test() {
         val message = "The lazy dog jumps over the brown fox!"
         val lea = LEAECB(192)
         val key = lea.generateKey()
@@ -40,9 +35,8 @@ internal class LEAECBTest {
     }
 
     @Test
-    @DisplayName("LEAECB-256 암복호화 테스트")
-    
-    fun leaecb256_test() {
+    @DisplayName("KISA LEAECB-256 암복호화 테스트")
+    fun kisa_leaecb256_test() {
         val message = "The lazy dog jumps over the brown fox!"
         val lea = LEAECB(256)
         val key = lea.generateKey()
@@ -53,40 +47,67 @@ internal class LEAECBTest {
     }
 
     @Test
-    @DisplayName("KISA, Bouncy Castle 비교")
-    fun leaecb_kisa_bc_test() {
-        leaKisaBc(128)
-        leaKisaBc(192)
-        leaKisaBc(256)
-    }
-
-    private fun leaKisaBc(keySize: Int) {
+    @DisplayName("Bouncy Castle LEAECB-128 암복호화 테스트")
+    fun bc_leaecb128_test() {
         val message = "The lazy dog jumps over the brown fox!"
-        val lea = LEAECB(keySize)
+        val lea = LEAECB(128)
         val key = lea.generateKey()
-        lea.dataPadding()
-        val encryptedData1 = lea.encrypt(message.toByteArray(), key, null)
 
-        val ecb = PaddedBufferedBlockCipher(LEAEngine())
-        ecb.init(true, KeyParameter(key.encoded))
-        val encryptedData2 = ByteArray(ecb.getOutputSize(message.toByteArray().size))
-        val bytesProcessed1: Int = ecb.processBytes(message.toByteArray(), 0, message.toByteArray().size, encryptedData2, 0)
-        val bytesProcessed2: Int = ecb.doFinal(encryptedData2, bytesProcessed1)
-        val result = ByteArray(bytesProcessed1 + bytesProcessed2)
-        System.arraycopy(encryptedData2, 0, result, 0, result.size)
-
-        Assertions.assertTrue(encryptedData1.contentEquals(encryptedData2))
+        val encryptedData = encrypt(key.encoded, message.toByteArray())
+        val originalMessage = String(decrypt(key.encoded, encryptedData))
+        Assertions.assertEquals(message, originalMessage)
     }
 
     @Test
-    fun leaecb128() {
-        val lea = LEACBC(128)
+    @DisplayName("Bouncy Castle LEAECB-192 암복호화 테스트")
+    fun bc_leaecb192_test() {
+        val message = "The lazy dog jumps over the brown fox!"
+        val lea = LEAECB(192)
+        val key = lea.generateKey()
 
-        val key = hexStringToByteArray("00000000000000000000000000000000")
-        val iv = hexStringToByteArray("00000000000000000000000000000000")
-        val data = hexStringToByteArray("E0000000000000000000000000000000")
+        val encryptedData = encrypt(key.encoded, message.toByteArray())
+        val originalMessage = String(decrypt(key.encoded, encryptedData))
+        Assertions.assertEquals(message, originalMessage)
+    }
 
-        val encryptedData = lea.encrypt(data, SecretKeySpec(key, ""), IvParameterSpec(iv))
-        println(toHexString(encryptedData))
+    @Test
+    @DisplayName("Bouncy Castle LEAECB-256 암복호화 테스트")
+    fun bc_leaecb256_test() {
+        val message = "The lazy dog jumps over the brown fox!"
+        val lea = LEAECB(256)
+        val key = lea.generateKey()
+
+        val encryptedData = encrypt(key.encoded, message.toByteArray())
+        val originalMessage = String(decrypt(key.encoded, encryptedData))
+        Assertions.assertEquals(message, originalMessage)
+    }
+
+    fun encrypt(key: ByteArray, plainText: ByteArray): ByteArray {
+
+        // 블록보다 데이터가 짧을 경우 패딩을 사용함
+        val cipher = PaddedBufferedBlockCipher(LEAEngine())
+
+        // 초기화 및 키 파라미터 생성 첫 번째 매개변수가 true 라면 암호화 모드
+        cipher.init(true, KeyParameter(key))
+
+        val outputData = ByteArray(cipher.getOutputSize(plainText.size))
+        val tam = cipher.processBytes(plainText, 0, plainText.size, outputData, 0)
+        cipher.doFinal(outputData, tam)
+
+        return outputData
+    }
+
+    fun decrypt(key: ByteArray, cipherText: ByteArray): ByteArray {
+        val cipher = PaddedBufferedBlockCipher(LEAEngine())
+        cipher.init(false, KeyParameter(key))
+
+        val outputData = ByteArray(cipher.getOutputSize(cipherText.size))
+        val tam = cipher.processBytes(cipherText, 0, cipherText.size, outputData, 0)
+        val finalLen = cipher.doFinal(outputData, tam)
+        val result = ByteArray(finalLen + tam)
+
+        System.arraycopy(outputData, 0, result, 0, tam + finalLen)
+
+        return result
     }
 }
