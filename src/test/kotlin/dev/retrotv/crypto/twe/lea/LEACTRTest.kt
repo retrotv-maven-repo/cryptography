@@ -66,8 +66,6 @@ internal class LEACTRTest {
     }
 
     fun encrypt(key: ByteArray, iv: ByteArray, plainText: ByteArray): ByteArray {
-
-        // blockSize는 8 혹은 16만 입력 가능
         val cipher = SICBlockCipher.newInstance(LEAEngine())
         cipher.init(true, ParametersWithIV(KeyParameter(key), iv))
 

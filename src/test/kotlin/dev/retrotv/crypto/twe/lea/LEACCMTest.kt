@@ -3,8 +3,8 @@ package dev.retrotv.crypto.twe.lea
 import dev.retrotv.data.utils.toHexString
 import org.bouncycastle.crypto.engines.LEAEngine
 import org.bouncycastle.crypto.modes.CCMBlockCipher
+import org.bouncycastle.crypto.params.AEADParameters
 import org.bouncycastle.crypto.params.KeyParameter
-import org.bouncycastle.crypto.params.ParametersWithIV
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.DisplayName
 import kotlin.test.Test
@@ -92,6 +92,8 @@ internal class LEACCMTest {
     fun leaccm() {
         val message = "The lazy dog jumps over the brown fox!".toByteArray()
         val key = "0123456789012345".toByteArray()
+
+        // CCM 모드의 iv는 7~13byte의 값이다 (보통 12byte를 사용)
         val iv = "012345678901".toByteArray()
 
         val encryptedData = encrypt(key, iv, message)
@@ -101,28 +103,29 @@ internal class LEACCMTest {
     }
 
     fun encrypt(key: ByteArray, iv: ByteArray, plainText: ByteArray): ByteArray {
+        val macSize = 128
         val cipher = CCMBlockCipher.newInstance(LEAEngine())
-        cipher.init(true, ParametersWithIV(KeyParameter(key), iv))
-
-        println(toHexString(cipher.mac))
+        cipher.init(true, AEADParameters(KeyParameter(key), macSize, iv))
 
         val outputData = ByteArray(cipher.getOutputSize(plainText.size))
         val tam = cipher.processBytes(plainText, 0, plainText.size, outputData, 0)
         cipher.doFinal(outputData, tam)
 
+        println(toHexString(cipher.mac))
+
         return outputData
     }
 
     fun decrypt(key: ByteArray, iv: ByteArray, cipherText: ByteArray): ByteArray {
+        val macSize = 128
         val cipher = CCMBlockCipher.newInstance(LEAEngine())
-        cipher.init(false, ParametersWithIV(KeyParameter(key), iv))
+        cipher.init(false, AEADParameters(KeyParameter(key), macSize, iv))
 
-        val outputData = ByteArray(cipher.getOutputSize(cipherText.size))
-        val tam = cipher.processBytes(cipherText, 0, cipherText.size, outputData, 0)
-        val finalLen = cipher.doFinal(outputData, tam)
-        val result = ByteArray(finalLen + tam)
+        val result = ByteArray(cipher.getOutputSize(cipherText.size))
+        val tam = cipher.processBytes(cipherText, 0, cipherText.size, result, 0)
+        cipher.doFinal(result, tam)
 
-        System.arraycopy(outputData, 0, result, 0, tam + finalLen)
+        println(toHexString(cipher.mac))
 
         return result
     }
