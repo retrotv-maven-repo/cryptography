@@ -33,7 +33,7 @@ class LEACFB(keyLen: Int) : LEA(), ParameterSpecGenerator<IvParameterSpec> {
         params as ParamsWithIV
 
         // blockSize는 8 혹은 16만 입력 가능
-        val cipher = CFBBlockCipher.newInstance(engine, 128)
+        val cipher = CFBBlockCipher.newInstance(this.engine, 128)
             cipher.init(true, ParametersWithIV(KeyParameter(params.key), params.iv))
 
         val outputData = ByteArray(data.size)
@@ -46,7 +46,7 @@ class LEACFB(keyLen: Int) : LEA(), ParameterSpecGenerator<IvParameterSpec> {
     override fun decrypt(encryptedData: ByteArray, params: Params): ByteArray {
         params as ParamsWithIV
 
-        val cipher = CFBBlockCipher.newInstance(engine, 128)
+        val cipher = CFBBlockCipher.newInstance(this.engine, 128)
             cipher.init(false, ParametersWithIV(KeyParameter(params.key), params.iv))
 
         val result = ByteArray(encryptedData.size)

@@ -3,7 +3,6 @@ package dev.retrotv.crypto.twe.lea
 import dev.retrotv.crypto.exception.CryptoFailException
 import dev.retrotv.enums.Algorithm
 import dev.retrotv.utils.getMessage
-import org.bouncycastle.crypto.engines.LEAEngine
 import org.bouncycastle.crypto.paddings.PaddedBufferedBlockCipher
 import org.bouncycastle.crypto.params.KeyParameter
 
@@ -39,7 +38,7 @@ class LEAECB(keyLen: Int) : LEA() {
 
     @Throws(CryptoFailException::class)
     override fun decrypt(encryptedData: ByteArray, params: Params): ByteArray {
-        val cipher = PaddedBufferedBlockCipher(LEAEngine())
+        val cipher = PaddedBufferedBlockCipher(this.engine)
             cipher.init(false, KeyParameter(params.key))
 
         val outputData = ByteArray(cipher.getOutputSize(encryptedData.size))

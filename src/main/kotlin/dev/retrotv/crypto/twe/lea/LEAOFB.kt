@@ -5,7 +5,6 @@ import dev.retrotv.crypto.twe.ParameterSpecGenerator
 import dev.retrotv.enums.Algorithm
 import dev.retrotv.utils.generate
 import dev.retrotv.utils.getMessage
-import org.bouncycastle.crypto.engines.LEAEngine
 import org.bouncycastle.crypto.modes.OFBBlockCipher
 import org.bouncycastle.crypto.params.KeyParameter
 import org.bouncycastle.crypto.params.ParametersWithIV
@@ -34,7 +33,7 @@ class LEAOFB(keyLen: Int) : LEA(), ParameterSpecGenerator<IvParameterSpec> {
         params as ParamsWithIV
 
         // blockSize는 8 혹은 16만 입력 가능 (16 권장)
-        val cipher = OFBBlockCipher(LEAEngine(), 16)
+        val cipher = OFBBlockCipher(this.engine, 16)
         cipher.init(true, ParametersWithIV(KeyParameter(params.key), params.iv))
 
         val outputData = ByteArray(data.size)
@@ -47,7 +46,7 @@ class LEAOFB(keyLen: Int) : LEA(), ParameterSpecGenerator<IvParameterSpec> {
     override fun decrypt(encryptedData: ByteArray, params: Params): ByteArray {
         params as ParamsWithIV
 
-        val cipher = OFBBlockCipher(LEAEngine(), 16)
+        val cipher = OFBBlockCipher(this.engine, 16)
         cipher.init(false, ParametersWithIV(KeyParameter(params.key), params.iv))
 
         val result = ByteArray(encryptedData.size)

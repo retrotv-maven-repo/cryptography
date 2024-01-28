@@ -5,7 +5,6 @@ import dev.retrotv.crypto.twe.ParameterSpecGenerator
 import dev.retrotv.enums.Algorithm
 import dev.retrotv.utils.generate
 import dev.retrotv.utils.getMessage
-import org.bouncycastle.crypto.engines.LEAEngine
 import org.bouncycastle.crypto.modes.SICBlockCipher
 import org.bouncycastle.crypto.params.KeyParameter
 import org.bouncycastle.crypto.params.ParametersWithIV
@@ -33,7 +32,7 @@ class LEACTR(keyLen: Int) : LEA(), ParameterSpecGenerator<IvParameterSpec> {
     override fun encrypt(data: ByteArray, params: Params): ByteArray {
         params as ParamsWithIV
 
-        val cipher = SICBlockCipher.newInstance(LEAEngine())
+        val cipher = SICBlockCipher.newInstance(this.engine)
         cipher.init(true, ParametersWithIV(KeyParameter(params.key), params.iv))
 
         val outputData = ByteArray(data.size)
@@ -46,7 +45,7 @@ class LEACTR(keyLen: Int) : LEA(), ParameterSpecGenerator<IvParameterSpec> {
     override fun decrypt(encryptedData: ByteArray, params: Params): ByteArray {
         params as ParamsWithIV
 
-        val cipher = SICBlockCipher.newInstance(LEAEngine())
+        val cipher = SICBlockCipher.newInstance(this.engine)
         cipher.init(false, ParametersWithIV(KeyParameter(params.key), params.iv))
 
         val result = ByteArray(encryptedData.size)

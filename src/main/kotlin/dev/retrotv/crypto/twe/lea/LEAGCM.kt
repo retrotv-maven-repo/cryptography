@@ -36,7 +36,7 @@ class LEAGCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
         params as ParamsWithIV
 
         val macSize = 128
-        val cipher = GCMBlockCipher.newInstance(LEAEngine())
+        val cipher = GCMBlockCipher.newInstance(this.engine)
         cipher.init(true, AEADParameters(KeyParameter(params.key), macSize, params.iv, aad))
 
         if (aad != null) {
@@ -66,7 +66,7 @@ class LEAGCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
         params as ParamsWithIV
 
         val macSize = 128
-        val cipher = GCMBlockCipher.newInstance(LEAEngine())
+        val cipher = GCMBlockCipher.newInstance(this.engine)
         cipher.init(false, AEADParameters(KeyParameter(params.key), macSize, params.iv, aad))
 
         if (aad != null) {

@@ -22,21 +22,12 @@ abstract class LEA {
     protected val engine = LEAEngine()
     protected var keyLen = 0
     protected lateinit var algorithm: Algorithm.Cipher
-    protected var padding = Padding.NO_PADDING
 
     @Throws(CryptoFailException::class)
     abstract fun encrypt(data: ByteArray, params: Params): ByteArray
 
     @Throws(CryptoFailException::class)
     abstract fun decrypt(encryptedData: ByteArray, params: Params): ByteArray
-
-    /**
-     * 데이터를 패딩하도록 설정합니다.
-     * 기본적으로 PKCS#5 Padding을 사용합니다.
-     */
-    fun dataPadding() {
-        padding = Padding.PKCS5_PADDING
-    }
 
     fun generateKey(): Key {
         return ExtendedSecretKeySpec(generate(keyLen / 8), "LEA")

@@ -5,7 +5,6 @@ import dev.retrotv.crypto.twe.ParameterSpecGenerator
 import dev.retrotv.enums.Algorithm
 import dev.retrotv.utils.generate
 import dev.retrotv.utils.getMessage
-import org.bouncycastle.crypto.engines.LEAEngine
 import org.bouncycastle.crypto.modes.CCMBlockCipher
 import org.bouncycastle.crypto.params.AEADParameters
 import org.bouncycastle.crypto.params.KeyParameter
@@ -35,7 +34,7 @@ class LEACCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
         params as ParamsWithIV
 
         val macSize = 128
-        val cipher = CCMBlockCipher.newInstance(LEAEngine())
+        val cipher = CCMBlockCipher.newInstance(this.engine)
             cipher.init(true, AEADParameters(KeyParameter(params.key), macSize, params.iv, this.aad))
 
         val outputData = ByteArray(cipher.getOutputSize(data.size))
@@ -52,7 +51,7 @@ class LEACCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
         params as ParamsWithIV
 
         val macSize = 128
-        val cipher = CCMBlockCipher.newInstance(LEAEngine())
+        val cipher = CCMBlockCipher.newInstance(this.engine)
             cipher.init(false, AEADParameters(KeyParameter(params.key), macSize, params.iv, this.aad))
 
         val result = ByteArray(cipher.getOutputSize(encryptedData.size))

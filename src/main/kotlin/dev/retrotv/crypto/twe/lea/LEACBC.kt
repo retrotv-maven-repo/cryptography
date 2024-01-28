@@ -5,7 +5,6 @@ import dev.retrotv.crypto.twe.ParameterSpecGenerator
 import dev.retrotv.enums.Algorithm
 import dev.retrotv.utils.generate
 import dev.retrotv.utils.getMessage
-import org.bouncycastle.crypto.engines.LEAEngine
 import org.bouncycastle.crypto.modes.CBCBlockCipher
 import org.bouncycastle.crypto.paddings.PaddedBufferedBlockCipher
 import org.bouncycastle.crypto.params.KeyParameter
@@ -48,7 +47,7 @@ class LEACBC(keyLen: Int) : LEA(), ParameterSpecGenerator<IvParameterSpec> {
     override fun decrypt(encryptedData: ByteArray, params: Params): ByteArray {
         params as ParamsWithIV
 
-        val cipher = PaddedBufferedBlockCipher(CBCBlockCipher.newInstance(LEAEngine()))
+        val cipher = PaddedBufferedBlockCipher(CBCBlockCipher.newInstance(this.engine))
             cipher.init(false, ParametersWithIV(KeyParameter(params.key), params.iv))
 
         val outputData = ByteArray(cipher.getOutputSize(encryptedData.size))
