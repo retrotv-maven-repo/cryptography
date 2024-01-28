@@ -3,12 +3,8 @@ package dev.retrotv.crypto.owe.hash.crc;
 import dev.retrotv.crypto.owe.hash.Hash;
 import dev.retrotv.crypto.owe.mac.HMAC;
 import dev.retrotv.crypto.owe.mac.md.HMACMD5;
-import dev.retrotv.data.enums.EncodeFormat;
-import dev.retrotv.utils.CodecUtils;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
 
 class JavaCRC32Test {
 

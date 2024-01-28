@@ -66,7 +66,7 @@ internal class LEACFBTest {
         val engine = LEAEngine()
 
         // blockSize는 8 혹은 16만 입력 가능
-        val cipher = CFBBlockCipher.newInstance(engine, 16)
+        val cipher = CFBBlockCipher.newInstance(engine, 128)
         cipher.init(true, ParametersWithIV(KeyParameter(key), iv))
 
         val outputData = ByteArray(plainText.size)
@@ -77,7 +77,7 @@ internal class LEACFBTest {
 
     fun decrypt(key: ByteArray, iv: ByteArray, cipherText: ByteArray): ByteArray {
         val engine = LEAEngine()
-        val cipher = CFBBlockCipher.newInstance(engine, 16)
+        val cipher = CFBBlockCipher.newInstance(engine, 128)
         cipher.init(false, ParametersWithIV(KeyParameter(key), iv))
 
         val result = ByteArray(cipherText.size)

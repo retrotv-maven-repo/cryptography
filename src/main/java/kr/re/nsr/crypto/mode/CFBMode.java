@@ -3,8 +3,6 @@ package kr.re.nsr.crypto.mode;
 import kr.re.nsr.crypto.BlockCipher;
 import kr.re.nsr.crypto.BlockCipher.Mode;
 import kr.re.nsr.crypto.BlockCipherModeStream;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import static kr.re.nsr.crypto.util.Ops.XOR;
 
