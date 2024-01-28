@@ -5,12 +5,11 @@ import dev.retrotv.crypto.twe.ParameterSpecGenerator
 import dev.retrotv.enums.Algorithm
 import dev.retrotv.utils.generate
 import dev.retrotv.utils.getMessage
-import kr.re.nsr.crypto.BlockCipher
-import kr.re.nsr.crypto.BlockCipherModeAE
-import kr.re.nsr.crypto.symm.LEA.GCM
-import java.security.Key
-import java.security.spec.AlgorithmParameterSpec
-import javax.crypto.AEADBadTagException
+import org.bouncycastle.crypto.InvalidCipherTextException
+import org.bouncycastle.crypto.engines.LEAEngine
+import org.bouncycastle.crypto.modes.GCMBlockCipher
+import org.bouncycastle.crypto.params.AEADParameters
+import org.bouncycastle.crypto.params.KeyParameter
 import javax.crypto.spec.GCMParameterSpec
 
 /**
@@ -33,41 +32,53 @@ class LEAGCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
     }
 
     @Throws(CryptoFailException::class)
-    override fun encrypt(data: ByteArray, key: Key, spec: AlgorithmParameterSpec?): ByteArray {
-        return try {
-            val cipher: BlockCipherModeAE = GCM()
-            val gcmSpec: GCMParameterSpec = spec as GCMParameterSpec
+    fun encrypt(data: ByteArray, key: ByteArray, iv: ByteArray): ByteArray {
+        val macSize = 128
+        val cipher = GCMBlockCipher.newInstance(LEAEngine())
+        cipher.init(true, AEADParameters(KeyParameter(key), macSize, iv, aad?.toByteArray()))
 
-            // GCMParameterSpec의 tLen은 bit 기준이고, taglen이 byte 크기여야 하므로 8로 나눔
-            cipher.init(BlockCipher.Mode.ENCRYPT, key.encoded, gcmSpec.iv, gcmSpec.tLen / 8)
-            if (aad != null) {
-                cipher.updateAAD(aad!!.toByteArray())
-            }
-
-            cipher.doFinal(data)
-        } catch (e: Exception) {
-            throw CryptoFailException(e.message!!, e)
+        if (aad != null) {
+            cipher.processAADBytes(aad?.toByteArray(), 0, aad?.toByteArray()?.size ?: 0)
         }
+
+        val outputData = ByteArray(cipher.getOutputSize(data.size))
+        var tam = cipher.processBytes(data, 0, data.size, outputData, 0)
+
+        try {
+            tam += cipher.doFinal(outputData, tam)
+        } catch (e: InvalidCipherTextException) {
+            throw CryptoFailException("GCM 인증 태그를 생성 실패: " + e.message, e)
+        }
+
+        val encryptedData = ByteArray(tam - (macSize / 8))
+        val authTag = ByteArray(macSize / 8)
+
+        System.arraycopy(outputData, 0, encryptedData, 0, encryptedData.size)
+        System.arraycopy(outputData, tam - (macSize / 8), authTag, 0, macSize / 8)
+
+        return outputData
     }
 
     @Throws(CryptoFailException::class)
-    override fun decrypt(encryptedData: ByteArray, key: Key, spec: AlgorithmParameterSpec?): ByteArray {
-        return try {
-            val cipher: BlockCipherModeAE = GCM()
-            val gcmSpec: GCMParameterSpec = spec as GCMParameterSpec
+    fun decrypt(encryptedData: ByteArray, key: ByteArray, iv: ByteArray): ByteArray {
+        val macSize = 128
+        val cipher = GCMBlockCipher.newInstance(LEAEngine())
+        cipher.init(false, AEADParameters(KeyParameter(key), macSize, iv, aad?.toByteArray()))
 
-            cipher.init(BlockCipher.Mode.DECRYPT, key.encoded, gcmSpec.iv, gcmSpec.tLen / 8)
-            if (aad != null) {
-                cipher.updateAAD(aad!!.toByteArray())
-            }
-
-            val originalData: ByteArray = cipher.doFinal(encryptedData)
-                ?: throw AEADBadTagException("동일한 Tag를 사용해 복호화를 시도했는지 확인 하십시오.")
-
-            originalData
-        } catch (e: Exception) {
-            throw CryptoFailException(e.message!!, e)
+        if (aad != null) {
+            cipher.processAADBytes(aad?.toByteArray(), 0, aad?.toByteArray()?.size ?: 0)
         }
+
+        val outputData = ByteArray(cipher.getOutputSize(encryptedData.size))
+        var tam = cipher.processBytes(encryptedData, 0, encryptedData.size, outputData, 0)
+
+        try {
+            tam += cipher.doFinal(outputData, tam)
+        } catch (e: InvalidCipherTextException) {
+            throw CryptoFailException("GCM 인증 태그를 생성 실패: " + e.message, e)
+        }
+
+        return outputData
     }
 
     override fun generateSpec(): GCMParameterSpec {

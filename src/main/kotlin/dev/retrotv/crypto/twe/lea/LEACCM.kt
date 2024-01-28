@@ -1,16 +1,13 @@
 package dev.retrotv.crypto.twe.lea
 
-import dev.retrotv.crypto.exception.CryptoFailException
 import dev.retrotv.crypto.twe.ParameterSpecGenerator
 import dev.retrotv.enums.Algorithm
 import dev.retrotv.utils.generate
 import dev.retrotv.utils.getMessage
-import kr.re.nsr.crypto.BlockCipher
-import kr.re.nsr.crypto.BlockCipherModeAE
-import kr.re.nsr.crypto.symm.LEA.CCM
-import java.security.Key
-import java.security.spec.AlgorithmParameterSpec
-import javax.crypto.AEADBadTagException
+import org.bouncycastle.crypto.engines.LEAEngine
+import org.bouncycastle.crypto.modes.CCMBlockCipher
+import org.bouncycastle.crypto.params.AEADParameters
+import org.bouncycastle.crypto.params.KeyParameter
 import javax.crypto.spec.GCMParameterSpec
 
 /**
@@ -32,43 +29,30 @@ class LEACCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
         algorithm = Algorithm.Cipher.LEACCM
     }
 
-    @Throws(CryptoFailException::class)
-    override fun encrypt(data: ByteArray, key: Key, spec: AlgorithmParameterSpec?): ByteArray {
-        return try {
-            val cipher: BlockCipherModeAE = CCM()
-            val gcmSpec: GCMParameterSpec = spec as GCMParameterSpec
+    fun encrypt(data: ByteArray, key: ByteArray, iv: ByteArray): ByteArray {
+        val macSize = 128
+        val cipher = CCMBlockCipher.newInstance(LEAEngine())
+            cipher.init(true, AEADParameters(KeyParameter(key), macSize, iv, this.aad?.toByteArray()))
 
-            // GCMParameterSpec의 tLen은 bit 기준이고, taglen이 byte 크기여야 하므로 8로 나눔
-            cipher.init(BlockCipher.Mode.ENCRYPT, key.encoded, gcmSpec.iv, gcmSpec.tLen / 8)
+        val outputData = ByteArray(cipher.getOutputSize(data.size))
+        var tam = cipher.processBytes(data, 0, data.size, outputData, 0)
 
-            if (aad != null) {
-                cipher.updateAAD(aad!!.toByteArray())
-            }
+            // doFinal을 해야 tag까지 정상적으로 생성된다
+            tam += cipher.doFinal(outputData, tam)
 
-            cipher.doFinal(data)
-        } catch (e: Exception) {
-            throw CryptoFailException(e.message!!, e)
-        }
+        return outputData
     }
 
-    @Throws(CryptoFailException::class)
-    override fun decrypt(encryptedData: ByteArray, key: Key, spec: AlgorithmParameterSpec?): ByteArray {
-        return try {
-            val cipher: BlockCipherModeAE = CCM()
-            val gcmSpec: GCMParameterSpec = spec as GCMParameterSpec
+    fun decrypt(encryptedData: ByteArray, key: ByteArray, iv: ByteArray): ByteArray {
+        val macSize = 128
+        val cipher = CCMBlockCipher.newInstance(LEAEngine())
+            cipher.init(false, AEADParameters(KeyParameter(key), macSize, iv, this.aad?.toByteArray()))
 
-            cipher.init(BlockCipher.Mode.DECRYPT, key.encoded, gcmSpec.iv, gcmSpec.tLen / 8)
+        val result = ByteArray(cipher.getOutputSize(encryptedData.size))
+        var tam = cipher.processBytes(encryptedData, 0, encryptedData.size, result, 0)
+            tam += cipher.doFinal(result, tam)
 
-            if (aad != null) {
-                cipher.updateAAD(aad!!.toByteArray())
-            }
-
-            val originalData: ByteArray = cipher.doFinal(encryptedData)
-                ?: throw AEADBadTagException("동일한 Tag를 사용해 복호화를 시도했는지 확인 하십시오.")
-            originalData
-        } catch (e: Exception) {
-            throw CryptoFailException(e.message!!, e)
-        }
+        return result
     }
 
     override fun generateSpec(): GCMParameterSpec {
