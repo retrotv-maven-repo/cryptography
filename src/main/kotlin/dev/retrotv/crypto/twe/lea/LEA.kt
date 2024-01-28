@@ -1,6 +1,7 @@
 package dev.retrotv.crypto.twe.lea
 
 import dev.retrotv.crypto.common.ExtendedSecretKeySpec
+import dev.retrotv.crypto.exception.CryptoFailException
 import dev.retrotv.enums.Algorithm
 import dev.retrotv.enums.Padding
 import dev.retrotv.utils.generate
@@ -22,6 +23,12 @@ abstract class LEA {
     protected var keyLen = 0
     protected lateinit var algorithm: Algorithm.Cipher
     protected var padding = Padding.NO_PADDING
+
+    @Throws(CryptoFailException::class)
+    abstract fun encrypt(data: ByteArray, params: Params): ByteArray
+
+    @Throws(CryptoFailException::class)
+    abstract fun decrypt(encryptedData: ByteArray, params: Params): ByteArray
 
     /**
      * 데이터를 패딩하도록 설정합니다.

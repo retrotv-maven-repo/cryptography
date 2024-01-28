@@ -32,7 +32,7 @@ class LEAGCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
     }
 
     @Throws(CryptoFailException::class)
-    fun encrypt(data: ByteArray, params: Params): ByteArray {
+    override fun encrypt(data: ByteArray, params: Params): ByteArray {
         params as ParamsWithIV
 
         val macSize = 128
@@ -62,7 +62,7 @@ class LEAGCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
     }
 
     @Throws(CryptoFailException::class)
-    fun decrypt(encryptedData: ByteArray, params: Params): ByteArray {
+    override fun decrypt(encryptedData: ByteArray, params: Params): ByteArray {
         params as ParamsWithIV
 
         val macSize = 128

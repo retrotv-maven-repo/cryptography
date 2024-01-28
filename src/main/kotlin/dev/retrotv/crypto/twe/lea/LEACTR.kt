@@ -1,5 +1,6 @@
 package dev.retrotv.crypto.twe.lea
 
+import dev.retrotv.crypto.exception.CryptoFailException
 import dev.retrotv.crypto.twe.ParameterSpecGenerator
 import dev.retrotv.enums.Algorithm
 import dev.retrotv.utils.generate
@@ -28,7 +29,8 @@ class LEACTR(keyLen: Int) : LEA(), ParameterSpecGenerator<IvParameterSpec> {
         algorithm = Algorithm.Cipher.LEACTR
     }
 
-    fun encrypt(data: ByteArray, params: Params): ByteArray {
+    @Throws(CryptoFailException::class)
+    override fun encrypt(data: ByteArray, params: Params): ByteArray {
         params as ParamsWithIV
 
         val cipher = SICBlockCipher.newInstance(LEAEngine())
@@ -40,7 +42,8 @@ class LEACTR(keyLen: Int) : LEA(), ParameterSpecGenerator<IvParameterSpec> {
         return outputData
     }
 
-    fun decrypt(encryptedData: ByteArray, params: Params): ByteArray {
+    @Throws(CryptoFailException::class)
+    override fun decrypt(encryptedData: ByteArray, params: Params): ByteArray {
         params as ParamsWithIV
 
         val cipher = SICBlockCipher.newInstance(LEAEngine())

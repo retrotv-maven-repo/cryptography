@@ -1,5 +1,6 @@
 package dev.retrotv.crypto.twe.lea
 
+import dev.retrotv.crypto.exception.CryptoFailException
 import dev.retrotv.enums.Algorithm
 import dev.retrotv.utils.getMessage
 import org.bouncycastle.crypto.engines.LEAEngine
@@ -24,7 +25,8 @@ class LEAECB(keyLen: Int) : LEA() {
         algorithm = Algorithm.Cipher.LEAECB
     }
 
-    fun encrypt(data: ByteArray, params: Params): ByteArray {
+    @Throws(CryptoFailException::class)
+    override fun encrypt(data: ByteArray, params: Params): ByteArray {
         val cipher = PaddedBufferedBlockCipher(this.engine)
             cipher.init(true, KeyParameter(params.key))
 
@@ -35,7 +37,8 @@ class LEAECB(keyLen: Int) : LEA() {
         return encryptedData
     }
 
-    fun decrypt(encryptedData: ByteArray, params: Params): ByteArray {
+    @Throws(CryptoFailException::class)
+    override fun decrypt(encryptedData: ByteArray, params: Params): ByteArray {
         val cipher = PaddedBufferedBlockCipher(LEAEngine())
             cipher.init(false, KeyParameter(params.key))
 

@@ -1,5 +1,6 @@
 package dev.retrotv.crypto.twe.lea
 
+import dev.retrotv.crypto.exception.CryptoFailException
 import dev.retrotv.crypto.twe.ParameterSpecGenerator
 import dev.retrotv.enums.Algorithm
 import dev.retrotv.utils.generate
@@ -29,7 +30,10 @@ class LEACBC(keyLen: Int) : LEA(), ParameterSpecGenerator<IvParameterSpec> {
         this.algorithm = Algorithm.Cipher.LEACBC
     }
 
-    fun encrypt(data: ByteArray, params: ParamsWithIV): ByteArray {
+    @Throws(CryptoFailException::class)
+    override fun encrypt(data: ByteArray, params: Params): ByteArray {
+        params as ParamsWithIV
+
         val cipher = PaddedBufferedBlockCipher(CBCBlockCipher.newInstance(this.engine))
             cipher.init(true, ParametersWithIV(KeyParameter(params.key), params.iv))
 
@@ -40,7 +44,10 @@ class LEACBC(keyLen: Int) : LEA(), ParameterSpecGenerator<IvParameterSpec> {
         return encryptedData
     }
 
-    fun decrypt(encryptedData: ByteArray, params: ParamsWithIV): ByteArray {
+    @Throws(CryptoFailException::class)
+    override fun decrypt(encryptedData: ByteArray, params: Params): ByteArray {
+        params as ParamsWithIV
+
         val cipher = PaddedBufferedBlockCipher(CBCBlockCipher.newInstance(LEAEngine()))
             cipher.init(false, ParametersWithIV(KeyParameter(params.key), params.iv))
 

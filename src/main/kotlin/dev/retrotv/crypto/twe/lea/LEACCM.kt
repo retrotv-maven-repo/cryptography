@@ -1,5 +1,6 @@
 package dev.retrotv.crypto.twe.lea
 
+import dev.retrotv.crypto.exception.CryptoFailException
 import dev.retrotv.crypto.twe.ParameterSpecGenerator
 import dev.retrotv.enums.Algorithm
 import dev.retrotv.utils.generate
@@ -29,7 +30,8 @@ class LEACCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
         algorithm = Algorithm.Cipher.LEACCM
     }
 
-    fun encrypt(data: ByteArray, params: Params): ByteArray {
+    @Throws(CryptoFailException::class)
+    override fun encrypt(data: ByteArray, params: Params): ByteArray {
         params as ParamsWithIV
 
         val macSize = 128
@@ -45,7 +47,8 @@ class LEACCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
         return outputData
     }
 
-    fun decrypt(encryptedData: ByteArray, params: Params): ByteArray {
+    @Throws(CryptoFailException::class)
+    override fun decrypt(encryptedData: ByteArray, params: Params): ByteArray {
         params as ParamsWithIV
 
         val macSize = 128
