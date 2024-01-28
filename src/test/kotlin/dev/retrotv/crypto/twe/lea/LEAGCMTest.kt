@@ -12,15 +12,14 @@ internal class LEAGCMTest {
         val message = "The lazy dog jumps over the brown fox!"
         val lea = LEAGCM(128)
         val key = lea.generateKey()
-
-        println(key.encoded.size)
-
         val iv = lea.generateSpec()
+        val aad = "0123456789012345".toByteArray()
+        val params = ParamsWithIV(key.encoded, iv.iv)
 
-        println(iv.iv.size)
+            lea.updateAAD(aad)
 
-        val encryptedData = lea.encrypt(message.toByteArray(), key.encoded, iv.iv)
-        val originalMessage = String(lea.decrypt(encryptedData, key.encoded, iv.iv))
+        val encryptedData = lea.encrypt(message.toByteArray(), params)
+        val originalMessage = String(lea.decrypt(encryptedData, params))
         Assertions.assertEquals(message, originalMessage)
     }
 
@@ -31,8 +30,13 @@ internal class LEAGCMTest {
         val lea = LEAGCM(192)
         val key = lea.generateKey()
         val iv = lea.generateSpec()
-        val encryptedData = lea.encrypt(message.toByteArray(), key.encoded, iv.iv)
-        val originalMessage = String(lea.decrypt(encryptedData, key.encoded, iv.iv))
+        val aad = "0123456789012345".toByteArray()
+        val params = ParamsWithIV(key.encoded, iv.iv)
+
+        lea.updateAAD(aad)
+
+        val encryptedData = lea.encrypt(message.toByteArray(), params)
+        val originalMessage = String(lea.decrypt(encryptedData, params))
         Assertions.assertEquals(message, originalMessage)
     }
 
@@ -43,8 +47,13 @@ internal class LEAGCMTest {
         val lea = LEAGCM(256)
         val key = lea.generateKey()
         val iv = lea.generateSpec()
-        val encryptedData = lea.encrypt(message.toByteArray(), key.encoded, iv.iv)
-        val originalMessage = String(lea.decrypt(encryptedData, key.encoded, iv.iv))
+        val aad = "0123456789012345".toByteArray()
+        val params = ParamsWithIV(key.encoded, iv.iv)
+
+        lea.updateAAD(aad)
+
+        val encryptedData = lea.encrypt(message.toByteArray(), params)
+        val originalMessage = String(lea.decrypt(encryptedData, params))
         Assertions.assertEquals(message, originalMessage)
     }
 }

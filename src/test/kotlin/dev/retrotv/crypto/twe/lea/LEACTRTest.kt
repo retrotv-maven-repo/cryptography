@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
 internal class LEACTRTest {
+
     @Test
     @DisplayName("LEACTR-128 암복호화 테스트")
     fun leactr128_test() {
@@ -12,8 +13,10 @@ internal class LEACTRTest {
         val lea = LEACTR(128)
         val key = lea.generateKey()
         val iv = lea.generateSpec()
-        val encryptedData = lea.encrypt(message.toByteArray(), key.encoded, iv.iv)
-        val originalMessage = String(lea.decrypt(encryptedData, key.encoded, iv.iv))
+        val params = ParamsWithIV(key.encoded, iv.iv)
+
+        val encryptedData = lea.encrypt(message.toByteArray(), params)
+        val originalMessage = String(lea.decrypt(encryptedData, params))
         Assertions.assertEquals(message, originalMessage)
     }
 
@@ -24,8 +27,10 @@ internal class LEACTRTest {
         val lea = LEACTR(192)
         val key = lea.generateKey()
         val iv = lea.generateSpec()
-        val encryptedData = lea.encrypt(message.toByteArray(), key.encoded, iv.iv)
-        val originalMessage = String(lea.decrypt(encryptedData, key.encoded, iv.iv))
+        val params = ParamsWithIV(key.encoded, iv.iv)
+
+        val encryptedData = lea.encrypt(message.toByteArray(), params)
+        val originalMessage = String(lea.decrypt(encryptedData, params))
         Assertions.assertEquals(message, originalMessage)
     }
 
@@ -36,8 +41,10 @@ internal class LEACTRTest {
         val lea = LEACTR(256)
         val key = lea.generateKey()
         val iv = lea.generateSpec()
-        val encryptedData = lea.encrypt(message.toByteArray(), key.encoded, iv.iv)
-        val originalMessage = String(lea.decrypt(encryptedData, key.encoded, iv.iv))
+        val params = ParamsWithIV(key.encoded, iv.iv)
+
+        val encryptedData = lea.encrypt(message.toByteArray(), params)
+        val originalMessage = String(lea.decrypt(encryptedData, params))
         Assertions.assertEquals(message, originalMessage)
     }
 }

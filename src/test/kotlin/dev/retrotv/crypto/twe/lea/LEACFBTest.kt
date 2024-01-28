@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName
 import kotlin.test.Test
 
 internal class LEACFBTest {
+
     @Test
     @DisplayName("LEACFB-128 암복호화 테스트")
     fun leacfb128_test() {
@@ -12,8 +13,10 @@ internal class LEACFBTest {
         val lea = LEACFB(128)
         val key = lea.generateKey()
         val iv = lea.generateSpec()
-        val encryptedData = lea.encrypt(message.toByteArray(), key.encoded, iv.iv)
-        val originalMessage = String(lea.decrypt(encryptedData, key.encoded, iv.iv))
+        val params = ParamsWithIV(key.encoded, iv.iv)
+
+        val encryptedData = lea.encrypt(message.toByteArray(), params)
+        val originalMessage = String(lea.decrypt(encryptedData, params))
         Assertions.assertEquals(message, originalMessage)
     }
 
@@ -24,8 +27,10 @@ internal class LEACFBTest {
         val lea = LEACFB(192)
         val key = lea.generateKey()
         val iv = lea.generateSpec()
-        val encryptedData = lea.encrypt(message.toByteArray(), key.encoded, iv.iv)
-        val originalMessage = String(lea.decrypt(encryptedData, key.encoded, iv.iv))
+        val params = ParamsWithIV(key.encoded, iv.iv)
+
+        val encryptedData = lea.encrypt(message.toByteArray(), params)
+        val originalMessage = String(lea.decrypt(encryptedData, params))
         Assertions.assertEquals(message, originalMessage)
     }
 
@@ -36,8 +41,10 @@ internal class LEACFBTest {
         val lea = LEACFB(256)
         val key = lea.generateKey()
         val iv = lea.generateSpec()
-        val encryptedData = lea.encrypt(message.toByteArray(), key.encoded, iv.iv)
-        val originalMessage = String(lea.decrypt(encryptedData, key.encoded, iv.iv))
+        val params = ParamsWithIV(key.encoded, iv.iv)
+
+        val encryptedData = lea.encrypt(message.toByteArray(), params)
+        val originalMessage = String(lea.decrypt(encryptedData, params))
         Assertions.assertEquals(message, originalMessage)
     }
 }

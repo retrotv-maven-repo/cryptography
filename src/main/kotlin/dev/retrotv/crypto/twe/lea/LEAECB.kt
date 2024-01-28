@@ -24,20 +24,20 @@ class LEAECB(keyLen: Int) : LEA() {
         algorithm = Algorithm.Cipher.LEAECB
     }
 
-    fun encrypt(data: ByteArray, key: ByteArray): ByteArray {
+    fun encrypt(data: ByteArray, params: Params): ByteArray {
         val cipher = PaddedBufferedBlockCipher(this.engine)
-        cipher.init(true, KeyParameter(key))
+            cipher.init(true, KeyParameter(params.key))
 
         val encryptedData = ByteArray(cipher.getOutputSize(data.size))
         val tam = cipher.processBytes(data, 0, data.size, encryptedData, 0)
-        cipher.doFinal(encryptedData, tam)
+            cipher.doFinal(encryptedData, tam)
 
         return encryptedData
     }
 
-    fun decrypt(encryptedData: ByteArray, key: ByteArray): ByteArray {
+    fun decrypt(encryptedData: ByteArray, params: Params): ByteArray {
         val cipher = PaddedBufferedBlockCipher(LEAEngine())
-        cipher.init(false, KeyParameter(key))
+            cipher.init(false, KeyParameter(params.key))
 
         val outputData = ByteArray(cipher.getOutputSize(encryptedData.size))
         val tam = cipher.processBytes(encryptedData, 0, encryptedData.size, outputData, 0)

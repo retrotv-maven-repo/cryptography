@@ -12,9 +12,11 @@ internal class LEAECBTest {
         val message = "The lazy dog jumps over the brown fox!"
         val lea = LEAECB(128)
         val key = lea.generateKey()
-        lea.dataPadding()
-        val encryptedData = lea.encrypt(message.toByteArray(), key.encoded)
-        val originalMessage = String(lea.decrypt(encryptedData, key.encoded))
+        val params = Params(key.encoded)
+            lea.dataPadding()
+
+        val encryptedData = lea.encrypt(message.toByteArray(), params)
+        val originalMessage = String(lea.decrypt(encryptedData, params))
         Assertions.assertEquals(message, originalMessage)
     }
 
@@ -24,9 +26,11 @@ internal class LEAECBTest {
         val message = "The lazy dog jumps over the brown fox!"
         val lea = LEAECB(192)
         val key = lea.generateKey()
-        lea.dataPadding()
-        val encryptedData = lea.encrypt(message.toByteArray(), key.encoded)
-        val originalMessage = String(lea.decrypt(encryptedData, key.encoded))
+        val params = Params(key.encoded)
+            lea.dataPadding()
+
+        val encryptedData = lea.encrypt(message.toByteArray(), params)
+        val originalMessage = String(lea.decrypt(encryptedData, params))
         Assertions.assertEquals(message, originalMessage)
     }
 
@@ -36,9 +40,10 @@ internal class LEAECBTest {
         val message = "The lazy dog jumps over the brown fox!"
         val lea = LEAECB(256)
         val key = lea.generateKey()
-        lea.dataPadding()
-        val encryptedData = lea.encrypt(message.toByteArray(), key.encoded)
-        val originalMessage = String(lea.decrypt(encryptedData, key.encoded))
+        val params = Params(key.encoded)
+            lea.dataPadding()
+        val encryptedData = lea.encrypt(message.toByteArray(), params)
+        val originalMessage = String(lea.decrypt(encryptedData, params))
         Assertions.assertEquals(message, originalMessage)
     }
 }

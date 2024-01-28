@@ -20,7 +20,7 @@ import javax.crypto.spec.GCMParameterSpec
  * @since   1.0.0
  */
 class LEAGCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
-    private var aad: String? = null
+    private var aad: ByteArray? = null
 
     init {
         require(keyLen == 128 || keyLen == 192 || keyLen == 256) {
@@ -32,13 +32,15 @@ class LEAGCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
     }
 
     @Throws(CryptoFailException::class)
-    fun encrypt(data: ByteArray, key: ByteArray, iv: ByteArray): ByteArray {
+    fun encrypt(data: ByteArray, params: Params): ByteArray {
+        params as ParamsWithIV
+
         val macSize = 128
         val cipher = GCMBlockCipher.newInstance(LEAEngine())
-        cipher.init(true, AEADParameters(KeyParameter(key), macSize, iv, aad?.toByteArray()))
+        cipher.init(true, AEADParameters(KeyParameter(params.key), macSize, params.iv, aad))
 
         if (aad != null) {
-            cipher.processAADBytes(aad?.toByteArray(), 0, aad?.toByteArray()?.size ?: 0)
+            cipher.processAADBytes(aad, 0, aad?.size ?: 0)
         }
 
         val outputData = ByteArray(cipher.getOutputSize(data.size))
@@ -60,13 +62,15 @@ class LEAGCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
     }
 
     @Throws(CryptoFailException::class)
-    fun decrypt(encryptedData: ByteArray, key: ByteArray, iv: ByteArray): ByteArray {
+    fun decrypt(encryptedData: ByteArray, params: Params): ByteArray {
+        params as ParamsWithIV
+
         val macSize = 128
         val cipher = GCMBlockCipher.newInstance(LEAEngine())
-        cipher.init(false, AEADParameters(KeyParameter(key), macSize, iv, aad?.toByteArray()))
+        cipher.init(false, AEADParameters(KeyParameter(params.key), macSize, params.iv, aad))
 
         if (aad != null) {
-            cipher.processAADBytes(aad?.toByteArray(), 0, aad?.toByteArray()?.size ?: 0)
+            cipher.processAADBytes(aad, 0, aad?.size ?: 0)
         }
 
         val outputData = ByteArray(cipher.getOutputSize(encryptedData.size))
@@ -90,7 +94,7 @@ class LEAGCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
      *
      * @param aad 추가 인증 데이터
      */
-    fun updateAAD(aad: String?) {
+    fun updateAAD(aad: ByteArray) {
         this.aad = aad
     }
 

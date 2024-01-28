@@ -6,6 +6,7 @@ import kotlin.test.Test
 
 
 internal class LEACBCTest {
+
     @Test
     @DisplayName("LEACBC-128 암복호화 테스트")
     fun kisa_leacbc128_test() {
@@ -13,9 +14,11 @@ internal class LEACBCTest {
         val lea = LEACBC(128)
         val key = lea.generateKey()
         val iv = lea.generateSpec()
-        lea.dataPadding()
-        val encryptedData = lea.encrypt(message.toByteArray(), key.encoded, iv.iv)
-        val originalMessage = String(lea.decrypt(encryptedData, key.encoded, iv.iv))
+        val params = ParamsWithIV(key.encoded, iv.iv)
+            lea.dataPadding()
+
+        val encryptedData = lea.encrypt(message.toByteArray(), params)
+        val originalMessage = String(lea.decrypt(encryptedData, params))
         Assertions.assertEquals(message, originalMessage)
     }
 
@@ -26,9 +29,11 @@ internal class LEACBCTest {
         val lea = LEACBC(192)
         val key = lea.generateKey()
         val iv = lea.generateSpec()
+        val params = ParamsWithIV(key.encoded, iv.iv)
         lea.dataPadding()
-        val encryptedData = lea.encrypt(message.toByteArray(), key.encoded, iv.iv)
-        val originalMessage = String(lea.decrypt(encryptedData, key.encoded, iv.iv))
+
+        val encryptedData = lea.encrypt(message.toByteArray(), params)
+        val originalMessage = String(lea.decrypt(encryptedData, params))
         Assertions.assertEquals(message, originalMessage)
     }
 
@@ -39,9 +44,11 @@ internal class LEACBCTest {
         val lea = LEACBC(256)
         val key = lea.generateKey()
         val iv = lea.generateSpec()
+        val params = ParamsWithIV(key.encoded, iv.iv)
         lea.dataPadding()
-        val encryptedData = lea.encrypt(message.toByteArray(), key.encoded, iv.iv)
-        val originalMessage = String(lea.decrypt(encryptedData, key.encoded, iv.iv))
+
+        val encryptedData = lea.encrypt(message.toByteArray(), params)
+        val originalMessage = String(lea.decrypt(encryptedData, params))
         Assertions.assertEquals(message, originalMessage)
     }
 }

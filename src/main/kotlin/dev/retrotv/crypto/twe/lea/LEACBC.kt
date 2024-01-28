@@ -29,9 +29,9 @@ class LEACBC(keyLen: Int) : LEA(), ParameterSpecGenerator<IvParameterSpec> {
         this.algorithm = Algorithm.Cipher.LEACBC
     }
 
-    fun encrypt(data: ByteArray, key: ByteArray, iv: ByteArray): ByteArray {
+    fun encrypt(data: ByteArray, params: ParamsWithIV): ByteArray {
         val cipher = PaddedBufferedBlockCipher(CBCBlockCipher.newInstance(this.engine))
-            cipher.init(true, ParametersWithIV(KeyParameter(key), iv))
+            cipher.init(true, ParametersWithIV(KeyParameter(params.key), params.iv))
 
         val encryptedData = ByteArray(cipher.getOutputSize(data.size))
         val tam = cipher.processBytes(data, 0, data.size, encryptedData, 0)
@@ -40,9 +40,9 @@ class LEACBC(keyLen: Int) : LEA(), ParameterSpecGenerator<IvParameterSpec> {
         return encryptedData
     }
 
-    fun decrypt(encryptedData: ByteArray, key: ByteArray, iv: ByteArray): ByteArray {
+    fun decrypt(encryptedData: ByteArray, params: ParamsWithIV): ByteArray {
         val cipher = PaddedBufferedBlockCipher(CBCBlockCipher.newInstance(LEAEngine()))
-            cipher.init(false, ParametersWithIV(KeyParameter(key), iv))
+            cipher.init(false, ParametersWithIV(KeyParameter(params.key), params.iv))
 
         val outputData = ByteArray(cipher.getOutputSize(encryptedData.size))
         val tam = cipher.processBytes(encryptedData, 0, encryptedData.size, outputData, 0)

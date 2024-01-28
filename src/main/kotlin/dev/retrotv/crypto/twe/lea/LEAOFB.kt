@@ -28,11 +28,12 @@ class LEAOFB(keyLen: Int) : LEA(), ParameterSpecGenerator<IvParameterSpec> {
         algorithm = Algorithm.Cipher.LEAOFB
     }
 
-    fun encrypt(data: ByteArray, key: ByteArray, iv: ByteArray): ByteArray {
+    fun encrypt(data: ByteArray, params: Params): ByteArray {
+        params as ParamsWithIV
 
         // blockSize는 8 혹은 16만 입력 가능 (16 권장)
         val cipher = OFBBlockCipher(LEAEngine(), 16)
-        cipher.init(true, ParametersWithIV(KeyParameter(key), iv))
+        cipher.init(true, ParametersWithIV(KeyParameter(params.key), params.iv))
 
         val outputData = ByteArray(data.size)
         cipher.processBytes(data, 0, data.size, outputData, 0)
@@ -40,9 +41,11 @@ class LEAOFB(keyLen: Int) : LEA(), ParameterSpecGenerator<IvParameterSpec> {
         return outputData
     }
 
-    fun decrypt(encryptedData: ByteArray, key: ByteArray, iv: ByteArray): ByteArray {
+    fun decrypt(encryptedData: ByteArray, params: Params): ByteArray {
+        params as ParamsWithIV
+
         val cipher = OFBBlockCipher(LEAEngine(), 16)
-        cipher.init(false, ParametersWithIV(KeyParameter(key), iv))
+        cipher.init(false, ParametersWithIV(KeyParameter(params.key), params.iv))
 
         val result = ByteArray(encryptedData.size)
         cipher.processBytes(encryptedData, 0, encryptedData.size, result, 0)

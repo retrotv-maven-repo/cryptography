@@ -28,9 +28,11 @@ class LEACTR(keyLen: Int) : LEA(), ParameterSpecGenerator<IvParameterSpec> {
         algorithm = Algorithm.Cipher.LEACTR
     }
 
-    fun encrypt(data: ByteArray, key: ByteArray, iv: ByteArray): ByteArray {
+    fun encrypt(data: ByteArray, params: Params): ByteArray {
+        params as ParamsWithIV
+
         val cipher = SICBlockCipher.newInstance(LEAEngine())
-        cipher.init(true, ParametersWithIV(KeyParameter(key), iv))
+        cipher.init(true, ParametersWithIV(KeyParameter(params.key), params.iv))
 
         val outputData = ByteArray(data.size)
         cipher.processBytes(data, 0, data.size, outputData, 0)
@@ -38,9 +40,11 @@ class LEACTR(keyLen: Int) : LEA(), ParameterSpecGenerator<IvParameterSpec> {
         return outputData
     }
 
-    fun decrypt(encryptedData: ByteArray, key: ByteArray, iv: ByteArray): ByteArray {
+    fun decrypt(encryptedData: ByteArray, params: Params): ByteArray {
+        params as ParamsWithIV
+
         val cipher = SICBlockCipher.newInstance(LEAEngine())
-        cipher.init(false, ParametersWithIV(KeyParameter(key), iv))
+        cipher.init(false, ParametersWithIV(KeyParameter(params.key), params.iv))
 
         val result = ByteArray(encryptedData.size)
         cipher.processBytes(encryptedData, 0, encryptedData.size, result, 0)

@@ -13,8 +13,10 @@ internal class LEAOFBTest {
         val lea = LEAOFB(128)
         val key = lea.generateKey()
         val iv = lea.generateSpec()
-        val encryptedData = lea.encrypt(message.toByteArray(), key.encoded, iv.iv)
-        val originalMessage = String(lea.decrypt(encryptedData, key.encoded, iv.iv))
+        val params = ParamsWithIV(key.encoded, iv.iv)
+
+        val encryptedData = lea.encrypt(message.toByteArray(), params)
+        val originalMessage = String(lea.decrypt(encryptedData, params))
         Assertions.assertEquals(message, originalMessage)
     }
 
@@ -25,8 +27,10 @@ internal class LEAOFBTest {
         val lea = LEAOFB(192)
         val key = lea.generateKey()
         val iv = lea.generateSpec()
-        val encryptedData = lea.encrypt(message.toByteArray(), key.encoded, iv.iv)
-        val originalMessage = String(lea.decrypt(encryptedData, key.encoded, iv.iv))
+        val params = ParamsWithIV(key.encoded, iv.iv)
+
+        val encryptedData = lea.encrypt(message.toByteArray(), params)
+        val originalMessage = String(lea.decrypt(encryptedData, params))
         Assertions.assertEquals(message, originalMessage)
     }
 
@@ -37,8 +41,10 @@ internal class LEAOFBTest {
         val lea = LEAOFB(256)
         val key = lea.generateKey()
         val iv = lea.generateSpec()
-        val encryptedData = lea.encrypt(message.toByteArray(), key.encoded, iv.iv)
-        val originalMessage = String(lea.decrypt(encryptedData, key.encoded, iv.iv))
+        val params = ParamsWithIV(key.encoded, iv.iv)
+
+        val encryptedData = lea.encrypt(message.toByteArray(), params)
+        val originalMessage = String(lea.decrypt(encryptedData, params))
         Assertions.assertEquals(message, originalMessage)
     }
 }
