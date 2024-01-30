@@ -18,8 +18,8 @@ internal class LEAGCMTest {
 
             lea.updateAAD(aad)
 
-        val encryptedData = lea.encrypt(message.toByteArray(), params)
-        val originalMessage = String(lea.decrypt(encryptedData, params))
+        val encryptedData = lea.encrypt(message.toByteArray(), params) as AEADResult
+        val originalMessage = String(lea.decrypt(encryptedData.data + encryptedData.tag, params).data)
         Assertions.assertEquals(message, originalMessage)
     }
 
@@ -33,10 +33,10 @@ internal class LEAGCMTest {
         val aad = "0123456789012345".toByteArray()
         val params = ParamsWithIV(key.encoded, iv.iv)
 
-        lea.updateAAD(aad)
+            lea.updateAAD(aad)
 
-        val encryptedData = lea.encrypt(message.toByteArray(), params)
-        val originalMessage = String(lea.decrypt(encryptedData, params))
+        val encryptedData = lea.encrypt(message.toByteArray(), params) as AEADResult
+        val originalMessage = String(lea.decrypt(encryptedData.data + encryptedData.tag, params).data)
         Assertions.assertEquals(message, originalMessage)
     }
 
@@ -52,8 +52,8 @@ internal class LEAGCMTest {
 
         lea.updateAAD(aad)
 
-        val encryptedData = lea.encrypt(message.toByteArray(), params)
-        val originalMessage = String(lea.decrypt(encryptedData, params))
+        val encryptedData = lea.encrypt(message.toByteArray(), params) as AEADResult
+        val originalMessage = String(lea.decrypt(encryptedData.data + encryptedData.tag, params).data)
         Assertions.assertEquals(message, originalMessage)
     }
 }

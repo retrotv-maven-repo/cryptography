@@ -30,7 +30,7 @@ class LEACBC(keyLen: Int) : LEA(), ParameterSpecGenerator<IvParameterSpec> {
     }
 
     @Throws(CryptoFailException::class)
-    override fun encrypt(data: ByteArray, params: Params): ByteArray {
+    override fun encrypt(data: ByteArray, params: Params): Result {
         params as ParamsWithIV
 
         val cipher = PaddedBufferedBlockCipher(CBCBlockCipher.newInstance(this.engine))
@@ -40,11 +40,11 @@ class LEACBC(keyLen: Int) : LEA(), ParameterSpecGenerator<IvParameterSpec> {
         val tam = cipher.processBytes(data, 0, data.size, encryptedData, 0)
             cipher.doFinal(encryptedData, tam)
 
-        return encryptedData
+        return Result(encryptedData)
     }
 
     @Throws(CryptoFailException::class)
-    override fun decrypt(encryptedData: ByteArray, params: Params): ByteArray {
+    override fun decrypt(encryptedData: ByteArray, params: Params): Result {
         params as ParamsWithIV
 
         val cipher = PaddedBufferedBlockCipher(CBCBlockCipher.newInstance(this.engine))
@@ -57,7 +57,7 @@ class LEACBC(keyLen: Int) : LEA(), ParameterSpecGenerator<IvParameterSpec> {
 
         System.arraycopy(outputData, 0, originalData, 0, tam + finalLen)
 
-        return originalData
+        return Result(originalData)
     }
 
     override fun generateSpec(): IvParameterSpec {

@@ -13,10 +13,9 @@ internal class LEAECBTest {
         val lea = LEAECB(128)
         val key = lea.generateKey()
         val params = Params(key.encoded)
-            lea.dataPadding()
 
         val encryptedData = lea.encrypt(message.toByteArray(), params)
-        val originalMessage = String(lea.decrypt(encryptedData, params))
+        val originalMessage = String(lea.decrypt(encryptedData.data, params).data)
         Assertions.assertEquals(message, originalMessage)
     }
 
@@ -27,10 +26,9 @@ internal class LEAECBTest {
         val lea = LEAECB(192)
         val key = lea.generateKey()
         val params = Params(key.encoded)
-            lea.dataPadding()
 
         val encryptedData = lea.encrypt(message.toByteArray(), params)
-        val originalMessage = String(lea.decrypt(encryptedData, params))
+        val originalMessage = String(lea.decrypt(encryptedData.data, params).data)
         Assertions.assertEquals(message, originalMessage)
     }
 
@@ -41,9 +39,9 @@ internal class LEAECBTest {
         val lea = LEAECB(256)
         val key = lea.generateKey()
         val params = Params(key.encoded)
-            lea.dataPadding()
+
         val encryptedData = lea.encrypt(message.toByteArray(), params)
-        val originalMessage = String(lea.decrypt(encryptedData, params))
+        val originalMessage = String(lea.decrypt(encryptedData.data, params).data)
         Assertions.assertEquals(message, originalMessage)
     }
 }

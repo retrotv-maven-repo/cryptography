@@ -32,7 +32,7 @@ class LEAGCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
     }
 
     @Throws(CryptoFailException::class)
-    override fun encrypt(data: ByteArray, params: Params): ByteArray {
+    override fun encrypt(data: ByteArray, params: Params): Result {
         params as ParamsWithIV
 
         val macSize = 128
@@ -58,11 +58,11 @@ class LEAGCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
         System.arraycopy(outputData, 0, encryptedData, 0, encryptedData.size)
         System.arraycopy(outputData, tam - (macSize / 8), authTag, 0, macSize / 8)
 
-        return outputData
+        return AEADResult(encryptedData, authTag)
     }
 
     @Throws(CryptoFailException::class)
-    override fun decrypt(encryptedData: ByteArray, params: Params): ByteArray {
+    override fun decrypt(encryptedData: ByteArray, params: Params): Result {
         params as ParamsWithIV
 
         val macSize = 128
@@ -73,16 +73,16 @@ class LEAGCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
             cipher.processAADBytes(aad, 0, aad?.size ?: 0)
         }
 
-        val outputData = ByteArray(cipher.getOutputSize(encryptedData.size))
-        var tam = cipher.processBytes(encryptedData, 0, encryptedData.size, outputData, 0)
+        val originalData = ByteArray(cipher.getOutputSize(encryptedData.size))
+        var tam = cipher.processBytes(encryptedData, 0, encryptedData.size, originalData, 0)
 
         try {
-            tam += cipher.doFinal(outputData, tam)
+            tam += cipher.doFinal(originalData, tam)
         } catch (e: InvalidCipherTextException) {
             throw CryptoFailException("GCM 인증 태그를 생성 실패: " + e.message, e)
         }
 
-        return outputData
+        return Result(originalData)
     }
 
     override fun generateSpec(): GCMParameterSpec {

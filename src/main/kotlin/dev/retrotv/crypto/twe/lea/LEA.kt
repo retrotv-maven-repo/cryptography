@@ -24,10 +24,10 @@ abstract class LEA {
     protected lateinit var algorithm: Algorithm.Cipher
 
     @Throws(CryptoFailException::class)
-    abstract fun encrypt(data: ByteArray, params: Params): ByteArray
+    abstract fun encrypt(data: ByteArray, params: Params): Result
 
     @Throws(CryptoFailException::class)
-    abstract fun decrypt(encryptedData: ByteArray, params: Params): ByteArray
+    abstract fun decrypt(encryptedData: ByteArray, params: Params): Result
 
     fun generateKey(): Key {
         return ExtendedSecretKeySpec(generate(keyLen / 8), "LEA")

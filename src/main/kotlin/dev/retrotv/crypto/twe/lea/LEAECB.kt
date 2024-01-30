@@ -25,7 +25,7 @@ class LEAECB(keyLen: Int) : LEA() {
     }
 
     @Throws(CryptoFailException::class)
-    override fun encrypt(data: ByteArray, params: Params): ByteArray {
+    override fun encrypt(data: ByteArray, params: Params): Result {
         val cipher = PaddedBufferedBlockCipher(this.engine)
             cipher.init(true, KeyParameter(params.key))
 
@@ -33,11 +33,11 @@ class LEAECB(keyLen: Int) : LEA() {
         val tam = cipher.processBytes(data, 0, data.size, encryptedData, 0)
             cipher.doFinal(encryptedData, tam)
 
-        return encryptedData
+        return Result(encryptedData)
     }
 
     @Throws(CryptoFailException::class)
-    override fun decrypt(encryptedData: ByteArray, params: Params): ByteArray {
+    override fun decrypt(encryptedData: ByteArray, params: Params): Result {
         val cipher = PaddedBufferedBlockCipher(this.engine)
             cipher.init(false, KeyParameter(params.key))
 
@@ -48,6 +48,6 @@ class LEAECB(keyLen: Int) : LEA() {
 
         System.arraycopy(outputData, 0, originalData, 0, tam + finalLen)
 
-        return originalData
+        return Result(originalData)
     }
 }

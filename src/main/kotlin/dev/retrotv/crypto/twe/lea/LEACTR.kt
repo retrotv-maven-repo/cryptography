@@ -29,29 +29,29 @@ class LEACTR(keyLen: Int) : LEA(), ParameterSpecGenerator<IvParameterSpec> {
     }
 
     @Throws(CryptoFailException::class)
-    override fun encrypt(data: ByteArray, params: Params): ByteArray {
+    override fun encrypt(data: ByteArray, params: Params): Result {
         params as ParamsWithIV
 
         val cipher = SICBlockCipher.newInstance(this.engine)
-        cipher.init(true, ParametersWithIV(KeyParameter(params.key), params.iv))
+            cipher.init(true, ParametersWithIV(KeyParameter(params.key), params.iv))
 
-        val outputData = ByteArray(data.size)
-        cipher.processBytes(data, 0, data.size, outputData, 0)
+        val encryptedData = ByteArray(data.size)
+            cipher.processBytes(data, 0, data.size, encryptedData, 0)
 
-        return outputData
+        return Result(encryptedData)
     }
 
     @Throws(CryptoFailException::class)
-    override fun decrypt(encryptedData: ByteArray, params: Params): ByteArray {
+    override fun decrypt(encryptedData: ByteArray, params: Params): Result {
         params as ParamsWithIV
 
         val cipher = SICBlockCipher.newInstance(this.engine)
-        cipher.init(false, ParametersWithIV(KeyParameter(params.key), params.iv))
+            cipher.init(false, ParametersWithIV(KeyParameter(params.key), params.iv))
 
-        val result = ByteArray(encryptedData.size)
-        cipher.processBytes(encryptedData, 0, encryptedData.size, result, 0)
+        val originalData = ByteArray(encryptedData.size)
+            cipher.processBytes(encryptedData, 0, encryptedData.size, originalData, 0)
 
-        return result
+        return Result(originalData)
     }
 
     override fun generateSpec(): IvParameterSpec {

@@ -30,35 +30,35 @@ class LEACCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
     }
 
     @Throws(CryptoFailException::class)
-    override fun encrypt(data: ByteArray, params: Params): ByteArray {
+    override fun encrypt(data: ByteArray, params: Params): Result {
         params as ParamsWithIV
 
         val macSize = 128
         val cipher = CCMBlockCipher.newInstance(this.engine)
             cipher.init(true, AEADParameters(KeyParameter(params.key), macSize, params.iv, this.aad))
 
-        val outputData = ByteArray(cipher.getOutputSize(data.size))
-        var tam = cipher.processBytes(data, 0, data.size, outputData, 0)
+        val encryptedData = ByteArray(cipher.getOutputSize(data.size))
+        var tam = cipher.processBytes(data, 0, data.size, encryptedData, 0)
 
             // doFinal을 해야 tag까지 정상적으로 생성된다
-            tam += cipher.doFinal(outputData, tam)
+            tam += cipher.doFinal(encryptedData, tam)
 
-        return outputData
+        return Result(encryptedData)
     }
 
     @Throws(CryptoFailException::class)
-    override fun decrypt(encryptedData: ByteArray, params: Params): ByteArray {
+    override fun decrypt(encryptedData: ByteArray, params: Params): Result {
         params as ParamsWithIV
 
         val macSize = 128
         val cipher = CCMBlockCipher.newInstance(this.engine)
             cipher.init(false, AEADParameters(KeyParameter(params.key), macSize, params.iv, this.aad))
 
-        val result = ByteArray(cipher.getOutputSize(encryptedData.size))
-        var tam = cipher.processBytes(encryptedData, 0, encryptedData.size, result, 0)
-            tam += cipher.doFinal(result, tam)
+        val originalData = ByteArray(cipher.getOutputSize(encryptedData.size))
+        var tam = cipher.processBytes(encryptedData, 0, encryptedData.size, originalData, 0)
+            tam += cipher.doFinal(originalData, tam)
 
-        return result
+        return Result(originalData)
     }
 
     override fun generateSpec(): GCMParameterSpec {
