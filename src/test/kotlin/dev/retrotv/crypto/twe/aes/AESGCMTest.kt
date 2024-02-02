@@ -1,6 +1,11 @@
 package dev.retrotv.crypto.twe.aes
 
 import dev.retrotv.common.Log
+import dev.retrotv.data.utils.toHexString
+import org.bouncycastle.crypto.engines.AESEngine
+import org.bouncycastle.crypto.modes.GCMBlockCipher
+import org.bouncycastle.crypto.params.AEADParameters
+import org.bouncycastle.crypto.params.KeyParameter
 import org.junit.jupiter.api.*
 import java.security.spec.AlgorithmParameterSpec
 
@@ -83,5 +88,30 @@ internal class AESGCMTest : Log() {
             }
             encryptedAllData256.clear()
         }
+    }
+
+    @Test
+    fun aesgcm() {
+        val message = "The lazy dog jumps over the brown fox!"
+        val aes = AESGCM(256)
+        val key = aes.generateKey()
+        val spec = aes.generateSpec()
+        val aad = "01234567890123456"
+            aes.updateAAD(aad)
+        val encryptedData = aes.encrypt(message.toByteArray(), key, spec)
+
+        println(toHexString(encryptedData))
+
+        val cipher = GCMBlockCipher.newInstance(AESEngine.newInstance())
+
+            // aad 값이 존재하면 자동으로 updateAAD가 된다
+            cipher.init(true, AEADParameters(KeyParameter(key.encoded), 128, spec.iv, aad.toByteArray()))
+
+        val outputData = ByteArray(cipher.getOutputSize(message.toByteArray().size))
+        var tam = cipher.processBytes(message.toByteArray(), 0, message.toByteArray().size, outputData, 0)
+            tam += cipher.doFinal(outputData, tam)
+
+        println(toHexString(outputData))
+        println(toHexString(cipher.mac))
     }
 }

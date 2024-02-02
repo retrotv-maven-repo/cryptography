@@ -6,7 +6,6 @@ import dev.retrotv.enums.Algorithm
 import dev.retrotv.utils.generate
 import dev.retrotv.utils.getMessage
 import org.bouncycastle.crypto.InvalidCipherTextException
-import org.bouncycastle.crypto.engines.LEAEngine
 import org.bouncycastle.crypto.modes.GCMBlockCipher
 import org.bouncycastle.crypto.params.AEADParameters
 import org.bouncycastle.crypto.params.KeyParameter
@@ -37,7 +36,7 @@ class LEAGCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
 
         val macSize = 128
         val cipher = GCMBlockCipher.newInstance(this.engine)
-        cipher.init(true, AEADParameters(KeyParameter(params.key), macSize, params.iv, aad))
+            cipher.init(true, AEADParameters(KeyParameter(params.key), macSize, params.iv, aad))
 
         if (aad != null) {
             cipher.processAADBytes(aad, 0, aad?.size ?: 0)
@@ -67,7 +66,7 @@ class LEAGCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
 
         val macSize = 128
         val cipher = GCMBlockCipher.newInstance(this.engine)
-        cipher.init(false, AEADParameters(KeyParameter(params.key), macSize, params.iv, aad))
+            cipher.init(false, AEADParameters(KeyParameter(params.key), macSize, params.iv, aad))
 
         if (aad != null) {
             cipher.processAADBytes(aad, 0, aad?.size ?: 0)
@@ -82,7 +81,7 @@ class LEAGCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
             throw CryptoFailException("GCM 인증 태그를 생성 실패: " + e.message, e)
         }
 
-        return Result(originalData)
+        return AEADResult(originalData, cipher.mac)
     }
 
     override fun generateSpec(): GCMParameterSpec {

@@ -1,5 +1,6 @@
 package dev.retrotv.crypto.twe.lea
 
+import dev.retrotv.data.utils.toHexString
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -19,6 +20,12 @@ internal class LEAGCMTest {
             lea.updateAAD(aad)
 
         val encryptedData = lea.encrypt(message.toByteArray(), params) as AEADResult
+        val decryptedData = lea.decrypt(encryptedData.data + encryptedData.tag, params) as AEADResult
+
+        println(toHexString(encryptedData.data))
+        println(toHexString(encryptedData.tag))
+        println(toHexString(decryptedData.tag))
+
         val originalMessage = String(lea.decrypt(encryptedData.data + encryptedData.tag, params).data)
         Assertions.assertEquals(message, originalMessage)
     }

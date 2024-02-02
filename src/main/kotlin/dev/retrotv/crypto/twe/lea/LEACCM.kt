@@ -43,7 +43,7 @@ class LEACCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
             // doFinal을 해야 tag까지 정상적으로 생성된다
             tam += cipher.doFinal(encryptedData, tam)
 
-        return Result(encryptedData)
+        return AEADResult(encryptedData, cipher.mac)
     }
 
     @Throws(CryptoFailException::class)
@@ -58,7 +58,7 @@ class LEACCM(keyLen: Int) : LEA(), ParameterSpecGenerator<GCMParameterSpec> {
         var tam = cipher.processBytes(encryptedData, 0, encryptedData.size, originalData, 0)
             tam += cipher.doFinal(originalData, tam)
 
-        return Result(originalData)
+        return AEADResult(originalData, cipher.mac)
     }
 
     override fun generateSpec(): GCMParameterSpec {
