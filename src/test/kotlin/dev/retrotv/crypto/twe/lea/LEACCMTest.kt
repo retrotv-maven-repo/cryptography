@@ -1,10 +1,9 @@
 package dev.retrotv.crypto.twe.lea
 
+import dev.retrotv.crypto.twe.ParamsWithIV
 import dev.retrotv.data.utils.toHexString
-import org.bouncycastle.crypto.engines.AESEngine
 import org.bouncycastle.crypto.engines.LEAEngine
 import org.bouncycastle.crypto.modes.CCMBlockCipher
-import org.bouncycastle.crypto.modes.GCMBlockCipher
 import org.bouncycastle.crypto.params.AEADParameters
 import org.bouncycastle.crypto.params.KeyParameter
 import org.junit.jupiter.api.Assertions

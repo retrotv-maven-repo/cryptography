@@ -1,5 +1,6 @@
 package dev.retrotv.crypto.twe.lea
 
+import dev.retrotv.crypto.twe.Params
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.DisplayName
 import kotlin.test.Test

@@ -1,4 +1,4 @@
-package dev.retrotv.crypto.twe.lea
+package dev.retrotv.crypto.twe
 
 class AEADResult(
     override val data: ByteArray,

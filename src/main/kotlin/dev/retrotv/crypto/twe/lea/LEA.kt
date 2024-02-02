@@ -2,8 +2,9 @@ package dev.retrotv.crypto.twe.lea
 
 import dev.retrotv.crypto.common.ExtendedSecretKeySpec
 import dev.retrotv.crypto.exception.CryptoFailException
+import dev.retrotv.crypto.twe.Params
+import dev.retrotv.crypto.twe.Result
 import dev.retrotv.enums.Algorithm
-import dev.retrotv.enums.Padding
 import dev.retrotv.utils.generate
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger

@@ -1,5 +1,7 @@
 package dev.retrotv.crypto.twe.lea
 
+import dev.retrotv.crypto.twe.AEADResult
+import dev.retrotv.crypto.twe.ParamsWithIV
 import dev.retrotv.data.utils.toHexString
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.DisplayName
