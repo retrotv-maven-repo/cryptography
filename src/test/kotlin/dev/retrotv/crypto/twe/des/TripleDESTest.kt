@@ -1,13 +1,8 @@
 package dev.retrotv.crypto.twe.des
 
 import dev.retrotv.crypto.twe.ParamsWithIV
+import dev.retrotv.crypto.twe.algorithm.TripleDES
 import dev.retrotv.crypto.twe.mode.CBC
-import dev.retrotv.data.utils.toHexString
-import org.bouncycastle.crypto.engines.ARIAEngine
-import org.bouncycastle.crypto.modes.CBCBlockCipher
-import org.bouncycastle.crypto.paddings.PaddedBufferedBlockCipher
-import org.bouncycastle.crypto.params.KeyParameter
-import org.bouncycastle.crypto.params.ParametersWithIV
 import kotlin.test.Test
 
 class TripleDESTest {

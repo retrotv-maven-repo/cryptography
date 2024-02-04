@@ -1,6 +1,7 @@
 package dev.retrotv.crypto.twe.lea
 
 import dev.retrotv.crypto.twe.ParamsWithIV
+import dev.retrotv.crypto.twe.algorithm.LEA
 import dev.retrotv.crypto.twe.mode.CBC
 import kotlin.test.Test
 

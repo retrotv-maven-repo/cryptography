@@ -1,4 +1,4 @@
-package dev.retrotv.crypto.twe.aria
+package dev.retrotv.crypto.twe.algorithm
 
 import dev.retrotv.crypto.twe.CipherAlgorithm
 import dev.retrotv.enums.Algorithm
