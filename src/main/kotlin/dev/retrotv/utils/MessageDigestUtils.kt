@@ -1,16 +1,13 @@
 @file:JvmName("MessageDigestUtils")
 package dev.retrotv.utils
 
-import dev.retrotv.crypto.exception.CryptoFailException
 import dev.retrotv.enums.Algorithm
 import dev.retrotv.enums.Algorithm.Hash.*
 import org.apache.logging.log4j.LogManager
 import org.bouncycastle.jcajce.provider.digest.SHA3
+import java.lang.Long.BYTES
 import java.nio.ByteBuffer
 import java.security.MessageDigest
-import java.security.NoSuchAlgorithmException
-
-import java.lang.Long.BYTES
 
 private val log = LogManager.getLogger()
 

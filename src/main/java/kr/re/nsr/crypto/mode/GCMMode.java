@@ -1,8 +1,8 @@
 package kr.re.nsr.crypto.mode;
 
-import kr.re.nsr.crypto.BlockCipherModeAE;
 import kr.re.nsr.crypto.BlockCipher;
 import kr.re.nsr.crypto.BlockCipher.Mode;
+import kr.re.nsr.crypto.BlockCipherModeAE;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Arrays;
