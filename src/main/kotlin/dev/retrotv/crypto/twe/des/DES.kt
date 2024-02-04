@@ -14,7 +14,7 @@ import java.security.SecureRandom
  * @since   1.0.0
  */
 @Deprecated("해킹에 취약한 양방향 암호화 알고리즘 입니다.")
-abstract class DES : CipherAlgorithm() {
+class DES : CipherAlgorithm() {
 
     init {
         this.engine = DESEngine()

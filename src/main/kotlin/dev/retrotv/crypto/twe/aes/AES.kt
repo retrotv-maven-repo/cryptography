@@ -2,6 +2,7 @@ package dev.retrotv.crypto.twe.aes
 
 import dev.retrotv.crypto.common.ExtendedSecretKeySpec
 import dev.retrotv.crypto.exception.CryptoFailException
+import dev.retrotv.crypto.twe.CipherAlgorithm
 import dev.retrotv.crypto.twe.KeyGenerator
 import dev.retrotv.crypto.twe.TwoWayEncryption
 import dev.retrotv.enums.Algorithm
@@ -10,6 +11,7 @@ import dev.retrotv.utils.generate
 import dev.retrotv.utils.getMessage
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
+import org.bouncycastle.crypto.engines.ARIAEngine
 import java.security.InvalidAlgorithmParameterException
 import java.security.InvalidKeyException
 import java.security.Key
@@ -26,87 +28,20 @@ import javax.crypto.NoSuchPaddingException
  * @author  yjj8353
  * @since   1.0.0
  */
-abstract class AES : TwoWayEncryption, KeyGenerator {
-    protected val log: Logger = LogManager.getLogger(this.javaClass)
+class AES(keyLen: Int) : CipherAlgorithm() {
+    private var keyLen: Int
 
-    protected var keyLen = 0
-    protected var algorithm: Algorithm.Cipher? = null
-    protected var padding = Padding.NO_PADDING
-
-    @Throws(CryptoFailException::class)
-    override fun encrypt(data: ByteArray, key: Key, spec: AlgorithmParameterSpec?): ByteArray {
-        if (algorithm == Algorithm.Cipher.AESECB && data.size > keyLen) {
-            log.debug("ECB 블록암호 운영모드는 대용량 데이터를 처리하는데 적합하지 않습니다.")
+    init {
+        require(keyLen == 128 || keyLen == 192 || keyLen == 256) {
+            getMessage("exception.wrongKeyLength")
         }
 
-        if (padding == Padding.PKCS5_PADDING) {
-            log.debug("PKCS#5 Padding 기법은 오라클 패딩 공격에 취약합니다.")
-            log.debug("호환성이 목적이 아니라면, 보안을 위해 패딩이 불필요한 블록 암호화 운영모드 사용을 고려하십시오.")
-        }
-
-        val algorithmName = algorithm!!.label() + "/" + padding.label()
-        return try {
-            log.debug("선택된 알고리즘: {}", algorithmName)
-            val cipher = Cipher.getInstance(algorithmName)
-            if (algorithm == Algorithm.Cipher.AESECB) {
-                cipher.init(Cipher.ENCRYPT_MODE, key)
-            } else {
-                cipher.init(Cipher.ENCRYPT_MODE, key, spec)
-            }
-
-            cipher.doFinal(data)
-        } catch (e: BadPaddingException) {
-            throw CryptoFailException(getMessage("exception.badPadding"), e)
-        } catch (e: IllegalBlockSizeException) {
-            throw CryptoFailException(getMessage("exception.illegalBlockSize"), e)
-        } catch (e: InvalidAlgorithmParameterException) {
-            throw CryptoFailException(getMessage("exception.invalidAlgorithmParameter"), e)
-        } catch (e: InvalidKeyException) {
-            throw CryptoFailException(getMessage("exception.aes.invalidKey"), e)
-        } catch (e: NoSuchPaddingException) {
-            throw CryptoFailException(getMessage("exception.noSuchPadding"), e)
-        } catch (e: NoSuchAlgorithmException) {
-            throw CryptoFailException(getMessage("exception.noSuchAlgorithm"), e)
-        }
+        this.keyLen = keyLen
+        this.engine = ARIAEngine()
+        this.algorithm = Algorithm.Cipher.ARIA
     }
 
-    @Throws(CryptoFailException::class)
-    override fun decrypt(encryptedData: ByteArray, key: Key, spec: AlgorithmParameterSpec?): ByteArray {
-        val algorithmName = algorithm!!.label() + "/" + padding.label()
-        return try {
-            log.debug("선택된 알고리즘: {}", algorithmName)
-            val cipher = Cipher.getInstance(algorithmName)
-            if (algorithm == Algorithm.Cipher.AESECB) {
-                cipher.init(Cipher.DECRYPT_MODE, key)
-            } else {
-                cipher.init(Cipher.DECRYPT_MODE, key, spec)
-            }
-
-            cipher.doFinal(encryptedData)
-        } catch (e: BadPaddingException) {
-            throw CryptoFailException(getMessage("exception.badPadding"), e)
-        } catch (e: IllegalBlockSizeException) {
-            throw CryptoFailException(getMessage("exception.illegalBlockSize"), e)
-        } catch (e: InvalidAlgorithmParameterException) {
-            throw CryptoFailException(getMessage("exception.invalidAlgorithmParameter"), e)
-        } catch (e: InvalidKeyException) {
-            throw CryptoFailException(getMessage("exception.aes.invalidKey"), e)
-        } catch (e: NoSuchPaddingException) {
-            throw CryptoFailException(getMessage("exception.noSuchPadding"), e)
-        } catch (e: NoSuchAlgorithmException) {
-            throw CryptoFailException(getMessage("exception.noSuchAlgorithm"), e)
-        }
-    }
-
-    override fun generateKey(): Key {
-        return ExtendedSecretKeySpec(generate(keyLen / 8), "AES")
-    }
-
-    /**
-     * 데이터를 패딩하도록 설정합니다.
-     * 기본적으로 PKCS#5 Padding을 사용합니다.
-     */
-    fun dataPadding() {
-        padding = Padding.PKCS5_PADDING
+    override fun generateKey(): ByteArray {
+        return generate(keyLen / 8)
     }
 }
