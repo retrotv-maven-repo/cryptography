@@ -65,6 +65,8 @@ class Algorithm {
      * @since   1.0.0
      */
     enum class Cipher(private val label: String) {
+        ARIA("ARIA"),
+        LEA("LEA"),
         AESECB("AES/ECB"),
         AESCBC("AES/CBC"),
         AESCTS("AES/CTS"),
@@ -74,10 +76,10 @@ class Algorithm {
         AESGCM("AES/GCM"),
         ARIAECB("ARIA/ECB"),
         ARIACBC("ARIA/CBC"),
-        ARIACTS("ARIA/CTS"),
         ARIACFB("ARIA/CFB"),
         ARIAOFB("ARIA/OFB"),
         ARIACTR("ARIA/CTR"),
+        ARIACCM("ARIA/CCM"),
         ARIAGCM("ARIA/GCM"),
         DESECB("DES/ECB"),
         DESCBC("DES/CBC"),

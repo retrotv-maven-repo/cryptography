@@ -17,6 +17,7 @@ import java.security.spec.AlgorithmParameterSpec
  * @author  yjj8353
  * @since   1.0.0
  */
+@Deprecated("BCTwoWayEncryption을 사용하세요")
 interface TwoWayEncryption {
 
     /**

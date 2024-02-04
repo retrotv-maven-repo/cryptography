@@ -1,39 +1,23 @@
-package dev.retrotv.crypto.twe.lea
+package dev.retrotv.crypto.twe.mode
 
 import dev.retrotv.crypto.exception.CryptoFailException
+import dev.retrotv.crypto.twe.BCTwoWayEncryption
 import dev.retrotv.crypto.twe.Params
 import dev.retrotv.crypto.twe.Result
-import dev.retrotv.enums.Algorithm
-import dev.retrotv.utils.getMessage
+import org.bouncycastle.crypto.BlockCipher
 import org.bouncycastle.crypto.paddings.PaddedBufferedBlockCipher
 import org.bouncycastle.crypto.params.KeyParameter
 
-/**
- * LEA/ECB 양방향 암호화 클래스 입니다.
- *
- * @property keyLen 암호화에 사용할 키의 길이 입니다.
- * @author  yjj8353
- * @since   1.0.0
- */
-class LEAECB(keyLen: Int) : LEA() {
-
-    init {
-        require(keyLen == 128 || keyLen == 192 || keyLen == 256) {
-            getMessage("exception.wrongKeyLength")
-        }
-
-        this.keyLen = keyLen
-        algorithm = Algorithm.Cipher.LEAECB
-    }
+class ECB(private val engine: BlockCipher) : BCTwoWayEncryption {
 
     @Throws(CryptoFailException::class)
     override fun encrypt(data: ByteArray, params: Params): Result {
         val cipher = PaddedBufferedBlockCipher(this.engine)
-            cipher.init(true, KeyParameter(params.key))
+        cipher.init(true, KeyParameter(params.key))
 
         val encryptedData = ByteArray(cipher.getOutputSize(data.size))
         val tam = cipher.processBytes(data, 0, data.size, encryptedData, 0)
-            cipher.doFinal(encryptedData, tam)
+        cipher.doFinal(encryptedData, tam)
 
         return Result(encryptedData)
     }
@@ -41,7 +25,7 @@ class LEAECB(keyLen: Int) : LEA() {
     @Throws(CryptoFailException::class)
     override fun decrypt(encryptedData: ByteArray, params: Params): Result {
         val cipher = PaddedBufferedBlockCipher(this.engine)
-            cipher.init(false, KeyParameter(params.key))
+        cipher.init(false, KeyParameter(params.key))
 
         val outputData = ByteArray(cipher.getOutputSize(encryptedData.size))
         val tam = cipher.processBytes(encryptedData, 0, encryptedData.size, outputData, 0)

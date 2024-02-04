@@ -2,25 +2,37 @@ package dev.retrotv.crypto.twe.aria
 
 import dev.retrotv.crypto.common.ExtendedSecretKeySpec
 import dev.retrotv.crypto.exception.CryptoFailException
+import dev.retrotv.crypto.twe.BCKeyGenerator
+import dev.retrotv.crypto.twe.BCTwoWayEncryption
 import dev.retrotv.crypto.twe.Params
 import dev.retrotv.crypto.twe.Result
 import dev.retrotv.enums.Algorithm
 import dev.retrotv.utils.generate
+import dev.retrotv.utils.getMessage
 import org.bouncycastle.crypto.engines.ARIAEngine
 import java.security.Key
 
-abstract class ARIA {
-    protected val engine = ARIAEngine()
-    protected var keyLen = 0
-    protected lateinit var algorithm: Algorithm.Cipher
+/**
+ * ARIA 알고리즘 양방향 암호화 구현을 위한 상속용 클래스 입니다.
+ *
+ * @author  yjj8353
+ * @since   1.0.0
+ */
+class ARIA(keyLen: Int) : BCKeyGenerator {
+    val engine = ARIAEngine()
+    private var keyLen: Int
+    private var algorithm: Algorithm.Cipher
 
-    @Throws(CryptoFailException::class)
-    abstract fun encrypt(data: ByteArray, params: Params): Result
+    init {
+        require(keyLen == 128 || keyLen == 192 || keyLen == 256) {
+            getMessage("exception.wrongKeyLength")
+        }
 
-    @Throws(CryptoFailException::class)
-    abstract fun decrypt(encryptedData: ByteArray, params: Params): Result
+        this.keyLen = keyLen
+        this.algorithm = Algorithm.Cipher.ARIA
+    }
 
-    fun generateKey(): Key {
-        return ExtendedSecretKeySpec(generate(keyLen / 8), "ARIA")
+    override fun generateKey(): ByteArray {
+        return generate(keyLen / 8)
     }
 }
