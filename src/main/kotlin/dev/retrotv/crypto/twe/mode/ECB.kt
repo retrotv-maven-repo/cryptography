@@ -1,14 +1,12 @@
 package dev.retrotv.crypto.twe.mode
 
 import dev.retrotv.crypto.exception.CryptoFailException
-import dev.retrotv.crypto.twe.BCTwoWayEncryption
-import dev.retrotv.crypto.twe.Params
-import dev.retrotv.crypto.twe.Result
-import org.bouncycastle.crypto.BlockCipher
+import dev.retrotv.crypto.twe.*
 import org.bouncycastle.crypto.paddings.PaddedBufferedBlockCipher
 import org.bouncycastle.crypto.params.KeyParameter
 
-class ECB(private val engine: BlockCipher) : BCTwoWayEncryption {
+class ECB(cipherAlgorithm: CipherAlgorithm) : BCTwoWayEncryption {
+    private val engine = cipherAlgorithm.engine
 
     @Throws(CryptoFailException::class)
     override fun encrypt(data: ByteArray, params: Params): Result {

@@ -2,14 +2,15 @@ package dev.retrotv.crypto.twe.mode
 
 import dev.retrotv.crypto.exception.CryptoFailException
 import dev.retrotv.crypto.twe.*
+import dev.retrotv.enums.Algorithm
 import dev.retrotv.utils.generate
-import org.bouncycastle.crypto.BlockCipher
 import org.bouncycastle.crypto.modes.CFBBlockCipher
 import org.bouncycastle.crypto.params.KeyParameter
 import org.bouncycastle.crypto.params.ParametersWithIV
-import javax.crypto.spec.IvParameterSpec
 
-class CFB(private val engine: BlockCipher) : BCTwoWayEncryption, ParameterSpecGenerator<IvParameterSpec> {
+class CFB(cipherAlgorithm: CipherAlgorithm) : BCTwoWayEncryption, IVGenerator {
+    private val engine = cipherAlgorithm.engine
+    private val algorithm = cipherAlgorithm.algorithm
 
     @Throws(CryptoFailException::class)
     override fun encrypt(data: ByteArray, params: Params): Result {
@@ -38,7 +39,11 @@ class CFB(private val engine: BlockCipher) : BCTwoWayEncryption, ParameterSpecGe
         return Result(originalData)
     }
 
-    override fun generateSpec(): IvParameterSpec {
-        return IvParameterSpec(generate(16))
+    override fun generateIV(): ByteArray {
+        return if (this.algorithm === Algorithm.Cipher.DES || this.algorithm === Algorithm.Cipher.TRIPLE_DES) {
+            generate(8)
+        } else {
+            generate(16)
+        }
     }
 }

@@ -3,21 +3,21 @@ package dev.retrotv.crypto.twe.mode
 import dev.retrotv.crypto.exception.CryptoFailException
 import dev.retrotv.crypto.twe.*
 import dev.retrotv.utils.generate
-import org.bouncycastle.crypto.BlockCipher
 import org.bouncycastle.crypto.InvalidCipherTextException
 import org.bouncycastle.crypto.modes.GCMBlockCipher
 import org.bouncycastle.crypto.params.AEADParameters
 import org.bouncycastle.crypto.params.KeyParameter
-import javax.crypto.spec.GCMParameterSpec
 
-class GCM(private val engine: BlockCipher) : BCTwoWayEncryption, ParameterSpecGenerator<GCMParameterSpec> {
+class GCM(cipherAlgorithm: CipherAlgorithm) : BCTwoWayEncryption, IVGenerator {
+    private val engine = cipherAlgorithm.engine
+    private val algorithm = cipherAlgorithm.algorithm
     private var aad: ByteArray? = null
 
     @Throws(CryptoFailException::class)
     override fun encrypt(data: ByteArray, params: Params): Result {
         params as ParamsWithIV
 
-        val macSize = 128
+        val macSize = GCM_TAG_LENGTH * 8
         val cipher = GCMBlockCipher.newInstance(this.engine)
         cipher.init(true, AEADParameters(KeyParameter(params.key), macSize, params.iv, aad))
 
@@ -47,7 +47,7 @@ class GCM(private val engine: BlockCipher) : BCTwoWayEncryption, ParameterSpecGe
     override fun decrypt(encryptedData: ByteArray, params: Params): Result {
         params as ParamsWithIV
 
-        val macSize = 128
+        val macSize = GCM_TAG_LENGTH * 8
         val cipher = GCMBlockCipher.newInstance(this.engine)
         cipher.init(false, AEADParameters(KeyParameter(params.key), macSize, params.iv, aad))
 
@@ -67,8 +67,8 @@ class GCM(private val engine: BlockCipher) : BCTwoWayEncryption, ParameterSpecGe
         return AEADResult(originalData, cipher.mac)
     }
 
-    override fun generateSpec(): GCMParameterSpec {
-        return GCMParameterSpec(GCM_TAG_LENGTH * 8, generate(GCM_IV_LENGTH))
+    override fun generateIV(): ByteArray {
+        return generate(GCM_IV_LENGTH)
     }
 
     /**

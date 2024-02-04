@@ -1,20 +1,19 @@
 package dev.retrotv.crypto.twe.des
 
-import dev.retrotv.crypto.exception.KeyGenerateException
-import java.security.Key
-import java.security.NoSuchAlgorithmException
-import javax.crypto.KeyGenerator
+import dev.retrotv.crypto.twe.BCKeyGenerator
+import dev.retrotv.crypto.twe.CipherAlgorithm
 
-import dev.retrotv.utils.getMessage
+import org.bouncycastle.crypto.KeyGenerationParameters
+import org.bouncycastle.crypto.generators.DESedeKeyGenerator
+import java.security.SecureRandom
 
-abstract class TripleDES : DES() {
+abstract class TripleDES : CipherAlgorithm(), BCKeyGenerator {
 
-    override fun generateKey(): Key {
-        return try {
-            val keyGenerator = KeyGenerator.getInstance("DESede")
-            keyGenerator.generateKey()
-        } catch (e: NoSuchAlgorithmException) {
-            throw KeyGenerateException(getMessage("exception.noSuchAlgorithm"), e)
-        }
+    override fun generateKey(): ByteArray {
+        val keyGenerationParam = KeyGenerationParameters(SecureRandom(), 0)
+        val keyGenerator = DESedeKeyGenerator()
+            keyGenerator.init(keyGenerationParam)
+
+        return keyGenerator.generateKey()
     }
 }

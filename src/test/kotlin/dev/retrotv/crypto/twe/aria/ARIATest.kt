@@ -1,6 +1,7 @@
 package dev.retrotv.crypto.twe.aria
 
 import dev.retrotv.crypto.twe.ParamsWithIV
+import dev.retrotv.crypto.twe.lea.LEA
 import dev.retrotv.crypto.twe.mode.CBC
 import dev.retrotv.data.utils.toHexString
 import org.bouncycastle.crypto.engines.ARIAEngine
@@ -52,12 +53,12 @@ class ARIATest {
     fun test_default() {
         val message = "The lazy dog jumps over the brown fox!"
         val aria = ARIA(128)
-        val cbc = CBC(aria.engine)
-        val spec = cbc.generateSpec()
+        val cbc = CBC(aria)
+        val iv = cbc.generateIV()
         val key = aria.generateKey()
 
-        val encryptedResult = cbc.encrypt(message.toByteArray(), ParamsWithIV(key, spec.iv))
-        val originalResult = cbc.decrypt(encryptedResult.data, ParamsWithIV(key, spec.iv))
+        val encryptedResult = cbc.encrypt(message.toByteArray(), ParamsWithIV(key, iv))
+        val originalResult = cbc.decrypt(encryptedResult.data, ParamsWithIV(key, iv))
 
         println(String(originalResult.data))
     }

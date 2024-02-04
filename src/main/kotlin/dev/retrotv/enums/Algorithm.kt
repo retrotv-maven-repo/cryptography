@@ -67,6 +67,8 @@ class Algorithm {
     enum class Cipher(private val label: String) {
         ARIA("ARIA"),
         LEA("LEA"),
+        DES("DES"),
+        TRIPLE_DES("DESede"),
         AESECB("AES/ECB"),
         AESCBC("AES/CBC"),
         AESCTS("AES/CTS"),

@@ -8,6 +8,7 @@ import java.security.spec.AlgorithmParameterSpec
  * @author  yjj8353
  * @since   1.0.0
  */
+@Deprecated("IVGenerator를 사용하세요")
 fun interface ParameterSpecGenerator<T : AlgorithmParameterSpec> {
 
     /**
