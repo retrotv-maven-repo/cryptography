@@ -18,13 +18,13 @@ class CCM(cipherAlgorithm: CipherAlgorithm) : BCTwoWayEncryption, IVGenerator {
 
         val macSize = GCM_TAG_LENGTH * 8
         val cipher = CCMBlockCipher.newInstance(this.engine)
-        cipher.init(true, AEADParameters(KeyParameter(params.key), macSize, params.iv, this.aad))
+            cipher.init(true, AEADParameters(KeyParameter(params.key), macSize, params.iv, this.aad))
 
         val encryptedData = ByteArray(cipher.getOutputSize(data.size))
         var tam = cipher.processBytes(data, 0, data.size, encryptedData, 0)
 
-        // doFinal을 해야 tag까지 정상적으로 생성된다
-        tam += cipher.doFinal(encryptedData, tam)
+            // doFinal을 해야 tag까지 정상적으로 생성된다
+            tam += cipher.doFinal(encryptedData, tam)
 
         return AEADResult(encryptedData, cipher.mac)
     }
@@ -35,11 +35,11 @@ class CCM(cipherAlgorithm: CipherAlgorithm) : BCTwoWayEncryption, IVGenerator {
 
         val macSize = GCM_TAG_LENGTH * 8
         val cipher = CCMBlockCipher.newInstance(this.engine)
-        cipher.init(false, AEADParameters(KeyParameter(params.key), macSize, params.iv, this.aad))
+            cipher.init(false, AEADParameters(KeyParameter(params.key), macSize, params.iv, this.aad))
 
         val originalData = ByteArray(cipher.getOutputSize(encryptedData.size))
         var tam = cipher.processBytes(encryptedData, 0, encryptedData.size, originalData, 0)
-        tam += cipher.doFinal(originalData, tam)
+            tam += cipher.doFinal(originalData, tam)
 
         return AEADResult(originalData, cipher.mac)
     }

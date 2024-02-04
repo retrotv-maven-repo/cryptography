@@ -19,11 +19,7 @@ class GCM(cipherAlgorithm: CipherAlgorithm) : BCTwoWayEncryption, IVGenerator {
 
         val macSize = GCM_TAG_LENGTH * 8
         val cipher = GCMBlockCipher.newInstance(this.engine)
-        cipher.init(true, AEADParameters(KeyParameter(params.key), macSize, params.iv, aad))
-
-        if (aad != null) {
-            cipher.processAADBytes(aad, 0, aad?.size ?: 0)
-        }
+            cipher.init(true, AEADParameters(KeyParameter(params.key), macSize, params.iv, aad))
 
         val outputData = ByteArray(cipher.getOutputSize(data.size))
         var tam = cipher.processBytes(data, 0, data.size, outputData, 0)
@@ -49,11 +45,7 @@ class GCM(cipherAlgorithm: CipherAlgorithm) : BCTwoWayEncryption, IVGenerator {
 
         val macSize = GCM_TAG_LENGTH * 8
         val cipher = GCMBlockCipher.newInstance(this.engine)
-        cipher.init(false, AEADParameters(KeyParameter(params.key), macSize, params.iv, aad))
-
-        if (aad != null) {
-            cipher.processAADBytes(aad, 0, aad?.size ?: 0)
-        }
+            cipher.init(false, AEADParameters(KeyParameter(params.key), macSize, params.iv, aad))
 
         val originalData = ByteArray(cipher.getOutputSize(encryptedData.size))
         var tam = cipher.processBytes(encryptedData, 0, encryptedData.size, originalData, 0)

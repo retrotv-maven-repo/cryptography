@@ -18,10 +18,10 @@ class CFB(cipherAlgorithm: CipherAlgorithm) : BCTwoWayEncryption, IVGenerator {
 
         // blockSize는 8 혹은 16만 입력 가능
         val cipher = CFBBlockCipher.newInstance(this.engine, 128)
-        cipher.init(true, ParametersWithIV(KeyParameter(params.key), params.iv))
+            cipher.init(true, ParametersWithIV(KeyParameter(params.key), params.iv))
 
         val encryptedData = ByteArray(data.size)
-        cipher.processBytes(data, 0, data.size, encryptedData, 0)
+            cipher.processBytes(data, 0, data.size, encryptedData, 0)
 
         return Result(encryptedData)
     }
@@ -31,10 +31,10 @@ class CFB(cipherAlgorithm: CipherAlgorithm) : BCTwoWayEncryption, IVGenerator {
         require (params is ParamsWithIV) { "CBC 모드는 ParamsWithIV 객체를 요구합니다." }
 
         val cipher = CFBBlockCipher.newInstance(this.engine, 128)
-        cipher.init(false, ParametersWithIV(KeyParameter(params.key), params.iv))
+            cipher.init(false, ParametersWithIV(KeyParameter(params.key), params.iv))
 
         val originalData = ByteArray(encryptedData.size)
-        cipher.processBytes(encryptedData, 0, encryptedData.size, originalData, 0)
+            cipher.processBytes(encryptedData, 0, encryptedData.size, originalData, 0)
 
         return Result(originalData)
     }

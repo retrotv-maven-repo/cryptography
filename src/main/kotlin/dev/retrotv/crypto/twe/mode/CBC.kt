@@ -18,11 +18,11 @@ class CBC(cipherAlgorithm: CipherAlgorithm) : BCTwoWayEncryption, IVGenerator {
         require (params is ParamsWithIV) { "CBC 모드는 ParamsWithIV 객체를 요구합니다." }
 
         val cipher = PaddedBufferedBlockCipher(CBCBlockCipher.newInstance(this.engine))
-        cipher.init(true, ParametersWithIV(KeyParameter(params.key), params.iv))
+            cipher.init(true, ParametersWithIV(KeyParameter(params.key), params.iv))
 
         val encryptedData = ByteArray(cipher.getOutputSize(data.size))
-        val tam = cipher.processBytes(data, 0, data.size, encryptedData, 0)
-        cipher.doFinal(encryptedData, tam)
+        var tam = cipher.processBytes(data, 0, data.size, encryptedData, 0)
+            tam += cipher.doFinal(encryptedData, tam)
 
         return Result(encryptedData)
     }
@@ -32,7 +32,7 @@ class CBC(cipherAlgorithm: CipherAlgorithm) : BCTwoWayEncryption, IVGenerator {
         require (params is ParamsWithIV) { "CBC 모드는 ParamsWithIV 객체를 요구합니다." }
 
         val cipher = PaddedBufferedBlockCipher(CBCBlockCipher.newInstance(this.engine))
-        cipher.init(false, ParametersWithIV(KeyParameter(params.key), params.iv))
+            cipher.init(false, ParametersWithIV(KeyParameter(params.key), params.iv))
 
         val outputData = ByteArray(cipher.getOutputSize(encryptedData.size))
         val tam = cipher.processBytes(encryptedData, 0, encryptedData.size, outputData, 0)

@@ -11,11 +11,11 @@ class ECB(cipherAlgorithm: CipherAlgorithm) : BCTwoWayEncryption {
     @Throws(CryptoFailException::class)
     override fun encrypt(data: ByteArray, params: Params): Result {
         val cipher = PaddedBufferedBlockCipher(this.engine)
-        cipher.init(true, KeyParameter(params.key))
+            cipher.init(true, KeyParameter(params.key))
 
         val encryptedData = ByteArray(cipher.getOutputSize(data.size))
-        val tam = cipher.processBytes(data, 0, data.size, encryptedData, 0)
-        cipher.doFinal(encryptedData, tam)
+        var tam = cipher.processBytes(data, 0, data.size, encryptedData, 0)
+            tam += cipher.doFinal(encryptedData, tam)
 
         return Result(encryptedData)
     }
@@ -23,7 +23,7 @@ class ECB(cipherAlgorithm: CipherAlgorithm) : BCTwoWayEncryption {
     @Throws(CryptoFailException::class)
     override fun decrypt(encryptedData: ByteArray, params: Params): Result {
         val cipher = PaddedBufferedBlockCipher(this.engine)
-        cipher.init(false, KeyParameter(params.key))
+            cipher.init(false, KeyParameter(params.key))
 
         val outputData = ByteArray(cipher.getOutputSize(encryptedData.size))
         val tam = cipher.processBytes(encryptedData, 0, encryptedData.size, outputData, 0)
