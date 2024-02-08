@@ -12,6 +12,7 @@ enum class Mode(private val label: String) {
     CFB("CFB"),
     OFB("OFB"),
     CTR("CTR"),
+    CTS("CTS"),
     CCM("CCM"),
     GCM("GCM");
 

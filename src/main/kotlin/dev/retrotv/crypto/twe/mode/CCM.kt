@@ -14,7 +14,7 @@ class CCM(cipherAlgorithm: CipherAlgorithm) : BCTwoWayEncryption, IVGenerator {
 
     @Throws(CryptoFailException::class)
     override fun encrypt(data: ByteArray, params: Params): Result {
-        params as ParamsWithIV
+        require (params is ParamsWithIV) { "CCM 모드는 ParamsWithIV 객체를 요구합니다." }
 
         val macSize = GCM_TAG_LENGTH * 8
         val cipher = CCMBlockCipher.newInstance(this.engine)
@@ -31,7 +31,7 @@ class CCM(cipherAlgorithm: CipherAlgorithm) : BCTwoWayEncryption, IVGenerator {
 
     @Throws(CryptoFailException::class)
     override fun decrypt(encryptedData: ByteArray, params: Params): Result {
-        params as ParamsWithIV
+        require (params is ParamsWithIV) { "CCM 모드는 ParamsWithIV 객체를 요구합니다." }
 
         val macSize = GCM_TAG_LENGTH * 8
         val cipher = CCMBlockCipher.newInstance(this.engine)

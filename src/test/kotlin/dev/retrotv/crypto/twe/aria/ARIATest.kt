@@ -1,52 +1,123 @@
 package dev.retrotv.crypto.twe.aria
 
+import dev.retrotv.crypto.twe.AEADResult
+import dev.retrotv.crypto.twe.CipherAlgorithm
+import dev.retrotv.crypto.twe.Params
 import dev.retrotv.crypto.twe.ParamsWithIV
 import dev.retrotv.crypto.twe.algorithm.ARIA
-import dev.retrotv.crypto.twe.mode.CBC
-import dev.retrotv.data.utils.toHexString
-import org.bouncycastle.crypto.engines.ARIAEngine
-import org.bouncycastle.crypto.modes.CBCBlockCipher
-import org.bouncycastle.crypto.paddings.PaddedBufferedBlockCipher
-import org.bouncycastle.crypto.params.KeyParameter
-import org.bouncycastle.crypto.params.ParametersWithIV
+import dev.retrotv.crypto.twe.mode.*
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 import kotlin.test.Test
+import kotlin.test.asserter
 
 class ARIATest {
+    private val message = "The lazy dog jumps over the brown fox!".toByteArray()
+    private lateinit var aria: CipherAlgorithm
 
-    @Test
-    fun test() {
-        val keyBytes = "keyskeyskeyskeys".toByteArray() // generate(128 / 8)
-        val iv = "iviviviviviviviv".toByteArray()
-        val targetData = "datadatadatadata".toByteArray()
+    @DisplayName("ECB 모드 테스트")
+    @ValueSource(ints = [128, 192, 256])
+    @ParameterizedTest(name = "[{index}] {displayName} - 키 길이: {0}")
+    fun test_ecb(keyLen: Int) {
+        this.aria = ARIA(keyLen)
+        val key = aria.generateKey()
+        val mode = ECB(aria)
+        val encryptedData = mode.encrypt(message, Params(key))
+        val originalData = mode.decrypt(encryptedData.data, Params(key))
 
-        val cipher = CBCBlockCipher.newInstance(ARIAEngine())
-        cipher.init(true, ParametersWithIV(KeyParameter(keyBytes), iv))
-
-        val outputData = ByteArray(16)
-
-        println(targetData.size)
-
-        val tam = cipher.processBlock(targetData, 0, outputData, 0) //.processBlock(targetData, 0, outputData, 0)
-
-        println(toHexString(outputData))
+        asserter.assertEquals("동일한 메시지가 아닙니다.", String(message), String(originalData.data))
     }
 
-    @Test
-    fun test_padding() {
-        val keyBytes = "keyskeyskeyskeys".toByteArray() // generate(128 / 8)
-        val iv = "iviviviviviviviv".toByteArray()
-        val targetData = "datadatadatadata".toByteArray()
+    @DisplayName("CBC 모드 암호화 테스트")
+    @ValueSource(ints = [128, 192, 256])
+    @ParameterizedTest(name = "[{index}] {displayName} - 키 길이: {0}")
+    fun test_cbc(keyLen: Int) {
+        this.aria = ARIA(keyLen)
+        val key = aria.generateKey()
+        val mode = CBC(aria)
+        val iv = mode.generateIV()
+        val encryptedData = mode.encrypt(message, ParamsWithIV(key, iv))
+        val originalData = mode.decrypt(encryptedData.data, ParamsWithIV(key, iv))
 
-        val cipher = PaddedBufferedBlockCipher(CBCBlockCipher.newInstance(ARIAEngine()))
-        cipher.init(true, ParametersWithIV(KeyParameter(keyBytes), iv))
+        asserter.assertEquals("동일한 메시지가 아닙니다.", String(message), String(originalData.data))
+    }
 
-        val outputData = ByteArray(16)
+    @DisplayName("CFB 모드 암호화 테스트")
+    @ValueSource(ints = [128, 192, 256])
+    @ParameterizedTest(name = "[{index}] {displayName} - 키 길이: {0}")
+    fun test_cfb(keyLen: Int) {
+        this.aria = ARIA(keyLen)
+        val key = aria.generateKey()
+        val mode = CFB(aria)
+        val iv = mode.generateIV()
+        val encryptedData = mode.encrypt(message, ParamsWithIV(key, iv))
+        val originalData = mode.decrypt(encryptedData.data, ParamsWithIV(key, iv))
 
-        println(targetData.size)
+        asserter.assertEquals("동일한 메시지가 아닙니다.", String(message), String(originalData.data))
+    }
 
-        val tam = cipher.doFinal(outputData, 0) //.processBlock(targetData, 0, outputData, 0)
+    @DisplayName("OFB 모드 암호화 테스트")
+    @ValueSource(ints = [128, 192, 256])
+    @ParameterizedTest(name = "[{index}] {displayName} - 키 길이: {0}")
+    fun test_ofb(keyLen: Int) {
+        this.aria = ARIA(keyLen)
+        val key = aria.generateKey()
+        val mode = OFB(aria)
+        val iv = mode.generateIV()
+        val encryptedData = mode.encrypt(message, ParamsWithIV(key, iv))
+        val originalData = mode.decrypt(encryptedData.data, ParamsWithIV(key, iv))
 
-        println(toHexString(outputData))
+        asserter.assertEquals("동일한 메시지가 아닙니다.", String(message), String(originalData.data))
+    }
+
+    @DisplayName("CTR 모드 암호화 테스트")
+    @ValueSource(ints = [128, 192, 256])
+    @ParameterizedTest(name = "[{index}] {displayName} - 키 길이: {0}")
+    fun test_ctr(keyLen: Int) {
+        this.aria = ARIA(keyLen)
+        val key = aria.generateKey()
+        val mode = CTR(aria)
+        val iv = mode.generateIV()
+        val encryptedData = mode.encrypt(message, ParamsWithIV(key, iv))
+        val originalData = mode.decrypt(encryptedData.data, ParamsWithIV(key, iv))
+
+        asserter.assertEquals("동일한 메시지가 아닙니다.", String(message), String(originalData.data))
+    }
+
+    @DisplayName("CTS 모드 암호화 테스트")
+    @ValueSource(ints = [128, 192, 256])
+    @ParameterizedTest(name = "[{index}] {displayName} - 키 길이: {0}")
+    fun test_cts(keyLen: Int) {
+
+    }
+
+    @DisplayName("CCM 모드 암호화 테스트")
+    @ValueSource(ints = [128, 192, 256])
+    @ParameterizedTest(name = "[{index}] {displayName} - 키 길이: {0}")
+    fun test_ccm(keyLen: Int) {
+        this.aria = ARIA(keyLen)
+        val key = aria.generateKey()
+        val mode = CCM(aria)
+        val iv = mode.generateIV()
+        val encryptedData = mode.encrypt(message, ParamsWithIV(key, iv))
+        val originalData = mode.decrypt(encryptedData.data, ParamsWithIV(key, iv))
+
+        asserter.assertEquals("동일한 메시지가 아닙니다.", String(message), String(originalData.data))
+    }
+
+    @DisplayName("GCM 모드 암호화 테스트")
+    @ValueSource(ints = [128, 192, 256])
+    @ParameterizedTest(name = "[{index}] {displayName} - 키 길이: {0}")
+    fun test_gcm(keyLen: Int) {
+        this.aria = ARIA(keyLen)
+        val key = aria.generateKey()
+        val mode = GCM(aria)
+        val iv = mode.generateIV()
+        val encryptedData = mode.encrypt(message, ParamsWithIV(key, iv)) as AEADResult
+        val originalData = mode.decrypt(encryptedData.data + encryptedData.tag, ParamsWithIV(key, iv))
+
+        asserter.assertEquals("동일한 메시지가 아닙니다.", String(message), String(originalData.data))
     }
 
     @Test

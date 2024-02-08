@@ -4,7 +4,7 @@ import dev.retrotv.crypto.twe.CipherAlgorithm
 import dev.retrotv.enums.Algorithm
 import dev.retrotv.utils.generate
 import dev.retrotv.utils.getMessage
-import org.bouncycastle.crypto.engines.ARIAEngine
+import org.bouncycastle.crypto.engines.AESEngine
 
 /**
  * AES 계열의 양방향 암호화 구현을 위한 상속용 클래스 입니다.
@@ -21,8 +21,8 @@ class AES(keyLen: Int) : CipherAlgorithm() {
         }
 
         this.keyLen = keyLen
-        this.engine = ARIAEngine()
-        this.algorithm = Algorithm.Cipher.ARIA
+        this.engine = AESEngine.newInstance()
+        this.algorithm = Algorithm.Cipher.AES
     }
 
     override fun generateKey(): ByteArray {

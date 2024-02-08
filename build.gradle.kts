@@ -33,6 +33,7 @@ dependencies {
 
     testImplementation("org.json:json:20231013")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.0")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:5.10.0")
     testImplementation(kotlin("test"))
 
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.0")
