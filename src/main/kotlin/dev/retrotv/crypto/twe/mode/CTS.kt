@@ -49,8 +49,4 @@ class CTS(cipherAlgorithm: CipherAlgorithm) : BCTwoWayEncryption, IVGenerator {
     fun useCBCMode() {
         this.engine = CBCBlockCipher.newInstance(this.engine)
     }
-
-    fun padding() {
-        this.engine = PaddedBufferedBlockCipher(this.engine)
-    }
 }
