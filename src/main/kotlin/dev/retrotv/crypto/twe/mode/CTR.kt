@@ -3,18 +3,13 @@ package dev.retrotv.crypto.twe.mode
 import dev.retrotv.crypto.exception.CryptoFailException
 import dev.retrotv.crypto.twe.*
 import dev.retrotv.enums.Algorithm
+import org.bouncycastle.crypto.BlockCipher
 import org.bouncycastle.crypto.modes.SICBlockCipher
 import org.bouncycastle.crypto.params.KeyParameter
 import org.bouncycastle.crypto.params.ParametersWithIV
 
-class CTR(cipherAlgorithm: CipherAlgorithm) : BCTwoWayEncryption {
-    private val engine = cipherAlgorithm.engine
-    private val algorithm = cipherAlgorithm.algorithm
-    private val ivLen = when (cipherAlgorithm.algorithm) {
-        Algorithm.Cipher.AES, Algorithm.Cipher.ARIA, Algorithm.Cipher.LEA -> 16
-        Algorithm.Cipher.DES, Algorithm.Cipher.TRIPLE_DES -> 8
-        else -> throw IllegalArgumentException("사용할 수 없는 알고리즘 입니다.")
-    }
+class CTR : BCTwoWayEncryption {
+    lateinit var engine: BlockCipher
 
     @Throws(CryptoFailException::class)
     override fun encrypt(data: ByteArray, params: Params): Result {

@@ -100,7 +100,7 @@ interface PasswordEncoderWithSalt : PasswordEncoder, PlaintextHash {
     fun generateSalt(): String {
         val rv: RandomStringGenerator = PasswordGenerator(SecurityStrength.MIDDLE)
         rv.generate(16)
-        return rv.getString() ?: throw SaltGenerateException(SALT_GENERATE_EXCEPTION)
+        return rv.getString()
     }
 
     /**
@@ -113,7 +113,7 @@ interface PasswordEncoderWithSalt : PasswordEncoder, PlaintextHash {
     fun generateSalt(len: Int): String {
         val rv: RandomStringGenerator = PasswordGenerator(SecurityStrength.MIDDLE)
         rv.generate(len)
-        return rv.getString() ?: throw SaltGenerateException(SALT_GENERATE_EXCEPTION)
+        return rv.getString()
     }
 
     /**
@@ -126,7 +126,7 @@ interface PasswordEncoderWithSalt : PasswordEncoder, PlaintextHash {
     fun generateSalt(securityStrength: SecurityStrength): String {
         val rv: RandomStringGenerator = PasswordGenerator(securityStrength)
         rv.generate(16)
-        return rv.getString() ?: throw SaltGenerateException(SALT_GENERATE_EXCEPTION)
+        return rv.getString()
     }
 
     /**
@@ -139,7 +139,7 @@ interface PasswordEncoderWithSalt : PasswordEncoder, PlaintextHash {
     fun generateSalt(len: Int, securityStrength: SecurityStrength): String {
         val rv: RandomStringGenerator = PasswordGenerator(securityStrength)
         rv.generate(len)
-        return rv.getString() ?: throw SaltGenerateException(SALT_GENERATE_EXCEPTION)
+        return rv.getString()
     }
 
     /**

@@ -1,6 +1,6 @@
 package dev.retrotv.crypto.twe.algorithm
 
-import dev.retrotv.crypto.twe.CipherAlgorithm
+import dev.retrotv.crypto.twe.BlockCipherAlgorithm
 import dev.retrotv.enums.Algorithm
 import org.bouncycastle.crypto.engines.ARIAEngine
 
@@ -10,7 +10,7 @@ import org.bouncycastle.crypto.engines.ARIAEngine
  * @author  yjj8353
  * @since   1.0.0
  */
-class ARIA : CipherAlgorithm() {
+class ARIA : BlockCipherAlgorithm() {
 
     init {
         this.engine = ARIAEngine()

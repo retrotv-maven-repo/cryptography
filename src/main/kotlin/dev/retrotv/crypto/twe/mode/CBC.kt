@@ -8,7 +8,7 @@ import org.bouncycastle.crypto.paddings.PaddedBufferedBlockCipher
 import org.bouncycastle.crypto.params.KeyParameter
 import org.bouncycastle.crypto.params.ParametersWithIV
 
-class CBC() : BCTwoWayEncryption {
+class CBC : BCTwoWayEncryption {
     lateinit var engine: BlockCipher
 
     @Throws(CryptoFailException::class)

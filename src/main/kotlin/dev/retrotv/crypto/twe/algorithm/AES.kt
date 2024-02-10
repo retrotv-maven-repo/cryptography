@@ -1,6 +1,6 @@
 package dev.retrotv.crypto.twe.algorithm
 
-import dev.retrotv.crypto.twe.CipherAlgorithm
+import dev.retrotv.crypto.twe.BlockCipherAlgorithm
 import dev.retrotv.enums.Algorithm
 import org.bouncycastle.crypto.engines.AESEngine
 
@@ -10,7 +10,7 @@ import org.bouncycastle.crypto.engines.AESEngine
  * @author  yjj8353
  * @since   1.0.0
  */
-class AES : CipherAlgorithm() {
+class AES : BlockCipherAlgorithm() {
 
     init {
         this.engine = AESEngine.newInstance()

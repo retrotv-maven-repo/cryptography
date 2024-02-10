@@ -2,14 +2,14 @@ package dev.retrotv.crypto.twe.mode
 
 import dev.retrotv.crypto.exception.CryptoFailException
 import dev.retrotv.crypto.twe.*
+import org.bouncycastle.crypto.BlockCipher
 import org.bouncycastle.crypto.InvalidCipherTextException
 import org.bouncycastle.crypto.modes.GCMBlockCipher
 import org.bouncycastle.crypto.params.AEADParameters
 import org.bouncycastle.crypto.params.KeyParameter
 
-class GCM(cipherAlgorithm: CipherAlgorithm) : BCTwoWayEncryption {
-    private val engine = cipherAlgorithm.engine
-    private val algorithm = cipherAlgorithm.algorithm
+class GCM : BCTwoWayEncryption {
+    lateinit var engine: BlockCipher
     private var aad: ByteArray? = null
 
     @Throws(CryptoFailException::class)
