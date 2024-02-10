@@ -8,8 +8,8 @@ import org.bouncycastle.crypto.modes.SICBlockCipher
 import org.bouncycastle.crypto.params.KeyParameter
 import org.bouncycastle.crypto.params.ParametersWithIV
 
-class CTR : BCTwoWayEncryption {
-    lateinit var engine: BlockCipher
+class CTR(blockCipherAlgorithm: BlockCipherAlgorithm) : BCTwoWayEncryption {
+    private val engine: BlockCipher = blockCipherAlgorithm.engine
 
     @Throws(CryptoFailException::class)
     override fun encrypt(data: ByteArray, params: Params): Result {

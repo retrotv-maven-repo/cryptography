@@ -8,8 +8,8 @@ import org.bouncycastle.crypto.modes.GCMBlockCipher
 import org.bouncycastle.crypto.params.AEADParameters
 import org.bouncycastle.crypto.params.KeyParameter
 
-class GCM : BCTwoWayEncryption {
-    lateinit var engine: BlockCipher
+class GCM(blockCipherAlgorithm: BlockCipherAlgorithm) : BCTwoWayEncryption {
+    private val engine: BlockCipher = blockCipherAlgorithm.engine
     private var aad: ByteArray? = null
 
     @Throws(CryptoFailException::class)

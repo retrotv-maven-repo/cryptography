@@ -23,7 +23,7 @@ class LEATest {
     fun test_ecb(keyLen: Int) {
         this.lea = LEA()
         val key = generate(keyLen / 8)
-        val mode = ECB()
+        val mode = ECB(this.lea)
         val encryptedData = mode.encrypt(message, Params(key))
         val originalData = mode.decrypt(encryptedData.data, Params(key))
 
@@ -36,7 +36,7 @@ class LEATest {
     fun test_cbc(keyLen: Int) {
         this.lea = LEA()
         val key = generate(keyLen / 8)
-        val mode = CBC()
+        val mode = CBC(this.lea)
         val iv = generate(16)
         val encryptedData = mode.encrypt(message, ParamsWithIV(key, iv))
         val originalData = mode.decrypt(encryptedData.data, ParamsWithIV(key, iv))
@@ -50,7 +50,7 @@ class LEATest {
     fun test_cfb(keyLen: Int) {
         this.lea = LEA()
         val key = generate(keyLen / 8)
-        val mode = CFB()
+        val mode = CFB(this.lea)
         val iv = generate(16)
         val encryptedData = mode.encrypt(message, ParamsWithIV(key, iv))
         val originalData = mode.decrypt(encryptedData.data, ParamsWithIV(key, iv))
@@ -64,7 +64,7 @@ class LEATest {
     fun test_ofb(keyLen: Int) {
         this.lea = LEA()
         val key = generate(keyLen / 8)
-        val mode = OFB()
+        val mode = OFB(this.lea)
         val iv = generate(16)
         val encryptedData = mode.encrypt(message, ParamsWithIV(key, iv))
         val originalData = mode.decrypt(encryptedData.data, ParamsWithIV(key, iv))
@@ -78,7 +78,7 @@ class LEATest {
     fun test_ctr(keyLen: Int) {
         this.lea = LEA()
         val key = generate(keyLen / 8)
-        val mode = CTR()
+        val mode = CTR(this.lea)
         val iv = generate(16)
         val encryptedData = mode.encrypt(message, ParamsWithIV(key, iv))
         val originalData = mode.decrypt(encryptedData.data, ParamsWithIV(key, iv))
@@ -99,7 +99,7 @@ class LEATest {
     fun test_ccm(keyLen: Int) {
         this.lea = LEA()
         val key = generate(keyLen / 8)
-        val mode = CCM()
+        val mode = CCM(this.lea)
         val iv = generate(12)
         val encryptedData = mode.encrypt(message, ParamsWithIV(key, iv))
         val originalData = mode.decrypt(encryptedData.data, ParamsWithIV(key, iv))
@@ -113,7 +113,7 @@ class LEATest {
     fun test_gcm(keyLen: Int) {
         this.lea = LEA()
         val key = generate(keyLen / 8)
-        val mode = GCM()
+        val mode = GCM(this.lea)
         val iv = generate(12)
         val encryptedData = mode.encrypt(message, ParamsWithIV(key, iv)) as AEADResult
         val originalData = mode.decrypt(encryptedData.data + encryptedData.tag, ParamsWithIV(key, iv))

@@ -8,12 +8,11 @@ import org.bouncycastle.crypto.paddings.PaddedBufferedBlockCipher
 import org.bouncycastle.crypto.params.KeyParameter
 import org.bouncycastle.crypto.params.ParametersWithIV
 
-class CBC : BCTwoWayEncryption {
-    lateinit var engine: BlockCipher
+class CBC(blockCipherAlgorithm: BlockCipherAlgorithm) : BCTwoWayEncryption {
+    private val engine: BlockCipher = blockCipherAlgorithm.engine
 
     @Throws(CryptoFailException::class)
     override fun encrypt(data: ByteArray, params: Params): Result {
-        require (this::engine.isInitialized) { throw CryptoFailException("블록 암호화 엔진이 초기화되지 않았습니다.") }
         require (params is ParamsWithIV) { "CBC 모드는 ParamsWithIV 객체를 요구합니다." }
 
         val cipher = PaddedBufferedBlockCipher(CBCBlockCipher.newInstance(this.engine))
@@ -28,7 +27,6 @@ class CBC : BCTwoWayEncryption {
 
     @Throws(CryptoFailException::class)
     override fun decrypt(encryptedData: ByteArray, params: Params): Result {
-        require (this::engine.isInitialized) { throw CryptoFailException("블록 암호화 엔진이 초기화되지 않았습니다.") }
         require (params is ParamsWithIV) { "CBC 모드는 ParamsWithIV 객체를 요구합니다." }
 
         val cipher = PaddedBufferedBlockCipher(CBCBlockCipher.newInstance(this.engine))

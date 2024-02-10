@@ -23,8 +23,7 @@ class AESTest {
     fun test_ecb(keyLen: Int) {
         this.aes = AES()
         val key = generate(keyLen / 8)
-        val mode = ECB()
-        mode.engine = this.aes.engine
+        val mode = ECB(this.aes)
         val encryptedData = mode.encrypt(message, Params(key))
         val originalData = mode.decrypt(encryptedData.data, Params(key))
 
@@ -37,8 +36,7 @@ class AESTest {
     fun test_cbc(keyLen: Int) {
         this.aes = AES()
         val key = generate(keyLen / 8)
-        val mode = CBC()
-        mode.engine = this.aes.engine
+        val mode = CBC(this.aes)
         val iv = generate(16)
         val encryptedData = mode.encrypt(message, ParamsWithIV(key, iv))
         val originalData = mode.decrypt(encryptedData.data, ParamsWithIV(key, iv))
@@ -52,8 +50,7 @@ class AESTest {
     fun test_cfb(keyLen: Int) {
         this.aes = AES()
         val key = generate(keyLen / 8)
-        val mode = CFB()
-        mode.engine = this.aes.engine
+        val mode = CFB(this.aes)
         val iv = generate(16)
         val encryptedData = mode.encrypt(message, ParamsWithIV(key, iv))
         val originalData = mode.decrypt(encryptedData.data, ParamsWithIV(key, iv))
@@ -67,8 +64,7 @@ class AESTest {
     fun test_ofb(keyLen: Int) {
         this.aes = AES()
         val key = generate(keyLen / 8)
-        val mode = OFB()
-        mode.engine = this.aes.engine
+        val mode = OFB(this.aes)
         val iv = generate(16)
         val encryptedData = mode.encrypt(message, ParamsWithIV(key, iv))
         val originalData = mode.decrypt(encryptedData.data, ParamsWithIV(key, iv))
@@ -82,8 +78,7 @@ class AESTest {
     fun test_ctr(keyLen: Int) {
         this.aes = AES()
         val key = generate(keyLen / 8)
-        val mode = CTR()
-        mode.engine = this.aes.engine
+        val mode = CTR(this.aes)
         val iv = generate(16)
         val encryptedData = mode.encrypt(message, ParamsWithIV(key, iv))
         val originalData = mode.decrypt(encryptedData.data, ParamsWithIV(key, iv))
@@ -104,8 +99,7 @@ class AESTest {
 
         this.aes = AES()
         val key = generate(keyLen / 8)
-        val mode = CTS()
-        mode.engine = this.aes.engine
+        val mode = CTS(this.aes)
         val iv = generate(16)
         mode.useCBCMode()
         val encryptedData = mode.encrypt(message, ParamsWithIV(key, iv))
@@ -120,8 +114,7 @@ class AESTest {
     fun test_ccm(keyLen: Int) {
         this.aes = AES()
         val key = generate(keyLen / 8)
-        val mode = CCM()
-        mode.engine = this.aes.engine
+        val mode = CCM(this.aes)
         val iv = generate(12)
         val encryptedData = mode.encrypt(message, ParamsWithIV(key, iv))
         val originalData = mode.decrypt(encryptedData.data, ParamsWithIV(key, iv))
@@ -135,8 +128,7 @@ class AESTest {
     fun test_gcm(keyLen: Int) {
         this.aes = AES()
         val key = generate(keyLen / 8)
-        val mode = GCM()
-        mode.engine = this.aes.engine
+        val mode = GCM(this.aes)
         val iv = generate(12)
         val encryptedData = mode.encrypt(message, ParamsWithIV(key, iv)) as AEADResult
         val originalData = mode.decrypt(encryptedData.data + encryptedData.tag, ParamsWithIV(key, iv))

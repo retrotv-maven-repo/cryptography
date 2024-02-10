@@ -7,8 +7,8 @@ import org.bouncycastle.crypto.modes.CCMBlockCipher
 import org.bouncycastle.crypto.params.AEADParameters
 import org.bouncycastle.crypto.params.KeyParameter
 
-class CCM : BCTwoWayEncryption {
-    lateinit var engine: BlockCipher
+class CCM(blockCipherAlgorithm: BlockCipherAlgorithm) : BCTwoWayEncryption {
+    private val engine: BlockCipher = blockCipherAlgorithm.engine
     private var aad: ByteArray? = null
 
     @Throws(CryptoFailException::class)

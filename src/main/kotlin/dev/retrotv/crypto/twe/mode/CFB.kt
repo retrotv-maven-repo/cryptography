@@ -12,8 +12,8 @@ import org.bouncycastle.crypto.modes.CFBBlockCipher
 import org.bouncycastle.crypto.params.KeyParameter
 import org.bouncycastle.crypto.params.ParametersWithIV
 
-class CFB : BCTwoWayEncryption {
-    lateinit var engine: BlockCipher
+class CFB(blockCipherAlgorithm: BlockCipherAlgorithm) : BCTwoWayEncryption {
+    private val engine: BlockCipher = blockCipherAlgorithm.engine
     private val blockSize by lazy {
         when (this.engine) {
             is AESEngine, is ARIAEngine, is LEAEngine -> 128
@@ -24,7 +24,6 @@ class CFB : BCTwoWayEncryption {
 
     @Throws(CryptoFailException::class)
     override fun encrypt(data: ByteArray, params: Params): Result {
-        require (this::engine.isInitialized) { throw CryptoFailException("블록 암호화 엔진이 초기화되지 않았습니다.") }
         require (params is ParamsWithIV) { "CFB 모드는 ParamsWithIV 객체를 요구합니다." }
 
         // blockSize는 8 혹은 16만 입력 가능
@@ -39,7 +38,6 @@ class CFB : BCTwoWayEncryption {
 
     @Throws(CryptoFailException::class)
     override fun decrypt(encryptedData: ByteArray, params: Params): Result {
-        require (this::engine.isInitialized) { throw CryptoFailException("블록 암호화 엔진이 초기화되지 않았습니다.") }
         require (params is ParamsWithIV) { "CFB 모드는 ParamsWithIV 객체를 요구합니다." }
 
         val cipher = CFBBlockCipher.newInstance(this.engine, this.blockSize)

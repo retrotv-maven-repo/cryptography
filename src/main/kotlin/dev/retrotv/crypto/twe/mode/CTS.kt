@@ -8,8 +8,8 @@ import org.bouncycastle.crypto.modes.CTSBlockCipher
 import org.bouncycastle.crypto.params.KeyParameter
 import org.bouncycastle.crypto.params.ParametersWithIV
 
-class CTS : BCTwoWayEncryption {
-    lateinit var engine: BlockCipher
+class CTS(blockCipherAlgorithm: BlockCipherAlgorithm) : BCTwoWayEncryption {
+    private var engine: BlockCipher = blockCipherAlgorithm.engine
 
     override fun encrypt(data: ByteArray, params: Params): Result {
         params as ParamsWithIV

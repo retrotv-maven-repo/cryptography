@@ -6,13 +6,11 @@ import org.bouncycastle.crypto.BlockCipher
 import org.bouncycastle.crypto.paddings.PaddedBufferedBlockCipher
 import org.bouncycastle.crypto.params.KeyParameter
 
-class ECB : BCTwoWayEncryption {
-    lateinit var engine: BlockCipher
+class ECB(blockCipherAlgorithm: BlockCipherAlgorithm) : BCTwoWayEncryption {
+    private val engine: BlockCipher = blockCipherAlgorithm.engine
 
     @Throws(CryptoFailException::class)
     override fun encrypt(data: ByteArray, params: Params): Result {
-        require(this::engine.isInitialized) { throw CryptoFailException("블록 암호화 엔진이 초기화되지 않았습니다.") }
-
         val cipher = PaddedBufferedBlockCipher(this.engine)
             cipher.init(true, KeyParameter(params.key))
 
@@ -25,8 +23,6 @@ class ECB : BCTwoWayEncryption {
 
     @Throws(CryptoFailException::class)
     override fun decrypt(encryptedData: ByteArray, params: Params): Result {
-        require(this::engine.isInitialized) { throw CryptoFailException("블록 암호화 엔진이 초기화되지 않았습니다.") }
-
         val cipher = PaddedBufferedBlockCipher(this.engine)
             cipher.init(false, KeyParameter(params.key))
 

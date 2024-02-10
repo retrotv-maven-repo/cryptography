@@ -18,7 +18,7 @@ class TripleDESTest {
     @DisplayName("ECB 모드 암호화 테스트")
     fun test_ecb() {
         val key = des.generateKey()
-        val mode = ECB()
+        val mode = ECB(this.des)
         val encryptedData = mode.encrypt(message, Params(key))
         val originalData = mode.decrypt(encryptedData.data, Params(key))
 
@@ -29,7 +29,7 @@ class TripleDESTest {
     @DisplayName("CBC 모드 암호화 테스트")
     fun test_cbc() {
         val key = des.generateKey()
-        val mode = CBC()
+        val mode = CBC(this.des)
         val iv = generate(8)
         val encryptedData = mode.encrypt(message, ParamsWithIV(key, iv))
         val originalData = mode.decrypt(encryptedData.data, ParamsWithIV(key, iv))
@@ -41,7 +41,7 @@ class TripleDESTest {
     @DisplayName("CFB 모드 암호화 테스트")
     fun test_cfb() {
         val key = des.generateKey()
-        val mode = CFB()
+        val mode = CFB(this.des)
         val iv = generate(8)
         val encryptedData = mode.encrypt(message, ParamsWithIV(key, iv))
         val originalData = mode.decrypt(encryptedData.data, ParamsWithIV(key, iv))
@@ -53,7 +53,7 @@ class TripleDESTest {
     @DisplayName("OFB 모드 암호화 테스트")
     fun test_ofb() {
         val key = des.generateKey()
-        val mode = OFB()
+        val mode = OFB(this.des)
         val iv = generate(8)
         val encryptedData = mode.encrypt(message, ParamsWithIV(key, iv))
         val originalData = mode.decrypt(encryptedData.data, ParamsWithIV(key, iv))
@@ -65,7 +65,7 @@ class TripleDESTest {
     @DisplayName("CTR 모드 암호화 테스트")
     fun test_ctr() {
         val key = des.generateKey()
-        val mode = CTR()
+        val mode = CTR(this.des)
         val iv = generate(8)
         val encryptedData = mode.encrypt(message, ParamsWithIV(key, iv))
         val originalData = mode.decrypt(encryptedData.data, ParamsWithIV(key, iv))

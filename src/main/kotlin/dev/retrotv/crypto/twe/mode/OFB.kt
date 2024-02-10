@@ -9,8 +9,8 @@ import org.bouncycastle.crypto.modes.OFBBlockCipher
 import org.bouncycastle.crypto.params.KeyParameter
 import org.bouncycastle.crypto.params.ParametersWithIV
 
-class OFB : BCTwoWayEncryption {
-    lateinit var engine: BlockCipher
+class OFB(blockCipherAlgorithm: BlockCipherAlgorithm) : BCTwoWayEncryption {
+    private val engine: BlockCipher = blockCipherAlgorithm.engine
     private val blockSize by lazy {
         when (this.engine) {
             is AESEngine, is ARIAEngine, is LEAEngine -> 128
