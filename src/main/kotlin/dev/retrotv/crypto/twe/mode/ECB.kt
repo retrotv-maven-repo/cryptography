@@ -2,14 +2,17 @@ package dev.retrotv.crypto.twe.mode
 
 import dev.retrotv.crypto.exception.CryptoFailException
 import dev.retrotv.crypto.twe.*
+import org.bouncycastle.crypto.BlockCipher
 import org.bouncycastle.crypto.paddings.PaddedBufferedBlockCipher
 import org.bouncycastle.crypto.params.KeyParameter
 
-class ECB(cipherAlgorithm: CipherAlgorithm) : BCTwoWayEncryption {
-    private val engine = cipherAlgorithm.engine
+class ECB : BCTwoWayEncryption {
+    lateinit var engine: BlockCipher
 
     @Throws(CryptoFailException::class)
     override fun encrypt(data: ByteArray, params: Params): Result {
+        require(this::engine.isInitialized) { throw CryptoFailException("블록 암호화 엔진이 초기화되지 않았습니다.") }
+
         val cipher = PaddedBufferedBlockCipher(this.engine)
             cipher.init(true, KeyParameter(params.key))
 
@@ -22,6 +25,8 @@ class ECB(cipherAlgorithm: CipherAlgorithm) : BCTwoWayEncryption {
 
     @Throws(CryptoFailException::class)
     override fun decrypt(encryptedData: ByteArray, params: Params): Result {
+        require(this::engine.isInitialized) { throw CryptoFailException("블록 암호화 엔진이 초기화되지 않았습니다.") }
+
         val cipher = PaddedBufferedBlockCipher(this.engine)
             cipher.init(false, KeyParameter(params.key))
 

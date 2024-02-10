@@ -2,14 +2,12 @@ package dev.retrotv.crypto.twe.mode
 
 import dev.retrotv.crypto.twe.*
 import dev.retrotv.enums.Algorithm
-import dev.retrotv.utils.generate
 import org.bouncycastle.crypto.modes.CBCBlockCipher
 import org.bouncycastle.crypto.modes.CTSBlockCipher
-import org.bouncycastle.crypto.paddings.PaddedBufferedBlockCipher
 import org.bouncycastle.crypto.params.KeyParameter
 import org.bouncycastle.crypto.params.ParametersWithIV
 
-class CTS(cipherAlgorithm: CipherAlgorithm) : BCTwoWayEncryption, IVGenerator {
+class CTS(cipherAlgorithm: CipherAlgorithm) : BCTwoWayEncryption {
     private var engine = cipherAlgorithm.engine
     private val algorithm = cipherAlgorithm.algorithm
     private val ivLen = when (cipherAlgorithm.algorithm) {
@@ -40,10 +38,6 @@ class CTS(cipherAlgorithm: CipherAlgorithm) : BCTwoWayEncryption, IVGenerator {
             cipher.doFinal(originalData, len)
 
         return Result(originalData)
-    }
-
-    override fun generateIV(): ByteArray {
-        return generate(ivLen)
     }
 
     fun useCBCMode() {

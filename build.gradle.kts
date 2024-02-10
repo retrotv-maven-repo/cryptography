@@ -22,7 +22,7 @@ dependencies {
     api("commons-codec:commons-codec:1.16.0")
     api("org.springframework.security:spring-security-core:5.8.9")
     implementation("com.github.retrotv-maven-repo:data-utils:0.14.0-alpha")
-    implementation("com.github.retrotv-maven-repo:random-value:0.5.0-alpha")
+    implementation("com.github.retrotv-maven-repo:random-value:0.6.0-alpha")
 
     // Argon2, SCrypt java.lang.NoClassDefFoundError 방지용
     implementation("org.bouncycastle:bcprov-jdk18on:1.76")
@@ -31,6 +31,7 @@ dependencies {
     // Bouncy Castle
     implementation("org.bouncycastle:bcprov-jdk18on:1.77")
 
+    testImplementation("io.github.serpro69:kotlin-faker:1.15.0")
     testImplementation("org.json:json:20231013")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.0")
     testImplementation("org.junit.jupiter:junit-jupiter-params:5.10.0")

@@ -2,14 +2,12 @@ package dev.retrotv.crypto.twe.mode
 
 import dev.retrotv.crypto.exception.CryptoFailException
 import dev.retrotv.crypto.twe.*
-import dev.retrotv.enums.Algorithm
 import dev.retrotv.enums.Algorithm.Cipher.*
-import dev.retrotv.utils.generate
 import org.bouncycastle.crypto.modes.CFBBlockCipher
 import org.bouncycastle.crypto.params.KeyParameter
 import org.bouncycastle.crypto.params.ParametersWithIV
 
-class CFB(cipherAlgorithm: CipherAlgorithm) : BCTwoWayEncryption, IVGenerator {
+class CFB(cipherAlgorithm: CipherAlgorithm) : BCTwoWayEncryption {
     private val engine = cipherAlgorithm.engine
     private val algorithm = cipherAlgorithm.algorithm
     private val ivLen = when (cipherAlgorithm.algorithm) {
@@ -48,9 +46,5 @@ class CFB(cipherAlgorithm: CipherAlgorithm) : BCTwoWayEncryption, IVGenerator {
             cipher.processBytes(encryptedData, 0, encryptedData.size, originalData, 0)
 
         return Result(originalData)
-    }
-
-    override fun generateIV(): ByteArray {
-        return generate(ivLen)
     }
 }

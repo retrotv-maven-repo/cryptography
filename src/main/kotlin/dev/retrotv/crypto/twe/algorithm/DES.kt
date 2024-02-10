@@ -2,10 +2,7 @@ package dev.retrotv.crypto.twe.algorithm
 
 import dev.retrotv.crypto.twe.CipherAlgorithm
 import dev.retrotv.enums.Algorithm
-import org.bouncycastle.crypto.KeyGenerationParameters
 import org.bouncycastle.crypto.engines.DESEngine
-import org.bouncycastle.crypto.generators.DESKeyGenerator
-import java.security.SecureRandom
 
 /**
  * DES 계열의 양방향 암호화 구현을 위한 상속용 클래스 입니다.
@@ -21,11 +18,11 @@ class DES : CipherAlgorithm() {
         this.algorithm = Algorithm.Cipher.DES
     }
 
-    override fun generateKey(): ByteArray {
-        val keyGenerationParam = KeyGenerationParameters(SecureRandom(), 0)
-        val keyGenerator = DESKeyGenerator()
-            keyGenerator.init(keyGenerationParam)
-
-        return keyGenerator.generateKey()
-    }
+//    override fun generateKey(): ByteArray {
+//        val keyGenerationParam = KeyGenerationParameters(SecureRandom(), 0)
+//        val keyGenerator = DESKeyGenerator()
+//            keyGenerator.init(keyGenerationParam)
+//
+//        return keyGenerator.generateKey()
+//    }
 }

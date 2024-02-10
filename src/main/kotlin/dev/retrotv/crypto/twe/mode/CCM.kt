@@ -2,12 +2,11 @@ package dev.retrotv.crypto.twe.mode
 
 import dev.retrotv.crypto.exception.CryptoFailException
 import dev.retrotv.crypto.twe.*
-import dev.retrotv.utils.generate
 import org.bouncycastle.crypto.modes.CCMBlockCipher
 import org.bouncycastle.crypto.params.AEADParameters
 import org.bouncycastle.crypto.params.KeyParameter
 
-class CCM(cipherAlgorithm: CipherAlgorithm) : BCTwoWayEncryption, IVGenerator {
+class CCM(cipherAlgorithm: CipherAlgorithm) : BCTwoWayEncryption {
     private val engine = cipherAlgorithm.engine
     private val algorithm = cipherAlgorithm.algorithm
     private var aad: ByteArray? = null
@@ -42,10 +41,6 @@ class CCM(cipherAlgorithm: CipherAlgorithm) : BCTwoWayEncryption, IVGenerator {
             tam += cipher.doFinal(originalData, tam)
 
         return AEADResult(originalData, cipher.mac)
-    }
-
-    override fun generateIV(): ByteArray {
-        return generate(GCM_IV_LENGTH)
     }
 
     /**

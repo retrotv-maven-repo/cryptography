@@ -2,8 +2,6 @@ package dev.retrotv.crypto.twe.algorithm
 
 import dev.retrotv.crypto.twe.CipherAlgorithm
 import dev.retrotv.enums.Algorithm
-import dev.retrotv.utils.generate
-import dev.retrotv.utils.getMessage
 import org.bouncycastle.crypto.engines.AESEngine
 
 /**
@@ -12,20 +10,10 @@ import org.bouncycastle.crypto.engines.AESEngine
  * @author  yjj8353
  * @since   1.0.0
  */
-class AES(keyLen: Int) : CipherAlgorithm() {
-    private var keyLen: Int
+class AES : CipherAlgorithm() {
 
     init {
-        require(keyLen == 128 || keyLen == 192 || keyLen == 256) {
-            getMessage("exception.wrongKeyLength")
-        }
-
-        this.keyLen = keyLen
         this.engine = AESEngine.newInstance()
         this.algorithm = Algorithm.Cipher.AES
-    }
-
-    override fun generateKey(): ByteArray {
-        return generate(keyLen / 8)
     }
 }
