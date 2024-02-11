@@ -6,7 +6,7 @@ package dev.retrotv.crypto.exception
  * @author  yjj8353
  * @since   1.0.0
  */
-class KeyGenerateException : RuntimeException {
+class GenerateException : RuntimeException {
     constructor() : super()
     constructor(message: String) : super(message)
     constructor(message: String, throwable: Throwable) : super(message, throwable)
