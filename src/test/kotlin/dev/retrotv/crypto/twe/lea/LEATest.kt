@@ -1,16 +1,27 @@
 package dev.retrotv.crypto.twe.lea
 
+import dev.retrotv.crypto.owe.mac.HMAC
+import dev.retrotv.crypto.owe.mac.sha.HMACSHA256
 import dev.retrotv.crypto.twe.AEADResult
-import dev.retrotv.crypto.twe.BlockCipherAlgorithm
+import dev.retrotv.crypto.twe.algorithm.BlockCipherAlgorithm
 import dev.retrotv.crypto.twe.Params
 import dev.retrotv.crypto.twe.ParamsWithIV
 import dev.retrotv.crypto.twe.algorithm.LEA
 import dev.retrotv.crypto.twe.mode.*
+import dev.retrotv.data.utils.hexStringToByteArray
+import dev.retrotv.data.utils.toHexString
 import dev.retrotv.utils.generate
+import org.bouncycastle.crypto.macs.CBCBlockCipherMac
+import org.bouncycastle.crypto.macs.CMac
+import org.bouncycastle.crypto.macs.GMac
+import org.bouncycastle.crypto.params.KeyParameter
 import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
-import kotlin.test.Test
+import javax.crypto.Mac
+import javax.crypto.spec.SecretKeySpec
+import kotlin.experimental.xor
 import kotlin.test.asserter
 
 class LEATest {
@@ -116,8 +127,45 @@ class LEATest {
         val mode = GCM(this.lea)
         val iv = generate(12)
         val encryptedData = mode.encrypt(message, ParamsWithIV(key, iv)) as AEADResult
-        val originalData = mode.decrypt(encryptedData.data + encryptedData.tag, ParamsWithIV(key, iv))
+        val originalData = mode.decrypt(encryptedData.data, ParamsWithIV(key, iv))
 
         asserter.assertEquals("동일한 메시지가 아닙니다.", String(message), String(originalData.data))
+    }
+
+    @Test
+    fun test() {
+        val lea = LEA()
+        val key = generate(16)
+        val mode = CCM(lea)
+        val iv = generate(12)
+        val encryptedData = mode.encrypt(message, ParamsWithIV(key, iv)) as AEADResult
+        val originalData = mode.decrypt(encryptedData.data, ParamsWithIV(key, iv))
+
+        val mac = CMac(lea.engine)
+        mac.init(KeyParameter(key))
+        mac.update(message, 0, message.size)
+        val macData = ByteArray(mac.macSize)
+        mac.doFinal(macData, 0)
+
+        // 517ea1bd615dbeef220a95845b86cbc9
+        // 9f615fdfec9954fd9588b1c7c2753cd6
+        // fa515800dc26ec1fe956c705b53f40f5
+
+        val result = xorByteArrays(hexStringToByteArray("517ea1bd615dbeef220a95845b86cbc9"), hexStringToByteArray("9f615fdfec9954fd9588b1c7c2753cd6"))
+
+        println(toHexString(result))
+
+        println(toHexString(encryptedData.data))
+        println(toHexString(encryptedData.tag))
+        println(toHexString(macData))
+    }
+
+    private fun xorByteArrays(a: ByteArray, b: ByteArray): ByteArray {
+        require(a.size == b.size) { "ByteArrays must have the same length" }
+        val result = ByteArray(a.size)
+        for (i in a.indices) {
+            result[i] = (a[i] xor b[i])
+        }
+        return result
     }
 }

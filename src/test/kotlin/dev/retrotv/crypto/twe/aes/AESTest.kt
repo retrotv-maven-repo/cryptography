@@ -1,16 +1,17 @@
 package dev.retrotv.crypto.twe.aes
 
 import dev.retrotv.crypto.twe.AEADResult
-import dev.retrotv.crypto.twe.BlockCipherAlgorithm
+import dev.retrotv.crypto.twe.algorithm.BlockCipherAlgorithm
 import dev.retrotv.crypto.twe.Params
 import dev.retrotv.crypto.twe.ParamsWithIV
 import dev.retrotv.crypto.twe.algorithm.AES
+import dev.retrotv.crypto.twe.generator.generateIV
+import dev.retrotv.crypto.twe.generator.generateKey
 import dev.retrotv.crypto.twe.mode.*
 import dev.retrotv.utils.generate
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
-import kotlin.test.Test
 import kotlin.test.asserter
 
 class AESTest {
@@ -113,9 +114,9 @@ class AESTest {
     @ParameterizedTest(name = "[{index}] {displayName} - 키 길이: {0}")
     fun test_ccm(keyLen: Int) {
         this.aes = AES()
-        val key = generate(keyLen / 8)
+        val key = generateKey(aes.algorithm, keyLen / 8)
         val mode = CCM(this.aes)
-        val iv = generate(12)
+        val iv = generateIV(aes.algorithm, mode.mode)
         val encryptedData = mode.encrypt(message, ParamsWithIV(key, iv))
         val originalData = mode.decrypt(encryptedData.data, ParamsWithIV(key, iv))
 
@@ -131,7 +132,7 @@ class AESTest {
         val mode = GCM(this.aes)
         val iv = generate(12)
         val encryptedData = mode.encrypt(message, ParamsWithIV(key, iv)) as AEADResult
-        val originalData = mode.decrypt(encryptedData.data + encryptedData.tag, ParamsWithIV(key, iv))
+        val originalData = mode.decrypt(encryptedData.data, ParamsWithIV(key, iv))
 
         asserter.assertEquals("동일한 메시지가 아닙니다.", String(message), String(originalData.data))
     }

@@ -1,4 +1,4 @@
-package dev.retrotv.crypto.twe
+package dev.retrotv.crypto.twe.algorithm
 
 import dev.retrotv.enums.Algorithm
 import org.bouncycastle.crypto.BlockCipher

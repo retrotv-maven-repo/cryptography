@@ -1,6 +1,5 @@
 package dev.retrotv.crypto.owe.hash
 
-import dev.retrotv.crypto.exception.SaltGenerateException
 import dev.retrotv.random.PasswordGenerator
 import dev.retrotv.random.RandomStringGenerator
 import dev.retrotv.random.enums.SecurityStrength

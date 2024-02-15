@@ -1,15 +1,16 @@
 package dev.retrotv.crypto.twe.mode
 
-import dev.retrotv.crypto.twe.*
-import dev.retrotv.enums.Algorithm
-import org.bouncycastle.crypto.BlockCipher
+import dev.retrotv.crypto.twe.Params
+import dev.retrotv.crypto.twe.ParamsWithIV
+import dev.retrotv.crypto.twe.Result
+import dev.retrotv.crypto.twe.algorithm.BlockCipherAlgorithm
+import dev.retrotv.enums.Mode.CTS
 import org.bouncycastle.crypto.modes.CBCBlockCipher
 import org.bouncycastle.crypto.modes.CTSBlockCipher
 import org.bouncycastle.crypto.params.KeyParameter
 import org.bouncycastle.crypto.params.ParametersWithIV
 
-class CTS(blockCipherAlgorithm: BlockCipherAlgorithm) : BCTwoWayEncryption {
-    private var engine: BlockCipher = blockCipherAlgorithm.engine
+class CTS(blockCipherAlgorithm: BlockCipherAlgorithm) : CipherMode(CTS, blockCipherAlgorithm) {
 
     override fun encrypt(data: ByteArray, params: Params): Result {
         params as ParamsWithIV

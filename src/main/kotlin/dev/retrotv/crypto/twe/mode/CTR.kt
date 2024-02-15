@@ -2,14 +2,13 @@ package dev.retrotv.crypto.twe.mode
 
 import dev.retrotv.crypto.exception.CryptoFailException
 import dev.retrotv.crypto.twe.*
-import dev.retrotv.enums.Algorithm
-import org.bouncycastle.crypto.BlockCipher
+import dev.retrotv.crypto.twe.algorithm.BlockCipherAlgorithm
+import dev.retrotv.enums.Mode.CTS
 import org.bouncycastle.crypto.modes.SICBlockCipher
 import org.bouncycastle.crypto.params.KeyParameter
 import org.bouncycastle.crypto.params.ParametersWithIV
 
-class CTR(blockCipherAlgorithm: BlockCipherAlgorithm) : BCTwoWayEncryption {
-    private val engine: BlockCipher = blockCipherAlgorithm.engine
+class CTR(blockCipherAlgorithm: BlockCipherAlgorithm) : CipherMode(CTS, blockCipherAlgorithm) {
 
     @Throws(CryptoFailException::class)
     override fun encrypt(data: ByteArray, params: Params): Result {

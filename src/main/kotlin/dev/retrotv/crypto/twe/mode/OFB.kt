@@ -2,19 +2,19 @@ package dev.retrotv.crypto.twe.mode
 
 import dev.retrotv.crypto.exception.CryptoFailException
 import dev.retrotv.crypto.twe.*
-import dev.retrotv.enums.Algorithm
-import org.bouncycastle.crypto.BlockCipher
+import dev.retrotv.crypto.twe.algorithm.BlockCipherAlgorithm
+import dev.retrotv.enums.Algorithm.Cipher.*
+import dev.retrotv.enums.Mode.OFB
 import org.bouncycastle.crypto.engines.*
 import org.bouncycastle.crypto.modes.OFBBlockCipher
 import org.bouncycastle.crypto.params.KeyParameter
 import org.bouncycastle.crypto.params.ParametersWithIV
 
-class OFB(blockCipherAlgorithm: BlockCipherAlgorithm) : BCTwoWayEncryption {
-    private val engine: BlockCipher = blockCipherAlgorithm.engine
+class OFB(blockCipherAlgorithm: BlockCipherAlgorithm) : CipherMode(OFB, blockCipherAlgorithm) {
     private val blockSize by lazy {
-        when (this.engine) {
-            is AESEngine, is ARIAEngine, is LEAEngine -> 128
-            is DESEngine, is DESedeEngine -> 64
+        when (this.algorithm) {
+            AES, ARIA, LEA -> 128
+            DES, TRIPLE_DES -> 64
             else -> throw IllegalArgumentException("사용할 수 없는 알고리즘 입니다.")
         }
     }

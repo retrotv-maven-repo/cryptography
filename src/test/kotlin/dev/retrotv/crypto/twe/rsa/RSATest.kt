@@ -1,7 +1,7 @@
 package dev.retrotv.crypto.twe.rsa
 
 import dev.retrotv.crypto.exception.CryptoFailException
-import dev.retrotv.crypto.exception.KeyGenerateException
+import dev.retrotv.crypto.exception.GenerateException
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -12,7 +12,7 @@ internal class RSATest {
     @Test
     @DisplayName("RSA-1024 암복호화 테스트")
     @Throws(
-        KeyGenerateException::class, CryptoFailException::class
+        GenerateException::class, CryptoFailException::class
     )
     fun rsa1024_test() {
         val keyPairGenerator = RSAKeyPairGenerator(1024)
@@ -27,7 +27,7 @@ internal class RSATest {
     @Test
     @DisplayName("RSA-2048 암복호화 테스트")
     @Throws(
-        KeyGenerateException::class, CryptoFailException::class
+        GenerateException::class, CryptoFailException::class
     )
     fun rsa2048_test() {
         val keyPairGenerator = RSAKeyPairGenerator(2048)

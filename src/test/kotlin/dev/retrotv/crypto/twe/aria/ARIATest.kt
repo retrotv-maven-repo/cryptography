@@ -1,7 +1,7 @@
 package dev.retrotv.crypto.twe.aria
 
 import dev.retrotv.crypto.twe.AEADResult
-import dev.retrotv.crypto.twe.BlockCipherAlgorithm
+import dev.retrotv.crypto.twe.algorithm.BlockCipherAlgorithm
 import dev.retrotv.crypto.twe.Params
 import dev.retrotv.crypto.twe.ParamsWithIV
 import dev.retrotv.crypto.twe.algorithm.ARIA
@@ -10,7 +10,6 @@ import dev.retrotv.utils.generate
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
-import kotlin.test.Test
 import kotlin.test.asserter
 
 class ARIATest {
@@ -116,7 +115,7 @@ class ARIATest {
         val mode = GCM(this.aria)
         val iv = generate(12)
         val encryptedData = mode.encrypt(message, ParamsWithIV(key, iv)) as AEADResult
-        val originalData = mode.decrypt(encryptedData.data + encryptedData.tag, ParamsWithIV(key, iv))
+        val originalData = mode.decrypt(encryptedData.data, ParamsWithIV(key, iv))
 
         asserter.assertEquals("동일한 메시지가 아닙니다.", String(message), String(originalData.data))
     }

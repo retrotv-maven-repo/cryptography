@@ -2,14 +2,14 @@ package dev.retrotv.crypto.twe.mode
 
 import dev.retrotv.crypto.exception.CryptoFailException
 import dev.retrotv.crypto.twe.*
-import org.bouncycastle.crypto.BlockCipher
+import dev.retrotv.crypto.twe.algorithm.BlockCipherAlgorithm
+import dev.retrotv.enums.Mode.GCM
 import org.bouncycastle.crypto.InvalidCipherTextException
 import org.bouncycastle.crypto.modes.GCMBlockCipher
 import org.bouncycastle.crypto.params.AEADParameters
 import org.bouncycastle.crypto.params.KeyParameter
 
-class GCM(blockCipherAlgorithm: BlockCipherAlgorithm) : BCTwoWayEncryption {
-    private val engine: BlockCipher = blockCipherAlgorithm.engine
+class GCM(blockCipherAlgorithm: BlockCipherAlgorithm) : CipherMode(GCM, blockCipherAlgorithm) {
     private var aad: ByteArray? = null
 
     @Throws(CryptoFailException::class)
@@ -29,13 +29,11 @@ class GCM(blockCipherAlgorithm: BlockCipherAlgorithm) : BCTwoWayEncryption {
             throw CryptoFailException("GCM 인증 태그를 생성 실패: " + e.message, e)
         }
 
-        val encryptedData = ByteArray(tam - (macSize / 8))
-        val authTag = ByteArray(macSize / 8)
+        val encryptedData = ByteArray(tam)
 
         System.arraycopy(outputData, 0, encryptedData, 0, encryptedData.size)
-        System.arraycopy(outputData, tam - (macSize / 8), authTag, 0, macSize / 8)
 
-        return AEADResult(encryptedData, authTag)
+        return AEADResult(encryptedData, cipher.mac)
     }
 
     @Throws(CryptoFailException::class)

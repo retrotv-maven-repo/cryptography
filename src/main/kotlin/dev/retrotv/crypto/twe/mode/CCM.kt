@@ -2,20 +2,20 @@ package dev.retrotv.crypto.twe.mode
 
 import dev.retrotv.crypto.exception.CryptoFailException
 import dev.retrotv.crypto.twe.*
-import org.bouncycastle.crypto.BlockCipher
+import dev.retrotv.crypto.twe.algorithm.BlockCipherAlgorithm
+import dev.retrotv.enums.Mode.CCM
 import org.bouncycastle.crypto.modes.CCMBlockCipher
 import org.bouncycastle.crypto.params.AEADParameters
 import org.bouncycastle.crypto.params.KeyParameter
 
-class CCM(blockCipherAlgorithm: BlockCipherAlgorithm) : BCTwoWayEncryption {
-    private val engine: BlockCipher = blockCipherAlgorithm.engine
+class CCM(blockCipherAlgorithm: BlockCipherAlgorithm) : CipherMode(CCM, blockCipherAlgorithm) {
     private var aad: ByteArray? = null
 
     @Throws(CryptoFailException::class)
     override fun encrypt(data: ByteArray, params: Params): Result {
         require (params is ParamsWithIV) { "CCM 모드는 ParamsWithIV 객체를 요구합니다." }
 
-        val macSize = GCM_TAG_LENGTH * 8
+        val macSize = CCM_TAG_LENGTH * 8
         val cipher = CCMBlockCipher.newInstance(this.engine)
             cipher.init(true, AEADParameters(KeyParameter(params.key), macSize, params.iv, this.aad))
 
@@ -32,7 +32,7 @@ class CCM(blockCipherAlgorithm: BlockCipherAlgorithm) : BCTwoWayEncryption {
     override fun decrypt(encryptedData: ByteArray, params: Params): Result {
         require (params is ParamsWithIV) { "CCM 모드는 ParamsWithIV 객체를 요구합니다." }
 
-        val macSize = GCM_TAG_LENGTH * 8
+        val macSize = CCM_TAG_LENGTH * 8
         val cipher = CCMBlockCipher.newInstance(this.engine)
             cipher.init(false, AEADParameters(KeyParameter(params.key), macSize, params.iv, this.aad))
 
@@ -54,6 +54,6 @@ class CCM(blockCipherAlgorithm: BlockCipherAlgorithm) : BCTwoWayEncryption {
 
     companion object {
         private const val GCM_IV_LENGTH = 12
-        private const val GCM_TAG_LENGTH = 16
+        private const val CCM_TAG_LENGTH = 16
     }
 }
