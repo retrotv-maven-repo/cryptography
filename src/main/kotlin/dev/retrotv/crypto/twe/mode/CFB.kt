@@ -13,7 +13,7 @@ import org.bouncycastle.crypto.params.ParametersWithIV
 class CFB(blockCipherAlgorithm: BlockCipherAlgorithm) : CipherMode(CFB, blockCipherAlgorithm) {
     private val blockSize by lazy {
         when (this.algorithm) {
-            AES, ARIA, LEA -> 128
+            AES, ARIA, LEA, SEED -> 128
             DES, TRIPLE_DES -> 64
             else -> throw IllegalArgumentException("사용할 수 없는 알고리즘 입니다.")
         }

@@ -26,6 +26,7 @@ fun generateKey(algorithm: Algorithm.Cipher, keyLen: Int? = null): ByteArray {
             }
         }
         DES, TRIPLE_DES -> generateKey(8)
+        SEED -> generateKey(16)
         else -> throw GenerateException("지원하지 않는 알고리즘 입니다.")
     }
 }
