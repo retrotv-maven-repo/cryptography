@@ -1,5 +1,6 @@
-package dev.retrotv.crypto.twe.algorithm
+package dev.retrotv.crypto.twe.algorithm.block
 
+import dev.retrotv.crypto.twe.algorithm.BlockCipherAlgorithm
 import dev.retrotv.enums.Algorithm
 import org.bouncycastle.crypto.engines.LEAEngine
 

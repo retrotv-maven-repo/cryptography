@@ -1,6 +1,6 @@
 package dev.retrotv.crypto.twe
 
-import dev.retrotv.crypto.twe.algorithm.RC4
+import dev.retrotv.crypto.twe.algorithm.stream.RC4
 import dev.retrotv.data.utils.toHexString
 import org.junit.jupiter.api.DisplayName
 import kotlin.test.Test

@@ -3,7 +3,7 @@ package dev.retrotv.crypto.twe.aria
 import dev.retrotv.crypto.twe.AEADResult
 import dev.retrotv.crypto.twe.Params
 import dev.retrotv.crypto.twe.ParamsWithIV
-import dev.retrotv.crypto.twe.algorithm.ARIA
+import dev.retrotv.crypto.twe.algorithm.block.ARIA
 import dev.retrotv.crypto.twe.algorithm.BlockCipherAlgorithm
 import dev.retrotv.crypto.twe.mode.*
 import dev.retrotv.utils.generate

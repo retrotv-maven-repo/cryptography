@@ -4,7 +4,7 @@ import dev.retrotv.crypto.twe.AEADResult
 import dev.retrotv.crypto.twe.Params
 import dev.retrotv.crypto.twe.ParamsWithIV
 import dev.retrotv.crypto.twe.algorithm.BlockCipherAlgorithm
-import dev.retrotv.crypto.twe.algorithm.LEA
+import dev.retrotv.crypto.twe.algorithm.block.LEA
 import dev.retrotv.crypto.twe.mode.*
 import dev.retrotv.data.utils.hexStringToByteArray
 import dev.retrotv.data.utils.toHexString

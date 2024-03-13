@@ -1,5 +1,6 @@
-package dev.retrotv.crypto.twe.algorithm
+package dev.retrotv.crypto.twe.algorithm.stream
 
+import dev.retrotv.crypto.twe.algorithm.StreamCipherAlgorithm
 import dev.retrotv.enums.Algorithm
 import org.bouncycastle.crypto.engines.RC4Engine
 

@@ -2,7 +2,7 @@ package dev.retrotv.crypto.twe.des
 
 import dev.retrotv.crypto.twe.Params
 import dev.retrotv.crypto.twe.ParamsWithIV
-import dev.retrotv.crypto.twe.algorithm.DES
+import dev.retrotv.crypto.twe.algorithm.block.DES
 import dev.retrotv.crypto.twe.mode.*
 import dev.retrotv.utils.generate
 import org.junit.jupiter.api.DisplayName
