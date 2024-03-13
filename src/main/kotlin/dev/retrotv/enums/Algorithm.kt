@@ -71,6 +71,7 @@ class Algorithm {
         SEED("SEED"),
         LEA("LEA"),
         DES("DES"),
+        RC4("RC4"),
         TRIPLE_DES("DESede"),
         RSA("RSA/ECB"),
         RSAECB("RSA/ECB"),
