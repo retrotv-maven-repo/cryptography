@@ -1,4 +1,4 @@
-package dev.retrotv.crypto.twe
+package dev.retrotv.crypto.twe.stream.rc4
 
 import dev.retrotv.crypto.twe.algorithm.stream.RC4
 import dev.retrotv.data.utils.toHexString

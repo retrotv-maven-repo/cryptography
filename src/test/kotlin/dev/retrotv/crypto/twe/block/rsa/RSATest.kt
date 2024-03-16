@@ -1,4 +1,4 @@
-package dev.retrotv.crypto.twe.rsa
+package dev.retrotv.crypto.twe.block.rsa
 
 internal class RSATest {
 //    @Test

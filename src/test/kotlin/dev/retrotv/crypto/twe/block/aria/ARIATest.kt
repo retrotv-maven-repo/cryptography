@@ -1,4 +1,4 @@
-package dev.retrotv.crypto.twe.aria
+package dev.retrotv.crypto.twe.block.aria
 
 import dev.retrotv.crypto.twe.AEADResult
 import dev.retrotv.crypto.twe.Params

@@ -10,7 +10,7 @@ import dev.retrotv.data.utils.*
  * @author  yjj8353
  * @since   1.0.0
  */
-interface BCTwoWayEncryption {
+interface TwoWayEncryption {
 
     /**
      * 데이터를 암호화 하고, 암호화 된 데이터를 반환 합니다.

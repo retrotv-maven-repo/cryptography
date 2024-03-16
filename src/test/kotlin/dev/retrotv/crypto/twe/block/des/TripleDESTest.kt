@@ -1,4 +1,4 @@
-package dev.retrotv.crypto.twe.des
+package dev.retrotv.crypto.twe.block.des
 
 import dev.retrotv.crypto.twe.Params
 import dev.retrotv.crypto.twe.ParamsWithIV

@@ -20,7 +20,7 @@ repositories {
 
 dependencies {
     api("commons-codec:commons-codec:1.16.0")
-    api("org.springframework.security:spring-security-core:5.8.9")
+    api("org.springframework.security:spring-security-core:5.8.10")
     implementation("com.github.retrotv-maven-repo:data-utils:0.14.0-alpha")
     implementation("com.github.retrotv-maven-repo:random-value:0.6.0-alpha")
 

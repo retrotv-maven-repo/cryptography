@@ -1,4 +1,4 @@
-package dev.retrotv.crypto.twe.lea
+package dev.retrotv.crypto.twe.block.lea
 
 import dev.retrotv.crypto.twe.AEADResult
 import dev.retrotv.crypto.twe.Params

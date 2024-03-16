@@ -2,19 +2,20 @@ package dev.retrotv.crypto.twe.algorithm.stream
 
 import dev.retrotv.crypto.twe.algorithm.StreamCipherAlgorithm
 import dev.retrotv.enums.Algorithm
+import org.bouncycastle.crypto.engines.ChaChaEngine
 import org.bouncycastle.crypto.engines.RC4Engine
 import org.bouncycastle.crypto.params.KeyParameter
+import org.bouncycastle.crypto.params.ParametersWithIV
 
-@Deprecated("해킹에 취약한 양방향 암호화 알고리즘 입니다.")
-class RC4 : StreamCipherAlgorithm() {
+class ChaCha20 : StreamCipherAlgorithm() {
 
     init {
-        this.engine = RC4Engine()
-        this.algorithm = Algorithm.Cipher.RC4
+        this.engine = ChaChaEngine(20)
+        this.algorithm = Algorithm.Cipher.CHACHA20
     }
 
-    fun encrypt(data: ByteArray, key: ByteArray): ByteArray {
-        val params = KeyParameter(key)
+    fun encrypt(data: ByteArray, key: ByteArray, iv: ByteArray): ByteArray {
+        val params = ParametersWithIV(KeyParameter(key), iv)
         this.engine.init(true, params)
 
         val encryptedData = ByteArray(data.size)
@@ -23,8 +24,8 @@ class RC4 : StreamCipherAlgorithm() {
         return encryptedData
     }
 
-    fun decrypt(encryptedData: ByteArray, key: ByteArray): ByteArray {
-        val params = KeyParameter(key)
+    fun decrypt(encryptedData: ByteArray, key: ByteArray, iv: ByteArray): ByteArray {
+        val params = ParametersWithIV(KeyParameter(key), iv)
         this.engine.init(true, params)
 
         val originalData = ByteArray(encryptedData.size)
