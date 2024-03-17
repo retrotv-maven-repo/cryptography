@@ -1,6 +1,8 @@
 package dev.retrotv.crypto.twe
 
 import dev.retrotv.crypto.exception.CryptoFailException
+import dev.retrotv.crypto.twe.param.Params
+import dev.retrotv.crypto.twe.result.Result
 import dev.retrotv.data.enums.EncodeFormat.*
 import dev.retrotv.data.utils.*
 

@@ -1,7 +1,7 @@
 package dev.retrotv.crypto.twe.block.des
 
-import dev.retrotv.crypto.twe.Params
-import dev.retrotv.crypto.twe.ParamsWithIV
+import dev.retrotv.crypto.twe.param.Params
+import dev.retrotv.crypto.twe.param.ParamsWithIV
 import dev.retrotv.crypto.twe.algorithm.block.TripleDES
 import dev.retrotv.crypto.twe.mode.*
 import dev.retrotv.utils.generate

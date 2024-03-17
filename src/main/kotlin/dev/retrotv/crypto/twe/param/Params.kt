@@ -1,4 +1,4 @@
-package dev.retrotv.crypto.twe
+package dev.retrotv.crypto.twe.param
 
 open class Params(
     open val key: ByteArray

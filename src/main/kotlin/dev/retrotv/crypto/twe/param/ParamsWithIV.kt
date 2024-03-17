@@ -1,4 +1,4 @@
-package dev.retrotv.crypto.twe
+package dev.retrotv.crypto.twe.param
 
 class ParamsWithIV(
     override val key: ByteArray,

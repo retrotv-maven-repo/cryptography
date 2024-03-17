@@ -1,6 +1,6 @@
 //package dev.retrotv.crypto.twe.data
 //
-//import dev.retrotv.crypto.twe.Params
+//import dev.retrotv.crypto.twe.param.Params
 //import dev.retrotv.crypto.twe.algorithm.block.AES
 //import dev.retrotv.crypto.twe.mode.ECB
 //import io.github.serpro69.kfaker.Faker

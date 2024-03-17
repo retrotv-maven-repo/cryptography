@@ -1,8 +1,8 @@
 package dev.retrotv.crypto.twe.mode
 
-import dev.retrotv.crypto.twe.Params
-import dev.retrotv.crypto.twe.ParamsWithIV
-import dev.retrotv.crypto.twe.Result
+import dev.retrotv.crypto.twe.param.Params
+import dev.retrotv.crypto.twe.param.ParamsWithIV
+import dev.retrotv.crypto.twe.result.Result
 import dev.retrotv.crypto.twe.algorithm.BlockCipherAlgorithm
 import dev.retrotv.enums.Mode.CTS
 import org.bouncycastle.crypto.modes.CBCBlockCipher

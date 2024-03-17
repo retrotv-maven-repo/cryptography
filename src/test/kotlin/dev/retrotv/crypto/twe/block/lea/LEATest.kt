@@ -1,8 +1,8 @@
 package dev.retrotv.crypto.twe.block.lea
 
-import dev.retrotv.crypto.twe.AEADResult
-import dev.retrotv.crypto.twe.Params
-import dev.retrotv.crypto.twe.ParamsWithIV
+import dev.retrotv.crypto.twe.result.AEADResult
+import dev.retrotv.crypto.twe.param.Params
+import dev.retrotv.crypto.twe.param.ParamsWithIV
 import dev.retrotv.crypto.twe.algorithm.BlockCipherAlgorithm
 import dev.retrotv.crypto.twe.algorithm.block.LEA
 import dev.retrotv.crypto.twe.mode.*

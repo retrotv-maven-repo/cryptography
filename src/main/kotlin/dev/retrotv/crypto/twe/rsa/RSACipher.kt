@@ -1,7 +1,7 @@
 package dev.retrotv.crypto.twe.rsa
 
 import dev.retrotv.crypto.exception.CryptoFailException
-import dev.retrotv.crypto.twe.Result
+import dev.retrotv.crypto.twe.result.Result
 import dev.retrotv.enums.Algorithm
 import org.bouncycastle.crypto.CipherParameters
 import org.bouncycastle.crypto.encodings.PKCS1Encoding
