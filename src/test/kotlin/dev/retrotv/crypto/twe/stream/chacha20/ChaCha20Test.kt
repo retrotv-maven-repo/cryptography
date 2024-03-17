@@ -2,6 +2,8 @@ package dev.retrotv.crypto.twe.stream.chacha20
 
 import dev.retrotv.crypto.twe.algorithm.stream.ChaCha20
 import dev.retrotv.data.utils.toHexString
+import org.bouncycastle.crypto.params.KeyParameter
+import org.bouncycastle.crypto.params.ParametersWithIV
 import org.junit.jupiter.api.DisplayName
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
@@ -13,7 +15,7 @@ class ChaCha20Test {
     @DisplayName("ChaCha20 암호화 테스트")
     fun test_ChaCha20() {
         var messageString = "The lazy dog jumps over the brown fox!"
-        for (i: Int in 1..5) {
+        for (i: Int in 1..6) {
             messageString += messageString
         }
         val message = messageString.toByteArray()
@@ -41,6 +43,20 @@ class ChaCha20Test {
         bais = ByteArrayInputStream(encryptedData)
         baos = ByteArrayOutputStream()
         chacha20.decrypt(bais, baos, key, iv)
+
+        println(String(baos.toByteArray()))
+
+        bais = ByteArrayInputStream(message)
+        baos = ByteArrayOutputStream()
+        chacha20.encrypt(bais, baos, ParametersWithIV(KeyParameter(key), iv))
+
+        encryptedData = baos.toByteArray()
+
+        println(toHexString(encryptedData))
+
+        bais = ByteArrayInputStream(encryptedData)
+        baos = ByteArrayOutputStream()
+        chacha20.decrypt(bais, baos, ParametersWithIV(KeyParameter(key), iv))
 
         println(String(baos.toByteArray()))
     }

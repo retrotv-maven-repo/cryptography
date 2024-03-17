@@ -3,7 +3,6 @@ package dev.retrotv.crypto.twe.algorithm.stream
 import dev.retrotv.crypto.twe.algorithm.StreamCipherAlgorithm
 import dev.retrotv.enums.Algorithm
 import org.bouncycastle.crypto.engines.ChaChaEngine
-import org.bouncycastle.crypto.engines.RC4Engine
 import org.bouncycastle.crypto.io.CipherInputStream
 import org.bouncycastle.crypto.io.CipherOutputStream
 import org.bouncycastle.crypto.params.KeyParameter
