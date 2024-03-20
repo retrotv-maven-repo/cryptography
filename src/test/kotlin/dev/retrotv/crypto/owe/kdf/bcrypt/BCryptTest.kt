@@ -1,6 +1,7 @@
 package dev.retrotv.crypto.owe.kdf.bcrypt
 
 import dev.retrotv.crypto.owe.OWETest
+import dev.retrotv.crypto.owe.password.bcrypt.BCrypt
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 

@@ -1,6 +1,6 @@
-package dev.retrotv.crypto.owe.kdf.argon2
+package dev.retrotv.crypto.owe.password.argon2
 
-import dev.retrotv.crypto.owe.kdf.KDF
+import dev.retrotv.crypto.owe.password.KDF
 import org.springframework.security.crypto.argon2.Argon2PasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 

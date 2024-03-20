@@ -1,6 +1,6 @@
-package dev.retrotv.crypto.owe.kdf.pbkdf2
+package dev.retrotv.crypto.owe.password.pbkdf2
 
-import dev.retrotv.crypto.owe.kdf.KDF
+import dev.retrotv.crypto.owe.password.KDF
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder.SecretKeyFactoryAlgorithm

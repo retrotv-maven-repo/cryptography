@@ -34,22 +34,25 @@ fun hashing(algorithm: Algorithm.Hash, data: ByteArray): ByteArray {
         SHA3224 -> {
             val md = SHA3.DigestSHA3(224)
             md.update(data)
-            return md.digest()
+            md.digest()
         }
+
         SHA3256 -> {
             val md = SHA3.DigestSHA3(256)
             md.update(data)
-            return md.digest()
+            md.digest()
         }
+
         SHA3384 -> {
             val md = SHA3.DigestSHA3(384)
             md.update(data)
-            return md.digest()
+            md.digest()
         }
+
         SHA3512 -> {
             val md = SHA3.DigestSHA3(512)
             md.update(data)
-            return md.digest()
+            md.digest()
         }
     }
 }

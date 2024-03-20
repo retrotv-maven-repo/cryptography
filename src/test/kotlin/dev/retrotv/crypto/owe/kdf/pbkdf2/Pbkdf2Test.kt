@@ -1,6 +1,7 @@
 package dev.retrotv.crypto.owe.kdf.pbkdf2
 
 import dev.retrotv.crypto.owe.OWETest
+import dev.retrotv.crypto.owe.password.pbkdf2.Pbkdf2
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 

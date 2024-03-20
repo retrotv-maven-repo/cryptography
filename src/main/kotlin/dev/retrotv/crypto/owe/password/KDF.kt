@@ -1,4 +1,4 @@
-package dev.retrotv.crypto.owe.kdf
+package dev.retrotv.crypto.owe.password
 
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
