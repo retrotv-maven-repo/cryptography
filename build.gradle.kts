@@ -19,19 +19,16 @@ repositories {
 }
 
 dependencies {
-    api("commons-codec:commons-codec:1.16.0")
-    api("org.springframework.security:spring-security-core:5.8.10")
+    api("commons-codec:commons-codec:1.16.1")
+    api("org.springframework.security:spring-security-core:5.8.11")
     implementation("com.github.retrotv-maven-repo:data-utils:0.14.0-alpha")
     implementation("com.github.retrotv-maven-repo:random-value:0.6.0-alpha")
 
-    // Argon2, SCrypt java.lang.NoClassDefFoundError 방지용
-    implementation("org.bouncycastle:bcprov-jdk18on:1.76")
-    implementation("org.apache.logging.log4j:log4j-core:2.20.0")
-
     // Bouncy Castle
-    implementation("org.bouncycastle:bcprov-jdk18on:1.77")
+    implementation("org.bouncycastle:bcprov-jdk18on:1.78")
+    implementation("org.apache.logging.log4j:log4j-core:2.23.1")
 
-    testImplementation("io.github.serpro69:kotlin-faker:1.15.0")
+    testImplementation("io.github.serpro69:kotlin-faker:1.16.0")
     testImplementation("org.json:json:20231013")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.0")
     testImplementation("org.junit.jupiter:junit-jupiter-params:5.10.0")
