@@ -1,6 +1,6 @@
 package dev.retrotv.crypto.owe.hash
 
-import dev.retrotv.data.utils.toHexString
+import dev.retrotv.data.utils.ByteUtils
 import dev.retrotv.enums.Algorithm
 import dev.retrotv.utils.hashing
 import org.apache.logging.log4j.LogManager
@@ -16,7 +16,7 @@ abstract class Hash : FileHash, PlaintextHash, PasswordEncoderWithSalt {
     protected lateinit var algorithm: Algorithm.Hash
 
     override fun hash(data: ByteArray): String {
-        return toHexString(hashing(this.algorithm, data))
+        return ByteUtils.toHexString(hashing(this.algorithm, data))
     }
 
     override fun encode(rawPassword: CharSequence): String {

@@ -1,7 +1,7 @@
 package dev.retrotv.crypto.twe.stream.rc4
 
 import dev.retrotv.crypto.twe.algorithm.stream.RC4
-import dev.retrotv.data.utils.toHexString
+import dev.retrotv.data.utils.ByteUtils
 import org.junit.jupiter.api.DisplayName
 import kotlin.test.Test
 
@@ -15,7 +15,7 @@ class RC4Test {
 
         val rc4 = RC4()
         val encryptedData = rc4.encrypt(message, key)
-        println(toHexString(encryptedData))
+        println(ByteUtils.toHexString(encryptedData))
 
         val originalData = rc4.decrypt(encryptedData, key)
         println(String(originalData))

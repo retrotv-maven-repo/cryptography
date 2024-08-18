@@ -2,7 +2,7 @@ package dev.retrotv.crypto.owe.mac
 
 import dev.retrotv.crypto.common.ExtendedSecretKeySpec
 import dev.retrotv.data.enums.EncodeFormat
-import dev.retrotv.data.utils.toHexString
+import dev.retrotv.data.utils.ByteUtils
 import dev.retrotv.enums.Algorithm
 import dev.retrotv.utils.encode
 import dev.retrotv.utils.generate
@@ -32,7 +32,7 @@ abstract class HMAC {
         mac.init(this.key)
 
         val hashCode = mac.doFinal(data)
-        return toHexString(hashCode)
+        return ByteUtils.toHexString(hashCode)
     }
 
     @Throws(NoSuchAlgorithmException::class)

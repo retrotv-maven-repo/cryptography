@@ -1,6 +1,6 @@
 package dev.retrotv.crypto.owe.hash
 
-import dev.retrotv.data.utils.read
+import dev.retrotv.data.utils.FileUtils
 import java.io.File
 import java.io.IOException
 
@@ -14,7 +14,7 @@ interface FileHash : BinaryHash {
      * @throws IOException 파일을 읽어들이는 과정에서 오류가 발생할 경우 던짐
      */
     @Throws(IOException::class)
-    fun hash(file: File): String = hash(read(file))
+    fun hash(file: File): String = hash(FileUtils.read(file))
 
     /**
      * file을 해시해 해시 값을 생성한 뒤, 비교할 해시 값과의 일치 여부를 반환합니다.
@@ -28,6 +28,6 @@ interface FileHash : BinaryHash {
     fun matches(file: File, digest: String?): Boolean {
         return if (digest == null) {
             false
-        } else matches(read(file), digest)
+        } else matches(FileUtils.read(file), digest)
     }
 }

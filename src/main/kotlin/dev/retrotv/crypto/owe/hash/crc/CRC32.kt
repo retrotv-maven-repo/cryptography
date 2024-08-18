@@ -1,7 +1,7 @@
 package dev.retrotv.crypto.owe.hash.crc
 
 import dev.retrotv.crypto.owe.hash.Hash
-import dev.retrotv.data.utils.toHexString
+import dev.retrotv.data.utils.ByteUtils
 import dev.retrotv.enums.Algorithm.Hash.CRC32
 import dev.retrotv.utils.hashing
 
@@ -18,7 +18,7 @@ class CRC32 : Hash() {
     }
 
     override fun hash(data: ByteArray): String {
-        return toHexString(hashing(this.algorithm, data)).substring(8)
+        return ByteUtils.toHexString(hashing(this.algorithm, data)).substring(8)
     }
 
     override fun upgradeEncoding(encodedPassword: String?): Boolean {

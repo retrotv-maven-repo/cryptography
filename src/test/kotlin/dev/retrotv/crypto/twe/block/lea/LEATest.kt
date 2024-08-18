@@ -1,13 +1,13 @@
 package dev.retrotv.crypto.twe.block.lea
 
-import dev.retrotv.crypto.twe.result.AEADResult
-import dev.retrotv.crypto.twe.param.Params
-import dev.retrotv.crypto.twe.param.ParamsWithIV
 import dev.retrotv.crypto.twe.algorithm.BlockCipherAlgorithm
 import dev.retrotv.crypto.twe.algorithm.block.LEA
 import dev.retrotv.crypto.twe.mode.*
-import dev.retrotv.data.utils.hexStringToByteArray
-import dev.retrotv.data.utils.toHexString
+import dev.retrotv.crypto.twe.param.Params
+import dev.retrotv.crypto.twe.param.ParamsWithIV
+import dev.retrotv.crypto.twe.result.AEADResult
+import dev.retrotv.data.utils.ByteUtils
+import dev.retrotv.data.utils.StringUtils
 import dev.retrotv.utils.generate
 import org.bouncycastle.crypto.macs.CMac
 import org.bouncycastle.crypto.params.KeyParameter
@@ -145,13 +145,13 @@ class LEATest {
         // 9f615fdfec9954fd9588b1c7c2753cd6
         // fa515800dc26ec1fe956c705b53f40f5
 
-        val result = xorByteArrays(hexStringToByteArray("517ea1bd615dbeef220a95845b86cbc9"), hexStringToByteArray("9f615fdfec9954fd9588b1c7c2753cd6"))
+        val result = xorByteArrays(StringUtils.hexStringToByteArray("517ea1bd615dbeef220a95845b86cbc9"), StringUtils.hexStringToByteArray("9f615fdfec9954fd9588b1c7c2753cd6"))
 
-        println(toHexString(result))
+        println(ByteUtils.toHexString(result))
 
-        println(toHexString(encryptedData.data))
-        println(toHexString(encryptedData.tag))
-        println(toHexString(macData))
+        println(ByteUtils.toHexString(encryptedData.data))
+        println(ByteUtils.toHexString(encryptedData.tag))
+        println(ByteUtils.toHexString(macData))
     }
 
     private fun xorByteArrays(a: ByteArray, b: ByteArray): ByteArray {

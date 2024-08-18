@@ -1,7 +1,6 @@
 package dev.retrotv.crypto.common
 
-import dev.retrotv.data.utils.toBase64String
-import dev.retrotv.data.utils.toHexString
+import dev.retrotv.data.utils.ByteUtils
 import dev.retrotv.utils.getMessage
 import java.security.Key
 import javax.crypto.spec.SecretKeySpec
@@ -21,10 +20,10 @@ class ExtendedSecretKeySpec : SecretKeySpec {
             throw NullPointerException(getMessage("exception.nullPointer.encodedKey"))
         }
 
-        return toHexString(this.encoded)
+        return ByteUtils.toHexString(this.encoded)
     }
 
     fun getEncodedByBase64(): String {
-        return toBase64String(this.encoded)
+        return ByteUtils.toBase64String(this.encoded)
     }
 }

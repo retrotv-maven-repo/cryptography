@@ -1,7 +1,7 @@
 package dev.retrotv.crypto.twe.stream.chacha20
 
 import dev.retrotv.crypto.twe.algorithm.stream.ChaCha20
-import dev.retrotv.data.utils.toHexString
+import dev.retrotv.data.utils.ByteUtils
 import org.bouncycastle.crypto.params.KeyParameter
 import org.bouncycastle.crypto.params.ParametersWithIV
 import org.junit.jupiter.api.DisplayName
@@ -27,7 +27,7 @@ class ChaCha20Test {
 
         val chacha20 = ChaCha20()
         var encryptedData = chacha20.encrypt(message, key, iv)
-        println(toHexString(encryptedData))
+        println(ByteUtils.toHexString(encryptedData))
 
         val originalData = chacha20.decrypt(encryptedData, key, iv)
         println(String(originalData))
@@ -38,7 +38,7 @@ class ChaCha20Test {
 
         encryptedData = baos.toByteArray()
 
-        println(toHexString(encryptedData))
+        println(ByteUtils.toHexString(encryptedData))
 
         bais = ByteArrayInputStream(encryptedData)
         baos = ByteArrayOutputStream()
@@ -52,7 +52,7 @@ class ChaCha20Test {
 
         encryptedData = baos.toByteArray()
 
-        println(toHexString(encryptedData))
+        println(ByteUtils.toHexString(encryptedData))
 
         bais = ByteArrayInputStream(encryptedData)
         baos = ByteArrayOutputStream()

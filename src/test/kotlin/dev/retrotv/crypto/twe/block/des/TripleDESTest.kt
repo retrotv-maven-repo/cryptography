@@ -1,9 +1,9 @@
 package dev.retrotv.crypto.twe.block.des
 
-import dev.retrotv.crypto.twe.param.Params
-import dev.retrotv.crypto.twe.param.ParamsWithIV
 import dev.retrotv.crypto.twe.algorithm.block.TripleDES
 import dev.retrotv.crypto.twe.mode.*
+import dev.retrotv.crypto.twe.param.Params
+import dev.retrotv.crypto.twe.param.ParamsWithIV
 import dev.retrotv.utils.generate
 import org.junit.jupiter.api.DisplayName
 import kotlin.test.Test
