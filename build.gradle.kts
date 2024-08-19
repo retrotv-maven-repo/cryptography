@@ -101,7 +101,7 @@ tasks.jacocoTestReport {
 
 sonar {
     properties {
-        property("sonar.projectKey", "retrotv-maven-repo_crtptography")
+        property("sonar.projectKey", "retrotv-maven-repo_cryptography")
         property("sonar.organization", "retrotv-maven-repo")
         property("sonar.host.url", "https://sonarcloud.io")
         property("sonar.coverage.exclusions", "**/exception/*,**/enums/*")
