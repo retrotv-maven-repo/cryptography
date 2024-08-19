@@ -2,9 +2,10 @@
 package dev.retrotv.utils
 
 import dev.retrotv.random.PasswordGenerator
-import dev.retrotv.random.RandomStringGenerator
 import dev.retrotv.random.enums.SecurityStrength
+import dev.retrotv.random.enums.SecurityStrength.*
 import org.apache.logging.log4j.LogManager
+import java.security.SecureRandom
 
 private val log = LogManager.getLogger()
 private val SALT_GENERATE_EXCEPTION = getMessage("exception.saltGenerate")
@@ -16,9 +17,9 @@ private val SALT_GENERATE_EXCEPTION = getMessage("exception.saltGenerate")
  * @return 생성된 소금
  */
 fun generateSalt(): String {
-    val rv: RandomStringGenerator = PasswordGenerator(SecurityStrength.MIDDLE)
+    val rv = PasswordGenerator(MIDDLE, SecureRandom())
     rv.generate(16)
-    return rv.getString()
+    return rv.getValue()
 }
 
 /**
@@ -29,9 +30,9 @@ fun generateSalt(): String {
  * @return 생성된 소금
  */
 fun generateSalt(len: Int): String {
-    val rv: RandomStringGenerator = PasswordGenerator(SecurityStrength.MIDDLE)
+    val rv = PasswordGenerator(MIDDLE, SecureRandom())
     rv.generate(len)
-    return rv.getString()
+    return rv.getValue()
 }
 
 /**
@@ -42,9 +43,9 @@ fun generateSalt(len: Int): String {
  * @return 생성된 소금
  */
 fun generateSalt(securityStrength: SecurityStrength): String {
-    val rv: RandomStringGenerator = PasswordGenerator(securityStrength)
+    val rv = PasswordGenerator(securityStrength, SecureRandom())
     rv.generate(16)
-    return rv.getString()
+    return rv.getValue()
 }
 
 /**
@@ -55,7 +56,7 @@ fun generateSalt(securityStrength: SecurityStrength): String {
  * @return 생성된 소금
  */
 fun generateSalt(len: Int, securityStrength: SecurityStrength): String {
-    val rv: RandomStringGenerator = PasswordGenerator(securityStrength)
+    val rv = PasswordGenerator(securityStrength, SecureRandom())
     rv.generate(len)
-    return rv.getString()
+    return rv.getValue()
 }
