@@ -43,7 +43,7 @@ sourceSets {
 val apacheCommonCodec = "1.17.1"
 val springSecurityCore = "5.8.11"
 val dataUtils = "0.16.0-alpha"
-val randomValue = "0.10.0-alpha"
+val randomValue = "0.20.0-alpha"
 val bouncyCastle = "1.78.1"
 val log4j = "2.23.1"
 val faker = "1.16.0"

@@ -18,8 +18,7 @@ private val SALT_GENERATE_EXCEPTION = getMessage("exception.saltGenerate")
  */
 fun generateSalt(): String {
     val rv = PasswordGenerator(MIDDLE, SecureRandom())
-    rv.generate(16)
-    return rv.getValue()
+    return rv.generate(16)
 }
 
 /**
@@ -31,8 +30,7 @@ fun generateSalt(): String {
  */
 fun generateSalt(len: Int): String {
     val rv = PasswordGenerator(MIDDLE, SecureRandom())
-    rv.generate(len)
-    return rv.getValue()
+    return rv.generate(len)
 }
 
 /**
@@ -44,8 +42,7 @@ fun generateSalt(len: Int): String {
  */
 fun generateSalt(securityStrength: SecurityStrength): String {
     val rv = PasswordGenerator(securityStrength, SecureRandom())
-    rv.generate(16)
-    return rv.getValue()
+    return rv.generate(16)
 }
 
 /**
@@ -57,6 +54,5 @@ fun generateSalt(securityStrength: SecurityStrength): String {
  */
 fun generateSalt(len: Int, securityStrength: SecurityStrength): String {
     val rv = PasswordGenerator(securityStrength, SecureRandom())
-    rv.generate(len)
-    return rv.getValue()
+    return rv.generate(len)
 }
