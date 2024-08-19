@@ -35,7 +35,7 @@ repositories {
 sourceSets {
     main {
         java {
-            exclude("src/main/java/kr/**")
+            exclude("kr/re/**")
         }
     }
 }
@@ -112,6 +112,6 @@ sonar {
         property("sonar.projectKey", "retrotv-maven-repo_cryptography")
         property("sonar.organization", "retrotv-maven-repo")
         property("sonar.host.url", "https://sonarcloud.io")
-        property("sonar.coverage.exclusions", "**/exception/*,**/enums/*,src/main/java/kr/**")
+        property("sonar.coverage.exclusions", "**/exception/*,**/enums/*,kr/re/**")
     }
 }
