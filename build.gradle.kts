@@ -112,6 +112,7 @@ sonar {
         property("sonar.projectKey", "retrotv-maven-repo_cryptography")
         property("sonar.organization", "retrotv-maven-repo")
         property("sonar.host.url", "https://sonarcloud.io")
-        property("sonar.coverage.exclusions", "**/exception/*,**/enums/*,src/main/java/kr/re/**")
+        property("sonar.exclusions", "src/main/java/**")
+        property("sonar.coverage.exclusions", "**/exception/*,**/enums/*,src/main/java/**")
     }
 }
