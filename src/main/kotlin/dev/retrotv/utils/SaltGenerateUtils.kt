@@ -4,11 +4,7 @@ package dev.retrotv.utils
 import dev.retrotv.random.PasswordGenerator
 import dev.retrotv.random.enums.SecurityStrength
 import dev.retrotv.random.enums.SecurityStrength.*
-import org.apache.logging.log4j.LogManager
 import java.security.SecureRandom
-
-private val log = LogManager.getLogger()
-private val SALT_GENERATE_EXCEPTION = getMessage("exception.saltGenerate")
 
 /**
  * 소금을 생성하고 반환합니다.
