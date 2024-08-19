@@ -32,6 +32,14 @@ repositories {
     maven { setUrl("https://jitpack.io") }
 }
 
+sourceSets {
+    main {
+        java {
+            exclude("src/main/java/kr/**")
+        }
+    }
+}
+
 val apacheCommonCodec = "1.17.1"
 val springSecurityCore = "5.8.11"
 val dataUtils = "0.16.0-alpha"
@@ -104,6 +112,6 @@ sonar {
         property("sonar.projectKey", "retrotv-maven-repo_cryptography")
         property("sonar.organization", "retrotv-maven-repo")
         property("sonar.host.url", "https://sonarcloud.io")
-        property("sonar.coverage.exclusions", "**/exception/*,**/enums/*,src/main/java/**")
+        property("sonar.coverage.exclusions", "**/exception/*,**/enums/*,src/main/java/kr/**")
     }
 }
