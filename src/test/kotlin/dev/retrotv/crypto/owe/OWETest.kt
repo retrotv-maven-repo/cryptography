@@ -8,11 +8,14 @@ import dev.retrotv.crypto.owe.hash.sha.*
 import dev.retrotv.enums.Algorithm
 import org.json.JSONObject
 import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Test
 import org.springframework.security.crypto.password.PasswordEncoder
 import java.io.*
 import java.net.URISyntaxException
 import java.nio.file.Files
 import java.util.*
+import kotlin.test.assertNotEquals
+import kotlin.test.assertNotNull
 
 open class OWETest : Log() {
     private val PASSWORD = "The quick brown fox jumps over the lazy dog"
@@ -191,5 +194,15 @@ open class OWETest : Log() {
 
         log.info(json)
         return json
+    }
+
+    @Test
+    fun test_hash() {
+        val hash = SHA256()
+        var hashedValue = hash.hash("The quick brown fox jumps over the lazy dog")
+        assertNotNull(hashedValue)
+        assertNotEquals("The quick brown fox jumps over the lazy dog", hashedValue)
+
+        hashedValue = hash.hash("The quick brown fox jumps over the lazy dog", Charsets.UTF_8)
     }
 }
