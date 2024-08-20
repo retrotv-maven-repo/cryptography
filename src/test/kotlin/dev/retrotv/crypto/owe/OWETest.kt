@@ -14,10 +14,13 @@ import java.io.*
 import java.net.URISyntaxException
 import java.nio.file.Files
 import java.util.*
+import kotlin.test.assertFalse
 import kotlin.test.assertNotEquals
 import kotlin.test.assertNotNull
+import kotlin.test.assertTrue
 
 open class OWETest : Log() {
+    private val file = this.javaClass.getClassLoader().getResource("hash_code.txt")
     private val PASSWORD = "The quick brown fox jumps over the lazy dog"
     private val CHECKSUM = this.javaClass.getClassLoader().getResource("hash_code")
     private val RESOURCE = this.javaClass.getClassLoader().getResource("hash_code_test_file.txt")
@@ -204,5 +207,16 @@ open class OWETest : Log() {
         assertNotEquals("The quick brown fox jumps over the lazy dog", hashedValue)
 
         hashedValue = hash.hash("The quick brown fox jumps over the lazy dog", Charsets.UTF_8)
+    }
+
+    @Test
+    fun test_file() {
+        val hash = SHA256()
+        val file = File(Objects.requireNonNull(RESOURCE).toURI())
+        val hashedValue = hash.hash(file)
+        assertNotNull(hashedValue)
+
+        assertTrue(hash.matches(file, hashedValue))
+        assertFalse(hash.matches(file, null))
     }
 }
