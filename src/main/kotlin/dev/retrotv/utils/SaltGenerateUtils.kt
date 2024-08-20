@@ -2,9 +2,9 @@
 package dev.retrotv.utils
 
 import dev.retrotv.random.PasswordGenerator
-import dev.retrotv.random.RandomStringGenerator
 import dev.retrotv.random.enums.SecurityStrength
-import dev.retrotv.random.enums.SecurityStrength.MIDDLE
+import dev.retrotv.random.enums.SecurityStrength.*
+import java.security.SecureRandom
 
 /**
  * 소금을 생성하고 반환합니다.
@@ -12,10 +12,9 @@ import dev.retrotv.random.enums.SecurityStrength.MIDDLE
  *
  * @return 생성된 소금
  */
-fun generateSalt(): String? {
-    val rv: RandomStringGenerator = PasswordGenerator(MIDDLE)
-    rv.generate(16)
-    return rv.getString()
+fun generateSalt(): String {
+    val rv = PasswordGenerator(MIDDLE, SecureRandom())
+    return rv.generate(16)
 }
 
 /**
@@ -25,10 +24,9 @@ fun generateSalt(): String? {
  * @param len 생성할 소금의 길이
  * @return 생성된 소금
  */
-fun generateSalt(len: Int): String? {
-    val rv: RandomStringGenerator = PasswordGenerator(MIDDLE)
-    rv.generate(len)
-    return rv.getString()
+fun generateSalt(len: Int): String {
+    val rv = PasswordGenerator(MIDDLE, SecureRandom())
+    return rv.generate(len)
 }
 
 /**
@@ -38,10 +36,9 @@ fun generateSalt(len: Int): String? {
  * @param securityStrength 보안 강도, [SecurityStrength] 참조
  * @return 생성된 소금
  */
-fun generateSalt(securityStrength: SecurityStrength): String? {
-    val rv: RandomStringGenerator = PasswordGenerator(securityStrength)
-    rv.generate(16)
-    return rv.getString()
+fun generateSalt(securityStrength: SecurityStrength): String {
+    val rv = PasswordGenerator(securityStrength, SecureRandom())
+    return rv.generate(16)
 }
 
 /**
@@ -51,8 +48,7 @@ fun generateSalt(securityStrength: SecurityStrength): String? {
  * @param securityStrength 보안 강도, [SecurityStrength] 참조
  * @return 생성된 소금
  */
-fun generateSalt(len: Int, securityStrength: SecurityStrength): String? {
-    val rv: RandomStringGenerator = PasswordGenerator(securityStrength)
-    rv.generate(len)
-    return rv.getString()
+fun generateSalt(len: Int, securityStrength: SecurityStrength): String {
+    val rv = PasswordGenerator(securityStrength, SecureRandom())
+    return rv.generate(len)
 }

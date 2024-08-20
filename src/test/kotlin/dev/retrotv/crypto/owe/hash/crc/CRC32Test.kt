@@ -8,23 +8,14 @@ import org.junit.jupiter.api.Test
 internal class CRC32Test : OWETest() {
     @Test
     @DisplayName("CRC32 File hash 테스트")
-    @Throws(Exception::class)
     fun fileHashTest() {
         fileHashTest(Algorithm.Hash.CRC32)
     }
 
     @Test
     @DisplayName("CRC32 File hash matches 테스트")
-    @Throws(Exception::class)
     fun fileHashMatchesTest() {
         fileHashMatchesTest(CRC32(), Algorithm.Hash.CRC32)
-    }
-
-    @Test
-    @DisplayName("CRC32 File and File matches 테스트")
-    @Throws(Exception::class)
-    fun fileMatchesTest() {
-        fileMatchesTest(CRC32())
     }
 
     @Test

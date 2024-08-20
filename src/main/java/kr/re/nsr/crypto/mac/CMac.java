@@ -1,8 +1,8 @@
 package kr.re.nsr.crypto.mac;
 
-import kr.re.nsr.crypto.Mac;
 import kr.re.nsr.crypto.BlockCipher;
 import kr.re.nsr.crypto.BlockCipher.Mode;
+import kr.re.nsr.crypto.Mac;
 
 import java.util.Arrays;
 

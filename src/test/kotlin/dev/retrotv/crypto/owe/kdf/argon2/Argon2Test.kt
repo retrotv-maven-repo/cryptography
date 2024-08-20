@@ -1,6 +1,7 @@
 package dev.retrotv.crypto.owe.kdf.argon2
 
 import dev.retrotv.crypto.owe.OWETest
+import dev.retrotv.crypto.owe.password.argon2.Argon2
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 

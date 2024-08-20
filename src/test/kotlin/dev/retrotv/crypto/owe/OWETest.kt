@@ -2,24 +2,28 @@ package dev.retrotv.crypto.owe
 
 import dev.retrotv.common.Log
 import dev.retrotv.crypto.owe.hash.Hash
-import dev.retrotv.crypto.owe.hash.FileHash
 import dev.retrotv.crypto.owe.hash.crc.CRC32
 import dev.retrotv.crypto.owe.hash.md.*
 import dev.retrotv.crypto.owe.hash.sha.*
 import dev.retrotv.enums.Algorithm
 import org.json.JSONObject
 import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Test
 import org.springframework.security.crypto.password.PasswordEncoder
 import java.io.*
 import java.net.URISyntaxException
 import java.nio.file.Files
 import java.util.*
+import kotlin.test.assertFalse
+import kotlin.test.assertNotEquals
+import kotlin.test.assertNotNull
+import kotlin.test.assertTrue
 
 open class OWETest : Log() {
+    private val file = this.javaClass.getClassLoader().getResource("hash_code.txt")
     private val PASSWORD = "The quick brown fox jumps over the lazy dog"
     private val CHECKSUM = this.javaClass.getClassLoader().getResource("hash_code")
     private val RESOURCE = this.javaClass.getClassLoader().getResource("hash_code_test_file.txt")
-    private val RESOURCE2 = this.javaClass.getClassLoader().getResource("hash_code_test_file2.txt")
 
     @Throws(IOException::class)
     protected fun fileHashTest(algorithm: Algorithm.Hash) {
@@ -38,6 +42,9 @@ open class OWETest : Log() {
         } catch (e: IOException) {
             throw IOException("파일을 읽어들이는 과정에서 예상치 못한 오류가 발생했습니다.")
         }
+
+        println(getHash(algorithm))
+        println(hash(algorithm, fileData))
 
         Assertions.assertEquals(getHash(algorithm), hash(algorithm, fileData))
     }
@@ -61,15 +68,6 @@ open class OWETest : Log() {
         }
 
         Assertions.assertTrue(fileHash.matches(fileData, getHash(algorithm)))
-    }
-
-    @Throws(IOException::class)
-    protected fun fileMatchesTest(fileHash: FileHash) {
-        if (RESOURCE != null && RESOURCE2 != null) {
-            Assertions.assertTrue(fileHash.matches(File(RESOURCE.file), File(RESOURCE2.file)))
-        } else {
-            Assertions.fail<Any>()
-        }
     }
 
     protected fun passwordEncryptAndMatchesTest(password: PasswordEncoder) {
@@ -132,6 +130,26 @@ open class OWETest : Log() {
                 hash.hash(fileData)
             }
 
+            Algorithm.Hash.SHA3224 -> {
+                val hash: Hash = SHA3224()
+                hash.hash(fileData)
+            }
+
+            Algorithm.Hash.SHA3256 -> {
+                val hash: Hash = SHA3256()
+                hash.hash(fileData)
+            }
+
+            Algorithm.Hash.SHA3384 -> {
+                val hash: Hash = SHA3384()
+                hash.hash(fileData)
+            }
+
+            Algorithm.Hash.SHA3512 -> {
+                val hash: Hash = SHA3512()
+                hash.hash(fileData)
+            }
+
             else -> null
         }
     }
@@ -151,6 +169,10 @@ open class OWETest : Log() {
             Algorithm.Hash.SHA512 -> file1.getString(Algorithm.Hash.SHA512.label())
             Algorithm.Hash.SHA512224 -> file1.getString(Algorithm.Hash.SHA512224.label())
             Algorithm.Hash.SHA512256 -> file1.getString(Algorithm.Hash.SHA512256.label())
+            Algorithm.Hash.SHA3224 -> file1.getString(Algorithm.Hash.SHA3224.label())
+            Algorithm.Hash.SHA3256 -> file1.getString(Algorithm.Hash.SHA3256.label())
+            Algorithm.Hash.SHA3384 -> file1.getString(Algorithm.Hash.SHA3384.label())
+            Algorithm.Hash.SHA3512 -> file1.getString(Algorithm.Hash.SHA3512.label())
             else -> null
         }
     }
@@ -175,5 +197,26 @@ open class OWETest : Log() {
 
         log.info(json)
         return json
+    }
+
+    @Test
+    fun test_hash() {
+        val hash = SHA256()
+        var hashedValue = hash.hash("The quick brown fox jumps over the lazy dog")
+        assertNotNull(hashedValue)
+        assertNotEquals("The quick brown fox jumps over the lazy dog", hashedValue)
+
+        hashedValue = hash.hash("The quick brown fox jumps over the lazy dog", Charsets.UTF_8)
+    }
+
+    @Test
+    fun test_file() {
+        val hash = SHA256()
+        val file = File(Objects.requireNonNull(RESOURCE).toURI())
+        val hashedValue = hash.hash(file)
+        assertNotNull(hashedValue)
+
+        assertTrue(hash.matches(file, hashedValue))
+        assertFalse(hash.matches(file, null))
     }
 }

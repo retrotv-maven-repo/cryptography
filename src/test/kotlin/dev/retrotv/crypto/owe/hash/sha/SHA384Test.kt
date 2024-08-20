@@ -8,25 +8,14 @@ import org.junit.jupiter.api.Test
 class SHA384Test : OWETest() {
     @Test
     @DisplayName("SHA384 File hash 테스트")
-    @Throws(Exception::class)
     fun fileHashTest() {
         fileHashTest(Algorithm.Hash.SHA384)
     }
 
     @Test
     @DisplayName("SHA384 File hash matches 테스트")
-    @Throws(Exception::class)
     fun fileHashMatchesTest() {
         fileHashMatchesTest(SHA384(), Algorithm.Hash.SHA384)
-    }
-
-    @Test
-    @DisplayName("SHA384 File and File matches 테스트")
-    @Throws(
-        Exception::class
-    )
-    fun fileMatchesTest() {
-        fileMatchesTest(SHA384())
     }
 
     @Test

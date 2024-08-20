@@ -1,40 +1,20 @@
+@file:JvmName("RSAKeyPairGenerator")
 package dev.retrotv.crypto.twe.rsa
 
-import dev.retrotv.crypto.exception.KeyGenerateException
-import dev.retrotv.crypto.twe.KeyPairGenerator
 import dev.retrotv.utils.getMessage
-import org.apache.logging.log4j.LogManager
-import java.security.KeyPair
-import java.security.NoSuchAlgorithmException
+import org.bouncycastle.crypto.AsymmetricCipherKeyPair
+import org.bouncycastle.crypto.KeyGenerationParameters
+import org.bouncycastle.crypto.generators.RSAKeyPairGenerator
 import java.security.SecureRandom
 
-class RSAKeyPairGenerator(keyLen: Int) : KeyPairGenerator {
-    private val keyLen: Int
 
-    init {
-        require(keyLen == 1024 || keyLen == 2048) {
-            getMessage("exception.wrongKeyLength")
-        }
-
-        if (keyLen == 1024) {
-            log.debug("key 길이는 2048bit 이상을 권장합니다.")
-        }
-
-        this.keyLen = keyLen
+fun generateKeyPair(keyLen: Int): AsymmetricCipherKeyPair {
+    require(keyLen == 1024 || keyLen == 2048 || keyLen == 3072) {
+        getMessage("exception.wrongKeyLength")
     }
 
-    @Throws(KeyGenerateException::class)
-    override fun generateKeyPair(): KeyPair {
-        return try {
-            val keyPairGenerator = java.security.KeyPairGenerator.getInstance("RSA")
-            keyPairGenerator.initialize(keyLen, SecureRandom())
-            keyPairGenerator.generateKeyPair()
-        } catch (e: NoSuchAlgorithmException) {
-            throw KeyGenerateException(getMessage("exception.noSuchAlgorithm"), e)
-        }
-    }
+    val generator = RSAKeyPairGenerator()
+        generator.init(KeyGenerationParameters(SecureRandom(), keyLen))
 
-    companion object {
-        private val log = LogManager.getLogger()
-    }
+    return generator.generateKeyPair()
 }
