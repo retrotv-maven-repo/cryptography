@@ -20,7 +20,6 @@ import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
 open class OWETest : Log() {
-    private val file = this.javaClass.getClassLoader().getResource("hash_code.txt")
     private val PASSWORD = "The quick brown fox jumps over the lazy dog"
     private val CHECKSUM = this.javaClass.getClassLoader().getResource("hash_code")
     private val RESOURCE = this.javaClass.getClassLoader().getResource("hash_code_test_file.txt")
