@@ -12,7 +12,7 @@ class KDFTest {
         val encodedPassword2 = kdf.encode(password)
         assertNotEquals(encodedPassword, encodedPassword2)
 
-        assertFalse(kdf.matches(null, encodedPassword))
+        assertFalse(kdf.matches(password, null))
         assertTrue(kdf.matches(password, encodedPassword))
         assertTrue(kdf.matches(password, encodedPassword2))
     }
