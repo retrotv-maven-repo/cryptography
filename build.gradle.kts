@@ -1,4 +1,4 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.ir.backend.js.compile
 
 plugins {
     java
@@ -9,101 +9,62 @@ plugins {
     id("org.sonarqube") version "4.0.0.2929"
 }
 
-kotlin {
-    jvmToolchain(8)
+allprojects {
+    group = "dev.retrotv"
+    version = "0.40.0-alpha"
+
+    // Github Action 버전 출력용
+    tasks.register("printVersionName") {
+        description = "이 프로젝트의 버전을 출력합니다."
+        group = JavaBasePlugin.DOCUMENTATION_GROUP
+        println(project.version)
+    }
+
+    repositories {
+        mavenCentral()
+        maven { setUrl("https://jitpack.io") }
+    }
 }
 
-jacoco {
-    toolVersion = "0.8.12"
-}
+subprojects {
+    apply(plugin = "java")
+    apply(plugin = "jacoco")
 
-group = "dev.retrotv"
-version = "0.30.0-alpha"
+    jacoco {
+        toolVersion = "0.8.12"
+    }
 
-// Github Action 버전 출력용
-tasks.register("printVersionName") {
-    description = "이 프로젝트의 버전을 출력합니다."
-    group = JavaBasePlugin.DOCUMENTATION_GROUP
-    println(project.version)
-}
+    tasks.test {
+        useJUnitPlatform()
+        finalizedBy("jacocoTestReport")
+    }
 
-repositories {
-    mavenCentral()
-    maven { setUrl("https://jitpack.io") }
-}
-
-sourceSets {
-    main {
-        java {
-            exclude("kr/re/**")
+    tasks.jacocoTestReport {
+        reports {
+            html.required.set(true)
+            xml.required.set(true)
+            csv.required.set(false)
         }
     }
-}
 
-val apacheCommonCodec = "1.17.1"
-val springSecurityCore = "5.8.11"
-val dataUtils = "0.16.0-alpha"
-val randomValue = "0.20.0-alpha"
-val bouncyCastle = "1.78.1"
-val log4j = "2.23.1"
-val faker = "1.16.0"
-val json = "20240303"
-val junit = "5.11.0"
-
-dependencies {
-    api("commons-codec:commons-codec:${apacheCommonCodec}")
-    api("org.springframework.security:spring-security-core:${springSecurityCore}")
-    implementation("com.github.retrotv-maven-repo:data-utils:${dataUtils}")
-    implementation("com.github.retrotv-maven-repo:random-value:${randomValue}")
-    implementation("org.apache.logging.log4j:log4j-core:${log4j}")
-
-    // Bouncy Castle
-    implementation("org.bouncycastle:bcprov-jdk18on:${bouncyCastle}")
-
-    testImplementation("io.github.serpro69:kotlin-faker:${faker}")
-    testImplementation("org.json:json:${json}")
-    testImplementation("org.junit.jupiter:junit-jupiter-api:${junit}")
-    testImplementation("org.junit.jupiter:junit-jupiter-params:${junit}")
-    testImplementation(kotlin("test"))
-
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junit}")
-}
-
-tasks {
-    compileKotlin {
-        compilerOptions.jvmTarget.set(JvmTarget.JVM_1_8)
+    jacoco {
+        toolVersion = "0.8.12"
     }
-    compileTestKotlin {
-        compilerOptions.jvmTarget.set(JvmTarget.JVM_1_8)
-    }
-}
 
-publishing {
-    publications {
-        create<MavenPublication>("maven") {
-            groupId = project.group.toString()
-            artifactId = "cryptography"
-            version = project.version.toString()
+    val dataUtils = "0.16.0-alpha"
+    val log4j = "2.23.1"
+    val bouncyCastle = "1.78.1"
+    val json = "20240303"
 
-            from(components["java"])
-        }
-    }
-}
+    dependencies {
+        implementation("com.github.retrotv-maven-repo:data-utils:${dataUtils}")
+        implementation("org.apache.logging.log4j:log4j-core:${log4j}")
 
-tasks.test {
-    useJUnitPlatform()
-    finalizedBy("jacocoTestReport")
-}
+        // Bouncy Castle
+        implementation("org.bouncycastle:bcprov-jdk18on:${bouncyCastle}")
 
-tasks.jacocoTestReport {
-    reports {
-
-        // HTML 파일을 생성하도록 설정
-        html.required = true
-
-        // SonarQube에서 Jacoco XML 파일을 읽을 수 있도록 설정
-        xml.required = true
-        csv.required = false
+        testImplementation(kotlin("test"))
+        testImplementation("org.json:json:${json}")
     }
 }
 
@@ -113,6 +74,10 @@ sonar {
         property("sonar.organization", "retrotv-maven-repo")
         property("sonar.host.url", "https://sonarcloud.io")
         property("sonar.exclusions", "src/main/java/**")
-        property("sonar.coverage.exclusions", "**/ExtendedSecretKeySpec.kt,**/exception/*,**/enums/*,**/utils/*,src/main/java/**")
+        property("sonar.coverage.exclusions", "**/ExtendedSecretKeySpec.kt,**/exception/*,**/enums/*,src/main/java/**")
     }
+}
+
+kotlin {
+    jvmToolchain(8)
 }
