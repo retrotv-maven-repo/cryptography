@@ -102,11 +102,19 @@ class HashTest {
 
     private fun hashTest(algorithm: EHash) {
         passwordHashTest(algorithm)
+        fileHashTest(algorithm)
     }
 
     private fun passwordHashTest(algorithm: EHash) {
         val h = Hash.newInstance(algorithm)
-        assertEquals(getHash(algorithm), h.hash(password.toByteArray()))
+        assertEquals(getHash(algorithm), h.hash(password))
+    }
+
+    private fun fileHashTest(algorithm: EHash) {
+        resource?.let {
+            val h = Hash.newInstance(algorithm)
+            assertEquals(h.hash(it.path), h.hash(it.path))
+        }
     }
 
     @Throws(IOException::class)
