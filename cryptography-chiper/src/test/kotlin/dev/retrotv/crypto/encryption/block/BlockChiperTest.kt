@@ -11,12 +11,30 @@ class BlockChiperTest {
         val mode = ECB(blockCipher)
 
         val plainText = "Hello, World!"
-        val key = generateKey(16)
-        val params = Params(key)
+        var key = generateKey(16)
+        var params = Params(key)
 
-        val encrypted = mode.encrypt(plainText.toByteArray(), params)
-        val decrypted = mode.decrypt(encrypted.data, params)
+        var encrypted = mode.encrypt(plainText.toByteArray(), params)
+        var decrypted = mode.decrypt(encrypted.data, params)
 
         assertEquals(plainText, String(decrypted.data))
+
+        key = generateKey(24)
+        params = Params(key)
+
+        encrypted = mode.encrypt(plainText.toByteArray(), params)
+        decrypted = mode.decrypt(encrypted.data, params)
+
+        assertEquals(plainText, String(decrypted.data))
+
+        if (blockCipher !is TripleDES) {
+            key = generateKey(32)
+            params = Params(key)
+
+            encrypted = mode.encrypt(plainText.toByteArray(), params)
+            decrypted = mode.decrypt(encrypted.data, params)
+
+            assertEquals(plainText, String(decrypted.data))
+        }
     }
 }
