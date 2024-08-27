@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.ir.backend.js.compile
-
 plugins {
     java
     jacoco
@@ -74,7 +72,8 @@ sonar {
         property("sonar.organization", "retrotv-maven-repo")
         property("sonar.host.url", "https://sonarcloud.io")
         property("sonar.exclusions", "src/main/java/**")
-        property("sonar.coverage.exclusions", "**/ExtendedSecretKeySpec.kt,**/exception/*,**/enums/*,src/main/java/**")
+        property("sonar.coverage.exclusions", "**/exception/*,**/enums/*,src/main/java/**")
+        property("sonar.issue.ignore.ruleKey", "kotlin:S1133")
     }
 }
 
