@@ -1,17 +1,14 @@
 package dev.retrotv.crypto.encryption.block
 
+import dev.retrotv.crypto.encryption.generator.generateKey
 import dev.retrotv.crypto.encryption.mode.ECB
 import dev.retrotv.crypto.encryption.param.Params
-import dev.retrotv.crypto.encryption.generator.generateKey
-import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class AESTest {
+class BlockChiperTest {
 
-    @Test
-    fun testAES() {
-        val aes = AES()
-        val mode = ECB(aes)
+    fun test_ecb(blockCipher: BlockCipher) {
+        val mode = ECB(blockCipher)
 
         val plainText = "Hello, World!"
         val key = generateKey(16)
