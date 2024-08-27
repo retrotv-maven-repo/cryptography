@@ -7,6 +7,7 @@ import org.bouncycastle.crypto.params.KeyParameter
 import java.io.InputStream
 import java.io.OutputStream
 
+@SuppressWarnings("kotlin:S1133")
 @Deprecated("해킹에 취약한 양방향 암호화 알고리즘 입니다.")
 class RC4 {
     private var engine = RC4Engine()

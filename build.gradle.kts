@@ -73,8 +73,6 @@ sonar {
         property("sonar.host.url", "https://sonarcloud.io")
         property("sonar.exclusions", "src/main/java/**")
         property("sonar.coverage.exclusions", "**/exception/*,**/enums/*,src/main/java/**")
-        property("sonar.issue.ignore.multicriteria", "e1")
-        property("sonar.issue.ignore.multicriteria.e1.ruleKey", "kotlin:1133")
     }
 }
 
