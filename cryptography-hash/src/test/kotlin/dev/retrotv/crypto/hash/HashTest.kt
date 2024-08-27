@@ -2,7 +2,6 @@ package dev.retrotv.crypto.hash
 
 import dev.retrotv.crypto.enums.EHash
 import dev.retrotv.crypto.enums.EHash.*
-import dev.retrotv.data.utils.StringUtils
 
 import org.json.JSONObject
 import org.junit.jupiter.api.Assertions.*
@@ -109,8 +108,8 @@ class HashTest {
 
     private fun passwordHashTest(algorithm: EHash) {
         val h = Hash.newInstance(algorithm)
-        assertTrue(h.matches(StringUtils.hexStringToByteArray(h.hash(password)), getHash(algorithm)))
-        assertTrue(h.matches(StringUtils.hexStringToByteArray(h.hash(password, Charsets.UTF_8)), getHash(algorithm)))
+        assertTrue(h.matches(password.toByteArray(), getHash(algorithm)))
+        assertEquals(h.hash(password, Charsets.UTF_8), getHash(algorithm))
     }
 
     private fun fileHashTest(algorithm: EHash) {
