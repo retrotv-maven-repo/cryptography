@@ -2,12 +2,14 @@ package dev.retrotv.crypto.hash
 
 import dev.retrotv.crypto.enums.EHash
 import dev.retrotv.crypto.enums.EHash.*
+import dev.retrotv.data.utils.StringUtils
 
 import org.json.JSONObject
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.RepeatedTest
 import java.io.BufferedReader
+import java.io.File
 import java.io.FileReader
 import java.io.IOException
 
@@ -107,14 +109,13 @@ class HashTest {
 
     private fun passwordHashTest(algorithm: EHash) {
         val h = Hash.newInstance(algorithm)
-        assertEquals(getHash(algorithm), h.hash(password))
+        assertTrue(h.matches(StringUtils.hexStringToByteArray(h.hash(password)), getHash(algorithm)))
+        assertTrue(h.matches(StringUtils.hexStringToByteArray(h.hash(password, Charsets.UTF_8)), getHash(algorithm)))
     }
 
     private fun fileHashTest(algorithm: EHash) {
-        resource?.let {
-            val h = Hash.newInstance(algorithm)
-            assertEquals(h.hash(it.path), h.hash(it.path))
-        }
+        val h = Hash.newInstance(algorithm)
+        assertTrue(h.matches(File(resource?.file ?: ""), h.hash(File(resource?.file ?: ""))))
     }
 
     @Throws(IOException::class)
