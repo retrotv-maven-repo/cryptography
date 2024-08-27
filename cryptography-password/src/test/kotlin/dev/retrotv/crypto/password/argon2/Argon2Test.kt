@@ -11,11 +11,23 @@ class Argon2Test {
     @Test
     @DisplayName("Argon2 암호화 테스트")
     fun test_argon2() {
-        val argon2 = Argon2()
-        val encodedPassword = argon2.encode(password)
+        var argon2 = Argon2()
+        var encodedPassword = argon2.encode(password)
         assertNotEquals(password, encodedPassword)
 
-        val encodedPassword2 = argon2.encode(password)
+        var encodedPassword2 = argon2.encode(password)
+        assertNotEquals(encodedPassword, encodedPassword2)
+
+        assertTrue(argon2.matches(password, encodedPassword))
+        assertTrue(argon2.matches(password, encodedPassword2))
+
+        /* --------------------------------------------------------------- */
+
+        argon2 = Argon2(16, 16, 2, 1 shl 14, 2)
+        encodedPassword = argon2.encode(password)
+        assertNotEquals(password, encodedPassword)
+
+        encodedPassword2 = argon2.encode(password)
         assertNotEquals(encodedPassword, encodedPassword2)
 
         assertTrue(argon2.matches(password, encodedPassword))

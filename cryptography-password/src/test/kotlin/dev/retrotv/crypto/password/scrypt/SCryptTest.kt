@@ -11,11 +11,29 @@ class SCryptTest {
     @Test
     @DisplayName("BCrypt 암호화 테스트")
     fun test_bcrypt() {
-        val sCrypt = SCrypt()
-        val encodedPassword = sCrypt.encode(password)
+        var sCrypt = SCrypt()
+        var encodedPassword = sCrypt.encode(password)
         assertNotEquals(password, encodedPassword)
 
-        val encodedPassword2 = sCrypt.encode(password)
+        var encodedPassword2 = sCrypt.encode(password)
+        assertNotEquals(encodedPassword, encodedPassword2)
+
+        assertTrue(sCrypt.matches(password, encodedPassword))
+        assertTrue(sCrypt.matches(password, encodedPassword2))
+
+        /* --------------------------------------------------------------- */
+
+        sCrypt = SCrypt(
+            16,
+            1000,
+            1,
+            32,
+            16
+        )
+        encodedPassword = sCrypt.encode(password)
+        assertNotEquals(password, encodedPassword)
+
+        encodedPassword2 = sCrypt.encode(password)
         assertNotEquals(encodedPassword, encodedPassword2)
 
         assertTrue(sCrypt.matches(password, encodedPassword))
