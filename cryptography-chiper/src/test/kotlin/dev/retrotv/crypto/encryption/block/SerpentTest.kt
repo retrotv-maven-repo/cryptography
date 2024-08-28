@@ -56,4 +56,18 @@ class SerpentTest {
     fun testCTSCBC(keyLength: Int, ivLength: Int) {
         test.test_ctscbc(Serpent(), keyLength, ivLength)
     }
+
+    @DisplayName("Serpent - CCM 암호화 테스트")
+    @CsvSource("16,12", "24,12", "32,12")
+    @ParameterizedTest(name = "Serpent keyLength: {0}, ivLength: {1}")
+    fun testCCM(keyLength: Int, ivLength: Int) {
+        test.test_ccm(Serpent(), keyLength, ivLength)
+    }
+
+    @DisplayName("Serpent - GCM 암호화 테스트")
+    @CsvSource("16,16", "24,16", "32,16")
+    @ParameterizedTest(name = "Serpent keyLength: {0}, ivLength: {1}")
+    fun testGCM(keyLength: Int, ivLength: Int) {
+        test.test_gcm(Serpent(), keyLength, ivLength)
+    }
 }

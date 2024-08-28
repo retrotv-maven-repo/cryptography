@@ -56,4 +56,18 @@ class SEEDTest {
     fun testCTSCBC(keyLength: Int, ivLength: Int) {
         test.test_ctscbc(SEED(), keyLength, ivLength)
     }
+
+    @DisplayName("SEED - CCM 암호화 테스트")
+    @CsvSource("16,12")
+    @ParameterizedTest(name = "SEED keyLength: {0}, ivLength: {1}")
+    fun testCCM(keyLength: Int, ivLength: Int) {
+        test.test_ccm(SEED(), keyLength, ivLength)
+    }
+
+    @DisplayName("SEED - GCM 암호화 테스트")
+    @CsvSource("16,16")
+    @ParameterizedTest(name = "SEED keyLength: {0}, ivLength: {1}")
+    fun testGCM(keyLength: Int, ivLength: Int) {
+        test.test_gcm(SEED(), keyLength, ivLength)
+    }
 }

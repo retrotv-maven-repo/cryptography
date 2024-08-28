@@ -56,4 +56,18 @@ class AESTest {
     fun testCTSCBC(keyLength: Int, ivLength: Int) {
         test.test_ctscbc(AES(), keyLength, ivLength)
     }
+
+    @DisplayName("AES - CCM 암호화 테스트")
+    @CsvSource("16,12", "24,12", "32,12")
+    @ParameterizedTest(name = "AES keyLength: {0}, ivLength: {1}")
+    fun testCCM(keyLength: Int, ivLength: Int) {
+        test.test_ccm(AES(), keyLength, ivLength)
+    }
+
+    @DisplayName("AES - GCM 암호화 테스트")
+    @CsvSource("16,16", "24,16", "32,16")
+    @ParameterizedTest(name = "AES keyLength: {0}, ivLength: {1}")
+    fun testGCM(keyLength: Int, ivLength: Int) {
+        test.test_gcm(AES(), keyLength, ivLength)
+    }
 }

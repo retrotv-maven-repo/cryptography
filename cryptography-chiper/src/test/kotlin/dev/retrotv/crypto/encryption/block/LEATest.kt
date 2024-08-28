@@ -56,4 +56,18 @@ class LEATest {
     fun testCTSCBC(keyLength: Int, ivLength: Int) {
         test.test_ctscbc(LEA(), keyLength, ivLength)
     }
+
+    @DisplayName("LEA - CCM 암호화 테스트")
+    @CsvSource("16,12", "24,12", "32,12")
+    @ParameterizedTest(name = "LEA keyLength: {0}, ivLength: {1}")
+    fun testCCM(keyLength: Int, ivLength: Int) {
+        test.test_ccm(LEA(), keyLength, ivLength)
+    }
+
+    @DisplayName("LEA - GCM 암호화 테스트")
+    @CsvSource("16,16", "24,16", "32,16")
+    @ParameterizedTest(name = "LEA keyLength: {0}, ivLength: {1}")
+    fun testGCM(keyLength: Int, ivLength: Int) {
+        test.test_gcm(LEA(), keyLength, ivLength)
+    }
 }

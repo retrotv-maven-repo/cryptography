@@ -1,11 +1,10 @@
 package dev.retrotv.crypto.encryption.block
 
+import dev.retrotv.crypto.encryption.generator.generateIV
 import dev.retrotv.crypto.encryption.generator.generateKey
 import dev.retrotv.crypto.encryption.mode.*
 import dev.retrotv.crypto.encryption.param.Params
 import dev.retrotv.crypto.encryption.param.ParamsWithIV
-import org.bouncycastle.crypto.params.KeyParameter
-import sun.security.util.Length
 import kotlin.test.assertEquals
 
 class BlockChiperTest {
@@ -25,7 +24,7 @@ class BlockChiperTest {
     fun test_cbc(blockCipher: BlockCipher, keyLength: Int, ivLength: Int) {
         val mode = CBC(blockCipher)
         val key = generateKey(keyLength)
-        val iv = generateKey(ivLength)
+        val iv = generateIV(ivLength)
         val params = ParamsWithIV(key, iv)
 
         val encrypted = mode.encrypt(plainText.toByteArray(), params)
@@ -37,7 +36,7 @@ class BlockChiperTest {
     fun test_ofb(blockCipher: BlockCipher, keyLength: Int, ivLength: Int) {
         val mode = OFB(blockCipher)
         val key = generateKey(keyLength)
-        val iv = generateKey(ivLength)
+        val iv = generateIV(ivLength)
         val params = ParamsWithIV(key, iv)
 
         val encrypted = mode.encrypt(plainText.toByteArray(), params)
@@ -49,7 +48,7 @@ class BlockChiperTest {
     fun test_cfb(blockCipher: BlockCipher, keyLength: Int, ivLength: Int) {
         val mode = CFB(blockCipher)
         val key = generateKey(keyLength)
-        val iv = generateKey(ivLength)
+        val iv = generateIV(ivLength)
         val params = ParamsWithIV(key, iv)
 
         val encrypted = mode.encrypt(plainText.toByteArray(), params)
@@ -61,7 +60,7 @@ class BlockChiperTest {
     fun test_ctr(blockCipher: BlockCipher, keyLength: Int, ivLength: Int) {
         val mode = CTR(blockCipher)
         val key = generateKey(keyLength)
-        val iv = generateKey(ivLength)
+        val iv = generateIV(ivLength)
         val params = ParamsWithIV(key, iv)
 
         val encrypted = mode.encrypt(plainText.toByteArray(), params)
@@ -85,6 +84,32 @@ class BlockChiperTest {
     fun test_ctscbc(blockCipher: BlockCipher, keyLength: Int, ivLength: Int) {
         val mode = CTS(blockCipher)
         mode.useCBCMode()
+
+        val key = generateKey(keyLength)
+        val iv = generateIV(ivLength)
+        val params = ParamsWithIV(key, iv)
+
+        val encrypted = mode.encrypt(plainText.toByteArray(), params)
+        val decrypted = mode.decrypt(encrypted.data, params)
+
+        assertEquals(plainText, String(decrypted.data))
+    }
+
+    fun test_ccm(blockCipher: BlockCipher, keyLength: Int, ivLength: Int) {
+        val mode = CCM(blockCipher)
+
+        val key = generateKey(keyLength)
+        val iv = generateIV(ivLength)
+        val params = ParamsWithIV(key, iv)
+
+        val encrypted = mode.encrypt(plainText.toByteArray(), params)
+        val decrypted = mode.decrypt(encrypted.data, params)
+
+        assertEquals(plainText, String(decrypted.data))
+    }
+
+    fun test_gcm(blockCipher: BlockCipher, keyLength: Int, ivLength: Int) {
+        val mode = GCM(blockCipher)
 
         val key = generateKey(keyLength)
         val iv = generateKey(ivLength)
