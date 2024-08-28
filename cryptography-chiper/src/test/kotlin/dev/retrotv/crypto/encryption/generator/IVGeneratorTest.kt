@@ -33,5 +33,8 @@ class IVGeneratorTest {
 
         key = generateIV(AES, CCM)
         assert(key.size == 12)
+
+        key = generateIV(DES, CBC)
+        assert(key.size == 8)
     }
 }
