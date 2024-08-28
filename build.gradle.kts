@@ -7,17 +7,17 @@ plugins {
     id("org.sonarqube") version "4.0.0.2929"
 }
 
+group = "dev.retrotv"
+version = "0.40.0-alpha"
+
+// Github Action 버전 출력용
+tasks.register("printVersionName") {
+    description = "이 프로젝트의 버전을 출력합니다."
+    group = JavaBasePlugin.DOCUMENTATION_GROUP
+    println(project.version)
+}
+
 allprojects {
-    group = "dev.retrotv"
-    version = "0.40.0-alpha"
-
-    // Github Action 버전 출력용
-    tasks.register("printVersionName") {
-        description = "이 프로젝트의 버전을 출력합니다."
-        group = JavaBasePlugin.DOCUMENTATION_GROUP
-        println(project.version)
-    }
-
     repositories {
         mavenCentral()
         maven { setUrl("https://jitpack.io") }
