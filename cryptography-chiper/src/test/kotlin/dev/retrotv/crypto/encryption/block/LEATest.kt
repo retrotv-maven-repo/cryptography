@@ -35,4 +35,25 @@ class LEATest {
     fun testCFB(keyLength: Int, ivLength: Int) {
         test.test_cfb(LEA(), keyLength, ivLength)
     }
+
+    @DisplayName("LEA - CTR 암호화 테스트")
+    @CsvSource("16,16", "24,16", "32,16")
+    @ParameterizedTest(name = "LEA keyLength: {0}, ivLength: {1}")
+    fun testCTR(keyLength: Int, ivLength: Int) {
+        test.test_ctr(LEA(), keyLength, ivLength)
+    }
+
+    @DisplayName("LEA - CTSECB 암호화 테스트")
+    @ValueSource(ints = [16, 24, 32])
+    @ParameterizedTest(name = "LEA keyLength: {0}")
+    fun testCTSECB(keyLength: Int) {
+        test.test_ctsecb(LEA(), keyLength)
+    }
+
+    @DisplayName("LEA - CTSCBC 암호화 테스트")
+    @CsvSource("16,16", "24,16", "32,16")
+    @ParameterizedTest(name = "LEA keyLength: {0}, ivLength: {1}")
+    fun testCTSCBC(keyLength: Int, ivLength: Int) {
+        test.test_ctscbc(LEA(), keyLength, ivLength)
+    }
 }

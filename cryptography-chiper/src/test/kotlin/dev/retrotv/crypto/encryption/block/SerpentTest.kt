@@ -35,4 +35,25 @@ class SerpentTest {
     fun testCFB(keyLength: Int, ivLength: Int) {
         test.test_cfb(Serpent(), keyLength, ivLength)
     }
+
+    @DisplayName("Serpent - CTR 암호화 테스트")
+    @CsvSource("16,16", "24,16", "32,16")
+    @ParameterizedTest(name = "Serpent keyLength: {0}, ivLength: {1}")
+    fun testCTR(keyLength: Int, ivLength: Int) {
+        test.test_ctr(Serpent(), keyLength, ivLength)
+    }
+
+    @DisplayName("Serpent - CTSECB 암호화 테스트")
+    @ValueSource(ints = [16, 24, 32])
+    @ParameterizedTest(name = "Serpent keyLength: {0}")
+    fun testCTSECB(keyLength: Int) {
+        test.test_ctsecb(Serpent(), keyLength)
+    }
+
+    @DisplayName("Serpent - CTSCBC 암호화 테스트")
+    @CsvSource("16,16", "24,16", "32,16")
+    @ParameterizedTest(name = "Serpent keyLength: {0}, ivLength: {1}")
+    fun testCTSCBC(keyLength: Int, ivLength: Int) {
+        test.test_ctscbc(Serpent(), keyLength, ivLength)
+    }
 }

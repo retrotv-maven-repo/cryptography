@@ -36,4 +36,25 @@ class DESTest {
     fun testCFB(keyLength: Int, ivLength: Int) {
         test.test_cfb(DES(), keyLength, ivLength)
     }
+
+    @DisplayName("DES - CTR 암호화 테스트")
+    @CsvSource("8,8")
+    @ParameterizedTest(name = "DES keyLength: {0}, ivLength: {1}")
+    fun testCTR(keyLength: Int, ivLength: Int) {
+        test.test_ctr(DES(), keyLength, ivLength)
+    }
+
+    @DisplayName("DES - CTSECB 암호화 테스트")
+    @ValueSource(ints = [8])
+    @ParameterizedTest(name = "DES keyLength: {0}")
+    fun testCTSECB(keyLength: Int) {
+        test.test_ctsecb(DES(), keyLength)
+    }
+
+    @DisplayName("DES - CTSCBC 암호화 테스트")
+    @CsvSource("8,8")
+    @ParameterizedTest(name = "DES keyLength: {0}, ivLength: {1}")
+    fun testCTSCBC(keyLength: Int, ivLength: Int) {
+        test.test_ctscbc(DES(), keyLength, ivLength)
+    }
 }

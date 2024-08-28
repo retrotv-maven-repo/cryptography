@@ -35,4 +35,25 @@ class SEEDTest {
     fun testCFB(keyLength: Int, ivLength: Int) {
         test.test_cfb(LEA(), keyLength, ivLength)
     }
+
+    @DisplayName("SEED - CTR 암호화 테스트")
+    @CsvSource("16,16")
+    @ParameterizedTest(name = "SEED keyLength: {0}, ivLength: {1}")
+    fun testCTR(keyLength: Int, ivLength: Int) {
+        test.test_ctr(SEED(), keyLength, ivLength)
+    }
+
+    @DisplayName("SEED - CTSECB 암호화 테스트")
+    @ValueSource(ints = [16])
+    @ParameterizedTest(name = "SEED keyLength: {0}")
+    fun testCTSECB(keyLength: Int) {
+        test.test_ctsecb(SEED(), keyLength)
+    }
+
+    @DisplayName("SEED - CTSCBC 암호화 테스트")
+    @CsvSource("16,16")
+    @ParameterizedTest(name = "SEED keyLength: {0}, ivLength: {1}")
+    fun testCTSCBC(keyLength: Int, ivLength: Int) {
+        test.test_ctscbc(SEED(), keyLength, ivLength)
+    }
 }

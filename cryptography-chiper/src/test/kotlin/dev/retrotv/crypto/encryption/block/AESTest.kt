@@ -35,4 +35,25 @@ class AESTest {
     fun testCFB(keyLength: Int, ivLength: Int) {
         test.test_cfb(AES(), keyLength, ivLength)
     }
+
+    @DisplayName("AES - CTR 암호화 테스트")
+    @CsvSource("16,16", "24,16", "32,16")
+    @ParameterizedTest(name = "AES keyLength: {0}, ivLength: {1}")
+    fun testCTR(keyLength: Int, ivLength: Int) {
+        test.test_ctr(AES(), keyLength, ivLength)
+    }
+
+    @DisplayName("AES - CTSECB 암호화 테스트")
+    @ValueSource(ints = [16, 24, 32])
+    @ParameterizedTest(name = "AES keyLength: {0}")
+    fun testCTSECB(keyLength: Int) {
+        test.test_ctsecb(AES(), keyLength)
+    }
+
+    @DisplayName("AES - CTSCBC 암호화 테스트")
+    @CsvSource("16,16", "24,16", "32,16")
+    @ParameterizedTest(name = "AES keyLength: {0}, ivLength: {1}")
+    fun testCTSCBC(keyLength: Int, ivLength: Int) {
+        test.test_ctscbc(AES(), keyLength, ivLength)
+    }
 }

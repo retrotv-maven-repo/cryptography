@@ -35,4 +35,25 @@ class TripleDESTest {
     fun testCFB(keyLength: Int, ivLength: Int) {
         test.test_cfb(TripleDES(), keyLength, ivLength)
     }
+
+    @DisplayName("ARIA - CTR 암호화 테스트")
+    @CsvSource("16,8", "24,8")
+    @ParameterizedTest(name = "ARIA keyLength: {0}, ivLength: {1}")
+    fun testCTR(keyLength: Int, ivLength: Int) {
+        test.test_ctr(ARIA(), keyLength, ivLength)
+    }
+
+    @DisplayName("ARIA - CTSECB 암호화 테스트")
+    @ValueSource(ints = [16, 24])
+    @ParameterizedTest(name = "ARIA keyLength: {0}")
+    fun testCTSECB(keyLength: Int) {
+        test.test_ctsecb(ARIA(), keyLength)
+    }
+
+    @DisplayName("ARIA - CTSCBC 암호화 테스트")
+    @CsvSource("16,16", "24,16")
+    @ParameterizedTest(name = "ARIA keyLength: {0}, ivLength: {1}")
+    fun testCTSCBC(keyLength: Int, ivLength: Int) {
+        test.test_ctscbc(ARIA(), keyLength, ivLength)
+    }
 }

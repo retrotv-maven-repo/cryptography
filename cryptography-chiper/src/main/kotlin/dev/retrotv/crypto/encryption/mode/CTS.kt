@@ -11,11 +11,19 @@ import org.bouncycastle.crypto.params.KeyParameter
 import org.bouncycastle.crypto.params.ParametersWithIV
 
 class CTS(blockCipher: BlockCipher) : CipherMode(CTS, blockCipher) {
-
     override fun encrypt(data: ByteArray, params: Params): Result {
-        params as ParamsWithIV
+        val parameters = if (params is ParamsWithIV) {
+            if (params.iv == null) {
+                KeyParameter(params.key)
+            } else {
+                ParametersWithIV(KeyParameter(params.key), params.iv)
+            }
+        } else {
+            KeyParameter(params.key)
+        }
+
         val cipher = CTSBlockCipher(this.engine)
-            cipher.init(true, ParametersWithIV(KeyParameter(params.key), params.iv))
+            cipher.init(true, parameters)
 
         val encryptedData = ByteArray(data.size)
         val len = cipher.processBytes(data, 0, data.size, encryptedData, 0)
@@ -25,9 +33,18 @@ class CTS(blockCipher: BlockCipher) : CipherMode(CTS, blockCipher) {
     }
 
     override fun decrypt(encryptedData: ByteArray, params: Params): Result {
-        params as ParamsWithIV
+        val parameters = if (params is ParamsWithIV) {
+            if (params.iv == null) {
+                KeyParameter(params.key)
+            } else {
+                ParametersWithIV(KeyParameter(params.key), params.iv)
+            }
+        } else {
+            KeyParameter(params.key)
+        }
+
         val cipher = CTSBlockCipher(this.engine)
-            cipher.init(false, ParametersWithIV(KeyParameter(params.key), params.iv))
+            cipher.init(false, parameters)
 
         val originalData = ByteArray(encryptedData.size)
         val len = cipher.processBytes(encryptedData, 0, encryptedData.size, originalData, 0)
