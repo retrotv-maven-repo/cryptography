@@ -19,13 +19,13 @@ fun generateIV(algorithm: ECipher, mode: EMode): ByteArray {
         ECB -> throw GenerateException("iv가 필요하지 않은 암호화 방식입니다.")
         CBC, CFB, OFB, CTR, CTS ->
             when (algorithm) {
-                AES, ARIA, LEA, SEED -> generateIV(16)
+                AES, ARIA, LEA, SEED, SERPENT -> generateIV(16)
                 DES, TRIPLE_DES -> generateIV(8)
                 else -> throw GenerateException("지원하지 않는 알고리즘 입니다.")
             }
         CCM, GCM ->
             when (algorithm) {
-                AES, ARIA, LEA, SEED -> generateIV(12)
+                AES, ARIA, LEA, SEED, SERPENT, TRIPLE_DES -> generateIV(12)
                 else -> throw GenerateException("지원하지 않는 알고리즘 입니다.")
             }
     }
