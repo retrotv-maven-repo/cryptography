@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     java
     jacoco
@@ -15,6 +17,27 @@ tasks.register("printVersionName") {
     description = "이 프로젝트의 버전을 출력합니다."
     group = JavaBasePlugin.DOCUMENTATION_GROUP
     println(project.version)
+}
+
+tasks {
+    compileKotlin {
+        compilerOptions.jvmTarget.set(JvmTarget.JVM_1_8)
+    }
+    compileTestKotlin {
+        compilerOptions.jvmTarget.set(JvmTarget.JVM_1_8)
+    }
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = project.group.toString()
+            artifactId = "cryptography"
+            version = project.version.toString()
+
+            from(components["java"])
+        }
+    }
 }
 
 allprojects {
