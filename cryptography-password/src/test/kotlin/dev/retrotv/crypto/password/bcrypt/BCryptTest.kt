@@ -5,8 +5,6 @@ import org.junit.jupiter.api.DisplayName
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder.BCryptVersion
 import java.security.SecureRandom
 import kotlin.test.Test
-import kotlin.test.assertNotEquals
-import kotlin.test.assertTrue
 
 class BCryptTest {
     private val test = KDFTest()

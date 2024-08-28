@@ -1,6 +1,5 @@
 package dev.retrotv.crypto.encryption.stream
 
-import dev.retrotv.crypto.encryption.generator.generateIV
 import dev.retrotv.crypto.encryption.generator.generateKey
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
