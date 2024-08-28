@@ -21,4 +21,18 @@ class ARIATest {
     fun testCBC(keyLength: Int, ivLength: Int) {
         test.test_cbc(ARIA(), keyLength, ivLength)
     }
+
+    @DisplayName("ARIA - OFB 암호화 테스트")
+    @CsvSource("16,16", "24,16", "32,16")
+    @ParameterizedTest(name = "ARIA keyLength: {0}, ivLength: {1}")
+    fun testOFB(keyLength: Int, ivLength: Int) {
+        test.test_ofb(ARIA(), keyLength, ivLength)
+    }
+
+    @DisplayName("ARIA - CFB 암호화 테스트")
+    @CsvSource("16,16", "24,16", "32,16")
+    @ParameterizedTest(name = "ARIA keyLength: {0}, ivLength: {1}")
+    fun testCFB(keyLength: Int, ivLength: Int) {
+        test.test_cfb(ARIA(), keyLength, ivLength)
+    }
 }

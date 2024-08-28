@@ -21,4 +21,18 @@ class TripleDESTest {
     fun testCBC(keyLength: Int, ivLength: Int) {
         test.test_cbc(TripleDES(), keyLength, ivLength)
     }
+
+    @DisplayName("TripleDES - OFB 암호화 테스트")
+    @CsvSource("16,8", "24,8")
+    @ParameterizedTest(name = "TripleDES keyLength: {0}, ivLength: {1}")
+    fun testOFB(keyLength: Int, ivLength: Int) {
+        test.test_ofb(TripleDES(), keyLength, ivLength)
+    }
+
+    @DisplayName("TripleDES - CFB 암호화 테스트")
+    @CsvSource("16,8", "24,8")
+    @ParameterizedTest(name = "TripleDES keyLength: {0}, ivLength: {1}")
+    fun testCFB(keyLength: Int, ivLength: Int) {
+        test.test_cfb(TripleDES(), keyLength, ivLength)
+    }
 }

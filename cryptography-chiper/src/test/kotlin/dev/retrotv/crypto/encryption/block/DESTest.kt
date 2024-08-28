@@ -22,4 +22,18 @@ class DESTest {
     fun testCBC(keyLength: Int, ivLength: Int) {
         test.test_cbc(DES(), keyLength, ivLength)
     }
+
+    @DisplayName("DES - OFB 암호화 테스트")
+    @CsvSource("8,8")
+    @ParameterizedTest(name = "DES keyLength: {0}, ivLength: {1}")
+    fun testOFB(keyLength: Int, ivLength: Int) {
+        test.test_ofb(DES(), keyLength, ivLength)
+    }
+
+    @DisplayName("DES - CFB 암호화 테스트")
+    @CsvSource("8,8")
+    @ParameterizedTest(name = "DES keyLength: {0}, ivLength: {1}")
+    fun testCFB(keyLength: Int, ivLength: Int) {
+        test.test_cfb(DES(), keyLength, ivLength)
+    }
 }

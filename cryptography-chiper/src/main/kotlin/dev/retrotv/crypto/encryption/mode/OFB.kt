@@ -15,7 +15,7 @@ import org.bouncycastle.crypto.params.ParametersWithIV
 class OFB(blockCipher: BlockCipher) : CipherMode(ECB, blockCipher) {
     private val blockSize by lazy {
         when (this.algorithm) {
-            AES, ARIA, LEA, SEED -> 128
+            AES, ARIA, LEA, SEED, SERPENT -> 128
             DES, TRIPLE_DES -> 64
             else -> throw IllegalArgumentException("사용할 수 없는 알고리즘 입니다.")
         }

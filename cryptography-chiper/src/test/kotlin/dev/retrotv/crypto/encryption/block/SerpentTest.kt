@@ -21,4 +21,18 @@ class SerpentTest {
     fun testCBC(keyLength: Int, ivLength: Int) {
         test.test_cbc(Serpent(), keyLength, ivLength)
     }
+
+    @DisplayName("Serpent - OFB 암호화 테스트")
+    @CsvSource("16,16", "24,16", "32,16")
+    @ParameterizedTest(name = "Serpent keyLength: {0}, ivLength: {1}")
+    fun testOFB(keyLength: Int, ivLength: Int) {
+        test.test_ofb(Serpent(), keyLength, ivLength)
+    }
+
+    @DisplayName("Serpent - CFB 암호화 테스트")
+    @CsvSource("16,16", "24,16", "32,16")
+    @ParameterizedTest(name = "Serpent keyLength: {0}, ivLength: {1}")
+    fun testCFB(keyLength: Int, ivLength: Int) {
+        test.test_cfb(Serpent(), keyLength, ivLength)
+    }
 }

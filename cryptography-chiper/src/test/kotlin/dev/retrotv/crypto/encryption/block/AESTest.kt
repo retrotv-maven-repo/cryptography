@@ -21,4 +21,18 @@ class AESTest {
     fun testCBC(keyLength: Int, ivLength: Int) {
         test.test_cbc(AES(), keyLength, ivLength)
     }
+
+    @DisplayName("AES - OFB 암호화 테스트")
+    @CsvSource("16,16", "24,16", "32,16")
+    @ParameterizedTest(name = "AES keyLength: {0}, ivLength: {1}")
+    fun testOFB(keyLength: Int, ivLength: Int) {
+        test.test_ofb(AES(), keyLength, ivLength)
+    }
+
+    @DisplayName("AES - CFB 암호화 테스트")
+    @CsvSource("16,16", "24,16", "32,16")
+    @ParameterizedTest(name = "AES keyLength: {0}, ivLength: {1}")
+    fun testCFB(keyLength: Int, ivLength: Int) {
+        test.test_cfb(AES(), keyLength, ivLength)
+    }
 }

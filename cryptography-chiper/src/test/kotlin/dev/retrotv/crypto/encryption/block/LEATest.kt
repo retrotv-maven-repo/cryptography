@@ -21,4 +21,18 @@ class LEATest {
     fun testCBC(keyLength: Int, ivLength: Int) {
         test.test_cbc(LEA(), keyLength, ivLength)
     }
+
+    @DisplayName("LEA - OFB 암호화 테스트")
+    @CsvSource("16,16", "24,16", "32,16")
+    @ParameterizedTest(name = "LEA keyLength: {0}, ivLength: {1}")
+    fun testOFB(keyLength: Int, ivLength: Int) {
+        test.test_ofb(LEA(), keyLength, ivLength)
+    }
+
+    @DisplayName("LEA - CFB 암호화 테스트")
+    @CsvSource("16,16", "24,16", "32,16")
+    @ParameterizedTest(name = "LEA keyLength: {0}, ivLength: {1}")
+    fun testCFB(keyLength: Int, ivLength: Int) {
+        test.test_cfb(LEA(), keyLength, ivLength)
+    }
 }

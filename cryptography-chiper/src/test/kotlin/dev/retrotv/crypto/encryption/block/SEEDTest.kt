@@ -21,4 +21,18 @@ class SEEDTest {
     fun testCBC(keyLength: Int, ivLength: Int) {
         test.test_cbc(LEA(), keyLength, ivLength)
     }
+
+    @DisplayName("SEED - OFB 암호화 테스트")
+    @CsvSource("16,16")
+    @ParameterizedTest(name = "SEED keyLength: {0}, ivLength: {1}")
+    fun testOFB(keyLength: Int, ivLength: Int) {
+        test.test_ofb(LEA(), keyLength, ivLength)
+    }
+
+    @DisplayName("SEED - CFB 암호화 테스트")
+    @CsvSource("16,16")
+    @ParameterizedTest(name = "SEED keyLength: {0}, ivLength: {1}")
+    fun testCFB(keyLength: Int, ivLength: Int) {
+        test.test_cfb(LEA(), keyLength, ivLength)
+    }
 }
