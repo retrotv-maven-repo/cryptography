@@ -1,26 +1,25 @@
 package dev.retrotv.crypto.encryption.block
 
-import dev.retrotv.crypto.encryption.generator.generateKey
-import dev.retrotv.crypto.encryption.mode.ECB
-import dev.retrotv.crypto.encryption.param.Params
-import kotlin.test.Test
-import kotlin.test.assertEquals
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
+import org.junit.jupiter.params.provider.ValueSource
+import sun.security.util.Length
 
 class DESTest {
     private val test = BlockChiperTest()
 
-    @Test
-    fun testDES() {
-        val blockCipher = DES()
-        val mode = ECB(blockCipher)
+    @DisplayName("DES - ECB 암호화 테스트")
+    @ValueSource(ints = [8])
+    @ParameterizedTest(name = "DES keyLength: {0}")
+    fun testECB(keyLength: Int) {
+        test.test_ecb(DES(), keyLength)
+    }
 
-        val plainText = "Hello, World!"
-        val key = generateKey(8)
-        val params = Params(key)
-
-        val encrypted = mode.encrypt(plainText.toByteArray(), params)
-        val decrypted = mode.decrypt(encrypted.data, params)
-
-        assertEquals(plainText, String(decrypted.data))
+    @DisplayName("DES - CBC 암호화 테스트")
+    @CsvSource("8,8")
+    @ParameterizedTest(name = "DES keyLength: {0}, ivLength: {1}")
+    fun testCBC(keyLength: Int, ivLength: Int) {
+        test.test_cbc(DES(), keyLength, ivLength)
     }
 }

@@ -1,12 +1,24 @@
 package dev.retrotv.crypto.encryption.block
 
-import kotlin.test.Test
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
+import org.junit.jupiter.params.provider.ValueSource
 
 class LEATest {
     private val test = BlockChiperTest()
 
-    @Test
-    fun testLEA() {
-        test.test_ecb(LEA())
+    @DisplayName("LEA 암호화 테스트")
+    @ParameterizedTest(name = "LEA keyLength: {0}")
+    @ValueSource(ints = [16, 24, 32])
+    fun testLEA(keyLength: Int) {
+        test.test_ecb(LEA(), keyLength)
+    }
+
+    @DisplayName("LEA - CBC 암호화 테스트")
+    @CsvSource("16,16", "24,16", "32,16")
+    @ParameterizedTest(name = "LEA keyLength: {0}, ivLength: {1}")
+    fun testCBC(keyLength: Int, ivLength: Int) {
+        test.test_cbc(LEA(), keyLength, ivLength)
     }
 }

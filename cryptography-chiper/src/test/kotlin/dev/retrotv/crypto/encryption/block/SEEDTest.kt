@@ -1,26 +1,24 @@
 package dev.retrotv.crypto.encryption.block
 
-import dev.retrotv.crypto.encryption.generator.generateKey
-import dev.retrotv.crypto.encryption.mode.ECB
-import dev.retrotv.crypto.encryption.param.Params
-import kotlin.test.Test
-import kotlin.test.assertEquals
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
+import org.junit.jupiter.params.provider.ValueSource
 
 class SEEDTest {
     private val test = BlockChiperTest()
 
-    @Test
-    fun testSEED() {
-        val blockCipher = SEED()
-        val mode = ECB(blockCipher)
+    @DisplayName("SEED 암호화 테스트")
+    @ValueSource(ints = [16])
+    @ParameterizedTest(name = "SEED keyLength: {0}")
+    fun testSEED(keyLength: Int) {
+        test.test_ecb(SEED(), keyLength)
+    }
 
-        val plainText = "Hello, World!"
-        val key = generateKey(16)
-        val params = Params(key)
-
-        val encrypted = mode.encrypt(plainText.toByteArray(), params)
-        val decrypted = mode.decrypt(encrypted.data, params)
-
-        assertEquals(plainText, String(decrypted.data))
+    @DisplayName("SEED - CBC 암호화 테스트")
+    @CsvSource("16,16")
+    @ParameterizedTest(name = "SEED keyLength: {0}, ivLength: {1}")
+    fun testCBC(keyLength: Int, ivLength: Int) {
+        test.test_cbc(LEA(), keyLength, ivLength)
     }
 }

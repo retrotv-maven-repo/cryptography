@@ -1,40 +1,39 @@
 package dev.retrotv.crypto.encryption.block
 
 import dev.retrotv.crypto.encryption.generator.generateKey
+import dev.retrotv.crypto.encryption.mode.CBC
 import dev.retrotv.crypto.encryption.mode.ECB
 import dev.retrotv.crypto.encryption.param.Params
+import dev.retrotv.crypto.encryption.param.ParamsWithIV
+import sun.security.util.Length
 import kotlin.test.assertEquals
 
 class BlockChiperTest {
 
-    fun test_ecb(blockCipher: BlockCipher) {
+    fun test_ecb(blockCipher: BlockCipher, keyLength: Int) {
         val mode = ECB(blockCipher)
 
         val plainText = "Hello, World!"
-        var key = generateKey(16)
-        var params = Params(key)
+        val key = generateKey(keyLength)
+        val params = Params(key)
 
-        var encrypted = mode.encrypt(plainText.toByteArray(), params)
-        var decrypted = mode.decrypt(encrypted.data, params)
-
-        assertEquals(plainText, String(decrypted.data))
-
-        key = generateKey(24)
-        params = Params(key)
-
-        encrypted = mode.encrypt(plainText.toByteArray(), params)
-        decrypted = mode.decrypt(encrypted.data, params)
+        val encrypted = mode.encrypt(plainText.toByteArray(), params)
+        val decrypted = mode.decrypt(encrypted.data, params)
 
         assertEquals(plainText, String(decrypted.data))
+    }
 
-        if (blockCipher !is TripleDES) {
-            key = generateKey(32)
-            params = Params(key)
+    fun test_cbc(blockCipher: BlockCipher, keyLength: Int, ivLength: Int) {
+        val mode = CBC(blockCipher)
 
-            encrypted = mode.encrypt(plainText.toByteArray(), params)
-            decrypted = mode.decrypt(encrypted.data, params)
+        val plainText = "Hello, World!"
+        val key = generateKey(keyLength)
+        val iv = generateKey(ivLength)
+        val params = ParamsWithIV(key, iv)
 
-            assertEquals(plainText, String(decrypted.data))
-        }
+        val encrypted = mode.encrypt(plainText.toByteArray(), params)
+        val decrypted = mode.decrypt(encrypted.data, params)
+
+        assertEquals(plainText, String(decrypted.data))
     }
 }
