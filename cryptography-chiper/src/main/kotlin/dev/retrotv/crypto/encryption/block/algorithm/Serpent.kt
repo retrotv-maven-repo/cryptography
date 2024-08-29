@@ -1,5 +1,6 @@
-package dev.retrotv.crypto.encryption.block
+package dev.retrotv.crypto.encryption.block.algorithm
 
+import dev.retrotv.crypto.encryption.block.BlockCipher
 import dev.retrotv.crypto.enums.ECipher.SERPENT
 import org.bouncycastle.crypto.engines.SerpentEngine
 

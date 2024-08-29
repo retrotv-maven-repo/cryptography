@@ -1,7 +1,6 @@
-package dev.retrotv.crypto.encryption.mode
+package dev.retrotv.crypto.encryption.block
 
 import dev.retrotv.crypto.encryption.TwoWayEncryption
-import dev.retrotv.crypto.encryption.block.BlockCipher
 import dev.retrotv.crypto.enums.EMode
 
 /**

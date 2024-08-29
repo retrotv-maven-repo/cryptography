@@ -12,6 +12,7 @@ package dev.retrotv.crypto.encryption.block
 //import kr.re.nsr.crypto.mode.CBCMode
 //import kr.re.nsr.crypto.mode.ECBMode
 //import kr.re.nsr.crypto.padding.PKCS5Padding
+import dev.retrotv.crypto.encryption.block.algorithm.LEA
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource

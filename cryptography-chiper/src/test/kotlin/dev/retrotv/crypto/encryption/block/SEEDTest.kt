@@ -1,5 +1,7 @@
 package dev.retrotv.crypto.encryption.block
 
+import dev.retrotv.crypto.encryption.block.algorithm.LEA
+import dev.retrotv.crypto.encryption.block.algorithm.SEED
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource

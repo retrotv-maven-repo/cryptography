@@ -1,6 +1,7 @@
-package dev.retrotv.crypto.encryption.mode
+package dev.retrotv.crypto.encryption.block.mode
 
 import dev.retrotv.crypto.encryption.block.BlockCipher
+import dev.retrotv.crypto.encryption.block.CipherMode
 import dev.retrotv.crypto.encryption.param.Params
 import dev.retrotv.crypto.encryption.param.ParamsWithIV
 import dev.retrotv.crypto.encryption.result.Result

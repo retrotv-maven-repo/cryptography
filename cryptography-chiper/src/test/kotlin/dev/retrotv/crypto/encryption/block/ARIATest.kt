@@ -5,6 +5,7 @@ package dev.retrotv.crypto.encryption.block
 //import dev.retrotv.crypto.encryption.param.Params
 //import dev.retrotv.data.utils.ByteUtils
 //import kr.re.nsri.aria.engine.ARIAEngine
+import dev.retrotv.crypto.encryption.block.algorithm.ARIA
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
