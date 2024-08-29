@@ -2,6 +2,7 @@ package dev.retrotv.crypto.encryption.stream
 
 import dev.retrotv.crypto.encryption.generator.IVGenerator.generateIV
 import dev.retrotv.crypto.encryption.generator.KeyGenerator.generateKey
+import dev.retrotv.crypto.encryption.param.ParamsWithIV
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
@@ -15,10 +16,11 @@ class Chacha20Test {
         val chacha20 = Chacha20()
         val key = generateKey(32)
         val iv = generateIV(8)
+        val params = ParamsWithIV(key, iv)
 
-        val encrypted = chacha20.encrypt(plainText.toByteArray(), key, iv)
-        val decrypted = chacha20.decrypt(encrypted, key, iv)
+        val encrypted = chacha20.encrypt(plainText.toByteArray(), params)
+        val decrypted = chacha20.decrypt(encrypted.data, params)
 
-        assertEquals(plainText, String(decrypted))
+        assertEquals(plainText, String(decrypted.data))
     }
 }

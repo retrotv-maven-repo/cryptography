@@ -1,5 +1,7 @@
 package dev.retrotv.crypto.encryption.stream
 
+import dev.retrotv.crypto.encryption.param.Params
+import dev.retrotv.crypto.encryption.result.Result
 import org.bouncycastle.crypto.engines.RC4Engine
 import org.bouncycastle.crypto.io.CipherInputStream
 import org.bouncycastle.crypto.io.CipherOutputStream
@@ -13,22 +15,22 @@ import java.io.OutputStream
  */
 @SuppressWarnings("kotlin:S1133")
 @Deprecated("해킹에 취약한 양방향 암호화 알고리즘 입니다. 더 높은 보안성을 지닌 알고리즘 사용을 권장합니다.")
-class RC4 {
-    private var engine = RC4Engine()
+class RC4 : StreamCipher() {
+    init {
+        this.engine = RC4Engine()
+    }
 
-    fun encrypt(data: ByteArray, key: ByteArray): ByteArray {
-        val params = KeyParameter(key)
-        this.engine.init(true, params)
+    override fun encrypt(data: ByteArray, params: Params): Result {
+        this.engine.init(true, KeyParameter(params.key))
 
         val encryptedData = ByteArray(data.size)
         this.engine.processBytes(data, 0, data.size, encryptedData, 0)
 
-        return encryptedData
+        return Result(encryptedData)
     }
 
-    fun encrypt(input: InputStream, output: OutputStream, key: ByteArray) {
-        val params = KeyParameter(key)
-        this.engine.init(true, params)
+    override fun encrypt(input: InputStream, output: OutputStream, params: Params) {
+        this.engine.init(true, KeyParameter(params.key))
 
         val cos = CipherOutputStream(output, this.engine)
         val buffer = ByteArray(1024)
@@ -42,19 +44,17 @@ class RC4 {
         cos.close()
     }
 
-    fun decrypt(encryptedData: ByteArray, key: ByteArray): ByteArray {
-        val params = KeyParameter(key)
-        this.engine.init(true, params)
+    override fun decrypt(encryptedData: ByteArray, params: Params): Result {
+        this.engine.init(false, KeyParameter(params.key))
 
         val originalData = ByteArray(encryptedData.size)
         this.engine.processBytes(encryptedData, 0, encryptedData.size, originalData, 0)
 
-        return originalData
+        return Result(originalData)
     }
 
-    fun decrypt(input: InputStream, output: OutputStream, key: ByteArray) {
-        val params = KeyParameter(key)
-        this.engine.init(false, params)
+    override fun decrypt(input: InputStream, output: OutputStream, params: Params) {
+        this.engine.init(false, KeyParameter(params.key))
 
         val cis = CipherInputStream(input, this.engine)
         val buffer = ByteArray(1024)
