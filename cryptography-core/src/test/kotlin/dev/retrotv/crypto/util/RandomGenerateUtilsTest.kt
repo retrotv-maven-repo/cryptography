@@ -9,7 +9,7 @@ import kotlin.test.assertFalse
 import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
-class SaltGenerateUtilsTest {
+class RandomGenerateUtilsTest {
 
     @RepeatedTest(100, name = "{displayName}, {currentRepetition}/{totalRepetitions}")
     @DisplayName("generateBytes() 메소드 테스트")

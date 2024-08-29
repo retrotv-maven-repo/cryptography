@@ -10,6 +10,10 @@ import org.bouncycastle.crypto.modes.CTSBlockCipher
 import org.bouncycastle.crypto.params.KeyParameter
 import org.bouncycastle.crypto.params.ParametersWithIV
 
+/**
+ * CTS 암호화 모드 클래스 입니다.
+ * @param blockCipher 블록 암호화 클래스
+ */
 class CTS(blockCipher: BlockCipher) : CipherMode(CTS, blockCipher) {
     override fun encrypt(data: ByteArray, params: Params): Result {
         val parameters = if (params is ParamsWithIV) {

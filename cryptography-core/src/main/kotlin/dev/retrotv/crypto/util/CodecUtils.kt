@@ -6,6 +6,9 @@ import dev.retrotv.data.utils.ByteUtils
 import dev.retrotv.data.utils.StringUtils
 import org.apache.commons.codec.DecoderException
 
+/**
+ * 데이터를 인코딩 및 디코딩 하는 유틸리티 클래스 입니다.
+ */
 object CodecUtils {
 
     @JvmStatic

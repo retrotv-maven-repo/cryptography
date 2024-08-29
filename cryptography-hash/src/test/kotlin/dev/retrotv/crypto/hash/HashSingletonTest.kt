@@ -12,9 +12,9 @@ class HashSingletonTest {
     @Test
     @DisplayName("동일 인스턴스 확인")
     fun test_singleton() {
-        val hash = Hash.newInstance(SHA1)
+        val hash = Hash.getInstance(SHA1)
         for (i in 0..100) {
-            val anotherHash = Hash.newInstance(SHA1)
+            val anotherHash = Hash.getInstance(SHA1)
             assertSame(hash, anotherHash)
         }
     }
@@ -22,8 +22,8 @@ class HashSingletonTest {
     @Test
     @DisplayName("다른 인스턴스 확인")
     fun test_singleton_different() {
-        val hash1 = Hash.newInstance(SHA1)
-        val hash2 = Hash.newInstance(SHA256)
+        val hash1 = Hash.getInstance(SHA1)
+        val hash2 = Hash.getInstance(SHA256)
 
         assertNotSame(hash1, hash2)
     }
@@ -31,12 +31,12 @@ class HashSingletonTest {
     @Test
     @DisplayName("인스턴스 변경 확인")
     fun test_singleton_change() {
-        val hash1 = Hash.newInstance(SHA1)
-        val hash2 = Hash.newInstance(SHA256)
+        val hash1 = Hash.getInstance(SHA1)
+        val hash2 = Hash.getInstance(SHA256)
 
         assertNotSame(hash1, hash2)
 
-        val hash3 = Hash.newInstance(SHA1)
+        val hash3 = Hash.getInstance(SHA1)
         assertNotSame(hash1, hash3)
     }
 }

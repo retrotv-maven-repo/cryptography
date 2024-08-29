@@ -8,6 +8,9 @@ import org.bouncycastle.crypto.params.ParametersWithIV
 import java.io.InputStream
 import java.io.OutputStream
 
+/**
+ * ChaCha20 스트림 암호화 클래스 입니다.
+ */
 class Chacha20 {
     private var engine = ChaChaEngine(20)
 

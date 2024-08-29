@@ -1,6 +1,6 @@
 package dev.retrotv.crypto.encryption.stream
 
-import dev.retrotv.crypto.encryption.generator.generateKey
+import dev.retrotv.crypto.encryption.generator.KeyGenerator.generateKey
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals

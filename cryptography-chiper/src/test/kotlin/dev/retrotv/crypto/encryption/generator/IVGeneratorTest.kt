@@ -1,5 +1,6 @@
 package dev.retrotv.crypto.encryption.generator
 
+import dev.retrotv.crypto.encryption.generator.IVGenerator.generateIV
 import dev.retrotv.crypto.enums.ECipher.AES
 import dev.retrotv.crypto.enums.ECipher.DES
 import dev.retrotv.crypto.enums.EMode.*

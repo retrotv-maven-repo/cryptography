@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 import static dev.retrotv.random.enums.SecurityStrength.MIDDLE;
 import static org.junit.jupiter.api.Assertions.*;
 
-class JSaltGenerateUtilsTest {
+class JRandomGenerateUtilsTest {
 
     @RepeatedTest(value = 100, name = "{displayName} - {currentRepetition}/{totalRepetitions}")
     @DisplayName("generateBytes() 메소드 테스트")

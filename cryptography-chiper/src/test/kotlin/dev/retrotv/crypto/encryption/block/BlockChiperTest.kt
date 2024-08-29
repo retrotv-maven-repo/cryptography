@@ -1,7 +1,7 @@
 package dev.retrotv.crypto.encryption.block
 
-import dev.retrotv.crypto.encryption.generator.generateIV
-import dev.retrotv.crypto.encryption.generator.generateKey
+import dev.retrotv.crypto.encryption.generator.IVGenerator.generateIV
+import dev.retrotv.crypto.encryption.generator.KeyGenerator.generateKey
 import dev.retrotv.crypto.encryption.mode.*
 import dev.retrotv.crypto.encryption.param.Params
 import dev.retrotv.crypto.encryption.param.ParamsWithIV

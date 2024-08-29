@@ -7,8 +7,12 @@ import org.bouncycastle.crypto.params.KeyParameter
 import java.io.InputStream
 import java.io.OutputStream
 
+/**
+ * RC4 스트림 암호화 클래스 입니다.
+ * @deprecated 해킹에 취약한 양방향 암호화 알고리즘 입니다. 더 높은 보안성을 지닌 알고리즘 사용을 권장합니다.
+ */
 @SuppressWarnings("kotlin:S1133")
-@Deprecated("해킹에 취약한 양방향 암호화 알고리즘 입니다.")
+@Deprecated("해킹에 취약한 양방향 암호화 알고리즘 입니다. 더 높은 보안성을 지닌 알고리즘 사용을 권장합니다.")
 class RC4 {
     private var engine = RC4Engine()
 

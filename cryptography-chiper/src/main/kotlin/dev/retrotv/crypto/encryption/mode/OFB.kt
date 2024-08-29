@@ -12,6 +12,10 @@ import org.bouncycastle.crypto.modes.OFBBlockCipher
 import org.bouncycastle.crypto.params.KeyParameter
 import org.bouncycastle.crypto.params.ParametersWithIV
 
+/**
+ * OFB 암호화 모드 클래스 입니다.
+ * @param blockCipher 블록 암호화 클래스
+ */
 class OFB(blockCipher: BlockCipher) : CipherMode(ECB, blockCipher) {
     private val blockSize by lazy {
         when (this.algorithm) {

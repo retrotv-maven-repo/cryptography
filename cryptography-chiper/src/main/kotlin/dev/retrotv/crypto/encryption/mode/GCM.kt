@@ -12,6 +12,10 @@ import org.bouncycastle.crypto.modes.GCMBlockCipher
 import org.bouncycastle.crypto.params.AEADParameters
 import org.bouncycastle.crypto.params.KeyParameter
 
+/**
+ * GCM 암호화 모드 클래스 입니다.
+ * @param blockCipher 블록 암호화 클래스
+ */
 class GCM(blockCipher: BlockCipher) : CipherMode(ECB, blockCipher) {
     private var aad: ByteArray? = null
 

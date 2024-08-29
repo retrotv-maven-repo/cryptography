@@ -2,6 +2,9 @@ package dev.retrotv.crypto.hash
 
 import java.io.IOException
 
+/**
+ * 바이너리 데이터를 해시하는 인터페이스입니다.
+ */
 interface BinaryHash {
 
     /**

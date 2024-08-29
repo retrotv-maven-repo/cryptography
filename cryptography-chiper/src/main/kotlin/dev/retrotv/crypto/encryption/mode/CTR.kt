@@ -10,6 +10,10 @@ import org.bouncycastle.crypto.modes.SICBlockCipher
 import org.bouncycastle.crypto.params.KeyParameter
 import org.bouncycastle.crypto.params.ParametersWithIV
 
+/**
+ * CTR 암호화 모드 클래스 입니다.
+ * @param blockCipher 블록 암호화 클래스
+ */
 class CTR(blockCipher: BlockCipher) : CipherMode(CTS, blockCipher) {
 
     @Throws(CryptoFailException::class)

@@ -8,6 +8,10 @@ import dev.retrotv.crypto.exception.CryptoFailException
 import org.bouncycastle.crypto.paddings.PaddedBufferedBlockCipher
 import org.bouncycastle.crypto.params.KeyParameter
 
+/**
+ * ECB 암호화 모드 클래스 입니다.
+ * @param blockCipher 블록 암호화 클래스
+ */
 class ECB(blockCipher: BlockCipher) : CipherMode(ECB, blockCipher) {
 
     @Throws(CryptoFailException::class)

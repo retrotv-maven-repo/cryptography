@@ -11,6 +11,10 @@ import org.bouncycastle.crypto.modes.CCMBlockCipher
 import org.bouncycastle.crypto.params.AEADParameters
 import org.bouncycastle.crypto.params.KeyParameter
 
+/**
+ * CCM 암호화 모드 클래스 입니다.
+ * @param blockCipher 블록 암호화 클래스
+ */
 class CCM(blockCipher: BlockCipher) : CipherMode(CCM, blockCipher) {
     private var aad: ByteArray? = null
 

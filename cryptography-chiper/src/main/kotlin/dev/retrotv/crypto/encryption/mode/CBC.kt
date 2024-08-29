@@ -11,6 +11,10 @@ import org.bouncycastle.crypto.paddings.PaddedBufferedBlockCipher
 import org.bouncycastle.crypto.params.KeyParameter
 import org.bouncycastle.crypto.params.ParametersWithIV
 
+/**
+ * CBC 암호화 모드 클래스 입니다.
+ * @param blockCipher 블록 암호화 클래스
+ */
 class CBC(blockCipher: BlockCipher) : CipherMode(CBC, blockCipher) {
 
     @Throws(CryptoFailException::class)

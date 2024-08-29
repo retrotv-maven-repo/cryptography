@@ -12,7 +12,7 @@ import java.security.MessageDigest
 private val log = LogManager.getLogger()
 
 /**
- * 지정된 [EHash] 유형으로 데이터를 암호화 하고, 암호화 된 데이터를 반환 합니다.
+ * 지정된 [EHash] 유형으로 데이터를 해시 하고, 해시 된 데이터를 반환 합니다.
  *
  * @param algorithm 암호화 시, 사용할 알고리즘
  * @param data 암호화 할 데이터
@@ -57,6 +57,7 @@ fun hashing(algorithm: EHash, data: ByteArray): ByteArray {
     }
 }
 
+// CRC-32 알고리즘만 별도로 해시 로직을 사용
 private fun digestCRC32(data: ByteArray): ByteArray {
     val crc32 = java.util.zip.CRC32()
     crc32.update(data)

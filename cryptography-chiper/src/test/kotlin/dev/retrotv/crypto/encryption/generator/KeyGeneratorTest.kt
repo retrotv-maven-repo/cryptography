@@ -1,5 +1,6 @@
 package dev.retrotv.crypto.encryption.generator
 
+import dev.retrotv.crypto.encryption.generator.KeyGenerator.generateKey
 import dev.retrotv.crypto.enums.ECipher.*
 import dev.retrotv.crypto.exception.GenerateException
 import org.junit.jupiter.api.Assertions.assertThrows
