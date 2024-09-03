@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "dev.retrotv"
-version = "0.41.0-alpha"
+version = "0.42.0-alpha"
 
 // Github Action 버전 출력용
 tasks.register("printVersionName") {
@@ -90,7 +90,6 @@ subprojects {
                 groupId = project.group.toString()
                 artifactId = "cryptography"
                 version = project.version.toString()
-
                 from(components["java"])
             }
         }
