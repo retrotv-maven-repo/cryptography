@@ -10,7 +10,9 @@ plugins {
 }
 
 rootProject.name = "cryptography"
-include("cryptography-core")
-include("cryptography-hash")
-include("cryptography-cipher")
-include("cryptography-password")
+include(
+    "cryptography-core",
+    "cryptography-hash",
+    "cryptography-cipher",
+    "cryptography-password"
+)
