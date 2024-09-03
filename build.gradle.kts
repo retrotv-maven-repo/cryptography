@@ -40,6 +40,13 @@ publishing {
     }
 }
 
+dependencies {
+    implementation(project(":cryptography-core"))
+    implementation(project(":cryptography-cipher"))
+    implementation(project(":cryptography-hash"))
+    implementation(project(":cryptography-password"))
+}
+
 allprojects {
     repositories {
         mavenCentral()
