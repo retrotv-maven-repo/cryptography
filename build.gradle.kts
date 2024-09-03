@@ -3,8 +3,8 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     java
     jacoco
-    kotlin("jvm") version "2.0.10"
     `maven-publish`
+    kotlin("jvm") version "2.0.10"
     id("org.jetbrains.dokka") version "1.9.20"
     id("org.sonarqube") version "4.0.0.2929"
 }
@@ -28,25 +28,6 @@ tasks {
     }
 }
 
-publishing {
-    publications {
-        create<MavenPublication>("maven") {
-            groupId = project.group.toString()
-            artifactId = "cryptography"
-            version = project.version.toString()
-
-            from(components["java"])
-        }
-    }
-}
-
-dependencies {
-    implementation(project(":cryptography-core"))
-    implementation(project(":cryptography-cipher"))
-    implementation(project(":cryptography-hash"))
-    implementation(project(":cryptography-password"))
-}
-
 allprojects {
     repositories {
         mavenCentral()
@@ -57,6 +38,7 @@ allprojects {
 subprojects {
     apply(plugin = "java")
     apply(plugin = "jacoco")
+    apply(plugin = "maven-publish")
 
     jacoco {
         toolVersion = "0.8.12"
@@ -95,6 +77,23 @@ subprojects {
         testImplementation(kotlin("test"))
         testImplementation("org.junit.jupiter:junit-jupiter-params:${junit}")
         testImplementation("org.json:json:${json}")
+    }
+
+    java {
+        withSourcesJar()
+        withJavadocJar()
+    }
+
+    publishing {
+        publications {
+            create<MavenPublication>("maven") {
+                groupId = project.group.toString()
+                artifactId = "cryptography"
+                version = project.version.toString()
+
+                from(components["java"])
+            }
+        }
     }
 }
 
