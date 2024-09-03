@@ -3,8 +3,6 @@ package dev.retrotv.crypto.password.argon2
 import dev.retrotv.crypto.password.KDFTest
 import org.junit.jupiter.api.DisplayName
 import kotlin.test.Test
-import kotlin.test.assertNotEquals
-import kotlin.test.assertTrue
 
 class Argon2Test {
     private val test = KDFTest()

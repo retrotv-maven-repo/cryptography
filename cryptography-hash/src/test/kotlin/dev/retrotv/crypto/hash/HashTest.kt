@@ -107,14 +107,14 @@ class HashTest {
     }
 
     private fun passwordHashTest(algorithm: EHash) {
-        val h = Hash.newInstance(algorithm)
+        val h = Hash.getInstance(algorithm)
         assertTrue(h.matches(password.toByteArray(), getHash(algorithm)))
         assertEquals(h.hash(password), getHash(algorithm))
         assertEquals(h.hash(password, Charsets.UTF_8), getHash(algorithm))
     }
 
     private fun fileHashTest(algorithm: EHash) {
-        val h = Hash.newInstance(algorithm)
+        val h = Hash.getInstance(algorithm)
         assertTrue(h.matches(File(resource?.file ?: ""), h.hash(File(resource?.file ?: ""))))
         assertFalse(h.matches(File(resource?.file ?: ""), null))
     }

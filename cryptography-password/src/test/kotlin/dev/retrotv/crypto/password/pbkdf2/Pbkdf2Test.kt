@@ -4,8 +4,6 @@ import dev.retrotv.crypto.password.KDFTest
 import org.junit.jupiter.api.DisplayName
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder.SecretKeyFactoryAlgorithm.PBKDF2WithHmacSHA256
 import kotlin.test.Test
-import kotlin.test.assertNotEquals
-import kotlin.test.assertTrue
 
 class Pbkdf2Test {
     private val test = KDFTest()

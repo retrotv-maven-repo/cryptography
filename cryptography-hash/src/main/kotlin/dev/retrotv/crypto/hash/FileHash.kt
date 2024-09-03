@@ -4,6 +4,9 @@ import dev.retrotv.data.utils.FileUtils
 import java.io.File
 import java.io.IOException
 
+/**
+ * 파일을 해시하는 인터페이스입니다.
+ */
 interface FileHash : BinaryHash {
 
     /**

@@ -1,6 +1,8 @@
 package dev.retrotv.crypto.password
 
-import kotlin.test.*
+import kotlin.test.assertFalse
+import kotlin.test.assertNotEquals
+import kotlin.test.assertTrue
 
 class KDFTest {
     private val password = "The lazy dog jumps over the quick brown fox"

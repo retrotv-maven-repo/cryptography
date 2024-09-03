@@ -15,7 +15,7 @@ open class Hash private constructor() : FileHash, PlaintextHash {
     companion object {
         private var instance: Hash? = null
 
-        fun newInstance(algorithm: EHash): Hash {
+        fun getInstance(algorithm: EHash): Hash {
 
             // 알고리즘이 같으면 동일한 인스턴스를 반환하고, 아니라면 새로운 인스턴스를 생성해 반환함
             if (instance != null && instance?.algorithm != algorithm) {

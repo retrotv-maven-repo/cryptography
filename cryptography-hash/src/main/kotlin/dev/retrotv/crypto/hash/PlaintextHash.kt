@@ -2,6 +2,9 @@ package dev.retrotv.crypto.hash
 
 import java.nio.charset.Charset
 
+/**
+ * 평문을 해시하는 인터페이스입니다.
+ */
 interface PlaintextHash : BinaryHash {
 
     fun hash(plaintext: CharSequence): String {

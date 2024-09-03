@@ -7,6 +7,9 @@ import dev.retrotv.random.enums.SecurityStrength.MIDDLE
 import java.security.SecureRandom
 import java.util.*
 
+/**
+ * 랜덤 데이터를 생성하기 위한 유틸리티 클래스 입니다.
+ */
 object RandomGenerateUtils {
 
     @JvmStatic
