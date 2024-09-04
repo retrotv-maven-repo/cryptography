@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "dev.retrotv"
-version = "0.42.1-alpha"
+version = "0.42.2-alpha"
 
 // Github Action 버전 출력용
 tasks.register("printVersionName") {
@@ -91,6 +91,8 @@ subprojects {
                 artifactId = "cryptography"
                 version = project.version.toString()
                 from(components["java"])
+                artifact(tasks.getByName("sourcesJar"))
+                artifact(tasks.getByName("javadocJar"))
             }
         }
     }
@@ -108,23 +110,4 @@ sonar {
 
 kotlin {
     jvmToolchain(8)
-}
-
-project(":cryptography-hash") {
-    dependencies {
-        compileOnly(project(":cryptography-core"))
-    }
-}
-
-project(":cryptography-password") {
-    dependencies {
-        compileOnly(project(":cryptography-core"))
-        compileOnly(project(":cryptography-hash"))
-    }
-}
-
-project(":cryptography-cipher") {
-    dependencies {
-        compileOnly(project(":cryptography-core"))
-    }
 }
