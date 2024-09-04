@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "dev.retrotv"
-version = "0.42.2-alpha"
+version = "0.42.3-alpha"
 
 // Github Action 버전 출력용
 tasks.register("printVersionName") {
@@ -28,6 +28,28 @@ tasks {
     }
 }
 
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = project.group.toString()
+            artifactId = "cryptography"
+            version = project.version.toString()
+            from(components["java"])
+        }
+    }
+}
+
+tasks.getByName<Jar>("jar") {
+    enabled = true
+}
+
+dependencies {
+    implementation(project(":cryptography-core"))
+    implementation(project(":cryptography-hash"))
+    implementation(project(":cryptography-cipher"))
+    implementation(project(":cryptography-password"))
+}
+
 allprojects {
     repositories {
         mavenCentral()
@@ -38,7 +60,6 @@ allprojects {
 subprojects {
     apply(plugin = "java")
     apply(plugin = "jacoco")
-    apply(plugin = "maven-publish")
 
     jacoco {
         toolVersion = "0.8.12"
@@ -77,24 +98,6 @@ subprojects {
         testImplementation(kotlin("test"))
         testImplementation("org.junit.jupiter:junit-jupiter-params:${junit}")
         testImplementation("org.json:json:${json}")
-    }
-
-    java {
-        withSourcesJar()
-        withJavadocJar()
-    }
-
-    publishing {
-        publications {
-            create<MavenPublication>("maven") {
-                groupId = project.group.toString()
-                artifactId = "cryptography"
-                version = project.version.toString()
-                from(components["java"])
-                artifact(tasks.getByName("sourcesJar"))
-                artifact(tasks.getByName("javadocJar"))
-            }
-        }
     }
 }
 
