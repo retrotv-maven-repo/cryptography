@@ -109,3 +109,22 @@ sonar {
 kotlin {
     jvmToolchain(8)
 }
+
+project(":cryptography-hash") {
+    dependencies {
+        compileOnly(project(":cryptography-core"))
+    }
+}
+
+project(":cryptography-password") {
+    dependencies {
+        compileOnly(project(":cryptography-core"))
+        compileOnly(project(":cryptography-hash"))
+    }
+}
+
+project(":cryptography-cipher") {
+    dependencies {
+        compileOnly(project(":cryptography-core"))
+    }
+}
