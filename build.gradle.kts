@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "dev.retrotv"
-version = "0.42.4-alpha"
+version = "0.42.5-alpha"
 
 // Github Action 버전 출력용
 tasks.register("printVersionName") {
@@ -28,26 +28,17 @@ tasks {
     }
 }
 
-publishing {
-    publications {
-        create<MavenPublication>("maven") {
-            groupId = project.group.toString()
-            artifactId = "cryptography"
-            version = project.version.toString()
-            from(components["java"])
+afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("maven") {
+                groupId = project.group.toString()
+                artifactId = "cryptography"
+                version = project.version.toString()
+                from(components["java"])
+            }
         }
     }
-}
-
-tasks.getByName<Jar>("jar") {
-    enabled = true
-}
-
-dependencies {
-    api(project(":cryptography-core"))
-    api(project(":cryptography-hash"))
-    api(project(":cryptography-cipher"))
-    api(project(":cryptography-password"))
 }
 
 allprojects {
