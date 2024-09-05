@@ -44,10 +44,10 @@ tasks.getByName<Jar>("jar") {
 }
 
 dependencies {
-    implementation(project(":cryptography-core"))
-    implementation(project(":cryptography-hash"))
-    implementation(project(":cryptography-cipher"))
-    implementation(project(":cryptography-password"))
+    api(project(":cryptography-core"))
+    api(project(":cryptography-hash"))
+    api(project(":cryptography-cipher"))
+    api(project(":cryptography-password"))
 }
 
 allprojects {
