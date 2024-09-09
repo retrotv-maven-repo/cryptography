@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "dev.retrotv"
-version = "0.42.5-alpha"
+version = "0.42.6-alpha"
 
 // Github Action 버전 출력용
 tasks.register("printVersionName") {
@@ -28,7 +28,7 @@ tasks {
     }
 }
 
-afterEvaluate {
+publishing {
     publishing {
         publications {
             create<MavenPublication>("maven") {
