@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "dev.retrotv"
-version = "0.42.7-alpha"
+version = "0.42.8-alpha"
 
 // Github Action 버전 출력용
 tasks.register("printVersionName") {
@@ -80,6 +80,11 @@ subprojects {
         testImplementation(kotlin("test"))
         testImplementation("org.junit.jupiter:junit-jupiter-params:${junit}")
         testImplementation("org.json:json:${json}")
+    }
+
+    java {
+        withSourcesJar()
+        withJavadocJar()
     }
 
     publishing {
