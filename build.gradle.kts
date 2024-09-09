@@ -28,20 +28,10 @@ tasks {
     }
 }
 
-publishing {
-    publishing {
-        publications {
-            create<MavenPublication>("maven") {
-                groupId = project.group.toString()
-                artifactId = "cryptography"
-                version = project.version.toString()
-                from(components["java"])
-            }
-        }
-    }
-}
-
 allprojects {
+    version = project.version
+    group = project.group
+
     repositories {
         mavenCentral()
         maven { setUrl("https://jitpack.io") }
@@ -51,6 +41,7 @@ allprojects {
 subprojects {
     apply(plugin = "java")
     apply(plugin = "jacoco")
+    apply(plugin = "maven-publish")
 
     jacoco {
         toolVersion = "0.8.12"
@@ -89,6 +80,17 @@ subprojects {
         testImplementation(kotlin("test"))
         testImplementation("org.junit.jupiter:junit-jupiter-params:${junit}")
         testImplementation("org.json:json:${json}")
+    }
+
+    publishing {
+        publications {
+            create<MavenPublication>("maven") {
+                groupId = project.group.toString()
+                artifactId = "cryptography"
+                version = project.version.toString()
+                from(components["java"])
+            }
+        }
     }
 }
 
