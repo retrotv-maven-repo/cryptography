@@ -82,19 +82,15 @@ subprojects {
         testImplementation("org.junit.jupiter:junit-jupiter-params:${junit}")
         testImplementation("org.json:json:${json}")
     }
-}
 
-publishing {
-    publications {
-        create<MavenPublication>("maven") {
-            groupId = project.group.toString()
-            artifactId = "cryptography"
-            version = project.version.toString()
-            artifact(project(":cryptography-core"))
-            artifact(project(":cryptography-cipher"))
-            artifact(project(":cryptography-hash"))
-            artifact(project(":cryptography-password"))
-            // from(components["java"])
+    publishing {
+        publications {
+            create<MavenPublication>("maven") {
+                groupId = project.group.toString()
+                artifactId = project.name.toString()
+                version = project.version.toString()
+                from(components["java"])
+            }
         }
     }
 }
