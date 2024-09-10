@@ -3,7 +3,6 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     java
     jacoco
-    `java-library`
     `maven-publish`
     kotlin("jvm") version "2.0.10"
     id("org.jetbrains.dokka") version "1.9.20"
@@ -87,7 +86,7 @@ subprojects {
         publications {
             create<MavenPublication>("maven") {
                 groupId = project.group.toString()
-                artifactId = project.name.toString()
+                artifactId = project.name
                 version = project.version.toString()
                 from(components["java"])
             }
