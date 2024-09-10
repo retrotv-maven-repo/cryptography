@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     java
     jacoco
+    `java-library`
     `maven-publish`
     kotlin("jvm") version "2.0.10"
     id("org.jetbrains.dokka") version "1.9.20"
@@ -10,7 +11,7 @@ plugins {
 }
 
 group = "dev.retrotv"
-version = "0.42.8-alpha"
+version = "0.42.9-alpha"
 
 // Github Action 버전 출력용
 tasks.register("printVersionName") {
@@ -81,20 +82,21 @@ subprojects {
         testImplementation("org.junit.jupiter:junit-jupiter-params:${junit}")
         testImplementation("org.json:json:${json}")
     }
+}
 
-    java {
-        withSourcesJar()
-        withJavadocJar()
-    }
-
-    publishing {
-        publications {
-            create<MavenPublication>("maven") {
-                groupId = project.group.toString()
-                artifactId = "cryptography"
-                version = project.version.toString()
-                from(components["java"])
-            }
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = project.group.toString()
+            artifactId = "cryptography"
+            version = project.version.toString()
+            artifact(
+                task("sourcesJar", type = Jar::class) {
+                    from(sourceSets.main.get().allSource)
+                    archiveClassifier.set("sources")
+                }
+            )
+            // from(components["java"])
         }
     }
 }
