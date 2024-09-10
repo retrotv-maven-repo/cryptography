@@ -90,12 +90,10 @@ publishing {
             groupId = project.group.toString()
             artifactId = "cryptography"
             version = project.version.toString()
-            artifact(
-                task("sourcesJar", type = Jar::class) {
-                    from(sourceSets.main.get().allSource)
-                    archiveClassifier.set("sources")
-                }
-            )
+            artifact(project(":cryptography-core"))
+            artifact(project(":cryptography-cipher"))
+            artifact(project(":cryptography-hash"))
+            artifact(project(":cryptography-password"))
             // from(components["java"])
         }
     }
