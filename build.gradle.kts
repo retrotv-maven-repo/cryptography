@@ -4,7 +4,7 @@ plugins {
     java
     jacoco
     `maven-publish`
-    kotlin("jvm") version "2.0.10"
+    kotlin("jvm") version "2.0.21"
     id("org.jetbrains.dokka") version "1.9.20"
     id("org.sonarqube") version "4.0.0.2929"
 }
@@ -64,9 +64,9 @@ subprojects {
         toolVersion = "0.8.12"
     }
 
-    val dataUtils = "0.16.0-alpha"
-    val log4j = "2.23.1"
-    val bouncyCastle = "1.78.1"
+    val dataUtils = "0.21.0-alpha"
+    val log4j = "2.24.1"
+    val bouncyCastle = "1.79"
     val json = "20240303"
     val junit = "5.11.0"
 

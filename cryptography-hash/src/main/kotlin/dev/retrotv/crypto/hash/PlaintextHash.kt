@@ -7,11 +7,24 @@ import java.nio.charset.Charset
  */
 interface PlaintextHash : BinaryHash {
 
+    /**
+     * 평문을 해시한 값을 생성하고 반환합니다.
+     *
+     * @param plaintext 해시 할 평문
+     * @return 해시 값
+     */
     fun hash(plaintext: CharSequence): String {
         return hash(plaintext.toString()
                              .toByteArray())
     }
 
+    /**
+     * 평문을 해시한 값을 생성하고 반환합니다.
+     *
+     * @param plaintext 해시 할 평문
+     * @param charset 해시 할 평문의 캐릭터 셋
+     * @return 해시 값
+     */
     fun hash(plaintext: CharSequence, charset: Charset): String {
 
         /*
