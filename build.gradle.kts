@@ -3,15 +3,14 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     java
     jacoco
-    `java-library`
     `maven-publish`
-    kotlin("jvm") version "2.0.10"
+    kotlin("jvm") version "2.0.21"
     id("org.jetbrains.dokka") version "1.9.20"
     id("org.sonarqube") version "4.0.0.2929"
 }
 
 group = "dev.retrotv"
-version = "0.42.10-alpha"
+version = "0.43.0-alpha"
 
 // Github Action 버전 출력용
 tasks.register("printVersionName") {
@@ -65,11 +64,11 @@ subprojects {
         toolVersion = "0.8.12"
     }
 
-    val dataUtils = "0.16.0-alpha"
-    val log4j = "2.23.1"
-    val bouncyCastle = "1.78.1"
+    val dataUtils = "0.21.6-alpha"
+    val log4j = "2.24.1"
+    val bouncyCastle = "1.79"
     val json = "20240303"
-    val junit = "5.11.0"
+    val junit = "5.11.2"
 
     dependencies {
         implementation("com.github.retrotv-maven-repo:data-utils:${dataUtils}")
@@ -87,7 +86,7 @@ subprojects {
         publications {
             create<MavenPublication>("maven") {
                 groupId = project.group.toString()
-                artifactId = project.name.toString()
+                artifactId = project.name
                 version = project.version.toString()
                 from(components["java"])
             }

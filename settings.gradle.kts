@@ -13,6 +13,5 @@ rootProject.name = "cryptography"
 include(
     "cryptography-core",
     "cryptography-hash",
-    "cryptography-cipher",
-    "cryptography-password"
+    "cryptography-cipher"
 )
