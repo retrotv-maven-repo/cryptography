@@ -7,5 +7,5 @@ val springSecurityCore = "5.8.16"
 dependencies {
     implementation(project(":cryptography-hash"))
     implementation(project(":cryptography-core"))
-    compileOnly("org.springframework.security:spring-security-core:${springSecurityCore}")
+    implementation("org.springframework.security:spring-security-core:${springSecurityCore}")
 }
