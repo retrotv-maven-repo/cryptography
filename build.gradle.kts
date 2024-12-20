@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "dev.retrotv"
-version = "0.42.10-alpha"
+version = "0.42.11-alpha"
 
 // Github Action 버전 출력용
 tasks.register("printVersionName") {
@@ -64,11 +64,11 @@ subprojects {
         toolVersion = "0.8.12"
     }
 
-    val dataUtils = "0.21.0-alpha"
+    val dataUtils = "0.21.6-alpha"
     val log4j = "2.24.1"
     val bouncyCastle = "1.79"
     val json = "20240303"
-    val junit = "5.11.0"
+    val junit = "5.11.2"
 
     dependencies {
         implementation("com.github.retrotv-maven-repo:data-utils:${dataUtils}")

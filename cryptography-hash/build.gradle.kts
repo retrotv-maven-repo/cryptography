@@ -2,9 +2,9 @@ plugins {
     kotlin("jvm")
 }
 
-val springSecurityCore = "5.8.15"
+val springSecurityCore = "5.8.16"
 
 dependencies {
     implementation(project(":cryptography-core"))
-    api("org.springframework.security:spring-security-core:${springSecurityCore}")
+    compileOnly("org.springframework.security:spring-security-core:${springSecurityCore}")
 }

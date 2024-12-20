@@ -10,7 +10,7 @@ sourceSets {
     }
 }
 
-val bouncyCastle = "1.78.1"
+val bouncyCastle = "1.79"
 
 dependencies {
     implementation(project(":cryptography-core"))
