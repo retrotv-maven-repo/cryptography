@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import java.net.URI
 
 plugins {
     java
@@ -10,7 +11,7 @@ plugins {
 }
 
 group = "dev.retrotv"
-version = "0.43.0-alpha"
+version = "0.43.1-alpha"
 
 // Github Action 버전 출력용
 tasks.register("printVersionName") {
@@ -83,6 +84,17 @@ subprojects {
     }
 
     publishing {
+        repositories {
+            maven {
+                name = "GitHubPackages"
+                url = URI("https://maven.pkg.github.com/retrotv-maven-repo/cryptography")
+                credentials {
+                    username = System.getenv("USERNAME")
+                    password = System.getenv("PASSWORD")
+                }
+            }
+        }
+
         publications {
             create<MavenPublication>("maven") {
                 groupId = project.group.toString()
