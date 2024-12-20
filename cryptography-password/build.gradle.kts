@@ -2,7 +2,7 @@ plugins {
     kotlin("jvm")
 }
 
-val springSecurityCore = "5.8.16"
+val springSecurityCore = "6.4.2"
 
 dependencies {
     implementation(project(":cryptography-hash"))
