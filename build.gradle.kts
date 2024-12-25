@@ -112,7 +112,7 @@ sonar {
         property("sonar.organization", "retrotv-maven-repo")
         property("sonar.host.url", "https://sonarcloud.io")
         property("sonar.exclusions", "src/main/java/**")
-        property("sonar.coverage.exclusions", "src/main/java/**,**/exception/*,**/enums/*,**/util/*,BinaryHash.*,PlainTextHash.*")
+        property("sonar.coverage.exclusions", "src/main/java/**,**/exception/*,**/enums/*,**/util/*,**/BinaryHash.*,**/PlainTextHash.*")
     }
 }
 
