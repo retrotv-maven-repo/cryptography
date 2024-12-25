@@ -29,9 +29,6 @@ class CodecUtilsTest {
             val data = byteArrayOf(0x01, 0x02, 0x03, 0x04)
             var encoded = CodecUtils.encode(data, BASE64)
             assertEquals("AQIDBA==", encoded)
-
-            encoded = CodecUtils.encode(data)
-            assertEquals("AQIDBA==", encoded)
         }
     }
 
@@ -52,9 +49,6 @@ class CodecUtilsTest {
         fun test_decode_base64() {
             val encoded = "AQIDBA=="
             var decoded = CodecUtils.decode(encoded, BASE64)
-            assertArrayEquals(byteArrayOf(0x01, 0x02, 0x03, 0x04), decoded)
-
-            decoded = CodecUtils.decode(encoded)
             assertArrayEquals(byteArrayOf(0x01, 0x02, 0x03, 0x04), decoded)
         }
     }

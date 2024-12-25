@@ -2,6 +2,9 @@ package dev.retrotv.crypto.hash
 
 import dev.retrotv.crypto.enums.EHash
 import dev.retrotv.crypto.enums.EHash.*
+import dev.retrotv.crypto.util.CodecUtils
+import dev.retrotv.data.enums.EncodeFormat
+import dev.retrotv.data.utils.ByteUtils
 
 import org.json.JSONObject
 import org.junit.jupiter.api.Assertions.*
@@ -109,14 +112,19 @@ class HashTest {
     private fun passwordHashTest(algorithm: EHash) {
         val h = Hash.getInstance(algorithm)
         assertTrue(h.matches(password.toByteArray(), getHash(algorithm)))
-        assertEquals(h.hash(password), getHash(algorithm))
-        assertEquals(h.hash(password, Charsets.UTF_8), getHash(algorithm))
+        assertEquals(CodecUtils.encode(h.hash(password), EncodeFormat.HEX), getHash(algorithm))
+        assertEquals(CodecUtils.encode(h.hash(password, Charsets.UTF_8), EncodeFormat.HEX), getHash(algorithm))
     }
 
     private fun fileHashTest(algorithm: EHash) {
-        val h = Hash.getInstance(algorithm)
-        assertTrue(h.matches(File(resource?.file ?: ""), h.hash(File(resource?.file ?: ""))))
-        assertFalse(h.matches(File(resource?.file ?: ""), null))
+        val h: BinaryHash = Hash.getInstance(algorithm)
+        assertTrue(
+            h.matches(
+                resource?.file!!.toByteArray(),
+                CodecUtils.encode(h.hash(resource.file!!.toByteArray()))
+            )
+        )
+        assertFalse(h.matches(resource.file!!.toByteArray(), null))
     }
 
     @Throws(IOException::class)
@@ -138,7 +146,6 @@ class HashTest {
             SHA3256 -> file.getString(SHA3256.label())
             SHA3384 -> file.getString(SHA3384.label())
             SHA3512 -> file.getString(SHA3512.label())
-            else -> null
         }
     }
 

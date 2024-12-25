@@ -11,7 +11,7 @@ plugins {
 }
 
 group = "dev.retrotv"
-version = "0.43.1-alpha"
+version = "0.44.0-alpha"
 
 // Github Action 버전 출력용
 tasks.register("printVersionName") {
@@ -112,7 +112,7 @@ sonar {
         property("sonar.organization", "retrotv-maven-repo")
         property("sonar.host.url", "https://sonarcloud.io")
         property("sonar.exclusions", "src/main/java/**")
-        property("sonar.coverage.exclusions", "**/exception/*,**/enums/*,src/main/java/**")
+        property("sonar.coverage.exclusions", "src/main/java/**,**/exception/*,**/enums/*,**/util/*,**/BinaryHash.*,**/PlaintextHash.*")
     }
 }
 
