@@ -117,7 +117,7 @@ class HashTest {
     }
 
     private fun fileHashTest(algorithm: EHash) {
-        val h = Hash.getInstance(algorithm)
+        val h: BinaryHash = Hash.getInstance(algorithm)
         assertTrue(
             h.matches(
                 resource?.file!!.toByteArray(),
