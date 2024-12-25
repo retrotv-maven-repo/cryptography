@@ -2,19 +2,20 @@ package dev.retrotv.crypto.hash
 
 import dev.retrotv.crypto.enums.EHash
 import dev.retrotv.crypto.enums.EHash.CRC32
-import dev.retrotv.crypto.util.hashing
+import dev.retrotv.crypto.util.MessageDigestUtils.hashing
 import dev.retrotv.data.utils.ByteUtils
 
 /**
  * 해시 알고리즘 클래스 구현을 위한 추상 클래스 입니다.
  * [FileHash], [PlaintextHash] 인터페이스를 상속받습니다.
  */
-open class Hash private constructor() : FileHash, PlaintextHash {
+class Hash private constructor() : FileHash, PlaintextHash {
     private lateinit var algorithm: EHash
 
     companion object {
         private var instance: Hash? = null
 
+        @JvmStatic
         fun getInstance(algorithm: EHash): Hash {
 
             // 알고리즘이 같으면 동일한 인스턴스를 반환하고, 아니라면 새로운 인스턴스를 생성해 반환함
