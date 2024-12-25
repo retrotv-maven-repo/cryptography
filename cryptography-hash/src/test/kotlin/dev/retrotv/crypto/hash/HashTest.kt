@@ -118,8 +118,13 @@ class HashTest {
 
     private fun fileHashTest(algorithm: EHash) {
         val h = Hash.getInstance(algorithm)
-        // assertTrue(h.matches(File(resource?.file ?: ""), h.hash(File(resource?.file ?: ""))))
-        // assertFalse(h.matches(File(resource?.file ?: ""), null))
+        assertTrue(
+            h.matches(
+                resource?.file!!.toByteArray(),
+                CodecUtils.encode(h.hash(resource.file!!.toByteArray()))
+            )
+        )
+        assertFalse(h.matches(resource.file!!.toByteArray(), null))
     }
 
     @Throws(IOException::class)
