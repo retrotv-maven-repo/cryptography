@@ -3,13 +3,14 @@ package dev.retrotv.crypto.hash
 import dev.retrotv.crypto.enums.EHash
 import dev.retrotv.crypto.enums.EHash.CRC32
 import dev.retrotv.crypto.util.MessageDigestUtils.hashing
+import dev.retrotv.data.enums.EncodeFormat
 import dev.retrotv.data.utils.ByteUtils
 
 /**
  * 해시 알고리즘 클래스 구현을 위한 추상 클래스 입니다.
- * [FileHash], [PlaintextHash] 인터페이스를 상속받습니다.
+ * [BinaryHash], [PlaintextHash] 인터페이스를 상속받습니다.
  */
-class Hash private constructor() : FileHash, PlaintextHash {
+class Hash private constructor() : BinaryHash, PlaintextHash {
     private lateinit var algorithm: EHash
 
     companion object {
@@ -33,17 +34,23 @@ class Hash private constructor() : FileHash, PlaintextHash {
         }
     }
 
-    override fun hash(data: ByteArray): String {
+    override fun hash(data: ByteArray): ByteArray {
         return if (algorithm != CRC32) {
-            return ByteUtils.toHexString(hashing(algorithm, data))
+            hashing(algorithm, data)
         } else {
 
-            // CRC32 알고리즘일 경우에만 substring(8)을 사용하여 8자리만 반환함
-            ByteUtils.toHexString(hashing(algorithm, data)).substring(8)
+            // CRC32 해시 알고리즘은 마지막 4바이트 해시 값을 반환함
+            val hashedData = hashing(algorithm, data)
+            hashedData.copyOfRange(4, 8)
         }
     }
 
     override fun matches(data: ByteArray, digest: String?): Boolean {
-        return hash(data) == digest
+        return matches(data, digest, EncodeFormat.HEX)
+    }
+
+    override fun matches(data: ByteArray, digest: String?, encoderFormat: EncodeFormat): Boolean {
+        val encodedData = ByteUtils.toHexString(hash(data))
+        return encodedData.equals(digest, ignoreCase = true)
     }
 }

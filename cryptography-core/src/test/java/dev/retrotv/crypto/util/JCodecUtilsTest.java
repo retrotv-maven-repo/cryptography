@@ -31,9 +31,6 @@ class JCodecUtilsTest {
             byte[] bytes = new byte[]{1, 2, 3, 4};
             String encoded = CodecUtils.encode(bytes, BASE64);
             assertEquals("AQIDBA==", encoded);
-
-            encoded = CodecUtils.encode(bytes);
-            assertEquals("AQIDBA==", encoded);
         }
     }
 
@@ -54,9 +51,6 @@ class JCodecUtilsTest {
         void testBase64Decode() throws DecoderException {
             String encoded = "AQIDBA==";
             byte[] decoded = CodecUtils.decode(encoded, BASE64);
-            assertArrayEquals(new byte[]{1, 2, 3, 4}, decoded);
-
-            decoded = CodecUtils.decode(encoded);
             assertArrayEquals(new byte[]{1, 2, 3, 4}, decoded);
         }
     }

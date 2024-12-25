@@ -1,6 +1,7 @@
 package dev.retrotv.crypto.hash;
 
 import dev.retrotv.crypto.enums.EHash;
+import dev.retrotv.crypto.util.CodecUtils;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +17,7 @@ class HashJavaTest {
         Set<String> hashedResults = new HashSet<>();
         Hash h = Hash.getInstance(EHash.CRC32);
         for (int i = 0; i < 100; i++) {
-            hashedResults.add(h.hash(PASSWORD));
+            hashedResults.add(CodecUtils.encode(h.hash(PASSWORD)));
         }
 
         assert hashedResults.size() == 1;
