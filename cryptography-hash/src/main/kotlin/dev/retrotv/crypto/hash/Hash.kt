@@ -2,6 +2,7 @@ package dev.retrotv.crypto.hash
 
 import dev.retrotv.crypto.enums.EHash
 import dev.retrotv.crypto.enums.EHash.CRC32
+import dev.retrotv.crypto.exception.AlgorithmNotFoundException
 import dev.retrotv.crypto.util.MessageDigestUtils.hashing
 import dev.retrotv.data.enums.EncodeFormat
 import dev.retrotv.data.utils.ByteUtils
@@ -30,6 +31,15 @@ class Hash private constructor() : BinaryHash, PlaintextHash {
                     it.algorithm = algorithm
                     instance = it
                 }
+            }
+        }
+
+        @JvmStatic
+        fun getInstance(algorithm: String): Hash {
+            try {
+                return getInstance(EHash.valueOf(algorithm))
+            } catch (e: IllegalArgumentException) {
+                throw AlgorithmNotFoundException("지원하지 않는 알고리즘 입니다.", e)
             }
         }
     }
