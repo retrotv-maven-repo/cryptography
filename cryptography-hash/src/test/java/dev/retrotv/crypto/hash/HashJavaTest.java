@@ -8,8 +8,10 @@ import org.junit.jupiter.api.Test;
 import java.util.HashSet;
 import java.util.Set;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 class HashJavaTest {
-    private final static String PASSWORD = "The quick brown fox jumps over the lazy dog";
+    private static final String PASSWORD = "The quick brown fox jumps over the lazy dog";
 
     @Test
     @DisplayName("CRC-32 알고리즘으로 해싱")
@@ -20,6 +22,6 @@ class HashJavaTest {
             hashedResults.add(CodecUtils.encode(h.hash(PASSWORD)));
         }
 
-        assert hashedResults.size() == 1;
+        assertEquals(1, hashedResults.size());
     }
 }
