@@ -106,6 +106,15 @@ class HashTest {
     }
 
     @Test
+    @DisplayName("getInstance(String) 테스트")
+    fun test_getInstance() {
+        val h1 = Hash.getInstance("MD5")
+        val h2 = Hash.getInstance(MD5)
+
+        assertEquals(CodecUtils.encode(h1.hash(this.password)), CodecUtils.encode(h2.hash(this.password)))
+    }
+
+    @Test
     @DisplayName("AlgorithmNotFoundException 테스트")
     fun test_algorithmNotFoundException() {
         assertThrows(AlgorithmNotFoundException::class.java) {
