@@ -2,16 +2,17 @@ package dev.retrotv.crypto.hash
 
 import dev.retrotv.crypto.enums.EHash
 import dev.retrotv.crypto.enums.EHash.*
+import dev.retrotv.crypto.exception.AlgorithmNotFoundException
 import dev.retrotv.crypto.util.CodecUtils
 import dev.retrotv.data.enums.EncodeFormat
-import dev.retrotv.data.utils.ByteUtils
 
 import org.json.JSONObject
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.RepeatedTest
+import org.junit.jupiter.api.Test
 import java.io.BufferedReader
-import java.io.File
 import java.io.FileReader
 import java.io.IOException
 
@@ -102,6 +103,14 @@ class HashTest {
     @DisplayName("SHA3-512 알고리즘으로 해싱")
     fun test_sha3512() {
         hashTest(SHA3512)
+    }
+
+    @Test
+    @DisplayName("AlgorithmNotFoundException 테스트")
+    fun test_algorithmNotFoundException() {
+        assertThrows(AlgorithmNotFoundException::class.java) {
+            Hash.getInstance("WRONG_ALGORITHM")
+        }
     }
 
     private fun hashTest(algorithm: EHash) {
