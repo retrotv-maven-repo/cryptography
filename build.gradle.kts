@@ -86,11 +86,11 @@ subprojects {
         testImplementation("org.json:json:${json}")
     }
 
-    publishing {
+    configure<PublishingExtension> {
         repositories {
             maven {
                 name = "GitHubPackages"
-                url = URI("https://maven.pkg.github.com/retrotv-maven-repo/cryptography")
+                url = uri("https://maven.pkg.github.com/retrotv-maven-repo/cryptography")
                 credentials {
                     username = System.getenv("USERNAME")
                     password = System.getenv("PASSWORD")
@@ -103,7 +103,9 @@ subprojects {
                 from(components["java"])
             }
         }
+    }
 
+    publishing {
         publications {
             create<MavenPublication>("maven") {
                 groupId = project.group.toString()
@@ -111,17 +113,6 @@ subprojects {
                 version = project.version.toString()
                 from(components["java"])
             }
-        }
-    }
-
-    tasks.jar {
-        manifest {
-            attributes(
-                mapOf(
-                    "Implementation-Title" to project.name,
-                    "Implementation-Version" to project.version
-                )
-            )
         }
     }
 }
