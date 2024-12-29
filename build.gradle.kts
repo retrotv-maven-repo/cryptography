@@ -11,7 +11,7 @@ plugins {
 }
 
 group = "dev.retrotv"
-version = "0.45.6-alpha"
+version = "0.45.7-alpha"
 
 // Github Action 버전 출력용
 tasks.register("printVersionName") {
@@ -26,6 +26,34 @@ tasks {
     }
     compileTestKotlin {
         compilerOptions.jvmTarget.set(JvmTarget.JVM_1_8)
+    }
+}
+
+dependencies {
+    implementation(project(":cryptography-core"))
+    implementation(project(":cryptography-hash"))
+    implementation(project(":cryptography-cipher"))
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/retrotv-maven-repo/cryptography")
+            credentials {
+                username = System.getenv("USERNAME")
+                password = System.getenv("PASSWORD")
+            }
+        }
+    }
+
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = project.group.toString()
+            artifactId = project.name
+            version = project.version.toString()
+            from(components["java"])
+        }
     }
 }
 
@@ -84,36 +112,6 @@ subprojects {
         testImplementation(kotlin("test"))
         testImplementation("org.junit.jupiter:junit-jupiter-params:${junit}")
         testImplementation("org.json:json:${json}")
-    }
-
-    configure<PublishingExtension> {
-        repositories {
-            maven {
-                name = "GitHubPackages"
-                url = uri("https://maven.pkg.github.com/retrotv-maven-repo/cryptography")
-                credentials {
-                    username = System.getenv("USERNAME")
-                    password = System.getenv("PASSWORD")
-                }
-            }
-        }
-
-        publications {
-            register<MavenPublication>("gpr") {
-                from(components["java"])
-            }
-        }
-    }
-
-    publishing {
-        publications {
-            create<MavenPublication>("maven") {
-                groupId = project.group.toString()
-                artifactId = project.name
-                version = project.version.toString()
-                from(components["java"])
-            }
-        }
     }
 }
 
