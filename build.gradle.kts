@@ -99,6 +99,10 @@ subprojects {
         }
 
         publications {
+            register<MavenPublication>("gpr") {
+                from(components["java"])
+            }
+
             create<MavenPublication>("maven") {
                 groupId = project.group.toString()
                 artifactId = project.name
