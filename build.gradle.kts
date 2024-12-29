@@ -11,7 +11,7 @@ plugins {
 }
 
 group = "dev.retrotv"
-version = "0.45.1-alpha"
+version = "0.45.4-alpha"
 
 // Github Action 버전 출력용
 tasks.register("printVersionName") {
@@ -43,6 +43,9 @@ subprojects {
     apply(plugin = "java")
     apply(plugin = "jacoco")
     apply(plugin = "maven-publish")
+
+    version = project.version
+    group = project.group
 
     jacoco {
         toolVersion = "0.8.12"
