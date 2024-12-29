@@ -29,12 +29,6 @@ tasks {
     }
 }
 
-dependencies {
-    implementation(project(":cryptography-core"))
-    implementation(project(":cryptography-hash"))
-    implementation(project(":cryptography-cipher"))
-}
-
 publishing {
     repositories {
         maven {
