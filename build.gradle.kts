@@ -11,7 +11,7 @@ plugins {
 }
 
 group = "dev.retrotv"
-version = "0.45.4-alpha"
+version = "0.45.5-alpha"
 
 // Github Action 버전 출력용
 tasks.register("printVersionName") {
@@ -102,13 +102,26 @@ subprojects {
             register<MavenPublication>("gpr") {
                 from(components["java"])
             }
+        }
 
+        publications {
             create<MavenPublication>("maven") {
                 groupId = project.group.toString()
                 artifactId = project.name
                 version = project.version.toString()
                 from(components["java"])
             }
+        }
+    }
+
+    tasks.jar {
+        manifest {
+            attributes(
+                mapOf(
+                    "Implementation-Title" to project.name,
+                    "Implementation-Version" to project.version
+                )
+            )
         }
     }
 }
