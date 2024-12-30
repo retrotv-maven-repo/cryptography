@@ -1,5 +1,4 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import java.net.URI
 
 plugins {
     java
@@ -97,18 +96,21 @@ subprojects {
 
         publications {
             register<MavenPublication>("gpr") {
-                from(components["java"])
-            }
-        }
-
-        publications {
-            create<MavenPublication>("maven") {
                 groupId = project.group.toString()
                 artifactId = project.name
                 version = project.version.toString()
                 from(components["java"])
             }
         }
+
+//        publications {
+//            create<MavenPublication>("maven") {
+//                groupId = project.group.toString()
+//                artifactId = project.name
+//                version = project.version.toString()
+//                from(components["java"])
+//            }
+//        }
     }
 }
 
