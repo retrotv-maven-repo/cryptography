@@ -1,5 +1,4 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import java.net.URI
 
 plugins {
     java
@@ -11,7 +10,7 @@ plugins {
 }
 
 group = "dev.retrotv"
-version = "0.45.8-alpha"
+version = "0.45.9-alpha"
 
 // Github Action 버전 출력용
 tasks.register("printVersionName") {
@@ -97,18 +96,21 @@ subprojects {
 
         publications {
             register<MavenPublication>("gpr") {
-                from(components["java"])
-            }
-        }
-
-        publications {
-            create<MavenPublication>("maven") {
                 groupId = project.group.toString()
                 artifactId = project.name
                 version = project.version.toString()
                 from(components["java"])
             }
         }
+
+//        publications {
+//            create<MavenPublication>("maven") {
+//                groupId = project.group.toString()
+//                artifactId = project.name
+//                version = project.version.toString()
+//                from(components["java"])
+//            }
+//        }
     }
 }
 
