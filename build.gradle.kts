@@ -88,29 +88,11 @@ subprojects {
                 name = "GitHubPackages"
                 url = uri("https://maven.pkg.github.com/retrotv-maven-repo/cryptography")
                 credentials {
-                    username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
-                    password = project.findProperty("gpr.key") as String? ?: System.getenv("PASSWORD")
+                    username = System.getenv("GITHUB_ACTOR")
+                    password = System.getenv("GITHUB_TOKEN")
                 }
             }
         }
-
-        publications {
-            register<MavenPublication>("gpr") {
-                groupId = project.group.toString()
-                artifactId = project.name
-                version = project.version.toString()
-                from(components["java"])
-            }
-        }
-
-//        publications {
-//            create<MavenPublication>("maven") {
-//                groupId = project.group.toString()
-//                artifactId = project.name
-//                version = project.version.toString()
-//                from(components["java"])
-//            }
-//        }
     }
 }
 
