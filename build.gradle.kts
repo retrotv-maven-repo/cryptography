@@ -1,4 +1,3 @@
-import org.jetbrains.kotlin.fir.declarations.builder.buildScript
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -7,11 +6,10 @@ plugins {
     `maven-publish`
     kotlin("jvm") version "2.0.21"
     id("org.jetbrains.dokka") version "1.9.20"
-    id("org.sonarqube") version "6.0.1.5171"
 }
 
 group = "dev.retrotv"
-version = "0.45.14-alpha"
+version = "0.45.15-alpha"
 
 // Github Action 버전 출력용
 tasks.register("printVersionName") {
@@ -105,16 +103,6 @@ subprojects {
                 from(components["java"])
             }
         }
-    }
-}
-
-sonar {
-    properties {
-        property("sonar.projectKey", "retrotv-maven-repo_cryptography")
-        property("sonar.organization", "retrotv-maven-repo")
-        property("sonar.host.url", "https://sonarcloud.io")
-        property("sonar.exclusions", "src/main/java/**")
-        property("sonar.coverage.exclusions", "src/main/java/**,**/exception/*,**/enums/*,**/util/*,**/BinaryHash.*,**/PlaintextHash.*")
     }
 }
 
