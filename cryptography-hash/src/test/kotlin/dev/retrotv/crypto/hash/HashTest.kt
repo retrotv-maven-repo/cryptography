@@ -7,7 +7,6 @@ import dev.retrotv.crypto.util.CodecUtils
 import dev.retrotv.data.enums.EncodeFormat
 
 import org.json.JSONObject
-import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.RepeatedTest
@@ -18,91 +17,91 @@ import java.io.IOException
 
 class HashTest {
     private val password = "The quick brown fox jumps over the lazy dog"
-    private val checksum = this.javaClass.getClassLoader().getResource("hash_code")
-    private val resource = this.javaClass.getClassLoader().getResource("hash_code_test_file.txt")
+    private val checksum = this.javaClass.getClassLoader().getResource("hashing_code")
+    private val resource = this.javaClass.getClassLoader().getResource("hashing_code_test_file.txt")
 
     @RepeatedTest(100, name = "{displayName} {currentRepetition}/{totalRepetitions}")
     @DisplayName("CRC-32 알고리즘으로 해싱")
     fun test_crc32() {
-        hashTest(CRC32)
+        hashingTest(CRC32)
     }
 
     @RepeatedTest(100, name = "{displayName} {currentRepetition}/{totalRepetitions}")
     @DisplayName("MD2 알고리즘으로 해싱")
     fun test_md2() {
-        hashTest(MD2)
+        hashingTest(MD2)
     }
 
     @RepeatedTest(100, name = "{displayName} {currentRepetition}/{totalRepetitions}")
     @DisplayName("MD5 알고리즘으로 해싱")
     fun test_md5() {
-        hashTest(MD5)
+        hashingTest(MD5)
     }
 
     @RepeatedTest(100, name = "{displayName} {currentRepetition}/{totalRepetitions}")
     @DisplayName("SHA-1 알고리즘으로 해싱")
     fun test_sha1() {
-        hashTest(SHA1)
+        hashingTest(SHA1)
     }
 
     @RepeatedTest(100, name = "{displayName} {currentRepetition}/{totalRepetitions}")
     @DisplayName("SHA-224 알고리즘으로 해싱")
     fun test_sha224() {
-        hashTest(SHA224)
+        hashingTest(SHA224)
     }
 
     @RepeatedTest(100, name = "{displayName} {currentRepetition}/{totalRepetitions}")
     @DisplayName("SHA-256 알고리즘으로 해싱")
     fun test_sha256() {
-        hashTest(SHA256)
+        hashingTest(SHA256)
     }
 
     @RepeatedTest(100, name = "{displayName} {currentRepetition}/{totalRepetitions}")
     @DisplayName("SHA-384 알고리즘으로 해싱")
     fun test_sha384() {
-        hashTest(SHA384)
+        hashingTest(SHA384)
     }
 
     @RepeatedTest(100, name = "{displayName} {currentRepetition}/{totalRepetitions}")
     @DisplayName("SHA-512 알고리즘으로 해싱")
     fun test_sha512() {
-        hashTest(SHA512)
+        hashingTest(SHA512)
     }
 
     @RepeatedTest(100, name = "{displayName} {currentRepetition}/{totalRepetitions}")
     @DisplayName("SHA-512/224 알고리즘으로 해싱")
     fun test_sha512224() {
-        hashTest(SHA512224)
+        hashingTest(SHA512224)
     }
 
     @RepeatedTest(100, name = "{displayName} {currentRepetition}/{totalRepetitions}")
     @DisplayName("SHA-512/256 알고리즘으로 해싱")
     fun test_sha512256() {
-        hashTest(SHA512256)
+        hashingTest(SHA512256)
     }
 
     @RepeatedTest(100, name = "{displayName} {currentRepetition}/{totalRepetitions}")
     @DisplayName("SHA3-224 알고리즘으로 해싱")
     fun test_sha3224() {
-        hashTest(SHA3224)
+        hashingTest(SHA3224)
     }
 
     @RepeatedTest(100, name = "{displayName} {currentRepetition}/{totalRepetitions}")
     @DisplayName("SHA3-256 알고리즘으로 해싱")
     fun test_sha3256() {
-        hashTest(SHA3256)
+        hashingTest(SHA3256)
     }
 
     @RepeatedTest(100, name = "{displayName} {currentRepetition}/{totalRepetitions}")
     @DisplayName("SHA3-384 알고리즘으로 해싱")
     fun test_sha3384() {
-        hashTest(SHA3384)
+        hashingTest(SHA3384)
     }
 
     @RepeatedTest(100, name = "{displayName} {currentRepetition}/{totalRepetitions}")
     @DisplayName("SHA3-512 알고리즘으로 해싱")
     fun test_sha3512() {
-        hashTest(SHA3512)
+        hashingTest(SHA3512)
     }
 
     @Test
@@ -111,7 +110,7 @@ class HashTest {
         val h1 = Hash.getInstance("MD5")
         val h2 = Hash.getInstance(MD5)
 
-        assertEquals(CodecUtils.encode(h1.hash(this.password)), CodecUtils.encode(h2.hash(this.password)))
+        assertEquals(CodecUtils.encode(h1.hashing(this.password)), CodecUtils.encode(h2.hashing(this.password)))
     }
 
     @Test
@@ -122,7 +121,7 @@ class HashTest {
         }
     }
 
-    private fun hashTest(algorithm: EHash) {
+    private fun hashingTest(algorithm: EHash) {
         passwordHashTest(algorithm)
         fileHashTest(algorithm)
     }
@@ -130,8 +129,8 @@ class HashTest {
     private fun passwordHashTest(algorithm: EHash) {
         val h = Hash.getInstance(algorithm)
         assertTrue(h.matches(password.toByteArray(), getHash(algorithm)))
-        assertEquals(CodecUtils.encode(h.hash(password), EncodeFormat.HEX), getHash(algorithm))
-        assertEquals(CodecUtils.encode(h.hash(password, Charsets.UTF_8), EncodeFormat.HEX), getHash(algorithm))
+        assertEquals(CodecUtils.encode(h.hashing(password), EncodeFormat.HEX), getHash(algorithm))
+        assertEquals(CodecUtils.encode(h.hashing(password, Charsets.UTF_8), EncodeFormat.HEX), getHash(algorithm))
     }
 
     private fun fileHashTest(algorithm: EHash) {
@@ -139,16 +138,18 @@ class HashTest {
         assertTrue(
             h.matches(
                 resource?.file!!.toByteArray(),
-                CodecUtils.encode(h.hash(resource.file!!.toByteArray()))
+                CodecUtils.encode(h.hashing(resource.file!!.toByteArray()))
             )
         )
-        assertFalse(h.matches(resource.file!!.toByteArray(), null))
+
+        assertFalse(h.matches(resource.file!!.toByteArray(), null as ByteArray?))
+        assertFalse(h.matches(resource.file!!.toByteArray(), null as String?, EncodeFormat.HEX))
     }
 
     @Throws(IOException::class)
     private fun getHash(algorithm: EHash): String? {
         val jsonObject = JSONObject(readJson())
-        val file = jsonObject.getJSONObject("hash_code_test_file")
+        val file = jsonObject.getJSONObject("hashing_code_test_file")
         return when (algorithm) {
             CRC32 -> file.getString(CRC32.label())
             MD2 -> file.getString(MD2.label())

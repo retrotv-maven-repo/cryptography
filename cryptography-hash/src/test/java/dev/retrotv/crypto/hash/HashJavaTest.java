@@ -19,7 +19,7 @@ class HashJavaTest {
         Set<String> hashedResults = new HashSet<>();
         Hash h = Hash.getInstance(EHash.CRC32);
         for (int i = 0; i < 100; i++) {
-            hashedResults.add(CodecUtils.encode(h.hash(PASSWORD)));
+            hashedResults.add(CodecUtils.encode(h.hashing(PASSWORD)));
         }
 
         assertEquals(1, hashedResults.size());

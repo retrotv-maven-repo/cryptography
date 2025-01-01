@@ -15,7 +15,7 @@ interface PlaintextHash : BinaryHash {
      * @param plaintext 해시 할 평문
      * @return 해시 값
      */
-    fun hash(plaintext: CharSequence): ByteArray = hash(plaintext.toString().toByteArray())
+    fun hashing(plaintext: CharSequence): ByteArray = hashing(plaintext.toString().toByteArray())
 
     /**
      * 평문을 해시한 값을 생성하고 반환합니다.
@@ -24,7 +24,7 @@ interface PlaintextHash : BinaryHash {
      * @param charset 해시 할 평문의 캐릭터 셋
      * @return 해시 값
      */
-    fun hash(plaintext: CharSequence, charset: Charset): ByteArray {
+    fun hashing(plaintext: CharSequence, charset: Charset): ByteArray {
 
         /*
          * // 좀 더, 확실하게 구현하고 싶은 경우, ByteBuffer를 이용해 ByteArray(byte[])로 변환할 것!
@@ -36,8 +36,8 @@ interface PlaintextHash : BinaryHash {
          * return hash(result)
          */
 
-        return hash(plaintext.toString()
-                             .toByteArray(charset))
+        return hashing(plaintext.toString()
+                                .toByteArray(charset))
     }
 
     /**
