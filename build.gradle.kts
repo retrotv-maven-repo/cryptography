@@ -4,13 +4,13 @@ plugins {
     java
     jacoco
     `maven-publish`
-    kotlin("jvm") version "2.0.21"
-    id("org.jetbrains.dokka") version "1.9.20"
-    id("org.sonarqube") version "4.0.0.2929"
+    kotlin("jvm") version "2.1.0"
+    id("org.jetbrains.dokka") version "2.0.0"
+    id("org.sonarqube") version "6.0.1.5171"
 }
 
 group = "dev.retrotv"
-version = "0.45.14-alpha"
+version = "0.46.0-alpha"
 
 // Github Action 버전 출력용
 tasks.register("printVersionName") {
@@ -42,6 +42,7 @@ subprojects {
     apply(plugin = "java")
     apply(plugin = "jacoco")
     apply(plugin = "maven-publish")
+    apply(plugin = "org.jetbrains.dokka")
 
     jacoco {
         toolVersion = "0.8.12"
@@ -83,6 +84,8 @@ subprojects {
     }
 
     configure<PublishingExtension> {
+
+        // Github Packages에 배포하기 위한 설정
         repositories {
             maven {
                 name = "GitHubPackages"
@@ -105,16 +108,8 @@ subprojects {
     }
 }
 
-sonar {
-    properties {
-        property("sonar.projectKey", "retrotv-maven-repo_cryptography")
-        property("sonar.organization", "retrotv-maven-repo")
-        property("sonar.host.url", "https://sonarcloud.io")
-        property("sonar.exclusions", "src/main/java/**")
-        property("sonar.coverage.exclusions", "src/main/java/**,**/exception/*,**/enums/*,**/util/*,**/BinaryHash.*,**/PlaintextHash.*")
-    }
-}
-
 kotlin {
     jvmToolchain(8)
 }
+
+apply(from = "${rootDir}/sonarcloud.gradle")

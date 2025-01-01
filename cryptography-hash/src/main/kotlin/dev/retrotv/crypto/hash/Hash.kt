@@ -17,6 +17,12 @@ class Hash private constructor() : BinaryHash, PlaintextHash {
     companion object {
         private var instance: Hash? = null
 
+        /**
+         * 지정된 해시 알고리즘 인스턴스를 반환합니다.
+         *
+         * @param algorithm 해시 알고리즘
+         * @return 해시 인스턴스
+         */
         @JvmStatic
         fun getInstance(algorithm: EHash): Hash {
 
@@ -34,6 +40,13 @@ class Hash private constructor() : BinaryHash, PlaintextHash {
             }
         }
 
+        /**
+         * 지정된 해시 알고리즘 인스턴스를 반환합니다.
+         *
+         * @param algorithm 해시 알고리즘
+         * @return 해시 인스턴스
+         * @throws AlgorithmNotFoundException 지원하지 않는 알고리즘일 경우 던짐
+         */
         @JvmStatic
         fun getInstance(algorithm: String): Hash {
             try {
@@ -44,7 +57,7 @@ class Hash private constructor() : BinaryHash, PlaintextHash {
         }
     }
 
-    override fun hash(data: ByteArray): ByteArray {
+    override fun hashing(data: ByteArray): ByteArray {
         return if (algorithm != CRC32) {
             hashing(algorithm, data)
         } else {
@@ -60,7 +73,7 @@ class Hash private constructor() : BinaryHash, PlaintextHash {
     }
 
     override fun matches(data: ByteArray, digest: String?, encoderFormat: EncodeFormat): Boolean {
-        val encodedData = ByteUtils.toHexString(hash(data))
+        val encodedData = ByteUtils.toHexString(hashing(data))
         return encodedData.equals(digest, ignoreCase = true)
     }
 }
