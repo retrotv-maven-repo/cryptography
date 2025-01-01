@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.fir.declarations.builder.buildScript
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -6,7 +7,7 @@ plugins {
     `maven-publish`
     kotlin("jvm") version "2.0.21"
     id("org.jetbrains.dokka") version "1.9.20"
-    id("org.sonarqube") version "4.0.0.2929"
+    id("org.sonarqube") version "6.0.1.5171"
 }
 
 group = "dev.retrotv"
@@ -83,6 +84,8 @@ subprojects {
     }
 
     configure<PublishingExtension> {
+
+        // Github Packages에 배포하기 위한 설정
         repositories {
             maven {
                 name = "GitHubPackages"
