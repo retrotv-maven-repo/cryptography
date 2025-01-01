@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "dev.retrotv"
-version = "0.45.13-alpha"
+version = "0.45.14-alpha"
 
 // Github Action 버전 출력용
 tasks.register("printVersionName") {
@@ -91,12 +91,6 @@ subprojects {
                     username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
                     password = project.findProperty("gpr.key") as String? ?: System.getenv("PASSWORD")
                 }
-            }
-        }
-
-        publications {
-            register<MavenPublication>("gpr") {
-                from(components["java"])
             }
         }
 
