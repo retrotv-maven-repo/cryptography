@@ -6,6 +6,7 @@ plugins {
     `maven-publish`
     kotlin("jvm") version "2.0.21"
     id("org.jetbrains.dokka") version "1.9.20"
+    id("org.sonarqube") version "6.0.1.5171"
 }
 
 group = "dev.retrotv"
@@ -109,3 +110,5 @@ subprojects {
 kotlin {
     jvmToolchain(8)
 }
+
+apply(from = "${rootDir}/sonarcloud.gradle")
