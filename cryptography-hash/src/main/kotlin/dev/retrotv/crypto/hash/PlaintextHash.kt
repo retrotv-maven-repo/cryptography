@@ -19,6 +19,7 @@ interface PlaintextHash : BinaryHash {
 
     /**
      * 평문을 해시한 값을 생성하고 반환합니다.
+     * 캐릭터 셋을 지정할 경우, 해당 캐릭터 셋으로 인코딩하여 해시합니다.
      *
      * @param plaintext 해시 할 평문
      * @param charset 해시 할 평문의 캐릭터 셋
@@ -42,6 +43,7 @@ interface PlaintextHash : BinaryHash {
 
     /**
      * 평문을 해시해 해시 값을 생성한 뒤, 비교할 해시 값과의 일치 여부를 반환합니다.
+     * HEX 값으로 비교하며, 대소문자를 구분하지 않습니다.
      *
      * @param plaintext 해시 할 평문
      * @param digest 비교할 해시 값
@@ -55,6 +57,7 @@ interface PlaintextHash : BinaryHash {
 
     /**
      * 평문을 해시해 해시 값을 생성한 뒤, 비교할 해시 값과의 일치 여부를 반환합니다.
+     * 대소문자를 구분하지 않습니다.
      *
      * @param plaintext 해시 할 평문
      * @param digest 비교할 해시 값

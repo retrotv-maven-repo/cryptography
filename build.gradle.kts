@@ -4,8 +4,8 @@ plugins {
     java
     jacoco
     `maven-publish`
-    kotlin("jvm") version "2.0.21"
-    id("org.jetbrains.dokka") version "1.9.20"
+    kotlin("jvm") version "2.1.0"
+    id("org.jetbrains.dokka") version "2.0.0"
     id("org.sonarqube") version "6.0.1.5171"
 }
 
@@ -42,6 +42,7 @@ subprojects {
     apply(plugin = "java")
     apply(plugin = "jacoco")
     apply(plugin = "maven-publish")
+    apply(plugin = "org.jetbrains.dokka")
 
     jacoco {
         toolVersion = "0.8.12"

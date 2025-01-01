@@ -19,7 +19,7 @@ interface BinaryHash {
     fun hashing(data: ByteArray): ByteArray
 
     /**
-     * 바이너리 데이터를 해시한 값을 생성하고 반환합니다.
+     * 바이너리 데이터를 해시해 해시 값을 생성한 뒤, 비교할 해시 값과의 일치 여부를 반환합니다.
      *
      * @param data 해시 할 바이너리 데이터
      * @param digest 비교 할 해시 값
