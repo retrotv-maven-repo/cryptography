@@ -1,3 +1,7 @@
+apply {
+    from("${rootDir}/sonarcloud.gradle.kts")
+}
+
 plugins {
     id("org.sonarqube") version "6.0.1.5171"
 }
