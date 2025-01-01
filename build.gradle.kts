@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "dev.retrotv"
-version = "0.45.12-alpha"
+version = "0.45.13-alpha"
 
 // Github Action 버전 출력용
 tasks.register("printVersionName") {
@@ -29,8 +29,8 @@ tasks {
 }
 
 allprojects {
-    version = project.version
-    group = project.group
+    version = rootProject.version
+    group = rootProject.group
 
     repositories {
         mavenCentral()
@@ -96,9 +96,6 @@ subprojects {
 
         publications {
             register<MavenPublication>("gpr") {
-                groupId = project.group.toString()
-                artifactId = project.name
-                version = project.version.toString()
                 from(components["java"])
             }
         }
@@ -126,16 +123,4 @@ sonar {
 
 kotlin {
     jvmToolchain(8)
-}
-
-project(":cryptography-core") {
-    version = project.version
-}
-
-project(":cryptography-hash") {
-    version = project.version
-}
-
-project(":cryptography-cipher") {
-    version = project.version
 }
