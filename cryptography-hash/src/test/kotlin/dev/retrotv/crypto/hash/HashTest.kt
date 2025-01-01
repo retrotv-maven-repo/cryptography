@@ -17,8 +17,8 @@ import java.io.IOException
 
 class HashTest {
     private val password = "The quick brown fox jumps over the lazy dog"
-    private val checksum = this.javaClass.getClassLoader().getResource("hashing_code")
-    private val resource = this.javaClass.getClassLoader().getResource("hashing_code_test_file.txt")
+    private val checksum = this.javaClass.getClassLoader().getResource("hash_code")
+    private val resource = this.javaClass.getClassLoader().getResource("hash_code_test_file.txt")
 
     @RepeatedTest(100, name = "{displayName} {currentRepetition}/{totalRepetitions}")
     @DisplayName("CRC-32 알고리즘으로 해싱")
@@ -149,7 +149,7 @@ class HashTest {
     @Throws(IOException::class)
     private fun getHash(algorithm: EHash): String? {
         val jsonObject = JSONObject(readJson())
-        val file = jsonObject.getJSONObject("hashing_code_test_file")
+        val file = jsonObject.getJSONObject("hash_code_test_file")
         return when (algorithm) {
             CRC32 -> file.getString(CRC32.label())
             MD2 -> file.getString(MD2.label())
