@@ -127,3 +127,15 @@ sonar {
 kotlin {
     jvmToolchain(8)
 }
+
+project(":cryptography-core") {
+    version = project.version
+}
+
+project(":cryptography-hash") {
+    version = project.version
+}
+
+project(":cryptography-cipher") {
+    version = project.version
+}
