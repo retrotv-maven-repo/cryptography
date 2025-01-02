@@ -6,11 +6,11 @@ plugins {
     `maven-publish`
     kotlin("jvm") version "2.1.0"
     id("org.jetbrains.dokka") version "2.0.0"
-    id("org.sonarqube") version "6.0.1.5171"
+    id("org.sonarqube") version "4.0.0.2929"
 }
 
 group = "dev.retrotv"
-version = "0.46.0-alpha"
+version = "0.46.1-alpha"
 
 // Github Action 버전 출력용
 tasks.register("printVersionName") {
