@@ -1,19 +1,14 @@
 subprojects {
-    apply plugin: 'jacoco'
+    apply plugin: "jacoco"
 
     jacoco {
-        toolVersion = '0.8.12'
+        toolVersion = "0.8.12"
     }
 
     test {
 
-        // JasyptConfigTest는 테스트하지 않음
-        filter {
-            excludeTestsMatching "JasyptConfigTest"
-        }
-
         // JaCoCo 리포트 생성
-        finalizedBy 'jacocoTestReport'
+        finalizedBy "jacocoTestReport"
     }
 
     jacocoTestReport {
@@ -23,8 +18,6 @@ subprojects {
             html.required = true
             xml.required = true
             csv.required = false
-            // xml.outputLocation = layout.buildDirectory.dir('jacoco/jacoco.xml').get().asFile
-            // xml.outputLocation = layout.buildDirectory.dir('reports/jacoco/test/jacocoTestReport.xml').get().asFile
         }
 
         afterEvaluate {
@@ -36,10 +29,10 @@ subprojects {
                         fileTree(
                             dir: it,
                             excludes: [
-                                  '**/config/*'
-                                , '**/util/*'
-                                , '**/exception/**'
-                                , '**/enums/**'
+                                  "**/config/*"
+                                , "**/util/*"
+                                , "**/exception/**"
+                                , "**/enums/**"
                             ]
                         )
                     }
@@ -48,9 +41,10 @@ subprojects {
         }
 
         // 테스트 후에 jacocoTestCoverageVerification 실행
-        finalizedBy 'jacocoTestCoverageVerification'
+        finalizedBy "jacocoTestCoverageVerification"
     }
 
+    // 전체 코드의 80% 이상 커버리지를 가지고 있어야 함
     jacocoTestCoverageVerification {
         violationRules {
             rule {
@@ -62,22 +56,22 @@ subprojects {
                     minimum = 0.8
                 }
                 excludes = [
-                      '**/config/**'
-                    , '**/util/**'
-                    , '**/exception/**'
-                    , '**/enums/**'
+                      "**/config/**"
+                    , "**/util/**"
+                    , "**/exception/**"
+                    , "**/enums/**"
                 ]
             }
         }
 
-        finalizedBy 'copyJacocoReport'
+        finalizedBy "copyJacocoReport"
     }
 
     // Coverage Gutters 플러그인을 위한 jacoco.xml 파일 복사
-    tasks.register('copyJacocoReport', Copy) {
+    tasks.register("copyJacocoReport", Copy) {
         dependsOn jacocoTestCoverageVerification
-        from layout.buildDirectory.dir('reports/jacoco/test/jacocoTestReport.xml').get().asFile
-        into layout.buildDirectory.dir('jacoco')
-        rename { String fileName -> fileName.replace('jacocoTestReport.xml', 'jacoco.xml') }
+        from layout.buildDirectory.dir("reports/jacoco/test/jacocoTestReport.xml").get().asFile
+        into layout.buildDirectory.dir("jacoco")
+        rename { String fileName -> fileName.replace("jacocoTestReport.xml", "jacoco.xml") }
     }
 }

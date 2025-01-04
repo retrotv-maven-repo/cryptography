@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "dev.retrotv"
-version = "0.46.1-alpha"
+version = "0.46.2-alpha"
 
 // Github Action 버전 출력용
 tasks.register("printVersionName") {
@@ -40,29 +40,11 @@ allprojects {
 
 subprojects {
     apply(plugin = "java")
-    apply(plugin = "jacoco")
     apply(plugin = "maven-publish")
     apply(plugin = "org.jetbrains.dokka")
 
-    jacoco {
-        toolVersion = "0.8.12"
-    }
-
     tasks.test {
         useJUnitPlatform()
-        finalizedBy("jacocoTestReport")
-    }
-
-    tasks.jacocoTestReport {
-        reports {
-            html.required.set(true)
-            xml.required.set(true)
-            csv.required.set(false)
-        }
-    }
-
-    jacoco {
-        toolVersion = "0.8.12"
     }
 
     val dataUtils = "0.21.6-alpha"
@@ -112,4 +94,5 @@ kotlin {
     jvmToolchain(8)
 }
 
-apply(from = "${rootDir}/sonarcloud.gradle")
+apply(from = "${rootDir}/gradle/sonarcloud.gradle")
+apply(from = "${rootDir}/gradle/jacoco.gradle")
