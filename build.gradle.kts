@@ -51,8 +51,8 @@ subprojects {
     val slf4j = "2.0.16"
     val log4j = "2.24.3"
     val bouncyCastle = "1.79"
-    val json = "20240303"
-    val junit = "5.11.2"
+    val json = "20250107"
+    val junit = "5.11.4"
 
     dependencies {
         implementation("com.github.retrotv-maven-repo:data-utils:${dataUtils}")
@@ -66,6 +66,9 @@ subprojects {
         implementation("org.bouncycastle:bcprov-jdk18on:${bouncyCastle}")
 
         testImplementation(kotlin("test"))
+        testImplementation("org.junit.jupiter:junit-jupiter:${junit}")
+        testImplementation("org.junit.jupiter:junit-jupiter-api:${junit}")
+        testImplementation("org.junit.jupiter:junit-jupiter-engine:${junit}")
         testImplementation("org.junit.jupiter:junit-jupiter-params:${junit}")
         testImplementation("org.json:json:${json}")
     }

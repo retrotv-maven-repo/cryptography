@@ -48,7 +48,7 @@ class BCryptPasswordEncoder : PasswordEncoder {
         return this.encoder.matches(rawPassword, encodedPassword)
     }
 
-    fun selectVersion(version: BCryptVersion): BCryptPasswordEncoder.BCryptVersion {
+    private fun selectVersion(version: BCryptVersion): BCryptPasswordEncoder.BCryptVersion {
         return when (version) {
             `$2A` -> BCryptPasswordEncoder.BCryptVersion.`$2A`
             `$2Y` -> BCryptPasswordEncoder.BCryptVersion.`$2Y`
