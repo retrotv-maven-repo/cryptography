@@ -40,6 +40,7 @@ allprojects {
 
 subprojects {
     apply(plugin = "java")
+    apply(plugin = "jacoco")
     apply(plugin = "maven-publish")
     apply(plugin = "org.jetbrains.dokka")
 
@@ -48,14 +49,19 @@ subprojects {
     }
 
     val dataUtils = "0.21.6-alpha"
-    val log4j = "2.24.1"
+    val slf4j = "2.0.16"
+    val log4j = "2.24.3"
     val bouncyCastle = "1.79"
     val json = "20240303"
     val junit = "5.11.2"
 
     dependencies {
         implementation("com.github.retrotv-maven-repo:data-utils:${dataUtils}")
+
+        // Logger
+        implementation("org.slf4j:slf4j-api:${slf4j}")
         implementation("org.apache.logging.log4j:log4j-core:${log4j}")
+        implementation("org.apache.logging.log4j:log4j-api:${log4j}")
 
         // Bouncy Castle
         implementation("org.bouncycastle:bcprov-jdk18on:${bouncyCastle}")

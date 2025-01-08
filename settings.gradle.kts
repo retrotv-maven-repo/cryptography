@@ -15,3 +15,5 @@ include(
     "cryptography-hash",
     "cryptography-cipher"
 )
+include("cryptography-password")
+include("cryptography-password")
