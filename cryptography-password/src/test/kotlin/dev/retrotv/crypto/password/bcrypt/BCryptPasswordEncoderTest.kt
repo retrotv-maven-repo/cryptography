@@ -62,7 +62,7 @@ class BCryptPasswordEncoderTest {
     @Test
     @DisplayName("BCryptPasswordEncoder(version, strength) 테스트")
     fun test_bcrypt_version_strength() {
-        val passwordEncoder = BCryptPasswordEncoder(BCryptVersion.`$2A`, 10)
+        val passwordEncoder = BCryptPasswordEncoder(BCryptVersion.`$2Y`, 10)
         val rawPassword = "password"
         val encodedPassword = passwordEncoder.encode(rawPassword)
 
@@ -72,7 +72,7 @@ class BCryptPasswordEncoderTest {
     @Test
     @DisplayName("BCryptPasswordEncoder(version, strength, random) 테스트")
     fun test_bcrypt_version_strength_random() {
-        val passwordEncoder = BCryptPasswordEncoder(BCryptVersion.`$2A`, 10, SecureRandom())
+        val passwordEncoder = BCryptPasswordEncoder(BCryptVersion.`$2B`, 10, SecureRandom())
         val rawPassword = "password"
         val encodedPassword = passwordEncoder.encode(rawPassword)
 

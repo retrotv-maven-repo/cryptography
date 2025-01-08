@@ -1,8 +1,9 @@
 package dev.retrotv.crypto.password.bcrypt;
 
-import dev.retrotv.crypto.password.enums.BCryptVersion;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class BCryptPasswordEncoderJavaTest {
     @Test
@@ -12,6 +13,6 @@ class BCryptPasswordEncoderJavaTest {
         String password = "password";
         String encodedPassword = encoder.encode(password);
 
-        encoder.matches(password, encodedPassword);
+        assertTrue(encoder.matches(password, encodedPassword));
     }
 }
