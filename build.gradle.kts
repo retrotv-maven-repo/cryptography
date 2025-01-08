@@ -40,7 +40,6 @@ allprojects {
 
 subprojects {
     apply(plugin = "java")
-    apply(plugin = "jacoco")
     apply(plugin = "maven-publish")
     apply(plugin = "org.jetbrains.dokka")
 
