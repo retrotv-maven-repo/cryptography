@@ -7,7 +7,7 @@ import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder
 import dev.retrotv.crypto.password.enums.SecretKeyFactoryAlgorithm.*
 
 class Pbkdf2PasswordEncoder : PasswordEncoder {
-    private var encoder: Pbkdf2PasswordEncoder
+    private val encoder: Pbkdf2PasswordEncoder
 
     constructor() {
         this.encoder = Pbkdf2PasswordEncoder("", 16, 310000, selectSecretKeyFactoryAlgorithm(PBKDF2WithHmacSHA256))

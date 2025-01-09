@@ -4,7 +4,7 @@ import dev.retrotv.crypto.password.PasswordEncoder
 import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder
 
 class SCryptPasswordEncoder : PasswordEncoder {
-    private var encoder: SCryptPasswordEncoder
+    private val encoder: SCryptPasswordEncoder
 
     constructor() {
         encoder = SCryptPasswordEncoder(65536, 8, 1, 32, 64)

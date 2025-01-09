@@ -9,7 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import java.security.SecureRandom
 
 class BCryptPasswordEncoder : PasswordEncoder {
-    private var encoder: BCryptPasswordEncoder
+    private val encoder: BCryptPasswordEncoder
 
     constructor() {
         this.encoder = BCryptPasswordEncoder()
