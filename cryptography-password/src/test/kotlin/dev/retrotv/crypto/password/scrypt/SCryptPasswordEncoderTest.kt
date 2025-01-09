@@ -14,6 +14,7 @@ class SCryptPasswordEncoderTest {
         val rawPassword = "password"
         val encodedPassword = passwordEncoder.encode(rawPassword)
 
+        assertNotEquals(rawPassword, encodedPassword)
         assertTrue(passwordEncoder.matches(rawPassword, encodedPassword))
     }
 
@@ -24,6 +25,7 @@ class SCryptPasswordEncoderTest {
         val rawPassword = "password"
         val encodedPassword = passwordEncoder.encode(rawPassword)
 
+        assertNotEquals(rawPassword, encodedPassword)
         assertTrue(passwordEncoder.matches(rawPassword, encodedPassword))
     }
 }

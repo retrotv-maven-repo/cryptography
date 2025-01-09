@@ -2,20 +2,22 @@ package dev.retrotv.crypto.password.bcrypt
 
 import dev.retrotv.crypto.password.enums.BCryptVersion
 
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import java.security.SecureRandom
 
+import org.junit.jupiter.api.Assertions.*
+
 class BCryptPasswordEncoderTest {
 
     @Test
-    @DisplayName("BCryptPasswordEncoder 테스트")
+    @DisplayName("BCryptPasswordEncoder() 테스트")
     fun test_bcrypt() {
         val passwordEncoder = BCryptPasswordEncoder()
         val rawPassword = "password"
         val encodedPassword = passwordEncoder.encode(rawPassword)
 
+        assertNotEquals(rawPassword, encodedPassword)
         assertTrue(passwordEncoder.matches(rawPassword, encodedPassword))
     }
 
@@ -26,6 +28,7 @@ class BCryptPasswordEncoderTest {
         val rawPassword = "password"
         val encodedPassword = passwordEncoder.encode(rawPassword)
 
+        assertNotEquals(rawPassword, encodedPassword)
         assertTrue(passwordEncoder.matches(rawPassword, encodedPassword))
     }
 
@@ -36,6 +39,7 @@ class BCryptPasswordEncoderTest {
         val rawPassword = "password"
         val encodedPassword = passwordEncoder.encode(rawPassword)
 
+        assertNotEquals(rawPassword, encodedPassword)
         assertTrue(passwordEncoder.matches(rawPassword, encodedPassword))
     }
 
@@ -46,6 +50,7 @@ class BCryptPasswordEncoderTest {
         val rawPassword = "password"
         val encodedPassword = passwordEncoder.encode(rawPassword)
 
+        assertNotEquals(rawPassword, encodedPassword)
         assertTrue(passwordEncoder.matches(rawPassword, encodedPassword))
     }
 
@@ -56,6 +61,7 @@ class BCryptPasswordEncoderTest {
         val rawPassword = "password"
         val encodedPassword = passwordEncoder.encode(rawPassword)
 
+        assertNotEquals(rawPassword, encodedPassword)
         assertTrue(passwordEncoder.matches(rawPassword, encodedPassword))
     }
 
@@ -66,6 +72,7 @@ class BCryptPasswordEncoderTest {
         val rawPassword = "password"
         val encodedPassword = passwordEncoder.encode(rawPassword)
 
+        assertNotEquals(rawPassword, encodedPassword)
         assertTrue(passwordEncoder.matches(rawPassword, encodedPassword))
     }
 
@@ -76,6 +83,7 @@ class BCryptPasswordEncoderTest {
         val rawPassword = "password"
         val encodedPassword = passwordEncoder.encode(rawPassword)
 
+        assertNotEquals(rawPassword, encodedPassword)
         assertTrue(passwordEncoder.matches(rawPassword, encodedPassword))
     }
 }
