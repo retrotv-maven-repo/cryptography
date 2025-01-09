@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory
  * 해시 알고리즘 클래스 구현을 위한 추상 클래스 입니다.
  * [BinaryHash], [PlaintextHash] 인터페이스를 상속받습니다.
  */
-class Hash private constructor() : BinaryHash, PlaintextHash {
+open class Hash private constructor() : BinaryHash, PlaintextHash {
     private val log = LoggerFactory.getLogger(this::class.java)
     private lateinit var algorithm: EHash
 
