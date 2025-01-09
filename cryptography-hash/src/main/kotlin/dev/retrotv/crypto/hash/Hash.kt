@@ -6,12 +6,14 @@ import dev.retrotv.crypto.exception.AlgorithmNotFoundException
 import dev.retrotv.crypto.util.MessageDigestUtils.hashing
 import dev.retrotv.data.enums.EncodeFormat
 import dev.retrotv.data.utils.ByteUtils
+import org.slf4j.LoggerFactory
 
 /**
  * 해시 알고리즘 클래스 구현을 위한 추상 클래스 입니다.
  * [BinaryHash], [PlaintextHash] 인터페이스를 상속받습니다.
  */
 class Hash private constructor() : BinaryHash, PlaintextHash {
+    private val log = LoggerFactory.getLogger(this::class.java)
     private lateinit var algorithm: EHash
 
     companion object {
@@ -58,6 +60,8 @@ class Hash private constructor() : BinaryHash, PlaintextHash {
     }
 
     override fun hashing(data: ByteArray): ByteArray {
+        log.debug("선택된 해시 알고리즘: {}", algorithm.label())
+
         return if (algorithm != CRC32) {
             hashing(algorithm, data)
         } else {
@@ -73,6 +77,13 @@ class Hash private constructor() : BinaryHash, PlaintextHash {
     }
 
     override fun matches(data: ByteArray, digest: String?, encoderFormat: EncodeFormat): Boolean {
+        log.debug("인코딩 포맷 유형: {}", encoderFormat.name)
+
+        if (digest == null) {
+            log.warn("digest가 null 입니다.")
+            return false
+        }
+
         val encodedData = ByteUtils.toHexString(hashing(data))
         return encodedData.equals(digest, ignoreCase = true)
     }

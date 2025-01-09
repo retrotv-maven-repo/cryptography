@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "dev.retrotv"
-version = "0.46.1-alpha"
+version = "0.47.0-alpha"
 
 // Github Action 버전 출력용
 tasks.register("printVersionName") {
@@ -40,45 +40,35 @@ allprojects {
 
 subprojects {
     apply(plugin = "java")
-    apply(plugin = "jacoco")
     apply(plugin = "maven-publish")
     apply(plugin = "org.jetbrains.dokka")
 
-    jacoco {
-        toolVersion = "0.8.12"
-    }
-
     tasks.test {
         useJUnitPlatform()
-        finalizedBy("jacocoTestReport")
-    }
-
-    tasks.jacocoTestReport {
-        reports {
-            html.required.set(true)
-            xml.required.set(true)
-            csv.required.set(false)
-        }
-    }
-
-    jacoco {
-        toolVersion = "0.8.12"
     }
 
     val dataUtils = "0.21.6-alpha"
-    val log4j = "2.24.1"
+    val slf4j = "2.0.16"
+    val log4j = "2.24.3"
     val bouncyCastle = "1.79"
-    val json = "20240303"
-    val junit = "5.11.2"
+    val json = "20250107"
+    val junit = "5.11.4"
 
     dependencies {
         implementation("com.github.retrotv-maven-repo:data-utils:${dataUtils}")
+
+        // Logger
+        implementation("org.slf4j:slf4j-api:${slf4j}")
         implementation("org.apache.logging.log4j:log4j-core:${log4j}")
+        implementation("org.apache.logging.log4j:log4j-api:${log4j}")
 
         // Bouncy Castle
         implementation("org.bouncycastle:bcprov-jdk18on:${bouncyCastle}")
 
         testImplementation(kotlin("test"))
+        testImplementation("org.junit.jupiter:junit-jupiter:${junit}")
+        testImplementation("org.junit.jupiter:junit-jupiter-api:${junit}")
+        testImplementation("org.junit.jupiter:junit-jupiter-engine:${junit}")
         testImplementation("org.junit.jupiter:junit-jupiter-params:${junit}")
         testImplementation("org.json:json:${json}")
     }
@@ -112,4 +102,5 @@ kotlin {
     jvmToolchain(8)
 }
 
-apply(from = "${rootDir}/sonarcloud.gradle")
+apply(from = "${rootDir}/gradle/sonarcloud.gradle")
+apply(from = "${rootDir}/gradle/jacoco.gradle")

@@ -2,6 +2,7 @@ plugins {
     kotlin("jvm")
 }
 
+// kr.re 패키지는 제외하고 빌드
 sourceSets {
     main {
         java {
@@ -10,9 +11,6 @@ sourceSets {
     }
 }
 
-val bouncyCastle = "1.79"
-
 dependencies {
     implementation(project(":cryptography-core"))
-    implementation("org.bouncycastle:bcprov-jdk18on:${bouncyCastle}")
 }
