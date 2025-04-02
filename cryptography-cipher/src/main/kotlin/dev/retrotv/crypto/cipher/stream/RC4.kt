@@ -1,6 +1,6 @@
 package dev.retrotv.crypto.cipher.stream
 
-import dev.retrotv.crypto.cipher.param.Params
+import dev.retrotv.crypto.cipher.param.Param
 import dev.retrotv.crypto.cipher.result.Result
 import org.bouncycastle.crypto.engines.RC4Engine
 import org.bouncycastle.crypto.io.CipherInputStream
@@ -20,7 +20,7 @@ class RC4 : StreamCipher() {
         this.engine = RC4Engine()
     }
 
-    override fun encrypt(data: ByteArray, params: Params): Result {
+    override fun encrypt(data: ByteArray, params: Param): Result {
         this.engine.init(true, KeyParameter(params.key))
 
         val encryptedData = ByteArray(data.size)
@@ -29,7 +29,7 @@ class RC4 : StreamCipher() {
         return Result(encryptedData)
     }
 
-    override fun encrypt(input: InputStream, output: OutputStream, params: Params) {
+    override fun encrypt(input: InputStream, output: OutputStream, params: Param) {
         this.engine.init(true, KeyParameter(params.key))
 
         val cos = CipherOutputStream(output, this.engine)
@@ -44,7 +44,7 @@ class RC4 : StreamCipher() {
         cos.close()
     }
 
-    override fun decrypt(encryptedData: ByteArray, params: Params): Result {
+    override fun decrypt(encryptedData: ByteArray, params: Param): Result {
         this.engine.init(false, KeyParameter(params.key))
 
         val originalData = ByteArray(encryptedData.size)
@@ -53,7 +53,7 @@ class RC4 : StreamCipher() {
         return Result(originalData)
     }
 
-    override fun decrypt(input: InputStream, output: OutputStream, params: Params) {
+    override fun decrypt(input: InputStream, output: OutputStream, params: Param) {
         this.engine.init(false, KeyParameter(params.key))
 
         val cis = CipherInputStream(input, this.engine)

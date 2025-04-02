@@ -1,6 +1,5 @@
 package dev.retrotv.crypto.cipher.block
 
-import dev.retrotv.crypto.cipher.block.BlockCipher
 import dev.retrotv.crypto.cipher.block.mode.CBC
 import dev.retrotv.crypto.cipher.block.mode.CCM
 import dev.retrotv.crypto.cipher.block.mode.CFB
@@ -11,8 +10,8 @@ import dev.retrotv.crypto.cipher.block.mode.GCM
 import dev.retrotv.crypto.cipher.block.mode.OFB
 import dev.retrotv.crypto.cipher.generator.IVGenerator.generateIV
 import dev.retrotv.crypto.cipher.generator.KeyGenerator.generateKey
-import dev.retrotv.crypto.cipher.param.Params
-import dev.retrotv.crypto.cipher.param.ParamsWithIV
+import dev.retrotv.crypto.cipher.param.Param
+import dev.retrotv.crypto.cipher.param.ParamWithIV
 import kotlin.test.assertEquals
 
 class BlockChiperTest {
@@ -21,7 +20,7 @@ class BlockChiperTest {
     fun test_ecb(blockCipher: BlockCipher, keyLength: Int) {
         val mode = ECB(blockCipher)
         val key = generateKey(keyLength)
-        val params = Params(key)
+        val params = Param(key)
 
         val encrypted = mode.encrypt(plainText.toByteArray(), params)
         val decrypted = mode.decrypt(encrypted.data, params)
@@ -33,7 +32,7 @@ class BlockChiperTest {
         val mode = CBC(blockCipher)
         val key = generateKey(keyLength)
         val iv = generateIV(ivLength)
-        val params = ParamsWithIV(key, iv)
+        val params = ParamWithIV(key, iv)
 
         val encrypted = mode.encrypt(plainText.toByteArray(), params)
         val decrypted = mode.decrypt(encrypted.data, params)
@@ -45,7 +44,7 @@ class BlockChiperTest {
         val mode = OFB(blockCipher)
         val key = generateKey(keyLength)
         val iv = generateIV(ivLength)
-        val params = ParamsWithIV(key, iv)
+        val params = ParamWithIV(key, iv)
 
         val encrypted = mode.encrypt(plainText.toByteArray(), params)
         val decrypted = mode.decrypt(encrypted.data, params)
@@ -57,7 +56,7 @@ class BlockChiperTest {
         val mode = CFB(blockCipher)
         val key = generateKey(keyLength)
         val iv = generateIV(ivLength)
-        val params = ParamsWithIV(key, iv)
+        val params = ParamWithIV(key, iv)
 
         val encrypted = mode.encrypt(plainText.toByteArray(), params)
         val decrypted = mode.decrypt(encrypted.data, params)
@@ -69,7 +68,7 @@ class BlockChiperTest {
         val mode = CTR(blockCipher)
         val key = generateKey(keyLength)
         val iv = generateIV(ivLength)
-        val params = ParamsWithIV(key, iv)
+        val params = ParamWithIV(key, iv)
 
         val encrypted = mode.encrypt(plainText.toByteArray(), params)
         val decrypted = mode.decrypt(encrypted.data, params)
@@ -81,7 +80,7 @@ class BlockChiperTest {
         val mode = CTS(blockCipher)
 
         val key = generateKey(keyLength)
-        val params = Params(key)
+        val params = Param(key)
 
         val encrypted = mode.encrypt(plainText.toByteArray(), params)
         val decrypted = mode.decrypt(encrypted.data, params)
@@ -95,7 +94,7 @@ class BlockChiperTest {
 
         val key = generateKey(keyLength)
         val iv = generateIV(ivLength)
-        val params = ParamsWithIV(key, iv)
+        val params = ParamWithIV(key, iv)
 
         val encrypted = mode.encrypt(plainText.toByteArray(), params)
         val decrypted = mode.decrypt(encrypted.data, params)
@@ -108,7 +107,7 @@ class BlockChiperTest {
 
         val key = generateKey(keyLength)
         val iv = generateIV(ivLength)
-        val params = ParamsWithIV(key, iv)
+        val params = ParamWithIV(key, iv)
 
         val encrypted = mode.encrypt(plainText.toByteArray(), params)
         val decrypted = mode.decrypt(encrypted.data, params)
@@ -121,7 +120,7 @@ class BlockChiperTest {
 
         val key = generateKey(keyLength)
         val iv = generateKey(ivLength)
-        val params = ParamsWithIV(key, iv)
+        val params = ParamWithIV(key, iv)
 
         val encrypted = mode.encrypt(plainText.toByteArray(), params)
         val decrypted = mode.decrypt(encrypted.data, params)

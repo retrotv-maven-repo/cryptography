@@ -1,8 +1,7 @@
 package dev.retrotv.crypto.cipher.stream
 
-import dev.retrotv.crypto.cipher.stream.RC4
 import dev.retrotv.crypto.cipher.generator.KeyGenerator.generateKey
-import dev.retrotv.crypto.cipher.param.Params
+import dev.retrotv.crypto.cipher.param.Param
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
@@ -15,7 +14,7 @@ class RC4Test {
     fun test_chacha20() {
         val rc4 = RC4()
         val key = generateKey(32)
-        val params = Params(key)
+        val params = Param(key)
 
         val encrypted = rc4.encrypt(plainText.toByteArray(), params)
         val decrypted = rc4.decrypt(encrypted.data, params)

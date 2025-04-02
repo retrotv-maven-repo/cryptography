@@ -2,8 +2,8 @@ package dev.retrotv.crypto.cipher.block.mode
 
 import dev.retrotv.crypto.cipher.block.BlockCipher
 import dev.retrotv.crypto.cipher.block.CipherMode
-import dev.retrotv.crypto.cipher.param.Params
-import dev.retrotv.crypto.cipher.param.ParamsWithIV
+import dev.retrotv.crypto.cipher.param.Param
+import dev.retrotv.crypto.cipher.param.ParamWithIV
 import dev.retrotv.crypto.cipher.result.Result
 import dev.retrotv.crypto.enums.ECipher.*
 import dev.retrotv.crypto.enums.EMode.CFB
@@ -26,8 +26,8 @@ class CFB(blockCipher: BlockCipher) : CipherMode(CFB, blockCipher) {
     }
 
     @Throws(CryptoFailException::class)
-    override fun encrypt(data: ByteArray, params: Params): Result {
-        require (params is ParamsWithIV) { "CFB 모드는 ParamsWithIV 객체를 요구합니다." }
+    override fun encrypt(data: ByteArray, params: Param): Result {
+        require (params is ParamWithIV) { "CFB 모드는 ParamsWithIV 객체를 요구합니다." }
 
         // blockSize는 8 혹은 16만 입력 가능
         val cipher = CFBBlockCipher.newInstance(this.engine, this.blockSize)
@@ -40,8 +40,8 @@ class CFB(blockCipher: BlockCipher) : CipherMode(CFB, blockCipher) {
     }
 
     @Throws(CryptoFailException::class)
-    override fun decrypt(encryptedData: ByteArray, params: Params): Result {
-        require (params is ParamsWithIV) { "CFB 모드는 ParamsWithIV 객체를 요구합니다." }
+    override fun decrypt(encryptedData: ByteArray, params: Param): Result {
+        require (params is ParamWithIV) { "CFB 모드는 ParamsWithIV 객체를 요구합니다." }
 
         val cipher = CFBBlockCipher.newInstance(this.engine, this.blockSize)
             cipher.init(false, ParametersWithIV(KeyParameter(params.key), params.iv))

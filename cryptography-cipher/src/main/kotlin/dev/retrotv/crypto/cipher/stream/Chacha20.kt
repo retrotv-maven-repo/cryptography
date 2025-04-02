@@ -1,7 +1,7 @@
 package dev.retrotv.crypto.cipher.stream
 
-import dev.retrotv.crypto.cipher.param.Params
-import dev.retrotv.crypto.cipher.param.ParamsWithIV
+import dev.retrotv.crypto.cipher.param.Param
+import dev.retrotv.crypto.cipher.param.ParamWithIV
 import dev.retrotv.crypto.cipher.result.Result
 import org.bouncycastle.crypto.engines.ChaChaEngine
 import org.bouncycastle.crypto.io.CipherInputStream
@@ -20,8 +20,8 @@ class Chacha20 : StreamCipher() {
         this.engine = ChaChaEngine(20)
     }
 
-    override fun encrypt(data: ByteArray, params: Params): Result {
-        require(params is ParamsWithIV) { requiredMessage }
+    override fun encrypt(data: ByteArray, params: Param): Result {
+        require(params is ParamWithIV) { requiredMessage }
 
         this.engine.init(true, ParametersWithIV(KeyParameter(params.key), params.iv))
 
@@ -31,8 +31,8 @@ class Chacha20 : StreamCipher() {
         return Result(encryptedData)
     }
 
-    override fun encrypt(input: InputStream, output: OutputStream, params: Params) {
-        require(params is ParamsWithIV) { requiredMessage }
+    override fun encrypt(input: InputStream, output: OutputStream, params: Param) {
+        require(params is ParamWithIV) { requiredMessage }
 
         this.engine.init(true, ParametersWithIV(KeyParameter(params.key), params.iv))
 
@@ -48,8 +48,8 @@ class Chacha20 : StreamCipher() {
         cos.close()
     }
 
-    override fun decrypt(encryptedData: ByteArray, params: Params): Result {
-        require(params is ParamsWithIV) { requiredMessage }
+    override fun decrypt(encryptedData: ByteArray, params: Param): Result {
+        require(params is ParamWithIV) { requiredMessage }
 
         this.engine.init(false, ParametersWithIV(KeyParameter(params.key), params.iv))
 
@@ -59,8 +59,8 @@ class Chacha20 : StreamCipher() {
         return Result(originalData)
     }
 
-    override fun decrypt(input: InputStream, output: OutputStream, params: Params) {
-        require(params is ParamsWithIV) { requiredMessage }
+    override fun decrypt(input: InputStream, output: OutputStream, params: Param) {
+        require(params is ParamWithIV) { requiredMessage }
 
         this.engine.init(false, ParametersWithIV(KeyParameter(params.key), params.iv))
 

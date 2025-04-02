@@ -2,8 +2,8 @@ package dev.retrotv.crypto.cipher.block.mode
 
 import dev.retrotv.crypto.cipher.block.BlockCipher
 import dev.retrotv.crypto.cipher.block.CipherMode
-import dev.retrotv.crypto.cipher.param.Params
-import dev.retrotv.crypto.cipher.param.ParamsWithIV
+import dev.retrotv.crypto.cipher.param.Param
+import dev.retrotv.crypto.cipher.param.ParamWithIV
 import dev.retrotv.crypto.cipher.result.Result
 import dev.retrotv.crypto.enums.EMode.CTS
 import org.bouncycastle.crypto.modes.CBCBlockCipher
@@ -16,8 +16,8 @@ import org.bouncycastle.crypto.params.ParametersWithIV
  * @param blockCipher 블록 암호화 클래스
  */
 class CTS(blockCipher: BlockCipher) : CipherMode(CTS, blockCipher) {
-    override fun encrypt(data: ByteArray, params: Params): Result {
-        val parameters = if (params is ParamsWithIV) {
+    override fun encrypt(data: ByteArray, params: Param): Result {
+        val parameters = if (params is ParamWithIV) {
             if (params.iv == null) {
                 KeyParameter(params.key)
             } else {
@@ -37,8 +37,8 @@ class CTS(blockCipher: BlockCipher) : CipherMode(CTS, blockCipher) {
         return Result(encryptedData)
     }
 
-    override fun decrypt(encryptedData: ByteArray, params: Params): Result {
-        val parameters = if (params is ParamsWithIV) {
+    override fun decrypt(encryptedData: ByteArray, params: Param): Result {
+        val parameters = if (params is ParamWithIV) {
             if (params.iv == null) {
                 KeyParameter(params.key)
             } else {

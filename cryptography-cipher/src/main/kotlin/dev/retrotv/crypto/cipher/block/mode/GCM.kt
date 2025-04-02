@@ -2,8 +2,8 @@ package dev.retrotv.crypto.cipher.block.mode
 
 import dev.retrotv.crypto.cipher.block.BlockCipher
 import dev.retrotv.crypto.cipher.block.CipherMode
-import dev.retrotv.crypto.cipher.param.Params
-import dev.retrotv.crypto.cipher.param.ParamsWithIV
+import dev.retrotv.crypto.cipher.param.Param
+import dev.retrotv.crypto.cipher.param.ParamWithIV
 import dev.retrotv.crypto.cipher.result.AEADResult
 import dev.retrotv.crypto.cipher.result.Result
 import dev.retrotv.crypto.enums.EMode.ECB
@@ -21,8 +21,8 @@ class GCM(blockCipher: BlockCipher) : CipherMode(ECB, blockCipher) {
     private var aad: ByteArray? = null
 
     @Throws(CryptoFailException::class)
-    override fun encrypt(data: ByteArray, params: Params): Result {
-        require (params is ParamsWithIV) { "GCM 모드는 ParamsWithIV 객체를 요구합니다." }
+    override fun encrypt(data: ByteArray, params: Param): Result {
+        require (params is ParamWithIV) { "GCM 모드는 ParamsWithIV 객체를 요구합니다." }
 
         val macSize = GCM_TAG_LENGTH * 8
         val cipher = GCMBlockCipher.newInstance(this.engine)
@@ -45,8 +45,8 @@ class GCM(blockCipher: BlockCipher) : CipherMode(ECB, blockCipher) {
     }
 
     @Throws(CryptoFailException::class)
-    override fun decrypt(encryptedData: ByteArray, params: Params): Result {
-        require (params is ParamsWithIV) { "GCM 모드는 ParamsWithIV 객체를 요구합니다." }
+    override fun decrypt(encryptedData: ByteArray, params: Param): Result {
+        require (params is ParamWithIV) { "GCM 모드는 ParamsWithIV 객체를 요구합니다." }
 
         val macSize = GCM_TAG_LENGTH * 8
         val cipher = GCMBlockCipher.newInstance(this.engine)
