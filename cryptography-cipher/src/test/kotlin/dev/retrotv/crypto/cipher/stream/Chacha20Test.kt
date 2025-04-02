@@ -2,8 +2,7 @@ package dev.retrotv.crypto.cipher.stream
 
 import dev.retrotv.crypto.cipher.generator.IVGenerator.generateIV
 import dev.retrotv.crypto.cipher.generator.KeyGenerator.generateKey
-import dev.retrotv.crypto.cipher.param.ParamsWithIV
-import dev.retrotv.crypto.cipher.stream.Chacha20
+import dev.retrotv.crypto.cipher.param.ParamWithIV
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
@@ -17,7 +16,7 @@ class Chacha20Test {
         val chacha20 = Chacha20()
         val key = generateKey(32)
         val iv = generateIV(8)
-        val params = ParamsWithIV(key, iv)
+        val params = ParamWithIV(key, iv)
 
         val encrypted = chacha20.encrypt(plainText.toByteArray(), params)
         val decrypted = chacha20.decrypt(encrypted.data, params)

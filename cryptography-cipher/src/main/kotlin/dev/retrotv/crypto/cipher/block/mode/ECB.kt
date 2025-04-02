@@ -2,7 +2,7 @@ package dev.retrotv.crypto.cipher.block.mode
 
 import dev.retrotv.crypto.cipher.block.BlockCipher
 import dev.retrotv.crypto.cipher.block.CipherMode
-import dev.retrotv.crypto.cipher.param.Params
+import dev.retrotv.crypto.cipher.param.Param
 import dev.retrotv.crypto.cipher.result.Result
 import dev.retrotv.crypto.enums.EMode.ECB
 import dev.retrotv.crypto.exception.CryptoFailException
@@ -16,7 +16,7 @@ import org.bouncycastle.crypto.params.KeyParameter
 class ECB(blockCipher: BlockCipher) : CipherMode(ECB, blockCipher) {
 
     @Throws(CryptoFailException::class)
-    override fun encrypt(data: ByteArray, params: Params): Result {
+    override fun encrypt(data: ByteArray, params: Param): Result {
         val cipher = PaddedBufferedBlockCipher(this.engine)
             cipher.init(true, KeyParameter(params.key))
 
@@ -28,7 +28,7 @@ class ECB(blockCipher: BlockCipher) : CipherMode(ECB, blockCipher) {
     }
 
     @Throws(CryptoFailException::class)
-    override fun decrypt(encryptedData: ByteArray, params: Params): Result {
+    override fun decrypt(encryptedData: ByteArray, params: Param): Result {
         val cipher = PaddedBufferedBlockCipher(this.engine)
             cipher.init(false, KeyParameter(params.key))
 
