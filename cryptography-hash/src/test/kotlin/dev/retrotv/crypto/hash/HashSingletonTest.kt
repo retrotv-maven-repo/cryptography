@@ -13,7 +13,7 @@ class HashSingletonTest {
     @DisplayName("동일 인스턴스 확인")
     fun test_singleton() {
         val hash = Hash.getInstance(SHA1)
-        for (i in 0..100) {
+        (0..100).forEach { i ->
             val anotherHash = Hash.getInstance(SHA1)
             assertSame(hash, anotherHash)
         }

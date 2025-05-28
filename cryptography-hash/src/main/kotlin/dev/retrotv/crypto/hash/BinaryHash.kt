@@ -27,7 +27,7 @@ interface BinaryHash {
      * @throws IOException 바이너리를 읽어들이는 과정에서 오류가 발생할 경우 던짐
      */
     @Throws(IOException::class)
-    fun matches(data: ByteArray, digest: ByteArray?): Boolean = hashing(data) == digest
+    fun matches(data: ByteArray, digest: ByteArray?): Boolean = digest.contentEquals(hashing(data))
 
     /**
      * 바이너리 데이터를 해시해 해시 값을 생성한 뒤, 비교할 해시 값과의 일치 여부를 반환합니다.
