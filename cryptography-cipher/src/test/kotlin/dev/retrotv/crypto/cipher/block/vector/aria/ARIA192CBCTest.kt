@@ -1,21 +1,21 @@
-package dev.retrotv.crypto.cipher.block.vector
+package dev.retrotv.crypto.cipher.block.vector.aria
 
 import dev.retrotv.crypto.cipher.block.algorithm.ARIA
 import dev.retrotv.crypto.cipher.block.mode.CBC
 import dev.retrotv.crypto.cipher.param.ParamWithIV
-import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.DynamicTest
 import org.junit.jupiter.api.TestFactory
 import java.io.File
 import java.util.stream.Stream
 
-class ARIA128CBCTest {
+class ARIA192CBCTest {
     private fun hexToBytes(hex: String): ByteArray =
         hex.chunked(2).map { it.toInt(16).toByte() }.toByteArray()
 
     @TestFactory
     fun test_ariaCbcKat(): Stream<DynamicTest> {
-        val file = File("src/vector/ARIA/ARIA-128_(CBC)_KAT.txt")
+        val file = File("src/vector/ARIA/ARIA-192_(CBC)_KAT.txt")
         val lines = file.readLines().map { it.trim() }.filter { it.isNotEmpty() }
         val tests = mutableListOf<DynamicTest>()
 
@@ -33,15 +33,18 @@ class ARIA128CBCTest {
                 line.startsWith("PT =") -> pt = line.substringAfter("=").trim()
                 line.startsWith("CT =") -> {
                     ct = line.substringAfter("=").trim()
-                    val testName = "ARIA-128-CBC KAT #$caseNum"
+                    val testName = "ARIA-192-CBC KAT #$caseNum"
                     val testFn = {
                         val aria = ARIA()
                         val cbc = CBC(aria)
                         val params = ParamWithIV(hexToBytes(key), hexToBytes(iv))
                         val result = cbc.encrypt(hexToBytes(pt), params).data
                         val resultHex = result.joinToString("") { "%02X".format(it) }
-                        val halfLength = resultHex.length / 2
-                        assertEquals(ct.uppercase(), resultHex.substring(0, halfLength), "Failed at $testName")
+                        Assertions.assertEquals(
+                            ct.uppercase(),
+                            resultHex.substring(0, ct.length),
+                            "Failed at $testName"
+                        )
                     }
                     tests.add(DynamicTest.dynamicTest(testName, testFn))
                     caseNum++
@@ -53,7 +56,7 @@ class ARIA128CBCTest {
 
     @TestFactory
     fun test_ariaCbcMmt(): Stream<DynamicTest> {
-        val file = File("src/vector/ARIA/ARIA-128_(CBC)_MMT.txt")
+        val file = File("src/vector/ARIA/ARIA-192_(CBC)_MMT.txt")
         val lines = file.readLines().map { it.trim() }.filter { it.isNotEmpty() }
         val tests = mutableListOf<DynamicTest>()
 
@@ -71,7 +74,7 @@ class ARIA128CBCTest {
                 line.startsWith("PT =") -> pt = line.substringAfter("=").trim()
                 line.startsWith("CT =") -> {
                     ct = line.substringAfter("=").trim()
-                    val testName = "ARIA-128-CBC MMT #$caseNum"
+                    val testName = "ARIA-192-CBC MMT #$caseNum"
                     val testFn = {
                         val aria = ARIA()
                         val cbc = CBC(aria)
@@ -79,7 +82,7 @@ class ARIA128CBCTest {
                         val result = cbc.encrypt(hexToBytes(pt), params).data
                         val resultHex = result.joinToString("") { "%02X".format(it) }
                         val ctLength = ct.length
-                        assertEquals(ct.uppercase(), resultHex.substring(0, ctLength), "Failed at $testName")
+                        Assertions.assertEquals(ct.uppercase(), resultHex.substring(0, ctLength), "Failed at $testName")
                     }
                     tests.add(DynamicTest.dynamicTest(testName, testFn))
                     caseNum++
@@ -91,7 +94,7 @@ class ARIA128CBCTest {
 
     @TestFactory
     fun test_ariaCbcMct_allCounts(): Stream<DynamicTest> {
-        val file = File("src/vector/ARIA/ARIA-128_(CBC)_MCT.txt")
+        val file = File("src/vector/ARIA/ARIA-192_(CBC)_MCT.txt")
         val lines = file.readLines().map { it.trim() }.filter { it.isNotEmpty() }
 
         data class MctCase(val count: Int, val key: String, val iv: String, val pt: String, val ct: String)
@@ -126,11 +129,11 @@ class ARIA128CBCTest {
             hex.chunked(2).map { it.toInt(16).toByte() }.toByteArray()
 
         return cases.map { mctCase ->
-            DynamicTest.dynamicTest("ARIA-128-CBC MCT COUNT=${mctCase.count}") {
+            DynamicTest.dynamicTest("ARIA-192-CBC MCT COUNT=${mctCase.count}") {
                 val key = hexToBytes(mctCase.key)
                 val iv = hexToBytes(mctCase.iv)
-                val pts = Array(1000) { ByteArray(16) }
-                val cts = Array(1000) { ByteArray(16) }
+                val pts = Array(1000) { ByteArray(24) }
+                val cts = Array(1000) { ByteArray(24) }
                 pts[0] = hexToBytes(mctCase.pt)
 
                 val aria = ARIA()
@@ -147,7 +150,7 @@ class ARIA128CBCTest {
                     }
                 }
                 val resultHex = cts.last().joinToString("") { "%02X".format(it) }
-                assertEquals(mctCase.ct.uppercase(), resultHex, "Failed at COUNT=${mctCase.count} MCT")
+                Assertions.assertEquals(mctCase.ct.uppercase(), resultHex, "Failed at COUNT=${mctCase.count} MCT")
             }
         }.stream()
     }
