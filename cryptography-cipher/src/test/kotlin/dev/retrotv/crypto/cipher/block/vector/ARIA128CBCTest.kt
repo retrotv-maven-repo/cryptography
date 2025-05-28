@@ -2,7 +2,7 @@ package dev.retrotv.crypto.cipher.block.vector
 
 import dev.retrotv.crypto.cipher.block.algorithm.ARIA
 import dev.retrotv.crypto.cipher.block.mode.CBC
-import dev.retrotv.crypto.cipher.param.ParamsWithIV
+import dev.retrotv.crypto.cipher.param.ParamWithIV
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.DynamicTest
 import org.junit.jupiter.api.Test
@@ -38,7 +38,7 @@ class ARIA128CBCTest {
                     val testFn = {
                         val aria = ARIA()
                         val cbc = CBC(aria)
-                        val params = ParamsWithIV(hexToBytes(key), hexToBytes(iv))
+                        val params = ParamWithIV(hexToBytes(key), hexToBytes(iv))
                         val result = cbc.encrypt(hexToBytes(pt), params).data
                         val resultHex = result.joinToString("") { "%02X".format(it) }
                         val halfLength = resultHex.length / 2
@@ -76,7 +76,7 @@ class ARIA128CBCTest {
                     val testFn = {
                         val aria = ARIA()
                         val cbc = CBC(aria)
-                        val params = ParamsWithIV(hexToBytes(key), hexToBytes(iv))
+                        val params = ParamWithIV(hexToBytes(key), hexToBytes(iv))
                         val result = cbc.encrypt(hexToBytes(pt), params).data
                         val resultHex = result.joinToString("") { "%02X".format(it) }
                         val ctLength = ct.length
@@ -122,10 +122,10 @@ class ARIA128CBCTest {
         val cbc = CBC(aria)
         for (i in 0 until 1000) {
             if (i == 0) {
-                cts[0] = cbc.encrypt(pts[0], ParamsWithIV(key, iv)).data.copyOf(16)
+                cts[0] = cbc.encrypt(pts[0], ParamWithIV(key, iv)).data.copyOf(16)
                 pts[1] = iv
             } else {
-                cts[i] = cbc.encrypt(pts[i], ParamsWithIV(key, cts[i - 1])).data.copyOf(16)
+                cts[i] = cbc.encrypt(pts[i], ParamWithIV(key, cts[i - 1])).data.copyOf(16)
                 if (i != 999) {
                     pts[i + 1] = cts[i - 1].copyOf()
                 }
