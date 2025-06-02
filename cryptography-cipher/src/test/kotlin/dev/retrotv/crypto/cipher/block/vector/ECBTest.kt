@@ -3,6 +3,8 @@ package dev.retrotv.crypto.cipher.block.vector
 import dev.retrotv.crypto.cipher.block.algorithm.ARIA
 import dev.retrotv.crypto.cipher.block.algorithm.LEA
 import dev.retrotv.crypto.cipher.block.mode.CBC
+import dev.retrotv.crypto.cipher.block.mode.ECB
+import dev.retrotv.crypto.cipher.param.Param
 import dev.retrotv.crypto.cipher.param.ParamWithIV
 import dev.retrotv.data.utils.ByteUtils
 import dev.retrotv.data.utils.StringUtils
@@ -12,7 +14,7 @@ import org.junit.jupiter.api.TestFactory
 import java.io.File
 import java.util.stream.Stream
 
-class CBCTest {
+class ECBTest {
     private fun hexToBytes(hex: String): ByteArray = StringUtils.hexStringToByteArray(hex)
     private fun bytesToHex(bytes: ByteArray): String = ByteUtils.toHexString(bytes).uppercase()
 
@@ -22,10 +24,10 @@ class CBCTest {
     }
 
     @TestFactory
-    fun test_cbcKat(): Stream<DynamicTest> {
+    fun test_ecbKat(): Stream<DynamicTest> {
         val tests = mutableListOf<DynamicTest>()
 
-        ALGORITHM.forEach { algorithm ->
+        CBCTest.Companion.ALGORITHM.forEach { algorithm ->
             val blockCipher = if (algorithm.contentEquals("ARIA")) {
                 ARIA()
             } else if (algorithm.contentEquals("LEA")) {
@@ -34,12 +36,11 @@ class CBCTest {
                 throw IllegalArgumentException("Unsupported algorithm: $algorithm")
             }
 
-            KEY_LENGTH.forEach { keyLength ->
-                val file = File("src/vector/$algorithm/${algorithm}-${keyLength}_(CBC)_KAT.txt")
+            CBCTest.Companion.KEY_LENGTH.forEach { keyLength ->
+                val file = File("src/vector/$algorithm/${algorithm}-${keyLength}_(ECB)_KAT.txt")
                 val lines = file.readLines().map { it.trim() }.filter { it.isNotEmpty() }
 
                 var key = ""
-                var iv = ""
                 var pt = ""
                 var ct: String
 
@@ -47,15 +48,14 @@ class CBCTest {
                 for (line in lines) {
                     when {
                         line.startsWith("KEY =") -> key = line.substringAfter("=").trim()
-                        line.startsWith("IV =") -> iv = line.substringAfter("=").trim()
                         line.startsWith("PT =") -> pt = line.substringAfter("=").trim()
                         line.startsWith("CT =") -> {
                             ct = line.substringAfter("=").trim()
-                            val testName = "$algorithm-${keyLength}-CBC KAT #$caseNum"
+                            val testName = "$algorithm-${keyLength}-ECB KAT #$caseNum"
                             val testFn = {
-                                val cbc = CBC(blockCipher)
-                                val params = ParamWithIV(hexToBytes(key), hexToBytes(iv))
-                                val result = cbc.encrypt(hexToBytes(pt), params).data
+                                val ecb = ECB(blockCipher)
+                                val params = Param(hexToBytes(key))
+                                val result = ecb.encrypt(hexToBytes(pt), params).data
                                 val resultHex = bytesToHex(result)
                                 val ctLength = ct.length
                                 Assertions.assertEquals(ct.uppercase(), resultHex.substring(0, ctLength), "Failed at $testName")
@@ -72,10 +72,10 @@ class CBCTest {
     }
 
     @TestFactory
-    fun test_cbcMmt(): Stream<DynamicTest> {
+    fun test_ecbMmt(): Stream<DynamicTest> {
         val tests = mutableListOf<DynamicTest>()
 
-        ALGORITHM.forEach { algorithm ->
+        CBCTest.Companion.ALGORITHM.forEach { algorithm ->
             val blockCipher = if (algorithm.contentEquals("ARIA")) {
                 ARIA()
             } else if (algorithm.contentEquals("LEA")) {
@@ -84,12 +84,11 @@ class CBCTest {
                 throw IllegalArgumentException("Unsupported algorithm: $algorithm")
             }
 
-            KEY_LENGTH.forEach { keyLength ->
-                val file = File("src/vector/$algorithm/${algorithm}-${keyLength}_(CBC)_MMT.txt")
+            CBCTest.Companion.KEY_LENGTH.forEach { keyLength ->
+                val file = File("src/vector/$algorithm/${algorithm}-${keyLength}_(ECB)_MMT.txt")
                 val lines = file.readLines().map { it.trim() }.filter { it.isNotEmpty() }
 
                 var key = ""
-                var iv = ""
                 var pt = ""
                 var ct: String
 
@@ -97,15 +96,14 @@ class CBCTest {
                 for (line in lines) {
                     when {
                         line.startsWith("KEY =") -> key = line.substringAfter("=").trim()
-                        line.startsWith("IV =") -> iv = line.substringAfter("=").trim()
                         line.startsWith("PT =") -> pt = line.substringAfter("=").trim()
                         line.startsWith("CT =") -> {
                             ct = line.substringAfter("=").trim()
-                            val testName = "$algorithm-${keyLength}-CBC MMT #$caseNum"
+                            val testName = "$algorithm-${keyLength}-ECB MMT #$caseNum"
                             val testFn = {
-                                val cbc = CBC(blockCipher)
-                                val params = ParamWithIV(hexToBytes(key), hexToBytes(iv))
-                                val result = cbc.encrypt(hexToBytes(pt), params).data
+                                val ecb = ECB(blockCipher)
+                                val params = Param(hexToBytes(key))
+                                val result = ecb.encrypt(hexToBytes(pt), params).data
                                 val resultHex = bytesToHex(result)
                                 val ctLength = ct.length
                                 Assertions.assertEquals(ct.uppercase(), resultHex.substring(0, ctLength), "Failed at $testName")
@@ -122,7 +120,7 @@ class CBCTest {
     }
 
     @TestFactory
-    fun test_cbcMct(): Stream<DynamicTest> {
+    fun test_ecbMct(): Stream<DynamicTest> {
         val tests = mutableListOf<DynamicTest>()
 
         ALGORITHM.forEach { algorithm ->
@@ -135,15 +133,14 @@ class CBCTest {
             }
 
             KEY_LENGTH.forEach { keyLength ->
-                val file = File("src/vector/$algorithm/${algorithm}-${keyLength}_(CBC)_MCT.txt")
+                val file = File("src/vector/$algorithm/${algorithm}-${keyLength}_(ECB)_MCT.txt")
                 val lines = file.readLines().map { it.trim() }.filter { it.isNotEmpty() }
 
-                data class MctCase(val count: Int, val key: String, val iv: String, val pt: String, val ct: String)
+                data class MctCase(val count: Int, val key: String, val pt: String, val ct: String)
                 val cases = mutableListOf<MctCase>()
 
                 var count = -1
                 var key = ""
-                var iv = ""
                 var pt = ""
                 var ct = ""
 
@@ -151,12 +148,11 @@ class CBCTest {
                     when {
                         line.startsWith("COUNT =") -> {
                             if (count != -1) {
-                                cases.add(MctCase(count, key, iv, pt, ct))
+                                cases.add(MctCase(count, key, pt, ct))
                             }
                             count = line.substringAfter("=").trim().toInt()
                         }
                         line.startsWith("KEY =") -> key = line.substringAfter("=").trim()
-                        line.startsWith("IV =") -> iv = line.substringAfter("=").trim()
                         line.startsWith("PT =") -> pt = line.substringAfter("=").trim()
                         line.startsWith("CT =") -> ct = line.substringAfter("=").trim()
                     }
@@ -164,29 +160,28 @@ class CBCTest {
 
                 // 마지막 케이스 추가
                 if (count != -1) {
-                    cases.add(MctCase(count, key, iv, pt, ct))
+                    cases.add(MctCase(count, key, pt, ct))
                 }
 
                 fun hexToBytes(hex: String): ByteArray =
                     hex.chunked(2).map { it.toInt(16).toByte() }.toByteArray()
 
                 val testCases = cases.map { mctCase ->
-                    DynamicTest.dynamicTest("${algorithm}-${keyLength}-CBC MCT COUNT=${mctCase.count}") {
+                    DynamicTest.dynamicTest("${algorithm}-${keyLength}-ECB MCT COUNT=${mctCase.count}") {
                         val key = hexToBytes(mctCase.key)
-                        val iv = hexToBytes(mctCase.iv)
                         val pts = Array(1000) { ByteArray(16) }
                         val cts = Array(1000) { ByteArray(16) }
                         pts[0] = hexToBytes(mctCase.pt)
 
-                        val cbc = CBC(blockCipher)
+                        val ecb = ECB(blockCipher)
                         for (j in 0 until 1000) {
                             if (j == 0) {
-                                cts[0] = cbc.encrypt(pts[0], ParamWithIV(key, iv)).data.copyOf(16)
-                                pts[1] = iv
+                                cts[0] = ecb.encrypt(pts[0], Param(key)).data.copyOf(16)
+                                pts[1] = cts[0]
                             } else {
-                                cts[j] = cbc.encrypt(pts[j], ParamWithIV(key, cts[j - 1])).data.copyOf(16)
+                                cts[j] = ecb.encrypt(pts[j], Param(key)).data.copyOf(16)
                                 if (j != 999) {
-                                    pts[j + 1] = cts[j - 1].copyOf()
+                                    pts[j + 1] = cts[j].copyOf()
                                 }
                             }
                         }
