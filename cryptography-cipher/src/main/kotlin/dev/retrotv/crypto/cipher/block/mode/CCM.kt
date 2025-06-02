@@ -23,7 +23,7 @@ class CCM(blockCipher: BlockCipher) : CipherMode(CCM, blockCipher) {
     override fun encrypt(data: ByteArray, params: Param): Result {
         require (params is ParamWithIV) { "CCM 모드는 ParamsWithIV 객체를 요구합니다." }
 
-        val macSize = CCM_TAG_LENGTH * 8
+        val macSize = tLen * 8
         val cipher = CCMBlockCipher.newInstance(this.engine)
             cipher.init(true, AEADParameters(KeyParameter(params.key), macSize, params.iv, this.aad))
 
@@ -40,7 +40,7 @@ class CCM(blockCipher: BlockCipher) : CipherMode(CCM, blockCipher) {
     override fun decrypt(encryptedData: ByteArray, params: Param): Result {
         require (params is ParamWithIV) { "CCM 모드는 ParamsWithIV 객체를 요구합니다." }
 
-        val macSize = CCM_TAG_LENGTH * 8
+        val macSize = tLen * 8
         val cipher = CCMBlockCipher.newInstance(this.engine)
             cipher.init(false, AEADParameters(KeyParameter(params.key), macSize, params.iv, this.aad))
 
@@ -60,8 +60,14 @@ class CCM(blockCipher: BlockCipher) : CipherMode(CCM, blockCipher) {
         this.aad = aad
     }
 
+    fun updateTagLength(tagLength: Int) {
+        require(tagLength % 2 == 0) { "Tag length must be a multiple of 2." }
+        require(tagLength in 4..16) { "Tag length must be between 4 and 16 bytes." }
+        tLen = tagLength
+    }
+
     companion object {
-        private const val GCM_IV_LENGTH = 12
-        private const val CCM_TAG_LENGTH = 16
+        private const val DEFAULT_TAG_LENGTH = 16
+        private var tLen = DEFAULT_TAG_LENGTH
     }
 }

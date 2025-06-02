@@ -2,10 +2,8 @@ package dev.retrotv.crypto.cipher.block.vector
 
 import dev.retrotv.crypto.cipher.block.algorithm.ARIA
 import dev.retrotv.crypto.cipher.block.algorithm.LEA
-import dev.retrotv.crypto.cipher.block.mode.CBC
 import dev.retrotv.crypto.cipher.block.mode.ECB
 import dev.retrotv.crypto.cipher.param.Param
-import dev.retrotv.crypto.cipher.param.ParamWithIV
 import dev.retrotv.data.utils.ByteUtils
 import dev.retrotv.data.utils.StringUtils
 import org.junit.jupiter.api.Assertions
@@ -27,7 +25,7 @@ class ECBTest {
     fun test_ecbKat(): Stream<DynamicTest> {
         val tests = mutableListOf<DynamicTest>()
 
-        CBCTest.Companion.ALGORITHM.forEach { algorithm ->
+        ALGORITHM.forEach { algorithm ->
             val blockCipher = if (algorithm.contentEquals("ARIA")) {
                 ARIA()
             } else if (algorithm.contentEquals("LEA")) {
@@ -36,7 +34,7 @@ class ECBTest {
                 throw IllegalArgumentException("Unsupported algorithm: $algorithm")
             }
 
-            CBCTest.Companion.KEY_LENGTH.forEach { keyLength ->
+            KEY_LENGTH.forEach { keyLength ->
                 val file = File("src/vector/$algorithm/${algorithm}-${keyLength}_(ECB)_KAT.txt")
                 val lines = file.readLines().map { it.trim() }.filter { it.isNotEmpty() }
 
@@ -75,7 +73,7 @@ class ECBTest {
     fun test_ecbMmt(): Stream<DynamicTest> {
         val tests = mutableListOf<DynamicTest>()
 
-        CBCTest.Companion.ALGORITHM.forEach { algorithm ->
+        ALGORITHM.forEach { algorithm ->
             val blockCipher = if (algorithm.contentEquals("ARIA")) {
                 ARIA()
             } else if (algorithm.contentEquals("LEA")) {
@@ -84,7 +82,7 @@ class ECBTest {
                 throw IllegalArgumentException("Unsupported algorithm: $algorithm")
             }
 
-            CBCTest.Companion.KEY_LENGTH.forEach { keyLength ->
+            KEY_LENGTH.forEach { keyLength ->
                 val file = File("src/vector/$algorithm/${algorithm}-${keyLength}_(ECB)_MMT.txt")
                 val lines = file.readLines().map { it.trim() }.filter { it.isNotEmpty() }
 
