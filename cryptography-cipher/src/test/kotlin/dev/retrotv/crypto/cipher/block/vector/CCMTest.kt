@@ -25,7 +25,7 @@ class CCMTest {
     }
 
     @TestFactory
-    fun test_ccmVectors(): Stream<DynamicTest> {
+    fun test_ccmDv(): Stream<DynamicTest> {
         val tests = mutableListOf<DynamicTest>()
 
         ALGORITHM.forEach { algorithm ->
@@ -62,7 +62,7 @@ class CCMTest {
                                 p = line.substringAfter("=").trim()
                             }
                             if (line.startsWith("P =") || line.startsWith("INVALID")) {
-                                val testName = "CCM-${algorithm}-${keyLength} COUNT=$count"
+                                val testName = "CCM-${algorithm}-${keyLength}-DV COUNT=$count"
 
                                 log.info("COUNT: $count")
                                 log.info("K: $k")
@@ -93,6 +93,74 @@ class CCMTest {
                                 tests.add(DynamicTest.dynamicTest(testName, testFn))
                                 p = ""
                             }
+                        }
+                    }
+                }
+            }
+        }
+
+        return tests.stream()
+    }
+
+    @TestFactory
+    fun test_ccmGe(): Stream<DynamicTest> {
+        val tests = mutableListOf<DynamicTest>()
+
+        ALGORITHM.forEach { algorithm ->
+            val blockCipher = if (algorithm.contentEquals("ARIA")) {
+                ARIA()
+            } else if (algorithm.contentEquals("LEA")) {
+                LEA()
+            } else {
+                throw IllegalArgumentException("Unsupported algorithm: $algorithm")
+            }
+
+            KEY_LENGTH.forEach { keyLength ->
+                val file = File("src/vector/${algorithm}/CCM_${algorithm}-${keyLength}_GE.txt")
+                val lines = file.readLines().map { it.trim() }
+
+                var count = ""
+                var k = ""
+                var n = ""
+                var a = ""
+                var p = ""
+                var tLen = 0
+                var c: String
+
+                for (line in lines) {
+                    when {
+                        line.startsWith("COUNT =") -> count = line.substringAfter("=").trim()
+                        line.startsWith("K =") -> k = line.substringAfter("=").trim()
+                        line.startsWith("N =") -> n = line.substringAfter("=").trim()
+                        line.startsWith("A =") -> a = line.substringAfter("=").trim()
+                        line.startsWith("P =") -> p = line.substringAfter("=").trim()
+                        line.startsWith("Tlen =") -> tLen = line.substringAfter("=").trim().toInt() / 8
+                        line.startsWith("C =") -> {
+                            c = line.substringAfter("=").trim()
+                            val testName = "CCM-${algorithm}-${keyLength}-GE COUNT=$count"
+
+                            log.info("COUNT: $count")
+                            log.info("K: $k")
+                            log.info("N: $n")
+                            log.info("A: $a")
+                            log.info("P: $p")
+                            log.info("Tlen: $tLen")
+                            log.info("C: $c")
+                            log.info("테스트 명: $testName")
+
+                            val testFn = {
+                                val ccm = CCM(blockCipher)
+                                ccm.updateAAD(hexToBytes(a))
+                                ccm.updateTagLength(tLen)
+                                val params = ParamWithIV(hexToBytes(k), hexToBytes(n))
+                                val result = ccm.encrypt(hexToBytes(p), params).data
+                                val resultHex = bytesToHex(result)
+
+                                Assertions.assertEquals(c.uppercase(), resultHex, "Failed at $testName")
+                            }
+
+                            // 캡처 시점에 p, a, k, n, c, tLen 값을 복사해서 클로저에 전달
+                            tests.add(DynamicTest.dynamicTest(testName, testFn))
                         }
                     }
                 }
