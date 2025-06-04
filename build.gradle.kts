@@ -59,8 +59,9 @@ subprojects {
 
         // Logger
         implementation("org.slf4j:slf4j-api:${slf4j}")
-        implementation("org.apache.logging.log4j:log4j-core:${log4j}")
         implementation("org.apache.logging.log4j:log4j-api:${log4j}")
+        implementation("org.apache.logging.log4j:log4j-core:${log4j}")
+        implementation("org.apache.logging.log4j:log4j-slf4j2-impl:${log4j}")
 
         // Bouncy Castle
         implementation("org.bouncycastle:bcprov-jdk18on:${bouncyCastle}")
