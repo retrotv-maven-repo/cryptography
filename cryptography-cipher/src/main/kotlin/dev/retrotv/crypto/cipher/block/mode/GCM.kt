@@ -24,7 +24,7 @@ class GCM(blockCipher: BlockCipher) : CipherMode(ECB, blockCipher) {
     override fun encrypt(data: ByteArray, params: Param): Result {
         require (params is ParamWithIV) { "GCM 모드는 ParamsWithIV 객체를 요구합니다." }
 
-        val macSize = GCM_TAG_LENGTH * 8
+        val macSize = tLen * 8
         val cipher = GCMBlockCipher.newInstance(this.engine)
             cipher.init(true, AEADParameters(KeyParameter(params.key), macSize, params.iv, aad))
 
@@ -44,11 +44,12 @@ class GCM(blockCipher: BlockCipher) : CipherMode(ECB, blockCipher) {
         return AEADResult(encryptedData, cipher.mac)
     }
 
+    @SuppressWarnings("kotlin:S6615")
     @Throws(CryptoFailException::class)
     override fun decrypt(encryptedData: ByteArray, params: Param): Result {
         require (params is ParamWithIV) { "GCM 모드는 ParamsWithIV 객체를 요구합니다." }
 
-        val macSize = GCM_TAG_LENGTH * 8
+        val macSize = tLen * 8
         val cipher = GCMBlockCipher.newInstance(this.engine)
             cipher.init(false, AEADParameters(KeyParameter(params.key), macSize, params.iv, aad))
 
@@ -74,7 +75,7 @@ class GCM(blockCipher: BlockCipher) : CipherMode(ECB, blockCipher) {
     }
 
     companion object {
-        private const val GCM_IV_LENGTH = 12
-        private const val GCM_TAG_LENGTH = 16
+        private const val DEFAULT_TAG_LENGTH = 16
+        private var tLen = DEFAULT_TAG_LENGTH
     }
 }
