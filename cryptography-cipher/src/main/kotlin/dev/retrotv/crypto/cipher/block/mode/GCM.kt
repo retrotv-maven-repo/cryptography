@@ -34,7 +34,7 @@ class GCM(blockCipher: BlockCipher) : CipherMode(ECB, blockCipher) {
         try {
             tam += cipher.doFinal(outputData, tam)
         } catch (e: InvalidCipherTextException) {
-            throw CryptoFailException("GCM 인증 태그를 생성 실패: " + e.message, e)
+            throw CryptoFailException("GCM 인증 태그 생성 실패: " + e.message, e)
         }
 
         val encryptedData = ByteArray(tam)
@@ -59,7 +59,7 @@ class GCM(blockCipher: BlockCipher) : CipherMode(ECB, blockCipher) {
         try {
             tam += cipher.doFinal(originalData, tam)
         } catch (e: InvalidCipherTextException) {
-            throw CryptoFailException("GCM 인증 태그를 생성 실패: " + e.message, e)
+            throw CryptoFailException("GCM 인증 태그 생성 실패: " + e.message, e)
         }
 
         return AEADResult(originalData, cipher.mac)
@@ -74,6 +74,11 @@ class GCM(blockCipher: BlockCipher) : CipherMode(ECB, blockCipher) {
         this.aad = aad
     }
 
+    /**
+     * 인증 태그의 길이를 업데이트 합니다.
+     *
+     * @param tagLength 인증 태그의 길이 (12 ~ 16 Byte)
+     */
     fun updateTagLength(tagLength: Int) {
         require(tagLength in 12..16) { "인증태그의 길이는 12 ~ 16Byte만 허용됩니다." }
         tLen = tagLength
