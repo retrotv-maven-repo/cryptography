@@ -74,6 +74,11 @@ class GCM(blockCipher: BlockCipher) : CipherMode(ECB, blockCipher) {
         this.aad = aad
     }
 
+    fun updateTagLength(tagLength: Int) {
+        require(tagLength in 12..16) { "인증태그의 길이는 12 ~ 16Byte만 허용됩니다." }
+        tLen = tagLength
+    }
+
     companion object {
         private const val DEFAULT_TAG_LENGTH = 16
         private var tLen = DEFAULT_TAG_LENGTH

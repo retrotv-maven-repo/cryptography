@@ -61,8 +61,8 @@ class CCM(blockCipher: BlockCipher) : CipherMode(CCM, blockCipher) {
     }
 
     fun updateTagLength(tagLength: Int) {
-        require(tagLength % 2 == 0) { "Tag length must be a multiple of 2." }
-        require(tagLength in 4..16) { "Tag length must be between 4 and 16 bytes." }
+        require(tagLength % 2 == 0) { "인증태그의 길이는 2의 배수여야 합니다." }
+        require(tagLength in 4..16) { "인증태그의 길이는 4 ~ 16Byte만 허용됩니다." }
         tLen = tagLength
     }
 
