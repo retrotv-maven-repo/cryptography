@@ -13,7 +13,7 @@ plugins {
 }
 
 group = "dev.retrotv"
-version = "0.50.1-alpha"
+version = "0.50.2-alpha"
 
 // Github Action 버전 출력용
 tasks.register("printVersionName") {
@@ -127,13 +127,13 @@ subprojects {
             }
         }
     }
+}
 
-    tasks.withType<Sign>().configureEach {
-        onlyIf {
+tasks.withType<Sign>().configureEach {
+    onlyIf {
 
-            // 로컬 및 깃허브 패키지 배포 시에는 서명하지 않도록 설정
-            !gradle.taskGraph.hasTask(":publishMavenPublicationToMavenLocal") && !gradle.taskGraph.hasTask(":publishMavenPublicationToGitHubPackagesRepository")
-        }
+        // 로컬 및 깃허브 패키지 배포 시에는 서명하지 않도록 설정
+        !gradle.taskGraph.hasTask(":publishMavenPublicationToMavenLocal") && !gradle.taskGraph.hasTask(":publishMavenPublicationToGitHubPackagesRepository")
     }
 }
 
