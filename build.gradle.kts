@@ -1,16 +1,19 @@
+import com.vanniktech.maven.publish.SonatypeHost
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import java.net.URI
 
 plugins {
     java
     jacoco
     `maven-publish`
-    kotlin("jvm") version "2.1.0"
+    kotlin("jvm") version "2.1.21"
+    id("com.vanniktech.maven.publish") version "0.32.0"
     id("org.jetbrains.dokka") version "2.0.0"
     id("org.sonarqube") version "4.0.0.2929"
 }
 
 group = "dev.retrotv"
-version = "0.50.0-alpha"
+version = "0.50.1-alpha"
 
 // Github Action 버전 출력용
 tasks.register("printVersionName") {
@@ -34,7 +37,6 @@ allprojects {
 
     repositories {
         mavenCentral()
-        maven { setUrl("https://jitpack.io") }
     }
 }
 
@@ -42,20 +44,21 @@ subprojects {
     apply(plugin = "java")
     apply(plugin = "maven-publish")
     apply(plugin = "org.jetbrains.dokka")
+    apply(plugin = "com.vanniktech.maven.publish")
 
     tasks.test {
         useJUnitPlatform()
     }
 
-    val dataUtils = "0.21.6-alpha"
+    val dataUtils = "0.23.2-alpha"
     val slf4j = "2.0.16"
     val log4j = "2.24.3"
-    val bouncyCastle = "1.79"
-    val json = "20250107"
-    val junit = "5.11.4"
+    val bouncyCastle = "1.81"
+    val json = "20250517"
+    val junit = "5.13.1"
 
     dependencies {
-        implementation("com.github.retrotv-maven-repo:data-utils:${dataUtils}")
+        implementation("dev.retrotv:data-utils:${dataUtils}")
 
         // Logger
         implementation("org.slf4j:slf4j-api:${slf4j}")
@@ -74,27 +77,62 @@ subprojects {
         testImplementation("org.json:json:${json}")
     }
 
-    configure<PublishingExtension> {
+    mavenPublishing {
+        publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
 
-        // Github Packages에 배포하기 위한 설정
-        repositories {
-            maven {
-                name = "GitHubPackages"
-                url = uri("https://maven.pkg.github.com/retrotv-maven-repo/cryptography")
-                credentials {
-                    username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
-                    password = project.findProperty("gpr.key") as String? ?: System.getenv("PASSWORD")
+        signAllPublications()
+
+        coordinates(group.toString(), project.name, version.toString())
+
+        pom {
+            name.set("cryptography")
+            description.set("Java 자료형과 관련된 유틸성 기능을 총망라한 라이브러리 입니다.")
+            inceptionYear.set("2025")
+            url.set("https://github.com/retrotv-maven-repo/cryptography")
+
+            licenses {
+                license {
+                    name.set("The Apache License, Version 2.0")
+                    url.set("https://www.apache.org/licenses/LICENSE-2.0.txt")
                 }
+            }
+
+            developers {
+                developer {
+                    id.set("yjj8353")
+                    name.set("JaeJun Yang")
+                    email.set("yjj8353@gmail.com")
+                }
+            }
+
+            scm {
+                connection.set("scm:git:git://github.com/retrotv-maven-repo/cryptography.git")
+                developerConnection.set("scm:git:ssh://github.com/retrotv-maven-repo/cryptography.git")
+                url.set("https://github.com/retrotv-maven-repo/cryptography.git")
             }
         }
 
-        publications {
-            create<MavenPublication>("maven") {
-                groupId = project.group.toString()
-                artifactId = project.name
-                version = project.version.toString()
-                from(components["java"])
+        publishing {
+            repositories {
+
+                // Github Packages에 배포하기 위한 설정
+                maven {
+                    name = "GitHubPackages"
+                    url = URI("https://maven.pkg.github.com/retrotv-maven-repo/cryptography")
+                    credentials {
+                        username = System.getenv("USERNAME")
+                        password = System.getenv("PASSWORD")
+                    }
+                }
             }
+        }
+    }
+
+    tasks.withType<Sign>().configureEach {
+        onlyIf {
+
+            // 로컬 및 깃허브 패키지 배포 시에는 서명하지 않도록 설정
+            !gradle.taskGraph.hasTask(":publishMavenPublicationToMavenLocal") && !gradle.taskGraph.hasTask(":publishMavenPublicationToGitHubPackagesRepository")
         }
     }
 }
