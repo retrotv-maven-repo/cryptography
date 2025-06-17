@@ -13,7 +13,7 @@ plugins {
 }
 
 group = "dev.retrotv"
-version = "0.50.2-alpha"
+version = "0.50.3-alpha"
 
 // Github Action 버전 출력용
 tasks.register("printVersionName") {
@@ -131,9 +131,16 @@ subprojects {
 
 tasks.withType<Sign>().configureEach {
     onlyIf {
+        val taskGraph = gradle.taskGraph
 
-        // 로컬 및 깃허브 패키지 배포 시에는 서명하지 않도록 설정
-        !gradle.taskGraph.hasTask(":publishMavenPublicationToMavenLocal") && !gradle.taskGraph.hasTask(":publishMavenPublicationToGitHubPackagesRepository")
+        // GitHub Packages 배포 태스크를 좀 더 명확하게 지정
+        val isGitHubPackagesPublish = taskGraph.allTasks.any {
+            it.name.contains("GitHubPackages")
+        }
+        val isLocalPublish = taskGraph.hasTask(":publishMavenPublicationToMavenLocal")
+
+        // 로컬 또는 GitHub Packages 배포 시 서명하지 않음
+        !(isLocalPublish || isGitHubPackagesPublish)
     }
 }
 
