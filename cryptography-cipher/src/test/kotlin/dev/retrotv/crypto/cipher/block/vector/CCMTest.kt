@@ -15,7 +15,7 @@ import java.io.File
 import java.util.stream.Stream
 
 class CCMTest {
-    private fun hexToBytes(hex: String): ByteArray = StringUtils.hexStringToByteArray(hex)
+    private fun hexToBytes(hex: String): ByteArray = StringUtils.hexToByteArray(hex)
     private fun bytesToHex(bytes: ByteArray): String = ByteUtils.toHexString(bytes).uppercase()
 
     companion object {
