@@ -12,9 +12,12 @@ import dev.retrotv.crypto.cipher.generator.IVGenerator.generateIV
 import dev.retrotv.crypto.cipher.generator.KeyGenerator.generateKey
 import dev.retrotv.crypto.cipher.param.Param
 import dev.retrotv.crypto.cipher.param.ParamWithIV
+import dev.retrotv.crypto.cipher.result.AEADResult
+import dev.retrotv.data.utils.ByteUtils
 import kotlin.test.assertEquals
 
 class BlockChiperTest {
+    private fun bytesToHex(bytes: ByteArray): String = ByteUtils.toHexString(bytes).uppercase()
     private val plainText = "The quick brown fox jumps over the lazy dog"
 
     fun test_ecb(blockCipher: BlockCipher, keyLength: Int) {
@@ -123,8 +126,12 @@ class BlockChiperTest {
         val params = ParamWithIV(key, iv)
 
         val encrypted = mode.encrypt(plainText.toByteArray(), params)
+        val tag = (encrypted as AEADResult).tag
+
         val decrypted = mode.decrypt(encrypted.data, params)
+        val newTag = (decrypted as AEADResult).tag
 
         assertEquals(plainText, String(decrypted.data))
+        assertEquals(bytesToHex(tag), bytesToHex(newTag))
     }
 }

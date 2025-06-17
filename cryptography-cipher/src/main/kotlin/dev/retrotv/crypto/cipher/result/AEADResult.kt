@@ -7,5 +7,5 @@ package dev.retrotv.crypto.cipher.result
  */
 class AEADResult(
     override val data: ByteArray,
-    private val tag: ByteArray
+    val tag: ByteArray
 ) : Result(data)

@@ -13,7 +13,6 @@ rootProject.name = "cryptography"
 include(
     "cryptography-core",
     "cryptography-hash",
-    "cryptography-cipher"
+    "cryptography-cipher",
+    "cryptography-password"
 )
-include("cryptography-password")
-include("cryptography-password")

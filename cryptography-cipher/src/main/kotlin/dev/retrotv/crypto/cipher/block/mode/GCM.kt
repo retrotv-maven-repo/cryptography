@@ -24,7 +24,7 @@ class GCM(blockCipher: BlockCipher) : CipherMode(ECB, blockCipher) {
     override fun encrypt(data: ByteArray, params: Param): Result {
         require (params is ParamWithIV) { "GCM 모드는 ParamsWithIV 객체를 요구합니다." }
 
-        val macSize = GCM_TAG_LENGTH * 8
+        val macSize = tLen * 8
         val cipher = GCMBlockCipher.newInstance(this.engine)
             cipher.init(true, AEADParameters(KeyParameter(params.key), macSize, params.iv, aad))
 
@@ -34,7 +34,7 @@ class GCM(blockCipher: BlockCipher) : CipherMode(ECB, blockCipher) {
         try {
             tam += cipher.doFinal(outputData, tam)
         } catch (e: InvalidCipherTextException) {
-            throw CryptoFailException("GCM 인증 태그를 생성 실패: " + e.message, e)
+            throw CryptoFailException("GCM 인증 태그 생성 실패: " + e.message, e)
         }
 
         val encryptedData = ByteArray(tam)
@@ -44,11 +44,12 @@ class GCM(blockCipher: BlockCipher) : CipherMode(ECB, blockCipher) {
         return AEADResult(encryptedData, cipher.mac)
     }
 
+    @SuppressWarnings("kotlin:S6615")
     @Throws(CryptoFailException::class)
     override fun decrypt(encryptedData: ByteArray, params: Param): Result {
         require (params is ParamWithIV) { "GCM 모드는 ParamsWithIV 객체를 요구합니다." }
 
-        val macSize = GCM_TAG_LENGTH * 8
+        val macSize = tLen * 8
         val cipher = GCMBlockCipher.newInstance(this.engine)
             cipher.init(false, AEADParameters(KeyParameter(params.key), macSize, params.iv, aad))
 
@@ -58,7 +59,7 @@ class GCM(blockCipher: BlockCipher) : CipherMode(ECB, blockCipher) {
         try {
             tam += cipher.doFinal(originalData, tam)
         } catch (e: InvalidCipherTextException) {
-            throw CryptoFailException("GCM 인증 태그를 생성 실패: " + e.message, e)
+            throw CryptoFailException("GCM 인증 태그 생성 실패: " + e.message, e)
         }
 
         return AEADResult(originalData, cipher.mac)
@@ -73,8 +74,18 @@ class GCM(blockCipher: BlockCipher) : CipherMode(ECB, blockCipher) {
         this.aad = aad
     }
 
+    /**
+     * 인증 태그의 길이를 업데이트 합니다.
+     *
+     * @param tagLength 인증 태그의 길이 (12 ~ 16 Byte)
+     */
+    fun updateTagLength(tagLength: Int) {
+        require(tagLength in 12..16) { "인증태그의 길이는 12 ~ 16Byte만 허용됩니다." }
+        tLen = tagLength
+    }
+
     companion object {
-        private const val GCM_IV_LENGTH = 12
-        private const val GCM_TAG_LENGTH = 16
+        private const val DEFAULT_TAG_LENGTH = 16
+        private var tLen = DEFAULT_TAG_LENGTH
     }
 }

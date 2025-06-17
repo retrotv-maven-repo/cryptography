@@ -40,8 +40,8 @@ object CodecUtils {
     @Throws(DecoderException::class)
     fun decode(encodedData: String, format: EncodeFormat = HEX): ByteArray {
         return when (format) {
-            HEX -> StringUtils.hexStringToByteArray(encodedData)
-            BASE64 -> StringUtils.base64StringToByteArray(encodedData)
+            HEX -> StringUtils.hexToByteArray(encodedData)
+            BASE64 -> StringUtils.base64ToByteArray(encodedData)
         }
     }
 }

@@ -18,6 +18,7 @@ import org.bouncycastle.crypto.params.ParametersWithIV
  */
 class CBC(blockCipher: BlockCipher) : CipherMode(CBC, blockCipher) {
 
+    @SuppressWarnings("kotlin:S6615")
     @Throws(CryptoFailException::class)
     override fun encrypt(data: ByteArray, params: Param): Result {
         require (params is ParamWithIV) { "CBC 모드는 ParamsWithIV 객체를 요구합니다." }

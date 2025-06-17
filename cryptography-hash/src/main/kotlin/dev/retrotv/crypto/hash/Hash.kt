@@ -3,7 +3,7 @@ package dev.retrotv.crypto.hash
 import dev.retrotv.crypto.enums.EHash
 import dev.retrotv.crypto.enums.EHash.CRC32
 import dev.retrotv.crypto.exception.AlgorithmNotFoundException
-import dev.retrotv.crypto.util.MessageDigestUtils.hashing
+import dev.retrotv.crypto.util.MessageDigestUtils
 import dev.retrotv.data.enums.EncodeFormat
 import dev.retrotv.data.utils.ByteUtils
 import org.slf4j.LoggerFactory
@@ -63,11 +63,11 @@ class Hash private constructor() : BinaryHash, PlaintextHash {
         log.debug("선택된 해시 알고리즘: {}", algorithm.label())
 
         return if (algorithm != CRC32) {
-            hashing(algorithm, data)
+            MessageDigestUtils.hashing(algorithm, data)
         } else {
 
             // CRC32 해시 알고리즘은 마지막 4바이트 해시 값을 반환함
-            val hashedData = hashing(algorithm, data)
+            val hashedData = MessageDigestUtils.hashing(algorithm, data)
             hashedData.copyOfRange(4, 8)
         }
     }

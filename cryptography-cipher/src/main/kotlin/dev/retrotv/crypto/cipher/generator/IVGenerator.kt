@@ -19,7 +19,7 @@ object IVGenerator {
     @Throws(GenerateException::class)
     fun generateIV(algorithm: ECipher, mode: EMode): ByteArray {
         return when (mode) {
-            ECB -> throw GenerateException("iv가 필요하지 않은 암호화 방식입니다.")
+            ECB -> throw GenerateException("ECB 모드에서는 IV가 필요하지 않습니다.")
             CBC, CFB, OFB, CTR, CTS ->
                 when (algorithm) {
                     AES, ARIA, LEA, SEED, SERPENT -> generateIV(16)
