@@ -9,7 +9,7 @@ plugins {
     kotlin("jvm") version "2.1.21"
     id("com.vanniktech.maven.publish") version "0.32.0"
     id("org.jetbrains.dokka") version "2.0.0"
-    id("org.sonarqube") version "4.0.0.2929"
+    id("org.sonarqube") version "6.2.0.5505"
 }
 
 group = "dev.retrotv"
@@ -86,7 +86,7 @@ subprojects {
 
         pom {
             name.set("cryptography")
-            description.set("Java 자료형과 관련된 유틸성 기능을 총망라한 라이브러리 입니다.")
+            description.set("Java 암호화 라이브러리 입니다.")
             inceptionYear.set("2025")
             url.set("https://github.com/retrotv-maven-repo/cryptography")
 
