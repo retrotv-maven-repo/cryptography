@@ -13,7 +13,7 @@ plugins {
 }
 
 group = "dev.retrotv"
-version = "0.50.4-alpha"
+version = "0.51.0-alpha"
 
 // Github Action 버전 출력용
 tasks.register("printVersionName") {
@@ -45,6 +45,12 @@ subprojects {
     apply(plugin = "maven-publish")
     apply(plugin = "org.jetbrains.dokka")
     apply(plugin = "com.vanniktech.maven.publish")
+
+    java {
+        toolchain {
+            languageVersion.set(JavaLanguageVersion.of(8))
+        }
+    }
 
     tasks.test {
         useJUnitPlatform()
@@ -86,7 +92,7 @@ subprojects {
 
         pom {
             name.set("cryptography")
-            description.set("Java 자료형과 관련된 유틸성 기능을 총망라한 라이브러리 입니다.")
+            description.set("Java 암호화 라이브러리 입니다.")
             inceptionYear.set("2025")
             url.set("https://github.com/retrotv-maven-repo/cryptography")
 
