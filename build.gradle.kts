@@ -13,7 +13,7 @@ plugins {
 }
 
 group = "dev.retrotv"
-version = "0.50.4-alpha"
+version = "0.51.0-alpha"
 
 // Github Action 버전 출력용
 tasks.register("printVersionName") {
@@ -45,6 +45,12 @@ subprojects {
     apply(plugin = "maven-publish")
     apply(plugin = "org.jetbrains.dokka")
     apply(plugin = "com.vanniktech.maven.publish")
+
+    java {
+        toolchain {
+            languageVersion.set(JavaLanguageVersion.of(8))
+        }
+    }
 
     tasks.test {
         useJUnitPlatform()
