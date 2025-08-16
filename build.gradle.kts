@@ -57,7 +57,7 @@ subprojects {
     }
 
     val dataUtils = "0.23.2-alpha"
-    val slf4j = "2.0.16"
+    val slf4j = "2.0.17"
     val log4j = "2.24.3"
     val bouncyCastle = "1.81"
     val json = "20250517"
@@ -77,9 +77,6 @@ subprojects {
 
         testImplementation(kotlin("test"))
         testImplementation("org.junit.jupiter:junit-jupiter:${junit}")
-        testImplementation("org.junit.jupiter:junit-jupiter-api:${junit}")
-        testImplementation("org.junit.jupiter:junit-jupiter-engine:${junit}")
-        testImplementation("org.junit.jupiter:junit-jupiter-params:${junit}")
         testImplementation("org.json:json:${json}")
     }
 
