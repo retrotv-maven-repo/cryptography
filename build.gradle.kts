@@ -15,6 +15,10 @@ plugins {
 group = "dev.retrotv"
 version = "0.51.1-alpha"
 
+tasks.withType(JavaCompile::class) {
+    options.encoding = "UTF-8"
+}
+
 // Github Action 버전 출력용
 tasks.register("printVersionName") {
     description = "이 프로젝트의 버전을 출력합니다."
@@ -68,8 +72,9 @@ subprojects {
 
         // Logger
         compileOnly("org.slf4j:slf4j-api:${slf4j}")
-        testCompileOnly("org.apache.logging.log4j:log4j-core:${log4j}")
-        testCompileOnly("org.apache.logging.log4j:log4j-slf4j2-impl:${log4j}")
+        testImplementation("org.slf4j:slf4j-api:${slf4j}")
+        testImplementation("org.apache.logging.log4j:log4j-core:${log4j}")
+        testImplementation("org.apache.logging.log4j:log4j-slf4j2-impl:${log4j}")
 
         // Bouncy Castle
         implementation("org.bouncycastle:bcprov-jdk18on:${bouncyCastle}")
