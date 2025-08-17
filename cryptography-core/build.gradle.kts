@@ -3,7 +3,7 @@ plugins {
 }
 
 val apacheCommonCodec = "1.18.0"
-val randomValue = "1.1.2"
+val randomValue = "1.1.3"
 
 dependencies {
     api("commons-codec:commons-codec:${apacheCommonCodec}")
