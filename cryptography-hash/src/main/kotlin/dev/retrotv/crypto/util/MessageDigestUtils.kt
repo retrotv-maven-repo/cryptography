@@ -2,15 +2,15 @@ package dev.retrotv.crypto.util
 
 import dev.retrotv.crypto.enums.EHash
 import dev.retrotv.crypto.enums.EHash.*
-
-import org.apache.logging.log4j.LogManager
 import org.bouncycastle.jcajce.provider.digest.SHA3
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import java.lang.Long.BYTES
 import java.nio.ByteBuffer
 import java.security.MessageDigest
 
 object MessageDigestUtils {
-    private val log = LogManager.getLogger()
+    val log: Logger = LoggerFactory.getLogger(MessageDigestUtils::class.java)
 
     /**
      * 지정된 [EHash] 유형으로 데이터를 해시 하고, 해시 된 데이터를 반환 합니다.

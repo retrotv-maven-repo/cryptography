@@ -13,7 +13,11 @@ plugins {
 }
 
 group = "dev.retrotv"
-version = "0.51.0-alpha"
+version = "0.51.1-alpha"
+
+tasks.withType(JavaCompile::class) {
+    options.encoding = "UTF-8"
+}
 
 // Github Action 버전 출력용
 tasks.register("printVersionName") {
@@ -56,9 +60,9 @@ subprojects {
         useJUnitPlatform()
     }
 
-    val dataUtils = "0.23.2-alpha"
-    val slf4j = "2.0.16"
-    val log4j = "2.24.3"
+    val dataUtils = "0.23.3-alpha"
+    val slf4j = "2.0.17"
+    val log4j = "2.25.1"
     val bouncyCastle = "1.81"
     val json = "20250517"
     val junit = "5.13.1"
@@ -67,19 +71,16 @@ subprojects {
         implementation("dev.retrotv:data-utils:${dataUtils}")
 
         // Logger
-        implementation("org.slf4j:slf4j-api:${slf4j}")
-        implementation("org.apache.logging.log4j:log4j-api:${log4j}")
-        implementation("org.apache.logging.log4j:log4j-core:${log4j}")
-        implementation("org.apache.logging.log4j:log4j-slf4j2-impl:${log4j}")
+        compileOnly("org.slf4j:slf4j-api:${slf4j}")
+        testImplementation("org.slf4j:slf4j-api:${slf4j}")
+        testImplementation("org.apache.logging.log4j:log4j-core:${log4j}")
+        testImplementation("org.apache.logging.log4j:log4j-slf4j2-impl:${log4j}")
 
         // Bouncy Castle
         implementation("org.bouncycastle:bcprov-jdk18on:${bouncyCastle}")
 
         testImplementation(kotlin("test"))
         testImplementation("org.junit.jupiter:junit-jupiter:${junit}")
-        testImplementation("org.junit.jupiter:junit-jupiter-api:${junit}")
-        testImplementation("org.junit.jupiter:junit-jupiter-engine:${junit}")
-        testImplementation("org.junit.jupiter:junit-jupiter-params:${junit}")
         testImplementation("org.json:json:${json}")
     }
 
