@@ -1,11 +1,11 @@
 package dev.retrotv.crypto.hash
 
-import dev.retrotv.crypto.enums.EHash.SHA1
-import dev.retrotv.crypto.enums.EHash.SHA256
 import org.junit.jupiter.api.Assertions.assertNotSame
 import org.junit.jupiter.api.Assertions.assertSame
 import org.junit.jupiter.api.DisplayName
 import kotlin.test.Test
+
+import dev.retrotv.crypto.hash.enums.EHash.*
 
 class HashSingletonTest {
 

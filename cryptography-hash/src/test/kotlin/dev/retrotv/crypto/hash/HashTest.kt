@@ -1,7 +1,5 @@
 package dev.retrotv.crypto.hash
 
-import dev.retrotv.crypto.enums.EHash
-import dev.retrotv.crypto.enums.EHash.*
 import dev.retrotv.crypto.exception.AlgorithmNotFoundException
 import dev.retrotv.crypto.util.Base64CodecUtils
 import dev.retrotv.crypto.util.HEXCodecUtils
@@ -15,6 +13,9 @@ import org.junit.jupiter.api.Test
 import java.io.BufferedReader
 import java.io.FileReader
 import java.io.IOException
+
+import dev.retrotv.crypto.hash.enums.EHash
+import dev.retrotv.crypto.hash.enums.EHash.*
 
 class HashTest {
     private val password = "The quick brown fox jumps over the lazy dog"

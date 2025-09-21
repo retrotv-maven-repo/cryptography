@@ -1,12 +1,13 @@
 package dev.retrotv.crypto.hash
 
-import dev.retrotv.crypto.enums.EHash
-import dev.retrotv.crypto.enums.EHash.CRC32
 import dev.retrotv.crypto.exception.AlgorithmNotFoundException
 import dev.retrotv.crypto.util.MessageDigestUtils
 import dev.retrotv.data.enums.EncodeFormat
 import dev.retrotv.data.utils.ByteUtils
 import org.slf4j.LoggerFactory
+
+import dev.retrotv.crypto.hash.enums.EHash
+import dev.retrotv.crypto.hash.enums.EHash.CRC32
 
 /**
  * 해시 알고리즘 클래스 구현을 위한 추상 클래스 입니다.

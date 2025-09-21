@@ -1,13 +1,14 @@
 package dev.retrotv.crypto.util
 
-import dev.retrotv.crypto.enums.EHash
-import dev.retrotv.crypto.enums.EHash.*
 import org.bouncycastle.jcajce.provider.digest.SHA3
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.lang.Long.BYTES
 import java.nio.ByteBuffer
 import java.security.MessageDigest
+
+import dev.retrotv.crypto.hash.enums.EHash
+import dev.retrotv.crypto.hash.enums.EHash.*
 
 object MessageDigestUtils {
     val log: Logger = LoggerFactory.getLogger(MessageDigestUtils::class.java)

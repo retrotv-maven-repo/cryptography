@@ -1,12 +1,12 @@
-package dev.retrotv.crypto.enums
+package dev.retrotv.crypto.hash.enums;
 
 /**
- * 해시 알고리즘을 표현하기 열거형 클래스 입니다.
+ * 해시 알고리즘을 표현하기 위한 열거형 클래스 입니다.
  *
  * @author  yjj8353
  * @since   1.0.0
  */
-enum class EHash(private val label: String) {
+public enum EHash {
     CRC32("CRC-32"),
     MD2("MD2"),
     MD5("MD5"),
@@ -22,12 +22,18 @@ enum class EHash(private val label: String) {
     SHA3384("SHA3-384"),
     SHA3512("SHA3-512");
 
+    private final String label;
+
+    EHash(String label) {
+        this.label = label;
+    }
+
     /**
      * 알고리즘의 label(이름)을 반환합니다.
      *
      * @return 알고리즘 명
      */
-    fun label(): String {
-        return label
+    public String label() {
+        return label;
     }
 }
