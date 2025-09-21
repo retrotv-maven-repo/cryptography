@@ -9,7 +9,6 @@ import dev.retrotv.data.utils.ByteUtils;
 import dev.retrotv.data.utils.StringUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DynamicTest;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -60,47 +59,32 @@ class JCCMTest {
 
                 for (String line : lines) {
                     line = line.trim();
+                    String trim = line.substring(line.indexOf('=') + 1).trim();
                     if (line.startsWith("COUNT =")) {
-                        count = line.substring(line.indexOf('=') + 1).trim();
+                        count = trim;
                     } else if (line.startsWith("K =")) {
-                        k = line.substring(line.indexOf('=') + 1).trim();
+                        k = trim;
                     } else if (line.startsWith("N =")) {
-                        n = line.substring(line.indexOf('=') + 1).trim();
+                        n = trim;
                     } else if (line.startsWith("A =")) {
-                        a = line.substring(line.indexOf('=') + 1).trim();
+                        a = trim;
                     } else if (line.startsWith("C =")) {
-                        c = line.substring(line.indexOf('=') + 1).trim();
+                        c = trim;
                     } else if (line.startsWith("Tlen =")) {
-                        tLen = Integer.parseInt(line.substring(line.indexOf('=') + 1).trim()) / 8;
+                        tLen = Integer.parseInt(trim) / 8;
                     } else if (line.startsWith("P =") || line.startsWith("INVALID")) {
                         if (line.startsWith("P =")) {
-                            p = line.substring(line.indexOf('=') + 1).trim();
+                            p = trim;
                         }
                         if (line.startsWith("P =") || line.startsWith("INVALID")) {
                             String testName = "CCM-" + algorithm + "-" + keyLength + "-DV COUNT=" + count;
-
-                            log.info("COUNT: {}", count);
-                            if ("3".equals(count)) {
-                                log.info("K: {}", k);
-                                log.info("N: {}", n);
-                                log.info("A: {}", a);
-                                log.info("C: {}", c);
-                                log.info("Tlen: {}", tLen);
-                                log.info("P: {}", p);
-                                log.info("INVALID: {}", p.isEmpty() ? "true" : "false");
-                                log.info("테스트 명: {}", testName);
-                                log.info("p is empty: {}", !"".equals(p));
-                            }
-
                             String finalA = a;
                             String finalK = k;
                             String finalN = n;
                             String finalC = c;
                             int finalTLen = tLen;
                             String finalP = p;
-                            String finalTestName = testName;
 
-                            String finalCount = count;
                             tests.add(DynamicTest.dynamicTest(testName, () -> {
                                 CCM ccm = new CCM(blockCipher);
                                 ccm.updateAAD(hexToBytes(finalA));
@@ -109,17 +93,10 @@ class JCCMTest {
                                 byte[] result = ccm.encrypt(hexToBytes(finalP), params).getData();
                                 String resultHex = bytesToHex(result);
 
-                                if (finalCount.equals("3")) {
-                                    log.info("{}", finalP.equals(""));
-                                    log.info("{}", finalP == null);
-                                    log.info("{}", finalC);
-                                    log.info("{}", resultHex);
-                                }
-                                if (!"".equals(finalP.trim())) {
-                                    Assertions.assertNotEquals(finalC.toUpperCase(), resultHex, "Failed at " + finalTestName);
-                                    // Assertions.assertEquals(finalC.toUpperCase(), resultHex, "Failed at " + finalTestName);
+                                if (!finalP.isEmpty()) {
+                                    Assertions.assertEquals(finalC.toUpperCase(), resultHex, "Failed at " + testName);
                                 } else {
-                                    Assertions.assertNotEquals(finalC.toUpperCase(), resultHex, "Failed at " + finalTestName);
+                                    Assertions.assertNotEquals(finalC.toUpperCase(), resultHex, "Failed at " + testName);
                                 }
                             }));
                             p = "";
@@ -160,34 +137,26 @@ class JCCMTest {
                 String a = "";
                 String p = "";
                 int tLen = 0;
-                String c = "";
+                String c;
 
                 for (String line : lines) {
                     line = line.trim();
+                    String trim = line.substring(line.indexOf('=') + 1).trim();
                     if (line.startsWith("COUNT =")) {
-                        count = line.substring(line.indexOf('=') + 1).trim();
+                        count = trim;
                     } else if (line.startsWith("K =")) {
-                        k = line.substring(line.indexOf('=') + 1).trim();
+                        k = trim;
                     } else if (line.startsWith("N =")) {
-                        n = line.substring(line.indexOf('=') + 1).trim();
+                        n = trim;
                     } else if (line.startsWith("A =")) {
-                        a = line.substring(line.indexOf('=') + 1).trim();
+                        a = trim;
                     } else if (line.startsWith("P =")) {
-                        p = line.substring(line.indexOf('=') + 1).trim();
+                        p = trim;
                     } else if (line.startsWith("Tlen =")) {
-                        tLen = Integer.parseInt(line.substring(line.indexOf('=') + 1).trim()) / 8;
+                        tLen = Integer.parseInt(trim) / 8;
                     } else if (line.startsWith("C =")) {
-                        c = line.substring(line.indexOf('=') + 1).trim();
+                        c = trim;
                         String testName = "CCM-" + algorithm + "-" + keyLength + "-GE COUNT=" + count;
-
-                        log.info("COUNT: {}", count);
-                        log.info("K: {}", k);
-                        log.info("N: {}", n);
-                        log.info("A: {}", a);
-                        log.info("P: {}", p);
-                        log.info("Tlen: {}", tLen);
-                        log.info("C: {}", c);
-                        log.info("테스트 명: {}", testName);
 
                         String finalA = a;
                         String finalK = k;
@@ -195,7 +164,6 @@ class JCCMTest {
                         String finalC = c;
                         int finalTLen = tLen;
                         String finalP = p;
-                        String finalTestName = testName;
 
                         tests.add(DynamicTest.dynamicTest(testName, () -> {
                             CCM ccm = new CCM(blockCipher);
@@ -205,7 +173,7 @@ class JCCMTest {
                             byte[] result = ccm.encrypt(hexToBytes(finalP), params).getData();
                             String resultHex = bytesToHex(result);
 
-                            Assertions.assertEquals(finalC.toUpperCase(), resultHex, "Failed at " + finalTestName);
+                            Assertions.assertEquals(finalC.toUpperCase(), resultHex, "Failed at " + testName);
                         }));
                     }
                 }
@@ -213,5 +181,4 @@ class JCCMTest {
         }
         return tests.stream();
     }
-
 }

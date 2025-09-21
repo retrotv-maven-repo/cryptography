@@ -39,14 +39,15 @@ class ECBTest {
                 File file = new File("src/vector/" + algorithm + "/" + algorithm + "-" + keyLength + "_(ECB)_KAT.txt");
                 List<String> lines;
                 try { lines = java.nio.file.Files.readAllLines(file.toPath()); } catch (Exception e) { continue; }
-                String key = "", pt = "", ct = "";
+                String key = "", pt = "", ct;
                 int caseNum = 1;
                 for (String line : lines) {
                     line = line.trim();
-                    if (line.startsWith("KEY =")) key = line.substring(line.indexOf('=')+1).trim();
-                    else if (line.startsWith("PT =")) pt = line.substring(line.indexOf('=')+1).trim();
+                    String trim = line.substring(line.indexOf('=') + 1).trim();
+                    if (line.startsWith("KEY =")) key = trim;
+                    else if (line.startsWith("PT =")) pt = trim;
                     else if (line.startsWith("CT =")) {
-                        ct = line.substring(line.indexOf('=')+1).trim();
+                        ct = trim;
                         String testName = algorithm + "-" + keyLength + "-ECB KAT #" + caseNum;
                         String finalKey = key;
                         String finalPt = pt;
@@ -83,14 +84,15 @@ class ECBTest {
                 File file = new File("src/vector/" + algorithm + "/" + algorithm + "-" + keyLength + "_(ECB)_MMT.txt");
                 List<String> lines;
                 try { lines = java.nio.file.Files.readAllLines(file.toPath()); } catch (Exception e) { continue; }
-                String key = "", pt = "", ct = "";
+                String key = "", pt = "", ct;
                 int caseNum = 1;
                 for (String line : lines) {
                     line = line.trim();
-                    if (line.startsWith("KEY =")) key = line.substring(line.indexOf('=')+1).trim();
-                    else if (line.startsWith("PT =")) pt = line.substring(line.indexOf('=')+1).trim();
+                    String trim = line.substring(line.indexOf('=') + 1).trim();
+                    if (line.startsWith("KEY =")) key = trim;
+                    else if (line.startsWith("PT =")) pt = trim;
                     else if (line.startsWith("CT =")) {
-                        ct = line.substring(line.indexOf('=')+1).trim();
+                        ct = trim;
                         String testName = algorithm + "-" + keyLength + "-ECB MMT #" + caseNum;
                         String finalKey = key;
                         String finalPt = pt;

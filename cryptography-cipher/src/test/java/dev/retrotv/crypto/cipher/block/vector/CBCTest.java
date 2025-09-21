@@ -39,29 +39,31 @@ class CBCTest {
                 File file = new File("src/vector/" + algorithm + "/" + algorithm + "-" + keyLength + "_(CBC)_KAT.txt");
                 List<String> lines;
                 try { lines = java.nio.file.Files.readAllLines(file.toPath()); } catch (Exception e) { continue; }
-                String key = "", iv = "", pt = "", ct = "";
+                String key = "", iv = "", pt = "", ct;
                 int caseNum = 1;
                 for (String line : lines) {
                     line = line.trim();
                     if (line.startsWith("KEY =")) key = line.substring(line.indexOf('=')+1).trim();
-                    else if (line.startsWith("IV =")) iv = line.substring(line.indexOf('=')+1).trim();
-                    else if (line.startsWith("PT =")) pt = line.substring(line.indexOf('=')+1).trim();
-                    else if (line.startsWith("CT =")) {
-                        ct = line.substring(line.indexOf('=')+1).trim();
-                        String testName = algorithm + "-" + keyLength + "-CBC KAT #" + caseNum;
-                        String finalIv = iv;
-                        String finalKey = key;
-                        String finalPt = pt;
-                        String finalCt = ct;
-                        tests.add(DynamicTest.dynamicTest(testName, () -> {
-                            CBC cbc = new CBC(blockCipher);
-                            ParamWithIV params = new ParamWithIV(hexToBytes(finalKey), hexToBytes(finalIv));
-                            byte[] result = cbc.encrypt(hexToBytes(finalPt), params).getData();
-                            String resultHex = bytesToHex(result);
-                            int ctLength = finalCt.length();
-                            Assertions.assertEquals(finalCt.toUpperCase(), resultHex.substring(0, ctLength), "Failed at " + testName);
-                        }));
-                        caseNum++;
+                    else {
+                        if (line.startsWith("IV =")) iv = line.substring(line.indexOf('=')+1).trim();
+                        else if (line.startsWith("PT =")) pt = line.substring(line.indexOf('=')+1).trim();
+                        else if (line.startsWith("CT =")) {
+                            ct = line.substring(line.indexOf('=')+1).trim();
+                            String testName = algorithm + "-" + keyLength + "-CBC KAT #" + caseNum;
+                            String finalIv = iv;
+                            String finalKey = key;
+                            String finalPt = pt;
+                            String finalCt = ct;
+                            tests.add(DynamicTest.dynamicTest(testName, () -> {
+                                CBC cbc = new CBC(blockCipher);
+                                ParamWithIV params = new ParamWithIV(hexToBytes(finalKey), hexToBytes(finalIv));
+                                byte[] result = cbc.encrypt(hexToBytes(finalPt), params).getData();
+                                String resultHex = bytesToHex(result);
+                                int ctLength = finalCt.length();
+                                Assertions.assertEquals(finalCt.toUpperCase(), resultHex.substring(0, ctLength), "Failed at " + testName);
+                            }));
+                            caseNum++;
+                        }
                     }
                 }
             }
@@ -85,15 +87,16 @@ class CBCTest {
                 File file = new File("src/vector/" + algorithm + "/" + algorithm + "-" + keyLength + "_(CBC)_MMT.txt");
                 List<String> lines;
                 try { lines = java.nio.file.Files.readAllLines(file.toPath()); } catch (Exception e) { continue; }
-                String key = "", iv = "", pt = "", ct = "";
+                String key = "", iv = "", pt = "", ct;
                 int caseNum = 1;
                 for (String line : lines) {
                     line = line.trim();
-                    if (line.startsWith("KEY =")) key = line.substring(line.indexOf('=')+1).trim();
-                    else if (line.startsWith("IV =")) iv = line.substring(line.indexOf('=')+1).trim();
-                    else if (line.startsWith("PT =")) pt = line.substring(line.indexOf('=')+1).trim();
+                    String trim = line.substring(line.indexOf('=') + 1).trim();
+                    if (line.startsWith("KEY =")) key = trim;
+                    else if (line.startsWith("IV =")) iv = trim;
+                    else if (line.startsWith("PT =")) pt = trim;
                     else if (line.startsWith("CT =")) {
-                        ct = line.substring(line.indexOf('=')+1).trim();
+                        ct = trim;
                         String testName = algorithm + "-" + keyLength + "-CBC MMT #" + caseNum;
                         String finalKey = key;
                         String finalIv = iv;

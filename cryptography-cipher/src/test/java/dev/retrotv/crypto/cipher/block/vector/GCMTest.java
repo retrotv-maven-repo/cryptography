@@ -44,28 +44,18 @@ class GCMTest {
                 File file = new File("src/vector/" + algorithm + "/GCM_" + algorithm + "-" + keyLength + "_AD.txt");
                 List<String> lines;
                 try { lines = java.nio.file.Files.readAllLines(file.toPath()); } catch (Exception e) { continue; }
-                String count = "", key = "", iv = "", aData = "", c = "", t = "", pt = "";
+                String count = "", key = "", iv = "", aData = "", c = "", pt = "";
                 for (String line : lines) {
                     line = line.trim();
-                    if (line.startsWith("COUNT =")) count = line.substring(line.indexOf('=')+1).trim();
-                    else if (line.startsWith("Key =")) key = line.substring(line.indexOf('=')+1).trim();
-                    else if (line.startsWith("IV =")) iv = line.substring(line.indexOf('=')+1).trim();
-                    else if (line.startsWith("Adata =")) aData = line.substring(line.indexOf('=')+1).trim();
-                    else if (line.startsWith("C =")) c = line.substring(line.indexOf('=')+1).trim();
-                    else if (line.startsWith("T =")) t = line.substring(line.indexOf('=')+1).trim();
-                    else if (line.startsWith("P =") || line.startsWith("Invalid")) {
-                        if (line.startsWith("P =")) pt = line.substring(line.indexOf('=')+1).trim();
+                    String trim = line.substring(line.indexOf('=') + 1).trim();
+                    if (line.startsWith("COUNT =")) count = trim;
+                    else if (line.startsWith("Key =")) key = trim;
+                    else if (line.startsWith("IV =")) iv = trim;
+                    else if (line.startsWith("Adata =")) aData = trim;
+                    else if (line.startsWith("C =")) c = trim;
+                    else if (line.startsWith("PT =") || line.startsWith("Invalid")) {
+                        if (line.startsWith("PT =")) pt = trim;
                         String testName = "CCM-" + algorithm + "-" + keyLength + "-AD COUNT=" + count;
-                        log.info("COUNT: {}", count);
-                        log.info("K: {}", key);
-                        log.info("N: {}", iv);
-                        log.info("A: {}", aData);
-                        log.info("C: {}", c);
-                        log.info("Tlen: {}", t);
-                        log.info("P: {}", pt);
-                        log.info("Invalid: {}", pt.isEmpty() ? "true" : "false");
-                        log.info("테스트 명: {}", testName);
-
                         String finalAData = aData;
                         String finalKey = key;
                         String finalIv = iv;
@@ -78,6 +68,8 @@ class GCMTest {
                             ParamWithIV params = new ParamWithIV(hexToBytes(finalKey), hexToBytes(finalIv));
                             byte[] result = gcm.encrypt(hexToBytes(finalPt), params).getData();
                             String resultHex = bytesToHex(result);
+
+                            log.info("PT is empty: {}", finalPt.isEmpty());
                             if (!finalPt.isEmpty()) {
                                 Assertions.assertEquals(finalC.toUpperCase(), resultHex, "Failed at " + testName);
                             } else {
@@ -120,41 +112,29 @@ class GCMTest {
                 String pt = "";
                 String aData = "";
                 String c = "";
-                String t = "";
 
                 for (String line : lines) {
                     line = line.trim();
+                    String trim = line.substring(line.indexOf('=') + 1).trim();
                     if (line.startsWith("COUNT =")) {
-                        count = line.substring(line.indexOf('=') + 1).trim();
+                        count = trim;
                     } else if (line.startsWith("Key =")) {
-                        key = line.substring(line.indexOf('=') + 1).trim();
+                        key = trim;
                     } else if (line.startsWith("IV =")) {
-                        iv = line.substring(line.indexOf('=') + 1).trim();
+                        iv = trim;
                     } else if (line.startsWith("PT =")) {
-                        pt = line.substring(line.indexOf('=') + 1).trim();
+                        pt = trim;
                     } else if (line.startsWith("Adata =")) {
-                        aData = line.substring(line.indexOf('=') + 1).trim();
+                        aData = trim;
                     } else if (line.startsWith("C =")) {
-                        c = line.substring(line.indexOf('=') + 1).trim();
+                        c = trim;
                     } else if (line.startsWith("T =")) {
-                        t = line.substring(line.indexOf('=') + 1).trim();
                         String testName = "CCM-" + algorithm + "-" + keyLength + "-AE COUNT=" + count;
-
-                        log.info("COUNT: {}", count);
-                        log.info("Key: {}", key);
-                        log.info("IV: {}", iv);
-                        log.info("PT: {}", pt);
-                        log.info("Adata: {}", aData);
-                        log.info("C: {}", c);
-                        log.info("T: {}", t);
-                        log.info("테스트 명: {}", testName);
-
                         String finalAData = aData;
                         String finalKey = key;
                         String finalIv = iv;
                         String finalPt = pt;
                         String finalC = c;
-                        String finalT = t;
 
                         tests.add(DynamicTest.dynamicTest(testName, () -> {
                             GCM gcm = new GCM(blockCipher);
