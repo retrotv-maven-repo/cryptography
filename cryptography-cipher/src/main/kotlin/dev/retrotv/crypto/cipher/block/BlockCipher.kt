@@ -1,6 +1,6 @@
 package dev.retrotv.crypto.cipher.block
 
-import dev.retrotv.crypto.enums.ECipher
+import dev.retrotv.crypto.cipher.enums.ECipher
 import org.bouncycastle.crypto.BlockCipher
 
 /**

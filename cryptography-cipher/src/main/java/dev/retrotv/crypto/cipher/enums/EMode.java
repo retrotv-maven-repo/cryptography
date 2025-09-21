@@ -1,4 +1,4 @@
-package dev.retrotv.crypto.enums
+package dev.retrotv.crypto.cipher.enums;
 
 /**
  * 암호화 모드 열거형 클래스 입니다.
@@ -6,7 +6,7 @@ package dev.retrotv.crypto.enums
  * @author  yjj8353
  * @since   1.0.0
  */
-enum class EMode(private val label: String) {
+public enum EMode {
     ECB("ECB"),
     CBC("CBC"),
     CFB("CFB"),
@@ -16,12 +16,18 @@ enum class EMode(private val label: String) {
     CCM("CCM"),
     GCM("GCM");
 
+    private final String label;
+
+    EMode(String label) {
+        this.label = label;
+    }
+
     /**
      * 알고리즘의 label(이름)을 반환합니다.
      *
      * @return 알고리즘 명
      */
-    fun label(): String {
-        return label
+    public String label() {
+        return label;
     }
 }

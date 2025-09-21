@@ -5,12 +5,13 @@ import dev.retrotv.crypto.cipher.block.CipherMode
 import dev.retrotv.crypto.cipher.param.Param
 import dev.retrotv.crypto.cipher.param.ParamWithIV
 import dev.retrotv.crypto.cipher.result.Result
-import dev.retrotv.crypto.enums.EMode.CBC
 import dev.retrotv.crypto.exception.CryptoFailException
 import org.bouncycastle.crypto.modes.CBCBlockCipher
 import org.bouncycastle.crypto.paddings.PaddedBufferedBlockCipher
 import org.bouncycastle.crypto.params.KeyParameter
 import org.bouncycastle.crypto.params.ParametersWithIV
+
+import dev.retrotv.crypto.cipher.enums.EMode.CBC
 
 /**
  * CBC 암호화 모드 클래스 입니다.

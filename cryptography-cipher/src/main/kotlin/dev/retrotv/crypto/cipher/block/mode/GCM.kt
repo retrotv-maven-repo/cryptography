@@ -6,12 +6,13 @@ import dev.retrotv.crypto.cipher.param.Param
 import dev.retrotv.crypto.cipher.param.ParamWithIV
 import dev.retrotv.crypto.cipher.result.AEADResult
 import dev.retrotv.crypto.cipher.result.Result
-import dev.retrotv.crypto.enums.EMode.ECB
 import dev.retrotv.crypto.exception.CryptoFailException
 import org.bouncycastle.crypto.InvalidCipherTextException
 import org.bouncycastle.crypto.modes.GCMBlockCipher
 import org.bouncycastle.crypto.params.AEADParameters
 import org.bouncycastle.crypto.params.KeyParameter
+
+import dev.retrotv.crypto.cipher.enums.EMode.ECB
 
 /**
  * GCM 암호화 모드 클래스 입니다.

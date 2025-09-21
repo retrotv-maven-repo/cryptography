@@ -1,8 +1,9 @@
 package dev.retrotv.crypto.cipher.block.algorithm
 
 import dev.retrotv.crypto.cipher.block.BlockCipher
-import dev.retrotv.crypto.enums.ECipher.DES
 import org.bouncycastle.crypto.engines.DESEngine
+
+import dev.retrotv.crypto.cipher.enums.ECipher.DES
 
 /**
  * DES 암호화 알고리즘을 사용하는 블록 암호화 클래스 입니다.

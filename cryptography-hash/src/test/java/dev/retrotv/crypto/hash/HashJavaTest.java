@@ -1,7 +1,8 @@
 package dev.retrotv.crypto.hash;
 
 import dev.retrotv.crypto.enums.EHash;
-import dev.retrotv.crypto.util.CodecUtils;
+import dev.retrotv.crypto.util.Base64CodecUtils;
+import dev.retrotv.crypto.util.HEXCodecUtils;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +20,15 @@ class HashJavaTest {
         Set<String> hashedResults = new HashSet<>();
         Hash h = Hash.getInstance(EHash.CRC32);
         for (int i = 0; i < 100; i++) {
-            hashedResults.add(CodecUtils.encode(h.hashing(PASSWORD)));
+            hashedResults.add(HEXCodecUtils.encode(h.hashing(PASSWORD.getBytes())));
+        }
+
+        assertEquals(1, hashedResults.size());
+
+        hashedResults = new HashSet<>();
+        h = Hash.getInstance(EHash.CRC32);
+        for (int i = 0; i < 100; i++) {
+            hashedResults.add(Base64CodecUtils.encode(h.hashing(PASSWORD.getBytes())));
         }
 
         assertEquals(1, hashedResults.size());

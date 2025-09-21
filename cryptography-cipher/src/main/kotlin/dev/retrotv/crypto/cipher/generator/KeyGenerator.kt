@@ -1,9 +1,10 @@
 package dev.retrotv.crypto.cipher.generator
 
-import dev.retrotv.crypto.enums.ECipher
-import dev.retrotv.crypto.enums.ECipher.*
+import dev.retrotv.crypto.cipher.enums.ECipher
 import dev.retrotv.crypto.exception.GenerateException
 import dev.retrotv.crypto.util.RandomGenerateUtils.generateBytes
+
+import dev.retrotv.crypto.cipher.enums.ECipher.*
 
 object KeyGenerator {
 

@@ -5,12 +5,13 @@ import dev.retrotv.crypto.cipher.block.CipherMode
 import dev.retrotv.crypto.cipher.param.Param
 import dev.retrotv.crypto.cipher.param.ParamWithIV
 import dev.retrotv.crypto.cipher.result.Result
-import dev.retrotv.crypto.enums.ECipher.*
-import dev.retrotv.crypto.enums.EMode.*
 import dev.retrotv.crypto.exception.CryptoFailException
 import org.bouncycastle.crypto.modes.OFBBlockCipher
 import org.bouncycastle.crypto.params.KeyParameter
 import org.bouncycastle.crypto.params.ParametersWithIV
+
+import dev.retrotv.crypto.cipher.enums.ECipher.*
+import dev.retrotv.crypto.cipher.enums.EMode.ECB
 
 /**
  * OFB 암호화 모드 클래스 입니다.

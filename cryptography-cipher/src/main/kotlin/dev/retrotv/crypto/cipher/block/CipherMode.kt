@@ -1,7 +1,7 @@
 package dev.retrotv.crypto.cipher.block
 
 import dev.retrotv.crypto.cipher.TwoWayEncryption
-import dev.retrotv.crypto.enums.EMode
+import dev.retrotv.crypto.cipher.enums.EMode
 import org.slf4j.LoggerFactory
 
 /**

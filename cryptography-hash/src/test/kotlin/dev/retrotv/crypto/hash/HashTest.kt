@@ -3,7 +3,8 @@ package dev.retrotv.crypto.hash
 import dev.retrotv.crypto.enums.EHash
 import dev.retrotv.crypto.enums.EHash.*
 import dev.retrotv.crypto.exception.AlgorithmNotFoundException
-import dev.retrotv.crypto.util.CodecUtils
+import dev.retrotv.crypto.util.Base64CodecUtils
+import dev.retrotv.crypto.util.HEXCodecUtils
 import dev.retrotv.data.enums.EncodeFormat
 
 import org.json.JSONObject
@@ -110,7 +111,8 @@ class HashTest {
         val h1 = Hash.getInstance("MD5")
         val h2 = Hash.getInstance(MD5)
 
-        assertEquals(CodecUtils.encode(h1.hashing(this.password)), CodecUtils.encode(h2.hashing(this.password)))
+        assertEquals(HEXCodecUtils.encode(h1.hashing(this.password)), HEXCodecUtils.encode(h2.hashing(this.password)))
+        assertEquals(Base64CodecUtils.encode(h1.hashing(this.password)), Base64CodecUtils.encode(h2.hashing(this.password)))
     }
 
     @Test
@@ -129,16 +131,17 @@ class HashTest {
     private fun passwordHashTest(algorithm: EHash) {
         val h = Hash.getInstance(algorithm)
         assertTrue(h.matches(password.toByteArray(), getHash(algorithm)))
-        assertEquals(CodecUtils.encode(h.hashing(password), EncodeFormat.HEX), getHash(algorithm))
-        assertEquals(CodecUtils.encode(h.hashing(password, Charsets.UTF_8), EncodeFormat.HEX), getHash(algorithm))
+        assertEquals(HEXCodecUtils.encode(h.hashing(password)), getHash(algorithm))
+        assertEquals(HEXCodecUtils.encode(h.hashing(password, Charsets.UTF_8)), getHash(algorithm))
     }
 
     private fun fileHashTest(algorithm: EHash) {
         val h: BinaryHash = Hash.getInstance(algorithm)
+
         assertTrue(
             h.matches(
                 resource?.file!!.toByteArray(),
-                CodecUtils.encode(h.hashing(resource.file!!.toByteArray()))
+                HEXCodecUtils.encode(h.hashing(resource.file!!.toByteArray()))
             )
         )
 
