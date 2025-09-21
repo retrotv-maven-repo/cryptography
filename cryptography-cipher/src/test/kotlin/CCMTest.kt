@@ -1,5 +1,3 @@
-package dev.retrotv.crypto.cipher.block.vector
-
 import dev.retrotv.crypto.cipher.block.algorithm.ARIA
 import dev.retrotv.crypto.cipher.block.algorithm.LEA
 import dev.retrotv.crypto.cipher.block.mode.CCM
@@ -12,6 +10,7 @@ import org.junit.jupiter.api.TestFactory
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.io.File
+import java.util.*
 import java.util.stream.Stream
 
 class CCMTest {
@@ -65,14 +64,20 @@ class CCMTest {
                                 val testName = "CCM-${algorithm}-${keyLength}-DV COUNT=$count"
 
                                 log.info("COUNT: $count")
-                                log.info("K: $k")
-                                log.info("N: $n")
-                                log.info("A: $a")
-                                log.info("C: $c")
-                                log.info("Tlen: $tLen")
-                                log.info("P: $p")
-                                log.info("INVALID: ${if (p.isEmpty()) "true" else "false"}")
-                                log.info("테스트 명: $testName")
+                                if (count == "3") {
+                                    log.info("K: $k")
+                                    log.info("N: $n")
+                                    log.info("A: $a")
+                                    log.info("C: $c")
+                                    log.info("Tlen: $tLen")
+                                    log.info("P: $p")
+                                    log.info("INVALID: ${if (p.isEmpty()) "true" else "false"}")
+                                    log.info("테스트 명: $testName")
+                                    log.info("{}", p == "");
+                                    log.info("{}", p == null);
+                                    log.info("{}", c);
+
+                                }
 
                                 val testFn = {
                                     val ccm = CCM(blockCipher)
@@ -83,6 +88,7 @@ class CCMTest {
                                     val resultHex = bytesToHex(result)
 
                                     if (p != "") {
+                                        log.info("{}", resultHex)
                                         Assertions.assertEquals(c.uppercase(), resultHex, "Failed at $testName")
                                     } else {
                                         Assertions.assertNotEquals(c.uppercase(), resultHex, "Failed at $testName")
