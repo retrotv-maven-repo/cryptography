@@ -1,6 +1,5 @@
 package dev.retrotv.crypto.cipher.block
 
-import dev.retrotv.crypto.cipher.block.algorithm.LEA
 import dev.retrotv.crypto.cipher.block.algorithm.SEED
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.params.ParameterizedTest
@@ -21,21 +20,21 @@ class SEEDTest {
     @CsvSource("16,16")
     @ParameterizedTest(name = "SEED keyLength: {0}, ivLength: {1}")
     fun testCBC(keyLength: Int, ivLength: Int) {
-        test.test_cbc(LEA(), keyLength, ivLength)
+        test.test_cbc(SEED(), keyLength, ivLength)
     }
 
     @DisplayName("SEED - OFB 암호화 테스트")
     @CsvSource("16,16")
     @ParameterizedTest(name = "SEED keyLength: {0}, ivLength: {1}")
     fun testOFB(keyLength: Int, ivLength: Int) {
-        test.test_ofb(LEA(), keyLength, ivLength)
+        test.test_ofb(SEED(), keyLength, ivLength)
     }
 
     @DisplayName("SEED - CFB 암호화 테스트")
     @CsvSource("16,16")
     @ParameterizedTest(name = "SEED keyLength: {0}, ivLength: {1}")
     fun testCFB(keyLength: Int, ivLength: Int) {
-        test.test_cfb(LEA(), keyLength, ivLength)
+        test.test_cfb(SEED(), keyLength, ivLength)
     }
 
     @DisplayName("SEED - CTR 암호화 테스트")

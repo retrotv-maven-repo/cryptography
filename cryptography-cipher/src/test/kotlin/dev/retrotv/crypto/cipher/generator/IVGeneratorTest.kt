@@ -1,6 +1,5 @@
 package dev.retrotv.crypto.cipher.generator
 
-import dev.retrotv.crypto.cipher.generator.IVGenerator.generateIV
 import dev.retrotv.crypto.exception.GenerateException
 import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.DisplayName
@@ -8,6 +7,8 @@ import kotlin.test.Test
 
 import dev.retrotv.crypto.cipher.enums.ECipher.*
 import dev.retrotv.crypto.cipher.enums.EMode.*
+
+import dev.retrotv.crypto.cipher.generator.IVGenerator.generateIV
 
 class IVGeneratorTest {
 

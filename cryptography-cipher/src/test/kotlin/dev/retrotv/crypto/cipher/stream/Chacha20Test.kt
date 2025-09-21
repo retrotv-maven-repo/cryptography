@@ -1,11 +1,12 @@
 package dev.retrotv.crypto.cipher.stream
 
-import dev.retrotv.crypto.cipher.generator.IVGenerator.generateIV
 import dev.retrotv.crypto.cipher.generator.KeyGenerator.generateKey
 import dev.retrotv.crypto.cipher.param.ParamWithIV
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
+
+import dev.retrotv.crypto.cipher.generator.IVGenerator.generateIV
 
 class Chacha20Test {
     private val plainText = "The quick brown fox jumps over the lazy dog"
