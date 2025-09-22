@@ -1,19 +1,16 @@
 import com.vanniktech.maven.publish.SonatypeHost
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import java.net.URI
 
 plugins {
     java
     jacoco
     `maven-publish`
-    kotlin("jvm") version "2.1.21"
     id("com.vanniktech.maven.publish") version "0.32.0"
-    id("org.jetbrains.dokka") version "2.0.0"
     id("org.sonarqube") version "4.0.0.2929"
 }
 
 group = "dev.retrotv"
-version = "0.51.2-alpha"
+version = "0.60.0-alpha"
 
 tasks.withType(JavaCompile::class) {
     options.encoding = "UTF-8"
@@ -24,15 +21,6 @@ tasks.register("printVersionName") {
     description = "이 프로젝트의 버전을 출력합니다."
     group = JavaBasePlugin.DOCUMENTATION_GROUP
     println(project.version)
-}
-
-tasks {
-    compileKotlin {
-        compilerOptions.jvmTarget.set(JvmTarget.JVM_1_8)
-    }
-    compileTestKotlin {
-        compilerOptions.jvmTarget.set(JvmTarget.JVM_1_8)
-    }
 }
 
 allprojects {
@@ -47,7 +35,6 @@ allprojects {
 subprojects {
     apply(plugin = "java")
     apply(plugin = "maven-publish")
-    apply(plugin = "org.jetbrains.dokka")
     apply(plugin = "com.vanniktech.maven.publish")
 
     java {
@@ -66,8 +53,12 @@ subprojects {
     val bouncyCastle = "1.81"
     val json = "20250517"
     val junit = "5.13.1"
+    val lombok = "1.18.42"
 
     dependencies {
+        compileOnly("org.projectlombok:lombok:${lombok}")
+        annotationProcessor("org.projectlombok:lombok:${lombok}")
+
         implementation("dev.retrotv:data-utils:${dataUtils}")
 
         // Logger
@@ -79,8 +70,12 @@ subprojects {
         // Bouncy Castle
         implementation("org.bouncycastle:bcprov-jdk18on:${bouncyCastle}")
 
-        testImplementation(kotlin("test"))
-        testImplementation("org.junit.jupiter:junit-jupiter:${junit}")
+        testCompileOnly("org.projectlombok:lombok:${lombok}")
+        testAnnotationProcessor("org.projectlombok:lombok:${lombok}")
+
+        testImplementation(platform("org.junit:junit-bom:${junit}"))
+        testImplementation("org.junit.jupiter:junit-jupiter")
+        testRuntimeOnly("org.junit.platform:junit-platform-launcher")
         testImplementation("org.json:json:${json}")
     }
 
@@ -144,10 +139,6 @@ subprojects {
             }
         }
     }
-}
-
-kotlin {
-    jvmToolchain(8)
 }
 
 apply(from = "${rootDir}/gradle/sonarcloud.gradle")
