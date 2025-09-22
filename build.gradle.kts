@@ -1,14 +1,11 @@
 import com.vanniktech.maven.publish.SonatypeHost
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import java.net.URI
 
 plugins {
     java
     jacoco
     `maven-publish`
-    kotlin("jvm") version "2.1.21"
     id("com.vanniktech.maven.publish") version "0.32.0"
-    id("org.jetbrains.dokka") version "2.0.0"
     id("org.sonarqube") version "4.0.0.2929"
 }
 
@@ -26,15 +23,6 @@ tasks.register("printVersionName") {
     println(project.version)
 }
 
-tasks {
-    compileKotlin {
-        compilerOptions.jvmTarget.set(JvmTarget.JVM_1_8)
-    }
-    compileTestKotlin {
-        compilerOptions.jvmTarget.set(JvmTarget.JVM_1_8)
-    }
-}
-
 allprojects {
     version = rootProject.version
     group = rootProject.group
@@ -47,7 +35,6 @@ allprojects {
 subprojects {
     apply(plugin = "java")
     apply(plugin = "maven-publish")
-    apply(plugin = "org.jetbrains.dokka")
     apply(plugin = "com.vanniktech.maven.publish")
 
     java {
@@ -86,8 +73,9 @@ subprojects {
         testCompileOnly("org.projectlombok:lombok:${lombok}")
         testAnnotationProcessor("org.projectlombok:lombok:${lombok}")
 
-        testImplementation(kotlin("test"))
-        testImplementation("org.junit.jupiter:junit-jupiter:${junit}")
+        testImplementation(platform("org.junit:junit-bom:${junit}"))
+        testImplementation("org.junit.jupiter:junit-jupiter")
+        testRuntimeOnly("org.junit.platform:junit-platform-launcher")
         testImplementation("org.json:json:${json}")
     }
 
@@ -151,10 +139,6 @@ subprojects {
             }
         }
     }
-}
-
-kotlin {
-    jvmToolchain(8)
 }
 
 apply(from = "${rootDir}/gradle/sonarcloud.gradle")

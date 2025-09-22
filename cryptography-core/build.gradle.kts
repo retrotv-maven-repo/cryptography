@@ -1,7 +1,6 @@
 plugins {
     java
     `java-library`
-    kotlin("jvm")
 }
 
 val apacheCommonCodec = "1.18.0"
