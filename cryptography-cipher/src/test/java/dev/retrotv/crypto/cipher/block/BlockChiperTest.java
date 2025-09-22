@@ -7,14 +7,10 @@ import dev.retrotv.crypto.cipher.param.Param;
 import dev.retrotv.crypto.cipher.param.ParamWithIV;
 import dev.retrotv.crypto.cipher.result.AEADResult;
 import dev.retrotv.crypto.cipher.result.Result;
-import dev.retrotv.data.utils.ByteUtils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BlockChiperTest {
-    private String bytesToHex(byte[] bytes) {
-        return ByteUtils.toHexString(bytes).toUpperCase();
-    }
     private final String plainText = "The quick brown fox jumps over the lazy dog";
 
     public void test_ecb(BlockCipher blockCipher, int keyLength) {

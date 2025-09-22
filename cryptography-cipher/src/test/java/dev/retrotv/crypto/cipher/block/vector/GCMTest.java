@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
+import static java.nio.file.Files.readAllLines;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class GCMTest {
@@ -47,12 +48,26 @@ class GCMTest {
             for (int keyLength : KEY_LENGTH) {
                 File file = new File("src/vector/" + algorithm + "/GCM_" + algorithm + "-" + keyLength + "_AD.txt");
                 List<String> lines;
-                try { lines = java.nio.file.Files.readAllLines(file.toPath()); } catch (Exception e) { continue; }
-                String count = "", key = "", iv = "", aData = "", c = "", pt = "", t = "";
+                try {
+                    lines = readAllLines(file.toPath());
+                } catch (Exception e) { continue; }
+
+                int tagLen = 0;
+
+                String count = "";
+                String key = "";
+                String iv = "";
+                String aData = "";
+                String c = "";
+                String pt = "";
+                String t = "";
+
                 for (String line : lines) {
                     line = line.trim();
                     String trim = line.substring(line.indexOf('=') + 1).trim();
-                    if (line.startsWith("COUNT =")) count = trim;
+
+                    if (line.startsWith("[TagLen =")) tagLen = Integer.parseInt(trim.replace("]", ""));
+                    else if (line.startsWith("COUNT =")) count = trim;
                     else if (line.startsWith("Key =")) key = trim;
                     else if (line.startsWith("IV =")) iv = trim;
                     else if (line.startsWith("Adata =")) aData = trim;
@@ -63,6 +78,7 @@ class GCMTest {
                         else if (line.startsWith("Invalid")) pt = "Invalid";
 
                         String testName = "GCM-" + algorithm + "-" + keyLength + "-AD COUNT=" + count;
+                        int finalTagLen = tagLen;
                         String finalAData = aData;
                         String finalKey = key;
                         String finalIv = iv;
@@ -73,12 +89,13 @@ class GCMTest {
                         tests.add(DynamicTest.dynamicTest(testName, () -> {
                             GCM gcm = new GCM(blockCipher);
                             gcm.updateAAD(hexToBytes(finalAData));
+                            gcm.updateTagLength(finalTagLen / 8);
                             ParamWithIV params = new ParamWithIV(hexToBytes(finalKey), hexToBytes(finalIv));
 
                             if (!"Invalid".equals(finalPt)) {
                                 byte[] result = gcm.encrypt(hexToBytes(finalPt), params).getData();
                                 String resultHex = bytesToHex(result);
-                                Assertions.assertEquals(finalC.toUpperCase(), resultHex.replace(finalT, ""), "Encrypted fail at " + testName);
+                                Assertions.assertEquals(finalC.toUpperCase() + finalT, resultHex, "Encrypted fail at " + testName);
 
                                 result = gcm.decrypt(hexToBytes(finalC + finalT), params).getData();
                                 resultHex = bytesToHex(result);
@@ -116,10 +133,8 @@ class GCMTest {
                 File file = new File("src/vector/" + algorithm + "/GCM_" + algorithm + "-" + keyLength + "_AE.txt");
                 List<String> lines;
                 try {
-                    lines = java.nio.file.Files.readAllLines(file.toPath());
-                } catch (Exception e) {
-                    continue;
-                }
+                    lines = readAllLines(file.toPath());
+                } catch (Exception e) { continue; }
 
                 String count = "";
                 String key = "";

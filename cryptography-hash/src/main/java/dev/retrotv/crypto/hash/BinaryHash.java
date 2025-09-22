@@ -1,12 +1,13 @@
-package dev.retrotv.crypto.hash
+package dev.retrotv.crypto.hash;
 
-import dev.retrotv.data.enums.EncodeFormat
-import java.io.IOException
+import dev.retrotv.data.enums.EncodeFormat;
+import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * 바이너리 데이터를 해시하는 인터페이스입니다.
  */
-interface BinaryHash {
+public interface BinaryHash {
 
     /**
      * 바이너리 데이터를 해시한 값을 생성하고 반환합니다.
@@ -15,8 +16,7 @@ interface BinaryHash {
      * @return 해시 값
      * @throws IOException 바이너리를 읽어들이는 과정에서 오류가 발생할 경우 던짐
      */
-    @Throws(IOException::class)
-    fun hashing(data: ByteArray): ByteArray
+    byte[] hashing(byte[] data) throws IOException;
 
     /**
      * 바이너리 데이터를 해시해 해시 값을 생성한 뒤, 비교할 해시 값과의 일치 여부를 반환합니다.
@@ -26,8 +26,9 @@ interface BinaryHash {
      * @return 일치 여부
      * @throws IOException 바이너리를 읽어들이는 과정에서 오류가 발생할 경우 던짐
      */
-    @Throws(IOException::class)
-    fun matches(data: ByteArray, digest: ByteArray?): Boolean = digest.contentEquals(hashing(data))
+    default boolean matches(byte[] data, byte[] digest) throws IOException {
+        return Arrays.equals(digest, hashing(data));
+    }
 
     /**
      * 바이너리 데이터를 해시해 해시 값을 생성한 뒤, 비교할 해시 값과의 일치 여부를 반환합니다.
@@ -38,8 +39,9 @@ interface BinaryHash {
      * @return 일치 여부
      * @throws IOException 바이너리를 읽어들이는 과정에서 오류가 발생할 경우 던짐
      */
-    @Throws(IOException::class)
-    fun matches(data: ByteArray, digest: String?): Boolean = matches(data, digest, EncodeFormat.HEX)
+    default boolean matches(byte[] data, String digest) throws IOException {
+        return matches(data, digest, EncodeFormat.HEX);
+    }
 
     /**
      * 바이너리 데이터를 해시해 해시 값을 생성한 뒤, 비교할 해시 값과의 일치 여부를 반환합니다.
@@ -51,6 +53,5 @@ interface BinaryHash {
      * @return 일치 여부
      * @throws IOException 바이너리를 읽어들이는 과정에서 오류가 발생할 경우 던짐
      */
-    @Throws(IOException::class)
-    fun matches(data: ByteArray, digest: String?, encoderFormat: EncodeFormat): Boolean
+    boolean matches(byte[] data, String digest, EncodeFormat encoderFormat) throws IOException;
 }

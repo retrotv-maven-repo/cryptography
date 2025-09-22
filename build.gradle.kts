@@ -66,8 +66,12 @@ subprojects {
     val bouncyCastle = "1.81"
     val json = "20250517"
     val junit = "5.13.1"
+    val lombok = "1.18.42"
 
     dependencies {
+        compileOnly("org.projectlombok:lombok:${lombok}")
+        annotationProcessor("org.projectlombok:lombok:${lombok}")
+
         implementation("dev.retrotv:data-utils:${dataUtils}")
 
         // Logger
@@ -78,6 +82,9 @@ subprojects {
 
         // Bouncy Castle
         implementation("org.bouncycastle:bcprov-jdk18on:${bouncyCastle}")
+
+        testCompileOnly("org.projectlombok:lombok:${lombok}")
+        testAnnotationProcessor("org.projectlombok:lombok:${lombok}")
 
         testImplementation(kotlin("test"))
         testImplementation("org.junit.jupiter:junit-jupiter:${junit}")

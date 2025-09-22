@@ -27,7 +27,7 @@ public class CBC extends CipherMode {
         }
         ParamWithIV paramWithIV = (ParamWithIV) params;
 
-        PaddedBufferedBlockCipher cipher = new PaddedBufferedBlockCipher(new CBCBlockCipher(this.engine));
+        PaddedBufferedBlockCipher cipher = new PaddedBufferedBlockCipher(CBCBlockCipher.newInstance(this.engine));
         cipher.init(true, new ParametersWithIV(new KeyParameter(paramWithIV.getKey()), paramWithIV.getIv()));
 
         byte[] encryptedData = new byte[cipher.getOutputSize(data.length)];
@@ -48,7 +48,7 @@ public class CBC extends CipherMode {
         }
         ParamWithIV paramWithIV = (ParamWithIV) params;
 
-        PaddedBufferedBlockCipher cipher = new PaddedBufferedBlockCipher(new CBCBlockCipher(this.engine));
+        PaddedBufferedBlockCipher cipher = new PaddedBufferedBlockCipher(CBCBlockCipher.newInstance(this.engine));
         cipher.init(false, new ParametersWithIV(new KeyParameter(paramWithIV.getKey()), paramWithIV.getIv()));
 
         byte[] outputData = new byte[cipher.getOutputSize(encryptedData.length)];
