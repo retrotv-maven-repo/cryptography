@@ -1,20 +1,19 @@
-package dev.retrotv.crypto.password.scrypt
+package dev.retrotv.crypto.password.scrypt;
 
-import dev.retrotv.crypto.password.PasswordEncoder
-import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder
+import dev.retrotv.crypto.password.PasswordEncoder;
 
 /**
  * SCrypt 해싱 함수를 사용하는 PasswordEncoder 구현.
  * SCryptPasswordEncoder는 CPU 비용, 메모리 비용, 병렬화, 키 길이 및 솔트 길이 매개변수를 제공할 수 있습니다.
  */
-class SCryptPasswordEncoder : PasswordEncoder {
-    private val encoder: SCryptPasswordEncoder
+public class SCryptPasswordEncoder implements PasswordEncoder {
+    private final org.springframework.security.crypto.scrypt.SCryptPasswordEncoder encoder;
 
     /**
      * 기본 SCryptPasswordEncoder를 생성합니다.
      */
-    constructor() {
-        encoder = SCryptPasswordEncoder(65536, 8, 1, 32, 64)
+    public SCryptPasswordEncoder() {
+        this.encoder = new org.springframework.security.crypto.scrypt.SCryptPasswordEncoder(65536, 8, 1, 32, 64);
     }
 
     /**
@@ -26,15 +25,18 @@ class SCryptPasswordEncoder : PasswordEncoder {
      * @param keyLength 키 길이 (scrypt에서 dkLen으로 정의됨). 기본값은 현재 32입니다.
      * @param saltLength 솔트 길이 (scrypt에서 S의 길이로 정의됨). 기본값은 현재 16입니다.
      */
-    constructor(cpuCost: Int, memoryCost: Int, parallelization: Int, keyLength: Int, saltLength: Int) {
-        encoder = SCryptPasswordEncoder(cpuCost, memoryCost, parallelization, keyLength, saltLength)
+    public SCryptPasswordEncoder(int cpuCost, int memoryCost, int parallelization, int keyLength, int saltLength) {
+        this.encoder = new org.springframework.security.crypto.scrypt.SCryptPasswordEncoder(cpuCost, memoryCost, parallelization, keyLength, saltLength);
     }
 
-    override fun encode(rawPassword: CharSequence): String {
-        return encoder.encode(rawPassword)
+    @Override
+    public String encode(CharSequence rawPassword) {
+        return this.encoder.encode(rawPassword);
     }
 
-    override fun matches(rawPassword: CharSequence, encodedPassword: String?): Boolean {
-        return encoder.matches(rawPassword, encodedPassword)
+    @Override
+    public boolean matches(CharSequence rawPassword, String encodedPassword) {
+        return this.encoder.matches(rawPassword, encodedPassword);
     }
 }
+
