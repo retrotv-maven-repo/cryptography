@@ -18,7 +18,7 @@ public class Hash implements PlaintextHash {
     private static final Logger log = LoggerFactory.getLogger(Hash.class);
     private EHash algorithm;
 
-    private static volatile Hash instance;
+    private static Hash instance;
 
     private Hash() {}
 
@@ -28,18 +28,18 @@ public class Hash implements PlaintextHash {
      * @param algorithm 해시 알고리즘
      * @return 해시 인스턴스
      */
-    public static Hash getInstance(EHash algorithm) {
+    public static synchronized Hash getInstance(EHash algorithm) {
         if (instance != null && !Objects.equals(instance.algorithm, algorithm)) {
             instance = null;
         }
-        if (instance == null) {
-            synchronized (Hash.class) {
-                if (instance == null) {
-                    instance = new Hash();
-                    instance.algorithm = algorithm;
-                }
+
+        synchronized (Hash.class) {
+            if (instance == null) {
+                instance = new Hash();
+                instance.algorithm = algorithm;
             }
         }
+
         return instance;
     }
 

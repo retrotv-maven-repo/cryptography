@@ -1,5 +1,6 @@
 package dev.retrotv.crypto.hash.util;
 
+import dev.retrotv.crypto.exception.CryptoFailException;
 import dev.retrotv.crypto.hash.enums.EHash;
 import org.bouncycastle.jcajce.provider.digest.SHA3;
 import org.slf4j.Logger;
@@ -7,10 +8,15 @@ import org.slf4j.LoggerFactory;
 
 import java.nio.ByteBuffer;
 import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.zip.CRC32;
 
 public class MessageDigestUtils {
     private static final Logger log = LoggerFactory.getLogger(MessageDigestUtils.class);
+
+    private MessageDigestUtils() {
+        throw new UnsupportedOperationException("MessageDigestUtils 클래스는 인스턴스화 할 수 없습니다.");
+    }
 
     /**
      * 지정된 EHash 유형으로 데이터를 해시하고, 해시된 데이터를 반환합니다.
@@ -39,8 +45,8 @@ public class MessageDigestUtils {
                     MessageDigest md = MessageDigest.getInstance(algorithmName);
                     md.update(data);
                     return md.digest();
-                } catch (Exception e) {
-                    throw new RuntimeException("MessageDigest 인스턴스 생성 실패: " + algorithmName, e);
+                } catch (NoSuchAlgorithmException ex) {
+                    throw new CryptoFailException("지원하지 않는 해시 알고리즘 입니다. 알고리즘 명: " + algorithmName, ex);
                 }
             }
 
