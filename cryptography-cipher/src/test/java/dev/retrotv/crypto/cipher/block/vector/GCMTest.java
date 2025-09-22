@@ -7,6 +7,7 @@ import dev.retrotv.crypto.cipher.block.mode.GCM;
 import dev.retrotv.crypto.cipher.param.ParamWithIV;
 import dev.retrotv.crypto.cipher.result.AEADResult;
 import dev.retrotv.crypto.cipher.result.Result;
+import dev.retrotv.crypto.exception.CryptoFailException;
 import dev.retrotv.data.utils.ByteUtils;
 import dev.retrotv.data.utils.StringUtils;
 import org.junit.jupiter.api.Assertions;
@@ -19,6 +20,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class GCMTest {
     private byte[] hexToBytes(String hex) throws Exception { return StringUtils.hexToByteArray(hex); }
@@ -40,11 +43,12 @@ class GCMTest {
             } else {
                 throw new IllegalArgumentException("Unsupported algorithm: " + algorithm);
             }
+
             for (int keyLength : KEY_LENGTH) {
                 File file = new File("src/vector/" + algorithm + "/GCM_" + algorithm + "-" + keyLength + "_AD.txt");
                 List<String> lines;
                 try { lines = java.nio.file.Files.readAllLines(file.toPath()); } catch (Exception e) { continue; }
-                String count = "", key = "", iv = "", aData = "", c = "", pt = "";
+                String count = "", key = "", iv = "", aData = "", c = "", pt = "", t = "";
                 for (String line : lines) {
                     line = line.trim();
                     String trim = line.substring(line.indexOf('=') + 1).trim();
@@ -53,33 +57,44 @@ class GCMTest {
                     else if (line.startsWith("IV =")) iv = trim;
                     else if (line.startsWith("Adata =")) aData = trim;
                     else if (line.startsWith("C =")) c = trim;
+                    else if (line.startsWith("T =")) t = trim;
                     else if (line.startsWith("PT =") || line.startsWith("Invalid")) {
                         if (line.startsWith("PT =")) pt = trim;
-                        String testName = "CCM-" + algorithm + "-" + keyLength + "-AD COUNT=" + count;
+                        else if (line.startsWith("Invalid")) pt = "Invalid";
+
+                        String testName = "GCM-" + algorithm + "-" + keyLength + "-AD COUNT=" + count;
                         String finalAData = aData;
                         String finalKey = key;
                         String finalIv = iv;
                         String finalPt = pt;
                         String finalC = c;
+                        String finalT = t;
 
                         tests.add(DynamicTest.dynamicTest(testName, () -> {
                             GCM gcm = new GCM(blockCipher);
                             gcm.updateAAD(hexToBytes(finalAData));
                             ParamWithIV params = new ParamWithIV(hexToBytes(finalKey), hexToBytes(finalIv));
-                            byte[] result = gcm.encrypt(hexToBytes(finalPt), params).getData();
-                            String resultHex = bytesToHex(result);
 
-                            log.info("PT is empty: {}", finalPt.isEmpty());
-                            if (!finalPt.isEmpty()) {
-                                Assertions.assertEquals(finalC.toUpperCase(), resultHex, "Failed at " + testName);
+                            if (!"Invalid".equals(finalPt)) {
+                                byte[] result = gcm.encrypt(hexToBytes(finalPt), params).getData();
+                                String resultHex = bytesToHex(result);
+                                Assertions.assertEquals(finalC.toUpperCase(), resultHex.replace(finalT, ""), "Encrypted fail at " + testName);
+
+                                result = gcm.decrypt(hexToBytes(finalC + finalT), params).getData();
+                                resultHex = bytesToHex(result);
+                                Assertions.assertEquals(finalPt.toUpperCase(), resultHex, "Decrypted fail at " + testName);
                             } else {
-                                Assertions.assertNotEquals(finalC.toUpperCase(), resultHex, "Failed at " + testName);
+                                byte[] htb = hexToBytes(finalC);
+                                assertThrows(CryptoFailException.class, () -> {
+                                    gcm.decrypt(htb, params);
+                                });
                             }
                         }));
                     }
                 }
             }
         }
+
         return tests.stream();
     }
 
@@ -116,19 +131,13 @@ class GCMTest {
                 for (String line : lines) {
                     line = line.trim();
                     String trim = line.substring(line.indexOf('=') + 1).trim();
-                    if (line.startsWith("COUNT =")) {
-                        count = trim;
-                    } else if (line.startsWith("Key =")) {
-                        key = trim;
-                    } else if (line.startsWith("IV =")) {
-                        iv = trim;
-                    } else if (line.startsWith("PT =")) {
-                        pt = trim;
-                    } else if (line.startsWith("Adata =")) {
-                        aData = trim;
-                    } else if (line.startsWith("C =")) {
-                        c = trim;
-                    } else if (line.startsWith("T =")) {
+                    if (line.startsWith("COUNT =")) count = trim;
+                    else if (line.startsWith("Key =")) key = trim;
+                    else if (line.startsWith("IV =")) iv = trim;
+                    else if (line.startsWith("PT =")) pt = trim;
+                    else if (line.startsWith("Adata =")) aData = trim;
+                    else if (line.startsWith("C =")) c = trim;
+                    else if (line.startsWith("T =")) {
                         String testName = "CCM-" + algorithm + "-" + keyLength + "-AE COUNT=" + count;
                         String finalAData = aData;
                         String finalKey = key;
@@ -140,16 +149,21 @@ class GCMTest {
                             GCM gcm = new GCM(blockCipher);
                             gcm.updateAAD(hexToBytes(finalAData));
                             ParamWithIV params = new ParamWithIV(hexToBytes(finalKey), hexToBytes(finalIv));
+
                             Result result = gcm.encrypt(hexToBytes(finalPt), params);
                             String resultHex = bytesToHex(result.getData());
                             String resultTag = bytesToHex(((AEADResult) result).getTag());
+                            Assertions.assertEquals(finalC.toUpperCase(), resultHex.replace(resultTag, ""), "Encrypted fail at " + testName);
 
-                            Assertions.assertEquals(finalC.toUpperCase(), resultHex.replace(resultTag, ""), "Failed at " + testName);
+                            result = gcm.decrypt(result.getData(), params);
+                            resultHex = bytesToHex(result.getData());
+                            Assertions.assertEquals(finalPt.toUpperCase(), resultHex, "Decrypted failed at " + testName);
                         }));
                     }
                 }
             }
         }
+
         return tests.stream();
     }
 }
