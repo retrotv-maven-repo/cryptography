@@ -1,12 +1,14 @@
 package dev.retrotv.crypto.cipher.block.mode;
 
 import dev.retrotv.crypto.cipher.block.BlockCipher;
-import dev.retrotv.crypto.cipher.block.CipherMode;
+import dev.retrotv.crypto.cipher.block.PaddedBlockCipherMode;
 import dev.retrotv.crypto.cipher.enums.EMode;
 import dev.retrotv.crypto.cipher.param.Param;
 import dev.retrotv.crypto.cipher.param.ParamWithIV;
 import dev.retrotv.crypto.cipher.result.Result;
 import dev.retrotv.crypto.exception.CryptoFailException;
+
+import org.bouncycastle.crypto.CipherParameters;
 import org.bouncycastle.crypto.modes.CBCBlockCipher;
 import org.bouncycastle.crypto.paddings.PaddedBufferedBlockCipher;
 import org.bouncycastle.crypto.params.KeyParameter;
@@ -16,7 +18,7 @@ import org.bouncycastle.crypto.params.ParametersWithIV;
  * CBC 암호화 모드 클래스 입니다.
  */
 @SuppressWarnings("java:S1854")
-public class CBC extends CipherMode {
+public class CBC extends PaddedBlockCipherMode {
     public CBC(BlockCipher blockCipher) {
         super(EMode.CBC, blockCipher);
     }
@@ -29,16 +31,10 @@ public class CBC extends CipherMode {
         ParamWithIV paramWithIV = (ParamWithIV) params;
 
         PaddedBufferedBlockCipher cipher = new PaddedBufferedBlockCipher(CBCBlockCipher.newInstance(this.engine));
-        cipher.init(true, new ParametersWithIV(new KeyParameter(paramWithIV.getKey()), paramWithIV.getIv()));
+        CipherParameters parameters = new ParametersWithIV(new KeyParameter(paramWithIV.getKey()), paramWithIV.getIv());
+        cipher.init(true, parameters);
 
-        byte[] encryptedData = new byte[cipher.getOutputSize(data.length)];
-        int tam = cipher.processBytes(data, 0, data.length, encryptedData, 0);
-        try {
-            tam += cipher.doFinal(encryptedData, tam);
-        } catch (Exception e) {
-            throw new CryptoFailException(e);
-        }
-
+        byte[] encryptedData = this.blockEncrypt(data, params, cipher);
         return new Result(encryptedData);
     }
 
