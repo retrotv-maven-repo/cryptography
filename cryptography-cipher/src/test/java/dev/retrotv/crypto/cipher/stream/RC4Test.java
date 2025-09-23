@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 
-@SuppressWarnings("java:S1874")
+@SuppressWarnings({ "java:S1874", "deprecation" })
 class RC4Test {
 
     @Test
@@ -32,7 +32,7 @@ class RC4Test {
 
     @Test
     @DisplayName("RC4 스트림 암호화 테스트")
-    void testEncryptAndDecryptInputStream() throws Exception {
+    void testEncryptAndDecryptInputStream() {
         // 준비
         byte[] key = "testkey123456789".getBytes(); // RC4는 16바이트까지 권장
         Param param = new Param(key);

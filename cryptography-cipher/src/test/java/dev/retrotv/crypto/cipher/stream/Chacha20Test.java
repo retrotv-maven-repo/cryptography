@@ -34,17 +34,20 @@ class Chacha20Test {
 
     @Test
     @DisplayName("Chacha20 암호화 테스트 - 잘못된 Param 객체 전달")
-    void test_chacha20_invalid_param() {
+    void test_chacha20InvalidParam() {
         Chacha20 chacha20 = new Chacha20();
         byte[] key = KeyGenerator.generateKey(32);
         Param params = new Param(key);
 
-        assertThrows(IllegalArgumentException.class, () -> chacha20.encrypt(plainText.getBytes(), params));
+        byte[] textData = plainText.getBytes();
+        assertThrows(
+            IllegalArgumentException.class, () -> chacha20.encrypt(textData, params)
+        );
     }
 
     @Test
     @DisplayName("Chacha20 스트림 암호화 테스트")
-    void testEncryptAndDecryptInputStream() throws Exception {
+    void testEncryptAndDecryptInputStream() {
         // 준비
         byte[] key = "testkey123456789".getBytes(); // Chacha20는 32바이트까지 권장
         byte[] iv = IVGenerator.generateIV(8);
