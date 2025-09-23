@@ -4,7 +4,6 @@ import dev.retrotv.crypto.cipher.param.Param;
 import dev.retrotv.crypto.cipher.result.Result;
 import dev.retrotv.crypto.exception.CryptoFailException;
 import org.bouncycastle.crypto.engines.RC4Engine;
-import org.bouncycastle.crypto.io.CipherInputStream;
 import org.bouncycastle.crypto.params.KeyParameter;
 
 import java.io.InputStream;
@@ -48,14 +47,7 @@ public class RC4 extends StreamCipher {
     public void decrypt(InputStream input, OutputStream output, Param params) {
         try {
             this.engine.init(false, new KeyParameter(params.getKey()));
-            CipherInputStream cis = new CipherInputStream(input, this.engine);
-            byte[] buffer = new byte[1024];
-            int i = cis.read(buffer);
-            while (i != -1) {
-                output.write(buffer, 0, i);
-                i = cis.read(buffer);
-            }
-            cis.close();
+            this.streamDecrypt(input, output);
         } catch (Exception ex) {
             throw new CryptoFailException(ex);
         }
