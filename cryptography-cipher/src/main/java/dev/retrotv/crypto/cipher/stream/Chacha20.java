@@ -6,7 +6,6 @@ import dev.retrotv.crypto.cipher.result.Result;
 import dev.retrotv.crypto.exception.CryptoFailException;
 import org.bouncycastle.crypto.engines.ChaChaEngine;
 import org.bouncycastle.crypto.io.CipherInputStream;
-import org.bouncycastle.crypto.io.CipherOutputStream;
 import org.bouncycastle.crypto.params.KeyParameter;
 import org.bouncycastle.crypto.params.ParametersWithIV;
 

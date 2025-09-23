@@ -8,12 +8,14 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@SuppressWarnings("java:S1874")
 class RC4Test {
-    private final String plainText = "The quick brown fox jumps over the lazy dog";
 
     @Test
     @DisplayName("Chacha20 암호화 테스트")
     void test_chacha20() {
+        String plainText = "The quick brown fox jumps over the lazy dog";
+
         RC4 rc4 = new RC4();
         byte[] key = KeyGenerator.generateKey(32);
         Param params = new Param(key);

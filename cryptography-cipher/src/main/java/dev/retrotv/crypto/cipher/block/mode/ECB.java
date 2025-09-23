@@ -12,6 +12,7 @@ import org.bouncycastle.crypto.params.KeyParameter;
 /**
  * ECB 암호화 모드 클래스 입니다.
  */
+@SuppressWarnings("java:S1854")
 public class ECB extends CipherMode {
 
     public ECB(BlockCipher blockCipher) {

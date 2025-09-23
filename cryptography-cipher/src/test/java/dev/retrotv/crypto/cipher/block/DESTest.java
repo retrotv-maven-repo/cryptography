@@ -6,6 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+@SuppressWarnings("java:S1874")
 class DESTest {
     private final BlockChiperTest test = new BlockChiperTest();
 

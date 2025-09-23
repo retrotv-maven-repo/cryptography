@@ -10,6 +10,7 @@ import dev.retrotv.crypto.cipher.result.Result;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@SuppressWarnings("java:S2187")
 public class BlockChiperTest {
     private final String plainText = "The quick brown fox jumps over the lazy dog";
 

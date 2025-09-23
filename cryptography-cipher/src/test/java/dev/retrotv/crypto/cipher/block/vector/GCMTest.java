@@ -28,7 +28,6 @@ class GCMTest {
     private byte[] hexToBytes(String hex) throws Exception { return StringUtils.hexToByteArray(hex); }
     private String bytesToHex(byte[] bytes) { return ByteUtils.toHexString(bytes).toUpperCase(); }
 
-    private static final Logger log = LoggerFactory.getLogger(GCMTest.class);
     private static final String[] ALGORITHM = {"ARIA", "LEA"};
     private static final int[] KEY_LENGTH = {128, 192, 256};
 

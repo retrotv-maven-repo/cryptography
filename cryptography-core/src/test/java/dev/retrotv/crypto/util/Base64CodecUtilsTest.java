@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class Base64CodecUtilsTest {
+class Base64CodecUtilsTest {
 
     @Test
     @DisplayName("encode param not null 테스트")

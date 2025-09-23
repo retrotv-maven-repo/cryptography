@@ -6,6 +6,7 @@ import dev.retrotv.crypto.cipher.enums.EMode;
 import dev.retrotv.crypto.cipher.param.Param;
 import dev.retrotv.crypto.cipher.param.ParamWithIV;
 import dev.retrotv.crypto.cipher.result.Result;
+import dev.retrotv.crypto.exception.CryptoFailException;
 import org.bouncycastle.crypto.CipherParameters;
 import org.bouncycastle.crypto.modes.CBCBlockCipher;
 import org.bouncycastle.crypto.modes.CTSBlockCipher;
@@ -41,8 +42,8 @@ public class CTS extends CipherMode {
         int len = cipher.processBytes(data, 0, data.length, encryptedData, 0);
         try {
             cipher.doFinal(encryptedData, len);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        } catch (Exception ex) {
+            throw new CryptoFailException(ex);
         }
 
         return new Result(encryptedData);
@@ -69,8 +70,8 @@ public class CTS extends CipherMode {
         int len = cipher.processBytes(encryptedData, 0, encryptedData.length, originalData, 0);
         try {
             cipher.doFinal(originalData, len);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        } catch (Exception ex) {
+            throw new CryptoFailException(ex);
         }
 
         return new Result(originalData);

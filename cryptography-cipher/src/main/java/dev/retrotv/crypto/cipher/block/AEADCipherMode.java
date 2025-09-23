@@ -23,5 +23,5 @@ public abstract class AEADCipherMode extends CipherMode {
      *
      * @param tagLength 태그 길이 (바이트 단위)
      */
-    abstract public void updateTagLength(int tagLength);
+    public abstract void updateTagLength(int tagLength);
 }
