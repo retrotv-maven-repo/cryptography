@@ -27,10 +27,12 @@ public class Chacha20 extends StreamCipher {
         if (!(params instanceof ParamWithIV)) {
             throw new IllegalArgumentException(REQUIRED_MESSAGE);
         }
+
         ParamWithIV paramWithIV = (ParamWithIV) params;
         this.engine.init(true, new ParametersWithIV(new KeyParameter(paramWithIV.getKey()), paramWithIV.getIv()));
         byte[] encryptedData = new byte[data.length];
         this.engine.processBytes(data, 0, data.length, encryptedData, 0);
+        
         return new Result(encryptedData);
     }
 
@@ -50,10 +52,12 @@ public class Chacha20 extends StreamCipher {
         if (!(params instanceof ParamWithIV)) {
             throw new IllegalArgumentException(REQUIRED_MESSAGE);
         }
+
         ParamWithIV paramWithIV = (ParamWithIV) params;
         this.engine.init(false, new ParametersWithIV(new KeyParameter(paramWithIV.getKey()), paramWithIV.getIv()));
         byte[] originalData = new byte[encryptedData.length];
         this.engine.processBytes(encryptedData, 0, encryptedData.length, originalData, 0);
+        
         return new Result(originalData);
     }
 
@@ -62,6 +66,7 @@ public class Chacha20 extends StreamCipher {
         if (!(params instanceof ParamWithIV)) {
             throw new IllegalArgumentException(REQUIRED_MESSAGE);
         }
+        
         try {
             ParamWithIV paramWithIV = (ParamWithIV) params;
             this.engine.init(false, new ParametersWithIV(new KeyParameter(paramWithIV.getKey()), paramWithIV.getIv()));

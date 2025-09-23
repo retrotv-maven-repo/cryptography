@@ -25,6 +25,7 @@ public class RC4 extends StreamCipher {
         this.engine.init(true, new KeyParameter(params.getKey()));
         byte[] encryptedData = new byte[data.length];
         this.engine.processBytes(data, 0, data.length, encryptedData, 0);
+        
         return new Result(encryptedData);
     }
 
@@ -39,6 +40,7 @@ public class RC4 extends StreamCipher {
         this.engine.init(false, new KeyParameter(params.getKey()));
         byte[] originalData = new byte[encryptedData.length];
         this.engine.processBytes(encryptedData, 0, encryptedData.length, originalData, 0);
+        
         return new Result(originalData);
     }
 
