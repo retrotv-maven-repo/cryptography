@@ -3,6 +3,7 @@ package dev.retrotv.crypto.cipher.stream;
 import dev.retrotv.crypto.cipher.param.Param;
 import dev.retrotv.crypto.cipher.param.ParamWithIV;
 import dev.retrotv.crypto.cipher.result.Result;
+import dev.retrotv.crypto.exception.CryptoFailException;
 import org.bouncycastle.crypto.engines.ChaChaEngine;
 import org.bouncycastle.crypto.io.CipherInputStream;
 import org.bouncycastle.crypto.io.CipherOutputStream;
@@ -39,21 +40,10 @@ public class Chacha20 extends StreamCipher {
         if (!(params instanceof ParamWithIV)) {
             throw new IllegalArgumentException(REQUIRED_MESSAGE);
         }
-        try {
-            ParamWithIV paramWithIV = (ParamWithIV) params;
-            this.engine.init(true, new ParametersWithIV(new KeyParameter(paramWithIV.getKey()), paramWithIV.getIv()));
-            CipherOutputStream cos = new CipherOutputStream(output, this.engine);
-            byte[] buffer = new byte[1024];
-            int i = input.read(buffer);
-            while (i != -1) {
-                cos.write(buffer, 0, i);
-                i = input.read(buffer);
-            }
-            cos.flush();
-            cos.close();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+
+        ParamWithIV paramWithIV = (ParamWithIV) params;
+        this.engine.init(true, new ParametersWithIV(new KeyParameter(paramWithIV.getKey()), paramWithIV.getIv()));
+        this.streamEncrypt(input, output);
     }
 
     @Override
@@ -84,8 +74,8 @@ public class Chacha20 extends StreamCipher {
                 i = cis.read(buffer);
             }
             cis.close();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        } catch (Exception ex) {
+            throw new CryptoFailException(ex);
         }
     }
 }
