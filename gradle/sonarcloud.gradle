@@ -5,5 +5,6 @@ sonar {
         property("sonar.host.url", "https://sonarcloud.io")
         property("sonar.exclusions", "src/main/java/org/springframework/security/crypto/**")
         property("sonar.coverage.exclusions", "src/main/java/**,**/exception/*,**/enums/*,**/util/*,**/BinaryHash.*,**/PlaintextHash.*")
+        property("sonar.coverage.jacoco.xmlReportPaths", "build/reports/jacoco/test/jacocoTestReport.xml")
     }
 }
