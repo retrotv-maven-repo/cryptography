@@ -1,12 +1,12 @@
 package dev.retrotv.crypto.hash;
 
 import dev.retrotv.crypto.exception.AlgorithmNotFoundException;
+import dev.retrotv.crypto.hash.enums.EHash;
 import dev.retrotv.crypto.hash.util.MessageDigestUtils;
 import dev.retrotv.data.enums.EncodeFormat;
 import dev.retrotv.data.utils.ByteUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import dev.retrotv.crypto.hash.enums.EHash;
 
 import java.util.Objects;
 

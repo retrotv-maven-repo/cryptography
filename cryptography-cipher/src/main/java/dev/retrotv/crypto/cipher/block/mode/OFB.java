@@ -1,9 +1,7 @@
 package dev.retrotv.crypto.cipher.block.mode;
 
 import dev.retrotv.crypto.cipher.block.BlockCipher;
-import dev.retrotv.crypto.cipher.block.CipherMode;
 import dev.retrotv.crypto.cipher.block.StreamCipherMode;
-import dev.retrotv.crypto.cipher.enums.ECipher;
 import dev.retrotv.crypto.cipher.enums.EMode;
 import dev.retrotv.crypto.cipher.param.Param;
 import dev.retrotv.crypto.cipher.param.ParamWithIV;

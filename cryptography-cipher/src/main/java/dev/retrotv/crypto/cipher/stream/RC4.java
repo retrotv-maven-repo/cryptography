@@ -5,7 +5,6 @@ import dev.retrotv.crypto.cipher.result.Result;
 import dev.retrotv.crypto.exception.CryptoFailException;
 import org.bouncycastle.crypto.engines.RC4Engine;
 import org.bouncycastle.crypto.io.CipherInputStream;
-import org.bouncycastle.crypto.io.CipherOutputStream;
 import org.bouncycastle.crypto.params.KeyParameter;
 
 import java.io.InputStream;

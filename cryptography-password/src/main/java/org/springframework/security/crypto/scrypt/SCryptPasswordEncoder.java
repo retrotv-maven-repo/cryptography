@@ -16,17 +16,16 @@
 
 package org.springframework.security.crypto.scrypt;
 
-import java.security.MessageDigest;
-import java.util.Base64;
-
 import org.bouncycastle.crypto.generators.SCrypt;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.codec.Utf8;
 import org.springframework.security.crypto.keygen.BytesKeyGenerator;
 import org.springframework.security.crypto.keygen.KeyGenerators;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.security.MessageDigest;
+import java.util.Base64;
 
 /**
  * <p>

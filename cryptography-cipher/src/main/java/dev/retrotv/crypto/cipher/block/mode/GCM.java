@@ -2,6 +2,7 @@ package dev.retrotv.crypto.cipher.block.mode;
 
 import dev.retrotv.crypto.cipher.block.AEADCipherMode;
 import dev.retrotv.crypto.cipher.block.BlockCipher;
+import dev.retrotv.crypto.cipher.enums.EMode;
 import dev.retrotv.crypto.cipher.param.Param;
 import dev.retrotv.crypto.cipher.param.ParamWithIV;
 import dev.retrotv.crypto.cipher.result.AEADResult;
@@ -12,8 +13,6 @@ import org.bouncycastle.crypto.modes.GCMBlockCipher;
 import org.bouncycastle.crypto.modes.GCMModeCipher;
 import org.bouncycastle.crypto.params.AEADParameters;
 import org.bouncycastle.crypto.params.KeyParameter;
-
-import dev.retrotv.crypto.cipher.enums.EMode;
 
 /**
  * GCM 암호화 모드 클래스 입니다.

@@ -1,6 +1,7 @@
 package dev.retrotv.crypto.hash;
 
 import dev.retrotv.data.enums.EncodeFormat;
+
 import java.io.IOException;
 import java.nio.charset.Charset;
 

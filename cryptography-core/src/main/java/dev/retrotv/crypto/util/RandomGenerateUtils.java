@@ -1,11 +1,11 @@
 package dev.retrotv.crypto.util;
 
-import java.security.SecureRandom;
-import java.util.Random;
-
 import dev.retrotv.random.enums.SecurityStrength;
 import dev.retrotv.random.generator.ByteGenerator;
 import dev.retrotv.random.generator.PasswordGenerator;
+
+import java.security.SecureRandom;
+import java.util.Random;
 
 import static dev.retrotv.random.enums.SecurityStrength.MIDDLE;
 
