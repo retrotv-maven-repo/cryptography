@@ -17,7 +17,6 @@ import org.bouncycastle.crypto.params.ParametersWithIV;
 /**
  * CBC 암호화 모드 클래스 입니다.
  */
-@SuppressWarnings("java:S1854")
 public class CBC extends PaddedBlockCipherMode {
     public CBC(BlockCipher blockCipher) {
         super(EMode.CBC, blockCipher);
@@ -48,17 +47,7 @@ public class CBC extends PaddedBlockCipherMode {
         PaddedBufferedBlockCipher cipher = new PaddedBufferedBlockCipher(CBCBlockCipher.newInstance(this.engine));
         cipher.init(false, new ParametersWithIV(new KeyParameter(paramWithIV.getKey()), paramWithIV.getIv()));
 
-        byte[] outputData = new byte[cipher.getOutputSize(encryptedData.length)];
-        int tam = cipher.processBytes(encryptedData, 0, encryptedData.length, outputData, 0);
-        int finalLen;
-        try {
-            finalLen = cipher.doFinal(outputData, tam);
-        } catch (Exception e) {
-            throw new CryptoFailException(e);
-        }
-        byte[] originalData = new byte[tam + finalLen];
-        System.arraycopy(outputData, 0, originalData, 0, tam + finalLen);
-
+        byte[] originalData = this.blockDecrypt(encryptedData, params, cipher);
         return new Result(originalData);
     }
 }

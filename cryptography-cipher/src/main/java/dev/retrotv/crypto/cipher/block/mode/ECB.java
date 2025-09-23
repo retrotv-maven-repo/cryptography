@@ -14,7 +14,6 @@ import org.bouncycastle.crypto.params.KeyParameter;
 /**
  * ECB 암호화 모드 클래스 입니다.
  */
-@SuppressWarnings("java:S1854")
 public class ECB extends PaddedBlockCipherMode {
 
     public ECB(BlockCipher blockCipher) {
@@ -36,17 +35,7 @@ public class ECB extends PaddedBlockCipherMode {
         PaddedBufferedBlockCipher cipher = new PaddedBufferedBlockCipher(this.engine);
         cipher.init(false, new KeyParameter(params.getKey()));
 
-        byte[] outputData = new byte[cipher.getOutputSize(encryptedData.length)];
-        int tam = cipher.processBytes(encryptedData, 0, encryptedData.length, outputData, 0);
-        int finalLen;
-        try {
-            finalLen = cipher.doFinal(outputData, tam);
-        } catch (Exception e) {
-            throw new CryptoFailException(e);
-        }
-        byte[] originalData = new byte[tam + finalLen];
-        System.arraycopy(outputData, 0, originalData, 0, tam + finalLen);
-
+        byte[] originalData = this.blockDecrypt(encryptedData, params, cipher);
         return new Result(originalData);
     }
 }
