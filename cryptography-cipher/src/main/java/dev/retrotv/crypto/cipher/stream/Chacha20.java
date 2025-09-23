@@ -3,7 +3,6 @@ package dev.retrotv.crypto.cipher.stream;
 import dev.retrotv.crypto.cipher.param.Param;
 import dev.retrotv.crypto.cipher.param.ParamWithIV;
 import dev.retrotv.crypto.cipher.result.Result;
-import dev.retrotv.crypto.exception.CryptoFailException;
 import org.bouncycastle.crypto.engines.ChaChaEngine;
 import org.bouncycastle.crypto.params.KeyParameter;
 import org.bouncycastle.crypto.params.ParametersWithIV;
@@ -66,12 +65,8 @@ public class Chacha20 extends StreamCipher {
             throw new IllegalArgumentException(REQUIRED_MESSAGE);
         }
         
-        try {
-            ParamWithIV paramWithIV = (ParamWithIV) params;
-            this.engine.init(false, new ParametersWithIV(new KeyParameter(paramWithIV.getKey()), paramWithIV.getIv()));
-            this.streamDecrypt(input, output);
-        } catch (Exception ex) {
-            throw new CryptoFailException(ex);
-        }
+        ParamWithIV paramWithIV = (ParamWithIV) params;
+        this.engine.init(false, new ParametersWithIV(new KeyParameter(paramWithIV.getKey()), paramWithIV.getIv()));
+        this.streamDecrypt(input, output);
     }
 }

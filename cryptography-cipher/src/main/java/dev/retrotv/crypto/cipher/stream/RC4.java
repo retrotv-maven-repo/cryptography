@@ -2,7 +2,6 @@ package dev.retrotv.crypto.cipher.stream;
 
 import dev.retrotv.crypto.cipher.param.Param;
 import dev.retrotv.crypto.cipher.result.Result;
-import dev.retrotv.crypto.exception.CryptoFailException;
 import org.bouncycastle.crypto.engines.RC4Engine;
 import org.bouncycastle.crypto.params.KeyParameter;
 
@@ -45,11 +44,7 @@ public class RC4 extends StreamCipher {
 
     @Override
     public void decrypt(InputStream input, OutputStream output, Param params) {
-        try {
-            this.engine.init(false, new KeyParameter(params.getKey()));
-            this.streamDecrypt(input, output);
-        } catch (Exception ex) {
-            throw new CryptoFailException(ex);
-        }
+        this.engine.init(false, new KeyParameter(params.getKey()));
+        this.streamDecrypt(input, output);
     }
 }
