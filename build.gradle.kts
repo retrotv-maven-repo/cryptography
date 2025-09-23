@@ -38,9 +38,15 @@ subprojects {
     apply(plugin = "com.vanniktech.maven.publish")
 
     java {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
         toolchain {
             languageVersion.set(JavaLanguageVersion.of(8))
         }
+    }
+
+    tasks.test {
+        useJUnitPlatform()
     }
 
     val dataUtils = "0.23.7-alpha"
