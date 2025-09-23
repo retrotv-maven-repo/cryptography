@@ -6,7 +6,8 @@ subprojects {
     }
 
     test {
-        useJUnitPlatform()
+
+        // JaCoCo 리포트 생성
         finalizedBy "jacocoTestReport"
     }
 
