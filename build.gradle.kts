@@ -6,7 +6,7 @@ plugins {
     jacoco
     `maven-publish`
     id("com.vanniktech.maven.publish") version "0.32.0"
-    id("org.sonarqube") version "4.0.0.2929"
+    id("org.sonarqube") version "4.4.1.3373"
 }
 
 group = "dev.retrotv"
@@ -45,6 +45,9 @@ subprojects {
 
     tasks.test {
         useJUnitPlatform()
+
+        // JaCoCo 리포트 생성
+        finalizedBy(tasks.jacocoTestReport)
     }
 
     val dataUtils = "0.23.7-alpha"

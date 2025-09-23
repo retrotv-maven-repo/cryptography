@@ -5,12 +5,6 @@ subprojects {
         toolVersion = "0.8.13"
     }
 
-    test {
-
-        // JaCoCo 리포트 생성
-        finalizedBy "jacocoTestReport"
-    }
-
     jacocoTestReport {
         dependsOn test
 
