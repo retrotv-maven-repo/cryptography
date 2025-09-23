@@ -18,6 +18,12 @@ import org.bouncycastle.crypto.params.ParametersWithIV;
  * CBC 암호화 모드 클래스 입니다.
  */
 public class CBC extends PaddedBlockCipherMode {
+
+    /**
+     * CBC 모드 객체를 생성합니다.
+     * 
+     * @param blockCipher 사용할 블록 암호 객체
+     */
     public CBC(BlockCipher blockCipher) {
         super(EMode.CBC, blockCipher);
     }
@@ -33,7 +39,7 @@ public class CBC extends PaddedBlockCipherMode {
         CipherParameters parameters = new ParametersWithIV(new KeyParameter(paramWithIV.getKey()), paramWithIV.getIv());
         cipher.init(true, parameters);
 
-        byte[] encryptedData = this.blockEncrypt(data, params, cipher);
+        byte[] encryptedData = this.blockEncrypt(data, cipher);
         return new Result(encryptedData);
     }
 
@@ -47,7 +53,7 @@ public class CBC extends PaddedBlockCipherMode {
         PaddedBufferedBlockCipher cipher = new PaddedBufferedBlockCipher(CBCBlockCipher.newInstance(this.engine));
         cipher.init(false, new ParametersWithIV(new KeyParameter(paramWithIV.getKey()), paramWithIV.getIv()));
 
-        byte[] originalData = this.blockDecrypt(encryptedData, params, cipher);
+        byte[] originalData = this.blockDecrypt(encryptedData, cipher);
         return new Result(originalData);
     }
 }

@@ -1,6 +1,5 @@
 package dev.retrotv.crypto.cipher.block;
 
-import dev.retrotv.crypto.cipher.param.Param;
 import dev.retrotv.crypto.exception.CryptoFailException;
 import dev.retrotv.crypto.cipher.enums.EMode;
 
@@ -13,7 +12,7 @@ public abstract class PaddedBlockCipherMode extends CipherMode {
         super(mode, blockCipher);
     }
 
-    protected byte[] blockEncrypt(byte[] data, Param params, PaddedBufferedBlockCipher cipher) {
+    protected byte[] blockEncrypt(byte[] data, PaddedBufferedBlockCipher cipher) {
         byte[] encryptedData = new byte[cipher.getOutputSize(data.length)];
         int tam = cipher.processBytes(data, 0, data.length, encryptedData, 0);
         try {
@@ -25,7 +24,7 @@ public abstract class PaddedBlockCipherMode extends CipherMode {
         return encryptedData;
     }
 
-    protected byte[] blockDecrypt(byte[] encryptedData, Param params, PaddedBufferedBlockCipher cipher) {
+    protected byte[] blockDecrypt(byte[] encryptedData, PaddedBufferedBlockCipher cipher) {
         byte[] outputData = new byte[cipher.getOutputSize(encryptedData.length)];
         int tam = cipher.processBytes(encryptedData, 0, encryptedData.length, outputData, 0);
         int finalLen;

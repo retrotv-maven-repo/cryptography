@@ -8,6 +8,7 @@ import dev.retrotv.crypto.cipher.param.ParamWithIV;
 import dev.retrotv.crypto.cipher.result.Result;
 import dev.retrotv.crypto.exception.CryptoFailException;
 import org.bouncycastle.crypto.CipherParameters;
+import org.bouncycastle.crypto.InvalidCipherTextException;
 import org.bouncycastle.crypto.modes.CBCBlockCipher;
 import org.bouncycastle.crypto.modes.CTSBlockCipher;
 import org.bouncycastle.crypto.params.KeyParameter;
@@ -23,18 +24,7 @@ public class CTS extends CipherMode {
 
     @Override
     public Result encrypt(byte[] data, Param params) {
-        CipherParameters parameters;
-        if (params instanceof ParamWithIV) {
-            ParamWithIV paramWithIV = (ParamWithIV) params;
-            if (paramWithIV.getIv() == null) {
-                parameters = new KeyParameter(paramWithIV.getKey());
-            } else {
-                parameters = new ParametersWithIV(new KeyParameter(paramWithIV.getKey()), paramWithIV.getIv());
-            }
-        } else {
-            parameters = new KeyParameter(params.getKey());
-        }
-
+        CipherParameters parameters = getParameters(params);
         CTSBlockCipher cipher = new CTSBlockCipher(this.engine);
         cipher.init(true, parameters);
 
@@ -42,7 +32,7 @@ public class CTS extends CipherMode {
         int len = cipher.processBytes(data, 0, data.length, encryptedData, 0);
         try {
             cipher.doFinal(encryptedData, len);
-        } catch (Exception ex) {
+        } catch (InvalidCipherTextException ex) {
             throw new CryptoFailException(ex);
         }
 
@@ -51,18 +41,7 @@ public class CTS extends CipherMode {
 
     @Override
     public Result decrypt(byte[] encryptedData, Param params) {
-        CipherParameters parameters;
-        if (params instanceof ParamWithIV) {
-            ParamWithIV paramWithIV = (ParamWithIV) params;
-            if (paramWithIV.getIv() == null) {
-                parameters = new KeyParameter(paramWithIV.getKey());
-            } else {
-                parameters = new ParametersWithIV(new KeyParameter(paramWithIV.getKey()), paramWithIV.getIv());
-            }
-        } else {
-            parameters = new KeyParameter(params.getKey());
-        }
-
+        CipherParameters parameters = getParameters(params);
         CTSBlockCipher cipher = new CTSBlockCipher(this.engine);
         cipher.init(false, parameters);
 
@@ -70,7 +49,7 @@ public class CTS extends CipherMode {
         int len = cipher.processBytes(encryptedData, 0, encryptedData.length, originalData, 0);
         try {
             cipher.doFinal(originalData, len);
-        } catch (Exception ex) {
+        } catch (InvalidCipherTextException ex) {
             throw new CryptoFailException(ex);
         }
 
@@ -79,5 +58,18 @@ public class CTS extends CipherMode {
 
     public void useCBCMode() {
         this.engine = CBCBlockCipher.newInstance(this.engine);
+    }
+
+    private CipherParameters getParameters(Param params) {
+        if (params instanceof ParamWithIV) {
+            ParamWithIV paramWithIV = (ParamWithIV) params;
+            if (paramWithIV.getIv() == null) {
+                return new KeyParameter(paramWithIV.getKey());
+            } else {
+                return new ParametersWithIV(new KeyParameter(paramWithIV.getKey()), paramWithIV.getIv());
+            }
+        } else {
+            return new KeyParameter(params.getKey());
+        }
     }
 }

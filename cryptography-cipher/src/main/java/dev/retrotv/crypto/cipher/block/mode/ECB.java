@@ -16,6 +16,11 @@ import org.bouncycastle.crypto.params.KeyParameter;
  */
 public class ECB extends PaddedBlockCipherMode {
 
+    /**
+     * ECB 모드 객체를 생성합니다.
+     * 
+     * @param blockCipher 사용할 블록 암호 객체
+     */
     public ECB(BlockCipher blockCipher) {
         super(EMode.ECB, blockCipher);
     }
@@ -26,7 +31,7 @@ public class ECB extends PaddedBlockCipherMode {
         CipherParameters parameters = new KeyParameter(params.getKey());
         cipher.init(true, parameters);
 
-        byte[] encryptedData = this.blockEncrypt(data, params, cipher);
+        byte[] encryptedData = this.blockEncrypt(data, cipher);
         return new Result(encryptedData);
     }
 
@@ -35,7 +40,7 @@ public class ECB extends PaddedBlockCipherMode {
         PaddedBufferedBlockCipher cipher = new PaddedBufferedBlockCipher(this.engine);
         cipher.init(false, new KeyParameter(params.getKey()));
 
-        byte[] originalData = this.blockDecrypt(encryptedData, params, cipher);
+        byte[] originalData = this.blockDecrypt(encryptedData, cipher);
         return new Result(originalData);
     }
 }
