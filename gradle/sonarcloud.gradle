@@ -4,7 +4,6 @@ sonar {
         property("sonar.organization", "retrotv-maven-repo")
         property("sonar.host.url", "https://sonarcloud.io")
         property("sonar.exclusions", "src/main/java/org/springframework/security/crypto/**")
-        property("sonar.coverage.exclusions", "src/main/java/**,**/exception/*,**/enums/*,**/util/*,**/BinaryHash.*,**/PlaintextHash.*")
-        property("sonar.coverage.jacoco.xmlReportPaths", subprojects.collect { "${it.buildDir}/jacoco/jacoco.xml" }.join(","))
+        property("sonar.coverage.exclusions", "**/exception/*,**/enums/*,**/util/*")
     }
 }
