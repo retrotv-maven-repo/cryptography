@@ -6,7 +6,7 @@ plugins {
     jacoco
     `maven-publish`
     id("com.vanniktech.maven.publish") version "0.32.0"
-    id("org.sonarqube") version "4.4.1.3373"
+    id("org.sonarqube") version "4.0.0.2929"
 }
 
 group = "dev.retrotv"
