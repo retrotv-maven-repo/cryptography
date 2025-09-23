@@ -5,6 +5,10 @@ import dev.retrotv.crypto.cipher.enums.EMode;
 public abstract class AEADCipherMode extends CipherMode {
     protected byte[] aad = null;
 
+    /**
+     * @param mode        암호화 모드
+     * @param blockCipher 블록 암호화 클래스
+     */
     protected AEADCipherMode(EMode mode, BlockCipher blockCipher) {
         super(mode, blockCipher);
     }

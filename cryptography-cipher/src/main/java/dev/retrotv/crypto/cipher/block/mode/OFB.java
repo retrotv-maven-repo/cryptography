@@ -2,6 +2,7 @@ package dev.retrotv.crypto.cipher.block.mode;
 
 import dev.retrotv.crypto.cipher.block.BlockCipher;
 import dev.retrotv.crypto.cipher.block.CipherMode;
+import dev.retrotv.crypto.cipher.block.StreamCipherMode;
 import dev.retrotv.crypto.cipher.enums.ECipher;
 import dev.retrotv.crypto.cipher.enums.EMode;
 import dev.retrotv.crypto.cipher.param.Param;
@@ -15,28 +16,10 @@ import org.bouncycastle.crypto.params.ParametersWithIV;
 /**
  * OFB 암호화 모드 클래스 입니다.
  */
-public class OFB extends CipherMode {
-    private final int blockSize;
-
+public class OFB extends StreamCipherMode {
     public OFB(BlockCipher blockCipher) {
         super(EMode.ECB, blockCipher);
         this.blockSize = getBlockSizeByAlgorithm(this.algorithm);
-    }
-
-    private int getBlockSizeByAlgorithm(ECipher algorithm) {
-        switch (algorithm) {
-            case AES:
-            case ARIA:
-            case LEA:
-            case SEED:
-            case SERPENT:
-                return 128;
-            case DES:
-            case TRIPLE_DES:
-                return 64;
-            default:
-                throw new IllegalArgumentException("사용할 수 없는 알고리즘 입니다.");
-        }
     }
 
     @Override
