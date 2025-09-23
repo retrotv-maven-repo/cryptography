@@ -1,7 +1,7 @@
 package dev.retrotv.crypto.cipher.block.mode;
 
+import dev.retrotv.crypto.cipher.block.AEADCipherMode;
 import dev.retrotv.crypto.cipher.block.BlockCipher;
-import dev.retrotv.crypto.cipher.block.CipherMode;
 import dev.retrotv.crypto.cipher.param.Param;
 import dev.retrotv.crypto.cipher.param.ParamWithIV;
 import dev.retrotv.crypto.cipher.result.AEADResult;
@@ -18,10 +18,10 @@ import dev.retrotv.crypto.cipher.enums.EMode;
 /**
  * GCM 암호화 모드 클래스 입니다.
  */
-public class GCM extends CipherMode {
-    private byte[] aad = null;
+@SuppressWarnings("java:S1854")
+public class GCM extends AEADCipherMode {
     private static final int DEFAULT_TAG_LENGTH = 16;
-    private static int tLen = DEFAULT_TAG_LENGTH;
+    private int tLen = DEFAULT_TAG_LENGTH;
 
     public GCM(BlockCipher blockCipher) {
         super(EMode.ECB, blockCipher);
@@ -77,19 +77,11 @@ public class GCM extends CipherMode {
     }
 
     /**
-     * 추가 인증 데이터를 업데이트 합니다.
-     *
-     * @param aad 추가 인증 데이터
-     */
-    public void updateAAD(byte[] aad) {
-        this.aad = aad;
-    }
-
-    /**
      * 인증 태그의 길이를 업데이트 합니다.
      *
      * @param tagLength 인증 태그의 길이 (12 ~ 16 Byte)
      */
+    @Override
     public void updateTagLength(int tagLength) {
         if (tagLength < 12 || tagLength > 16) {
             throw new IllegalArgumentException("인증태그의 길이는 12 ~ 16Byte만 허용됩니다.");
