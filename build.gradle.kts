@@ -43,13 +43,6 @@ subprojects {
         }
     }
 
-    tasks.test {
-        useJUnitPlatform()
-
-        // JaCoCo 리포트 생성
-        finalizedBy(tasks.jacocoTestReport)
-    }
-
     val dataUtils = "0.23.7-alpha"
     val slf4j = "2.0.17"
     val log4j = "2.25.1"
