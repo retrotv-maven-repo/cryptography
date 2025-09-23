@@ -8,7 +8,7 @@ subprojects {
     test {
 
         // JaCoCo 리포트 생성
-        finalizedBy jacocoTestReport
+        finalizedBy "jacocoTestReport"
     }
 
     jacocoTestReport {
@@ -41,7 +41,7 @@ subprojects {
         }
 
         // 테스트 후에 jacocoTestCoverageVerification 실행
-        finalizedBy jacocoTestCoverageVerification
+        finalizedBy "jacocoTestCoverageVerification"
     }
 
     // 전체 코드의 80% 이상 커버리지를 가지고 있어야 함
@@ -64,7 +64,7 @@ subprojects {
             }
         }
 
-        finalizedBy copyJacocoReport
+        finalizedBy "copyJacocoReport"
     }
 
     // Coverage Gutters 플러그인을 위한 jacoco.xml 파일 복사
