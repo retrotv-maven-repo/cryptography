@@ -8,6 +8,8 @@ import dev.retrotv.crypto.cipher.param.ParamWithIV;
 import dev.retrotv.crypto.cipher.result.AEADResult;
 import dev.retrotv.crypto.cipher.result.Result;
 import dev.retrotv.crypto.exception.CryptoFailException;
+
+import org.bouncycastle.crypto.CipherParameters;
 import org.bouncycastle.crypto.InvalidCipherTextException;
 import org.bouncycastle.crypto.modes.GCMBlockCipher;
 import org.bouncycastle.crypto.modes.GCMModeCipher;
@@ -35,7 +37,8 @@ public class GCM extends AEADCipherMode {
 
         int macSize = tLen * 8;
         GCMModeCipher cipher = GCMBlockCipher.newInstance(this.engine);
-        cipher.init(true, new AEADParameters(new KeyParameter(paramWithIV.getKey()), macSize, paramWithIV.getIv(), this.aad));
+        CipherParameters parameters = new AEADParameters(new KeyParameter(paramWithIV.getKey()), macSize, paramWithIV.getIv(), this.aad);
+        cipher.init(true, parameters);
 
         byte[] outputData = new byte[cipher.getOutputSize(data.length)];
         int tam = cipher.processBytes(data, 0, data.length, outputData, 0);
@@ -61,18 +64,10 @@ public class GCM extends AEADCipherMode {
 
         int macSize = tLen * 8;
         GCMModeCipher cipher = GCMBlockCipher.newInstance(this.engine);
-        cipher.init(false, new AEADParameters(new KeyParameter(paramWithIV.getKey()), macSize, paramWithIV.getIv(), this.aad));
+        CipherParameters parameters = new AEADParameters(new KeyParameter(paramWithIV.getKey()), macSize, paramWithIV.getIv(), this.aad);
+        cipher.init(false, parameters);
 
-        byte[] originalData = new byte[cipher.getOutputSize(encryptedData.length)];
-        int tam = cipher.processBytes(encryptedData, 0, encryptedData.length, originalData, 0);
-
-        try {
-            tam += cipher.doFinal(originalData, tam);
-        } catch (InvalidCipherTextException e) {
-            throw new CryptoFailException("GCM 인증 태그 생성 실패: " + e.getMessage(), e);
-        }
-
-        return new AEADResult(originalData, cipher.getMac());
+        return this.decryptBlock(encryptedData, cipher);
     }
 
     /**

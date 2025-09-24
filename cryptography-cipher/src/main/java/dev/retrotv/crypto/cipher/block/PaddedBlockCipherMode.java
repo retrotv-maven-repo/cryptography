@@ -12,7 +12,7 @@ public abstract class PaddedBlockCipherMode extends CipherMode {
         super(mode, blockCipher);
     }
 
-    protected byte[] blockEncrypt(byte[] data, PaddedBufferedBlockCipher cipher) {
+    protected byte[] encryptBlock(byte[] data, PaddedBufferedBlockCipher cipher) {
         byte[] encryptedData = new byte[cipher.getOutputSize(data.length)];
         int tam = cipher.processBytes(data, 0, data.length, encryptedData, 0);
         try {
@@ -24,7 +24,7 @@ public abstract class PaddedBlockCipherMode extends CipherMode {
         return encryptedData;
     }
 
-    protected byte[] blockDecrypt(byte[] encryptedData, PaddedBufferedBlockCipher cipher) {
+    protected byte[] decryptBlock(byte[] encryptedData, PaddedBufferedBlockCipher cipher) {
         byte[] outputData = new byte[cipher.getOutputSize(encryptedData.length)];
         int tam = cipher.processBytes(encryptedData, 0, encryptedData.length, outputData, 0);
         int finalLen;

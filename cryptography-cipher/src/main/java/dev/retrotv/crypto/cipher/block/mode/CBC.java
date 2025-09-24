@@ -39,7 +39,7 @@ public class CBC extends PaddedBlockCipherMode {
         CipherParameters parameters = new ParametersWithIV(new KeyParameter(paramWithIV.getKey()), paramWithIV.getIv());
         cipher.init(true, parameters);
 
-        byte[] encryptedData = this.blockEncrypt(data, cipher);
+        byte[] encryptedData = this.encryptBlock(data, cipher);
         return new Result(encryptedData);
     }
 
@@ -53,7 +53,7 @@ public class CBC extends PaddedBlockCipherMode {
         PaddedBufferedBlockCipher cipher = new PaddedBufferedBlockCipher(CBCBlockCipher.newInstance(this.engine));
         cipher.init(false, new ParametersWithIV(new KeyParameter(paramWithIV.getKey()), paramWithIV.getIv()));
 
-        byte[] originalData = this.blockDecrypt(encryptedData, cipher);
+        byte[] originalData = this.decryptBlock(encryptedData, cipher);
         return new Result(originalData);
     }
 }
