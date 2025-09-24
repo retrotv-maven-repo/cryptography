@@ -7,6 +7,7 @@ import dev.retrotv.crypto.cipher.result.AEADResult;
 import dev.retrotv.crypto.cipher.enums.EMode;
 import dev.retrotv.crypto.exception.CryptoFailException;
 
+@SuppressWarnings("java:S1854")
 public abstract class AEADCipherMode extends CipherMode {
     protected byte[] aad = null;
 

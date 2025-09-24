@@ -31,8 +31,7 @@ public class ECB extends PaddedBlockCipherMode {
         CipherParameters parameters = new KeyParameter(params.getKey());
         cipher.init(true, parameters);
 
-        byte[] encryptedData = this.encryptBlock(data, cipher);
-        return new Result(encryptedData);
+        return this.encryptBlock(data, cipher);
     }
 
     @Override
@@ -40,7 +39,6 @@ public class ECB extends PaddedBlockCipherMode {
         PaddedBufferedBlockCipher cipher = new PaddedBufferedBlockCipher(this.engine);
         cipher.init(false, new KeyParameter(params.getKey()));
 
-        byte[] originalData = this.decryptBlock(encryptedData, cipher);
-        return new Result(originalData);
+        return this.decryptBlock(encryptedData, cipher);
     }
 }

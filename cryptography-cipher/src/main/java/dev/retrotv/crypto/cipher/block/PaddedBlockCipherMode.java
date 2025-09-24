@@ -2,6 +2,7 @@ package dev.retrotv.crypto.cipher.block;
 
 import dev.retrotv.crypto.exception.CryptoFailException;
 import dev.retrotv.crypto.cipher.enums.EMode;
+import dev.retrotv.crypto.cipher.result.Result;
 
 import org.bouncycastle.crypto.InvalidCipherTextException;
 import org.bouncycastle.crypto.paddings.PaddedBufferedBlockCipher;
@@ -12,7 +13,7 @@ public abstract class PaddedBlockCipherMode extends CipherMode {
         super(mode, blockCipher);
     }
 
-    protected byte[] encryptBlock(byte[] data, PaddedBufferedBlockCipher cipher) {
+    protected Result encryptBlock(byte[] data, PaddedBufferedBlockCipher cipher) {
         byte[] encryptedData = new byte[cipher.getOutputSize(data.length)];
         int tam = cipher.processBytes(data, 0, data.length, encryptedData, 0);
         try {
@@ -21,10 +22,10 @@ public abstract class PaddedBlockCipherMode extends CipherMode {
             throw new CryptoFailException(ex);
         }
 
-        return encryptedData;
+        return new Result(encryptedData);
     }
 
-    protected byte[] decryptBlock(byte[] encryptedData, PaddedBufferedBlockCipher cipher) {
+    protected Result decryptBlock(byte[] encryptedData, PaddedBufferedBlockCipher cipher) {
         byte[] outputData = new byte[cipher.getOutputSize(encryptedData.length)];
         int tam = cipher.processBytes(encryptedData, 0, encryptedData.length, outputData, 0);
         int finalLen;
@@ -36,6 +37,6 @@ public abstract class PaddedBlockCipherMode extends CipherMode {
         byte[] originalData = new byte[tam + finalLen];
         System.arraycopy(outputData, 0, originalData, 0, tam + finalLen);
 
-        return originalData;
+        return new Result(originalData);
     }
 }

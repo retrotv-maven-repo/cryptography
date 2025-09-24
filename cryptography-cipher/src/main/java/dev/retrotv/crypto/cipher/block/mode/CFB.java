@@ -7,6 +7,8 @@ import dev.retrotv.crypto.cipher.param.Param;
 import dev.retrotv.crypto.cipher.param.ParamWithIV;
 import dev.retrotv.crypto.cipher.result.Result;
 import dev.retrotv.crypto.exception.CryptoFailException;
+
+import org.bouncycastle.crypto.CipherParameters;
 import org.bouncycastle.crypto.modes.CFBBlockCipher;
 import org.bouncycastle.crypto.modes.CFBModeCipher;
 import org.bouncycastle.crypto.params.KeyParameter;
@@ -29,12 +31,10 @@ public class CFB extends StreamCipherMode {
         ParamWithIV paramWithIV = (ParamWithIV) params;
 
         CFBModeCipher cipher = CFBBlockCipher.newInstance(this.engine, this.blockSize);
-        cipher.init(true, new ParametersWithIV(new KeyParameter(paramWithIV.getKey()), paramWithIV.getIv()));
+        CipherParameters parameters = new ParametersWithIV(new KeyParameter(paramWithIV.getKey()), paramWithIV.getIv());
+        cipher.init(true, parameters);
 
-        byte[] encryptedData = new byte[data.length];
-        cipher.processBytes(data, 0, data.length, encryptedData, 0);
-
-        return new Result(encryptedData);
+        return this.encryptBlock(data, cipher);
     }
 
     @Override
@@ -45,11 +45,9 @@ public class CFB extends StreamCipherMode {
         ParamWithIV paramWithIV = (ParamWithIV) params;
 
         CFBModeCipher cipher = CFBBlockCipher.newInstance(this.engine, this.blockSize);
-        cipher.init(false, new ParametersWithIV(new KeyParameter(paramWithIV.getKey()), paramWithIV.getIv()));
+        CipherParameters parameters = new ParametersWithIV(new KeyParameter(paramWithIV.getKey()), paramWithIV.getIv());
+        cipher.init(false, parameters);
 
-        byte[] originalData = new byte[encryptedData.length];
-        cipher.processBytes(encryptedData, 0, encryptedData.length, originalData, 0);
-
-        return new Result(originalData);
+        return this.decryptBlock(encryptedData, cipher);
     }
 }
