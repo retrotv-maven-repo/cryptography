@@ -1,6 +1,6 @@
 package dev.retrotv.crypto.cipher.block.mode;
 
-import dev.retrotv.crypto.cipher.block.AEADCipherMode;
+import dev.retrotv.crypto.cipher.block.AEADBlockCipherMode;
 import dev.retrotv.crypto.cipher.block.BlockCipher;
 import dev.retrotv.crypto.cipher.enums.EMode;
 import dev.retrotv.crypto.cipher.param.Param;
@@ -8,6 +8,7 @@ import dev.retrotv.crypto.cipher.param.ParamWithIV;
 import dev.retrotv.crypto.cipher.result.AEADResult;
 import dev.retrotv.crypto.cipher.result.Result;
 import dev.retrotv.crypto.exception.CryptoFailException;
+import lombok.NonNull;
 
 import org.bouncycastle.crypto.CipherParameters;
 import org.bouncycastle.crypto.InvalidCipherTextException;
@@ -20,16 +21,16 @@ import org.bouncycastle.crypto.params.KeyParameter;
  * GCM 암호화 모드 클래스 입니다.
  */
 @SuppressWarnings("java:S1854")
-public class GCM extends AEADCipherMode {
+public class GCM extends AEADBlockCipherMode {
     private static final int DEFAULT_TAG_LENGTH = 16;
     private int tLen = DEFAULT_TAG_LENGTH;
 
-    public GCM(BlockCipher blockCipher) {
+    public GCM(@NonNull BlockCipher blockCipher) {
         super(EMode.ECB, blockCipher);
     }
 
     @Override
-    public Result encrypt(byte[] data, Param params) throws CryptoFailException {
+    public Result encrypt(@NonNull byte[] data, @NonNull Param params) {
         if (!(params instanceof ParamWithIV)) {
             throw new IllegalArgumentException("GCM 모드는 ParamsWithIV 객체를 요구합니다.");
         }
@@ -45,8 +46,8 @@ public class GCM extends AEADCipherMode {
 
         try {
             tam += cipher.doFinal(outputData, tam);
-        } catch (InvalidCipherTextException e) {
-            throw new CryptoFailException("GCM 인증 태그 생성 실패: " + e.getMessage(), e);
+        } catch (InvalidCipherTextException ex) {
+            throw new CryptoFailException("GCM 인증 태그 생성 실패", ex);
         }
 
         byte[] encryptedData = new byte[tam];
@@ -56,7 +57,7 @@ public class GCM extends AEADCipherMode {
     }
 
     @Override
-    public Result decrypt(byte[] encryptedData, Param params) throws CryptoFailException {
+    public Result decrypt(@NonNull byte[] encryptedData, @NonNull Param params) {
         if (!(params instanceof ParamWithIV)) {
             throw new IllegalArgumentException("GCM 모드는 ParamsWithIV 객체를 요구합니다.");
         }

@@ -3,15 +3,16 @@ package dev.retrotv.crypto.cipher.block;
 import dev.retrotv.crypto.cipher.enums.ECipher;
 import dev.retrotv.crypto.cipher.enums.EMode;
 import dev.retrotv.crypto.cipher.result.Result;
+import org.bouncycastle.crypto.StreamCipher;
 
-public abstract class StreamCipherMode extends CipherMode {
+public abstract class StreamBlockCipherMode extends BlockCipherMode {
     protected int blockSize;
 
     /**
      * @param mode        암호화 모드
      * @param blockCipher 블록 암호화 클래스
      */
-    protected StreamCipherMode(EMode mode, BlockCipher blockCipher) {
+    protected StreamBlockCipherMode(EMode mode, BlockCipher blockCipher) {
         super(mode, blockCipher);
     }
 
@@ -31,14 +32,14 @@ public abstract class StreamCipherMode extends CipherMode {
         }
     }
 
-    protected Result encryptBlock(byte[] data, org.bouncycastle.crypto.StreamCipher cipher) {
+    protected Result encryptBlock(byte[] data, StreamCipher cipher) {
         byte[] encryptedData = new byte[data.length];
         cipher.processBytes(data, 0, data.length, encryptedData, 0);
 
         return new Result(encryptedData);
     }
 
-    protected Result decryptBlock(byte[] encryptedData, org.bouncycastle.crypto.StreamCipher cipher) {
+    protected Result decryptBlock(byte[] encryptedData, StreamCipher cipher) {
         byte[] originalData = new byte[encryptedData.length];
         cipher.processBytes(encryptedData, 0, encryptedData.length, originalData, 0);
 

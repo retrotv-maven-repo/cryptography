@@ -6,7 +6,7 @@ import dev.retrotv.crypto.cipher.enums.EMode;
 import dev.retrotv.crypto.cipher.param.Param;
 import dev.retrotv.crypto.cipher.param.ParamWithIV;
 import dev.retrotv.crypto.cipher.result.Result;
-import dev.retrotv.crypto.exception.CryptoFailException;
+import lombok.NonNull;
 
 import org.bouncycastle.crypto.CipherParameters;
 import org.bouncycastle.crypto.modes.CBCBlockCipher;
@@ -24,12 +24,12 @@ public class CBC extends PaddedBlockCipherMode {
      * 
      * @param blockCipher 사용할 블록 암호 객체
      */
-    public CBC(BlockCipher blockCipher) {
+    public CBC(@NonNull BlockCipher blockCipher) {
         super(EMode.CBC, blockCipher);
     }
 
     @Override
-    public Result encrypt(byte[] data, Param params) throws CryptoFailException {
+    public Result encrypt(@NonNull byte[] data, @NonNull Param params) {
         if (!(params instanceof ParamWithIV)) {
             throw new IllegalArgumentException("CBC 모드는 ParamsWithIV 객체를 요구합니다.");
         }
@@ -43,14 +43,15 @@ public class CBC extends PaddedBlockCipherMode {
     }
 
     @Override
-    public Result decrypt(byte[] encryptedData, Param params) throws CryptoFailException {
+    public Result decrypt(@NonNull byte[] encryptedData, @NonNull Param params) {
         if (!(params instanceof ParamWithIV)) {
             throw new IllegalArgumentException("CBC 모드는 ParamsWithIV 객체를 요구합니다.");
         }
         ParamWithIV paramWithIV = (ParamWithIV) params;
 
         PaddedBufferedBlockCipher cipher = new PaddedBufferedBlockCipher(CBCBlockCipher.newInstance(this.engine));
-        cipher.init(false, new ParametersWithIV(new KeyParameter(paramWithIV.getKey()), paramWithIV.getIv()));
+        CipherParameters parameters = new ParametersWithIV(new KeyParameter(paramWithIV.getKey()), paramWithIV.getIv());
+        cipher.init(false, parameters);
 
         return this.decryptBlock(encryptedData, cipher);
     }

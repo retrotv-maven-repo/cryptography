@@ -1,12 +1,14 @@
 package dev.retrotv.crypto.cipher.block.mode;
 
 import dev.retrotv.crypto.cipher.block.BlockCipher;
-import dev.retrotv.crypto.cipher.block.CipherMode;
+import dev.retrotv.crypto.cipher.block.BlockCipherMode;
 import dev.retrotv.crypto.cipher.enums.EMode;
 import dev.retrotv.crypto.cipher.param.Param;
 import dev.retrotv.crypto.cipher.param.ParamWithIV;
 import dev.retrotv.crypto.cipher.result.Result;
 import dev.retrotv.crypto.exception.CryptoFailException;
+import lombok.NonNull;
+
 import org.bouncycastle.crypto.CipherParameters;
 import org.bouncycastle.crypto.InvalidCipherTextException;
 import org.bouncycastle.crypto.modes.CBCBlockCipher;
@@ -17,13 +19,13 @@ import org.bouncycastle.crypto.params.ParametersWithIV;
 /**
  * CTS 암호화 모드 클래스 입니다.
  */
-public class CTS extends CipherMode {
-    public CTS(BlockCipher blockCipher) {
+public class CTS extends BlockCipherMode {
+    public CTS(@NonNull BlockCipher blockCipher) {
         super(EMode.CTS, blockCipher);
     }
 
     @Override
-    public Result encrypt(byte[] data, Param params) {
+    public Result encrypt(@NonNull byte[] data, @NonNull Param params) {
         CipherParameters parameters = getParameters(params);
         CTSBlockCipher cipher = new CTSBlockCipher(this.engine);
         cipher.init(true, parameters);
@@ -40,7 +42,7 @@ public class CTS extends CipherMode {
     }
 
     @Override
-    public Result decrypt(byte[] encryptedData, Param params) {
+    public Result decrypt(@NonNull byte[] encryptedData, @NonNull Param params) {
         CipherParameters parameters = getParameters(params);
         CTSBlockCipher cipher = new CTSBlockCipher(this.engine);
         cipher.init(false, parameters);

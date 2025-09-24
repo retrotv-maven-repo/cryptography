@@ -5,7 +5,7 @@ import dev.retrotv.crypto.cipher.block.PaddedBlockCipherMode;
 import dev.retrotv.crypto.cipher.enums.EMode;
 import dev.retrotv.crypto.cipher.param.Param;
 import dev.retrotv.crypto.cipher.result.Result;
-import dev.retrotv.crypto.exception.CryptoFailException;
+import lombok.NonNull;
 
 import org.bouncycastle.crypto.CipherParameters;
 import org.bouncycastle.crypto.paddings.PaddedBufferedBlockCipher;
@@ -21,12 +21,12 @@ public class ECB extends PaddedBlockCipherMode {
      * 
      * @param blockCipher 사용할 블록 암호 객체
      */
-    public ECB(BlockCipher blockCipher) {
+    public ECB(@NonNull BlockCipher blockCipher) {
         super(EMode.ECB, blockCipher);
     }
 
     @Override
-    public Result encrypt(byte[] data, Param params) throws CryptoFailException {
+    public Result encrypt(@NonNull byte[] data, @NonNull Param params) {
         PaddedBufferedBlockCipher cipher = new PaddedBufferedBlockCipher(this.engine);
         CipherParameters parameters = new KeyParameter(params.getKey());
         cipher.init(true, parameters);
@@ -35,9 +35,10 @@ public class ECB extends PaddedBlockCipherMode {
     }
 
     @Override
-    public Result decrypt(byte[] encryptedData, Param params) throws CryptoFailException {
+    public Result decrypt(@NonNull byte[] encryptedData, @NonNull Param params) {
         PaddedBufferedBlockCipher cipher = new PaddedBufferedBlockCipher(this.engine);
-        cipher.init(false, new KeyParameter(params.getKey()));
+        CipherParameters parameters = new KeyParameter(params.getKey());
+        cipher.init(false, parameters);
 
         return this.decryptBlock(encryptedData, cipher);
     }

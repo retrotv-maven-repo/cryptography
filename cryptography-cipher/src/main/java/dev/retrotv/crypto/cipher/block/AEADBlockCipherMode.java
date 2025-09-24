@@ -8,14 +8,14 @@ import dev.retrotv.crypto.cipher.enums.EMode;
 import dev.retrotv.crypto.exception.CryptoFailException;
 
 @SuppressWarnings("java:S1854")
-public abstract class AEADCipherMode extends CipherMode {
+public abstract class AEADBlockCipherMode extends BlockCipherMode {
     protected byte[] aad = null;
 
     /**
      * @param mode        암호화 모드
      * @param blockCipher 블록 암호화 클래스
      */
-    protected AEADCipherMode(EMode mode, BlockCipher blockCipher) {
+    protected AEADBlockCipherMode(EMode mode, BlockCipher blockCipher) {
         super(mode, blockCipher);
     }
 
@@ -41,8 +41,8 @@ public abstract class AEADCipherMode extends CipherMode {
 
         try {
             tam += cipher.doFinal(originalData, tam);
-        } catch (InvalidCipherTextException e) {
-            throw new CryptoFailException("CCM 인증 태그 생성 실패: " + e.getMessage(), e);
+        } catch (InvalidCipherTextException ex) {
+            throw new CryptoFailException("CCM 인증 태그 생성 실패", ex);
         }
 
         return new AEADResult(originalData, cipher.getMac());

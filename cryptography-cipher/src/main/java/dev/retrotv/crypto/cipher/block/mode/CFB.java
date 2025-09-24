@@ -1,12 +1,12 @@
 package dev.retrotv.crypto.cipher.block.mode;
 
 import dev.retrotv.crypto.cipher.block.BlockCipher;
-import dev.retrotv.crypto.cipher.block.StreamCipherMode;
+import dev.retrotv.crypto.cipher.block.StreamBlockCipherMode;
 import dev.retrotv.crypto.cipher.enums.EMode;
 import dev.retrotv.crypto.cipher.param.Param;
 import dev.retrotv.crypto.cipher.param.ParamWithIV;
 import dev.retrotv.crypto.cipher.result.Result;
-import dev.retrotv.crypto.exception.CryptoFailException;
+import lombok.NonNull;
 
 import org.bouncycastle.crypto.CipherParameters;
 import org.bouncycastle.crypto.modes.CFBBlockCipher;
@@ -17,14 +17,14 @@ import org.bouncycastle.crypto.params.ParametersWithIV;
 /**
  * CFB 암호화 모드 클래스 입니다.
  */
-public class CFB extends StreamCipherMode {
-    public CFB(BlockCipher blockCipher) {
+public class CFB extends StreamBlockCipherMode {
+    public CFB(@NonNull BlockCipher blockCipher) {
         super(EMode.CFB, blockCipher);
         this.blockSize = getBlockSizeByAlgorithm(this.algorithm);
     }
 
     @Override
-    public Result encrypt(byte[] data, Param params) throws CryptoFailException {
+    public Result encrypt(@NonNull byte[] data, @NonNull Param params) {
         if (!(params instanceof ParamWithIV)) {
             throw new IllegalArgumentException("CFB 모드는 ParamsWithIV 객체를 요구합니다.");
         }
@@ -38,7 +38,7 @@ public class CFB extends StreamCipherMode {
     }
 
     @Override
-    public Result decrypt(byte[] encryptedData, Param params) throws CryptoFailException {
+    public Result decrypt(@NonNull byte[] encryptedData, @NonNull Param params) {
         if (!(params instanceof ParamWithIV)) {
             throw new IllegalArgumentException("CFB 모드는 ParamsWithIV 객체를 요구합니다.");
         }

@@ -12,7 +12,7 @@ import lombok.Getter;
  * @since 1.0.0
  */
 @Getter
-public abstract class CipherMode implements TwoWayEncryption {
+public abstract class BlockCipherMode implements TwoWayEncryption {
     protected final EMode mode;
     protected final ECipher algorithm;
     protected org.bouncycastle.crypto.BlockCipher engine;
@@ -21,7 +21,7 @@ public abstract class CipherMode implements TwoWayEncryption {
      * @param mode 암호화 모드
      * @param blockCipher 블록 암호화 클래스
      */
-    protected CipherMode(EMode mode, BlockCipher blockCipher) {
+    protected BlockCipherMode(EMode mode, BlockCipher blockCipher) {
         this.mode = mode;
         this.algorithm = blockCipher.getAlgorithm();
         this.engine = blockCipher.getEngine();
