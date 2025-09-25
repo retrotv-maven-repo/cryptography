@@ -124,6 +124,29 @@ class HashTest {
         );
     }
 
+    @Test
+    @DisplayName("추가 테스트")
+    void test_additional() {
+        Hash h = Hash.getInstance(EHash.MD5);
+
+        // null 체크
+        assertFalse(h.matches(password.getBytes(), (byte[]) null));
+        assertFalse(h.matches(password.getBytes(), (String) null));
+        assertFalse(h.matches(password.getBytes(), (String) null, EncodeFormat.HEX));
+        assertFalse(h.matches(password.getBytes(), (String) null, null));
+
+        // encoderFormat이 null일 경우 기본값 HEX로 설정
+        assertTrue(h.matches(password.getBytes(), getHash(EHash.MD5), null));
+
+        // null 체크
+        assertFalse(h.matches(password, null));
+        assertFalse(h.matches(password, (String) null, EncodeFormat.HEX));
+        assertFalse(h.matches(password, (String) null, null));
+
+        // encoderFormat이 null일 경우 기본값 HEX로 설정
+        assertTrue(h.matches(password, getHash(EHash.MD5), null));
+    }
+
     private void hashingTest(EHash algorithm) {
         passwordHashTest(algorithm);
         fileHashTest(algorithm);

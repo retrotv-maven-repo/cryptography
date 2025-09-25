@@ -77,11 +77,6 @@ public class Hash implements PlaintextHash {
     }
 
     @Override
-    public boolean matches(@NonNull byte[] data, String digest) {
-        return matches(data, digest, EncodeFormat.HEX);
-    }
-
-    @Override
     public boolean matches(@NonNull byte[] data, String digest, EncodeFormat encoderFormat) {
         if (encoderFormat == null) {
             log.debug("encoderFormat이 null 입니다. 기본값 HEX로 설정합니다.");
