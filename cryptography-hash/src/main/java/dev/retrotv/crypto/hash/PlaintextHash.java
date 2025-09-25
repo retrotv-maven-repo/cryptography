@@ -1,8 +1,8 @@
 package dev.retrotv.crypto.hash;
 
 import dev.retrotv.data.enums.EncodeFormat;
+import lombok.NonNull;
 
-import java.io.IOException;
 import java.nio.charset.Charset;
 
 /**
@@ -16,7 +16,7 @@ public interface PlaintextHash extends BinaryHash {
      * @param plaintext 해시 할 평문
      * @return 해시 값
      */
-    default byte[] hashing(CharSequence plaintext) throws IOException {
+    default byte[] hashing(@NonNull CharSequence plaintext) {
         return hashing(plaintext.toString().getBytes());
     }
 
@@ -28,7 +28,7 @@ public interface PlaintextHash extends BinaryHash {
      * @param charset 해시 할 평문의 캐릭터 셋
      * @return 해시 값
      */
-    default byte[] hashing(CharSequence plaintext, Charset charset) throws IOException {
+    default byte[] hashing(@NonNull CharSequence plaintext, Charset charset) {
         return hashing(plaintext.toString().getBytes(charset));
     }
 
@@ -39,9 +39,8 @@ public interface PlaintextHash extends BinaryHash {
      * @param plaintext 해시 할 평문
      * @param digest 비교할 해시 값
      * @return 일치 여부
-     * @throws IOException 바이너리를 읽어들이는 과정에서 오류가 발생할 경우 던짐
      */
-    default boolean matches(CharSequence plaintext, String digest) throws IOException {
+    default boolean matches(@NonNull CharSequence plaintext, String digest) {
         return matches(plaintext.toString().getBytes(), digest, EncodeFormat.HEX);
     }
 
@@ -53,9 +52,8 @@ public interface PlaintextHash extends BinaryHash {
      * @param digest 비교할 해시 값
      * @param encoderFormat 해시 값을 인코딩할 포맷 (기본값: HEX)
      * @return 일치 여부
-     * @throws IOException 바이너리를 읽어들이는 과정에서 오류가 발생할 경우 던짐
      */
-    default boolean matches(CharSequence plaintext, String digest, EncodeFormat encoderFormat) throws IOException {
+    default boolean matches(@NonNull CharSequence plaintext, String digest, EncodeFormat encoderFormat) {
         return matches(plaintext.toString().getBytes(), digest, encoderFormat);
     }
 }

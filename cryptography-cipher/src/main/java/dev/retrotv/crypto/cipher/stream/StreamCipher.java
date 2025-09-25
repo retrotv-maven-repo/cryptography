@@ -3,6 +3,7 @@ package dev.retrotv.crypto.cipher.stream;
 import dev.retrotv.crypto.cipher.TwoWayEncryption;
 import dev.retrotv.crypto.cipher.param.Param;
 import dev.retrotv.crypto.exception.CryptoFailException;
+import lombok.NonNull;
 
 import org.bouncycastle.crypto.io.CipherInputStream;
 import org.bouncycastle.crypto.io.CipherOutputStream;
@@ -14,8 +15,8 @@ import java.io.OutputStream;
 public abstract class StreamCipher implements TwoWayEncryption {
     protected org.bouncycastle.crypto.StreamCipher engine;
 
-    public abstract void encrypt(InputStream input, OutputStream output, Param params);
-    public abstract void decrypt(InputStream input, OutputStream output, Param params);
+    public abstract void encrypt(@NonNull InputStream input, @NonNull OutputStream output, @NonNull Param params);
+    public abstract void decrypt(@NonNull InputStream input, @NonNull OutputStream output, @NonNull Param params);
 
     protected void streamEncrypt(InputStream input, OutputStream output) {
         try (CipherOutputStream cos = new CipherOutputStream(output, this.engine)) {

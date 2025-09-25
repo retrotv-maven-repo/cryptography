@@ -8,7 +8,7 @@ public interface PasswordEncoder {
      * @param rawPassword 암호화 할 비밀번호
      * @return 암호화 된 비밀번호
      */
-    /* @Nullable */ String encode(/* @Nullable */ CharSequence rawPassword);
+    String encode(CharSequence rawPassword);
 
     /**
      * 암호화 된 비밀번호와 입력받은 비밀번호를 비교하고 일치 여부를 반환합니다.
@@ -17,7 +17,7 @@ public interface PasswordEncoder {
      * @param encodedPassword 암호화 된 비밀번호
      * @return 비밀번호 일치여부
      */
-    boolean matches(/* @Nullable */ CharSequence rawPassword, /* @Nullable */ String encodedPassword);
+    boolean matches(CharSequence rawPassword, String encodedPassword);
 
     /**
      * 보안 강화를 위해 인코딩된 비밀번호를 다시 인코딩해야 하는 경우 true를 반환합니다.
@@ -27,7 +27,7 @@ public interface PasswordEncoder {
      * @return 보안 강화를 위해 인코딩된 비밀번호를 다시 인코딩해야 하는 경우 true를 반환합니다.
      *         그렇지 않으면 false입니다.
      */
-    default boolean upgradeEncoding(/* @Nullable */ String encodedPassword) {
+    default boolean upgradeEncoding(String encodedPassword) {
         return false;
     }
 }

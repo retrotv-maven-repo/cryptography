@@ -1,7 +1,9 @@
 package dev.retrotv.crypto.hash.util;
 
-import dev.retrotv.crypto.exception.CryptoFailException;
+import dev.retrotv.crypto.exception.AlgorithmNotFoundException;
 import dev.retrotv.crypto.hash.enums.EHash;
+import lombok.NonNull;
+
 import org.bouncycastle.jcajce.provider.digest.SHA3;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,7 +27,7 @@ public class MessageDigestUtils {
      * @param data 암호화 할 데이터
      * @return 암호화 된 데이터
      */
-    public static byte[] hashing(EHash algorithm, byte[] data) {
+    public static byte[] hashing(EHash algorithm, @NonNull byte[] data) {
         switch (algorithm) {
             case CRC32:
                 return digestCRC32(data);
@@ -46,7 +48,7 @@ public class MessageDigestUtils {
                     md.update(data);
                     return md.digest();
                 } catch (NoSuchAlgorithmException ex) {
-                    throw new CryptoFailException("지원하지 않는 해시 알고리즘 입니다. 알고리즘 명: " + algorithmName, ex);
+                    throw new AlgorithmNotFoundException("지원하지 않는 해시 알고리즘 입니다. 알고리즘 명: " + algorithmName, ex);
                 }
             }
 
@@ -75,7 +77,7 @@ public class MessageDigestUtils {
             }
 
             default:
-                throw new IllegalArgumentException("지원하지 않는 해시 알고리즘: " + algorithm);
+                throw new AlgorithmNotFoundException("지원하지 않는 해시 알고리즘: " + algorithm);
         }
     }
 

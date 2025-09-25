@@ -3,6 +3,8 @@ package dev.retrotv.crypto.cipher.stream;
 import dev.retrotv.crypto.cipher.param.Param;
 import dev.retrotv.crypto.cipher.param.ParamWithIV;
 import dev.retrotv.crypto.cipher.result.Result;
+import lombok.NonNull;
+
 import org.bouncycastle.crypto.engines.ChaChaEngine;
 import org.bouncycastle.crypto.params.KeyParameter;
 import org.bouncycastle.crypto.params.ParametersWithIV;
@@ -21,7 +23,7 @@ public class Chacha20 extends StreamCipher {
     }
 
     @Override
-    public Result encrypt(byte[] data, Param params) {
+    public Result encrypt(@NonNull byte[] data, @NonNull Param params) {
         if (!(params instanceof ParamWithIV)) {
             throw new IllegalArgumentException(REQUIRED_MESSAGE);
         }
@@ -35,7 +37,7 @@ public class Chacha20 extends StreamCipher {
     }
 
     @Override
-    public void encrypt(InputStream input, OutputStream output, Param params) {
+    public void encrypt(@NonNull InputStream input, @NonNull OutputStream output, @NonNull Param params) {
         if (!(params instanceof ParamWithIV)) {
             throw new IllegalArgumentException(REQUIRED_MESSAGE);
         }
@@ -46,7 +48,7 @@ public class Chacha20 extends StreamCipher {
     }
 
     @Override
-    public Result decrypt(byte[] encryptedData, Param params) {
+    public Result decrypt(@NonNull byte[] encryptedData, @NonNull Param params) {
         if (!(params instanceof ParamWithIV)) {
             throw new IllegalArgumentException(REQUIRED_MESSAGE);
         }
@@ -60,7 +62,7 @@ public class Chacha20 extends StreamCipher {
     }
 
     @Override
-    public void decrypt(InputStream input, OutputStream output, Param params) {
+    public void decrypt(@NonNull InputStream input, @NonNull OutputStream output, @NonNull Param params) {
         if (!(params instanceof ParamWithIV)) {
             throw new IllegalArgumentException(REQUIRED_MESSAGE);
         }
