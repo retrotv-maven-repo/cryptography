@@ -5,6 +5,8 @@ import dev.retrotv.crypto.cipher.enums.EMode;
 import dev.retrotv.crypto.cipher.result.Result;
 
 import lombok.NonNull;
+
+import org.bouncycastle.crypto.DataLengthException;
 import org.bouncycastle.crypto.InvalidCipherTextException;
 import org.bouncycastle.crypto.paddings.PaddedBufferedBlockCipher;
 
@@ -19,7 +21,7 @@ public abstract class PaddedBlockCipherMode extends BlockCipherMode {
         int tam = cipher.processBytes(data, 0, data.length, encryptedData, 0);
         try {
             tam += cipher.doFinal(encryptedData, tam);
-        } catch (InvalidCipherTextException ex) {
+        } catch (DataLengthException | IllegalStateException | InvalidCipherTextException ex) {
             throw new CryptoFailException(ex);
         }
 
@@ -32,7 +34,7 @@ public abstract class PaddedBlockCipherMode extends BlockCipherMode {
         int finalLen;
         try {
             finalLen = cipher.doFinal(outputData, tam);
-        } catch (InvalidCipherTextException ex) {
+        } catch (DataLengthException | IllegalStateException | InvalidCipherTextException ex) {
             throw new CryptoFailException(ex);
         }
         byte[] originalData = new byte[tam + finalLen];

@@ -1,6 +1,10 @@
 package dev.retrotv.crypto.cipher.etc;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,6 +17,7 @@ import dev.retrotv.crypto.cipher.block.mode.CTS;
 import dev.retrotv.crypto.cipher.block.mode.GCM;
 import dev.retrotv.crypto.cipher.block.mode.OFB;
 import dev.retrotv.crypto.cipher.param.Param;
+import dev.retrotv.crypto.cipher.stream.Chacha20;
 
 class CastingTypeTest {
 
@@ -98,5 +103,23 @@ class CastingTypeTest {
 
         assertThrows(IllegalArgumentException.class, () -> mode.encrypt(data, params));
         assertThrows(IllegalArgumentException.class, () -> mode.decrypt(data, params));
+    }
+
+    @Test
+    @DisplayName("Chacha20 - enrypt(data, params), decrypt(encryptedData, params): params가 ParamWithIV 타입이 아닌 경우")
+    void testCastingChacha20() {
+        Chacha20 mode = new Chacha20();
+        byte[] data = "Hello, World!".getBytes();
+        byte[] key = "012345678901234".getBytes();
+        Param params = new Param(key);
+
+        ByteArrayInputStream input = new ByteArrayInputStream(data);
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+
+        assertThrows(IllegalArgumentException.class, () -> mode.encrypt(data, params));
+        assertThrows(IllegalArgumentException.class, () -> mode.decrypt(data, params));
+
+        assertThrows(IllegalArgumentException.class, () -> mode.encrypt(input, output, params));
+        assertThrows(IllegalArgumentException.class, () -> mode.decrypt(input, output, params));
     }
 }

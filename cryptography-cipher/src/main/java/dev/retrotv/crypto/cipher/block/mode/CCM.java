@@ -52,7 +52,7 @@ public class CCM extends AEADBlockCipherMode {
         try {
             // doFinal을 해야 tag까지 정상적으로 생성된다
             tam += cipher.doFinal(encryptedData, tam);
-        } catch (InvalidCipherTextException ex) {
+        } catch (IllegalStateException | InvalidCipherTextException ex) {
             throw new CryptoFailException("CCM 인증 태그 생성 실패", ex);
         }
 

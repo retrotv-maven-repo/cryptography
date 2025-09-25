@@ -10,6 +10,7 @@ import dev.retrotv.crypto.exception.CryptoFailException;
 import lombok.NonNull;
 
 import org.bouncycastle.crypto.CipherParameters;
+import org.bouncycastle.crypto.DataLengthException;
 import org.bouncycastle.crypto.InvalidCipherTextException;
 import org.bouncycastle.crypto.modes.CBCBlockCipher;
 import org.bouncycastle.crypto.modes.CTSBlockCipher;
@@ -51,7 +52,7 @@ public class CTS extends BlockCipherMode {
         int len = cipher.processBytes(encryptedData, 0, encryptedData.length, originalData, 0);
         try {
             cipher.doFinal(originalData, len);
-        } catch (InvalidCipherTextException ex) {
+        } catch (DataLengthException | IllegalStateException | InvalidCipherTextException ex) {
             throw new CryptoFailException(ex);
         }
 

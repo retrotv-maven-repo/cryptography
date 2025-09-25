@@ -46,7 +46,7 @@ public class GCM extends AEADBlockCipherMode {
 
         try {
             tam += cipher.doFinal(outputData, tam);
-        } catch (InvalidCipherTextException ex) {
+        } catch (IllegalStateException | InvalidCipherTextException ex) {
             throw new CryptoFailException("GCM 인증 태그 생성 실패", ex);
         }
 
