@@ -14,11 +14,7 @@ public abstract class PaddedBlockCipherMode extends BlockCipherMode {
         super(mode, blockCipher);
     }
 
-    protected Result encryptBlock(byte[] data, @NonNull PaddedBufferedBlockCipher cipher) {
-        if (data == null) {
-            throw new NullPointerException("암호화 할 데이터가 존재하지 않습니다.");
-        }
-
+    protected Result encryptBlock(@NonNull byte[] data, @NonNull PaddedBufferedBlockCipher cipher) {
         byte[] encryptedData = new byte[cipher.getOutputSize(data.length)];
         int tam = cipher.processBytes(data, 0, data.length, encryptedData, 0);
         try {
@@ -30,11 +26,7 @@ public abstract class PaddedBlockCipherMode extends BlockCipherMode {
         return new Result(encryptedData);
     }
 
-    protected Result decryptBlock(byte[] encryptedData, @NonNull PaddedBufferedBlockCipher cipher) {
-        if (encryptedData == null) {
-            throw new NullPointerException("복호화 할 데이터가 존재하지 않습니다.");
-        }
-
+    protected Result decryptBlock(@NonNull byte[] encryptedData, @NonNull PaddedBufferedBlockCipher cipher) {
         byte[] outputData = new byte[cipher.getOutputSize(encryptedData.length)];
         int tam = cipher.processBytes(encryptedData, 0, encryptedData.length, outputData, 0);
         int finalLen;
