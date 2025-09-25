@@ -16,13 +16,13 @@
 
 package org.springframework.security.crypto.password;
 
-import java.security.MessageDigest;
-import java.util.Base64;
-import java.util.Locale;
-
 import org.springframework.security.crypto.codec.Utf8;
 import org.springframework.security.crypto.keygen.BytesKeyGenerator;
 import org.springframework.security.crypto.keygen.KeyGenerators;
+
+import java.security.MessageDigest;
+import java.util.Base64;
+import java.util.Locale;
 
 /**
  * This {@link PasswordEncoder} is provided for legacy purposes only and is not considered

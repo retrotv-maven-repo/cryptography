@@ -24,91 +24,91 @@ class HashTest {
 
     @RepeatedTest(value = 100, name = "{displayName} {currentRepetition}/{totalRepetitions}")
     @DisplayName("CRC-32 알고리즘으로 해싱")
-    void test_crc32() throws IOException {
+    void test_crc32() {
         hashingTest(EHash.CRC32);
     }
 
     @RepeatedTest(value = 100, name = "{displayName} {currentRepetition}/{totalRepetitions}")
     @DisplayName("MD2 알고리즘으로 해싱")
-    void test_md2() throws IOException {
+    void test_md2() {
         hashingTest(EHash.MD2);
     }
 
     @RepeatedTest(value = 100, name = "{displayName} {currentRepetition}/{totalRepetitions}")
     @DisplayName("MD5 알고리즘으로 해싱")
-    void test_md5() throws IOException {
+    void test_md5() {
         hashingTest(EHash.MD5);
     }
 
     @RepeatedTest(value = 100, name = "{displayName} {currentRepetition}/{totalRepetitions}")
     @DisplayName("SHA-1 알고리즘으로 해싱")
-    void test_sha1() throws IOException {
+    void test_sha1() {
         hashingTest(EHash.SHA1);
     }
 
     @RepeatedTest(value = 100, name = "{displayName} {currentRepetition}/{totalRepetitions}")
     @DisplayName("SHA-224 알고리즘으로 해싱")
-    void test_sha224() throws IOException {
+    void test_sha224() {
         hashingTest(EHash.SHA224);
     }
 
     @RepeatedTest(value = 100, name = "{displayName} {currentRepetition}/{totalRepetitions}")
     @DisplayName("SHA-256 알고리즘으로 해싱")
-    void test_sha256() throws IOException {
+    void test_sha256() {
         hashingTest(EHash.SHA256);
     }
 
     @RepeatedTest(value = 100, name = "{displayName} {currentRepetition}/{totalRepetitions}")
     @DisplayName("SHA-384 알고리즘으로 해싱")
-    void test_sha384() throws IOException {
+    void test_sha384() {
         hashingTest(EHash.SHA384);
     }
 
     @RepeatedTest(value = 100, name = "{displayName} {currentRepetition}/{totalRepetitions}")
     @DisplayName("SHA-512 알고리즘으로 해싱")
-    void test_sha512() throws IOException {
+    void test_sha512() {
         hashingTest(EHash.SHA512);
     }
 
     @RepeatedTest(value = 100, name = "{displayName} {currentRepetition}/{totalRepetitions}")
     @DisplayName("SHA-512/224 알고리즘으로 해싱")
-    void test_sha512224() throws IOException {
+    void test_sha512224() {
         hashingTest(EHash.SHA512224);
     }
 
     @RepeatedTest(value = 100, name = "{displayName} {currentRepetition}/{totalRepetitions}")
     @DisplayName("SHA-512/256 알고리즘으로 해싱")
-    void test_sha512256() throws IOException {
+    void test_sha512256() {
         hashingTest(EHash.SHA512256);
     }
 
     @RepeatedTest(value = 100, name = "{displayName} {currentRepetition}/{totalRepetitions}")
     @DisplayName("SHA3-224 알고리즘으로 해싱")
-    void test_sha3224() throws IOException {
+    void test_sha3224() {
         hashingTest(EHash.SHA3224);
     }
 
     @RepeatedTest(value = 100, name = "{displayName} {currentRepetition}/{totalRepetitions}")
     @DisplayName("SHA3-256 알고리즘으로 해싱")
-    void test_sha3256() throws IOException {
+    void test_sha3256() {
         hashingTest(EHash.SHA3256);
     }
 
     @RepeatedTest(value = 100, name = "{displayName} {currentRepetition}/{totalRepetitions}")
     @DisplayName("SHA3-384 알고리즘으로 해싱")
-    void test_sha3384() throws IOException {
+    void test_sha3384() {
         hashingTest(EHash.SHA3384);
     }
 
     @RepeatedTest(value = 100, name = "{displayName} {currentRepetition}/{totalRepetitions}")
     @DisplayName("SHA3-512 알고리즘으로 해싱")
-    void test_sha3512() throws IOException {
+    void test_sha3512() {
         hashingTest(EHash.SHA3512);
     }
 
     @Test
     @DisplayName("getInstance(String) 테스트")
-    void test_getInstance() throws IOException {
+    void test_getInstance() {
         Hash h1 = Hash.getInstance("MD5");
         Hash h2 = Hash.getInstance(EHash.MD5);
 
@@ -124,19 +124,42 @@ class HashTest {
         );
     }
 
-    private void hashingTest(EHash algorithm) throws IOException {
+    @Test
+    @DisplayName("추가 테스트")
+    void test_additional() {
+        Hash h = Hash.getInstance(EHash.MD5);
+
+        // null 체크
+        assertFalse(h.matches(password.getBytes(), (byte[]) null));
+        assertFalse(h.matches(password.getBytes(), (String) null));
+        assertFalse(h.matches(password.getBytes(), (String) null, EncodeFormat.HEX));
+        assertFalse(h.matches(password.getBytes(), (String) null, null));
+
+        // encoderFormat이 null일 경우 기본값 HEX로 설정
+        assertTrue(h.matches(password.getBytes(), getHash(EHash.MD5), null));
+
+        // null 체크
+        assertFalse(h.matches(password, null));
+        assertFalse(h.matches(password, (String) null, EncodeFormat.HEX));
+        assertFalse(h.matches(password, (String) null, null));
+
+        // encoderFormat이 null일 경우 기본값 HEX로 설정
+        assertTrue(h.matches(password, getHash(EHash.MD5), null));
+    }
+
+    private void hashingTest(EHash algorithm) {
         passwordHashTest(algorithm);
         fileHashTest(algorithm);
     }
 
-    private void passwordHashTest(EHash algorithm) throws IOException {
+    private void passwordHashTest(EHash algorithm) {
         Hash h = Hash.getInstance(algorithm);
         assertTrue(h.matches(password.getBytes(), getHash(algorithm)));
         assertEquals(HEXCodecUtils.encode(h.hashing(password)), getHash(algorithm));
         assertEquals(HEXCodecUtils.encode(h.hashing(password, java.nio.charset.StandardCharsets.UTF_8)), getHash(algorithm));
     }
 
-    private void fileHashTest(EHash algorithm) throws IOException {
+    private void fileHashTest(EHash algorithm) {
         BinaryHash h = (BinaryHash) Hash.getInstance(algorithm);
 
         assertTrue(
@@ -177,9 +200,6 @@ class HashTest {
     }
 
     private String readJson() throws IOException {
-        if (checksum == null) {
-            throw new IOException();
-        }
         StringBuilder sb = new StringBuilder();
         try (BufferedReader reader = new BufferedReader(new FileReader(checksum.getFile()))) {
             String line;

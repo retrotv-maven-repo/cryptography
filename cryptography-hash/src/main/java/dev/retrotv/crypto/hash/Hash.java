@@ -1,12 +1,14 @@
 package dev.retrotv.crypto.hash;
 
 import dev.retrotv.crypto.exception.AlgorithmNotFoundException;
+import dev.retrotv.crypto.hash.enums.EHash;
 import dev.retrotv.crypto.hash.util.MessageDigestUtils;
 import dev.retrotv.data.enums.EncodeFormat;
 import dev.retrotv.data.utils.ByteUtils;
+import lombok.NonNull;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import dev.retrotv.crypto.hash.enums.EHash;
 
 import java.util.Objects;
 
@@ -28,7 +30,7 @@ public class Hash implements PlaintextHash {
      * @param algorithm 해시 알고리즘
      * @return 해시 인스턴스
      */
-    public static synchronized Hash getInstance(EHash algorithm) {
+    public static synchronized Hash getInstance(@NonNull EHash algorithm) {
         if (instance != null && !Objects.equals(instance.algorithm, algorithm)) {
             instance = null;
         }
@@ -50,16 +52,17 @@ public class Hash implements PlaintextHash {
      * @return 해시 인스턴스
      * @throws AlgorithmNotFoundException 지원하지 않는 알고리즘일 경우 던짐
      */
-    public static Hash getInstance(String algorithm) {
+    public static Hash getInstance(@NonNull String algorithm) {
         try {
-            return getInstance(EHash.valueOf(algorithm));
-        } catch (IllegalArgumentException e) {
-            throw new AlgorithmNotFoundException("지원하지 않는 알고리즘 입니다.", e);
+            // .valueOf()는 해당하는 enum이 없으면 IllegalArgumentException을 던짐
+            return getInstance(EHash.valueOf(algorithm.toUpperCase()));
+        } catch (IllegalArgumentException ex) {
+            throw new AlgorithmNotFoundException("지원하지 않는 알고리즘 입니다.", ex);
         }
     }
 
     @Override
-    public byte[] hashing(byte[] data) {
+    public byte[] hashing(@NonNull byte[] data) {
         log.debug("선택된 해시 알고리즘: {}", algorithm.label());
 
         if (algorithm != EHash.CRC32) {
@@ -74,12 +77,12 @@ public class Hash implements PlaintextHash {
     }
 
     @Override
-    public boolean matches(byte[] data, String digest) {
-        return matches(data, digest, EncodeFormat.HEX);
-    }
-
-    @Override
-    public boolean matches(byte[] data, String digest, EncodeFormat encoderFormat) {
+    public boolean matches(@NonNull byte[] data, String digest, EncodeFormat encoderFormat) {
+        if (encoderFormat == null) {
+            log.debug("encoderFormat이 null 입니다. 기본값 HEX로 설정합니다.");
+            encoderFormat = EncodeFormat.HEX;
+        }
+        
         log.debug("인코딩 포맷 유형: {}", encoderFormat.name());
 
         if (digest == null) {

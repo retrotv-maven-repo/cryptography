@@ -16,12 +16,12 @@
 
 package org.springframework.security.crypto.password;
 
-import java.security.MessageDigest;
-
 import org.springframework.security.crypto.codec.Hex;
 import org.springframework.security.crypto.keygen.BytesKeyGenerator;
 import org.springframework.security.crypto.keygen.KeyGenerators;
 import org.springframework.security.crypto.util.EncodingUtils;
+
+import java.security.MessageDigest;
 
 /**
  * Abstract base class for password encoders

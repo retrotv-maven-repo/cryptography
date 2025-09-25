@@ -18,7 +18,6 @@ package org.springframework.security.crypto.argon2;
 
 import org.bouncycastle.crypto.generators.Argon2BytesGenerator;
 import org.bouncycastle.crypto.params.Argon2Parameters;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.keygen.BytesKeyGenerator;

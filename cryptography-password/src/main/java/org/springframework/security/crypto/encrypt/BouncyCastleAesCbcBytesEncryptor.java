@@ -22,7 +22,6 @@ import org.bouncycastle.crypto.modes.CBCBlockCipher;
 import org.bouncycastle.crypto.paddings.PKCS7Padding;
 import org.bouncycastle.crypto.paddings.PaddedBufferedBlockCipher;
 import org.bouncycastle.crypto.params.ParametersWithIV;
-
 import org.springframework.security.crypto.encrypt.AesBytesEncryptor.CipherAlgorithm;
 import org.springframework.security.crypto.keygen.BytesKeyGenerator;
 import org.springframework.security.crypto.util.EncodingUtils;

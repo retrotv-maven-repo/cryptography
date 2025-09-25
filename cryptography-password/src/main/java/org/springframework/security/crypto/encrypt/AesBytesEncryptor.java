@@ -16,7 +16,10 @@
 
 package org.springframework.security.crypto.encrypt;
 
-import java.security.spec.AlgorithmParameterSpec;
+import org.springframework.security.crypto.codec.Hex;
+import org.springframework.security.crypto.keygen.BytesKeyGenerator;
+import org.springframework.security.crypto.keygen.KeyGenerators;
+import org.springframework.security.crypto.util.EncodingUtils;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
@@ -24,11 +27,7 @@ import javax.crypto.spec.GCMParameterSpec;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
-
-import org.springframework.security.crypto.codec.Hex;
-import org.springframework.security.crypto.keygen.BytesKeyGenerator;
-import org.springframework.security.crypto.keygen.KeyGenerators;
-import org.springframework.security.crypto.util.EncodingUtils;
+import java.security.spec.AlgorithmParameterSpec;
 
 /**
  * Encryptor that uses AES encryption.

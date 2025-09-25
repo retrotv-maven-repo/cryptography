@@ -4,7 +4,8 @@ import dev.retrotv.crypto.password.enums.SecretKeyFactoryAlgorithm;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class Pbkdf2PasswordEncoderTest {
 

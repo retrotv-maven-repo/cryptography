@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "dev.retrotv"
-version = "0.60.0-alpha"
+version = "0.61.0-alpha"
 
 tasks.withType(JavaCompile::class) {
     options.encoding = "UTF-8"
@@ -38,6 +38,8 @@ subprojects {
     apply(plugin = "com.vanniktech.maven.publish")
 
     java {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
         toolchain {
             languageVersion.set(JavaLanguageVersion.of(8))
         }

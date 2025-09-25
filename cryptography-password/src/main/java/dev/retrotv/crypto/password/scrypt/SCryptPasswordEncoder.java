@@ -6,6 +6,7 @@ import dev.retrotv.crypto.password.PasswordEncoder;
  * SCrypt 해싱 함수를 사용하는 PasswordEncoder 구현.
  * SCryptPasswordEncoder는 CPU 비용, 메모리 비용, 병렬화, 키 길이 및 솔트 길이 매개변수를 제공할 수 있습니다.
  */
+@SuppressWarnings("java:S5344")
 public class SCryptPasswordEncoder implements PasswordEncoder {
     private final org.springframework.security.crypto.scrypt.SCryptPasswordEncoder encoder;
 

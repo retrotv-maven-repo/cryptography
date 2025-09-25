@@ -3,9 +3,8 @@ package dev.retrotv.crypto.util;
 import dev.retrotv.crypto.exception.DecodeException;
 import dev.retrotv.data.utils.ByteUtils;
 import dev.retrotv.data.utils.StringUtils;
+import lombok.NonNull;
 import org.apache.commons.codec.DecoderException;
-
-import java.util.Objects;
 
 /**
  * HEX 인코딩 및 디코딩 유틸리티 클래스.
@@ -24,8 +23,7 @@ public class HEXCodecUtils {
      * @param bytes 인코딩할 바이트 배열
      * @return HEX 문자열
      */
-    public static String encode(byte[] bytes) {
-        Objects.requireNonNull(bytes, "인코딩할 바이트 배열은 null일 수 없습니다.");
+    public static String encode(@NonNull byte[] bytes) {
         return ByteUtils.toHexString(bytes);
     }
 
@@ -36,8 +34,7 @@ public class HEXCodecUtils {
      * @return 바이트 배열
      * @throws DecodeException HEX 문자열을 디코딩하는 도중 오류가 발생한 경우
      */
-    public static byte[] decode(String hexString) {
-        Objects.requireNonNull(hexString, "디코딩할 문자열은 null일 수 없습니다.");
+    public static byte[] decode(@NonNull String hexString) {
         byte[] bytes;
         try {
             bytes = StringUtils.hexToByteArray(hexString);

@@ -1,7 +1,8 @@
 package dev.retrotv.crypto.hash;
 
 import dev.retrotv.data.enums.EncodeFormat;
-import java.io.IOException;
+import lombok.NonNull;
+
 import java.util.Arrays;
 
 /**
@@ -14,9 +15,8 @@ public interface BinaryHash {
      *
      * @param data 해시 할 바이너리 데이터
      * @return 해시 값
-     * @throws IOException 바이너리를 읽어들이는 과정에서 오류가 발생할 경우 던짐
      */
-    byte[] hashing(byte[] data) throws IOException;
+    byte[] hashing(@NonNull byte[] data);
 
     /**
      * 바이너리 데이터를 해시해 해시 값을 생성한 뒤, 비교할 해시 값과의 일치 여부를 반환합니다.
@@ -24,9 +24,8 @@ public interface BinaryHash {
      * @param data 해시 할 바이너리 데이터
      * @param digest 비교 할 해시 값
      * @return 일치 여부
-     * @throws IOException 바이너리를 읽어들이는 과정에서 오류가 발생할 경우 던짐
      */
-    default boolean matches(byte[] data, byte[] digest) throws IOException {
+    default boolean matches(@NonNull byte[] data, byte[] digest) {
         return Arrays.equals(digest, hashing(data));
     }
 
@@ -37,9 +36,8 @@ public interface BinaryHash {
      * @param data 해시 할 바이너리 데이터
      * @param digest 비교할 해시 값
      * @return 일치 여부
-     * @throws IOException 바이너리를 읽어들이는 과정에서 오류가 발생할 경우 던짐
      */
-    default boolean matches(byte[] data, String digest) throws IOException {
+    default boolean matches(@NonNull byte[] data, String digest) {
         return matches(data, digest, EncodeFormat.HEX);
     }
 
@@ -51,7 +49,6 @@ public interface BinaryHash {
      * @param digest 비교할 해시 값
      * @param encoderFormat 해시 값을 인코딩할 포맷 (기본값: HEX)
      * @return 일치 여부
-     * @throws IOException 바이너리를 읽어들이는 과정에서 오류가 발생할 경우 던짐
      */
-    boolean matches(byte[] data, String digest, EncodeFormat encoderFormat) throws IOException;
+    boolean matches(@NonNull byte[] data, String digest, EncodeFormat encoderFormat);
 }

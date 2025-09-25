@@ -13,8 +13,6 @@ import dev.retrotv.data.utils.StringUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -28,7 +26,6 @@ class GCMTest {
     private byte[] hexToBytes(String hex) throws Exception { return StringUtils.hexToByteArray(hex); }
     private String bytesToHex(byte[] bytes) { return ByteUtils.toHexString(bytes).toUpperCase(); }
 
-    private static final Logger log = LoggerFactory.getLogger(GCMTest.class);
     private static final String[] ALGORITHM = {"ARIA", "LEA"};
     private static final int[] KEY_LENGTH = {128, 192, 256};
 

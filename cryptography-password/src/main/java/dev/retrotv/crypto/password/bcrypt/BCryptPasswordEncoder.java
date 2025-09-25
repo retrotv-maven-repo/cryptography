@@ -2,6 +2,7 @@ package dev.retrotv.crypto.password.bcrypt;
 
 import dev.retrotv.crypto.password.PasswordEncoder;
 import dev.retrotv.crypto.password.enums.BCryptVersion;
+
 import java.security.SecureRandom;
 
 /**
