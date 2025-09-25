@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "dev.retrotv"
-version = "0.60.0-alpha"
+version = "0.61.0-alpha"
 
 tasks.withType(JavaCompile::class) {
     options.encoding = "UTF-8"
