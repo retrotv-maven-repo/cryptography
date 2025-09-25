@@ -14,11 +14,11 @@ import dev.retrotv.crypto.cipher.block.mode.GCM;
 import dev.retrotv.crypto.cipher.block.mode.OFB;
 import dev.retrotv.crypto.cipher.param.Param;
 
-public class CastingTypeTest {
+class CastingTypeTest {
 
     @Test
     @DisplayName("CBC - enrypt(data, params), decrypt(encryptedData, params): params가 ParamWithIV 타입이 아닌 경우")
-    public void testCastingCBC() {
+    void testCastingCBC() {
         CBC mode = new CBC(new AES());
         byte[] data = "Hello, World!".getBytes();
         byte[] key = "012345678901234".getBytes();
@@ -30,7 +30,7 @@ public class CastingTypeTest {
 
     @Test
     @DisplayName("CCM - enrypt(data, params), decrypt(encryptedData, params): params가 ParamWithIV 타입이 아닌 경우")
-    public void testCastingCCM() {
+    void testCastingCCM() {
         CCM mode = new CCM(new AES());
         byte[] data = "Hello, World!".getBytes();
         byte[] key = "012345678901234".getBytes();
@@ -42,7 +42,7 @@ public class CastingTypeTest {
 
     @Test
     @DisplayName("CFB - enrypt(data, params), decrypt(encryptedData, params): params가 ParamWithIV 타입이 아닌 경우")
-    public void testCastingCFB() {
+    void testCastingCFB() {
         CFB mode = new CFB(new AES());
         byte[] data = "Hello, World!".getBytes();
         byte[] key = "012345678901234".getBytes();
@@ -54,7 +54,7 @@ public class CastingTypeTest {
 
     @Test
     @DisplayName("CTR - enrypt(data, params), decrypt(encryptedData, params): params가 ParamWithIV 타입이 아닌 경우")
-    public void testCastingCTR() {
+    void testCastingCTR() {
         CTR mode = new CTR(new AES());
         byte[] data = "Hello, World!".getBytes();
         byte[] key = "012345678901234".getBytes();
@@ -66,7 +66,7 @@ public class CastingTypeTest {
 
     @Test
     @DisplayName("CTS - enrypt(data, params), decrypt(encryptedData, params): params가 ParamWithIV 타입이 아닌 경우")
-    public void testCastingCTS() {
+    void testCastingCTS() {
         CTS mode = new CTS(new AES());
         byte[] data = "Hello, World!".getBytes();
         byte[] key = "012345678901234".getBytes();
@@ -78,7 +78,7 @@ public class CastingTypeTest {
 
     @Test
     @DisplayName("GCM - enrypt(data, params), decrypt(encryptedData, params): params가 ParamWithIV 타입이 아닌 경우")
-    public void testCastingGCM() {
+    void testCastingGCM() {
         GCM mode = new GCM(new AES());
         byte[] data = "Hello, World!".getBytes();
         byte[] key = "012345678901234".getBytes();
@@ -90,7 +90,7 @@ public class CastingTypeTest {
 
     @Test
     @DisplayName("OFB - enrypt(data, params), decrypt(encryptedData, params): params가 ParamWithIV 타입이 아닌 경우")
-    public void testCastingOFB() {
+    void testCastingOFB() {
         OFB mode = new OFB(new AES());
         byte[] data = "Hello, World!".getBytes();
         byte[] key = "012345678901234".getBytes();
