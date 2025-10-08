@@ -9,13 +9,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class KeyGeneratorTest {
+
     @Test
     @DisplayName("Exception 발생 테스트")
     void test_generateException() {
         assertThrows(IllegalArgumentException.class, () -> KeyGenerator.generateKey(4));
-        assertThrows(GenerateException.class, () -> KeyGenerator.generateKey(ECipher.AES));
-        assertThrows(GenerateException.class, () -> KeyGenerator.generateKey(ECipher.ARIA));
-        assertThrows(GenerateException.class, () -> KeyGenerator.generateKey(ECipher.LEA));
+        assertThrows(GenerateException.class, () -> KeyGenerator.generateKey(ECipher.AES, null));
+        assertThrows(GenerateException.class, () -> KeyGenerator.generateKey(ECipher.ARIA, null));
+        assertThrows(GenerateException.class, () -> KeyGenerator.generateKey(ECipher.LEA, null));
     }
 
     @Test
@@ -24,10 +25,10 @@ class KeyGeneratorTest {
         byte[] key = KeyGenerator.generateKey(ECipher.AES, 16);
         assertEquals(16, key.length);
 
-        key = KeyGenerator.generateKey(ECipher.DES);
+        key = KeyGenerator.generateKey(ECipher.DES, null);
         assertEquals(8, key.length);
 
-        key = KeyGenerator.generateKey(ECipher.SEED);
+        key = KeyGenerator.generateKey(ECipher.SEED, null);
         assertEquals(16, key.length);
     }
 }
