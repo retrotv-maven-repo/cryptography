@@ -15,7 +15,22 @@ import java.io.OutputStream;
 public abstract class StreamCipher implements TwoWayEncryption {
     protected org.bouncycastle.crypto.StreamCipher engine;
 
+    /**
+     * 스트림 암호화
+     *
+     * @param input 암호화할 스트림
+     * @param output 암호화된 스트림이 저장될 스트림
+     * @param params 암호화 파라미터
+     */
     public abstract void encrypt(@NonNull InputStream input, @NonNull OutputStream output, @NonNull Param params);
+
+    /**
+     * 스트림 복호화
+     *
+     * @param input 암호화된 스트림
+     * @param output 복호화된 스트림이 저장될 스트림
+     * @param params 복호화 파라미터
+     */
     public abstract void decrypt(@NonNull InputStream input, @NonNull OutputStream output, @NonNull Param params);
 
     protected void streamEncrypt(InputStream input, OutputStream output) {
