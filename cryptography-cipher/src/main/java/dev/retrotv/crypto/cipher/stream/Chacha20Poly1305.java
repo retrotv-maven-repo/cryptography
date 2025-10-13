@@ -21,6 +21,7 @@ import java.io.OutputStream;
 import java.security.*;
 import java.util.Arrays;
 
+@SuppressWarnings("squid:S5542") // Chacha20-Poly1305는 Padding이 필요없는 알고리즘임
 public class Chacha20Poly1305 extends AEADStreamCipher {
     private static final String REQUIRED_MESSAGE = "ChaCha20 모드는 ParamsWithIV 객체를 요구합니다.";
     private static final String ALGORITHM = "ChaCha20-Poly1305";
