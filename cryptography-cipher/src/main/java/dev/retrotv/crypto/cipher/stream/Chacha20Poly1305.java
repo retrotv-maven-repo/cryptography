@@ -41,20 +41,7 @@ public class Chacha20Poly1305 extends AEADStreamCipher {
 
     @Override
     public Result encrypt(@NonNull byte[] data, @NonNull Param params) {
-        if (!(params instanceof ParamWithIV)) {
-            throw new IllegalArgumentException(REQUIRED_MESSAGE);
-        }
-
-        ParamWithIV paramWithIV = (ParamWithIV) params;
-        SecretKeySpec key = new SecretKeySpec(paramWithIV.getKey(), KEY_ALGORITHM);
-        IvParameterSpec iv = new IvParameterSpec(paramWithIV.getIv());
-
-        try {
-            cipher.init(Cipher.ENCRYPT_MODE, key, iv);
-            cipher.updateAAD(aad);
-        } catch (InvalidAlgorithmParameterException | InvalidKeyException ex) {
-            throw new CryptoFailException("잘못된 암호화 키 혹은 초기화 벡터(IV)이거나 초기화 벡터를 사용하지 않는 알고리즘입니다.", ex);
-        }
+        this.cipher = getCipher(params, Cipher.ENCRYPT_MODE);
 
         byte[] encryptedData;
         try {
@@ -74,40 +61,13 @@ public class Chacha20Poly1305 extends AEADStreamCipher {
 
     @Override
     public void encrypt(@NonNull InputStream input, @NonNull OutputStream output, @NonNull Param params) {
-        if (!(params instanceof ParamWithIV)) {
-            throw new IllegalArgumentException(REQUIRED_MESSAGE);
-        }
-
-        ParamWithIV paramWithIV = (ParamWithIV) params;
-        SecretKeySpec key = new SecretKeySpec(paramWithIV.getKey(), KEY_ALGORITHM);
-        IvParameterSpec iv = new IvParameterSpec(paramWithIV.getIv());
-
-        try {
-            cipher.init(Cipher.ENCRYPT_MODE, key, iv);
-            cipher.updateAAD(aad);
-        } catch (InvalidAlgorithmParameterException | InvalidKeyException ex) {
-            throw new CryptoFailException("잘못된 암호화 키 혹은 초기화 벡터(IV)이거나 초기화 벡터를 사용하지 않는 알고리즘입니다.", ex);
-        }
-
+        this.cipher = getCipher(params, Cipher.ENCRYPT_MODE);
         this.streamEncrypt(input, output);
     }
 
     @Override
     public Result decrypt(@NonNull byte[] encryptedData, @NonNull Param params) {
-        if (!(params instanceof ParamWithIV)) {
-            throw new IllegalArgumentException(REQUIRED_MESSAGE);
-        }
-
-        ParamWithIV paramWithIV = (ParamWithIV) params;
-        SecretKeySpec key = new SecretKeySpec(paramWithIV.getKey(), KEY_ALGORITHM);
-        IvParameterSpec iv = new IvParameterSpec(paramWithIV.getIv());
-
-        try {
-            cipher.init(Cipher.DECRYPT_MODE, key, iv);
-            cipher.updateAAD(aad);
-        } catch (InvalidAlgorithmParameterException | InvalidKeyException ex) {
-            throw new CryptoFailException("잘못된 암호화 키 혹은 초기화 벡터(IV)이거나 초기화 벡터를 사용하지 않는 알고리즘입니다.", ex);
-        }
+        this.cipher = getCipher(params, Cipher.DECRYPT_MODE);
 
         byte[] originalData;
         try {
@@ -125,6 +85,11 @@ public class Chacha20Poly1305 extends AEADStreamCipher {
 
     @Override
     public void decrypt(@NonNull InputStream input, @NonNull OutputStream output, @NonNull Param params) {
+        this.cipher = getCipher(params, Cipher.DECRYPT_MODE);
+        this.streamDecrypt(input, output);
+    }
+
+    private Cipher getCipher(Param params, int mode) {
         if (!(params instanceof ParamWithIV)) {
             throw new IllegalArgumentException(REQUIRED_MESSAGE);
         }
@@ -134,12 +99,12 @@ public class Chacha20Poly1305 extends AEADStreamCipher {
         IvParameterSpec iv = new IvParameterSpec(paramWithIV.getIv());
 
         try {
-            cipher.init(Cipher.ENCRYPT_MODE, key, iv);
+            cipher.init(mode, key, iv);
             cipher.updateAAD(aad);
         } catch (InvalidAlgorithmParameterException | InvalidKeyException ex) {
             throw new CryptoFailException("잘못된 암호화 키 혹은 초기화 벡터(IV)이거나 초기화 벡터를 사용하지 않는 알고리즘입니다.", ex);
         }
 
-        this.streamDecrypt(input, output);
+        return cipher;
     }
 }
