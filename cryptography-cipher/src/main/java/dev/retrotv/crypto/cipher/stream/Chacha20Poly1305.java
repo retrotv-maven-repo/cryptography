@@ -105,7 +105,7 @@ public class Chacha20Poly1305 extends AEADStreamCipher {
         IvParameterSpec iv = new IvParameterSpec(paramWithIV.getIv());
 
         try {
-            cipher.init(Cipher.ENCRYPT_MODE, key, iv);
+            cipher.init(Cipher.DECRYPT_MODE, key, iv);
             cipher.updateAAD(aad);
         } catch (InvalidAlgorithmParameterException ex) {
             throw new CryptoFailException("잘못된 초기화벡터(IV) 혹은 IV를 지원하지 않는 알고리즘 입니다.", ex);

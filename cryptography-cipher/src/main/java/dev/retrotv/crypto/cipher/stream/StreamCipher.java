@@ -55,6 +55,7 @@ public abstract class StreamCipher implements TwoWayEncryption {
                 output.write(buffer, 0, i);
                 i = cis.read(buffer);
             }
+            output.flush();
         } catch (IOException ex) {
             throw new CryptoFailException(ex);
         }

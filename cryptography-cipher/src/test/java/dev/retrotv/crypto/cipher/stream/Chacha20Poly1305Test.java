@@ -24,9 +24,14 @@ class Chacha20Poly1305Test {
         Chacha20Poly1305 chacha20 = new Chacha20Poly1305();
         byte[] key = KeyGenerator.generateKey(32);
         byte[] iv = IVGenerator.generateIV(12);
+        byte[] aad = IVGenerator.generateIV(16);
         ParamWithIV params = new ParamWithIV(key, iv);
 
+        chacha20.updateAAD(aad);
         Result encrypted = chacha20.encrypt(plainText.getBytes(), params);
+
+        chacha20 = new Chacha20Poly1305();
+        chacha20.updateAAD(aad);
         Result decrypted = chacha20.decrypt(encrypted.getData(), params);
 
         assertEquals(plainText, new String(decrypted.getData()));
@@ -48,6 +53,7 @@ class Chacha20Poly1305Test {
     @Test
     @DisplayName("Chacha20-Poly1305 스트림 암호화 테스트")
     void testEncryptAndDecryptInputStream() throws UnsupportedEncodingException {
+        
         // 준비
         byte[] key = KeyGenerator.generateKey(32); // Chacha20-Poly1305는 32바이트 사용
         byte[] iv = IVGenerator.generateIV(12);

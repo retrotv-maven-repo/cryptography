@@ -71,6 +71,7 @@ subprojects {
 
         // Bouncy Castle
         implementation("org.bouncycastle:bcprov-jdk18on:${bouncyCastle}")
+        implementation("org.bouncycastle:bctls-jdk18on:${bouncyCastle}")
 
         testCompileOnly("org.projectlombok:lombok:${lombok}")
         testAnnotationProcessor("org.projectlombok:lombok:${lombok}")
