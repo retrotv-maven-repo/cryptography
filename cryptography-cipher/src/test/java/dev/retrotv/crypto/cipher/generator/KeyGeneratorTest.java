@@ -14,6 +14,7 @@ class KeyGeneratorTest {
     @DisplayName("Exception 발생 테스트")
     void test_generateException() {
         assertThrows(IllegalArgumentException.class, () -> KeyGenerator.generateKey(4));
+        assertThrows(IllegalArgumentException.class, () -> KeyGenerator.generateKey(ECipher.AES, 4));
         assertThrows(GenerateException.class, () -> KeyGenerator.generateKey(ECipher.AES, null));
         assertThrows(GenerateException.class, () -> KeyGenerator.generateKey(ECipher.ARIA, null));
         assertThrows(GenerateException.class, () -> KeyGenerator.generateKey(ECipher.LEA, null));
