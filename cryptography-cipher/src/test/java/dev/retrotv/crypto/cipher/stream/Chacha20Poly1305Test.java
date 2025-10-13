@@ -5,12 +5,13 @@ import dev.retrotv.crypto.cipher.generator.KeyGenerator;
 import dev.retrotv.crypto.cipher.param.Param;
 import dev.retrotv.crypto.cipher.param.ParamWithIV;
 import dev.retrotv.crypto.cipher.result.Result;
+import dev.retrotv.crypto.exception.CryptoFailException;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -52,7 +53,7 @@ class Chacha20Poly1305Test {
 
     @Test
     @DisplayName("Chacha20-Poly1305 스트림 암호화 테스트")
-    void testEncryptAndDecryptInputStream() throws UnsupportedEncodingException {
+    void testEncryptAndDecryptInputStream() {
         
         // 준비
         byte[] key = KeyGenerator.generateKey(32); // Chacha20-Poly1305는 32바이트 사용
@@ -80,6 +81,100 @@ class Chacha20Poly1305Test {
 
         // 검증
         assertArrayEquals(plain, Arrays.copyOf(decrypted, plain.length));
+    }
+
+    @Test
+    @DisplayName("Chacha20-Poly1305 예외 테스트")
+    void test_exception() {
+        Chacha20Poly1305 chacha20 = new Chacha20Poly1305();
+
+        assertThrows(CryptoFailException.class, () -> {
+            byte[] key = KeyGenerator.generateKey(16); // 잘못된 키 길이
+            byte[] iv = IVGenerator.generateIV(12);
+            byte[] aad = IVGenerator.generateIV(16);
+
+            ParamWithIV params = new ParamWithIV(key, iv);
+            chacha20.updateAAD(aad);
+            chacha20.encrypt("test".getBytes(), params);
+        });
+
+        assertThrows(CryptoFailException.class, () -> {
+            byte[] key = KeyGenerator.generateKey(32);
+            byte[] iv = IVGenerator.generateIV(8); // 잘못된 IV 길이
+            byte[] aad = IVGenerator.generateIV(16);
+
+            ParamWithIV params = new ParamWithIV(key, iv);
+            chacha20.updateAAD(aad);
+            chacha20.encrypt("test".getBytes(), params);
+        });
+
+        assertThrows(CryptoFailException.class, () -> {
+            byte[] key = KeyGenerator.generateKey(16); // 잘못된 키 길이
+            byte[] iv = IVGenerator.generateIV(12);
+            byte[] aad = IVGenerator.generateIV(16);
+
+            ParamWithIV params = new ParamWithIV(key, iv);
+            chacha20.updateAAD(aad);
+            chacha20.decrypt("test".getBytes(), params);
+        });
+
+        assertThrows(CryptoFailException.class, () -> {
+            byte[] key = KeyGenerator.generateKey(32);
+            byte[] iv = IVGenerator.generateIV(8); // 잘못된 IV 길이
+            byte[] aad = IVGenerator.generateIV(16);
+
+            ParamWithIV params = new ParamWithIV(key, iv);
+            chacha20.updateAAD(aad);
+            chacha20.decrypt("test".getBytes(), params);
+        });
+
+        assertThrows(CryptoFailException.class, () -> {
+            ByteArrayInputStream in = new ByteArrayInputStream("test".getBytes());
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            byte[] key = KeyGenerator.generateKey(16); // 잘못된 키 길이
+            byte[] iv = IVGenerator.generateIV(12);
+            byte[] aad = IVGenerator.generateIV(16);
+
+            ParamWithIV params = new ParamWithIV(key, iv);
+            chacha20.updateAAD(aad);
+            chacha20.encrypt(in, out, params);
+        });
+
+        assertThrows(CryptoFailException.class, () -> {
+            ByteArrayInputStream in = new ByteArrayInputStream("test".getBytes());
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            byte[] key = KeyGenerator.generateKey(32);
+            byte[] iv = IVGenerator.generateIV(8); // 잘못된 IV 길이
+            byte[] aad = IVGenerator.generateIV(16);
+
+            ParamWithIV params = new ParamWithIV(key, iv);
+            chacha20.updateAAD(aad);
+            chacha20.encrypt(in, out, params);
+        });
+
+        assertThrows(CryptoFailException.class, () -> {
+            ByteArrayInputStream in = new ByteArrayInputStream("test".getBytes());
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            byte[] key = KeyGenerator.generateKey(16); // 잘못된 키 길이
+            byte[] iv = IVGenerator.generateIV(12);
+            byte[] aad = IVGenerator.generateIV(16);
+
+            ParamWithIV params = new ParamWithIV(key, iv);
+            chacha20.updateAAD(aad);
+            chacha20.decrypt(in, out, params);
+        });
+
+        assertThrows(CryptoFailException.class, () -> {
+            ByteArrayInputStream in = new ByteArrayInputStream("test".getBytes());
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            byte[] key = KeyGenerator.generateKey(32);
+            byte[] iv = IVGenerator.generateIV(8); // 잘못된 IV 길이
+            byte[] aad = IVGenerator.generateIV(16);
+
+            ParamWithIV params = new ParamWithIV(key, iv);
+            chacha20.updateAAD(aad);
+            chacha20.decrypt(in, out, params);
+        });
     }
 }
 

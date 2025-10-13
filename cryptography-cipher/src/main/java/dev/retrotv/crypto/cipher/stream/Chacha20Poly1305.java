@@ -25,6 +25,7 @@ import java.util.Arrays;
 public class Chacha20Poly1305 extends AEADStreamCipher {
     private static final String REQUIRED_MESSAGE = "ChaCha20 모드는 ParamsWithIV 객체를 요구합니다.";
     private static final String ALGORITHM = "ChaCha20-Poly1305";
+    private static final String KEY_ALGORITHM = "ChaCha20";
 
     public Chacha20Poly1305() {
         Security.addProvider(new BouncyCastleProvider());
@@ -45,7 +46,7 @@ public class Chacha20Poly1305 extends AEADStreamCipher {
         }
 
         ParamWithIV paramWithIV = (ParamWithIV) params;
-        SecretKeySpec key = new SecretKeySpec(paramWithIV.getKey(), "ChaCha20");
+        SecretKeySpec key = new SecretKeySpec(paramWithIV.getKey(), KEY_ALGORITHM);
         IvParameterSpec iv = new IvParameterSpec(paramWithIV.getIv());
 
         try {
@@ -80,7 +81,7 @@ public class Chacha20Poly1305 extends AEADStreamCipher {
         }
 
         ParamWithIV paramWithIV = (ParamWithIV) params;
-        SecretKeySpec key = new SecretKeySpec(paramWithIV.getKey(), "ChaCha20");
+        SecretKeySpec key = new SecretKeySpec(paramWithIV.getKey(), KEY_ALGORITHM);
         IvParameterSpec iv = new IvParameterSpec(paramWithIV.getIv());
 
         try {
@@ -102,7 +103,7 @@ public class Chacha20Poly1305 extends AEADStreamCipher {
         }
 
         ParamWithIV paramWithIV = (ParamWithIV) params;
-        SecretKeySpec key = new SecretKeySpec(paramWithIV.getKey(), "ChaCha20");
+        SecretKeySpec key = new SecretKeySpec(paramWithIV.getKey(), KEY_ALGORITHM);
         IvParameterSpec iv = new IvParameterSpec(paramWithIV.getIv());
 
         try {
@@ -135,7 +136,7 @@ public class Chacha20Poly1305 extends AEADStreamCipher {
         }
 
         ParamWithIV paramWithIV = (ParamWithIV) params;
-        SecretKeySpec key = new SecretKeySpec(paramWithIV.getKey(), "ChaCha20");
+        SecretKeySpec key = new SecretKeySpec(paramWithIV.getKey(), KEY_ALGORITHM);
         IvParameterSpec iv = new IvParameterSpec(paramWithIV.getIv());
 
         try {

@@ -22,6 +22,7 @@ public abstract class AEADStreamCipher extends StreamCipher {
         this.aad = aad;
     }
 
+    @Override
     protected void streamEncrypt(InputStream input, OutputStream output) {
         try (CipherOutputStream cos = new CipherOutputStream(output, this.cipher)) {
             byte[] buffer = new byte[1024];
@@ -36,6 +37,7 @@ public abstract class AEADStreamCipher extends StreamCipher {
         }
     }
 
+    @Override
     protected void streamDecrypt(InputStream input, OutputStream output) {
         try (CipherInputStream cis = new CipherInputStream(input, this.cipher)) {
             byte[] buffer = new byte[1024];
