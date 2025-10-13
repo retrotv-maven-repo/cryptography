@@ -97,8 +97,11 @@ class Chacha20Poly1305Test {
         ParamWithIV params = new ParamWithIV(key, iv);
         chacha20.updateAAD(aad);
 
-        assertThrows(CryptoFailException.class, () -> chacha20.encrypt(data, params));
-        assertThrows(CryptoFailException.class, () -> chacha20.encrypt(in, out, params));
+        CryptoFailException exception = assertThrows(CryptoFailException.class, () -> chacha20.encrypt(data, params));
+        assertEquals("잘못된 암호화 키 입니다.", exception.getMessage());
+
+        exception = assertThrows(CryptoFailException.class, () -> chacha20.encrypt(in, out, params));
+        assertEquals("잘못된 암호화 키 입니다.", exception.getMessage());
     }
 
     @Test

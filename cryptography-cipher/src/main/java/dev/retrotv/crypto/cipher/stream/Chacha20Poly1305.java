@@ -21,7 +21,7 @@ import java.io.OutputStream;
 import java.security.*;
 import java.util.Arrays;
 
-@SuppressWarnings("squid:S5542") // Chacha20-Poly1305는 Padding이 필요없는 알고리즘임
+@SuppressWarnings({ "java:S5542", "java:S3329" }) // Chacha20-Poly1305는 Padding이 필요없는 알고리즘임
 public class Chacha20Poly1305 extends AEADStreamCipher {
     private static final String REQUIRED_MESSAGE = "ChaCha20 모드는 ParamsWithIV 객체를 요구합니다.";
     private static final String ALGORITHM = "ChaCha20-Poly1305";
@@ -52,10 +52,8 @@ public class Chacha20Poly1305 extends AEADStreamCipher {
         try {
             cipher.init(Cipher.ENCRYPT_MODE, key, iv);
             cipher.updateAAD(aad);
-        } catch (InvalidAlgorithmParameterException ex) {
-            throw new CryptoFailException("잘못된 초기화벡터(IV) 혹은 IV를 지원하지 않는 알고리즘 입니다.", ex);
-        } catch (InvalidKeyException ex) {
-            throw new CryptoFailException("잘못된 암호화 키 입니다.", ex);
+        } catch (InvalidAlgorithmParameterException | InvalidKeyException ex) {
+            throw new CryptoFailException("잘못된 암호화 키 혹은 초기화 벡터(IV)이거나 초기화 벡터를 사용하지 않는 알고리즘입니다.", ex);
         }
 
         byte[] encryptedData;
@@ -87,10 +85,8 @@ public class Chacha20Poly1305 extends AEADStreamCipher {
         try {
             cipher.init(Cipher.ENCRYPT_MODE, key, iv);
             cipher.updateAAD(aad);
-        } catch (InvalidAlgorithmParameterException ex) {
-            throw new CryptoFailException("잘못된 초기화벡터(IV) 혹은 IV를 지원하지 않는 알고리즘 입니다.", ex);
-        } catch (InvalidKeyException ex) {
-            throw new CryptoFailException("잘못된 암호화 키 입니다.", ex);
+        } catch (InvalidAlgorithmParameterException | InvalidKeyException ex) {
+            throw new CryptoFailException("잘못된 암호화 키 혹은 초기화 벡터(IV)이거나 초기화 벡터를 사용하지 않는 알고리즘입니다.", ex);
         }
 
         this.streamEncrypt(input, output);
@@ -109,10 +105,8 @@ public class Chacha20Poly1305 extends AEADStreamCipher {
         try {
             cipher.init(Cipher.DECRYPT_MODE, key, iv);
             cipher.updateAAD(aad);
-        } catch (InvalidAlgorithmParameterException ex) {
-            throw new CryptoFailException("잘못된 초기화벡터(IV) 혹은 IV를 지원하지 않는 알고리즘 입니다.", ex);
-        } catch (InvalidKeyException ex) {
-            throw new CryptoFailException("잘못된 암호화 키 입니다.", ex);
+        } catch (InvalidAlgorithmParameterException | InvalidKeyException ex) {
+            throw new CryptoFailException("잘못된 암호화 키 혹은 초기화 벡터(IV)이거나 초기화 벡터를 사용하지 않는 알고리즘입니다.", ex);
         }
 
         byte[] originalData;
@@ -142,10 +136,8 @@ public class Chacha20Poly1305 extends AEADStreamCipher {
         try {
             cipher.init(Cipher.ENCRYPT_MODE, key, iv);
             cipher.updateAAD(aad);
-        } catch (InvalidAlgorithmParameterException ex) {
-            throw new CryptoFailException("잘못된 초기화벡터(IV) 혹은 IV를 지원하지 않는 알고리즘 입니다.", ex);
-        } catch (InvalidKeyException ex) {
-            throw new CryptoFailException("잘못된 암호화 키 입니다.", ex);
+        } catch (InvalidAlgorithmParameterException | InvalidKeyException ex) {
+            throw new CryptoFailException("잘못된 암호화 키 혹은 초기화 벡터(IV)이거나 초기화 벡터를 사용하지 않는 알고리즘입니다.", ex);
         }
 
         this.streamDecrypt(input, output);
