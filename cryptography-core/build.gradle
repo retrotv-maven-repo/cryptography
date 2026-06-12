@@ -1,9 +1,9 @@
 plugins {
-    java
+    id 'java'
 }
 
-val apacheCommonCodec = "1.18.0"
-val randomValue = "1.2.1"
+def apacheCommonCodec = "1.18.0"
+def randomValue = "1.2.1"
 
 dependencies {
     implementation("commons-codec:commons-codec:${apacheCommonCodec}")
