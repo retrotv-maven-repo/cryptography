@@ -90,7 +90,7 @@ subprojects {
     }
 
     mavenPublishing {
-        publishToMavenCentral(null)
+        publishToMavenCentral()
         signAllPublications()
         coordinates(group.toString(), project.name, version as String)
 
