@@ -13,14 +13,6 @@ tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
 }
 
-tasks.withType(Javadoc).configureEach {
-    options.with {
-        charSet = 'UTF-8'      // HTML charset
-        encoding = 'UTF-8'     // 소스 읽기 인코딩
-        docEncoding = 'UTF-8'  // 출력 파일 인코딩
-    }
-}
-
 // Github Action 버전 출력용
 tasks.register('printVersionName') {
     description = '이 프로젝트의 버전을 출력합니다.'
@@ -49,6 +41,14 @@ subprojects {
         targetCompatibility = JavaVersion.VERSION_1_8
         toolchain {
             languageVersion = JavaLanguageVersion.of((project.findProperty('targetJava') ?: '8').toString().toInteger())
+        }
+    }
+
+    tasks.withType(Javadoc).configureEach {
+        options.with {
+            charSet = 'UTF-8'      // HTML charset
+            encoding = 'UTF-8'     // 소스 읽기 인코딩
+            docEncoding = 'UTF-8'  // 출력 파일 인코딩
         }
     }
 
