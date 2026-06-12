@@ -121,17 +121,17 @@ subprojects {
                 url = 'https://github.com/retrotv-maven-repo/cryptography.git'
             }
         }
-    }
 
-    publishing {
-        repositories {
-            // Github Packages에 배포하기 위한 설정
-            maven {
-                name = 'GitHubPackages'
-                url = URI.create('https://maven.pkg.github.com/retrotv-maven-repo/cryptography')
-                credentials {
-                    username = System.getenv('USERNAME')
-                    password = System.getenv('PASSWORD')
+        publishing {
+            repositories {
+                // Github Packages에 배포하기 위한 설정
+                maven {
+                    name = 'GitHubPackages'
+                    url = URI.create('https://maven.pkg.github.com/retrotv-maven-repo/cryptography')
+                    credentials {
+                        username = System.getenv('USERNAME')
+                        password = System.getenv('PASSWORD')
+                    }
                 }
             }
         }
